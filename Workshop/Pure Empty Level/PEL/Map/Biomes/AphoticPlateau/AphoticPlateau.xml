@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LevelGenerationParameters>
-  <Override>
-    <PlateauBasic identifier="plateaubasic" commonness="0" />
-    <PlateauAdvanced identifier="plateauadvanced" commonness="0" />
-    <PlateauGarden identifier="plateaugarden" commonness="0" />
-    <PlateauTransition identifier="plateautransition" commonness="0" />
-  </Override>
-</LevelGenerationParameters>

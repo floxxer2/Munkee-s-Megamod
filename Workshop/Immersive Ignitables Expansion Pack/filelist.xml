@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Immersive Ignitables Expansion Pack" modversion="1.9.5" corepackage="False" steamworkshopid="3231351969" gameversion="1.10.7.2" expectedhash="89E0F24663061F4B5513740F40F4D80A">
-  <Afflictions file="%ModDir%/Workshop/Immersive Ignitables Expansion Pack/Afflictions.xml" />
-  <Item file="%ModDir%/Workshop/Immersive Ignitables Expansion Pack/Expansion.xml" />
-  <NPCSets file="%ModDir%/Workshop/Immersive Ignitables Expansion Pack/KatzNPC.xml" />
-</contentpackage>

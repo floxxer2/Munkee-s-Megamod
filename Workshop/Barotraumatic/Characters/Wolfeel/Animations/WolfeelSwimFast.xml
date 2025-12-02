@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<wolfeelSwimFast UseSineMovement="False" Flip="True" FlipCooldown="1" FlipDelay="0.5" Mirror="True" MirrorLerp="True" WaveAmplitude="28.319408" WaveLength="81.90355" RotateTowardsMovement="True" TailTorque="50" TailTorqueMultiplier="1" FootAngles="6: 0,7: 0" UpdateAnimationWhenNotMoving="False" TailAngle="95" SteerTorque="25" LegTorque="25" AnimationType="SwimFast" MovementSpeed="5.961457" CycleSpeed="1" HeadAngle="146" TorsoAngle="92" HeadTorque="50" TorsoTorque="50" FootTorque="25" ArmIKStrength="1" HandIKStrength="1" />

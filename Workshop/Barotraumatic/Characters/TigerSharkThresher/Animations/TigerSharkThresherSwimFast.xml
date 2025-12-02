@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TigerSharkThresherSwimFast UseSineMovement="False" Flip="True" FlipCooldown="1" FlipDelay="0.5" Mirror="False" MirrorLerp="True" WaveAmplitude="0.5" WaveLength="20" RotateTowardsMovement="True" TailTorque="50" TailTorqueMultiplier="1" FootAngles="" UpdateAnimationWhenNotMoving="False" TailAngle="NaN" SteerTorque="100" LegTorque="25" MovementSpeed="9" CycleSpeed="1" HeadAngle="NaN" TorsoAngle="0" HeadTorque="25" TorsoTorque="100" FootTorque="25" AnimationType="SwimFast" ArmIKStrength="1" HandIKStrength="1" />

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Charactervariant inherit="MantisShrimp" speciesname="MantisShrimpSmall">
-  <ragdoll scalemultiplier="0.76" />
-  <attack damagemultiplier="0.5" rangemultiplier="0.7" impactmultiplier="0.5" />
-  <animations folder="%ModDir%/Workshop/Barotraumatic/Characters/MantisShrimpSmall/Animations/" />
-</Charactervariant>

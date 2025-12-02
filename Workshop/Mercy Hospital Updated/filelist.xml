@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Mercy Hospital Updated" modversion="1.0.2" corepackage="False" steamworkshopid="3355559986" gameversion="1.9.8.0" expectedhash="317D67C339818366A2F1FFC646E0A75D">
-  <Text file="%ModDir%/Workshop/Mercy Hospital Updated/Localization/English.xml" />
-  <Text file="%ModDir%/Workshop/Mercy Hospital Updated/Localization/German.xml" />
-  <Text file="%ModDir%/Workshop/Mercy Hospital Updated/Localization/Russian.xml" />
-  <Item file="%ModDir%/Workshop/Mercy Hospital Updated/Xml/items.xml" />
-  <Submarine file="%ModDir%/Workshop/Mercy Hospital Updated/Mercy Hospital.sub" />
-</contentpackage>

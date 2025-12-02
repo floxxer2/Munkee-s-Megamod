@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<prefabs>
-  <muzzleflashcoilgunafixedlength lifetime="0.35" startdelaymin="0" startdelaymax="0" angularvelocitymin="0" angularvelocitymax="0" startrotationmin="0" startrotationmax="0" rotatetodirection="False" drag="0" waterdrag="0" velocitychange="0,0" velocitychangewater="0,0" collisionradius="1" usecollision="False" deleteoncollision="False" friction="0.5" restitution="0.5" startsizemin="2,1" startsizemax="2,1" sizechangemin="0,0" sizechangemax="0,0" growtime="0" startcolor="255,255,255,255" endcolor="255,255,255,255" drawtarget="Water" blendstate="Additive" animduration="0.35" loopanim="False">
-    <animatedsprite texture="%ModDir%/Workshop/Visual Variety Pack/Items/Weapons/Effects/muzzle flashes.png" sourcerect="0,0,2148,384" columns="4" rows="3" origin="0.325,0.63" premultiplyalpha="false" />
-  </muzzleflashcoilgunafixedlength>
-  <muzzleflashcoilgunafixedlength2 lifetime="0.35" startdelaymin="0" startdelaymax="0" angularvelocitymin="0" angularvelocitymax="0" startrotationmin="0" startrotationmax="0" rotatetodirection="False" drag="0" waterdrag="0" velocitychange="0,0" velocitychangewater="0,0" collisionradius="1" usecollision="False" deleteoncollision="False" friction="0.5" restitution="0.5" startsizemin="2,1" startsizemax="2,1" sizechangemin="0,0" sizechangemax="0,0" growtime="0" startcolor="255,255,255,255" endcolor="255,255,255,255" drawtarget="Water" blendstate="Additive" animduration="0.35" loopanim="False">
-    <animatedsprite texture="%ModDir%/Workshop/Visual Variety Pack/Items/Weapons/Effects/muzzle flashes.png" sourcerect="0,0,2148,384" columns="4" rows="3" origin="0.42,0.5" premultiplyalpha="false" />
-  </muzzleflashcoilgunafixedlength2>
-</prefabs>

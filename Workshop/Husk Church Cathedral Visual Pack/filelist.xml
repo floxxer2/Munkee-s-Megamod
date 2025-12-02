@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Husk Church Cathedral Visual Pack" modversion="1.0.8" corepackage="False" steamworkshopid="2914415949" gameversion="0.20.16.1" expectedhash="58D6BDAA70A39DAA9E393D7AD88B919F">
-  <Item file="%ModDir%/Workshop/Husk Church Cathedral Visual Pack/Items/itemlist.xml" />
-  <Other file="%ModDir%/Workshop/Husk Church Cathedral Visual Pack/Items/Husk Church Cathedral Visual Pack Items.png" />
-  <Other file="%ModDir%/Workshop/Husk Church Cathedral Visual Pack/Items/Cultist robe.png" />
-</contentpackage>

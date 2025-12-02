@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<EndwormreSwimSlow UseSineMovement="False" Flip="True" FlipCooldown="1" FlipDelay="1" Mirror="False" MirrorLerp="False" WaveAmplitude="30.48616" WaveLength="101.25363" RotateTowardsMovement="True" TailTorque="2000" TailTorqueMultiplier="15" FootAngles="" UpdateAnimationWhenNotMoving="False" TailAngle="90" SteerTorque="1000" LegTorque="25" AnimationType="SwimSlow" MovementSpeed="12.676498" CycleSpeed="5" HeadAngle="90" TorsoAngle="NaN" HeadTorque="1000" TorsoTorque="50" FootTorque="25" ArmIKStrength="1" HandIKStrength="1" />

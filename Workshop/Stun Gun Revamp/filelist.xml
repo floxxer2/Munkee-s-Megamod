@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Stun Gun Revamp" modversion="1.0.1" corepackage="False" steamworkshopid="3486903116" gameversion="1.8.8.1" expectedhash="ADD7BD738DF612216AEA9855EBBB73BC">
-  <Afflictions file="%ModDir%/Workshop/Stun Gun Revamp/zappedoverride.xml" />
-  <Item file="%ModDir%/Workshop/Stun Gun Revamp/stungun.xml" />
-  <Text file="%ModDir%/Workshop/Stun Gun Revamp/english.xml" />
-</contentpackage>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<infotexts language="English" nowhitespace="false" translatedname="English">
-  <Override>
-    <talentdescription.quickdraw>If it has been longer than [seconds] seconds since you've attacked with a pistol, your next attack with a pistol is [damage]% more powerful. ‖color:gui.orange‖Leverguns‖end‖ also benfit from this skill.</talentdescription.quickdraw>
-    <talentdescription.bigguns>Deal [amount]% more damage with ‖color:gui.orange‖Revolvers‖end‖ and ‖color:gui.orange‖Handcannons‖end‖ to monsters. ‖color:gui.orange‖Leverguns‖end‖ also benfit from this skill.</talentdescription.bigguns>
-  </Override>
-</infotexts>
