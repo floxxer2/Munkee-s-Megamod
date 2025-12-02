@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <!--<Affliction name="Consumed" identifier="consumed" target="human" description="You are being eaten alive" type="consumed" limbspecific="false" indicatorlimb="Torso" causeofdeathdescription="Consumed" selfcauseofdeathdescription="You've been consumed" activationthreshold="0" showinhealthscannerthreshold="1" showiconthreshold="1" showicontoothersthreshold="1" maxstrength="1">
+    <Effect minstrength="0.1" maxstrength="1" minvitalitydecrease="0" maxvitalitydecrease="2" multiplybymaxvitality="true" strengthchange="0.1">
+      <StatusEffect target="Character" comparison="and">
+        <Conditional speciesname="human" />
+        <Affliction identifier="Bleeding" strength="100" />
+      </StatusEffect>
+      <StatusEffect type="OnDeath" target="Character">
+        <RemoveCharacter />
+      </StatusEffect>
+    </Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,512,128,128" color="195,136,60,255" origin="0,0" />
+  </Affliction>-->
+  <Affliction name="Radio" identifier="radio" target="human" isbuff="true" limbspecific="false" indicatorlimb="Head" ShowIconToOthersThreshold="801" ShowInHealthCcannerThreshold="801" showiconthreshold="1" maxstrength="800">
+    <Description textidentifier="AfflictionDescription.BTradio.150" minstrength="1" maxstrength="150"></Description>
+    <Description textidentifier="AfflictionDescription.BTradio.200" minstrength="151" maxstrength="200"></Description>
+    <Description textidentifier="AfflictionDescription.BTradio.250" minstrength="201" maxstrength="250"></Description>
+    <Description textidentifier="AfflictionDescription.BTradio.400" minstrength="251" maxstrength="400"></Description>
+    <Description textidentifier="AfflictionDescription.BTradio.800" minstrength="401" maxstrength="800"></Description>
+    <Effect minstrength="1" maxstrength="800" strengthchange="-150" tag="headset"></Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="384,128,128,128" color="10,193,114,255" origin="0,0" />
+  </Affliction>
+</Afflictions>

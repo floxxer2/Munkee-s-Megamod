@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <sounds>
+    <impact_extinguisher file="%ModDir:3114087512%/Content/Sounds/Impact/ImpactExtinguisher1.ogg" range="600" />
+    <impact_extinguisher file="%ModDir:3114087512%/Content/Sounds/Impact/ImpactExtinguisher2.ogg" range="600" />
+    <impact_extinguisher file="%ModDir:3114087512%/Content/Sounds/Impact/ImpactExtinguisher3.ogg" range="600" />
+    <impact_extinguisher file="%ModDir:3114087512%/Content/Sounds/Impact/ImpactExtinguisher4.ogg" range="600" />
+    <impact_extinguisher file="%ModDir:3114087512%/Content/Sounds/Impact/ImpactExtinguisher5.ogg" range="600" />
+    <impact_extinguisher file="%ModDir:3114087512%/Content/Sounds/Impact/ImpactExtinguisher6.ogg" range="600" />
+    <impact_fueltank file="%ModDir:3114087512%/Content/Sounds/Impact/FuelTankImpact1.ogg" range="600" />
+    <impact_fueltank file="%ModDir:3114087512%/Content/Sounds/Impact/FuelTankImpact2.ogg" range="600" />
+    <impact_fueltank file="%ModDir:3114087512%/Content/Sounds/Impact/FuelTankImpact3.ogg" range="600" />
+    <impact_fueltank file="%ModDir:3114087512%/Content/Sounds/Impact/FuelTankImpact4.ogg" range="600" />
+    <impact_fueltank file="%ModDir:3114087512%/Content/Sounds/Impact/FuelTankImpact5.ogg" range="600" />
+    <impact_fueltank file="%ModDir:3114087512%/Content/Sounds/Impact/FuelTankImpact6.ogg" range="600" />
+  </sounds>
+</Override>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Talents>
+    <Talent identifier="firefighter">
+      <Icon texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="0,257,119,119" />
+      <Description tag="talentdescription.firefighter">
+        <Replace tag="[itemname1]" value="entityname.firefightersuit" color="gui.orange" />
+        <Replace tag="[itemname2]" value="entityname.firefighterhelmet" color="gui.orange" />
+        <Replace tag="[itemname3]" value="entityname.fireaxe" color="gui.orange" />
+        <Replace tag="[itemname4]" value="entityname.halligantool" color="gui.orange" />
+        <Replace tag="[itemname5]" value="entityname.co2grenade" color="gui.orange" />
+      </Description>
+      <AbilityGroupEffect abilityeffecttype="None">
+        <Abilities>
+          <CharacterAbilityGiveFlag flagtype="MoveNormallyWhileDragging" />
+        </Abilities>
+      </AbilityGroupEffect>
+      <AddedRecipe itemidentifier="firefightersuit" />
+      <AddedRecipe itemidentifier="firefighterhelmet" />
+      <AddedRecipe itemidentifier="fireaxe" />
+      <AddedRecipe itemidentifier="halligantool" />
+      <AddedRecipe itemidentifier="co2grenade" />
+    </Talent>
+    <Talent identifier="modularrepairs">
+      <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="5,1" sheetelementsize="128,128" />
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="entityname.multitool" color="gui.orange" />
+      </Description>
+      <AddedRecipe itemidentifier="repairpack" />
+    </Talent>
+    <Talent identifier="hullfixer">
+      <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="0,2" sheetelementsize="128,128" />
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="entityname.fixfoamtank,entityname.handheldstatusmonitor" color="gui.orange" />
+      </Description>
+      <Description tag="talentdescription.additionalstattype">
+        <Replace tag="[amount]" value="25" color="gui.green" />
+        <Replace tag="[stattype]" value="stattypenames.repairtoolstructurerepairmultiplier" color="gui.orange" />
+      </Description>
+      <AbilityGroupEffect abilityeffecttype="None">
+        <Abilities>
+          <CharacterAbilityGiveStat stattype="RepairToolStructureRepairMultiplier" value="0.25" />
+        </Abilities>
+      </AbilityGroupEffect>
+      <AddedRecipe itemidentifier="fixfoamtank" />
+      <AddedRecipe itemidentifier="handheldstatusmonitor" />
+    </Talent>
+    <Talent identifier="oiledmachinery">
+      <Icon texture="Content/UI/TalentsIcons3.png" sheetindex="4,5" sheetelementsize="128,128" />
+      <Description tag="talentdescription.oiledmachinery">
+        <Replace tag="[amount]" value="50" color="gui.green" />
+      </Description>
+      <Description tag="talentdescription.doesnotstack" />
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="entityname.premiumengineoil" color="gui.orange" />
+      </Description>
+      <AbilityGroupInterval interval="60">
+        <Abilities>
+          <CharacterAbilityGiveItemStatToTags tags="fabricator" stattype="FabricationSpeed" value="1.5" />
+          <CharacterAbilityGiveItemStatToTags tags="deconstructor" stattype="DeconstructorSpeed" value="1.5" />
+        </Abilities>
+      </AbilityGroupInterval>
+      <AbilityGroupEffect abilityeffecttype="None">
+        <Abilities>
+          <CharacterAbilityGiveItemStatToTags tags="fabricator" stattype="FabricationSpeed" value="1.5" />
+          <CharacterAbilityGiveItemStatToTags tags="deconstructor" stattype="DeconstructorSpeed" value="1.5" />
+        </Abilities>
+      </AbilityGroupEffect>
+      <AddedRecipe itemidentifier="premiumengineoil" />
+    </Talent>
+  </Talents>
+</Override>

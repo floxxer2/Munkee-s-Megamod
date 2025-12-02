@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <!-- DYNAMIC EUROPA -->
+    <!-- Construction Materials -->
+    <Item name="Construction Material Crate" identifier="constructionmaterialcrate" tags="crate,constructionmaterials" description="[M] REQUIRES DYNAMIC EUROPA - A crate full of processed construction materials. Can be delivered to construction sites." scale="0.5" impactsoundtag="impact_crate" hideconditionbar="true">
+      <PreferredContainer primary="cargocontainer" spawnprobability="0.2" />
+      <Fabricate time="15" suitablefabricators="fabricator">
+        <RequiredItem tag="munition_core" amount="6" description="fabricationdescription.hardmaterials" />
+        <RequiredItem tag="munition_jacket" amount="6" description="fabricationdescription.softmaterials" />
+        <RequiredItem identifier="aluminium" amount="6" />
+      </Fabricate>
+      <Deconstruct time="10" requreddeconstructor="deconstructor">
+        <Item identifier="iron" amount="2" />
+        <Item identifier="lead" amount="2" />
+        <Item identifier="copper" amount="2" />
+        <Item identifier="steel" amount="2" />
+      </Deconstruct>
+      <InventoryIcon texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="0,1,146,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" depth="0.54" sourcerect="0,1,146,83" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="147,1,106,83" origin="0.5,0.5" depth="0.54" maxcondition="99" fadein="false" />
+      <Body width="144" height="80" density="25" />
+      <Holdable slots="RightHand+LeftHand" holdangle="5" holdpos="90,-110" handle1="-5,0" handle2="-5,10" aimable="false" msg="ItemMsgPickUpSelect">
+        <!-- damage the crate to display the broken sprite and turn the ItemComponent on when it is being held -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" condition="99" setvalue="true" />
+      </Holdable>
+      <!-- ItemComponent used to not have to resort to constantly running "Always" StatusEffects when no one is interacting with the crate -->
+      <ItemComponent IsActive="false" canbeselected="false" canbepicked="false" allowingameediting="true">
+        <!-- repair the item to display the original sprite again and turn the ItemComponent off if it is either not contained or it is stored in another item with the tag "container" like the crate shelfs -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" condition="100" IsActive="false" setvalue="true">
+          <Conditional IsContained="false" />
+          <Conditional HasTag="container" targetcontainer="true" />
+          <Conditional HasTag="cargocontainer" targetcontainer="true" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+    <!-- NEUROTRAUMA -->
+    <Item name="Refrigerated Crate" identifier="organcrate" tags="crate,refrigerated" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_crate" waterproof="true" fireproof="true" description="[M] REQUIRES NEUROTRAUMA - A place to store your precious transplant-ready organs" hideconditionbar="true">
+      <Price baseprice="150">
+        <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="20" />
+        <Item identifier="steel" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="phosphorus" />
+        <Item identifier="phosphorus" />
+      </Fabricate>
+      <InventoryIcon texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="254,1,146,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" depth="0.54" sourcerect="254,1,146,83" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="401,1,106,83" origin="0.5,0.5" depth="0.54" maxcondition="99" fadein="false" />
+      <Body width="144" height="80" density="25" />
+      <Holdable slots="RightHand+LeftHand" holdangle="5" holdpos="90,-110" handle1="-5,0" handle2="-5,10" aimable="false" msg="ItemMsgPickUpSelect">
+        <!-- damage the crate to display the broken sprite and turn the ItemComponent on when it is being held -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" condition="99" setvalue="true" />
+      </Holdable>
+      <!-- ItemComponent used to not have to resort to constantly running "Always" StatusEffects when no one is interacting with the crate -->
+      <ItemComponent IsActive="false" canbeselected="false" canbepicked="false" allowingameediting="false">
+        <!-- repair the item to display the original sprite again and turn the ItemComponent off if it is either not contained or it is stored in another item with the tag "container" like the crate shelfs -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" condition="100" IsActive="false" setvalue="true">
+          <Conditional IsContained="false" />
+          <Conditional HasTag="container" targetcontainer="true" />
+          <Conditional HasTag="cargocontainer" targetcontainer="true" />
+        </StatusEffect>
+      </ItemComponent>
+      <ItemContainer capacity="12" slotsperrow="4" canbeselected="true" selectkey="Action" hideitems="true" keepopenwhenequipped="true" movableframe="true" msg="itemmsginteractuse">
+        <GuiFrame relativesize="0.25,0.35" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,organ" excludeditems="toolbox,cargoscooter" />
+        <StatusEffect type="OnPicked" target="This">
+          <Sound file="%ModDir:3239164008%/Content/Items/crate_open1.ogg" range="300" volume="2.0" loop="false" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+    <Item name="Medical Starter Crate" identifier="medstartercrate" tags="crate" scale="0.4" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_crate" waterproof="true" fireproof="true" description="[M] REQUIRES NEUROTRAUMA - A crate that contains all the essentials, conveniently packaged into a single crafting recipe" hideconditionbar="true">
+      <Price baseprice="150">
+        <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
+      </Price>
+      <Deconstruct />
+      <Fabricate suitablefabricators="fabricator" requiredtime="10">
+        <RequiredSkill identifier="mechanical" level="20" />
+        <Item identifier="steel" amount="8" />
+        <Item identifier="copper" amount="2" />
+        <Item identifier="zinc" amount="3" />
+        <Item identifier="organicfiber" amount="6" />
+        <Item identifier="plastic" amount="8" />
+      </Fabricate>
+      <InventoryIcon texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="254,85,146,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" depth="0.54" sourcerect="254,85,146,83" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3239164008%/Content/Items/IC-ItemsAtlas.png" sourcerect="401,168,106,83" origin="0.5,0.5" depth="0.54" maxcondition="99" fadein="false" />
+      <Body width="184" height="99" density="25" />
+      <Holdable slots="RightHand+LeftHand" holdangle="5" holdpos="90,-110" handle1="-5,0" handle2="-5,10" aimable="false" msg="ItemMsgPickUpSelect">
+        <!-- damage the crate to display the broken sprite and turn the ItemComponent on when it is being held -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" condition="99" setvalue="true" />
+      </Holdable>
+      <!-- ItemComponent used to not have to resort to constantly running "Always" StatusEffects when no one is interacting with the crate -->
+      <ItemComponent IsActive="false" canbeselected="false" canbepicked="false" allowingameediting="false">
+        <!-- repair the item to display the original sprite again and turn the ItemComponent off if it is either not contained or it is stored in another item with the tag "container" like the crate shelfs -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" condition="100" IsActive="false" setvalue="true">
+          <Conditional IsContained="false" />
+          <Conditional HasTag="container" targetcontainer="true" />
+          <Conditional HasTag="cargocontainer" targetcontainer="true" />
+        </StatusEffect>
+      </ItemComponent>
+      <ItemContainer capacity="9" slotsperrow="true" canbeselected="true" selectkey="Action" hideitems="true" keepopenwhenequipped="true" movableframe="true" msg="itemmsginteractuse">
+        <GuiFrame relativesize="0.2,0.3" anchor="Center" style="ItemUI" />
+        <Containable items="medtoolbox,medical,surgerytoolbox" excludeditems="cargoscooter" />
+        <StatusEffect type="OnPicked" target="This">
+          <Sound file="%ModDir:3239164008%/Content/Items/crate_open1.ogg" range="300" volume="2.0" loop="false" />
+        </StatusEffect>
+        <StatusEffect type="OnSpawn" target="This" disabledeltatime="true">
+          <Conditional scale="0.4" />
+          <LuaHook name="NT.medstartercrate.spawn" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+    <!-- HAZARDOUS REACTORS | Made compatible with Enhanced Reactors -->
+    <Item name="Radioactive Material Storage Crate" identifier="fuelcrate" tags="crate,rodstorage,hazardcontainment,containradiation" description="[M] FROM HAZARDOUS REACTORS - A shielded storage crate designed to transport radioactive materials and fuel rods." scale="0.5" showcontentsintooltip="true" linkable="true" pickdistance="150" impactsoundtag="impact_crate" waterproof="true" fireproof="true" hideconditionbar="true">
+      <Price baseprice="400" displaynonempty="true">
+        <Price storeidentifier="merchantoutpost" sold="false" />
+        <Price storeidentifier="merchantcity" minavailable="1" />
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+        <Price storeidentifier="merchantengineering" multiplier="1.4" minavailable="2" />
+      </Price>
+      <Deconstruct time="20">
+        <Item identifier="titaniumaluminiumalloy" />
+        <Item identifier="lead" amount="2" />
+        <Item identifier="rubber" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="60">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
+        <RequiredItem identifier="lead" amount="2" />
+        <RequiredItem identifier="potassium" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <InventoryIcon texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="0,168,146,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" depth="0.54" sourcerect="0,168,146,83" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="147,168,106,83" origin="0.5,0.5" depth="0.54" maxcondition="99" fadein="false" />
+      <Body width="144" height="80" density="25" />
+      <Holdable slots="RightHand+LeftHand" holdangle="5" holdpos="90,-110" handle1="-5,0" handle2="-5,10" aimable="false" msg="ItemMsgPickUpSelect">
+        <!-- damage the crate to display the broken sprite and turn the ItemComponent on when it is being held -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" condition="99" setvalue="true" />
+        <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.7" setvalue="true" />
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemContainer" hideitems="true" drawinventory="false" canbeselected="false" locked="true" allowdraganddrop="false" allowaccess="false" setvalue="true" interval="0.3" AllowWhenBroken="true" />
+      </Holdable>
+      <!-- ItemComponent used to not have to resort to constantly running "Always" StatusEffects when no one is interacting with the crate -->
+      <ItemComponent IsActive="false" canbeselected="false" canbepicked="false" allowingameediting="true">
+        <!-- repair the item to display the original sprite again and turn the ItemComponent off if it is either not contained or it is stored in another item with the tag "container" like the crate shelfs -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" condition="100" IsActive="false" setvalue="true">
+          <Conditional IsContained="false" />
+          <Conditional HasTag="container" targetcontainer="true" />
+          <Conditional HasTag="cargocontainer" targetcontainer="true" />
+        </StatusEffect>
+      </ItemComponent>
+      <ItemContainer selectkey="Action" drawhudwhenequipped="false" hideitems="true" capacity="4" slotsperrow="4" itempos="-30,4" iteminterval="20,1" itemrotation="0" itemsperrow="4" AllowSwappingContainedItems="false" containedspritedepths="0.537,0.537,0.537,0.537,0.538,0.538,0.538,0.538" allowdraganddrop="false" drawinventory="true" canbeselected="true" canbecombined="false" removecontaineditemsondeconstruct="true" msg="itemmsginteractuse">
+        <GuiFrame relativesize="0.2,0.2" anchor="Center" style="ItemUI" />
+        <StatusEffect type="OnNotContained" target="This" targetitemcomponent="ItemContainer" drawinventory="true" canbeselected="true" locked="false" allowdraganddrop="true" allowaccess="true" setvalue="true" interval="0.3" AllowWhenBroken="true" />
+        <StatusEffect type="OnPicked" target="This" targetitemcomponent="ItemContainer" hideitems="true" setvalue="true" disabledeltatime="true" AllowWhenBroken="true" comparison="And">
+          <Sound file="%ModDir:3239164008%/Content/Items/crate_open1.ogg" range="300" volume="2.0" loop="false" />
+        </StatusEffect>
+        <Containable items="reactorfuel,fuelrod,thoriumfuelrod,fuelrod_active,thoriumfuelrod_active,fulguriumfuelrod,fulguriumfuelrodvolatile,ekutility_incendiumfuelrod,depletedfuel,uranium,thorium,uraniumore,brockite,thorianite,fulgurium" />
+      </ItemContainer>
+    </Item>
+    <!-- ENHANCED REACTORS | Made compatible with Hazardous Reactors -->
+    <Item name="Radioactive Material Crate" identifier="radioactivematcrate" tags="crate,allowcleanup,radioactiveorestorage,containradiation,hazardcontainment" description="[M] FROM ENHANCED REACTORS - Can safely store up to 9 stacks of radioactive ores or minerals." scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_crate" hideconditionbar="true" GrabWhenSelected="true">
+      <PreferredContainer primary="cargocontainer" secondary="crateshelf" />
+      <Deconstruct time="5">
+        <Item identifier="steel" amount="1" />
+        <Item identifier="lead" amount="1" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="20" />
+        <Item identifier="steel" amount="2" />
+        <Item identifier="lead" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="0,84,146,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" depth="0.54" sourcerect="0,84,146,83" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3337851889%/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="147,84,106,83" origin="0.5,0.5" depth="0.54" maxcondition="99" fadein="false" />
+      <Body width="144" height="80" density="25" />
+      <Holdable slots="RightHand+LeftHand" holdangle="5" holdpos="90,-110" handle1="-5,0" handle2="-5,10" aimable="false" msg="ItemMsgPickUpSelect">
+        <!-- damage the crate to display the broken sprite and turn the ItemComponent on when it is being held -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" condition="99" setvalue="true" />
+        <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.7" setvalue="true" />
+      </Holdable>
+      <!-- ItemComponent used to not have to resort to constantly running "Always" StatusEffects when no one is interacting with the crate -->
+      <ItemComponent IsActive="false" canbeselected="false" canbepicked="false" allowingameediting="true">
+        <!-- repair the item to display the original sprite again and turn the ItemComponent off if it is either not contained or it is stored in another item with the tag "container" like the crate shelfs -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" condition="100" IsActive="false" setvalue="true">
+          <Conditional IsContained="false" />
+          <Conditional HasTag="container" targetcontainer="true" />
+          <Conditional HasTag="cargocontainer" targetcontainer="true" />
+        </StatusEffect>
+      </ItemComponent>
+      <ItemContainer capacity="9" slotsperrow="3" canbeselected="true" selectkey="Action" hideitems="true" keepopenwhenequipped="true" movableframe="true" msg="itemmsginteractuse">
+        <GuiFrame relativesize="0.2,0.3" anchor="Center" style="ItemUI" />
+        <Containable items="radioactivematerial,ore,depletedfuel,uranium,thorium,uraniumore,brockite,thorianite" />
+        <StatusEffect type="OnPicked" target="This">
+          <Sound file="%ModDir:3239164008%/Content/Items/crate_open1.ogg" range="300" volume="2.0" loop="false" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+  </Items>
+</Override>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <Override>
+    <entityname.smg>Surplus Submachine Gun</entityname.smg>
+    <entitydescription.smg>A very old 11.4x30mm SMG, it's design having been on Europa since humanity arrived. It's heavy lock up system severely hampers its cyclic rate and as a result it has been mostly phased out by other options, as more sophisticated bolt designs were made allowing for more reliable options to be developed.</entitydescription.smg>
+    <entityname.smgmagazine>Surplus SMG Magazine</entityname.smgmagazine>
+    <entitydescription.smgmagazine>An old 25 round 11.4x30mm magazine meant for use in the older Coalition SMGs, its shape designed for the cartridges that contain an older form of oxidizing propellant.</entitydescription.smgmagazine>
+    <entityname.smgmagazinedepletedfuel>Surplus SMG DU Magazine</entityname.smgmagazinedepletedfuel>
+    <entitydescription.smgmagazinedepletedfuel>An old 25 round 11.4x30mm magazine loaded with custom Depleted Uranium projectiles for better effectiveness against armour, though has awful terminal ballistics.</entitydescription.smgmagazinedepletedfuel>
+    <entityname.smground></entityname.smground>
+    <entitydescription.smground></entitydescription.smground>
+    <entityname.revolver>Surplus Revolver</entityname.revolver>
+    <entitydescription.revolver>An old 9x29mm revolver using an antiquated cartridge, being the first handgun design on Europa. It has a very light double action trigger mechanism.</entitydescription.revolver>
+    <entityname.revolverround>Surplus Revolver Round</entityname.revolverround>
+    <entitydescription.revolverround>An old 9x29mm cartridge that appears to no longer be produced on Europa anymore. Despite this, it is incredibly common due to the collosal Surplus, however has sub-par capabilities compared to modern options.</entitydescription.revolverround>
+    <entityname.revolverrounddepletedfuel>Surplus Revolver Round</entityname.revolverrounddepletedfuel>
+    <entitydescription.revolverrounddepletedfuel>An old 9x29mm cartridge, custom made to have a special DU projectile for better performance against armour, sacrificing a lot of terminal ballistics.</entitydescription.revolverrounddepletedfuel>
+    <entityname.shotgun>Surplus Pump Action Shotgun</entityname.shotgun>
+    <entitydescription.shotgun>A worn and cheap 12 Gauge shotgun with a very stiff pump action, being the first of it's kind on Europa. It has been entirely phased out by contemporary options.</entitydescription.shotgun>
+    <entityname.shotgunshell>12 Gauge Shotgun Buckshot Shell</entityname.shotgunshell>
+    <entitydescription.shotgunshell>An 12 Gauge shotgun shell containing buckshot. Being found all across Europa, it is renowned for it's close quarters lethality despite it's non-existent armour penetration.</entitydescription.shotgunshell>
+    <entityname.shotgunslugexplosive>12 Gauge Shotgun Explosive Slug</entityname.shotgunslugexplosive>
+    <entitydescription.shotgunslugexplosive>A shotgun slug containing explosive material. Powerful, but still somewhat inaccurate on account of being fired out of a shotgun.</entitydescription.shotgunslugexplosive>
+    <entityname.harpoongun>Harpoon Launcher</entityname.harpoongun>
+    <entitydescription.harpoongun>A very basic weapon meant for taking on common Europan denizens, however is a terrible choice for force on force combat.</entitydescription.harpoongun>
+    <entityname.smgunique>Aftermarket Surplus SMG</entityname.smgunique>
+    <entitydescription.smgunique>A surplus SMG modified by the previous user, featuring a longer barrel, burst trigger group, larger gas block and a mount for either a light or scope. This was evidently customized for longer distance engagements.</entitydescription.smgunique>
+    <entityname.shotgununique>Veteran's Double Barrel Shotgun</entityname.shotgununique>
+    <entitydescription.shotgununique>A very old shotgun with 2 side-by-side barrels and linked triggers, allowing for 2 shells to be discharged almost immediately. Obviously, its capacity is inferior to practically every other design.</entitydescription.shotgununique>
+    <entityname.handcannon>Veteran's Hand Cannon</entityname.handcannon>
+    <entitydescription.handcannon>A massive 15.5x50mm revolver that uses a ridiculously large cartridge, resembling a small grenade shell. It has a very heavy double action trigger mechanism.</entitydescription.handcannon>
+    <entityname.handcannonround>Veteran's Hand Cannon Round</entityname.handcannonround>
+    <entitydescription.handcannonround>A massive 15.5x50mm cartridge with a Titanium-Alloy jacketed Physicorium core, capable of penetrating multiple enemies and causing massive damage.</entitydescription.handcannonround>
+    <entityname.assaultrifle>Experimental Assault Rifle</entityname.assaultrifle>
+    <entitydescription.assaultrifle>A bizzare multi-calibre assault rifle that was one of the first of it's kind, chambering 5.56, 5.45, and it's own powerful 6.8x51mm cartridges.</entitydescription.assaultrifle>
+    <entityname.assaultriflemagazine>Experimental Assault Rifle Magazine</entityname.assaultriflemagazine>
+    <entitydescription.assaultriflemagazine>A 20 round 6.8x51mm magazine meant for the Experimental AR, using explosive-tipped rounds to destory armor and cripple targets.</entitydescription.assaultriflemagazine>
+    <entityname.assaultrifleround>assaultrifleround</entityname.assaultrifleround>
+    <entitydescription.assaultrifleround></entitydescription.assaultrifleround>
+    <entityname.autoshotgun>Experimental Combat Shotgun</entityname.autoshotgun>
+    <entitydescription.autoshotgun>A very heavy 12 gauge shotgun featuring an internal magazine and a unique automatic mechanism, capable of some serious damage against unarmoured targets.</entitydescription.autoshotgun>
+    <entityname.stungundart>Stun Gun Dart</entityname.stungundart>
+    <entitydescription.stungundart>A small electronic dart designed to inflict multiple short burst electric currents over a period of time into the person it sticks into, causing involuntary muscle movement and temporary paralysis.</entitydescription.stungundart>
+    <entityname.spear>Harpoon</entityname.spear>
+    <entitydescription.spear>A simple rod of steel with a sharp, barbed point on the end for use against undersea fauna.</entitydescription.spear>
+    <entityname.magnesium>Magnesium</entityname.magnesium>
+    <entitydescription.magnesium>An alkali metal that is popular as a propellant on Europa for various low calibre cartridges and some medicines.</entitydescription.magnesium>
+    <entityname.flashpowder>Flash Powder</entityname.flashpowder>
+    <entitydescription.flashpowder>A mixture of metallic fuel and oxidizer, extensively used in large calibre ammunition for providing adequate chamber pressures.</entitydescription.flashpowder>
+    <entityname.lead>Lead</entityname.lead>
+    <entitydescription.lead>A heavy metal that is easy to melt and cast with. This material is in extremely high demand due to it's use in ammunition and radiation shielding.</entitydescription.lead>
+    <entityname.grenadelauncher>Surplus Grenade Launcher</entityname.grenadelauncher>
+    <entitydescription.grenadelauncher>A worn and old 40x46mm grenade launcher used for area denial.</entitydescription.grenadelauncher>
+    <entityname.stungrenade>Stun Grenade</entityname.stungrenade>
+    <entitydescription.stungrenade>A less-than-lethal grenade meant to disorient aggressive individuals without causing significant harm, creating an intense bang and blinding light. It has a 1.5 second fuze.</entitydescription.stungrenade>
+    <entityname.shotgunshellblunt>12 Gauge Rubber Shotgun Slug</entityname.shotgunshellblunt>
+    <entitydescription.shotgunshellblunt>A slug made completely out of rubber, made for pain compliance and subduing troublemakers without needing other options. However due to this its a terrible choice for a person who is armed and aggressive.</entitydescription.shotgunshellblunt>
+    <entityname.hmg>Surplus HMG</entityname.hmg>
+    <entitydescription.hmg>A hefty 8.6x70mm Machine Gun meant for powerful sustained fire, though it's primitive recoil system paired with the cartridge makes it extremely hard to control.</entitydescription.hmg>
+    <entityname.hmgmagazine>Surplus HMG Magazine</entityname.hmgmagazine>
+    <entitydescription.hmgmagazine>A large 100 round 8.6x70mm Machine Gun magazine.</entitydescription.hmgmagazine>
+    <entityname.rifle>Bolt-Action Rifle</entityname.rifle>
+    <entitydescription.rifle>An old 7.62x67mm Bolt Action Rifle with a 40mm UGL that used as a precursor to both battle and marksman rifles. It is quite often used despite it's obsolesence. A skilled Rifleman can make better use of this weapon.</entitydescription.rifle>
+    <entityname.riflebullet>Rifle Cartridge</entityname.riflebullet>
+    <entitydescription.riflebullet>A 7.62x67mm FMJ cartridge, being one of the first successful prototype supercavitating options on Europa, making it ideal for long distance fauna hunting.</entitydescription.riflebullet>
+    <entityname.machinepistol>Surplus Machine Pistol</entityname.machinepistol>
+    <entitydescription.machinepistol>An 11.4x30mm firearm made to bridge the gap between the Revolver and SMG, however has been phased out due to it's recoil, inaccuracy and lackluster power.</entitydescription.machinepistol>
+    <entityname.fraggrenade>Fragmentation Grenade</entityname.fraggrenade>
+    <entitydescription.fraggrenade>A standard issue hand grenade with a thin steel casing meant to break apart on detonation, it has a 5m explosion radius and 9m fragmentation radius.</entitydescription.fraggrenade>
+    <entityname.backpack>Utility Backpack</entityname.backpack>
+    <entitydescription.backpack>A custom backpack design meant to be both spacious and low profile, good for anyone needing decent storage, best for the jack of all trades.</entitydescription.backpack>
+    <entityname.bodyarmor>Coalition Plate Carrier</entityname.bodyarmor>
+    <entitydescription.bodyarmor>A standard issue vest with hard armour inserts for Coalition forces, it is found almost everywhere given the proliferation of rifles.</entitydescription.bodyarmor>
+    <entityname.piratebodyarmor>Renegade Heavy Plate Carrier</entityname.piratebodyarmor>
+    <entitydescription.piratebodyarmor>A heavier rig with thicker inserts made by Separatists, it is capable of resisting rifle fire, but it falls short of it's Coalition counterparts.</entitydescription.piratebodyarmor>
+    <entityname.ballistichelmet1>Coalition Ballistic Helmet</entityname.ballistichelmet1>
+    <entitydescription.ballistichelmet1>A standard issue helmet with a visor, its focussed on providing ballistic protection, able to shrug off pistol shots and some rifle cartridges though is awful for blunt hits.</entitydescription.ballistichelmet1>
+    <entityname.ballistichelmet2>Crew Helmet</entityname.ballistichelmet2>
+    <entitydescription.ballistichelmet2>A soft armour helmet made for submarine gunners, being significantly less obtrusive when manning periscopes whilst retaining some form of protection.</entitydescription.ballistichelmet2>
+    <entityname.ballistichelmet3>Riot Helmet</entityname.ballistichelmet3>
+    <entitydescription.ballistichelmet3>A solid helmet with a visor, made for withstanding bladed and blunt impacts and is an excellent choice for melee combat, though is incapable of protecting against bullets.</entitydescription.ballistichelmet3>
+    <afflictiondescription.gunshotwound>The patient has been shot with a firearm, a bullet sized entry wound is visible alongside a significantly larger exit wound, showing a nasty mess of blood and torn tissue.</afflictiondescription.gunshotwound>
+    <afflictiondescription.gunshotwound.low>The patient has been shot with a firearm, the projectile having hit mostly elastic tissues and showing little signs of cavitation or tumbling.</afflictiondescription.gunshotwound.low>
+    <entityname.bandolier>Load Bearing Vest</entityname.bandolier>
+    <entitydescription.bandolier>A lightweight adjustable overvest meant to be placed over armour for increasing ammo capacity, being superior for mobility than backpacks.</entitydescription.bandolier>
+    <entityname.40mmnuke>40mm Nuclear Grenade</entityname.40mmnuke>
+    <entitydescription.40mmnuke>A 40x46mm grenade housing a heavy yet small low yield fission warhead, being significantly more powerful than conventional explosives.</entitydescription.40mmnuke>
+    <entityname.molotovcoctail>Petrol Bomb</entityname.molotovcoctail>
+    <entitydescription.molotovcoctail>An improvised incendiary device that can be easily made for a quick bonfire, though it's effect is lackluster and takes some time to engulf a room.</entitydescription.molotovcoctail>
+    <disembarkperk.armorysmall>Small Calibre</disembarkperk.armorysmall>
+    <disembarkperkdescription.armorysmall>The armory contains basic weapons, such as Light SMGs, Revolvers, and Handguns. Uses Coalition Arms.</disembarkperkdescription.armorysmall>
+    <disembarkperk.armoryclosequarters>Close Quarters</disembarkperk.armoryclosequarters>
+    <disembarkperkdescription.armoryclosequarters>The armory contains close quarters weapons, such as Shotguns, Heavy SMGs, and Light Rifles. Uses Coalition Arms.</disembarkperkdescription.armoryclosequarters>
+    <disembarkperk.armorylongrange>Long Range</disembarkperk.armorylongrange>
+    <disembarkperkdescription.armorylongrange>Expands the armory with surplus long-range weaponry, such as Rifles and Experimental Assault Rifles.</disembarkperkdescription.armorylongrange>
+    <disembarkperk.armorypeacekeeping>Peacekeeping</disembarkperk.armorypeacekeeping>
+    <disembarkperkdescription.armorypeacekeeping>Adds stun guns and stun grenades to the armory.</disembarkperkdescription.armorypeacekeeping>
+  </Override>
+</infotexts>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Enhanced Immersion" modversion="1.0.24" corepackage="False" steamworkshopid="2968896556" gameversion="1.10.7.1" expectedhash="EAE852DCA400D9331F1FAF5225735E91">
+  <Afflictions file="%ModDir%/Content/Afflictions.xml" />
+  <Item file="%ModDir%/Content/Items/Button/button.xml" />
+  <Item file="%ModDir%/Content/Items/Containers/containers.xml" />
+  <Item file="%ModDir%/Content/Items/Diving/divinggear.xml" />
+  <Item file="%ModDir%/Content/Items/Door/doors.xml" />
+  <Item file="%ModDir%/Content/Items/Door/zDoor/zDoors.xml" />
+  <Item file="%ModDir%/Content/Items/Electricity/poweritems.xml" />
+  <Item file="%ModDir%/Content/Items/Engine/engine.xml" />
+  <Item file="%ModDir%/Content/Items/Fabricators/fabricators.xml" />
+  <Item file="%ModDir%/Content/Items/Gardening/gardeningtools.xml" />
+  <Item file="%ModDir%/Content/Items/Gardening/growableplants.xml" />
+  <Item file="%ModDir%/Content/Items/Genetic/genetic.xml" />
+  <Item file="%ModDir%/Content/Items/OutpostItems/OutpostItems.xml" />
+  <Item file="%ModDir%/Content/Items/OxygenGenerator/oxygengenerator.xml" />
+  <Item file="%ModDir%/Content/Items/Pump/pump.xml" />
+  <Item file="%ModDir%/Content/Items/Reactor/reactor.xml" />
+  <Item file="%ModDir%/Content/Items/Tools/tools.xml" />
+  <Item file="%ModDir%/Content/Items/idcard.xml" />
+  <Item file="%ModDir%/Content/Items/Weapons/coilgun.xml" />
+  <Item file="%ModDir%/Content/Items/Weapons/chaingun.xml" />
+  <Item file="%ModDir%/Content/Items/Weapons/flakcannon.xml" />
+  <Item file="%ModDir%/Content/Items/Weapons/pulselaser.xml" />
+  <Item file="%ModDir%/Content/Items/Weapons/railgun.xml" />
+  <Sounds file="%ModDir%/Content/Sounds/sounds.xml" />
+  <Other file="%ModDir%/Lua/Autorun/init.lua" />
+  <Text file="%ModDir%/Content/Text/English.xml" />
+</contentpackage>

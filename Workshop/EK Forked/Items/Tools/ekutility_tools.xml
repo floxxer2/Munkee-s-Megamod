@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="Emergency Jetpack" identifier="escapepack" description="A makeshift jetpack which can dump its fuel in a short period of time, launching the user in one direction very quickly. Works underwater. Use with caution, as it explodes when fully used." category="Equipment" Tags="mediumitem,weldingequipment,tool" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="engcab,divingcab" />
+    <PreferredContainer primary="wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <PreferredContainer primary="abandonedstoragecab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <Price baseprice="227" sold="false" minleveldifficulty="25">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" />
+      <Price storeidentifier="merchantcity" multiplier="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmine" multiplier="0.9" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="2" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="aluminium" />
+      <Item identifier="oxygentank" outcondition="0" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="20">
+      <RequiredSkill identifier="mechanical" level="50" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="oxygentank" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="832,512,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="0,784,240,208" depth="0.55" origin="0.5,0.5" />
+    <Body width="180" height="85" density="30" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="15,4" aimpos="25,0" handle1="50,65" handle2="50,65" holdangle="-90" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="20.0" structurefixamount="0" range="500" barrelpos="40,-10" spread="55" unskilledspread="55" repairmultiple="false" repairthroughwalls="false" combatpriority="0" levelwallfixamount="0" targetforce="40">
+      <RequiredItems items="weldingtoolfuel,oxygensource" type="Contained" msg="ItemMsgWeldingFuelRequired" />
+      <ParticleEmitter particle="hypergolicfx" VelocityMin="1000" VelocityMax="1500" ScaleMultiplier="1,1" ParticleAmount="6" ColorMultiplier="255,255,255,255" />
+      <ParticleEmitter particle="impactfirearm" particlespersecond="20" copyentityangle="true" anglemin="-35" anglemax="35" velocitymin="200" velocitymax="500" scalemin="3" scalemax="5" colormultiplier="255,225,200,100" />
+      <ParticleEmitterHitStructure particle="ekutilitysmokefixed" particlespersecond="20" anglemin="-180" anglemax="180" velocitymin="10" velocitymax="100" scalemin="1" scalemax="1.5" colormultiplier="125,125,125,200" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="ekutilitysmokefixed" particlespersecond="20" anglemin="-180" anglemax="180" velocitymin="10" velocitymax="100" scalemin="1" scalemax="1.5" colormultiplier="125,125,125,200" />
+      <ParticleEmitterHitCharacter particle="ekutilitysmokefixed" particlespersecond="20" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" scalemin="1" scalemax="1.5" colormultiplier="125,125,125,200" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/jetpackloop1.ogg" type="OnUse" range="1500.0" volume="1.2" loop="true" selectionmode="All" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/jetpackburst1.ogg" type="OnUse" range="1000.0" volume="1" loop="false" selectionmode="All" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="weldingfueltank" Condition="-20.0" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="incendiumfueltank" Condition="-10.0" />
+      <StatusEffect type="OnUse" targettype="Contained" Condition="-15.0">
+        <RequiredItem excludedidentifiers="weldingfueltank,incendiumfueltank" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="This" Condition="-20.0">
+        <RequiredItem items="weldingfueltank" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="This" Condition="-10.0">
+        <RequiredItem items="incendiumfueltank" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" targettype="This" duration="3" stackable="false">
+        <Sound file="Content/Items/WarningBeep.ogg" range="750" volume="1.5" loop="true" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" targettype="This" delay="3" stackable="false">
+        <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="5000" />
+        <Explosion range="500.0" ballastfloradamage="100" structuredamage="20" levelwalldamage="250" itemdamage="25" force="25" severlimbsprobability="1" decal="explosion" decalsize="0.5">
+          <Affliction identifier="explosiondamage" strength="100" />
+          <Affliction identifier="bleeding" strength="75" />
+          <Affliction identifier="bleeding" strength="50" probability="0.1" dividebylimbcount="false" />
+          <Affliction identifier="stun" strength="7" />
+        </Explosion>
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="Limb">
+        <!-- " point away from face " -->
+        <Affliction identifier="burn" amount="5.0" />
+        <Affliction identifier="explosiondamage" amount="2" />
+      </StatusEffect>
+      <Fixable identifier="structure" />
+      <LightComponent LightColor="255,200,175,75" range="400" Flicker="0.3" flickerspeed="0.6">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>
+    </RepairTool>
+    <Propulsion force="-150">
+      <RequiredItems items="weldingtoolfuel,oxygensource" type="Contained" />
+    </Propulsion>
+    <ItemContainer autofill="True" capacity="1" maxstacksize="1" hideitems="false" itempos="-21,-73" itemrotation="90" containedspritedepth="0.56" containedstateindicatorstyle="tank">
+      <!--<ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />-->
+      <Containable identifiers="weldingtoolfuel" />
+    </ItemContainer>
+  </Item>
+  <Item name="" identifier="ekutility_miningdrill" aliases="drill,mining drill" category="Equipment" Tags="smallitem,cuttingequipment,tools" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="divingcab" minamount="1" maxamount="2" spawnprobability="1" />
+    <PreferredContainer primary="engcab" minamount="1" maxamount="2" spawnprobability="1" />
+    <PreferredContainer primary="wreckstoragecab" minamount="0" maxamount="2" spawnprobability="0.125" />
+    <PreferredContainer primary="outpostcrewcabinet" minamount="0" maxamount="1" spawnprobability="0.1" />
+    <Price baseprice="100" sold="false" minleveldifficulty="10">
+      <Price storeidentifier="merchantoutpost" multiplier="1" />
+      <Price storeidentifier="merchantcity" multiplier="0.9" sold="true" maxavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+      <Price storeidentifier="merchantmine" multiplier="0.8" sold="true" minavailable="6" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="3" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="titanium" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="20">
+      <RequiredSkill identifier="mechanical" level="30" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="plastic" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="128,0,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="48,128,272,128" depth="0.55" origin="0.5,0.5" />
+    <Body width="228" height="96" density="30" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="65,-5" aimpos="50,0" handle1="-98,-24" handle2="8,-16" holdangle="-40" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="10.0" structurefixamount="-0.07" range="50" barrelpos="48,10" combatpriority="23" RepairMultiple="true" RepairThroughHoles="false" levelwallfixamount="-15.0">
+      <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      <StatusEffect type="OnUse" target="Contained" targetidentifiers="batterycell" Condition="-1" />
+      <StatusEffect type="OnUse" target="UseTarget" targetidentifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" Stuck="-20.0" Condition="-16.0" />
+      <StatusEffect type="OnUse" target="UseTarget" targetidentifiers="ore" DeattachTimer="0.5" Condition="-25.0" />
+      <StatusEffect type="OnUse" target="Limb" severlimbsprobability="0.05">
+        <Conditional EntityType="eq Limb" />
+        <Affliction identifier="lacerations" strength="10" />
+        <Affliction identifier="internaldamage" strength="10" />
+        <Affliction identifier="bleeding" amount="20" />
+        <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" range="800" selectionmode="Random" />
+        <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="800" />
+        <RequiredItems items="mobilebattery" type="Contained" />
+      </StatusEffect>
+      <ParticleEmitterHitStructure particle="weldspark" particlespersecond="50" anglemin="-70" anglemax="70" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitStructure particle="shrapnel" particlespersecond="25" anglemin="-45" anglemax="45" velocitymin="100" velocitymax="200" scalemin="0.5" scalemax="0.75" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="weldspark" particlespersecond="50" anglemin="-70" anglemax="70" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="shrapnel" particlespersecond="25" anglemin="-45" anglemax="45" velocitymin="100" velocitymax="200" scalemin="0.5" scalemax="0.75" />
+      <ParticleEmitterHitItem identifiers="ore" particle="iceshards" particlespersecond="5" anglemin="-40" anglemax="40" velocitymin="10" velocitymax="300" scalemin="0.5" scalemax="1.0" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/drill_loop.ogg" type="OnUse" range="500.0" volume="0.75" loop="true" />
+      <Fixable identifier="structure" />
+    </RepairTool>
+    <ItemContainer autofill="True" capacity="1" maxstacksize="1" hideitems="true">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />
+      <Containable identifiers="ek_hv_battery,batterycell,fulguriumbatterycell" />
+    </ItemContainer>
+    <Quality>
+      <QualityStat stattype="RepairToolStructureDamageMultiplier" value="0.15" />
+      <QualityStat stattype="RepairToolDeattachTimeMultiplier" value="0.15" />
+    </Quality>
+  </Item>
+  <Item name="" identifier="ekutility_ioncutter" aliases="ion cutter,pulse cutter,ekutility_pulsecutter,ekutility_ioncutter" category="Equipment" Tags="smallitem,cuttingequipment,tools" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light">
+    <PreferredContainer secondary="wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <Price baseprice="340" sold="false" minleveldifficulty="33">
+      <Price storeidentifier="merchantoutpost" multiplier="1.3" />
+      <Price storeidentifier="merchantcity" multiplier="1.1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.9" sold="true" minavailable="3" />
+      <Price storeidentifier="merchantmine" multiplier="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="2" />
+    </Price>
+    <Deconstruct time="15">
+      <Item identifier="titaniumaluminiumalloy" />
+      <Item identifier="plastic" />
+      <Item identifier="fpgacircuit" />
+      <Item identifier="fpgacircuit" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="30">
+      <RequiredSkill identifier="electrical" level="50" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="plastic" />
+      <RequiredItem identifier="fpgacircuit" />
+      <RequiredItem identifier="fpgacircuit" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="128,64,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="0,336,352,112" depth="0.55" origin="0.5,0.5" />
+    <Body width="320" height="80" density="30" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="45,-10" aimpos="45,0" handle1="-40,-16" handle2="70,-30" holdangle="-40" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="40.0" structurefixamount="-1" range="150" barrelpos="50,5" combatpriority="27" RepairMultiple="true" RepairThroughHoles="false" TargetForce="80" spread="25" unskilledspread="25" levelwallfixamount="-10">
+      <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      <StatusEffect type="OnUse" target="Contained" Condition="-5" />
+      <StatusEffect type="OnUse" targettype="UseTarget" targets="door,ductblock,aliendoor" Stuck="-25.0" Condition="-33" />
+      <StatusEffect type="OnUse" target="UseTarget" targetidentifiers="ore" DeattachTimer="0.6" Condition="-20.0" />
+      <StatusEffect type="OnUse" target="Limb" severlimbsprobability="0.05">
+        <Conditional EntityType="eq Limb" />
+        <Affliction identifier="lacerations" strength="6" />
+        <Affliction identifier="explosiondamage" strength="6" />
+        <Affliction identifier="burn" amount="12" />
+        <Affliction identifier="bleeding" amount="9" />
+        <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" range="800" selectionmode="Random" />
+        <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="800" />
+        <RequiredItems items="mobilebattery" type="Contained" />
+      </StatusEffect>
+      <ParticleEmitter particle="ekpulsecutter" particlespersecond="50" copyentityangle="true" anglemin="-20" anglemax="20" velocitymin="1000" velocitymax="1500" />
+      <ParticleEmitter particle="ekpulsecuttersmoke" particlespersecond="35" copyentityangle="true" anglemin="-20" anglemax="20" velocitymin="200" velocitymax="600" />
+      <ParticleEmitterHitStructure particle="plasmaspark" particlespersecond="30" anglemin="-70" anglemax="70" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitStructure particle="shrapnel" particlespersecond="35" anglemin="-90" anglemax="90" velocitymin="100" velocitymax="200" scalemin="0.5" scalemax="0.75" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="plasmaspark" particlespersecond="30" anglemin="-70" anglemax="70" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="shrapnel" particlespersecond="35" anglemin="-90" anglemax="90" velocitymin="100" velocitymax="200" scalemin="0.5" scalemax="0.75" />
+      <ParticleEmitterHitItem identifiers="ore" particle="iceshards" particlespersecond="5" anglemin="-40" anglemax="40" velocitymin="10" velocitymax="300" scalemin="0.5" scalemax="1.0" />
+      <ParticleEmitterHitCharacter particle="fleshsmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/ioncutter_loop.ogg" type="OnUse" range="500.0" loop="true" />
+      <Fixable identifier="structure" />
+      <LightComponent LightColor="0.4,1.0,0.9,0.7" range="400" Flicker="0.5">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>
+    </RepairTool>
+    <ItemContainer autofill="True" capacity="1" maxstacksize="1" hideitems="false" itempos="9,-20" containedspritedepth="0.56">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />
+      <Containable items="mobilebattery" />
+    </ItemContainer>
+    <Quality>
+      <QualityStat stattype="RepairToolStructureDamageMultiplier" value="0.15" />
+      <QualityStat stattype="RepairToolDeattachTimeMultiplier" value="0.15" />
+    </Quality>
+  </Item>
+  <Item name="" identifier="ekutility_arcwelder" aliases="arcwelder" category="Equipment" Tags="smallitem,weldingequipment,tool,mountableweapon" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="engcab" minamount="0" maxamount="2" spawnprobability="0.25" />
+    <PreferredContainer primary="wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.125" />
+    <PreferredContainer primary="outpostcrewcabinet" minamount="0" maxamount="1" spawnprobability="0.1" />
+    <Price baseprice="200" sold="false" minleveldifficulty="25">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" />
+      <Price storeidentifier="merchantcity" multiplier="1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+      <Price storeidentifier="merchantmine" multiplier="1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="2" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="steel" />
+      <Item identifier="carbon" />
+      <Item identifier="titanium" />
+      <Item identifier="fpgacircuit" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="20">
+      <RequiredSkill identifier="mechanical" level="25" />
+      <RequiredSkill identifier="electrical" level="25" />
+      <RequiredItem identifier="steel" amount="2" />
+      <RequiredItem identifier="carbon" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="fpgacircuit" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="832,0,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="672,272,224,96" depth="0.55" origin="0.5,0.5" />
+    <Body width="180" height="85" density="30" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="40,-5" aimpos="45,0" handle1="-52,-16" handle2="32,-16" holdangle="-40" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="15.0" structurefixamount="2.5" range="125" barrelpos="35,9" particles="weld" repairmultiple="true" repairthroughwalls="false" combatpriority="5">
+      <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      <ParticleEmitter particle="plasma" particlespersecond="25" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+      <ParticleEmitterHitStructure particle="plasmaspark" particlespersecond="45" anglemin="-120" anglemax="120" velocitymin="50" velocitymax="800" />
+      <ParticleEmitterHitStructure particle="GlowDot" particlespersecond="60" emitinterval="0.7" particleamount="10" scalemin="0.9" scalemax="1.0" anglemin="0" anglemax="360" velocitymin="10" velocitymax="50" />
+      <ParticleEmitterHitStructure particle="plasmasmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="20" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="plasmaspark" particlespersecond="30" anglemin="-120" anglemax="120" velocitymin="10" velocitymax="800" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="plasmasmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <ParticleEmitterHitCharacter particle="fleshsmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <sound file="Content/Items/Tools/WeldingLoop.ogg" type="OnUse" range="500.0" loop="true" />
+      <StatusEffect type="OnUse" target="Contained" Condition="-1.5" />
+      <StatusEffect type="OnUse" targettype="UseTarget" targets="door,ductblock" Stuck="5.0" Condition="3.0" />
+      <StatusEffect type="OnUse" targettype="Limb">
+        <!-- Go stand 2 inches in front of a welding torch, then we can talk about mercy. -->
+        <Affliction identifier="burn" amount="4.5" />
+        <Affliction identifier="explosiondamage" amount="2" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="UseTarget" Condition="-3.0" />
+      <Fixable identifier="structure" />
+      <RequiredSkill identifier="mechanical" level="20" />
+      <LightComponent LightColor="0.7,0.9,1.0,1.0" Flicker="0.5">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>
+    </RepairTool>
+    <ItemContainer autofill="True" capacity="1" maxstacksize="1" hideitems="false" itempos="-8,-20" itemrotation="90" containedstateindicatorstyle="battery">
+      <Containable items="mobilebattery" />
+    </ItemContainer>
+    <Quality>
+      <QualityStat stattype="RepairToolStructureRepairMultiplier" value="0.2" />
+    </Quality>
+  </Item>
+  <Item name="" identifier="ekutility_laserdrill" aliases="ek laser bore,laser drill,ek laser drill" category="Equipment" Tags="smallitem,cuttingequipment,tools" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light">
+    <PreferredContainer secondary="wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <Price baseprice="300" sold="false" minleveldifficulty="33">
+      <Price storeidentifier="merchantoutpost" multiplier="1.3" />
+      <Price storeidentifier="merchantcity" multiplier="1.2" />
+      <Price storeidentifier="merchantresearch" multiplier="1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmine" multiplier="2" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="1" />
+    </Price>
+    <Deconstruct time="15">
+      <Item identifier="titaniumaluminiumalloy" />
+      <Item identifier="copper" />
+      <Item identifier="silicon" />
+      <Item identifier="fpgacircuit" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="45">
+      <RequiredSkill identifier="electrical" level="50" />
+      <RequiredItem identifier="titaniumaluminiumalloy" amount="3" />
+      <RequiredItem identifier="copper" amount="2" />
+      <RequiredItem identifier="silicon" amount="2" />
+      <RequiredItem identifier="fpgacircuit" amount="2" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="288,576,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="352,416,352,144" depth="0.55" origin="0.5,0.45" />
+    <Body width="320" height="80" density="30" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="40,5" aimpos="35,15" handle1="-10,-35" handle2="90,-35" holdangle="-45" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="60" structurefixamount="-0.25" range="700" barrelpos="53,0" combatpriority="27" RepairMultiple="true" RepairThroughHoles="true" TargetForce="20" levelwallfixamount="-10.0">
+      <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      <StatusEffect type="OnUse" target="This" Condition="-15" />
+      <StatusEffect type="Always" target="This" Condition="10">
+        <Conditional condition="gt 0" />
+      </StatusEffect>
+      <StatusEffect type="InWater" target="This" Condition="12.5">
+        <Conditional condition="gt 0" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/laserbore_reloadstart.ogg" type="OnUse" range="500.0" loop="false" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" Condition="100" disabledeltatime="true" delay="4" stackable="false" />
+      <StatusEffect type="OnUse" targettype="Contained" Condition="-4" />
+      <StatusEffect type="OnUse" targettype="UseTarget" targets="door,ductblock,aliendoor" Stuck="-15.0" Condition="-10" />
+      <StatusEffect type="OnUse" target="UseTarget" targetidentifiers="ore" DeattachTimer="1" />
+      <StatusEffect type="OnUse" target="Limb" severlimbsprobability="0.05">
+        <Conditional EntityType="eq Limb" />
+        <Affliction identifier="explosiondamage" strength="4" />
+        <Affliction identifier="burn" amount="10" />
+        <Affliction identifier="bleeding" amount="2" />
+        <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" range="800" selectionmode="Random" />
+        <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="800" />
+        <RequiredItems items="mobilebattery" type="Contained" />
+      </StatusEffect>
+      <ParticleEmitter particle="eklaserborebreak" particlespersecond="17" copyentityangle="true" velocitymin="10" velocitymax="40" />
+      <ParticleEmitter particle="eklaserborespark" particlespersecond="10" copyentityangle="true" anglemin="-60" anglemax="60" velocitymin="250" velocitymax="750" />
+      <ParticleEmitterHitStructure particle="shrapnel" particlespersecond="5" anglemin="-90" anglemax="90" velocitymin="100" velocitymax="200" scalemin="0.5" scalemax="0.75" />
+      <ParticleEmitterHitStructure particle="eklaserborespark" particlespersecond="20" copyentityangle="true" anglemin="-90" anglemax="90" velocitymin="500" velocitymax="1000" />
+      <ParticleEmitterHitStructure particle="eklaserboresmoke" particlespersecond="3" copyentityangle="true" anglemin="-45" anglemax="45" velocitymin="-5" velocitymax="-25" />
+      <ParticleEmitterHitStructure particle="eklaserboreflare" particlespersecond="20" copyentityangle="false" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="shrapnel" particlespersecond="5" anglemin="-90" anglemax="90" velocitymin="100" velocitymax="200" scalemin="0.5" scalemax="0.75" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="eklaserborespark" particlespersecond="20" copyentityangle="true" anglemin="-90" anglemax="90" velocitymin="500" velocitymax="1000" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="eklaserboresmoke" particlespersecond="3" copyentityangle="true" anglemin="-45" anglemax="45" velocitymin="-5" velocitymax="-25" />
+      <ParticleEmitterHitItem identifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" particle="eklaserboreflare" particlespersecond="20" copyentityangle="false" />
+      <ParticleEmitterHitItem identifiers="ore" particle="iceshards" particlespersecond="10" anglemin="-40" anglemax="40" velocitymin="10" velocitymax="500" scalemin="0.5" scalemax="1.0" />
+      <ParticleEmitterHitItem identifiers="ore" particle="eklaserborespark" particlespersecond="10" copyentityangle="true" anglemin="-90" anglemax="90" velocitymin="500" velocitymax="1000" />
+      <ParticleEmitterHitItem identifiers="ore" particle="eklaserboreflare" particlespersecond="20" copyentityangle="false" />
+      <ParticleEmitterHitCharacter particle="fleshsmoke" particlespersecond="4" anglemin="-50" anglemax="50" velocitymin="10" velocitymax="250" scalemin="1.5" scalemax="2.5" />
+      <ParticleEmitterHitCharacter particle="eklaserboreflare" particlespersecond="20" copyentityangle="false" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/laserbore_fire.ogg" type="OnUse" range="800.0" loop="false" selectionmode="All" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/laserbore_loop.ogg" type="OnUse" range="800.0" loop="true" selectionmode="All" />
+      <Fixable identifier="structure" />
+      <LightComponent LightColor="1.0,0.2,0.1,0.6" range="350" Flicker="0.3">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>
+      <LightComponent LightColor="1.0,1.0,1.0,0.7" range="650" Flicker="0.3">
+        <LightTexture texture="%ModDir%/Workshop/EK Forked/Lights/laserbore_beam.png" origin="-0.001, 0.5" size="1.0,0.5" />
+      </LightComponent>
+    </RepairTool>
+    <ItemContainer autofill="True" capacity="1" maxstacksize="1" hideitems="false" itempos="48,-45" itemrotation="90" containedspritedepth="0.56">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />
+      <Containable items="mobilebattery" />
+    </ItemContainer>
+    <Quality>
+      <QualityStat stattype="RepairToolStructureDamageMultiplier" value="0.15" />
+      <QualityStat stattype="RepairToolDeattachTimeMultiplier" value="0.15" />
+    </Quality>
+  </Item>
+  <!--  Safe to remove? Sprite and GUI element seem to exist. -->
+  <!-- Grapple functionality broken entirely. Force is not being applied to source or when projectile is attached to a structure. Suspect 1.0 harpoons have broken item completely. -->
+  <!--<Item name="" identifier="ekutility_grapplegun" category="Equipment" cargocontaineridentifier="metalcrate" tags="mediumitem,tool,provocative" Scale="0.32" impactsoundtag="impact_metal_light" HideConditionBar="true">
+    <Price baseprice="115" sold="false" minleveldifficulty="15"> 
+	  <Price storeidentifier="merchantoutpost" multiplier="1.1" />
+      <Price storeidentifier="merchantcity" multiplier="1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="1" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantmine" multiplier="0.9" sold="true" minavailable="1" />
+	  <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="2"/>
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="aluminium" />
+      <Item identifier="ballisticfiber" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="20">
+      <RequiredSkill identifier="mechanical" level="30" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="aluminium" />
+      <RequiredItem identifier="ballisticfiber" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="352,560,176,80" depth="0.55" origin="0.5,0.5" />
+    <Body width="180" height="40" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="35,-10" aimpos="35,-10" handle1="-15,-6" handle2="26,7" holdangle="-40" msg="ItemMsgPickUpSelect" />
+    <RangedWeapon barrelpos="49,10" spread="1" unskilledspread="15" combatPriority="60" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <Sound file="Content/Items/Weapons/HarpoonGun1.ogg" type="OnUse" />
+      <Sound file="Content/Items/Weapons/HarpoonGun2.ogg" type="OnUse" />
+      <Sound file="Content/Items/Weapons/HarpoonGun3.ogg" type="OnUse" />
+      <StatusEffect type="OnUse" target="This" condition="-100" disabledeltatime="true">
+        <Explosion range="150.0" force="5" shockwave="false" smoke="false" flames="false" flash="false" sparks="false" underwaterbubble="false" camerashake="6.0" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" targettype="This" condition="100" delay="5.75" disabledeltatime="true"/>
+      <RequiredItems items="grapplinghookprojectile" type="Contained" msg="ItemMsgSpearRequired" />
+      <RequiredSkill identifier="weapons" level="30" />
+    </RangedWeapon>
+	<CustomInterface canbeselected="false" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.10" anchor="BottomCenter" absoluteoffset="0,45" style="ItemUI" />
+      <TickBox text="Rappel Mode" IsOn="true">
+		<sound file="Content\Items\Button\Switch1.ogg" type="OnUse" range="250.0" loop="true" volume="0.3" />
+		<sound file="Content\Items\Button\Switch1.ogg" type="OnSecondaryUse" range="250.0" loop="true" volume="0.3" />
+        <StatusEffect type="OnUse" target="This" setvalue="true" IsOn="true" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="This" setvalue="true" IsOn="false" disabledeltatime="true" />
+		<StatusEffect type="OnUse" target="Contained" targetidentifiers="ekutility_grapplegunprojectile" disabledeltatime="true" stackable="false" >
+          <Remove />
+		</StatusEffect>
+		<StatusEffect type="OnSecondaryUse" target="Contained" targetidentifiers="ekutility_grapplegunprojectile_rappel" disabledeltatime="true" stackable="false" >
+          <Remove />
+		</StatusEffect>
+      </TickBox>
+    </CustomInterface>
+    <LightComponent lightcolor="0,0,0,0" range="1.0" powerconsumption="0" IsOn="false" castshadows="false" allowingameediting="false" >
+      <StatusEffect type="Always" target="This" checkconditionalalways="true" comparison="and" >
+		<Conditional ison="false" />
+		<Conditional Condition="eq 100" />
+        <SpawnItem identifiers="ekutility_grapplegunprojectile" spawnposition="ThisInventory" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" checkconditionalalways="true" comparison="and" >
+		<Conditional ison="true" />
+		<Conditional Condition="eq 100" />
+        <SpawnItem identifiers="ekutility_grapplegunprojectile_rappel" spawnposition="ThisInventory" />
+      </StatusEffect>
+	</LightComponent>
+    <ItemContainer itempos="95,10" iteminterval="0,0" hideitems="false" drawinventory="false" canbeselected="false" capacity="1" maxstacksize="1" containedstateindicatorstyle="spear">
+      <Containable items="ekutility_grapplegunprojectile,ekutility_grapplegunprojectile_rappel" />
+    </ItemContainer>
+    <aitarget sightrange="0" soundrange="500" fadeouttime="2" />
+  </Item> -->
+  <!--<Item name="ekutility_grapplegunprojectile" identifier="ekutility_grapplegunprojectile" tags="grapplinghookprojectile,provocative" health="100" hideinmenus="true" category="Equipment" sonarsize="5" scale="0.32" damagedbyexplosions="false" damagedbyprojectiles="false" damagedbyrepairtools="false" damagedbymeleeweapons="false" impactsoundtag="impact_metal_light">
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="560,560,88,64" depth="0.56" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="656,560,48,96" depth="0.56" origin="0.5,0.5" maxcondition="90" />
+	<Body radius="75" density="0.5" friction="10000" restitution="0.01" />
+	<Rope targetpullforce="80" SourcePullForce="300" projectilepullforce="5" maxlength="2250" snaponcollision="false" spritewidth="4" >
+      <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="537,576,14,32" depth="0.57" origin="0.5,0.5" />
+      <EndSprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="0,0,1,1" depth="0.56" origin="0.5,0.5" />
+	  <StatusEffect type="OnUse" target="This" Snapped="true" delay="7.5"/>
+      <StatusEffect type="Always" target="This" delay="0.5" checkconditionalalways="true">
+        <Conditional Snapped="true" />
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="2" checkconditionalalways="true">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+      </StatusEffect>
+    </Rope>
+    <Projectile characterusable="false" launchimpulse="45.0" sticktostructures="true" sticktocharacters="true" stickpermanently="true" maxtargetstohit="1">
+      <Attack structuredamage="0" >
+        <Affliction identifier="blunttrauma" strength="15" />
+        <Affliction identifier="stun" strength="0.3" />
+	  </Attack>
+      <StatusEffect type="OnImpact" target="This" condition="-20" >
+		<Conditional Condition="eq 100" />
+        <ParticleEmitter particle="weldspark" anglemin="0" anglemax="360" particleamount="15" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1.0" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure"/>
+        <Conditional hastag="eq door"/>
+		<Sound file="%ModDir%/Workshop/EK Forked/Items/Tools/grapplinghookimpact.ogg" range="2000" />
+        <ParticleEmitter particle="weldspark" anglemin="0" anglemax="360" particleamount="5" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1.0" />
+      </StatusEffect>
+	    <StatusEffect type="Always" target="This" targetitemcomponent="Rope" setvalue="true" SourcePullForce="3000" targetpullforce="125" disabledeltatime="true" stackable="false">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="true" />
+      </StatusEffect>
+    </Projectile>
+  </Item> -->
+  <!--<Item name="ekutility_grapplegunprojectile_rappel" identifier="ekutility_grapplegunprojectile_rappel" tags="grapplinghookprojectile,provocative" health="100" hideinmenus="true" category="Equipment" sonarsize="5" scale="0.32" damagedbyexplosions="false" damagedbyprojectiles="false" damagedbyrepairtools="false" damagedbymeleeweapons="false" impactsoundtag="impact_metal_light" >
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="560,560,88,64" depth="0.56" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="656,560,48,96" depth="0.56" origin="0.5,0.5" maxcondition="90" />
+	<Body radius="75" density="0.5" friction="100000" restitution="0.01" />
+	<Rope targetpullforce="1" SourcePullForce="1" projectilepullforce="0" maxlength="2250" snaponcollision="false" spritewidth="4" >
+      <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="537,576,14,32" depth="0.57" origin="0.5,0.5" />
+      <EndSprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="0,0,1,1" depth="0.56" origin="0.5,0.5" />
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="7.5"/>
+      <StatusEffect type="Always" target="This" delay="0.5" checkconditionalalways="true">
+        <Conditional Snapped="true" />
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="2" checkconditionalalways="true">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+      </StatusEffect>
+    </Rope>
+    <Projectile characterusable="false" launchimpulse="45.0" sticktostructures="true" sticktocharacters="true" stickpermanently="true" maxtargetstohit="1">
+      <Attack structuredamage="0" >
+        <Affliction identifier="blunttrauma" strength="15" />
+        <Affliction identifier="stun" strength="0.3" />
+	  </Attack>
+      <StatusEffect type="OnImpact" target="This" condition="-20" >
+		<Conditional Condition="eq 100" />
+        <ParticleEmitter particle="weldspark" anglemin="0" anglemax="360" particleamount="15" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1.0" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure"/>
+        <Conditional hastag="eq door"/>
+		<Sound file="%ModDir%/Workshop/EK Forked/Items/Tools/grapplinghookimpact.ogg" range="2000" />
+        <ParticleEmitter particle="weldspark" anglemin="0" anglemax="360" particleamount="5" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1.0" />
+      </StatusEffect>
+	  <StatusEffect type="Always" target="This" targetitemcomponent="Rope" setvalue="true" SourcePullForce="75" targetpullforce="40" disabledeltatime="true" stackable="false">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="true" />
+      </StatusEffect>
+    </Projectile>
+  </Item> -->
+  <Item name="" identifier="ekutility_jetpack1" aliases="Jetpack" category="Equipment" Tags="mediumitem,weldingequipment,tool" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="engcab,divingcab" />
+    <PreferredContainer primary="wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <PreferredContainer primary="abandonedstoragecab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <Price baseprice="300" sold="false" minleveldifficulty="25">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" />
+      <Price storeidentifier="merchantcity" multiplier="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmine" multiplier="0.9" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="2" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="aluminium" />
+      <Item identifier="ballisticfiber" />
+      <Item identifier="oxygentank" outcondition="0" />
+      <Item identifier="fpgacircuit" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="20">
+      <RequiredSkill identifier="mechanical" level="50" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="aluminium" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="oxygentank" />
+      <RequiredItem identifier="fpgacircuit" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="832,512,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="0,784,240,208" depth="0.55" origin="0.5,0.5" />
+    <Body width="180" height="85" density="30" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="15,4" aimpos="25,0" handle1="50,65" handle2="50,65" holdangle="-90" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="20.0" structurefixamount="0" range="500" barrelpos="40,-10" spread="55" unskilledspread="55" usablein="Both" repairmultiple="false" repairthroughwalls="false" combatpriority="0" levelwallfixamount="0" targetforce="40">
+      <RequiredItems items="weldingtoolfuel,oxygensource" type="Contained" msg="ItemMsgWeldingFuelRequired" />
+      <ParticleEmitter particle="impactfirearm" particlespersecond="60" copyentityangle="true" anglemin="-35" anglemax="35" velocitymin="200" velocitymax="500" scalemin="3" scalemax="5" colormultiplier="255,225,200,100" />
+      <ParticleEmitterHitStructure particle="ekutilitysmokefixed" particlespersecond="20" anglemin="-180" anglemax="180" velocitymin="10" velocitymax="100" scalemin="1" scalemax="1.5" colormultiplier="125,125,125,200" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="ekutilitysmokefixed" particlespersecond="20" anglemin="-180" anglemax="180" velocitymin="10" velocitymax="100" scalemin="1" scalemax="1.5" colormultiplier="125,125,125,200" />
+      <ParticleEmitterHitCharacter particle="ekutilitysmokefixed" particlespersecond="20" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" scalemin="1" scalemax="1.5" colormultiplier="125,125,125,200" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/jetpackloop1.ogg" type="OnUse" range="1250.0" loop="true" selectionmode="All" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/jetpackburst1.ogg" type="OnUse" range="600.0" volume="0.75" loop="false" selectionmode="All" />
+      <!-- <sound file="Content/Items/Tools/Sprayer.ogg" type="OnUse" range="625.0" volume="0.75" loop="true" selectionmode="All"/> -->
+      <StatusEffect type="OnUse" targettype="Contained" targets="weldingfueltank" Condition="-3.0" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="incendiumfueltank" Condition="-1.5" />
+      <StatusEffect type="OnUse" targettype="Contained" Condition="-3.0">
+        <RequiredItem excludedidentifiers="weldingfueltank,incendiumfueltank" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="Limb">
+        <!-- " point away from face " -->
+        <Affliction identifier="burn" amount="2.0" />
+        <Affliction identifier="explosiondamage" amount="0.75" />
+      </StatusEffect>
+      <Fixable identifier="structure" />
+      <LightComponent LightColor="255,200,175,75" range="400" Flicker="0.3" flickerspeed="0.6">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>
+    </RepairTool>
+    <Propulsion force="-42" usablein="Both">
+      <RequiredItems items="weldingtoolfuel,oxygensource" type="Contained" />
+    </Propulsion>
+    <ItemContainer autofill="True" capacity="1" maxstacksize="1" hideitems="false" itempos="-21,-73" itemrotation="90" containedspritedepth="0.56" containedstateindicatorstyle="tank">
+      <!--<ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />-->
+      <Containable identifiers="weldingtoolfuel" />
+    </ItemContainer>
+  </Item>
+  <!-- Test at some point to confirm functionality. -->
+  <!-- Substantially increases radio communications range at the cost of high power use. Omitted because battery use no longer exists -->
+  <Item name="" identifier="ekutility_electroflare" aliases="electro flare" category="Equipment" cargocontaineridentifier="metalcrate" tags="smallitem,light,loadable" Scale="0.32" impactsoundtag="impact_metal_light" maxstacksize="8">
+    <Price baseprice="75" sold="false" minleveldifficulty="15">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantcity" multiplier="0.9" sold="true" minavailable="3" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="true" minavailable="4" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" sold="true" minavailable="4" />
+      <Price storeidentifier="merchantmine" multiplier="0.8" sold="true" minavailable="8" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="8" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="sodium" outcondition="0.5" />
+      <Item identifier="plastic" outcondition="1" />
+      <Item identifier="copper" outcondition="0.5" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="10">
+      <RequiredItem identifier="sodium" mincondition="0.25" usecondition="true" />
+      <RequiredItem identifier="plastic" mincondition="0.5" usecondition="true" />
+      <RequiredItem identifier="copper" mincondition="0.25" usecondition="true" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="320,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="384,224,48,114" depth="0.55" origin="0.5,0.5" />
+    <ContainedSprite allowedcontainertags="chargingdock" texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="432,192,114,48" depth="0.55" origin="0.75,0.5" />
+    <Body width="40" height="100" density="10" />
+    <Throwable slots="Any,RightHand,LeftHand" holdpos="0,0" handle1="0,-10" throwforce="2.5" aimpos="35,-10" msg="ItemMsgPickUpSelect" />
+    <LightComponent LightColor="255,200,150,255" range="600" IsOn="false" castshadows="true" canbeselected="false" allowingameediting="false">
+      <LightTexture texture="%ModDir%/Workshop/EK Forked/Lights/pointlight_bright.png" origin="0.5, 0.5" />
+      <!-- ROTATING LIGHT SPRITES STILL MAKE NO GODDAMN SENSE
+	  <sprite texture="%ModDir%/Workshop/EK Forked/Lights/electroflare_light.png" depth="0.025" sourcerect="0,0,144,144" alpha="1.0" />
+	  -->
+      <!--<StatusEffect type="OnUse" targettype="This" IsOn="true"/>-->
+      <StatusEffect type="OnActive" targettype="This" Condition="-0.2" />
+      <StatusEffect type="OnBroken" targettype="This" IsOn="false" />
+    </LightComponent>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.15,0.12" anchor="BottomRight" absoluteoffset="20,20" style="ItemUI" />
+      <TickBox text="Electro-Flare" IsOn="true">
+        <StatusEffect type="OnUse" target="This" IsOn="true" />
+        <StatusEffect type="OnSecondaryUse" target="This" IsOn="false" />
+      </TickBox>
+    </CustomInterface>
+    <AiTarget sightrange="4000" />
+  </Item>
+  <!--<Item name="" identifier="ekutility_pda" category="Equipment" Tags="smallitem,tool,sonar" cargocontaineridentifier="metalcrate" Scale="0.3" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="engcab" minamount="1" maxamount="1" spawnprobability="0.15" />
+    <PreferredContainer primary="outpostcrewcabinet" minamount="1" maxamount="1" spawnprobability="0.125" />
+    <Price baseprice="250" sold="false" minleveldifficulty="25">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantcity" multiplier="0.9" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantmine" multiplier="0.8" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="1" />
+    </Price>
+    <Deconstruct time="15">
+      <Item identifier="aluminium" />
+      <Item identifier="wificomponent" />
+      <Item identifier="fpgacircuit" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="10">
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem identifier="aluminium" />
+      <RequiredItem identifier="wificomponent" />
+      <RequiredItem identifier="fpgacircuit" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="112,672,96,112" depth="0.55" origin="0.55,0.65" />
+    <Body width="88" height="72" density="15" />
+    <Holdable slots="Any,RightHand+LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" targettype="Contained" Condition="-0.5"/>
+    </Holdable>
+    <MiniMap enableitemfinder="false" requirewaterdetectors="False" requireoxygendetectors="False" showhullintegrity="True" drawhudwhenequipped="true" MinVoltage="0.5" PowerConsumption="500" canbeselected="true" msg="ItemMsgInteractSelect" allowuioverlap="true">
+      <GuiFrame relativesize="0.5,0.5" anchor="Center" style="ItemUI" />
+      <AlternativeLayout relativesize="0.2725,0.3" pivot="BottomLeft" relativeoffset="0.05,-0.001" />
+    </MiniMap>
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="true">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />
+      <Containable items="mobilebattery">
+        <StatusEffect type="OnContaining" targettype="This" Voltage="1.0" setvalue="true" />
+      </Containable>
+    </ItemContainer>
+  </Item>
+  <Item name="" identifier="ekutility_pdacargo" category="Equipment" Tags="smallitem,tool,sonar" cargocontaineridentifier="metalcrate" Scale="0.3" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="engcab" minamount="1" maxamount="1" spawnprobability="0.15" />
+    <PreferredContainer primary="outpostcrewcabinet" minamount="1" maxamount="1" spawnprobability="0.125" />
+    <Price baseprice="250" sold="false" minleveldifficulty="25">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantcity" multiplier="0.9" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantmine" multiplier="0.8" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="1" />
+    </Price>
+    <Deconstruct time="15">
+      <Item identifier="aluminium" />
+      <Item identifier="wificomponent" />
+      <Item identifier="fpgacircuit" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="10">
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem identifier="aluminium" />
+      <RequiredItem identifier="wificomponent" />
+      <RequiredItem identifier="fpgacircuit" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="0,672,96,112" depth="0.55" origin="0.55,0.65" />
+    <Body width="88" height="72" density="15" />
+    <Holdable slots="Any,RightHand+LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" targettype="Contained" Condition="-0.5"/>
+    </Holdable>
+    <MiniMap enableitemfinder="true" enablehullstatus="false" enablehullcondition="false" enableelectricalview="false" requirewaterdetectors="False" requireoxygendetectors="False" showhullintegrity="True" drawhudwhenequipped="true" MinVoltage="0.5" PowerConsumption="500" canbeselected="true" msg="ItemMsgInteractSelect" allowuioverlap="true">
+      <GuiFrame relativesize="0.5,0.5" anchor="Center" style="ItemUI" />
+      <AlternativeLayout relativesize="0.2725,0.3" pivot="BottomLeft" relativeoffset="0.05,-0.001" />
+    </MiniMap>
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="true">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />
+      <Containable items="mobilebattery">
+        <StatusEffect type="OnContaining" targettype="This" Voltage="1.0" setvalue="true" />
+      </Containable>
+    </ItemContainer>
+  </Item>
+  <Item name="" identifier="ekutility_hullrepairkit" category="Equipment" Tags="smallitem,weldingequipment,tools" preferredcontainers="suppliescabinet,locker" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light">
+    <Price baseprice="250" sold="false" minleveldifficulty="25">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantcity" multiplier="0.9" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantmine" multiplier="0.8" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantengineering" multiplier="1.2" sold="true" minavailable="2" />
+    </Price>
+    <Deconstruct time="5">
+      <Item identifier="aluminium" />
+      <Item identifier="rubber" />
+      <Item identifier="wrench" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="10">
+      <RequiredSkill identifier="mechanical" level="20" />
+      <RequiredItem identifier="aluminium" />
+      <RequiredItem identifier="rubber" />
+      <RequiredItem identifier="wrench" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="384,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="448,256,128,128" depth="0.55" origin="0.5,0.55" />
+    <BrokenSprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="576,256,96,160" depth="0.55" origin="0.5,0.5" maxcondition="95" />
+    <Body width="128" height="104" density="25" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="55,-20" aimpos="50,0" holdangle="-40" handle1="0,-32" handle2="8,32" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="This" Condition="-10.0" disabledeltatime="true">
+        <Conditional Condition="eq 100" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" Condition="10.0" disabledeltatime="true" delay="0.5">
+        <Conditional Condition="eq 90" />
+      </StatusEffect>
+    </Holdable>
+    <RepairTool structurefixamount="0.4" range="25" barrelpos="32,0" spread="40" unskilledspread="40" repairmultiple="false" repairthroughwalls="false">
+      <RequiredItems identifier="steel" type="Contained" msg="ItemMsgAmmoRequired" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="steel" Condition="-1.5" />
+      <StatusEffect type="OnUse" targettype="UseTarget" targets="door,hatch,ductblock" Condition="10.0" />
+      <sound file="%ModDir%/Workshop/EK Forked/Items/Tools/patching_kit_loop.ogg" type="OnUse" range="500.0" loop="true" />
+      <Fixable identifier="structure" />
+    </RepairTool>
+    <ItemContainer autofill="False" capacity="1" maxstacksize="1" hideitems="true">
+      <Containable items="steel" />
+    </ItemContainer>
+  </Item>-->
+  <!-- Non-implemented item -->
+  <!-- 9/Dec/2021 Devs have fixed the constant power consumption bug and has as been added to vanilla -->
+  <Item name="" identifier="ekutility_incendiumfuelrod" Category="Fuel" Tags="fulguriumfuelrod,incendiumfuelrod,fuelroditem,mediumitem,reactorfuel,fuelrodincendium,cargoscooter,mountableweapon" maxstacksize="8" cargocontaineridentifier="fuelrodcrate" health="150" scale="0.5" impactsoundtag="impact_fuelrod" requireaimtouse="true">
+    <PreferredContainer primary="fuelrodcrate" secondary="reactorcab" />
+    <PreferredContainer secondary="fuelrodcontainer" amount="1" spawnprobability="0.1" />
+    <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" amount="1" spawnprobability="0.2" />
+    <PreferredContainer secondary="wreckreactor" amount="1" mincondition="0.5" maxcondition="0.99" spawnprobability="0.05" />
+    <PreferredContainer secondary="beaconengcab" amount="1" spawnprobability="0.05" />
+    <PreferredContainer secondary="abandonedengcab,wreckengcab" amount="1" spawnprobability="0.01" />
+    <Price baseprice="250" sold="false" displaynonempty="true">
+      <Price storeidentifier="merchantoutpost" />
+      <Price storeidentifier="merchantcity" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+      <Price storeidentifier="merchantmine" multiplier="1.1" />
+      <Price storeidentifier="merchantengineering" multiplier="0.9" minavailable="2" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" outcondition="0.5" />
+      <Item identifier="lead" outcondition="0.5" />
+      <Item identifier="incendium" copycondition="true" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="10">
+      <RequiredSkill identifier="electrical" level="40" />
+      <RequiredItem identifier="incendium" />
+      <RequiredItem identifier="lead" />
+      <RequiredItem identifier="steel" />
+    </Fabricate>
+    <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
+      <RequiredSkill identifier="electrical" level="40" />
+      <RequiredItem identifier="incendium" />
+      <RequiredItem tag="fuelrodincendium" mincondition="0.0" maxcondition="1.0" usecondition="false" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="768,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" depth="0.55" sourcerect="711,376,18,66" />
+    <Body radius="6" height="55" density="13" />
+    <ItemComponent canbeselected="false" canbepicked="false" allowingameediting="false">
+      <StatusEffect type="OnContained" target="Parent" tags="containradiation" duration="0.1" setvalue="true" comparison="And">
+        <Hook name="EnhancedReactors.Disable" />
+        <Conditional HasTag="deconstructor" />
+        <Conditional IsActive="eq true" />
+        <Conditional Voltage="gt 0.1" />
+      </StatusEffect>
+      <StatusEffect type="OnContained" target="Parent" tags="containradiation" duration="0.1" setvalue="true" comparison="And">
+        <Hook name="EnhancedReactors.Disable" />
+        <Conditional HasTag="fabricator" />
+        <Conditional IsActive="eq true" />
+        <Conditional Voltage="gt 0.1" />
+      </StatusEffect>
+    </ItemComponent>
+    <LightComponent range="750.0" lightcolor="255,125,30,175" IsOn="false" flicker="0.2" flickerspeed="0.3" castshadows="true" alphablend="false" allowingameediting="false" powerconsumption="0">
+      <!-- Once the fuel rod reaches 0.0%, remove it and spawn an empty fuel rod in its place -->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+        <SpawnItem identifier="emptyfuelrod" spawnposition="SameInventory" spawnifcantbecontained="true" spawnifinventoryfull="true" condition="0" />
+      </StatusEffect>
+      <!-- slowly drain the fuel rod over time if the fission process was started | disabled inside reactors to allow reactors set to not consume fuel and beacon missions to play out normally unless condition is 0 -->
+      <StatusEffect type="OnActive" target="This" interval="1" condition="-0.05" disabledeltatime="true" comparison="And">
+        <Conditional HasTag="neq reactor" targetcontainer="true" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" interval="1" condition="-0.05" disabledeltatime="true" comparison="And">
+        <Conditional HasStatusTag="eq wreckreactor" targetcontainer="true" />
+      </StatusEffect>
+      <!-- check if near a character and tag the item to allow the StatusEffects to trigger | Prevents performance impact when far away from the item -->
+      <StatusEffect type="Always" target="This,NearbyCharacters" range="10000" tags="nearcharacter" interval="1" duration="1.1" comparison="And">
+        <!-- <Hook name="EnhancedReactors.Disable" /> -->
+        <Conditional isPlayer="true" />
+      </StatusEffect>
+      <!-- create an invisible explosion to apply variable amount of damage and afflictions to nearby items and characters, if the fission process was started and the item is not contained within a container with the tag "containradiation" -->
+      <StatusEffect type="Always" target="This" interval="0.3" comparison="And" AllowWhenBroken="true">
+        <Hook name="EnhancedReactors.Disable" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <Conditional HasTag="neq deepdivinglarge" targetcontainer="true" />
+        <Conditional HasTag="neq containradiation" targetcontainer="true" />
+        <Explosion range="2000" itemdamage="0.975" structuredamage="0.0" ballastfloradamage="0" camerashake="0" camerashakerange="0" explosiondamage="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false">
+          <Affliction identifier="radiationsickness" strength="3.75" />
+          <Affliction identifier="contaminated" strength="3.75" />
+          <Affliction identifier="radiationsounds" strength="4.5" />
+          <Affliction identifier="overheating" strength="1.2" />
+        </Explosion>
+      </StatusEffect>
+      <!-- create an invisible explosion to apply variable amount of afflictions to characters depending on the condition of the reactor -->
+      <StatusEffect type="Always" target="This" interval="0.3" comparison="And" AllowWhenBroken="true">
+        <Hook name="EnhancedReactors.Disable" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <Conditional HasTag="eq reactor" targetcontainer="true" />
+        <Conditional conditionpercentage="lt 75" targetcontainer="true" />
+        <Conditional conditionpercentage="gte 50" targetcontainer="true" />
+        <Explosion range="1000" itemdamage="0.0" structuredamage="0.0" ballastfloradamage="0" camerashake="0" camerashakerange="0" explosiondamage="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false">
+          <Affliction identifier="radiationsickness" strength="0.225" />
+          <Affliction identifier="contaminated" strength="0.225" />
+          <Affliction identifier="radiationsounds" strength="1.9" />
+          <Affliction identifier="overheating" strength="0.15" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" interval="0.3" comparison="And" AllowWhenBroken="true">
+        <Hook name="EnhancedReactors.Disable" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <Conditional HasTag="eq reactor" targetcontainer="true" />
+        <Conditional conditionpercentage="lt 50" targetcontainer="true" />
+        <Conditional conditionpercentage="gte 25" targetcontainer="true" />
+        <Explosion range="1000" itemdamage="0.0" structuredamage="0.0" ballastfloradamage="0" camerashake="0" camerashakerange="0" explosiondamage="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false">
+          <Affliction identifier="radiationsickness" strength="0.45" />
+          <Affliction identifier="contaminated" strength="0.45" />
+          <Affliction identifier="radiationsounds" strength="2.9" />
+          <Affliction identifier="overheating" strength="0.3" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" interval="0.3" comparison="And" AllowWhenBroken="true">
+        <Hook name="EnhancedReactors.Disable" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <Conditional HasTag="eq reactor" targetcontainer="true" />
+        <Conditional conditionpercentage="lt 25" targetcontainer="true" />
+        <Explosion range="1000" itemdamage="0.0" structuredamage="0.0" ballastfloradamage="0" camerashake="0" camerashakerange="0" explosiondamage="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false">
+          <Affliction identifier="radiationsickness" strength="0.675" />
+          <Affliction identifier="contaminated" strength="0.675" />
+          <Affliction identifier="radiationsounds" strength="3.9" />
+          <Affliction identifier="overheating" strength="0.45" />
+        </Explosion>
+      </StatusEffect>
+      <!-- create smoke particles and an explosion that deals high item and structure damage to anything within 1m, if fission process was started and the fuel rod is not contained and not in water -->
+      <StatusEffect type="OnNotContained" target="This" interval="0.2" comparison="And">
+        <Conditional InWater="false" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <Explosion range="100" itemdamage="3.5" structuredamage="3.5" ballastfloradamage="0" camerashake="0" camerashakerange="0" explosiondamage="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false" />
+        <ParticleEmitter particle="smoke" particlespersecond="75" scalemin="0.2" scalemax="0.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" />
+      </StatusEffect>
+      <!-- create underwater bubble particles and an explosion that deals high item and structure damage to anything within 1m, if the fission process was started and the fuel rod is not contained and within water -->
+      <StatusEffect type="OnNotContained" target="This" interval="0.2" comparison="And">
+        <Conditional InWater="true" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <Explosion range="100" itemdamage="3.5" structuredamage="3.5" ballastfloradamage="0" camerashake="0" camerashakerange="0" explosiondamage="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false" />
+        <ParticleEmitter particle="damagebubbles" particlespersecond="75" scalemin="0.2" scalemax="0.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" />
+      </StatusEffect>
+      <!-- spawn items that delete themselves randomly with a chance of 1/20 each second for an item to spawn that causes a fire to make the fuel rod randomly start fires if it's not contained and the fission process was started -->
+      <StatusEffect type="OnNotContained" target="This" interval="1.0" SpawnItemRandomly="True" comparison="And">
+        <!-- <Hook name="EnhancedReactors.Disable" /> -->
+        <Conditional InWater="false" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_none" spawnposition="This" />
+        <SpawnItem identifier="effect_firestarter" spawnposition="This" />
+      </StatusEffect>
+    </LightComponent>
+    <Holdable handle1="0,0" slots="RightHand,LeftHand" msg="ItemMsgPickUpSelect" canBeCombined="false" throwforce="3.5" aimpos="35,-10">
+      <!-- apply burn to the hands when holding the fuel rod if the fission process was started -->
+      <StatusEffect type="Always" target="This,Character" targetlimbs="LeftHand,RightHand" interval="0.2" disabledeltatime="true" comparison="And">
+        <Hook name="EnhancedReactors.Disable" />
+        <Conditional HasTag="eq activefuelrod" />
+        <Conditional HasStatusTag="eq nearcharacter" />
+        <Conditional IsPlayer="eq true" />
+        <Conditional HasTag="neq deepdivinglarge" targetcontainer="true" />
+        <Conditional HasTag="neq containradiation" targetcontainer="true" />
+        <Affliction identifier="burn" amount="5" />
+      </StatusEffect>
+      <!-- activate the LightComponent to trigger the OnActive StatusEffects and visualize that the fission process has started when the fuel rod was used inside an active reactor -->
+      <StatusEffect type="Always" target="This" IsOn="True" tags="activefuelrod,provocative" setvalue="True" comparison="And" interval="1.1">
+        <Conditional HasTag="eq reactor" targetcontainer="True" />
+        <Conditional fissionrate="gt 1.0" targetcontainer="True" />
+      </StatusEffect>
+      <!-- activate the LightComponent to trigger the OnActive StatusEffects and visualize that the fission process has started when the fuel rod was spawned inside a wreck reactor -->
+      <StatusEffect type="OnContained" target="This" IsOn="True" tags="activefuelrod,provocative" setvalue="True">
+        <Conditional HasTag="eq wreckreactor" targetcontainer="True" />
+      </StatusEffect>
+      <StatusEffect type="OnContained" target="This" IsOn="True" tags="activefuelrod,provocative" setvalue="True" comparison="And">
+        <Conditional HasStatusTag="eq wreckreactor" targetcontainer="True" />
+      </StatusEffect>
+      <!-- activate the LightComponent to trigger the OnActive StatusEffects and visualize that the fission process has started when the fuel rod was used inside an exosuit -->
+      <StatusEffect type="OnContained" target="This" IsOn="True" tags="activefuelrod,provocative" setvalue="True">
+        <Conditional HasTag="eq deepdivinglarge" targetcontainer="True" />
+      </StatusEffect>
+      <!-- Eat the fuel rod -->
+      <!-- <StatusEffect type="OnUse" target="Character" disabledeltatime="true" setvalue="true" multiplyafflictionsbymaxvitality="true">
+            <Conditional HasTag="activefuelrod" targetcontaineditem="True" />
+            <Affliction identifier="fuelrodrage" amount="120" />
+          </StatusEffect> -->
+      <StatusEffect type="OnUse" target="This">
+        <Conditional HasTag="activefuelrod" />
+        <Sound file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Tools/gulp.ogg" volume="1" loop="false" range="500" />
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+    <Throwable handle1="0,0" slots="RightHand,LeftHand" msg="ItemMsgPickUpSelect" canBeCombined="false" throwforce="3.5" aimpos="35,-10" />
+    <Projectile characterusable="false" launchimpulse="15" impulsespread="0.01" sticktocharacters="true" sticktoitems="false" sticktostructures="false" sticktodoors="false">
+      <Attack targetimpulse="3" severlimbsprobability="0.1" itemdamage="1" structuredamage="0" structuresoundtype="StructureSlash">
+        <Affliction identifier="blunttrauma" strength="2" />
+        <Affliction identifier="blunttrauma" strength="2" probability="0.25" />
+        <Affliction identifier="stun" strength="0.2" />
+      </Attack>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="Character" />
+        <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" selectionmode="random" range="1000" />
+        <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="1000" />
+        <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="1000" />
+        <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="1000" />
+        <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="1000" />
+        <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="1000" />
+      </StatusEffect>
+    </Projectile>
+    <Quality>
+      <QualityStat stattype="Condition" value="0.1" />
+    </Quality>
+    <AiTarget sightrange="6000" />
+  </Item>
+  <!--
+  <Item name="ekutility_fabricationdebugger" identifier="ekutility_fabricationdebugger" category="Equipment" Tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.3" 
+  description="Debug fabricate recipe use condition" impactsoundtag="impact_metal_light" maxstacksize="4">
+    <Deconstruct time="1">
+      <Item identifier="steel" outcondition="0.5" />
+      <Item identifier="steel" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="1">
+      <RequiredItem identifier="steel" mincondition="0.5" usecondition="true" />
+      <RequiredItem identifier="steel" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="64,0,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Tools/ekutility_tools.png" sourcerect="0,0,48,112" depth="0.55" origin="0.5,0.5" />
+    <Body width="42" height="108" density="8" />
+    <Holdable slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect" />
+  </Item>
+  -->
+  <!-- issue specific BarotraumaClient\ClientSource\Map\Lights\LightSource.cs:line 953
+  <Item name="Game crasher" identifier="weldingtool_test" category="Equipment" Tags="smallitem,weldingequipment,tool" cargocontaineridentifier="metalcrate" description="" Scale="0.5" impactsoundtag="impact_metal_light">
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="64,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,3,152,88" depth="0.55" origin="0.5,0.5" />
+    <Body width="150" height="60" density="40" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" aimpos="50,0" handle1="-62,-16" handle2="-5,-16" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="10.0" structurefixamount="5.0" range="150" barrelpos="35,10" particles="weld" repairmultiple="true" repairthroughwalls="false" combatpriority="10" levelwallfixamount="-0.5" targetforce="10">
+	  <LightComponent LightColor="1.0,0.9,0.7,1.0" Flicker="0.5" range="150">
+        <sprite texture="%ModDir%/Workshop/EK Forked/Lights/laserbore_beam.png" origin="-0.027, 0.4" size="1.0,0.3" />
+      </LightComponent>
+    </RepairTool>
+  </Item>
+  -->
+  <Item name="" identifier="ekutility_supplypouch" category="Equipment" tags="smallitem,ekutility_smallmobilecontainer,tool" cargocontaineridentifier="" showcontentsintooltip="true" Scale="0.32" fireproof="true" impactsoundtag="impact_metal_heavy">
+    <PreferredContainer primary="engcab" />
+    <PreferredContainer secondary="wreckstoragecab" spawnprobability="0.06" />
+    <PreferredContainer primary="outpostcrewcabinet" minamount="0" maxamount="1" spawnprobability="0.1" />
+    <Price baseprice="55" sold="false" minleveldifficulty="40">
+      <Price storeidentifier="merchantoutpost" multiplier="1.2" sold="true" minavailable="1" />
+      <Price storeidentifier="merchantcity" multiplier="1.1" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantresearch" multiplier="0.8" sold="true" minavailable="4" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+      <Price storeidentifier="merchantmine" multiplier="1" />
+      <Price storeidentifier="merchantmedical" multiplier="1.25" sold="true" minavailable="8" />
+    </Price>
+    <Deconstruct time="7">
+      <Item identifier="organicfiber" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="modfabricator,fabricator" requiredtime="15">
+      <RequiredSkill identifier="mechanical" level="15" />
+      <Item identifier="organicfiber" />
+      <Item identifier="plastic" />
+    </Fabricate>
+    <!--<InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="640,256,64,64" origin="0.5,0.6" />-->
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Containers/ekutility_containers.png" sourcerect="1,848,86,64" origin="0.5,0.5" />
+    <!--<Sprite texture="Content/Items/Containers/crates.png" depth="0.54" sourcerect="1,0,68,39"/>-->
+    <Body width="80" height="60" density="10" />
+    <Holdable slots="Any,RightHand,LeftHand" holdpos="20,-60" handle1="0,-15" holdangle="0" msg="ItemMsgPickUpSelect" canbeselected="false" canbepicked="true" pickkey="Select" allowswappingwhenpicked="false" />
+    <ItemContainer capacity="8" maxstacksize="1" keepopenwhenequipped="true" movableframe="true">
+      <Containable items="smallitem,tool,medical,chem" excludeditems="weapon,mediumitem,largeitem,toolbelt,toolbox,mobilecontainer,ekutility_smallmobilecontainer,rucksack,backpack,waistbelt,weldingequipment,cuttingequipment,weldingfuel,weldingfueltank,oxygentank,oxygenitetank,refillableoxygensource" />
+    </ItemContainer>
+  </Item>
+</Items>

@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="Electric Pulse" identifier="electropulse" category="alien" Tags="" canbepicked="false" description="" scale="0.1" sonarsize="0" health="1" damagedbyexplosions="false" damagedbyprojectiles="false" damagedbymeleeweapons="false" damagedbyrepairtools="false">
+    <Sprite texture="Content/Items/Materials/Crystal.png" depth="1.0" sourcerect="0,1,1,1" origin="0.5,0.6" />
+    <Body width="0.1" height="0.1" density="10" bodytype="Static" />
+    <ElectricalDischarger duration="1.0" powerconsumption="0" range="9500" rangemultiplierinwalls="10">
+      <StatusEffect type="OnUse" target="This">
+        <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge1.ogg" range="10000" selectionmode="random" />
+        <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge2.ogg" range="10000" />
+        <Explosion range="7000.0" camerashake="3" stun="0" force="0.0" flames="false" shockwave="false" sparks="false" underwaterbubble="false" />
+      </StatusEffect>
+      <Remove />
+    </ElectricalDischarger>
+    <ItemComponent>
+      <!-- when the component activates, apply extra load to nearby items and deactive the component -->
+      <StatusEffect type="OnActive" target="NearbyItems" targettags="junctionbox" range="9500.0" setvalue="true" extraload="5000" />
+      <StatusEffect type="OnActive" target="This" IsActive="false" />
+      <!-- reactivate after one second -->
+      <StatusEffect type="Always" target="This" stackable="false" delay="1.0">
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" stackable="false" delay="2.0">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="morbusinegasemitterlarge" identifier="morbusinegasemitterlarge" isdangerous="true" category="Hidden" sonarsize="0" scale="0.5" hideinmenus="true">
+    <Body radius="60" density="50" friction="0.25" />
+    <Sprite texture="Content/UI/MainIconsAtlas.png" depth="0.6" sourcerect="0,0,1,1" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="InWater" target="This" delay="0.5" stackable="false">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This,Hull" oxygen="-90000.0">
+        <ParticleEmitter particle="acidmistgrenade" particlespersecond="8" scalemin="0.6" scalemax="0.8" velocitymin="60" velocitymax="130" anglemin="0" anglemax="360" copyentityangle="false" colormultiplier="30,175,50,225" />
+        <ParticleEmitter particle="morbusinemistlargefade" particlespersecond="15" scalemin="2.8" scalemax="3.6" velocitymin="0" velocitymax="50" anglemin="0" anglemax="360" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" delay="7" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+    <TriggerComponent force="0" radius="800" allowingameediting="false">
+      <StatusEffect type="OnActive" target="Character" comparison="And">
+        <Conditional IsDead="false" />
+        <Conditional DecreasedOxygenConsumption="lt 99" />
+        <Conditional NeedsAir="true" />
+        <Conditional UseHullOxygen="true" />
+        <Affliction identifier="morbusinegas" strength="2.1" />
+      </StatusEffect>
+    </TriggerComponent>
+  </Item>
+  <!-- Morb gas broke after an update and we have more morbin time on different enemies so sufforin was a shoe in for a poison gas attack due to its easier treatment names unchanged! -->
+  <Item name="morbusinegasemitter" identifier="morbusinegasemitter" isdangerous="true" category="Hidden" sonarsize="0" scale="0.5" hideinmenus="true">
+    <Body radius="60" density="50" friction="0.25" />
+    <Sprite texture="Content/UI/MainIconsAtlas.png" depth="0.6" sourcerect="0,0,1,1" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="InWater" target="This" delay="0.5" stackable="false">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This,Hull" oxygen="-80000.0">
+        <ParticleEmitter particle="acidmistgrenade" particlespersecond="8" scalemin="0.5" scalemax="0.7" velocitymin="50" velocitymax="120" anglemin="0" anglemax="360" copyentityangle="false" colormultiplier="30,175,50,225" />
+        <ParticleEmitter particle="morbusinemistlargefade" particlespersecond="15" scalemin="2.8" scalemax="3.6" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" delay="6" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+    <TriggerComponent force="0" radius="800" allowingameediting="false">
+      <StatusEffect type="OnActive" target="Character" comparison="And">
+        <Conditional IsDead="false" />
+        <Conditional DecreasedOxygenConsumption="lt 99" />
+        <Conditional NeedsAir="true" />
+        <Conditional UseHullOxygen="true" />
+        <Affliction identifier="morbusinegas" strength="2" />
+      </StatusEffect>
+    </TriggerComponent>
+  </Item>
+  <Item name="morbusinegasemittersmall" identifier="morbusinegasemittersmall" isdangerous="true" category="Hidden" sonarsize="0" scale="0.5" hideinmenus="true">
+    <Body radius="45" density="50" friction="0.95" />
+    <Sprite texture="Content/UI/MainIconsAtlas.png" depth="0.6" sourcerect="0,0,1,1" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="InWater" target="This">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This,Hull" oxygen="-28000.0" onlyinside="true">
+        <ParticleEmitter particle="morbusinemistlargefade" particlespersecond="5" scalemin="3" scalemax="1" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" delay="6" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+    <TriggerComponent force="0" radius="300" allowingameediting="false">
+      <StatusEffect type="OnActive" target="Character" onlyinside="true" comparison="And">
+        <Conditional IsDead="false" />
+        <Conditional DecreasedOxygenConsumption="lt 99" />
+        <Conditional NeedsAir="true" />
+        <Conditional UseHullOxygen="true" />
+        <Affliction identifier="morbusinegas" strength="0.15" />
+      </StatusEffect>
+    </TriggerComponent>
+  </Item>
+  <Item name="watcherscreechemitter" identifier="xanwatcherscreechemitter" Scale="1" tags="" sonarsize="0" hideinmenus="true" impacttolerance="0.001" health="0.1">
+    <Body radius="100" density="0" />
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,0,2,2" depth="0.55" origin="0.5,0.5" />
+    <ItemComponent>
+      <!-- reduce condition to remove the emitter shortly after spawning it -->
+      <StatusEffect type="Always" target="This" condition="-1" />
+      <!-- Nearby eligible husks will mutate -->
+      <StatusEffect type="Always" target="NearbyCharacters" range="10000">
+        <Affliction identifier="xanwatcherhuskbroadcast" amount="150" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <sound file="%ModDir:2518816103%/Characters/Huskbroodemperor/screech1.ogg" range="10000" volume="1" selectionmode="Random" dontmuffle="true" />
+        <sound file="%ModDir:2518816103%/Characters/Huskbroodemperor/screech2.ogg" range="10000" volume="1" selectionmode="Random" dontmuffle="true" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" delay="0.1">
+        <particleemitter particle="xanwatcherscreechparticle" particleamount="45" scalemin="1" scalemax="1" />
+        <sound file="%ModDir:2518816103%/Characters/Huskbroodemperor/screech1far.ogg" range="20000" volume="1" selectionmode="Random" dontmuffle="true" />
+        <sound file="%ModDir:2518816103%/Characters/Huskbroodemperor/screech2far.ogg" range="20000" volume="1" selectionmode="Random" dontmuffle="true" />
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="" identifier="urchinflakshrapnel" category="Weapon" scale="0.3" sonarsize="1" hideinmenus="true">
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="143,414,113,9" depth="0.55" />
+    <Body width="170" height="10" density="20" />
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" />
+    <Projectile characterusable="false" launchimpulse="32.0" impulsespread="0.2" damagedoors="true" maxtargetstohit="3" DamageUser="false">
+      <Attack structuredamage="0" itemdamage="10" severlimbsprobability="0.4" penetration="0.1">
+        <Affliction identifier="lacerations" strength="6" />
+        <Affliction identifier="bleeding" strength="3" />
+        <Affliction identifier="stun" strength="0.15" />
+      </Attack>
+      <StatusEffect type="OnActive" target="This" lifetime="1">
+        <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="1" velocitymin="-10" velocitymax="-100" scalemin="0.5" scalemax="1" />
+      </StatusEffect>
+      <!-- a 1.8 second lifetime after being fired -->
+      <StatusEffect type="OnNotContained" target="This" stackable="false" delay="1.8">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This">
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="1" velocitymin="100" velocitymax="2000" scalemin="0.25" scalemax="0.5" />
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Projectile>
+  </Item>
+  <Item name="huskmutanthumanheadhijackstart" identifier="xanhuskmutanthumanheadhijackstart" Scale="1" tags="" sonarsize="0" hideinmenus="true" impacttolerance="0.001" health="0.1">
+    <!-- This item ensures that a sound and particle effects play upon starting the hijacking -->
+    <Body radius="15" density="0" />
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,0,2,2" depth="0.55" origin="0.5,0.5" />
+    <ItemComponent>
+      <!-- reduce condition to remove the emitter shortly after spawning it -->
+      <StatusEffect type="Always" target="This" condition="-50" />
+      <StatusEffect type="OnBroken" target="This">
+        <sound file="%ModDir:2518816103%/Characters/Helmetjumplet/severedheadhijackstart.ogg" range="700" volume="1" selectionmode="Random" />
+        <sound file="%ModDir:2518816103%/Characters/Helmetjumplet/severedheadhijackstart1.ogg" range="700" volume="1" selectionmode="Random" />
+        <sound file="%ModDir:2518816103%/Characters/Helmetjumplet/severedheadhijackstart2.ogg" range="700" volume="1" selectionmode="Random" />
+        <ParticleEmitter particle="bloodsplash" particlespersecond="250" scalemin="1" scalemax="1.5" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
+        <ParticleEmitter particle="blackblood" particlespersecond="250" scalemin="1" scalemax="1.5" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="huskmutanthumanheadhijackdie" identifier="xanhuskmutanthumanheadhijackdie" Scale="1" tags="" sonarsize="0" hideinmenus="true" impacttolerance="0.001" health="0.1">
+    <!-- This item plays a sound and a particle effect when the head is shot and killed. -->
+    <Body radius="15" density="0" />
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,0,2,2" depth="0.55" origin="0.5,0.5" />
+    <ItemComponent>
+      <!-- reduce condition to remove the emitter shortly after spawning it -->
+      <StatusEffect type="Always" target="This" condition="-50" />
+      <StatusEffect type="OnBroken" target="This">
+        <sound file="%ModDir:2518816103%/Characters/Helmetjumplet/severedheadhijackdie.ogg" range="700" volume="0.6" selectionmode="Random" />
+        <sound file="%ModDir:2518816103%/Characters/Helmetjumplet/severedheadhijackdie1.ogg" range="700" volume="0.6" selectionmode="Random" />
+        <ParticleEmitter particle="bloodsplash" particlespersecond="150" scalemin="1" scalemax="2" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
+        <ParticleEmitter particle="blackblood" particlespersecond="150" scalemin="1" scalemax="2" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="huskmutanthumanheadhijackparticle" identifier="xanhuskmutanthumanheadhijackparticle" Scale="1" tags="" sonarsize="0" hideinmenus="true" impacttolerance="0.001" health="0.01">
+    <!-- This item spawns the particles caused by the hijacking affliction. -->
+    <Body radius="15" density="0" />
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,0,2,2" depth="0.55" origin="0.5,0.5" />
+    <ItemComponent>
+      <!-- reduce condition to remove the emitter shortly after spawning it -->
+      <StatusEffect type="Always" target="This" condition="-50" />
+      <StatusEffect type="OnBroken" target="This">
+        <ParticleEmitter particle="xanhuskheadclaws" particlespersecond="2" particleamount="1" scalemin="1.1" scalemax="1.3" velocitymin="0" velocitymax="0" anglemin="0" anglemax="360" copyentityangle="false" />
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="Cnidae Spike" identifier="coelanthspike" category="Misc" scale="0.5" pickdistance="150" sonarsize="1" hideinmenus="true" description="Poisonous spikes shot from the Cnidae, it emits dangerous toxic fumes. Get rid of it quickly!">
+    <Sprite texture="%ModDir:2518816103%/Characters/Coelanthre/Coelanth.png" sourcerect="1347,358,45,24" depth="0.55" origin="0.5,0.5" />
+    <InventoryIcon texture="%ModDir:2518816103%/Characters/Coelanthre/Coelanth.png" sourcerect="1347,358,45,24" origin="0.5,0.5" />
+    <Deconstruct time="3">
+      <Item identifier="morbusine" />
+      <Item identifier="ethanol" />
+    </Deconstruct>
+    <Body width="160" height="10" density="20" />
+    <Projectile characterusable="false" launchimpulse="90" maxtargetstohit="2" sticktocharacters="false" sticktoitems="True" sticktostructures="true" penetration="0.25" friendlyfire="false">
+      <Attack structuredamage="20" severlimbsprobability="0.5">
+        <!--Hits up to 3 limbs, so the actual damage can be 3x-->
+        <Affliction identifier="lacerations" strength="5" />
+        <Affliction identifier="bleeding" strength="13" />
+        <Affliction identifier="sufforinpoisoning" strength="7" probability="0.5" />
+      </Attack>
+      <StatusEffect type="OnActive" target="This" delay="5" stackable="false">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" delay="2" stackable="false">
+        <SpawnItem identifiers="morbusinegasemitter" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="5" velocitymin="100" velocitymax="2000" scalemin="0.1" scalemax="0.2" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <Conditional hastag="eq door" />
+        <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
+      </StatusEffect>
+    </Projectile>
+    <Holdable canBeCombined="false" removeOnCombined="false" slots="RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
+  </Item>
+  <Item name="Depth Charge Shell" identifier="xandepthchargeshell" tags="" impacttolerance="2" category="Weapon" sonarsize="5" health="1" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbymonsters="false" damagedbyexplosions="true" scale="0.4" impactsoundtag="impact_metal_heavy" IsAITurretTarget="true" AITurretPriority="0.75" AISlowTurretPriority="0" AITurretTargetingMaxDistance="2000">
+    <Deconstruct time="10">
+      <Item identifier="iron" />
+    </Deconstruct>
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="512,128,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Weapons/TurretsAndDepthCharges.png" sourcerect="0,0,130,89" depth="0.55" origin="0.5,0.5" />
+    <Body width="128" height="85" density="20" />
+    <Throwable characterusable="false" slots="Any,RightHand,LeftHand" throwforce="1.0" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true" condition="-100" stackable="false">
+        <use />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" condition="-100" />
+      <StatusEffect type="OnBroken" target="This">
+        <sound file="Content/Items/Weapons/ExplosionLarge1.ogg" range="3000" dontmuffle="true" />
+        <Explosion range="700" ballastfloradamage="150" structuredamage="120" force="100" flashrange="0" flashduration="0" screencolor="255,255,255,255" screencolorrange="0" screencolorduration="0" stackable="false" debris="true" camerashake="300">
+          <Affliction identifier="burn" strength="25" />
+          <Affliction identifier="explosiondamage" strength="30" />
+          <Affliction identifier="stun" strength="2" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <sound file="Content/Items/Weapons/ExplosionDebris4.ogg" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionDebris5.ogg" range="5000" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" stackable="false" delay="0.5">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnActive" delay="10" target="This">
+        <Remove />
+      </StatusEffect>
+    </Throwable>
+  </Item>
+  <Item name="" identifier="voidstalkertonguetendon" tags="" health="50" hideinmenus="true" category="" sonarsize="0" scale="1" damagedbyexplosions="false" damagedbyprojectiles="false" damagedbyrepairtools="false" damagedbymeleeweapons="false" impactsoundtag="impact_soft">
+    <Sprite texture="Content/Characters/Latcher/Latcher.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+    <Body radius="100" density="10" />
+    <Rope sourcepullforce="0" targetpullforce="200000" projectilepullforce="0" maxlength="5000" snaponcollision="false" spritewidth="256" tile="true" snapanimduration="1" breakfrommiddle="false" maxangle="60">
+      <Sprite name="tongue" texture="%ModDir:2518816103%/Characters/Voidstalker/Voidstalkernew.png" sourcerect="1793,620,424,210" depth="0.57" origin="0.5,0.5" />
+      <EndSprite texture="%ModDir:2518816103%/Characters/Voidstalker/Voidstalkernew.png" sourcerect="1923,1118,520,93" depth="0.56" origin="0.5,0.5" />
+      <!-- Automatically snap after 14 seconds -->
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="14" />
+      <!-- Remove 1 second after snapping -->
+      <StatusEffect type="Always" target="This" delay="1" checkconditionalalways="true">
+        <Conditional Snapped="true" />
+        <Remove />
+      </StatusEffect>
+      <!-- Snap after 3 seconds if not stuck to anything -->
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="3" checkconditionalalways="true">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+      </StatusEffect>
+    </Rope>
+    <Projectile characterusable="false" launchimpulse="60.0" sticktostructures="true" sticktoitems="false" damagedoors="true" sticktodoors="false" sticktodeflective="true" sticktocharacters="true" maxtargetstohit="2" prismatic="false">
+      <Attack structuredamage="100" itemdamage="50" severlimbsprobability="0.5" penetration="0.5">
+        <Affliction identifier="lacerations" strength="50" />
+        <Affliction identifier="stun" strength="1" />
+        <Affliction identifier="bleeding" strength="50" />
+        <Affliction identifier="internaldamage" strength="25" />
+      </Attack>
+      <StatusEffect type="OnImpact" target="This">
+        <sound file="Content/Characters/Latcher/ABYSSM_tongueHit.ogg" range="20000" volume="1" selectionmode="random" dontmuffle="true" />
+        <sound file="Content/Characters/Latcher/ABYSSM_tongueHit_1.ogg" range="20000" volume="1" selectionmode="random" dontmuffle="true" />
+        <particleemitter drawontop="true" particle="tonguehitsplash" particleamount="20" scalemin="1" scalemax="3" anglemin="0" anglemax="360" />
+        <particleemitter drawontop="false" particle="damagebubbles" particleamount="20" scalemin="1" scalemax="3" anglemin="0" anglemax="360" />
+        <particleemitter drawontop="true" particle="damagebubbles" particleamount="10" scalemin="1" scalemax="3" anglemin="0" anglemax="360" />
+        <!--Add some impact effect-->
+        <Explosion ignorecover="true" onlyinside="true" range="2000" force="20" playtinnitus="false" showeffects="false" applyfireeffects="false">
+          <Affliction identifier="stun" strength="0.4" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="Always" target="This">
+        <Conditional Snapped="true" />
+        <sound file="Content/Characters/Latcher/ABYSSM_tongueMove_1.ogg" range="20000" volume="1" dontmuffle="false" />
+      </StatusEffect>
+    </Projectile>
+  </Item>
+  <Item name="" identifier="voidstalkertonguetendoncharacter" nameidentifier="" tags="" health="100" hideinmenus="true" category="" sonarsize="0" scale="1" damagedbyexplosions="false" damagedbyprojectiles="false" damagedbyrepairtools="false" damagedbymeleeweapons="false" impactsoundtag="impact_soft">
+    <Sprite texture="Content/Characters/Latcher/Latcher.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+    <Body radius="100" density="10" />
+    <Rope sourcepullforce="0" targetpullforce="200000" projectilepullforce="0" maxlength="5000" snaponcollision="false" spritewidth="256" tile="true" snapanimduration="1" breakfrommiddle="false" maxangle="60" lerpforces="false">
+      <Sprite name="tongue" texture="%ModDir:2518816103%/Characters/Voidstalker/Voidstalkernew.png" sourcerect="1793,620,424,210" depth="0.57" origin="0.5,0.5" />
+      <EndSprite texture="%ModDir:2518816103%/Characters/Voidstalker/Voidstalkernew.png" sourcerect="1923,1118,520,93" depth="0.56" origin="0.5,0.5" />
+      <!-- Automatically snap after 5 seconds -->
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="5" />
+      <!-- Remove 1 second after snapping -->
+      <StatusEffect type="Always" target="This" delay="1" checkconditionalalways="true">
+        <Conditional Snapped="true" />
+        <Remove />
+      </StatusEffect>
+      <!-- Snap after 3 seconds if not stuck to anything -->
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="3" checkconditionalalways="true">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+      </StatusEffect>
+    </Rope>
+    <Projectile characterusable="false" launchimpulse="60.0" sticktostructures="true" sticktoitems="false" damagedoors="true" sticktodoors="false" sticktodeflective="true" sticktocharacters="true" maxtargetstohit="2" prismatic="false">
+      <Attack structuredamage="100">
+        <Affliction identifier="drag" strength="20" />
+        <Affliction identifier="stun" strength="5" />
+        <Affliction identifier="bleeding" strength="25" />
+      </Attack>
+      <StatusEffect type="OnActive" target="UseTarget,This" comparison="And">
+        <Conditional Snapped="false" />
+        <Affliction identifier="drag" strength="1" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This">
+        <particleemitter drawontop="true" particle="tonguehitsplash" particleamount="20" scalemin="1" scalemax="3" anglemin="0" anglemax="360" />
+        <particleemitter drawontop="false" particle="damagebubbles" particleamount="20" scalemin="1" scalemax="3" anglemin="0" anglemax="360" />
+        <particleemitter drawontop="true" particle="damagebubbles" particleamount="10" scalemin="1" scalemax="3" anglemin="0" anglemax="360" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This">
+        <Conditional Snapped="true" />
+        <sound file="Content/Characters/Latcher/ABYSSM_tongueMove_1.ogg" range="20000" volume="1" dontmuffle="false" />
+      </StatusEffect>
+    </Projectile>
+  </Item>
+</Items>

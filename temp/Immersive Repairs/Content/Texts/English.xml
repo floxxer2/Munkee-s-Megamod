@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <!-- Items -->
+  <entityname.fungus>Fungus</entityname.fungus>
+  <entitydescription.fungus>A strange fungus that grew on the air filter. The research table should be able to analyse it.</entitydescription.fungus>
+  <entityname.safecracker>Safe Cracker</entityname.safecracker>
+  <entitydescription.safecracker>An old repurposed mining drill, modified to drill open safes and cabinets.</entitydescription.safecracker>
+  <entityname.miningdrill>Jackhammer</entityname.miningdrill>
+  <entitydescription.miningdrill>A noisy, but efficient tool to quickly mine minerals.</entitydescription.miningdrill>
+  <entityname.weldingrodpack>Welding Rod Pack</entityname.weldingrodpack>
+  <entitydescription.weldingrodpack>A pack containing 8 welding rods for the welding tool.</entitydescription.weldingrodpack>
+  <entityname.weldingrod>Welding Rod</entityname.weldingrod>
+  <entitydescription.weldingrod>An electrode required for welding with a welding tool.</entitydescription.weldingrod>
+  <entityname.weldingcartridge>Welding Cartridge</entityname.weldingcartridge>
+  <entitydescription.weldingcartridge>A power supply for the welding tool.</entitydescription.weldingcartridge>
+  <entityname.weldingtorch>Welding Torch</entityname.weldingtorch>
+  <entitydescription.weldingtorch>Welds twice as fast as the welding tool, but can't be used underwater.</entitydescription.weldingtorch>
+  <entityname.autowelder>Automatic Welder</entityname.autowelder>
+  <entitydescription.autowelder>A one-time use welding item, useful for hard to reach leaks. Place it near any leak and it will automatically weld leaks within a range of 2.5 meter when in contact with water. Causes very bright flashes. Nearby personell should wear a welding mask!</entitydescription.autowelder>
+  <entityname.weldingmask>Welding Mask</entityname.weldingmask>
+  <entitydescription.weldingmask>A shielded mask to protect your face and eyes from particles when welding.</entitydescription.weldingmask>
+  <entityname.divingweldingmask>Diving Welding Mask</entityname.divingweldingmask>
+  <entitydescription.divingweldingmask>A shielded diving mask to protect your face and eyes from particles when welding.</entitydescription.divingweldingmask>
+  <entityname.largeweldingfueltank>Large Welding Fuel Tank</entityname.largeweldingfueltank>
+  <entitydescription.largeweldingfueltank>Enough welding fuel to fill 10 welding fuel tanks with.</entitydescription.largeweldingfueltank>
+  <entityname.ventblade>Vent Blade</entityname.ventblade>
+  <entitydescription.ventblade>The blades in the vent go round and round. Deteriorates in water and takes damage from impacts when dropped or thrown.</entitydescription.ventblade>
+  <entityname.airfilter>Air Filter</entityname.airfilter>
+  <entitydescription.airfilter>A standard air filter for all types of oxygen generators. Can be cleaned with ethanol and reused as long as it isn't fully broken so maintenance is key!</entitydescription.airfilter>
+  <entityname.industrialflashlight>Industrial Flashlight</entityname.industrialflashlight>
+  <entitydescription.industrialflashlight>The better option when it comes to lighting up your surroundings. Features 3 different light modes: Directional, Radial and Multi-Light.</entitydescription.industrialflashlight>
+  <entityname.engineoil>Engine Oil</entityname.engineoil>
+  <entitydescription.engineoil>Keeps your engine running smooth.</entitydescription.engineoil>
+  <entityname.premiumengineoil>Premium Engine Oil</entityname.premiumengineoil>
+  <entitydescription.premiumengineoil>Keeps your engine running smooth for an extended duration thanks to the premium formula.</entitydescription.premiumengineoil>
+  <entityname.holdableladder>Ladder</entityname.holdableladder>
+  <entitydescription.holdableladder>A mobile ladder. Needs to be attached to climb it.</entitydescription.holdableladder>
+  <entityname.multitool>Multitool</entityname.multitool>
+  <entitydescription.multitool>An incredibly fast and easy to use tool for repairs. No skills required! Just point directly at whatever you want to repair and pull the trigger. Breaks down rapidly from usage. Can be repaired by installing a new fpga circuit.</entitydescription.multitool>
+  <entityname.fixfoamtank>Fixfoam Tank</entityname.fixfoamtank>
+  <entitydescription.fixfoamtank>A tank containing a fixfoam solution that can temporarily close off leaks in structures. It will automatically close off new leaks as well for some time. Apply onto structures by using a sprayer and make sure to weld over the fixfoamed area after about 3 minutes!</entitydescription.fixfoamtank>
+  <entityname.fuelrefillstation>Fuel Refill Station</entityname.fuelrefillstation>
+  <entitydescription.fuelrefillstation>Allows the refilling of tanks using canisters.</entitydescription.fuelrefillstation>
+  <entityname.concentratedweldingfuelcanister>Concentrated Welding Fuel Canister</entityname.concentratedweldingfuelcanister>
+  <entitydescription.concentratedweldingfuelcanister>A full canister has enough fuel to fill up to 10 concentrated welding fuel tanks.</entitydescription.concentratedweldingfuelcanister>
+  <entityname.concentratedweldingfueltank>Concentrated Welding Fuel Tank</entityname.concentratedweldingfueltank>
+  <entitydescription.concentratedweldingfueltank>A tank of concentrated welding fuel. Thanks to its unique properties, it allows the welding torch to weld underwater while also increasing its range by 200%. However it is burned up much faster than regular welding fuel, especially when welding underwater.</entitydescription.concentratedweldingfueltank>
+  <entityname.welderseyedrops>Welder's Eye Drops</entityname.welderseyedrops>
+  <entitydescription.welderseyedrops>Speeds up the healing process of Welder's Eye.</entitydescription.welderseyedrops>
+  <entityname.fireaxe>Fire Axe</entityname.fireaxe>
+  <entitydescription.fireaxe>A perfect tool to quickly break down doors in case of ermegency.</entitydescription.fireaxe>
+  <entityname.halligantool>Halligan-Tool</entityname.halligantool>
+  <entitydescription.halligantool>The companion of every firefighter. Opens doors twice as fast compared to a crowbar.</entitydescription.halligantool>
+  <entityname.co2grenade>CO2 Grenade</entityname.co2grenade>
+  <entitydescription.co2grenade>An efficient tool to quickly put out small fires and drastically reduce big fires by depleting all the oxygen from the room.</entitydescription.co2grenade>
+  <entityname.co2grenade>CO2 Grenade</entityname.co2grenade>
+  <entitydescription.co2grenade>An efficient tool to quickly put out small fires and drastically reduce big fires by depleting all the oxygen from the room.</entitydescription.co2grenade>
+  <entityname.firefightersuit>Firefighter Suit</entityname.firefightersuit>
+  <entitydescription.firefightersuit>A must-wear for all firefighters. It fully protects your body from fires, but it requires regular repairs to do so.</entitydescription.firefightersuit>
+  <entityname.firefighterhelmet>Firefighter Helmet</entityname.firefighterhelmet>
+  <entitydescription.firefighterhelmet>A must-wear for all firefighters. It fully protects your head from fires, but it requires regular repairs to do so.</entitydescription.firefighterhelmet>
+  <entityname.firefightercabinet>Firefighter Cabinet</entityname.firefightercabinet>
+  <entitydescription.firefightercabinet>A cabinet built exclusively for firefighter equipment to keep things organized.</entitydescription.firefightercabinet>
+  <entityname.extinguisherfuelcanister>Extinguisher Fuel Canister</entityname.extinguisherfuelcanister>
+  <entitydescription.extinguisherfuelcanister>Enough extinguisher fuel to fill 10 fire extinguishers with.</entitydescription.extinguisherfuelcanister>
+  <entityname.clownweldingmask>Clown Welding Mask</entityname.clownweldingmask>
+  <entitydescription.clownweldingmask>A welding mask with a clown smile painted on it. Fully protects your face and eyes from particles when welding without preventing clown power.</entitydescription.clownweldingmask>
+  <entityname.advancedweldingmask>Advanced Welding Mask</entityname.advancedweldingmask>
+  <entitydescription.advancedweldingmask>A modified welding mask with integrated HUD elements to keep the user informed about breaches and broken items while protecting the face and eyes from particles when welding.</entitydescription.advancedweldingmask>
+  <!-- Afflictions -->
+  <afflictionname.oily>Oily</afflictionname.oily>
+  <afflictiondescription.oily>You're covered in oil. You have a risk of slipping and take twice the amount of burn damage. Best to ask someone to spray you down with ethanol!</afflictiondescription.oily>
+  <afflictionname.welderseye>Welder's Eye</afflictionname.welderseye>
+  <afflictiondescription.welderseye>Welding without a welding mask might've not been a good idea. It'll take some time for the eyesight to recover.</afflictiondescription.welderseye>
+  <afflictionname.overheating>Heat Stroke Risk</afflictionname.overheating>
+  <afflictiondescription.overheating>You're sweating. The surrouning air is way too hot. Better not stay here for too long!</afflictiondescription.overheating>
+  <!-- Interactions -->
+  <interaction.activate>Activate</interaction.activate>
+  <interaction.deactivate>Deactivate</interaction.deactivate>
+  <interaction.directionalmode>Directional Mode</interaction.directionalmode>
+  <interaction.radialmode>Radial Mode</interaction.radialmode>
+  <interaction.multimode>Multi-Light Mode</interaction.multimode>
+  <interaction.turnoff>Turn Off</interaction.turnoff>
+  <interaction.takeone>Take One</interaction.takeone>
+  <interaction.clean>Clean</interaction.clean>
+  <interaction.refill>Refill</interaction.refill>
+  <interaction.togglesuitlight>Head Lamp</interaction.togglesuitlight>
+  <interaction.switchtohulloxygen>Switch To Hull Oxygen</interaction.switchtohulloxygen>
+  <interaction.switchtosuitoxygen>Switch To Suit Oxygen</interaction.switchtosuitoxygen>
+  <!-- Messages -->
+  <ItemMsgNotUsableInWater>Not usable underwater!</ItemMsgNotUsableInWater>
+  <itemmsgcleaningagentrequired>Cleaning agent required</itemmsgcleaningagentrequired>
+  <ItemMsgWeldingRodRequired>Welding rod required</ItemMsgWeldingRodRequired>
+  <ItemMsgweldingcartridgesRequired>Welding cartridge required</ItemMsgweldingcartridgesRequired>
+  <!-- Dialog -->
+  <Eventtext.activedrill.CalledSecurity>Security! We got illegal activity over here!</Eventtext.activedrill.CalledSecurity>
+  <!-- Talents -->
+  <talentname.firefighter>Firefighter</talentname.firefighter>
+  <talentdescription.firefighter>You've dedicated some time to learn how to properly deal with fires and rescue people.\nYou can now drag characters at full speed.\nUnlocks the following recipes:\n[itemname1]\n[itemname2]\n[itemname3]\n[itemname4]\n[itemname5]</talentdescription.firefighter>
+</infotexts>

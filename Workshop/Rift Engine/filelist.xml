@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Rift Engine" modversion="1.0.31" corepackage="False" steamworkshopid="2962899782" gameversion="1.8.8.1" expectedhash="4BDE4BBE3CA6F5E2105A9E5CFBDEE727">
+  <Item file="%ModDir%/Workshop/Rift Engine/Rift Things.xml" />
+</contentpackage>

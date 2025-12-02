@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="NT Infections" modversion="1.0.2" corepackage="False" steamworkshopid="3286567141" gameversion="1.9.8.0" expectedhash="966358EB1675C0BFC84B4693A62E32B9">
+  <Afflictions file="%ModDir%/Workshop/NT Infections/Xml/Afflictions.xml" />
+  <Item file="%ModDir%/Workshop/NT Infections/Xml/items.xml" />
+  <Text file="%ModDir%/Workshop/NT Infections/Localization/English/English.xml" />
+  <Text file="%ModDir%/Workshop/NT Infections/Localization/Russian/Russian.xml" />
+  <Other file="%ModDir%/Workshop/NT Infections/Lua/Autorun/init.lua" />
+  <Other file="%ModDir%/Workshop/NT Infections/Lua/Scripts/items.lua" />
+  <Other file="%ModDir%/Workshop/NT Infections/Lua/Scripts/humanupdate.lua" />
+  <Other file="%ModDir%/Workshop/NT Infections/Lua/Scripts/helperfunctions.lua" />
+</contentpackage>

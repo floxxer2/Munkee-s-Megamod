@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Override>
+    <!--TODO: change the priority to 2.5 when the bots can switch the batteries-->
+  </Override>
+</Items>

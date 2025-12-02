@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UpgradeModules>
+  <Override>
+    <!-- TURRET -->
+    <UpgradeModule nameidentifier="increasemaxcondition" descriptionidentifier="increasemaxcondition" identifier="turretincreasehitpoints" maxlevel="5" categories="weapons" increaseontooltip="40">
+      <Price baseprice="1500" increaselow="+0%" increasehigh="+200%" />
+      <MaxLevel tier="1" level="1" />
+      <MaxLevel tier="2" level="2" />
+      <MaxLevel tier="3" level="3" />
+      <MaxLevel class="attack" level="+2" />
+      <Item healthmultiplier="+0.4" />
+      <!--<DecorativeSprite texture="Content/Items/InventoryIconAtlas.png" sourcerect="512,384,64,64" depth="0.75" origin="0.5,0.5"/>-->
+      <Sprite texture="Content/UI/CampaignUIAtlas2.png" sourcerect="128,896,128,128" origin="0.5,0.5" />
+    </UpgradeModule>
+  </Override>
+</UpgradeModules>

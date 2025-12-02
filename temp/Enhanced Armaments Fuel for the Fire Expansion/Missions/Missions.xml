@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Missions>
+  <OutpostDestroyMission name="Black Ops Assassination" identifier="abandonedoutpostassassinatebo" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinatebo" type="OutpostDestroy" reward="16000" difficulty="5" commonness="25" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Reputation identifier="coalition" amount="-100" />
+    <Reputation identifier="separatists" amount="60" />
+    <Characters>
+      <Character identifier="blackop" from="abandonedbonpcs" moduleflags="researchmodule" requirekill="true" />
+      <Character identifier="blackop" from="abandonedbonpcs" moduleflags="engineeringmodule" requirekill="true" />
+      <Character identifier="blackop" from="abandonedbonpcs" moduleflags="engineeringmodule" multiplayeronly="true" requirekill="true" />
+      <Character identifier="blackop" from="abandonedbonpcs" moduleflags="securitymodule" requirekill="true" />
+      <Character identifier="blackop" from="abandonedbonpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" multiplayeronly="true" />
+      <Character identifier="blackop" from="abandonedbonpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinatebo" text="missionmessage0.abandonedoutpostassassinatebo" />
+  </OutpostDestroyMission>
+</Missions>

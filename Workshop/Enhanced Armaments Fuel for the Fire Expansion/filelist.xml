@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Enhanced Armaments Fuel for the Fire Expansion" modversion="1.6.6" corepackage="False" steamworkshopid="2976013863" gameversion="1.10.7.2" altnames="EHA Addon Project" expectedhash="EBC56D63E4E9909CBDCBC3DDE9F4BBB0">
+  <Item file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Weapons/Enhanced_Armaments.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Weapons/Enhanced_Utilities.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Weapons/Enhanced_Explosives.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Jobgear/Enhanced_Equipment.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Items/Containers/Enhanced_Containers.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Items/misc.xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Text/english.xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Text/chinese (simplified).xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Text/chinese (traditional).xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Text/textoverrides.xml" />
+  <Jobs file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Jobs/joboverrides.xml" />
+  <Other file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/logo.png" />
+  <Particles file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Particles/Particles.xml" />
+  <NPCConversations file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/NPCs/Conversations.xml" />
+  <NPCSets file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/NPCs/CustomNPCs.xml" />
+  <Missions file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Missions/Missions.xml" />
+  <Character file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Characters/Humanffehusk/Humanffehusk.xml" />
+  <Afflictions file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Afflictions/Afflictions.xml" />
+  <DisembarkPerk file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Missions/disembarkperks.xml" />
+  <DisembarkPerk file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Missions/disembarkperksoverrides.xml" />
+</contentpackage>

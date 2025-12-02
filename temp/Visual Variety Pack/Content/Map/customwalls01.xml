@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prefabs>
+  <Wall_R1 name="Reactor Wall 01" identifier="ReactorRoom_Wall_01" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/reactor_walls.png" sourcerect="0,0,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_R1>
+  <Wall_R2 name="Reactor Wall 02" identifier="ReactorRoom_Wall_02" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/reactor_walls.png" sourcerect="512,0,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_R2>
+  <Wall_R3 name="Reactor Wall 03 Connector" identifier="ReactorRoom_C" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/reactor_walls.png" sourcerect="0,512,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_R3>
+  <Wall_R4 name="Reactor Wall 04" identifier="ReactorRoom_Wall_04" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/reactor_walls.png" sourcerect="512,512,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_R4>
+  <Wall_M1 name="Medbay Wall 01 Connector Tile" identifier="Medbay_Wall_01_C" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/medbay_walls.png" sourcerect="0,0,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_M1>
+  <Wall_M2 name="Medbay Wall 02" identifier="Medbay_Wall_02" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/medbay_walls.png" sourcerect="512,0,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_M2>
+  <Wall_M3 name="Medbay Wall 03" identifier="Medbay_Wall_03" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/medbay_walls.png" sourcerect="0,512,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_M3>
+  <Wall_M4 name="Medbay Wall 04" identifier="Medbay_Wall_04" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/medbay_walls.png" sourcerect="512,512,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_M4>
+  <Wall_F1 name="Wall Frame 1" identifier="Wall_Frame_01" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/cargo_frames.png" sourcerect="0,0,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_F1>
+  <Wall_B1 name="Bridge Wall 01" identifier="Bridge_Wall_01" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bridge_walls.png" sourcerect="0,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B1>
+  <Wall_B1 name="Bridge Wall 01 overlay" identifier="Bridge_Wall_01_overlay" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bridge_walls_overlays.png" sourcerect="0,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B1>
+  <Wall_B2 name="Bridge Wall 02" identifier="Bridge_Wall_02" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bridge_walls.png" sourcerect="512,0,512,512" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B2>
+  <Wall_B3 name="Bridge Wall 03" identifier="Bridge_Wall_03" description="Base wall layer. Combine with 'Bridge Wall 03 overlay' to add a set of buttons specific to this wall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bridge_walls.png" sourcerect="0,512,512,512" depth="0.981" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B3>
+  <Wall_B3 name="Bridge Wall 03 overlay" identifier="Bridge_Wall_03_overlay" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bridge_walls_overlays.png" sourcerect="0,512,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B3>
+  <Wall_B4 name="Bridge Wall 04" identifier="Bridge_Wall_04" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bridge_walls.png" sourcerect="512,512,512,512" depth="0.981" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B4>
+  <Wall_B4 name="Bridge Wall 04 overlay" identifier="Bridge_Wall_04_overlay" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bridge_walls_overlays.png" sourcerect="512,512,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B4>
+  <Wall_E1 name="Electronics Wall 01" identifier="Electronics_Wall_01" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/electronics_walls.png" sourcerect="0,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_E1>
+  <Wall_E2 name="Electronics Wall 02" identifier="Electronics_Wall_02" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/electronics_walls.png" sourcerect="512,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_E2>
+  <Wall_E3 name="Electronics Wall 03" identifier="Electronics_Wall_03" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/electronics_walls.png" sourcerect="0,512,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_E3>
+  <Wall_E4 name="Electronics Wall 04" identifier="Electronics_Wall_04" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/electronics_walls.png" sourcerect="512,512,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_E4>
+  <Wall_B1 name="Bulkhead 01" identifier="Bulkhead_01" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bulkhead_walls.png" sourcerect="0,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B1>
+  <Wall_B2 name="Bulkhead 02" identifier="Bulkhead_02" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bulkhead_walls.png" sourcerect="512,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B2>
+  <Wall_B3 name="Bulkhead 03" identifier="Bulkhead_03" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bulkhead_walls.png" sourcerect="0,512,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B3>
+  <Wall_B4 name="Bulkhead 04" identifier="Bulkhead_04" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/bulkhead_walls.png" sourcerect="512,512,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_B4>
+  <Wall_ER1 name="Engine Room Wall 01" identifier="Engine_Room_Wall_01" description="Base wall layer. Combine with 'Engine Room Wall 01 overlay' to add pipes specific to this wall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/engine_room_walls_base.png" sourcerect="0,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_ER1>
+  <Wall_ER2 name="Engine Room Wall 02" identifier="Engine_Room_Wall_02" description="Base wall layer. Combine with 'Engine Room Wall 02 overlay' to add pipes specific to this wall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative">
+    <sprite texture="%ModDir%/Content/Map/engine_room_walls_base.png" sourcerect="512,0,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" />
+  </Wall_ER2>s
+  <Wall_ER3 name="Engine Room Wall 03" identifier="Engine_Room_Wall_03" description="Base wall layer. Combine with 'Engine Room Wall 03 overlay' to add pipes specific to this wall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative"><sprite texture="%ModDir%/Content/Map/engine_room_walls_base.png" sourcerect="0,512,512,512" depth="0.979" premultiplyalpha="false" origin="0.5,0.5" /></Wall_ER3><Wall_ER4 name="Engine Room Wall 04" identifier="Engine_Room_Wall_04" description="Base wall layer. Combine with 'Engine Room Wall 04 overlay' to add pipes specific to this wall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative"><sprite texture="%ModDir%/Content/Map/engine_room_walls_base.png" sourcerect="512,512,512,512" depth="0.978" premultiplyalpha="false" origin="0.5,0.5" /></Wall_ER4><Wall_ER1O name="Engine Room Wall 01 overlay" identifier="Engine_Room_Wall_01_overlay" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative"><sprite texture="%ModDir%/Content/Map/engine_room_walls_overlays.png" sourcerect="0,0,512,512" depth="0.978" premultiplyalpha="false" origin="0.5,0.5" /></Wall_ER1O><Wall_ER2O name="Engine Room Wall 02 overlay" identifier="Engine_Room_Wall_02_overlay" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative"><sprite texture="%ModDir%/Content/Map/engine_room_walls_overlays.png" sourcerect="512,0,512,512" depth="0.978" premultiplyalpha="false" origin="0.5,0.5" /></Wall_ER2O><Wall_ER3O name="Engine Room Wall 03 overlay" identifier="Engine_Room_Wall_03_overlay" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative"><sprite texture="%ModDir%/Content/Map/engine_room_walls_overlays.png" sourcerect="0,512,512,512" depth="0.978" premultiplyalpha="false" origin="0.5,0.5" /></Wall_ER3O><Wall_ER4O name="Engine Room Wall 04 overlay" identifier="Engine_Room_Wall_04_overlay" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.41,0.41" category="Decorative"><sprite texture="%ModDir%/Content/Map/engine_room_walls_overlays.png" sourcerect="512,512,512,512" depth="0.978" premultiplyalpha="false" origin="0.5,0.5" /></Wall_ER4O><!--<Wall_F name="" identifier="FF_Wall_F" description="" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" category="Decorative">
+    <sprite texture="Content/Map/FF_Wall_F.png" sourcerect="OFFSET TO START PIXEL WIDTH,OFFSET TO START PIXEL HEIGHT,658,322" depth="0.98" />
+  </Wall_F>--></prefabs>

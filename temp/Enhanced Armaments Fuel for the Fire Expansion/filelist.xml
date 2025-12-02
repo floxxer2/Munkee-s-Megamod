@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Enhanced Armaments Fuel for the Fire Expansion" modversion="1.6.10" corepackage="False" steamworkshopid="2976013863" gameversion="1.10.7.2" altnames="EHA Addon Project" expectedhash="A6020103FF1DF44516B8902C276A8302">
+  <Item file="%ModDir%/Weapons/Enhanced_Armaments.xml" />
+  <Item file="%ModDir%/Weapons/Enhanced_Utilities.xml" />
+  <Item file="%ModDir%/Weapons/Enhanced_Explosives.xml" />
+  <Item file="%ModDir%/Jobgear/Enhanced_Equipment.xml" />
+  <Item file="%ModDir%/Items/Containers/Enhanced_Containers.xml" />
+  <Item file="%ModDir%/Items/misc.xml" />
+  <Text file="%ModDir%/Text/english.xml" />
+  <Text file="%ModDir%/Text/chinese (simplified).xml" />
+  <Text file="%ModDir%/Text/chinese (traditional).xml" />
+  <Text file="%ModDir%/Text/textoverrides.xml" />
+  <Jobs file="%ModDir%/Jobs/joboverrides.xml" />
+  <Other file="%ModDir%/logo.png" />
+  <Particles file="%ModDir%/Particles/Particles.xml" />
+  <NPCConversations file="%ModDir%/NPCs/Conversations.xml" />
+  <NPCSets file="%ModDir%/NPCs/CustomNPCs.xml" />
+  <Missions file="%ModDir%/Missions/Missions.xml" />
+  <Character file="%ModDir%/Characters/Humanffehusk/Humanffehusk.xml" />
+  <Afflictions file="%ModDir%/Afflictions/Afflictions.xml" />
+  <DisembarkPerk file="%ModDir%/Missions/disembarkperks.xml" />
+  <DisembarkPerk file="%ModDir%/Missions/disembarkperksoverrides.xml" />
+</contentpackage>

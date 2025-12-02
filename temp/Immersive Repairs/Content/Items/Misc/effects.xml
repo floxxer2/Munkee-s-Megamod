@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <!-- do nothing -->
+    <Item name="" identifier="effect_none" Category="Hidden" Tags="effect" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <!-- instantly remove the item when spawned -->
+        <StatusEffect type="Always" target="This" oneshot="true">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- FLASHLIGHT -->
+    <!-- directional mode -->
+    <Item name="" identifier="effect_flashlightdirectionalmode" Category="Hidden" Tags="effect,directional" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <!-- remove the item when not contained -->
+        <StatusEffect type="OnNotContained" target="This">
+          <Remove />
+        </StatusEffect>
+        <!-- remove the item when timeframe doesn't match, meaning the parent flashlight is toggled to a different mode -->
+        <StatusEffect type="Always" target="This" interval="0.2" comparison="Or">
+          <Conditional timeframe="eq 0" targetcontainer="true" />
+          <Conditional timeframe="eq 2" targetcontainer="true" />
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- radial mode -->
+    <Item name="" identifier="effect_flashlightradialmode" Category="Hidden" Tags="effect,radial" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <!-- remove the item when not contained -->
+        <StatusEffect type="OnNotContained" target="This">
+          <Remove />
+        </StatusEffect>
+        <!-- remove the item when timeframe doesn't match, meaning the parent flashlight is toggled to a different mode -->
+        <StatusEffect type="Always" target="This" interval="0.2" comparison="Or">
+          <Conditional timeframe="lt 2" targetcontainer="true" />
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- start a fire -->
+    <Item name="" identifier="effect_firestarter" Category="Hidden" Tags="effect" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <!-- instantly cause a fire and remove the item when spawned -->
+        <StatusEffect type="Always" target="This" oneshot="true">
+          <Fire size="10" />
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- check for water | Used as a required item in the welding tool -->
+    <Item name="Water Check" identifier="effect_watercheck" Category="Hidden" Tags="effect" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <!-- remove the item when in water if the welding tool it is cointained in is held by a player to prevent players from welding underwater -->
+        <StatusEffect type="InWater" target="This">
+          <Conditional IsPlayer="true" targetcontainer="true" targetgrandparent="true" />
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- fake check for water | Used to bypass the required item in the welding tool -->
+    <Item name="Fake Water Check" identifier="effect_fakewatercheck" Category="Hidden" Tags="effect" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <!-- remove the item when in water if the welding tool it is cointained in is held by a player to prevent players from welding underwater -->
+        <StatusEffect type="Always" target="This" interval="0.1">
+          <Conditional HasStatusTag="neq hasconcentratedfuel" targetcontainer="true" />
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- constantly shock nearby entities -->
+    <Item name="Water Electrifier" identifier="effect_electrifywater" tags="effect" category="Electrical" description="" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.3" damagedbyexplosions="true" explosiondamagemultiplier="0.2" impactsoundtag="impact_metal_light" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="88" height="23" density="15" />
+      <Holdable handle1="0,0" handle2="0,0" holdangle="90" slots="RightHand,LeftHand" msg="ItemMsgPickUpSelect" canBeCombined="false">
+        <!-- cause invisible explosion that applies afflictions -->
+        <StatusEffect type="Always" target="This" interval="1">
+          <Explosion range="450.0" camerashake="0" stun="0" force="0.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" playtinnitus="false">
+            <Affliction identifier="burn" strength="5" />
+            <Affliction identifier="junctionshocked" strength="1" />
+          </Explosion>
+        </StatusEffect>
+        <!-- trigger the ElectricalDischarger which is used for visual effects only -->
+        <StatusEffect type="Always" target="This" interval="0.15">
+          <Use />
+        </StatusEffect>
+        <!-- remove the item if no longer in water -->
+        <StatusEffect type="Always" target="This" interval="1" comparison="Or">
+          <Conditional InWater="eq false" />
+          <Conditional voltage="lt 0.1" targetcontainer="true" />
+          <Conditional condition="gt 50" targetcontainer="true" />
+          <Conditional condition="eq 0.0" targetcontainer="true" />
+          <Remove />
+        </StatusEffect>
+        <!-- create particles -->
+        <StatusEffect type="Always" target="This">
+          <ParticleEmitter particle="ElectrifiedWater" particleburstamount="5" particlespersecond="20" anglemin="0" anglemax="359" velocitymin="0" velocitymax="100" particleburstinterval="2" scalemin="0.5" scalemax="2" highqualitycollisiondetection="True" />
+        </StatusEffect>
+      </Holdable>
+      <ElectricalDischarger duration="0.15" reload="0.0" range="900" rangemultiplierinwalls="0.1" outdoorsonly="false" powerconsumption="0" pickkey="Select">
+        <Attack targetimpulse="0" />
+      </ElectricalDischarger>
+    </Item>
+    <!-- constantly shock nearby entities | adjusted values for batteries and supercapacitors -->
+    <Item name="Water Electrifier" identifier="effect_chargeelectrifywater" tags="effect" category="Electrical" description="" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.3" damagedbyexplosions="true" explosiondamagemultiplier="0.2" impactsoundtag="impact_metal_light" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="88" height="23" density="15" />
+      <Holdable handle1="0,0" handle2="0,0" holdangle="90" slots="RightHand,LeftHand" msg="ItemMsgPickUpSelect" canBeCombined="false">
+        <!-- cause invisible explosion that applies afflictions -->
+        <StatusEffect type="Always" target="This" interval="1">
+          <Explosion range="450.0" camerashake="0" stun="0" force="0.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" playtinnitus="false">
+            <Affliction identifier="burn" strength="5" />
+            <Affliction identifier="junctionshocked" strength="1" />
+          </Explosion>
+        </StatusEffect>
+        <!-- trigger the ElectricalDischarger which is used for visual effects only -->
+        <StatusEffect type="Always" target="This" interval="0.15">
+          <Use />
+        </StatusEffect>
+        <!-- remove the item if no longer in water -->
+        <StatusEffect type="Always" target="This" interval="1" comparison="Or">
+          <Conditional InWater="eq false" />
+          <Conditional charge="lt 0.1" targetcontainer="true" />
+          <Conditional condition="gt 25" targetcontainer="true" />
+          <Conditional condition="eq 0.0" targetcontainer="true" />
+          <Conditional OutputDisabled="true" targetcontainer="true" />
+          <Remove />
+        </StatusEffect>
+        <!-- create particles -->
+        <StatusEffect type="Always" target="This">
+          <ParticleEmitter particle="ElectrifiedWater" particleburstamount="5" particlespersecond="20" anglemin="0" anglemax="359" velocitymin="0" velocitymax="100" particleburstinterval="2" scalemin="0.5" scalemax="2" highqualitycollisiondetection="True" />
+        </StatusEffect>
+      </Holdable>
+      <ElectricalDischarger duration="0.15" reload="0.0" range="900" rangemultiplierinwalls="0.1" outdoorsonly="false" powerconsumption="0" pickkey="Select">
+        <Attack targetimpulse="0" />
+      </ElectricalDischarger>
+    </Item>
+    <!-- zap nearby entities once -->
+    <Item name="Shortcircuit" identifier="effect_shortcircuit" tags="effect" category="Electrical" description="" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.3" damagedbyexplosions="true" explosiondamagemultiplier="0.2" impactsoundtag="impact_metal_light" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="88" height="23" density="15" />
+      <Holdable handle1="0,0" handle2="0,0" holdangle="90" slots="RightHand,LeftHand" msg="ItemMsgPickUpSelect" canBeCombined="false">
+        <!-- instantly damage the junction box the item is spawned in by 15% -->
+        <StatusEffect type="Always" target="Parent" condition="-15" disabledeltatime="true" oneshot="true" />
+        <!-- instantly apply extra load to the electrical grid from the junction box the item is spawned in -->
+        <StatusEffect type="Always" target="Parent" extraload="2000" duration="1" setvalue="true" oneshot="true" />
+        <!-- instantly use the item to trigger its electrical stun effect -->
+        <StatusEffect type="Always" target="This" oneshot="true">
+          <Use />
+        </StatusEffect>
+        <!-- remove the item -->
+        <StatusEffect type="OnBroken" target="This" delay="1">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+      <ElectricalDischarger duration="0.15" range="250" rangemultiplierinwalls="0.1" outdoorsonly="false" powerconsumption="0" pickkey="Select">
+        <Attack targetimpulse="50">
+          <Affliction identifier="electricshock" strength="95" />
+          <Affliction identifier="shocked" strength="5" />
+          <Affliction identifier="burn" strength="10" />
+          <Affliction identifier="emp" strength="1" multiplybymaxvitality="true" />
+        </Attack>
+        <!-- when used, apply sounds and visual effects and break the item by setting its condition to 0.0 -->
+        <StatusEffect type="OnUse" target="This" condition="0.0" forceplaysounds="true" setvalue="true">
+          <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge1.ogg" range="600" selectionmode="random" />
+          <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge2.ogg" range="600" />
+          <Explosion range="250.0" camerashake="15" stun="0" empstrength="0.1" force="0.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        </StatusEffect>
+      </ElectricalDischarger>
+    </Item>
+    <!-- REACTOR -->
+    <!-- enter critical repair mode | in this mode the reactor will constantly take damage and cause fires while needing to be repaired for 30 seconds to prevent it from exploding -->
+    <Item name="" identifier="effect_reactorcritical" Category="Hidden" Tags="effect,reactoreffect" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="Parent" condition="-4.0" />
+        <StatusEffect type="Always" target="Parent" oneshot="true">
+          <Sound file="Content/Items/Weapons/ExplosionLarge1.ogg" range="6000" />
+          <SpawnItem identifier="effect_shortcircuit" spawnposition="This" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This">
+          <Conditional condition="eq 0" targetcontainer="true" />
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="Always" target="Parent">
+          <ParticleEmitter particle="spark" particleburstamount="5" particlespersecond="5" anglemin="0" anglemax="359" velocitymin="100" velocitymax="500" particleburstinterval="2" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
+          <Sound file="%ModDir:3114087512%/Content/Items/Reactor/ReactorAlarmCritical.ogg" volume="3.0" range="4000" loop="true" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="this" interval="0.5" spawnitemrandomly="true">
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_none" spawnposition="This" />
+          <SpawnItem identifier="effect_reactortempincrease" spawnposition="SameInventory" />
+          <SpawnItem identifier="effect_firestarter" spawnposition="This" />
+        </StatusEffect>
+        <!-- remove the item after 30 seconds when spawned -->
+        <StatusEffect type="Always" target="This" delay="30" oneshot="true" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- temporarily increase fission rate -->
+    <Item name="" identifier="effect_reactortempincrease" Category="Hidden" Tags="effect" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="Parent" temperature="10000" oneshot="true">
+          <ParticleEmitter particle="steamspray" particlespersecond="100" anglemin="45" anglemax="45" velocitymin="75" velocitymax="150" underwaterbubble="true" highqualitycollisiondetection="true" />
+          <ParticleEmitter particle="steamspray" particlespersecond="100" anglemin="315" anglemax="315" velocitymin="75" velocitymax="150" underwaterbubble="true" highqualitycollisiondetection="true" />
+        </StatusEffect>
+        <!-- instantly remove the item when spawned after it applied its effect -->
+        <StatusEffect type="Always" target="This" delay="3" oneshot="true">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- OXYGEN GENERATOR -->
+    <!-- event trigger | makes vents deplete oxygen and give off smoke particles -->
+    <Item name="" identifier="effect_triggereventoxygensmokeplayer" Category="Hidden" Tags="effect,smokingvents" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="0,0,1,1" />
+      <Body radius="1" density="10" />
+      <Holdable handle1="0,0" slots="Any" msg="ItemMsgPickUpSelect">
+        <!-- trigger the event to cause vents to smoke and deplete oxygen in the rooms -->
+        <StatusEffect type="Always" target="This" oneshot="true">
+          <TriggerEvent identifier="oxygensmokeplayer" />
+        </StatusEffect>
+        <!-- remove the item if the oxygen generator is no longer on fire after a delay of 5 seconds and trigger an event that stops the first event -->
+        <StatusEffect type="Always" target="This" delay="5" CheckConditionalAlways="true" stackable="false">
+          <Conditional HasStatusTag="neq onfire" targetcontainer="true" />
+          <TriggerEvent identifier="stopoxygensmokeplayer" />
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <!-- 
+      invisible item placed on vent positions to simulate them spreading smoke and drain hull oxygen when the oxygen generator is on fire.
+      the StatusEffect was previously on the vents themselves, but this caused a performance impact since all vents would constantly check if they needed to execute the effect.
+    -->
+    <Item name="" identifier="effect_smokingvents" Category="Hidden" Tags="effect,ventsmoke" maxstacksize="1" cargocontaineridentifier="metalcrate" scale="0.5" spritecolor="255,255,255,0" noninteractable="true" hideinmenus="true">
+      <sprite texture="%ModDir:3114087512%/Content/Items/Tools/LadderBlank.png" sourcerect="0,0,95,364" depth="0.501" premultiplyalpha="false" origin="0.5,0.5" />
+      <Body width="161" height="364" bodytype="Static" />
+      <trigger x="1" y="1" width="0" />
+      <Ladder canbeselected="false" msg="ItemMsgClimbSelect" />
+      <ItemComponent isActive="true" allowingameediting="false" canbeselected="false">
+        <StatusEffect type="Always" target="This,Hull" oxygen="-25000.0">
+          <ParticleEmitter particle="smoke" minangle="0" maxangle="360" distancemin="0" distancemax="5000" velocitymin="-150" velocitymax="150" particlespersecond="20" scalemin="3" scalemax="6" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This" delay="1" disabledeltatime="true" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Items>
+</Override>

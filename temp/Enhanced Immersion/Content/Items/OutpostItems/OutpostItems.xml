@@ -1,0 +1,1007 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <Item name="" identifier="op_clownmarquee" width="272" height="149" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/ClownDistrict.png" sourcerect="677,2,272,149" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="120" lightcolor="209,127,46,255" flicker="0.1" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/ClownDistrict.png" sourcerect="677,155,272,149" depth="0.98" premultiplyalpha="true" origin="0.5,0.5" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!--Husk District-->
+    <Item name="" identifier="op_humantank" width="159" height="331" scale="0.5" noninteractable="true" category="Decorative">
+      <LightComponent range="130" lightcolor="255,0,100,120" pulsefrequency="0.5" pulseamount="0.2" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false" />
+      <sprite texture="Content/Map/Outposts/Art/HuskDistrict.png" sourcerect="394,673,159,331" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Map/Outposts/Art/HuskDistrict.png" sourcerect="193,724,171,254" depth="0.96" origin="0.5,0.5" offset="0,5" offsetanim="Sine" offsetanimspeed="2" />
+      <DecorativeSprite texture="Content/Map/Outposts/Art/HuskDistrict.png" sourcerect="557,638,131,316" depth="0.97" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!--Misc Signs and Decorations-->
+    <Item name="" identifier="op_electricalstoresign" nameidentifier="sign" width="242" height="63" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/SignAssets.png" sourcerect="172,815,166,188" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0" lightcolor="213,213,185,255" flicker="0.3" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/SignAssets.png" sourcerect="842,809,166,188" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_storesign1.png" nameidentifier="opdeco_adposter" width="326" height="165" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/SignAssets.png" sourcerect="2,2,326,165" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="70" lightcolor="213,213,185,120" flicker="0.3" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_shipyardsign2.png" nameidentifier="opdeco_adposter" width="310" height="139" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/SignAssets.png" sourcerect="2,171,310,139" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="70" lightcolor="213,213,185,120" flicker="0.3" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_shipyardsign1.png" nameidentifier="opdeco_adposter" width="185" height="191" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/SignAssets.png" sourcerect="316,173,185,191" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0" lightcolor="213,213,185,255" flicker="0.3" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/SignAssets.png" sourcerect="332,2,163,167" depth="0.97" premultiplyalpha="false" origin="0.5,0.52" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_hiringsign.png" nameidentifier="sign" width="155" height="193" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/SignAssets.png" sourcerect="2,444,155,193" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="70" lightcolor="213,213,185,120" flicker="0.3" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="streetlight" nameidentifier="streetlight" width="56" height="55" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/EngineerColonyModule.png" sourcerect="757,1,56,55" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="250.0" lightcolor="255,255,255,111" IsOn="true" castshadows="true" allowingameediting="false" powerconsumption="5">
+        <sprite texture="Content/Map/Outposts/Art/EngineerColonyModule.png" sourcerect="815,1,56,55" depth="0.97" premultiplyalpha="false" origin="0.5,0.52" />
+      </LightComponent>
+      <DecorativeSprite texture="Content/Map/Outposts/Art/EngineerColonyModule.png" depth="0.961" sourcerect="775,56,22,344" offset="0,-172" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="power" displayname="connection.power" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+        <input name="set_color" displayname="connection.setcolor" />
+      </ConnectionPanel>
+    </Item>
+    <!--Cafeteria and Garden Assets-->
+    <Item name="" identifier="op_cafeteriachair" width="152" height="240" scale="0.5" noninteractable="false" category="Decorative" canflipy="false">
+      <sprite texture="Content/Map/Outposts/Art/CafeteriaGardenAssets.png" sourcerect="197,778,152,240" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <Controller UserPos="10,30" direction="Right" hidehud="false" canbeselected="true" issecondaryitem="true" drawuserbehind="true">
+        <limbposition limb="Head" position="45,40" />
+        <limbposition limb="Torso" position="50,-30" />
+        <limbposition limb="Waist" position="50,-80" />
+        <limbposition limb="RightLeg" position="165,-140" />
+        <limbposition limb="LeftLeg" position="165,-140" />
+        <limbposition limb="RightHand" position="120,-80" allowusinglimb="true" />
+        <limbposition limb="LeftHand" position="120,-80" allowusinglimb="true" />
+      </Controller>
+    </Item>
+    <!--Flickering hologram displays-->
+    <Item name="" identifier="op_hologramdisplay1" width="157" height="95" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="2,657,157,95" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="10.0" lightcolor="111,199,255,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="1.0">
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="2,657,157,95" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_hologramdisplay2" nameidentifier="op_hologramdisplay1" width="128" height="78" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="160,656,128,78" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="10.0" lightcolor="111,199,255,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="1.0">
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="160,656,128,78" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_hologramdisplay3" nameidentifier="op_hologramdisplay1" width="128" height="80" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="0,752,128,80" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="10.0" lightcolor="111,199,255,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="1.0">
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="0,752,128,80" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_hologramdisplay4" nameidentifier="op_hologramdisplay1" width="129" height="81" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="159,735,129,81" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="10.0" lightcolor="111,199,255,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="1.0">
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="159,735,129,81" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_screen01" nameidentifier="opdeco_screen" width="96" height="64" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="752,352,96,64" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="111,199,255,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.0">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="752,352,96,64" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_screen02" nameidentifier="opdeco_screen" width="96" height="64" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="752,416,96,64" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="60,110,66,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.0">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="752,416,96,64" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_screen03" nameidentifier="opdeco_screen" width="96" height="64" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="752,480,96,64" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="200,180,60,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.0">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="752,480,96,64" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_screen04" nameidentifier="opdeco_screen" width="96" height="64" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="304,672,96,64" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="220,95,60,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.0">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/ManagerOfficeAssets.png" sourcerect="304,672,96,64" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!--Shop containers-->
+    <Item name="" identifier="opdeco_container" width="160" height="336" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="0,0,160,336" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="111,199,175,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.0">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="400,672,160,336" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_shopsuit1" width="160" height="336" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="160,0,160,336" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="111,199,175,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.0">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="560,672,160,336" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_shopsuit2" nameidentifier="opdeco_shopsuit1" width="160" height="336" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="320,0,160,336" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="111,199,175,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.0">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="720,672,160,336" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!--Research tanks and monitoring tables-->
+    <Item name="" identifier="op_researchcontainmenttank1" width="414" height="297" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedicalItemResearch.png" sourcerect="0,6,414,297" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/MedicalItemResearchLights.png" sourcerect="0,6,414,297" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_researchtable" width="732" height="248" texturescale="1.0,1.0" scale="0.5" category="Decorative" requirecampaigninteract="true">
+      <sprite texture="Content/Map/Outposts/Art/MedicalItemResearch.png" sourcerect="3,311,732,248" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/MedicalItemResearchLights.png" sourcerect="3,311,732,248" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_researchcontainmenttank2" nameidentifier="op_researchcontainmenttank1" width="201" height="281" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedicalItemResearch.png" sourcerect="3,567,201,281" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/MedicalItemResearchLights.png" sourcerect="3,567,201,281" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_researchcontainmenttank3" nameidentifier="op_researchcontainmenttank1" width="221" height="364" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedicalItemResearch.png" sourcerect="209,562,221,364" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Map/Outposts/Art/MedicalItemResearch.png" sourcerect="432,564,222,357" depth="0.98" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Map/Outposts/Art/MedicalItemResearch.png" sourcerect="742,662,63,91" depth="0.975" origin="0.5,0.5" offset="80,80" offsetanim="Noise" rotationanim="Noise" rotation="80" rotationspeed="0.5" offsetanimspeed="0.05" />
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/MedicalItemResearchLights.png" sourcerect="209,562,221,364" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_vendingmachine1" tags="vendingmachine" width="238" height="396" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="1,497,238,396" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <Fabricator canbeselected="true" powerconsumption="0.0" msg="ItemMsgInteractSelect" createbuttontext="campaignstoretab.buy">
+        <GuiFrame relativesize="0.4,0.5" style="ItemUI" anchor="Center" />
+        <sound file="Content/Items/Fabricators/Fabricator.ogg" type="OnActive" range="200.0" loop="true" />
+      </Fabricator>
+      <ItemContainer capacity="0" canbeselected="false" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+      <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="241,497,238,396" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_vendingmachine2" nameidentifier="op_vendingmachine1" tags="vendingmachine" width="238" height="396" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="481,497,238,396" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <Fabricator canbeselected="true" powerconsumption="0.0" msg="ItemMsgInteractSelect" createbuttontext="campaignstoretab.buy">
+        <GuiFrame relativesize="0.4,0.5" style="ItemUI" anchor="Center" />
+        <sound file="Content/Items/Fabricators/Fabricator.ogg" type="OnActive" range="200.0" loop="true" />
+      </Fabricator>
+      <ItemContainer capacity="0" canbeselected="false" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+      <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="721,497,238,396" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_workbenchlamp" width="127" height="119" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="96,481,127,119" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,117,0,111" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/Shop.png" sourcerect="96,597,127,134" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!--Dorm-->
+    <Item name="" identifier="opdeco_heater" width="144" height="336" texturescale="1.0,1.0" scale="0.5" category="Decorative" spritecolor="255,255,255,255" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1291,1689,144,333" depth="0.95" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="246,92,59,0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" flicker="0.0" pulseamont="0.2" pulsefrequency="0.2">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <Upgrade gameversion="0.18.13.0" lightcolor="246,92,59,0" />
+        <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1441,1689,144,333" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_cabinetsdorm" allowattachitems="false" width="110" height="398" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <Upgrade gameversion="0.16.2.0" refreshrect="true" PositionY="-88" />
+      <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1760,1360,117,309" depth="0.84" premultiplyalpha="false" origin="0.5,0.5" />
+      <DecorativeSprite texture="%ModDir:2968896556%/Content/Items/EI-ItemsAtlas.png" sourcerect="923,0,89,119" depth="0.83" origin="0.525,0.05">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <!-- ItemComponent is only used as a workaround to play a sound if someone stopped interacting with the container since that can't really be done otherwise other than with "Always" StatusEffects which drain performance nonstop instead of only when interaction is happening. -->
+      <ItemComponent canbeselected="false" canbepicked="false" allowingameediting="false" IIsActive="false">
+        <!-- play a closing sound and disable the ItemComponent, stopping to execute the check for the "opened" tag which gets applied while someone is interacting with the container -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="false" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/locker_close2.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- Controller to check if someone is interacting with the container -->
+      <Controller canbeselected="true" selectkey="Select" hidehud="false" drawuserbehind="false" noninteractablewhenflippedy="false" allowingameediting="false" drawhudwhenequipped="false" comparison="And">
+        <!-- play an opening sound when starting to interact with the container -->
+        <StatusEffect type="OnActive" target="this" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/locker_open1.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+        <!-- tag the container with "opened" if the controller is active, meaning someone is interacting with it -->
+        <StatusEffect type="OnActive" target="This" tags="opened" duration="0.1" />
+        <!-- turn the ItemComponent on so we can play a sound when the user stops interacting with the container. Would otherwise require an "Always" check which would always run and thus impact performance. -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" setvalue="true" />
+        <!-- prevent allowing to configure an output for the controller to hide the controller UI. This StatusEffect only executes once per round -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="Controller" allowingameediting="false" setvalue="true" oneshot="true" />
+      </Controller>
+      <ItemContainer capacity="6" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.16,0.22" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
+      </ItemContainer>
+      <!-- backwards compatibility for older versions in which mobile containers like storage containers were containable in any cabinet -->
+      <Upgrade gameversion="1.1.0.0" campaignsaveonly="true">
+        <ItemContainer>
+          <Containable items="smallitem,mediumitem" />
+          <ClearSubContainerRestrictions />
+        </ItemContainer>
+      </Upgrade>
+    </Item>
+    <!--Tunnel wall with flickering lights-->
+    <Item name="" identifier="opbg_tunnel3" allowattachitems="true" width="831" height="416" scale="0.5" category="Decorative" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/TunnelWalls.png" sourcerect="0,416,831,416" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,56,56,111" IsOn="true" castshadows="false" allowingameediting="false" flicker="0.1" flickerspeed="0.1" blinkfrequency="1">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/TunnelWalls.png" sourcerect="0,1248,832,416" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!--Tunnel Light Tower-->
+    <Item name="" identifier="op_lighttower" width="176" height="352" texturescale="1.0,1.0" scale="0.5" category="Decorative" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/TunnelWalls.png" sourcerect="849,1697,176,352" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="160.0" lightcolor="255,234,181,200" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/TunnelWalls.png" sourcerect="671,1697,176,352" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!--Wall Decorations-->
+    <Item name="" identifier="op_lightbox1" width="163" height="209" texturescale="1.0,1.0" scale="0.5" category="Decorative" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="1337,590,163,209" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="60.0" lightcolor="255,234,181,200" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_lightbox2" nameidentifier="op_lightbox1" width="159" height="206" texturescale="1.0,1.0" scale="0.5" category="Decorative" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="1526,586,159,206" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="60.0" lightcolor="255,234,181,200" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_lightbox3" nameidentifier="op_lightbox1" width="289" height="194" texturescale="1.0,1.0" scale="0.5" category="Decorative" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="1760,394,289,194" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="60.0" lightcolor="255,234,181,200" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_lightbox4" nameidentifier="op_lightbox1" width="145" height="194" texturescale="1.0,1.0" scale="0.5" category="Decorative" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="1759,1607,145,194" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="60.0" lightcolor="255,234,181,200" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="op_lightbox5" nameidentifier="op_lightbox1" width="145" height="194" texturescale="1.0,1.0" scale="0.5" category="Decorative" noninteractable="true">
+      <sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="1903,1607,144,194" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="60.0" lightcolor="255,234,181,200" IsOn="true" castshadows="false" allowingameediting="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <!-- Medical -->
+    <Item name="" identifier="opdeco_mountedmonitor1" nameidentifier="medicalmonitor" width="96" height="128" texturescale="1.0,1.0" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="0,0,96,128" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,255" IsOn="true" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="96,0,96,128" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_medcompartment1" nameidentifier="medicalcompartment" tags="container,suppliescontainer" linkable="true" width="80" height="80" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="192,0,80,80" depth="0.84" premultiplyalpha="false" origin="0.5,0.5" />
+      <DecorativeSprite texture="%ModDir:2968896556%/Content/Items/EI-ItemsAtlas.png" sourcerect="914,125,68,94" depth="0.83" origin="0.5,0.3">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <!-- ItemComponent is only used as a workaround to play a sound if someone stopped interacting with the container since that can't really be done otherwise other than with "Always" StatusEffects which drain performance nonstop instead of only when interaction is happening. -->
+      <ItemComponent canbeselected="false" canbepicked="false" allowingameediting="false" IIsActive="false">
+        <!-- play a closing sound and disable the ItemComponent, stopping to execute the check for the "opened" tag which gets applied while someone is interacting with the container -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="false" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/cabinet_close1.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- Controller to check if someone is interacting with the container -->
+      <Controller canbeselected="true" selectkey="Select" hidehud="false" drawuserbehind="false" noninteractablewhenflippedy="false" allowingameediting="false" drawhudwhenequipped="false" comparison="And">
+        <!-- play an opening sound when starting to interact with the container -->
+        <StatusEffect type="OnActive" target="this" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/cabinet_open1.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+        <!-- tag the container with "opened" if the controller is active, meaning someone is interacting with it -->
+        <StatusEffect type="OnActive" target="This" tags="opened" duration="0.1" />
+        <!-- turn the ItemComponent on so we can play a sound when the user stops interacting with the container. Would otherwise require an "Always" check which would always run and thus impact performance. -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" setvalue="true" />
+        <!-- prevent allowing to configure an output for the controller to hide the controller UI. This StatusEffect only executes once per round -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="Controller" allowingameediting="false" setvalue="true" oneshot="true" />
+      </Controller>
+      <ItemContainer capacity="3" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.15,0.2" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
+      </ItemContainer>
+    </Item>
+    <Item name="" identifier="opdeco_medcompartment2" nameidentifier="medicalcompartment" tags="container,suppliescontainer" linkable="true" width="48" height="80" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="272,0,48,80" depth="0.84" premultiplyalpha="false" origin="0.5,0.5" />
+      <DecorativeSprite texture="%ModDir:2968896556%/Content/Items/EI-ItemsAtlas.png" sourcerect="983,125,40,94" depth="0.83" origin="0.5,0.3">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <!-- ItemComponent is only used as a workaround to play a sound if someone stopped interacting with the container since that can't really be done otherwise other than with "Always" StatusEffects which drain performance nonstop instead of only when interaction is happening. -->
+      <ItemComponent canbeselected="false" canbepicked="false" allowingameediting="false" IIsActive="false">
+        <!-- play a closing sound and disable the ItemComponent, stopping to execute the check for the "opened" tag which gets applied while someone is interacting with the container -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="false" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/cabinet_close1.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- Controller to check if someone is interacting with the container -->
+      <Controller canbeselected="true" selectkey="Select" hidehud="false" drawuserbehind="false" noninteractablewhenflippedy="false" allowingameediting="false" drawhudwhenequipped="false" comparison="And">
+        <!-- play an opening sound when starting to interact with the container -->
+        <StatusEffect type="OnActive" target="this" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/cabinet_open1.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+        <!-- tag the container with "opened" if the controller is active, meaning someone is interacting with it -->
+        <StatusEffect type="OnActive" target="This" tags="opened" duration="0.1" />
+        <!-- turn the ItemComponent on so we can play a sound when the user stops interacting with the container. Would otherwise require an "Always" check which would always run and thus impact performance. -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" setvalue="true" />
+        <!-- prevent allowing to configure an output for the controller to hide the controller UI. This StatusEffect only executes once per round -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="Controller" allowingameediting="false" setvalue="true" oneshot="true" />
+      </Controller>
+      <ItemContainer capacity="2" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.15,0.16" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
+      </ItemContainer>
+    </Item>
+    <Item name="" identifier="opdeco_medcompartment3" nameidentifier="medicalcompartment" tags="container,suppliescontainer" linkable="true" width="80" height="128" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="400,0,80,128" depth="0.84" premultiplyalpha="false" origin="0.5,0.5" />
+      <DecorativeSprite texture="%ModDir:2968896556%/Content/Items/EI-ItemsAtlas.png" sourcerect="957,227,60,110" depth="0.83" origin="0.5,0.5">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <DecorativeSprite texture="%ModDir:2968896556%/Content/Items/EI-ItemsAtlas.png" sourcerect="914,220,42,131" depth="0.829" origin="1.7,0.475">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <!-- ItemComponent is only used as a workaround to play a sound if someone stopped interacting with the container since that can't really be done otherwise other than with "Always" StatusEffects which drain performance nonstop instead of only when interaction is happening. -->
+      <ItemComponent canbeselected="false" canbepicked="false" allowingameediting="false" IIsActive="false">
+        <!-- play a closing sound and disable the ItemComponent, stopping to execute the check for the "opened" tag which gets applied while someone is interacting with the container -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="false" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/cabinet_close1.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- Controller to check if someone is interacting with the container -->
+      <Controller canbeselected="true" selectkey="Select" hidehud="false" drawuserbehind="false" noninteractablewhenflippedy="false" allowingameediting="false" drawhudwhenequipped="false" comparison="And">
+        <!-- play an opening sound when starting to interact with the container -->
+        <StatusEffect type="OnActive" target="this" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/cabinet_open1.ogg" volume="2" range="250" frequencymultiplier="1.5" selectionmode="Random" />
+        </StatusEffect>
+        <!-- tag the container with "opened" if the controller is active, meaning someone is interacting with it -->
+        <StatusEffect type="OnActive" target="This" tags="opened" duration="0.1" />
+        <!-- turn the ItemComponent on so we can play a sound when the user stops interacting with the container. Would otherwise require an "Always" check which would always run and thus impact performance. -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" setvalue="true" />
+        <!-- prevent allowing to configure an output for the controller to hide the controller UI. This StatusEffect only executes once per round -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="Controller" allowingameediting="false" setvalue="true" oneshot="true" />
+      </Controller>
+      <ItemContainer capacity="6" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.18,0.25" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
+      </ItemContainer>
+    </Item>
+    <Item name="" identifier="opdeco_surgicallights" width="272" height="128" texturescale="1.0,1.0" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="752,0,272,128" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <Upgrade gameversion="0.18.12.0" lightcolor="255,255,255,0" />
+        <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="480,0,272,128" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_xrayscreen" width="208" height="144" texturescale="1.0,1.0" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="304,160,208,144" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" flicker="0.1" pulsefrequency="0.5" pulseamount="0.2">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <Upgrade gameversion="0.18.12.0" lightcolor="255,255,255,0" />
+        <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="96,160,208,144" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_xrayscreen2" nameidentifier="opdeco_xrayscreen" width="369" height="133" texturescale="1.0,1.0" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedicalColonyAssets.png" sourcerect="0,0,369,133" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" flicker="0.1" pulsefrequency="0.5" pulseamount="0.2">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <Upgrade gameversion="0.18.12.0" lightcolor="255,255,255,0" />
+        <sprite texture="Content/Map/Outposts/Art/MedicalColonyAssets.png" sourcerect="0,133,369,133" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_xrayscreen3" nameidentifier="opdeco_xrayscreen" width="192" height="208" texturescale="1.0,1.0" scale="0.5" noninteractable="true" category="Decorative">
+      <sprite texture="Content/Map/Outposts/Art/MedicalColonyAssets.png" sourcerect="199,266,192,208" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" flicker="0.1" pulsefrequency="0.5" pulseamount="0.2">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <Upgrade gameversion="0.18.12.0" lightcolor="255,255,255,0" />
+        <sprite texture="Content/Map/Outposts/Art/MedicalColonyAssets.png" sourcerect="0,267,192,208" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_wheelchair2" nameidentifier="opdeco_wheelchair1" tags="chair" allowattachitems="false" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="false">
+      <sprite texture="Content/Map/Outposts/Art/MedicalColonyAssets.png" sourcerect="452,781,249,225" depth="0.55" premultiplyalpha="false" origin="0.5,0.5" />
+      <Controller UserPos="10,30" direction="Right" hidehud="false" canbeselected="true" issecondaryitem="true" drawuserbehind="true">
+        <limbposition limb="Head" position="70,45" />
+        <limbposition limb="Torso" position="90,-30" />
+        <limbposition limb="Waist" position="95,-85" />
+        <limbposition limb="RightFoot" position="180,-220" />
+        <limbposition limb="LeftFoot" position="180,-220" />
+        <limbposition limb="RightHand" position="130,-100" allowusinglimb="true" />
+        <limbposition limb="LeftHand" position="130,-100" allowusinglimb="true" />
+      </Controller>
+    </Item>
+    <!--Outpost Machines-->
+    <Item name="" nameidentifier="reactor1" identifier="outpostreactor" tags="reactor" type="Reactor" linkable="true" category="Machine" damagedbyexplosions="true" scale="0.5" explosiondamagemultiplier="0.2">
+      <trigger />
+      <sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="38,336,575,849" depth="0.8" origin="0.5,0.5" />
+      <UpgradePreviewSprite scale="3.0" texture="Content/UI/WeaponUI.png" sourcerect="0,960,64,64" origin="0.5,0.45" />
+      <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="473,1197,502,655" depth="0.79" maxcondition="50" offset="0,0" fadein="true" />
+      <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="975,1197,502,690" depth="0.79" maxcondition="10" offset="0,0" fadein="true" />
+      <aitarget sightrange="500" soundrange="7500" />
+      <Reactor canbeselected="true" firedelay="20" meltdowndelay="120" maxpoweroutput="20000" fuelconsumptionrate="0.2" vulnerabletoemp="false" msg="ItemMsgInteractSelect">
+        <StatusEffect type="InWater" target="This" condition="-0.5">
+          <Conditional condition="gt 10" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.5,0.45" minsize="700,350" maxsize="2688,1166" anchor="Center" relativeoffset="0.1,0" style="ItemUI" />
+        <GraphLine texture="Content/Items/Reactor/graphLine.png">
+          <Sprite name="ReactorGraphLine" texture="Content/Items/Reactor/graphLine.png" sourcerect="0,0,32,32" />
+        </GraphLine>
+        <FissionRateMeter>
+          <Sprite name="FissionRateMeter" texture="Content/Items/Reactor/reactor.png" sourcerect="544,770,441,240" origin="0.5,1" />
+        </FissionRateMeter>
+        <TurbineOutputMeter>
+          <Sprite name="TurbineOutputMeter" texture="Content/Items/Reactor/reactor.png" sourcerect="544,770,441,240" origin="0.5,1" />
+        </TurbineOutputMeter>
+        <MeterPointer>
+          <Sprite name="MeterPointer" texture="Content/UI/UIAtlasDevices.png" sourcerect="938,846,31,167 " origin="0.5,0.9" />
+        </MeterPointer>
+        <SectorSprite>
+          <Sprite name="SectorSprite" texture="Content/UI/UIAtlasDevices.png" sourcerect="769,326,238,455" origin="0.95,0.5" />
+        </SectorSprite>
+        <TempMeterFrame>
+          <Sprite name="TempMeterFrame" texture="Content/UI/UIAtlasDevices.png" sourcerect="92,517,59,265" origin="0,0" size="0.5,1" />
+        </TempMeterFrame>
+        <TempMeterBar>
+          <Sprite name="TempMeterBar" texture="Content/UI/UIAtlasDevices.png" sourcerect="270,414,106,47" origin="0.5,0" />
+        </TempMeterBar>
+        <TempRangeIndicator>
+          <Sprite name="TempRangeIndicator" texture="Content/UI/UIAtlasDevices.png" sourcerect="31,614,52,25" origin="0.5,0.5" size="0.6,0.6" />
+        </TempRangeIndicator>
+        <RequiredSkill identifier="electrical" level="50" />
+        <RequiredItem items="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" ignoreineditor="true" />
+        <sound file="Content/Items/Reactor/Reactor.ogg" type="OnActive" range="1000.0" volumeproperty="FissionRate" volume="0.02" loop="true" />
+        <StatusEffect type="OnBroken" target="This" FissionRate="0.0" disabledeltatime="true">
+          <sound file="Content/Items/Weapons/ExplosionLarge2.ogg" type="OnUse" volume="10" selectionmode="Random" range="50000" dontmuffle="true" />
+          <sound file="Content/Items/Weapons/ExplosionDebris5.ogg" range="8000" />
+          <Explosion range="750" ballastfloradamage="1000" structuredamage="300" itemdamage="500" force="25.0" camerashake="0" flashrange="10000" flashduration="5.0" screencolor="255,255,255,255" screencolorrange="5000" screencolorduration="3.0" decal="explosion" decalsize="1">
+            <Affliction identifier="explosiondamage" strength="500" />
+            <Affliction identifier="burn" strength="500" />
+            <Affliction identifier="stun" strength="15" />
+          </Explosion>
+          <Explosion range="2000" force="0.0" camerashake="200" camerashakerange="50000" showEffects="false" empstrength="1.25" applyfireeffects="false" ignorecover="true">
+            <Affliction identifier="radiationsickness" strength="75" />
+            <Affliction identifier="emp" strength="50" multiplybymaxvitality="true" />
+          </Explosion>
+          <ParticleEmitter particle="underwaterexplosion" anglemin="0" anglemax="360" particleamount="3" velocitymin="0" velocitymax="0" scalemin="15" scalemax="15" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="Contained" Condition="0.0" setvalue="true" />
+      </Reactor>
+      <LightComponent range="300.0" lightcolor="255,186,152,119" powerconsumption="0" IsOn="false" castshadows="false" allowingameediting="false">
+        <IsActive targetitemcomponent="Reactor" temperature="gt 2" />
+        <sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" depth="0.025" sourcerect="649,761,575,425" alphablend="false" origin="0.5,0.0" alpha="1.0" />
+      </LightComponent>
+      <LightComponent range="400" lightcolor="255,0,0,250" powerconsumption="0" IsOn="false" castshadows="false" allowingameediting="false" blinkfrequency="1">
+        <IsActive targetitemcomponent="Reactor" temperaturecritical="eq true" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.3,0.35" minsize="400,350" maxsize="480,460" anchor="Center" style="ConnectionPanel" />
+        <RequiredSkill identifier="electrical" level="70" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <output name="power_out" displayname="connection.powerout" maxwires="1" />
+        <output name="temperature_out" displayname="connection.temperatureout" />
+        <input name="shutdown" displayname="connection.shutdown" />
+        <input name="set_fissionrate" displayname="connection.setfissionrate" />
+        <input name="set_turbineoutput" displayname="connection.setturbineoutput" />
+        <output name="meltdown_warning" displayname="connection.meltdownwarning">
+          <StatusEffect type="OnUse" target="This">
+            <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+            <ParticleEmitter particle="swirlysmoke" particlespersecond="3" scalemin="1" scalemax="2" anglemin="0" anglemax="360" velocitymin="0" velocitymax="10" />
+            <sound file="Content/Items/Reactor/ReactorOverheatAlarm.ogg" type="OnUse" range="10000.0" loop="true" volume="1.0" />
+          </StatusEffect>
+        </output>
+        <output name="power_value_out" displayname="connection.powervalueout" />
+        <output name="load_value_out" displayname="connection.loadvalueout" />
+        <output name="fuel_out" displayname="connection.availablefuelout" />
+        <output name="condition_out" displayname="connection.conditionout" />
+        <output name="fuel_percentage_left" displayname="connection.fuelpercentageout" />
+      </ConnectionPanel>
+      <ItemContainer capacity="4" maxstacksize="1" canbeselected="true" hudpos="0.5,0.15" slotsperrow="1" uilabel="FuelRods">
+        <RequiredItem items="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" ignoreineditor="true" />
+        <Containable items="fuelrod">
+          <StatusEffect type="OnContaining" target="This" AvailableFuel="80.0" disabledeltatime="true" />
+        </Containable>
+        <Containable items="fulguriumfuelrod">
+          <StatusEffect type="OnContaining" target="This" AvailableFuel="150.0" disabledeltatime="true" />
+        </Containable>
+        <Containable items="thoriumfuelrod">
+          <StatusEffect type="OnContaining" target="This" AvailableFuel="100.0" disabledeltatime="true" />
+        </Containable>
+        <Containable items="fulguriumfuelrodvolatile">
+          <StatusEffect type="OnContaining" target="This" AvailableFuel="150.0" disabledeltatime="true" />
+        </Containable>
+      </ItemContainer>
+      <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.125" mindeteriorationdelay="120" maxdeteriorationdelay="720" MinDeteriorationCondition="10" minsabotagecondition="10" AIRepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="electrical" level="55" />
+        <RequiredItem items="wrench" type="equipped" />
+        <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+        <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+        <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+      </Repairable>
+      <SkillRequirementHint identifier="electrical" level="50" />
+    </Item>
+    <Item name="" nameidentifier="oxygenerator" identifier="outpostoxygenerator" tags="oxygengenerator" category="Machine" linkable="true" allowedlinks="vent" damagedbyexplosions="true" scale="0.5" explosiondamagemultiplier="0.2">
+      <Sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" depth="0.8" sourcerect="52,1197,360,410" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="52,1617,360,410" depth="0.79" origin="0.5,0.5" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="623,336,360,410" depth="0.79" origin="0.5,0.5" maxcondition="10" fadein="true" />
+      <UpgradePreviewSprite scale="2.5" texture="Content/UI/WeaponUI.png" sourcerect="384,960,64,64" origin="0.5,0.45" />
+      <OxygenGenerator powerconsumption="1000.0" minvoltage="0.5" generatedamount="5000" canbeselected="true" msg="ItemMsgInteractSelect">
+        <poweronsound file="Content/Items/PowerOnLight2.ogg" range="1500" loop="false" />
+        <sound file="%ModDir:2968896556%/Content/Items/OxygenGenerator/OxygenGenerator.ogg" type="OnActive" range="500.0" volumeproperty="CurrFlow" volume="0.001" loop="true" />
+        <StatusEffect type="OnFire" target="This" Condition="-0.5" />
+        <StatusEffect type="OnActive" targettype="Contained" targets="oxygentank" Condition="2.0" />
+        <StatusEffect type="OnBroken" targettype="This" disabledeltatime="true">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="3000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="3000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="3000" />
+          <Explosion range="50" stun="0" force="3.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris3.ogg" range="2000" />
+        </StatusEffect>
+      </OxygenGenerator>
+      <trigger />
+      <ItemContainer capacity="5" maxstacksize="1" canbeselected="true" hideitems="false" itempos="163,-290" iteminterval="42,0" msg="ItemMsgOxygenRefill">
+        <GuiFrame relativesize="0.25,0.2" anchor="Center" style="ItemUI" />
+        <Containable items="oxygentank" />
+      </ItemContainer>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="power_in" displayname="connection.powerin" />
+        <output name="condition_out" displayname="connection.conditionout" />
+      </ConnectionPanel>
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" deteriorationspeed="0.125" mindeteriorationdelay="120" maxdeteriorationdelay="750" mindeteriorationcondition="0" AIRepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="55" />
+        <RequiredItem items="wrench" type="equipped" />
+        <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+        <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+        <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Items/MechanicalRepairFail.ogg" range="1000" />
+          <Affliction identifier="lacerations" strength="5" />
+          <Affliction identifier="stun" strength="4" />
+        </StatusEffect>
+      </Repairable>
+    </Item>
+    <Item name="" identifier="outpostterminal" category="Machine" Tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      <Sprite texture="Content/Map/Outposts/Art/Storage.png" depth="0.8" sourcerect="1544,506,142,149" origin="0.5,0.5" />
+      <LightComponent range="0.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/Storage.png" depth="0.025" sourcerect="1709,506,142,149" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <LightComponent range="0.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" blinkfrequency="1">
+        <Upgrade gameversion="0.17.15.0" range="0" />
+        <sprite texture="Content/Map/Outposts/Art/Storage.png" depth="0.025" sourcerect="1869,506,142,149" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <OutpostTerminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" />
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Electricity/junctionbox_interact.ogg" volume="1" range="300" />
+        </StatusEffect>
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem identifier="screwdriver" type="Equipped" />
+        <input name="signal_in" displayname="connection.signalin" />
+        <output name="signal_out" displayname="connection.signalout" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="opdeco_cabinetsdorm" allowattachitems="false" width="110" height="398" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+      <Upgrade gameversion="0.16.2.0" refreshrect="true" PositionY="-88" />
+      <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1760,1360,117,309" depth="0.84" premultiplyalpha="false" origin="0.5,0.5" />
+      <ItemContainer capacity="6" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.18,0.25" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/cabinet_open1.ogg" volume="1" range="250" selectionmode="Random" />
+        </StatusEffect>
+      </ItemContainer>
+      <!-- backwards compatibility for older versions in which mobile containers like storage containers were containable in any cabinet -->
+      <Upgrade gameversion="1.1.0.0" campaignsaveonly="true">
+        <ItemContainer>
+          <Containable items="smallitem,mediumitem" />
+          <ClearSubContainerRestrictions />
+        </ItemContainer>
+      </Upgrade>
+    </Item>
+    <Item name="" identifier="opdeco_trashcan" tags="outposttrashcan" width="122" height="201" texturescale="1.0,1.0" scale="0.5" category="Decorative" AllowStealingContainedItems="true">
+      <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1662,914,125,205" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <ItemContainer capacity="3" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.18,0.25" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,mediumitem" />
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:2968896556%/Content/Items/Containers/loader_open1.ogg" volume="1" range="250" selectionmode="Random" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+  </Items>
+</Override>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Verdant Variety" modversion="1.3.6" corepackage="False" steamworkshopid="3018824355" gameversion="1.8.6.2" expectedhash="EFFCDA57571759FFE1DD8E6091C5A60D">
+  <Item file="%ModDir%/Workshop/Verdant Variety/assets.xml" />
+  <Structure file="%ModDir%/Workshop/Verdant Variety/other.xml" />
+</contentpackage>

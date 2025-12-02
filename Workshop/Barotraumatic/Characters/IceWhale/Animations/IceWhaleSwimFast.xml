@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IceWhaleSwimFast type="IceWhale" UseSineMovement="False" Flip="True" FlipCooldown="3" FlipDelay="1.6" Mirror="False" MirrorLerp="True" WaveAmplitude="14.006248" WaveLength="51.880642" RotateTowardsMovement="True" TailTorque="11" TailTorqueMultiplier="1" FootAngles="" UpdateAnimationWhenNotMoving="False" TailAngle="90" SteerTorque="2.5" LegTorque="25" AnimationType="SwimFast" MovementSpeed="6.9" CycleSpeed="1" HeadAngle="50" TorsoAngle="55" HeadTorque="5" TorsoTorque="2.5" FootTorque="10" ArmIKStrength="1" HandIKStrength="1" />

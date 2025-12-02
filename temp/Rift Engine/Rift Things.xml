@@ -1,0 +1,2151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="Rift Engine" identifier="riftengine" tags="riftmatfabricator,donttakeitems,dontsellitems" category="Machine" subcategory="Rift Engine" linkable="true" allowedlinks="deconstructor,locker" description="Creates rift material. Use a Rift Material Transfomer to turn the material into usable resources." scale="0.5" damagedbyexplosions="false" explosiondamagemultiplier="0.0">
+    <Upgrade gameversion="0.10.4.0">
+      <Repairable Msg="ItemMsgRepairWrench" />
+    </Upgrade>
+    <Fabricate suitablefabricators="fabricator" requiredtime="120">
+      <RequiredSkill identifier="electrical" level="80" />
+      <RequiredSkill identifier="mechanical" level="80" />
+      <RequiredItem identifier="fpgacircuit" amount="1" />
+      <RequiredItem identifier="fulgurium" amount="4" />
+      <RequiredItem identifier="physicorium" amount="4" />
+    </Fabricate>
+    <Sprite name="R.E. Exterior" texture="%ModDir%/rift-engine.png" sourcerect="265,164,329,269" depth="0.790" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Glass" texture="%ModDir%/rift-engine.png" depth="0.791" offset="0.0,0.0" sourcerect="614,236,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Ball of Light" texture="%ModDir%/rift-engine.png" depth="0.794" offset="0.0,0.0" sourcerect="614,101,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Background" texture="%ModDir%/rift-engine.png" depth="0.795" offset="0.0,0.0" sourcerect="614,383,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Spinny Thing" texture="%ModDir%/rift-engine.png" depth="0.793" offset="0.0,0.0" sourcerect="14,179,238,239" origin="0.49845463,0.49841738" rotationspeed="715">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Fabricator" />
+      <AnimationConditional IsActive="True" targetitemcomponent="Fabricator" />
+      <IsActiveConditional Condition="gt 0.0" />
+    </DecorativeSprite>
+    <Fabricator canbeselected="true" powerconsumption="2500.0" msg="ItemMsgInteractSelect">
+      <GuiFrame relativesize="0.4,0.45" style="ItemUI" anchor="Center" />
+      <sound file="%ModDir%/rift-engine.ogg" type="OnActive" range="1000.0" volumeproperty="RelativeVoltage" volume="0.15" loop="true" />
+      <poweronsound file="Content/Items/PowerOnHeavy1.ogg" range="1200" loop="false" />
+    </Fabricator>
+    <ConnectionPanel selectkey="Action" canbeselected="true" hudpriority="10" msg="ItemMsgRewireScrewdriver">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredSkill identifier="electrical" level="55" />
+      <StatusEffect type="OnFailure" targettype="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        <Affliction identifier="stun" strength="4" />
+        <Affliction identifier="burn" strength="25" />
+      </StatusEffect>
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="power_in" displayname="connection.powerin" />
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+    <!-- placeable aspect copied from Barocraftables -->
+    <Body width="200" height="200" density="40" />
+    <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="10.0" aimpos="35,-10" handle1="0,0" attachable="true" attachedbydefault="true" aimable="true">
+      <requireditem identifier="wrench" type="Equipped" />
+      <StatusEffect type="OnActive" targettype="Character" SpeedMultiplier="0.75" setvalue="true" />
+    </Holdable>
+    <Repairable selectkey="Action" header="electircalrepairsheader" deteriorationspeed="0.0" mindeteriorationdelay="60" maxdeteriorationdelay="120" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.1,0.27" style="ItemUI" />
+      <RequiredSkill identifier="electrical" level="55" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+      <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+      <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+    </Repairable>
+    <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+    <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+  </Item>
+  <Item name="Rift Material Transformer" identifier="riftengine2" tags="riftfabricator,donttakeitems,dontsellitems" category="Machine" subcategory="Rift Engine" linkable="true" allowedlinks="deconstructor,locker" description="Turns rift material into any resource you can imagine! Utilizes the energy released when converting rift material into resources to power itself." scale="0.5" damagedbyexplosions="false" explosiondamagemultiplier="0.0">
+    <Upgrade gameversion="0.10.4.0">
+      <Repairable Msg="ItemMsgRepairWrench" />
+    </Upgrade>
+    <Fabricate suitablefabricators="fabricator" requiredtime="60">
+      <RequiredSkill identifier="electrical" level="30" />
+      <RequiredSkill identifier="mechanical" level="30" />
+      <RequiredItem identifier="fpgacircuit" amount="1" />
+      <RequiredItem identifier="fulgurium" amount="1" />
+      <RequiredItem identifier="physicorium" amount="1" />
+    </Fabricate>
+    <Sprite name="R.E. Small Exterior" texture="%ModDir%/rift-engine.png" sourcerect="812,23,247,267" depth="0.790" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Glass2" texture="%ModDir%/rift-engine.png" depth="0.792" offset="0.0,0.0" sourcerect="614,236,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Ball of Light2" texture="%ModDir%/rift-engine.png" depth="0.794" offset="0.0,0.0" sourcerect="614,101,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Background2" texture="%ModDir%/rift-engine.png" depth="0.795" offset="0.0,0.0" sourcerect="614,383,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Small Spinny Thing" texture="%ModDir%/rift-engine.png" depth="0.793" offset="0.0,0.0" sourcerect="812,315,247,267" origin="0.49845463,0.49841738" rotationspeed="715">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Fabricator" />
+      <AnimationConditional IsActive="True" targetitemcomponent="Fabricator" />
+      <IsActiveConditional Condition="gt 0.0" />
+    </DecorativeSprite>
+    <Fabricator canbeselected="true" powerconsumption="0.0" msg="ItemMsgInteractSelect">
+      <GuiFrame relativesize="0.4,0.45" style="ItemUI" anchor="Center" />
+      <!--<sound file="%ModDir%/Rift Engine/rift-engine.ogg" type="OnActive" range="1000.0" volumeproperty="RelativeVoltage" volume="0.15" loop="true" />-->
+      <poweronsound file="Content/Items/PowerOnHeavy1.ogg" range="1200" loop="false" />
+      <StatusEffect type="InWater" targetitemcomponent="Fabricator" targettype="This" IsActive="False" />
+    </Fabricator>
+    <ConnectionPanel selectkey="Action" canbeselected="true" hudpriority="10" msg="ItemMsgRewireScrewdriver">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredSkill identifier="electrical" level="40" />
+      <StatusEffect type="OnFailure" targettype="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        <Affliction identifier="stun" strength="4" />
+        <Affliction identifier="burn" strength="25" />
+      </StatusEffect>
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="power_in" displayname="connection.powerin" />
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+    <!-- placeable aspect copied from Barocraftables -->
+    <Body width="200" height="200" density="40" />
+    <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="5.0" aimpos="35,-10" handle1="0,0" attachable="true" attachedbydefault="true" aimable="true">
+      <requireditem identifier="wrench" type="Equipped" />
+      <StatusEffect type="OnActive" targettype="Character" SpeedMultiplier="0.75" setvalue="true" />
+    </Holdable>
+    <Repairable selectkey="Action" header="electircalrepairsheader" deteriorationspeed="0.0" mindeteriorationdelay="60" maxdeteriorationdelay="120" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.1,0.27" style="ItemUI" />
+      <RequiredSkill identifier="electrical" level="55" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+      <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+      <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+    </Repairable>
+    <ItemContainer capacity="5" canbeselected="true" hideitems="true" slotsperrow="5" uilabel="" allowuioverlap="true" />
+    <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+  </Item>
+  <Item name="Rift Material" identifier="riftmat" category="Material" subcategory="Rift Engine" maxstacksize="32" Tags="smallitem" canbepicked="true" description="A crystal used for advanced applications, usually transmutation into matter." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1" />
+    <Fabricate suitablefabricators="riftmatfabricator" requiredtime="20" />
+    <InventoryIcon texture="%ModDir%/Minerals.png" sourcerect="389,510,123,122" />
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.55" sourcerect="389,510,123,122" origin="0.5,0.5" />
+    <Body radius="40" width="20" density="25" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+  <!-- Price: 80 -->
+  <Item name="Capsule: Sulphuric Acid" identifier="re_sulphuricacid" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="sulphuricacid" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="4" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="320,768,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Medicines.png" sourcerect="346,452,33,60" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="sulphuricacid" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 60 -->
+  <Item name="Capsule: Ethanol" identifier="re_ethanol" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="ethanol" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="256,768,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Medicines.png" sourcerect="435,452,30,57" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="ethanol" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 40 -->
+  <Item name="Capsule: Opium" identifier="re_opium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="opium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="512,768,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Medicines.png" sourcerect="406,452,29,58" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="opium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 40 -->
+  <Item name="Capsule: Elastin" identifier="re_elastin" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="elastin" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="772,771,52,59" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Medicines.png" sourcerect="465,452,47,60" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="elastin" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 60 -->
+  <Item name="Capsule: Adrenaline" identifier="re_adrenaline" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="adrenaline" amount="3" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="384,768,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Medicines.png" sourcerect="379,452,27,58" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="adrenaline" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Capsule: Alien Blood" identifier="re_alienblood" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="alienblood" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="448,771,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CreatureLoot.png" sourcerect="1,128,30,58" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="alienblood" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 40 -->
+  <Item name="Capsule: Broad-Spectrum Antibiotics" identifier="re_antibiotics" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="antibiotics" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="576,704,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Medicines.png" sourcerect="263,142,36,68" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="antibiotics" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 40 -->
+  <Item name="Capsule: Stabilozine" identifier="re_stabilozine" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="stabilozine" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="384,640,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Medicines.png" sourcerect="112,139,37,70" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="stabilozine" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 310 -->
+  <Item name="Capsule: Husk Eggs" identifier="re_huskeggsbasic" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="huskeggsbasic" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="15" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/CreatureLoot.png" sourcerect="523,86,160,50" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="huskeggsbasic" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 10 -->
+  <Item name="Capsule: Carbon" identifier="re_carbon" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="carbon" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="384,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="5,55,46,38" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="carbon" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 8 -->
+  <Item name="Capsule: Iron" identifier="re_iron" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="iron" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" mincondition="0.4" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="512,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="5,92,46,38" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="iron" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 11 -->
+  <Item name="Capsule: Tin" identifier="re_tin" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="tin" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" mincondition="0.55" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="832,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="150,92,47,38" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="tin" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 18 -->
+  <Item name="Capsule: Lead" identifier="re_lead" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="lead" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" mincondition="0.9" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="768,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="101,92,47,38" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="lead" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 25 -->
+  <Item name="Capsule: Phosphorus" identifier="re_phosphorus" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="phosphorus" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.25" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="320,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="153,6,23,44" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="phosphorus" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 22 -->
+  <Item name="Capsule: Copper" identifier="re_copper" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="copper" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.1" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="576,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="53,92,48,38" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="copper" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 26 -->
+  <Item name="Capsule: Zinc" identifier="re_zinc" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="zinc" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.3" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="640,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="102,55,46,37" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="zinc" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 33 -->
+  <Item name="Capsule: Sodium" identifier="re_sodium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed. Does not explode." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="sodium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.65" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="64,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="29,7,23,44" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="sodium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 17 -->
+  <Item name="Capsule: Silicon" identifier="re_silicon" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="silicon" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" mincondition="0.85" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="960,128,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="196,54,46,38" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="silicon" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 31 -->
+  <Item name="Capsule: Calcium" identifier="re_calcium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="calcium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.55" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="256,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="129,6,23,44" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="calcium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 42 -->
+  <Item name="Capsule: Aluminium" identifier="re_aluminium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="aluminium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+      <RequiredItem identifier="riftmat" mincondition="0.1" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="448,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="53,53,47,39" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="aluminium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 50 -->
+  <Item name="Capsule: Uranium" identifier="re_uranium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="uranium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="898,192,61,63" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="4,130,49,41" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="uranium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 10 -->
+  <Item name="Capsule: Potassium" identifier="re_potassium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed. Does not explode." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="potassium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="128,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="77,6,23,44" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="potassium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 65 -->
+  <Item name="Capsule: Titanium" identifier="re_titanium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="titanium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+      <RequiredItem identifier="riftmat" mincondition="0.25" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="704,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="150,55,46,37" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="titanium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 65 -->
+  <Item name="Capsule: Magnesium" identifier="re_magnesium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="magnesium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+      <RequiredItem identifier="riftmat" mincondition="0.25" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="192,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="102,6,23,44" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="magnesium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 88 -->
+  <Item name="Capsule: Lithium" identifier="re_lithium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed. Does not explode." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="lithium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="4" />
+      <RequiredItem identifier="riftmat" mincondition="0.4" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="0,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="3,7,24,44" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="lithium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 11 -->
+  <Item name="Capsule: Chlorine" identifier="re_chlorine" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="chlorine" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" mincondition="0.55" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="0,256,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="55,7,22,44" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="chlorine" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 125 -->
+  <Item name="Capsule: Thorium" identifier="re_thorium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="thorium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="6" />
+      <RequiredItem identifier="riftmat" mincondition="0.25" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="960,192,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="54,131,46,39" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="thorium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 30 -->
+  <Item name="Capsule: Organic Fiber" identifier="re_organicfiber" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="organicfiber" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="64,768,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="178,8,42,45" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="organicfiber" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 20 -->
+  <Item name="Capsule: Rubber" identifier="re_rubber" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="rubber" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="0,770,64,64" />
+    <Sprite texture="%ModDir%/minerals.png" sourcerect="133,221,35,32" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="rubber" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 75 -->
+  <Item name="Capsule: Depleted Fuel" identifier="re_depletedfuel" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="depletedfuel" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+      <RequiredItem identifier="riftmat" mincondition="0.75" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="384,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/tools.png" depth="0.55" sourcerect="452,1,19,68" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="depletedfuel" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 150 -->
+  <Item name="Capsule: Nitrogylcerin" identifier="re_nitroglycerin" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="nitroglycerin" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="7" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="640,768,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/weapons_new.png" sourcerect="110,414,31,62" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="nitroglycerin" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 250 -->
+  <Item name="Mineral Capsule: Titanite" identifier="re_titanite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="titanite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="12" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="396,635,118,123" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="titanite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 150 -->
+  <Item name="Mineral Capsule: Brockite" identifier="re_brockite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="brockite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="7" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="521,767,109,117" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="brockite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 300 -->
+  <Item name="Mineral Capsule: Thorianite" identifier="re_thorianite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="thorianite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="15" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="13,894,111,114" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="thorianite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Mineral Capsule: Amblygonite" identifier="re_amblygonite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="amblygonite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.45" sourcerect="11,514,119,122" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="amblygonite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Mineral Capsule: Sphalerite" identifier="re_sphalerite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="sphalerite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="12,761,121,126" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="sphalerite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 30 -->
+  <Item name="Mineral Capsule: Pyromorphite" identifier="re_pyromorphite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="pyromorphite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="775,768,119,123" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="pyromorphite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Mineral Capsule: Quartz" identifier="re_quartz" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="quartz" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="255,760,128,128" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="quartz" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 50 -->
+  <Item name="Mineral Capsule: Diamond" identifier="re_diamond" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="diamond" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="389,510,123,122" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="diamond" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Mineral Capsule: Hydroxyapatite" identifier="re_hydroxyapatite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="hydroxyapatite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="141,635,106,119" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="hydroxyapatite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Mineral Capsule: Uranium Ore" identifier="re_uraniumore" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="uraniumore" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="911,773,107,116" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="uraniumore" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Mineral Capsule: Ilmenite" identifier="re_ilmenite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="ilmenite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="273,634,113,121" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="ilmenite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 50 -->
+  <Item name="Mineral Capsule: Stannite" identifier="re_stannite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="stannite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="399,896,103,115" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="stannite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 60 -->
+  <Item name="Mineral Capsule: Chalcopyrite" identifier="re_chalcopyrite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="chalcopyrite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="785,639,101,113" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="chalcopyrite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Mineral Capsule: Esperite" identifier="re_esperite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="esperite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="136,765,112,119" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="esperite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 70 -->
+  <Item name="Mineral Capsule: Galena" identifier="re_galena" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="galena" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="135,889,114,123" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="galena" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Mineral Capsule: Triphylite" identifier="re_triphylite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="triphylite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="123,505,120,127" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="triphylite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Mineral Capsule: Langbeinite" identifier="re_langbeinite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="langbeinite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="786,503,115,119" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="langbeinite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 130 -->
+  <Item name="Mineral Capsule: Chamosite" identifier="re_chamosite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="chamosite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="6" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="652,642,120,121" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="chamosite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 25 -->
+  <Item name="Mineral Capsule: Iron Ore" identifier="re_ironore" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="ironore" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.25" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="520,637,128,120" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="ironore" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 50 -->
+  <Item name="Mineral Capsule: Polyhalite" identifier="re_polyhalite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="polyhalite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="909,507,105,120" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="polyhalite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 25 -->
+  <Item name="Mineral Capsule: Graphite" identifier="re_graphite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="graphite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.25" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="258,509,126,121" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="graphite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 70 -->
+  <Item name="Mineral Capsule: Sylvite" identifier="re_sylvite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="sylvite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="644,511,120,119" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="sylvite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 25 -->
+  <Item name="Mineral Capsule: Lazulite" identifier="re_lazulite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="lazulite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.25" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="647,769,119,123" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="lazulite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 60 -->
+  <Item name="Mineral Capsule: Bornite" identifier="re_bornite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="bornite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="3" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="906,637,108,115" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="bornite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 40 -->
+  <Item name="Mineral Capsule: Cassiterite" identifier="re_cassiterite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="cassiterite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="265,890,116,121" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="cassiterite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 80 -->
+  <Item name="Mineral Capsule: Cryolite" identifier="re_cryolite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="cryolite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="4" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="517,513,120,119" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="cryolite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 80 -->
+  <Item name="Mineral Capsule: Aragonite" identifier="re_aragonite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="aragonite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="4" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="6,638,125,120" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="aragonite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 40 -->
+  <Item name="Mineral Capsule: Chrysoprase" identifier="re_chrysoprase" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="chrysoprase" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="2" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.3" sourcerect="390,769,120,120" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="chrysoprase" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 100 -->
+  <Item name="Material Capsule: Fiber Plant" identifier="re_fiberplant" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="fiberplant" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.2" sourcerect="545,386,54,78" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="fiberplant" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 150 -->
+  <Item name="Material Capsule: Elastin Plant" identifier="re_elastinplant" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="elastinplant" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="7" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.2" sourcerect="604,260,28,54" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="elastinplant" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 150 -->
+  <Item name="Material Capsule: Aquatic Poppy" identifier="re_aquaticpoppy" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="aquaticpoppy" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="7" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.2" sourcerect="541,332,53,53" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="aquaticpoppy" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Material Capsule: Sea Yeast Shroom" identifier="re_yeastshroom" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="yeastshroom" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.2" sourcerect="603,321,42,63" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="yeastshroom" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 150 -->
+  <Item name="Material Capsule: Slime Bacteria" identifier="re_slimebacteria" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="slimebacteria" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="7" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/Minerals.png" depth="0.2" sourcerect="601,393,61,47" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="slimebacteria" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 30 -->
+  <Item name="Seed Capsule: Pomegrenade" identifier="re_creepingorangevineseed" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="creepingorangevineseed" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/GrowablePlants_Temp.png" depth="0.2" sourcerect="830,636,31,30" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="creepingorangevineseed" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 30 -->
+  <Item name="Seed Capsule: Tobacco Vine" identifier="re_tobaccovineseed" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="tobaccovineseed" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/GrowablePlants_Temp.png" depth="0.2" sourcerect="863,636,30,31" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="tobaccovineseed" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 30 -->
+  <Item name="Seed Capsule: Salt Vine" identifier="re_saltvineseed" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="saltvineseed" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/GrowablePlants_Temp.png" depth="0.2" sourcerect="829,666,33,35" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="saltvineseed" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 30 -->
+  <Item name="Seed Capsule: Raptor Bane" identifier="re_raptorbaneseed" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="raptorbaneseed" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/GrowablePlants_Temp.png" depth="0.2" sourcerect="863,668,30,33" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="raptorbaneseed" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 190 -->
+  <Item name="Alien Capsule: Paralyxis" identifier="re_paralyxis" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="paralyxis" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="9" />
+      <RequiredItem identifier="riftmat" mincondition="0.5" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="960,832,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/AlienMaterials.png" sourcerect="266,430,45,76" depth="0.55" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="paralyxis" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Alien Capsule: Incendium" identifier="re_incendium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="incendium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="260,835,53,61" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/AlienMaterials.png" sourcerect="105,439,52,61" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="incendium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Alien Capsule: Fulgurium" identifier="re_fulgurium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="fulgurium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="328,833,51,63" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/AlienMaterials.png" sourcerect="186,351,59,67" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="fulgurium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Alien Capsule: Physicorium" identifier="re_physicorium" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="physicorium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="70,835,52,59" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/AlienMaterials.png" sourcerect="97,349,58,71" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="physicorium" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Alien Capsule: Dementonite" identifier="re_dementonite" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="dementonite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="0,830,64,64" />
+    <Sprite texture="%ModDir%/AlienMaterials.png" sourcerect="15,356,60,54" depth="0.55" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="dementonite" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Alien Capsule: Oxygenite" identifier="re_oxygeniteshard" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed. Does not explode." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="oxygeniteshard" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas.png" sourcerect="200,835,50,56" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/AlienMaterials.png" depth="0.7" sourcerect="18,436,58,69" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="oxygeniteshard" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Price: 200 -->
+  <Item name="Alien Capsule: Sulphurite" identifier="re_sulphuriteshard" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="oxygeniteshard" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
+      <RequiredItem identifier="riftmat" amount="10" />
+    </Fabricate>
+    <Sprite texture="%ModDir%/AlienMaterials.png" depth="0.7" sourcerect="178,437,60,73" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="sulphuriteshard" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Not price-adjusted for balance reasons -->
+  <Item name="Book Capsule: Handy Seaman" identifier="re_skillbookhandyseaman" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="skillbookhandyseaman" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="5">
+      <RequiredItem identifier="riftmat" amount="32" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/TalentGear.png" sourcerect="42,368,40,56" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/TalentGear.png" sourcerect="36,74,32,39" devpth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="skillbookhandyseaman" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Not price-adjusted for balance reasons -->
+  <Item name="Book Capsule: Art of Submarine Warfare" identifier="re_skillbooksubmarinewarfare" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="skillbooksubmarinewarfare" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="5">
+      <RequiredItem identifier="riftmat" amount="32" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/TalentGear.png" sourcerect="83,368,39,56" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/TalentGear.png" sourcerect="71,74,34,39" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="skillbooksubmarinewarfare" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+  <!-- Not price-adjusted for balance reasons -->
+  <Item name="Book Capsule: Europan Medicine" identifier="re_skillbookeuropanmedicine" category="Material" subcategory="Rift Engine" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem" canbepicked="true" description="Can be opened in hand or deconstructed." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1">
+      <Item identifier="skillbookeuropanmedicine" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="riftfabricator" requiredtime="5">
+      <RequiredItem identifier="riftmat" amount="32" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/TalentGear.png" sourcerect="1,368,40,56" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/TalentGear.png" sourcerect="2,75,32,38" depth="0.6" origin="0.5,0.5" />
+    <Body width="45" height="30" density="20" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <SpawnItem identifier="skillbookeuropanmedicine" spawnposition="SameInventory" />
+        <Remove />
+      </StatusEffect>
+      <!-- Button to open in inventory -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" hudpriority="20" depth="9">
+        <GuiFrame relativesize="0.15,0.15" anchor="BottomCenter" absoluteoffset="20,20" style="ItemUI" />
+        <Button text="Open Capsule">
+          <StatusEffect type="OnUse" targettype="This" condition="0" setvalue="true" />
+        </Button>
+      </CustomInterface>
+    </Holdable>
+  </Item>
+</Items>

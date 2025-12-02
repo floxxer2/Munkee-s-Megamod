@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ShroomjellySwimFast UseSineMovement="False" Flip="False" FlipCooldown="1" FlipDelay="0.5" Mirror="False" MirrorLerp="False" WaveAmplitude="5" WaveLength="10" RotateTowardsMovement="False" TailTorque="1" TailTorqueMultiplier="10" FootAngles="" TailAngle="180" SteerTorque="250" LegTorque="25" MovementSpeed="4" CycleSpeed="0.75" HeadAngle="25" TorsoAngle="250" HeadTorque="250" TorsoTorque="250" FootTorque="25" AnimationType="SwimFast" ArmIKStrength="1" HandIKStrength="1" />

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="Rift Engine" identifier="riftengine" tags="riftmatfabricator,donttakeitems,dontsellitems" category="Machine" subcategory="Rift Engine" linkable="true" allowedlinks="deconstructor,locker" description="Creates rift material. Use a Rift Material Transfomer to turn the material into usable resources." scale="0.5" damagedbyexplosions="false" explosiondamagemultiplier="0.0">
+    <Upgrade gameversion="0.10.4.0">
+      <Repairable Msg="ItemMsgRepairWrench" />
+    </Upgrade>
+    <Sprite name="R.E. Exterior" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" sourcerect="265,164,329,269" depth="0.790" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Glass" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.791" offset="0.0,0.0" sourcerect="614,236,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Ball of Light" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.794" offset="0.0,0.0" sourcerect="614,101,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Background" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.795" offset="0.0,0.0" sourcerect="614,383,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Spinny Thing" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.793" offset="0.0,0.0" sourcerect="14,179,238,239" origin="0.49845463,0.49841738" rotationspeed="715">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Fabricator" />
+      <AnimationConditional IsActive="True" targetitemcomponent="Fabricator" />
+      <IsActiveConditional Condition="gt 0.0" />
+    </DecorativeSprite>
+    <Fabricator canbeselected="true" powerconsumption="2500.0" msg="ItemMsgInteractSelect">
+      <GuiFrame relativesize="0.4,0.45" style="ItemUI" anchor="Center" />
+      <sound file="%ModDir%/Workshop/Rift Engine/rift-engine.ogg" type="OnActive" range="1000.0" volumeproperty="RelativeVoltage" volume="0.15" loop="true" />
+      <poweronsound file="Content/Items/PowerOnHeavy1.ogg" range="1200" loop="false" />
+    </Fabricator>
+    <ConnectionPanel selectkey="Action" canbeselected="true" hudpriority="10" msg="ItemMsgRewireScrewdriver">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredSkill identifier="electrical" level="55" />
+      <StatusEffect type="OnFailure" targettype="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        <Affliction identifier="stun" strength="4" />
+        <Affliction identifier="burn" strength="25" />
+      </StatusEffect>
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="power_in" displayname="connection.powerin" />
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+    <!-- placeable aspect copied from Barocraftables -->
+    <Body width="200" height="200" density="40" />
+    <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="10.0" aimpos="35,-10" handle1="0,0" attachable="true" attachedbydefault="true" aimable="true">
+      <requireditem identifier="wrench" type="Equipped" />
+      <StatusEffect type="OnActive" targettype="Character" SpeedMultiplier="0.75" setvalue="true" />
+    </Holdable>
+    <Repairable selectkey="Action" header="electircalrepairsheader" deteriorationspeed="0.0" mindeteriorationdelay="60" maxdeteriorationdelay="120" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.1,0.27" style="ItemUI" />
+      <RequiredSkill identifier="electrical" level="55" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+      <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+      <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+    </Repairable>
+    <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+    <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+  </Item>
+  <Item name="Rift Material Transformer" identifier="riftengine2" tags="riftfabricator,donttakeitems,dontsellitems" category="Machine" subcategory="Rift Engine" linkable="true" allowedlinks="deconstructor,locker" description="Turns rift material into any resource you can imagine! Utilizes the energy released when converting rift material into resources to power itself." scale="0.5" damagedbyexplosions="false" explosiondamagemultiplier="0.0">
+    <Upgrade gameversion="0.10.4.0">
+      <Repairable Msg="ItemMsgRepairWrench" />
+    </Upgrade>
+    <Sprite name="R.E. Small Exterior" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" sourcerect="812,23,247,267" depth="0.790" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Glass2" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.792" offset="0.0,0.0" sourcerect="614,236,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Ball of Light2" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.794" offset="0.0,0.0" sourcerect="614,101,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Background2" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.795" offset="0.0,0.0" sourcerect="614,383,169,125" origin="0.5,0.5" />
+    <DecorativeSprite name="R.E. Small Spinny Thing" texture="%ModDir%/Workshop/Rift Engine/rift-engine.png" depth="0.793" offset="0.0,0.0" sourcerect="812,315,247,267" origin="0.49845463,0.49841738" rotationspeed="715">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Fabricator" />
+      <AnimationConditional IsActive="True" targetitemcomponent="Fabricator" />
+      <IsActiveConditional Condition="gt 0.0" />
+    </DecorativeSprite>
+    <Fabricator canbeselected="true" powerconsumption="0.0" msg="ItemMsgInteractSelect">
+      <GuiFrame relativesize="0.4,0.45" style="ItemUI" anchor="Center" />
+      <!--<sound file="%ModDir%/Workshop/Rift Engine/Rift Engine/rift-engine.ogg" type="OnActive" range="1000.0" volumeproperty="RelativeVoltage" volume="0.15" loop="true" />-->
+      <poweronsound file="Content/Items/PowerOnHeavy1.ogg" range="1200" loop="false" />
+      <StatusEffect type="InWater" targetitemcomponent="Fabricator" targettype="This" IsActive="False" />
+    </Fabricator>
+    <ConnectionPanel selectkey="Action" canbeselected="true" hudpriority="10" msg="ItemMsgRewireScrewdriver">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredSkill identifier="electrical" level="40" />
+      <StatusEffect type="OnFailure" targettype="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        <Affliction identifier="stun" strength="4" />
+        <Affliction identifier="burn" strength="25" />
+      </StatusEffect>
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="power_in" displayname="connection.powerin" />
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+    <!-- placeable aspect copied from Barocraftables -->
+    <Body width="200" height="200" density="40" />
+    <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="5.0" aimpos="35,-10" handle1="0,0" attachable="true" attachedbydefault="true" aimable="true">
+      <requireditem identifier="wrench" type="Equipped" />
+      <StatusEffect type="OnActive" targettype="Character" SpeedMultiplier="0.75" setvalue="true" />
+    </Holdable>
+    <Repairable selectkey="Action" header="electircalrepairsheader" deteriorationspeed="0.0" mindeteriorationdelay="60" maxdeteriorationdelay="120" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.1,0.27" style="ItemUI" />
+      <RequiredSkill identifier="electrical" level="55" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+      <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+      <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+    </Repairable>
+    <ItemContainer capacity="5" canbeselected="true" hideitems="true" slotsperrow="5" uilabel="" allowuioverlap="true" />
+    <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
+  </Item>
+  <Item name="Rift Material" identifier="riftmat" category="Material" subcategory="Rift Engine" maxstacksize="32" Tags="smallitem" canbepicked="true" description="A crystal used for advanced applications, usually transmutation into matter." cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Deconstruct time="1" />
+    <Fabricate suitablefabricators="riftmatfabricator" requiredtime="20" />
+    <InventoryIcon texture="%ModDir%/Workshop/Rift Engine/Minerals.png" sourcerect="389,510,123,122" />
+    <Sprite texture="%ModDir%/Workshop/Rift Engine/Minerals.png" depth="0.55" sourcerect="389,510,123,122" origin="0.5,0.5" />
+    <Body radius="40" width="20" density="25" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+  <!-- Price: 80 -->
+  <!-- Price: 60 -->
+  <!-- Price: 40 -->
+  <!-- Price: 40 -->
+  <!-- Price: 60 -->
+  <!-- Price: 100 -->
+  <!-- Price: 40 -->
+  <!-- Price: 40 -->
+  <!-- Price: 310 -->
+  <!-- Price: 10 -->
+  <!-- Price: 8 -->
+  <!-- Price: 11 -->
+  <!-- Price: 18 -->
+  <!-- Price: 25 -->
+  <!-- Price: 22 -->
+  <!-- Price: 26 -->
+  <!-- Price: 33 -->
+  <!-- Price: 17 -->
+  <!-- Price: 31 -->
+  <!-- Price: 42 -->
+  <!-- Price: 50 -->
+  <!-- Price: 10 -->
+  <!-- Price: 65 -->
+  <!-- Price: 65 -->
+  <!-- Price: 88 -->
+  <!-- Price: 11 -->
+  <!-- Price: 125 -->
+  <!-- Price: 30 -->
+  <!-- Price: 20 -->
+  <!-- Price: 75 -->
+  <!-- Price: 150 -->
+  <!-- Price: 250 -->
+  <!-- Price: 150 -->
+  <!-- Price: 300 -->
+  <!-- Price: 200 -->
+  <!-- Price: 100 -->
+  <!-- Price: 30 -->
+  <!-- Price: 100 -->
+  <!-- Price: 50 -->
+  <!-- Price: 100 -->
+  <!-- Price: 200 -->
+  <!-- Price: 100 -->
+  <!-- Price: 50 -->
+  <!-- Price: 60 -->
+  <!-- Price: 100 -->
+  <!-- Price: 70 -->
+  <!-- Price: 100 -->
+  <!-- Price: 200 -->
+  <!-- Price: 130 -->
+  <!-- Price: 25 -->
+  <!-- Price: 50 -->
+  <!-- Price: 25 -->
+  <!-- Price: 70 -->
+  <!-- Price: 25 -->
+  <!-- Price: 60 -->
+  <!-- Price: 40 -->
+  <!-- Price: 80 -->
+  <!-- Price: 80 -->
+  <!-- Price: 40 -->
+  <!-- Price: 100 -->
+  <!-- Price: 150 -->
+  <!-- Price: 150 -->
+  <!-- Price: 200 -->
+  <!-- Price: 150 -->
+  <!-- Price: 30 -->
+  <!-- Price: 30 -->
+  <!-- Price: 30 -->
+  <!-- Price: 30 -->
+  <!-- Price: 190 -->
+  <!-- Price: 200 -->
+  <!-- Price: 200 -->
+  <!-- Price: 200 -->
+  <!-- Price: 200 -->
+  <!-- Price: 200 -->
+  <!-- Price: 200 -->
+  <!-- Not price-adjusted for balance reasons -->
+  <!-- Not price-adjusted for balance reasons -->
+  <!-- Not price-adjusted for balance reasons -->
+</Items>

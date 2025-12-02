@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="Diving Helmet (Anechoic)" identifier="mm_anechoicdivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+    <Price baseprice="150">
+      <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="2" />
+      <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="4" />
+      <Price storeidentifier="merchantresearch" minavailable="3" />
+      <Price storeidentifier="merchantmilitary" minavailable="3" />
+      <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="5" />
+    </Price>
+    <PreferredContainer primary="divingsuitcontainer" spawnprobability="1" campaignonly="true" maxleveldifficulty="35" />
+    <PreferredContainer primary="divingsuitcontainer" spawnprobability="1" notcampaign="true" />
+    <PreferredContainer primary="piratedivingsuitcontainer" spawnprobability="1" maxleveldifficulty="35" />
+    <PreferredContainer primary="wreckdivingsuitcontainer" spawnprobability="0.1" maxleveldifficulty="35" />
+    <Deconstruct time="30" />
+    <Fabricate suitablefabricators="fabricator" requiredtime="15">
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="rubber" />
+    </Fabricate>
+    <sprite name="Diving Suit Helmet Wearable" texture="%ModDir%/Workshop/Real Sonar/Icons/headgear.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" hideotherwearables="true" sourcerect="0,0,94,95" origin="0.5,0.5" />
+    <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+    <Body radius="45" width="34" density="20" />
+    <Wearable>
+      <sprite name="Diving Suit Helmet Wearable" texture="%ModDir%/Workshop/Real Sonar/Icons/headgear.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" hideotherwearables="true" sourcerect="0,0,94,95" origin="0.5,0.5">
+        <LightComponent range="700.0" lightcolor="88,138,92,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+          <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+          <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+        </LightComponent>
+      </sprite>
+      <damagemodifier armorsector="0.0,360.0" afflictiontypes="activesonar" damagemultiplier="0.6" damagesound="LimbArmor" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="acoustictrauma" damagemultiplier="0.15" damagesound="LimbArmor" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="vibrationdamage" damagemultiplier="0.5" damagesound="LimbArmor" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,lacerations,bleeding" damagemultiplier="0.75" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotwound,bitewounds" damagemultiplier="0.90" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.90" damagesound="" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" damagemultiplier="0.5" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+    </Wearable>
+  </Item>
+  <Item name="Diving Helmet (Renegade)" identifier="mm_renegadedivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+    <Price baseprice="300" soldeverywhere="false" />
+    <PreferredContainer primary="divingsuitcontainer" />
+    <Deconstruct time="10" />
+    <!-- No fabrication recipe, it's separatist -->
+    <!--<Fabricate suitablefabricators="fabricator" requiredtime="15">
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem identifier="ballisticfiber" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="plastic" />
+    </Fabricate>-->
+    <sprite name="Renegade Diving Suit Helmet Wearable" texture="%ModDir%/Workshop/Enhanced Armaments/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="true" hideotherwearables="true" sourcerect="-3,204,103,103" origin="0.5,0.5" />
+    <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+    <Wearable>
+      <sprite name="Renegade Diving Suit Helmet Wearable" texture="%ModDir%/Workshop/Enhanced Armaments/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="true" hideotherwearables="true" sourcerect="-3,204,103,103" origin="0.5,0.5">
+        <LightComponent range="700.0" lightcolor="88,138,92,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+          <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+          <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+        </LightComponent>
+      </sprite>
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,bleeding" damagemultiplier="0.75" damagesound="armourmedimpact" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotwound" damagemultiplier="0.6" damagesound="armourmedimpact" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="explosiondamage" damagemultiplier="0.9" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="bitewounds,lacerations" damagemultiplier="0.85" damagesound="" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness,burn" damagemultiplier="0.8" damagesound="armourmedimpact" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" damagemultiplier="0.5" probabilitymultiplier="0.5" damagesound="armourmedimpact" />
+    </Wearable>
+  </Item>
+  <Item name="Diving Helmet (Interceptor)" identifier="mm_interceptordivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+    <Price baseprice="300" soldeverywhere="false" />
+    <PreferredContainer primary="divingsuitcontainer" />
+    <Deconstruct time="30">
+      <Item identifier="scp_durasteel" />
+      <Item identifier="dementonite" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponfabricator" requiredtime="45">
+      <RequiredSkill identifier="mechanical" level="45" />
+      <RequiredSkill identifier="weapons" level="40" />
+      <RequiredItem identifier="scp_prototypeusb" mincondition="0.5" />
+      <RequiredItem identifier="scp_durasteel" mincondition="0.5" />
+      <RequiredItem identifier="dementonite" />
+    </Fabricate>
+    <sprite name="intercepsuit Suit Helmet Wearable" texture="%ModDir%/Workshop/Enhanced Armaments/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.67" hidelimb="false" alphaclipotherwearables="true" sourcerect="686,356,103,103" origin="0.50110054,0.5257158" />
+    <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+    <Wearable>
+      <sprite name="intercepsuit Suit Helmet Wearable" texture="%ModDir%/Workshop/Enhanced Armaments/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.67" hidelimb="false" alphaclipotherwearables="true" sourcerect="686,356,103,103" origin="0.50110054,0.5257158">
+        <LightComponent range="700.0" lightcolor="88,138,92,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+          <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+          <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+        </LightComponent>
+      </sprite>
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="explosiondamage" damagemultiplier="0.75" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.6" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.5" damagesound="" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.6" damagesound="LimbArmor" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+    </Wearable>
+  </Item>
+  <Item name="Diving Helmet (Combat Hardsuit)" identifier="mm_combathardsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+    <Price baseprice="300" soldeverywhere="false" />
+    <PreferredContainer primary="divingsuitcontainer" />
+    <Deconstruct time="30">
+      <Item identifier="scp_durasteel" outcondition="0.5" />
+      <Item identifier="titaniumaluminiumalloy" outcondition="0.5" />
+      <Item identifier="rubber" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredSkill identifier="weapons" level="30" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="scp_durasteel" />
+      <RequiredItem identifier="rubber" amount="2" />
+    </Fabricate>
+    <sprite name="combathardsuithelmet" texture="%ModDir%/Workshop/Enhanced Armaments/jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="true" hideotherwearables="true" sourcerect="111,203,103,103" origin="0.5,0.5" />
+    <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+    <Wearable>
+      <sprite name="combathardsuithelmet" texture="%ModDir%/Workshop/Enhanced Armaments/jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="true" hideotherwearables="true" sourcerect="111,203,103,103" origin="0.5,0.5">
+        <LightComponent range="700.0" lightcolor="88,138,92,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+          <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+          <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+        </LightComponent>
+      </sprite>
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="lacerations,blunttrauma" damagemultiplier="0.1" damagesound="armourheavyimpact" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotwound,bleeding,explosiondamage,burn" damagemultiplier="0.25" damagesound="armourheavyimpact" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness,bitewounds,stun" damagemultiplier="0.5" damagesound="armourheavyimpact" />
+    </Wearable>
+  </Item>
+  <Item name="Diving Helmet (Hazmat)" identifier="mm_hazmatdivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+    <Price baseprice="300" soldeverywhere="false" />
+    <PreferredContainer primary="divingsuitcontainer" />
+    <Deconstruct time="9">
+      <Item identifier="rubber" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="fabricator" requiredtime="20">
+      <RequiredSkill identifier="mechanical" level="20" />
+      <Item identifier="titaniumaluminiumalloy" />
+      <Item identifier="rubber" />
+    </Fabricate>
+    <sprite name="Engineer's Hazmat Head" texture="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Jobgear/Engineer/HazmatSuit.png" limb="Head" hidelimb="true" hidewearablesoftype="moustache,beard,hair" inheritlimbdepth="true" sourcerect="414,160,98,96" scale="0.3" origin="0.55,0.6" />
+    <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+    <Wearable>
+      <sprite name="Engineer's Hazmat Head" texture="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Jobgear/Engineer/HazmatSuit.png" limb="Head" hidelimb="true" hidewearablesoftype="moustache,beard,hair" inheritlimbdepth="true" sourcerect="414,160,98,96" scale="0.3" origin="0.55,0.6">
+        <LightComponent range="700.0" lightcolor="88,138,92,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+          <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+          <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+            <RequiredItem Items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+        </LightComponent>
+      </sprite>
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="overheating" damagemultiplier="0.0" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="contaminated" damagemultiplier="0.5" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.5" />
+      <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.3" />
+      <damagemodifier armorsector="0.0,360.0" afflictiontypes="paralysis" damagemultiplier="0.3" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="cyanidepoisoning" damagemultiplier="0.5" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="deliriuminepoisoning" damagemultiplier="0.5" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="morbusinepoisoning" damagemultiplier="0.5" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="sufforinpoisoning" damagemultiplier="0.5" />
+      <damagemodifier armorsector="0.0,360.0" afflictiontypes="damage" damagemultiplier="0.7" />
+    </Wearable>
+  </Item>
+</Items>

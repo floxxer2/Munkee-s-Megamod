@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <Affliction name="" identifier="scp_presolatexinfection" description="" type="poison" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Torso" karmachangeonapplied="-100" maxstrength="200">
+    <Description textidentifier="descscppresomin" minstrength="0" maxstrength="50" />
+    <Description textidentifier="descscppresomod" minstrength="50" maxstrength="100" />
+    <Description textidentifier="descscppresosev" minstrength="100" maxstrength="175" />
+    <Description textidentifier="descscppresomax" minstrength="175" maxstrength="200" />
+    <Effect minstrength="0" maxstrength="25" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="0.5" minscreendistort="0.0" maxscreendistort="0.25" minscreenblur="0.0" maxscreenblur="0.2" minchromaticaberration="0.0" maxchromaticaberration="0.4" minfacetint="0,0,0,0" maxfacetint="0,0,0,100" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.1"></Effect>
+    <Effect minstrength="25" maxstrength="100" minvitalitydecrease="0" maxvitalitydecrease="15" strengthchange="2" minscreendistort="0.25" maxscreendistort="1" minscreenblur="0.0" maxscreenblur="0.2" minchromaticaberration="0.4" maxchromaticaberration="1.6" minfacetint="0,0,0,100" maxfacetint="0,0,0,200" minbodytint="0,0,0,100" maxbodytint="0,0,0,200" minafflictionoverlayalphamultiplier="0.1" maxafflictionoverlayalphamultiplier="0.6">
+      <StatusEffect target="Character" SpeedMultiplier="0.8" setvalue="true" />
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="organdamage" amount="10" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="torso">
+        <Conditional scp_presolatexinfection="gte 25" />
+        <ParticleEmitter particle="blackblood" particlespersecond="2" scalemin="0.3" scalemax="0.5" colormultiplier="255,255,255,255" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="100" maxstrength="150" minvitalitydecrease="15" maxvitalitydecrease="50" strengthchange="2" minscreendistort="1" maxscreendistort="2" minscreenblur="0.2" maxscreenblur="0.4" minchromaticaberration="1.6" maxchromaticaberration="2.5" minfacetint="0,0,0,200" maxfacetint="0,0,0,255" minbodytint="0,0,0,200" maxbodytint="0,0,0,255" minafflictionoverlayalphamultiplier="0.6" maxafflictionoverlayalphamultiplier="0.8">
+      <StatusEffect target="Character" SpeedMultiplier="0.6" setvalue="true" />
+      <StatusEffect target="Character" interval="0.75">
+        <Affliction identifier="organdamage" amount="20" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="torso">
+        <Conditional scp_presolatexinfection="gte 100" />
+        <ParticleEmitter particle="blackblood" particlespersecond="6" scalemin="0.6" scalemax="1.1" colormultiplier="255,255,255,255" />
+        <ParticleEmitter particle="fleshsmoke" particlespersecond="1" scalemin="1" scalemax="2" colormultiplier="25,25,25,255" />
+      </StatusEffect>
+      <StatusEffect type="OnDeath" target="Character">
+        <SpawnItem identifiers="scp_presowaste" spawnposition="This" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="150" maxstrength="200" minvitalitydecrease="50" maxvitalitydecrease="200" strengthchange="3" minscreendistort="2" maxscreendistort="4" minscreenblur="0.4" maxscreenblur="3" minchromaticaberration="1.6" maxchromaticaberration="2.5" minfacetint="0,0,0,255" maxfacetint="0,0,0,255" minbodytint="0,0,0,255" maxbodytint="0,0,0,255" minafflictionoverlayalphamultiplier="0.8" maxafflictionoverlayalphamultiplier="1">
+      <StatusEffect target="Character" SpeedMultiplier="0.4" setvalue="true" />
+      <StatusEffect target="Character" interval="0.5">
+        <Affliction identifier="organdamage" amount="40" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="torso">
+        <Conditional scp_presolatexinfection="gte 150" />
+        <ParticleEmitter particle="blackblood" particlespersecond="12" scalemin="1.1" scalemax="1.6" colormultiplier="255,255,255,255" />
+        <ParticleEmitter particle="fleshsmoke" particlespersecond="1" scalemin="2" scalemax="3" colormultiplier="25,25,25,255" />
+      </StatusEffect>
+      <StatusEffect type="OnDeath" target="Character">
+        <SpawnItem identifiers="scp_presowaste" spawnposition="This" />
+      </StatusEffect>
+    </Effect>
+    <PeriodicEffect mininterval="1" maxinterval="3">
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_presolatexinfection="gte 65" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/latexspread1.ogg" volume="0.75" selectionmode="Random" />
+        <sound file="%ModDir%/Medical/Sounds/latexspread2.ogg" volume="0.75" />
+        <sound file="%ModDir%/Medical/Sounds/latexspread3.ogg" volume="0.75" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="2,0,128,128" color="106,106,106,255" origin="-3.6302634E-08,0" />
+    <AfflictionOverlay texture="%ModDir%/Afflictions/presolatexoverlay.png" sourcerect="0,0,1024,680" color="255,255,255,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_devilpoisoning" description="" type="poison" damageoverlayalpha="1" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="0" showiconthreshold="10" karmachangeonapplied="-100" maxstrength="200">
+    <Description textidentifier="descscpdevilmin" minstrength="0" maxstrength="25" />
+    <Description textidentifier="descscpdevilmod" minstrength="25" maxstrength="75" />
+    <Description textidentifier="descscpdevilsev" minstrength="75" maxstrength="175" />
+    <Description textidentifier="descscpdevilmax" minstrength="175" maxstrength="200" />
+    <Effect minstrength="0" maxstrength="20" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="0.5" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0.2" minfacetint="0,0,0,0" maxfacetint="10,0,0,0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.1" screeneffectfluctuationfrequency="1">
+      <StatusEffect target="Character">
+        <Affliction identifier="organdamage" amount="0.01" setvalue="true" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="20" maxstrength="100" minvitalitydecrease="0" maxvitalitydecrease="20" strengthchange="2" minscreenblur="0.0" maxscreenblur="0.4" minchromaticaberration="0" maxchromaticaberration="3" minfacetint="10,0,0,0" maxfacetint="50,0,0,100" minbodytint="0,0,0,0" maxbodytint="50,0,0,100" minafflictionoverlayalphamultiplier="0.1" maxafflictionoverlayalphamultiplier="0.3" screeneffectfluctuationfrequency="1.25">
+      <StatusEffect target="Character" SpeedMultiplier="0.9" setvalue="true" />
+      <StatusEffect target="Character">
+        <Affliction identifier="bloodloss" amount="0.1" setvalue="true" />
+        <Affliction identifier="scp_vomitingblood" amount="3" setvalue="true" />
+        <Affliction identifier="organdamage" amount="0.25" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_devilpoisoning="gte 35" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/heartbeat.ogg" volume="1" dontmuffle="True" loop="true" />
+      </StatusEffect>
+      <StatusEffect target="Character" interval="0.6" targetlimb="head">
+        <ParticleEmitter particle="blooddrop" copyentityangle="true" particleamount="3" scalemin="0.2" scalemax="0.5" colormultiplier="255,255,255,255" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimb="torso">
+        <Conditional scp_devilpoisoning="gte 35" />
+        <ParticleEmitter particle="blooddrop" copyentityangle="true" velocitymin="15" velocitymax="25" particlespersecond="3" scalemin="0.75" scalemax="1.35" colormultiplier="255,255,255,255" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="100" maxstrength="150" minvitalitydecrease="20" maxvitalitydecrease="60" strengthchange="2" minscreenblur="0.4" maxscreenblur="0.6" minchromaticaberration="3" maxchromaticaberration="4" minfacetint="50,0,0,100" maxfacetint="100,0,0,200" minbodytint="50,0,0,100" maxbodytint="100,0,0,200" minafflictionoverlayalphamultiplier="0.3" maxafflictionoverlayalphamultiplier="0.6" screeneffectfluctuationfrequency="1.75">
+      <StatusEffect target="Character" SpeedMultiplier="0.8" setvalue="true" />
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="bloodloss" amount="3" />
+        <Affliction identifier="scp_vomitingblood" amount="50" />
+        <Affliction identifier="organdamage" amount="0.5" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_devilpoisoning="gte 100" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/heartbeat.ogg" volume="1.5" dontmuffle="True" loop="true" frequencymultiplier="1.1" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="torso">
+        <Conditional scp_devilpoisoning="gte 100" />
+        <ParticleEmitter particle="blooddrop" copyentityangle="true" velocitymin="15" velocitymax="25" particlespersecond="6" scalemin="1.5" scalemax="2.3" colormultiplier="255,255,255,255" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="150" maxstrength="200" minvitalitydecrease="60" maxvitalitydecrease="150" strengthchange="3" minscreenblur="0.8" maxscreenblur="2" minchromaticaberration="4" maxchromaticaberration="5" minfacetint="100,0,0,150" maxfacetint="200,0,0,220" minbodytint="100,0,0,100" maxbodytint="175,0,0,220" minafflictionoverlayalphamultiplier="0.6" maxafflictionoverlayalphamultiplier="1.0" screeneffectfluctuationfrequency="2">
+      <StatusEffect target="Character" SpeedMultiplier="0.6" setvalue="true" />
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="bloodloss" amount="12" />
+        <Affliction identifier="organdamage" amount="4" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_devilpoisoning="gte 150" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/heartbeat.ogg" volume="2" dontmuffle="True" loop="true" frequencymultiplier="1.2" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="torso">
+        <Conditional scp_devilpoisoning="gte 100" />
+        <ParticleEmitter particle="blooddrop" copyentityangle="true" velocitymin="15" velocitymax="25" particlespersecond="12" scalemin="2" scalemax="3" colormultiplier="255,255,255,255" />
+      </StatusEffect>
+    </Effect>
+    <PeriodicEffect mininterval="1" maxinterval="3">
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_devilpoisoning="gte 50" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/latexspread1.ogg" volume="0.65" selectionmode="Random" />
+        <sound file="%ModDir%/Medical/Sounds/latexspread2.ogg" volume="0.65" />
+        <sound file="%ModDir%/Medical/Sounds/latexspread3.ogg" volume="0.65" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="133,1,128,128" color="106,106,106,255" origin="0,1.2100878E-09" />
+    <AfflictionOverlay texture="%ModDir%/Afflictions/devilsblood.png" sourcerect="0,0,1024,680" color="255,255,255,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_wastingdisease" description="" type="alieninfection" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="35" showiconthreshold="85" karmachangeonapplied="-100" maxstrength="300">
+    <Description textidentifier="descscpswdmin" minstrength="0" maxstrength="100" />
+    <Description textidentifier="descscpswdmod" minstrength="100" maxstrength="175" />
+    <Description textidentifier="descscpswdsev" minstrength="175" maxstrength="350" />
+    <Effect minstrength="0" maxstrength="50" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="0.1" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,0,0,0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0"></Effect>
+    <Effect minstrength="50" maxstrength="100" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="0.5" minscreenblur="0.0" maxscreenblur="0.5" minchromaticaberration="0" maxchromaticaberration="3" minfacetint="0,0,0,0" maxfacetint="0,0,0,0" minbodytint="0,0,0,0" maxbodytint="0,0,0,0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.2">
+      <StatusEffect target="Character" SpeedMultiplier="0.9" setvalue="true" />
+      <StatusEffect target="Character">
+        <Affliction identifier="psychosis" amount="0.1" setvalue="true" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_wastingdisease="gte 75" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdiseaseamb.ogg" volume="1" dontmuffle="True" loop="true" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="100" maxstrength="150" minvitalitydecrease="0" maxvitalitydecrease="15" strengthchange="1" minscreenblur="0.5" maxscreenblur="1.5" minchromaticaberration="3" maxchromaticaberration="4" minfacetint="0,0,0,0" maxfacetint="0,0,0,0" minbodytint="0,0,0,0" maxbodytint="0,0,0,0" minafflictionoverlayalphamultiplier="0.2" maxafflictionoverlayalphamultiplier="0.4" minskillmultiplier="1" maxskillmultiplier="0.65">
+      <StatusEffect target="Character" SpeedMultiplier="0.65" setvalue="true" />
+      <StatusEffect target="Character" interval="2">
+        <Affliction identifier="nausea" amount="150" />
+        <Affliction identifier="psychosis" amount="25" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_wastingdisease="gte 100" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdiseaseamb.ogg" volume="1" dontmuffle="True" loop="true" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="150" maxstrength="250" minvitalitydecrease="15" maxvitalitydecrease="100" strengthchange="1" minscreenblur="1.5" maxscreenblur="3" minchromaticaberration="4" maxchromaticaberration="5" minfacetint="0,0,0,0" maxfacetint="0,0,0,0" minbodytint="0,0,0,0" maxbodytint="0,0,0,0" minafflictionoverlayalphamultiplier="0.4" maxafflictionoverlayalphamultiplier="0.8" minskillmultiplier="0.65" maxskillmultiplier="0.45">
+      <StatusEffect target="Character" SpeedMultiplier="0.5" setvalue="true" />
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="scp_vomitingblood" amount="175" />
+        <Affliction identifier="paralysis" amount="0.35" probability="0.05" />
+        <Affliction identifier="stun" amount="2" probability="0.2" />
+        <Affliction identifier="psychosis" amount="25" />
+        <ReduceAffliction type="nausea" amount="75" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_wastingdisease="gte 150" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdiseaseamb.ogg" volume="1" dontmuffle="True" loop="true" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="250" maxstrength="350" minvitalitydecrease="100" maxvitalitydecrease="200" strengthchange="2" minscreenblur="3" maxscreenblur="5" minchromaticaberration="4" maxchromaticaberration="5" minfacetint="0,0,0,0" maxfacetint="0,0,0,0" minbodytint="0,0,0,0" maxbodytint="0,0,0,0" minafflictionoverlayalphamultiplier="0.8" maxafflictionoverlayalphamultiplier="1.0" minskillmultiplier="0.45" maxskillmultiplier="0.2">
+      <StatusEffect target="Character" SpeedMultiplier="0.3" setvalue="true" />
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="scp_vomitingblood" amount="300" />
+        <Affliction identifier="stun" amount="2" probability="0.5" />
+        <Affliction identifier="paralysis" amount="2" />
+        <Affliction identifier="psychosis" amount="50" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_wastingdisease="gte 250" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdiseaseamb.ogg" volume="1" dontmuffle="True" loop="true" />
+      </StatusEffect>
+    </Effect>
+    <PeriodicEffect mininterval="6" maxinterval="12">
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_wastingdisease="gte 15" />
+        <Conditional scp_wastingdisease="lt 50" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease1.ogg" volume="0.6" selectionmode="Random" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease7.ogg" volume="0.5" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease8.ogg" volume="0.3" dontmuffle="True" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <PeriodicEffect mininterval="6" maxinterval="12">
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_wastingdisease="gte 50" />
+        <Conditional scp_wastingdisease="lt 100" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease2.ogg" volume="0.75" selectionmode="Random" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease3.ogg" volume="0.75" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease4.ogg" volume="0.75" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease5.ogg" volume="0.35" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease6.ogg" volume="0.5" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease8.ogg" volume="0.8" dontmuffle="True" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <PeriodicEffect mininterval="4" maxinterval="8">
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_wastingdisease="gte 100" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease3.ogg" volume="1.65" dontmuffle="True" selectionmode="Random" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease4.ogg" volume="1.65" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease5.ogg" volume="1.5" dontmuffle="True" />
+        <sound file="%ModDir%/Medical/Sounds/wastingdisease6.ogg" volume="1.5" dontmuffle="True" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="262,1,128,128" color="106,106,106,255" origin="0,1.2100878E-09" />
+    <AfflictionOverlay texture="%ModDir%/Afflictions/wastingdisease.png" sourcerect="0,0,1024,680" color="255,255,255,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_lineavirus" description="" type="airborneinfection" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="20" showiconthreshold="75" karmachangeonapplied="-100" maxstrength="300">
+    <Effect minstrength="0" maxstrength="50" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="0.25" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0"></Effect>
+    <Effect minstrength="50" maxstrength="100" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="0.5" minscreenblur="0.0" maxscreenblur="0.4" minchromaticaberration="0" maxchromaticaberration="3" minfacetint="0,25,0,25" maxfacetint="0,75,0,50" minbodytint="0,0,0,50" maxbodytint="0,75,0,75" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.2">
+      <StatusEffect target="Character" SpeedMultiplier="0.8" setvalue="true" />
+    </Effect>
+    <Effect minstrength="100" maxstrength="150" minvitalitydecrease="0" maxvitalitydecrease="15" strengthchange="1" minscreenblur="0.4" maxscreenblur="1" minchromaticaberration="3" maxchromaticaberration="4" minfacetint="0,75,0,50" maxfacetint="0,150,0,150" minbodytint="0,75,0,75" maxbodytint="0,150,0,175" minafflictionoverlayalphamultiplier="0.2" maxafflictionoverlayalphamultiplier="0.4" minskillmultiplier="1" maxskillmultiplier="0.95">
+      <StatusEffect target="Character" SpeedMultiplier="0.65" setvalue="true" />
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="scp_vomiting" amount="300" />
+        <Affliction identifier="stun" amount="0.1" probability="0.2" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_lineavirus="gte 100" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/lineavirusamb.ogg" volume="0.75" dontmuffle="True" loop="true" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="150" maxstrength="250" minvitalitydecrease="15" maxvitalitydecrease="100" strengthchange="1" minscreenblur="1" maxscreenblur="3" minchromaticaberration="4" maxchromaticaberration="5" minfacetint="0,150,0,255" maxfacetint="0,150,0,255" minbodytint="0,150,0,255" maxbodytint="0,150,0,255" minafflictionoverlayalphamultiplier="0.4" maxafflictionoverlayalphamultiplier="0.8" minskillmultiplier="0.95" maxskillmultiplier="0.85">
+      <StatusEffect target="Character" SpeedMultiplier="0.5" setvalue="true" />
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="scp_vomiting" amount="-800" />
+        <Affliction identifier="scp_vomitingblood" amount="350" />
+        <Affliction identifier="organdamage" amount="24" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_lineavirus="gte 150" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/lineavirusamb.ogg" volume="1" dontmuffle="True" loop="true" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="250" maxstrength="350" minvitalitydecrease="100" maxvitalitydecrease="200" strengthchange="2" minscreenblur="3" maxscreenblur="5" minchromaticaberration="4" maxchromaticaberration="5" minfacetint="0,200,0,255" maxfacetint="0,50,0,50" minbodytint="0,150,0,255" maxbodytint="0,50,0,50" minafflictionoverlayalphamultiplier="0.8" maxafflictionoverlayalphamultiplier="1.0" minskillmultiplier="0.85" maxskillmultiplier="0.75">
+      <StatusEffect target="Character" SpeedMultiplier="0.4" setvalue="true" />
+      <StatusEffect target="Character" interval="0.75">
+        <Affliction identifier="organdamage" amount="36" />
+        <Affliction identifier="scp_vomitingblood" amount="175" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional scp_lineavirus="gte 250" />
+        <Conditional IsLocalPlayer="True" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/lineavirusamb.ogg" volume="1.15" dontmuffle="True" loop="true" />
+      </StatusEffect>
+    </Effect>
+    <PeriodicEffect mininterval="7" maxinterval="35">
+      <StatusEffect target="NearbyCharacters" range="200" comparison="and">
+        <Conditional scp_lineavirus="gte 25" />
+        <Conditional scp_lineavirus="lt 75" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/cough1.ogg" range="400" selectionmode="random" />
+        <sound file="%ModDir%/Medical/Sounds/cough2.ogg" range="400" />
+        <sound file="%ModDir%/Medical/Sounds/cough3.ogg" range="400" />
+        <Affliction identifier="scp_lineaviruscontagion" amount="2" probability="0.2" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <PeriodicEffect mininterval="2" maxinterval="5">
+      <StatusEffect target="NearbyCharacters" range="300" comparison="and">
+        <Conditional scp_lineavirus="gte 75" />
+        <Conditional IsDead="False" />
+        <sound file="%ModDir%/Medical/Sounds/cough1.ogg" volume="1.65" range="550" selectionmode="random" />
+        <sound file="%ModDir%/Medical/Sounds/cough2.ogg" volume="1.65" range="550" />
+        <sound file="%ModDir%/Medical/Sounds/cough3.ogg" volume="1.65" range="550" />
+        <Affliction identifier="scp_lineaviruscontagion" amount="2" probability="0.3" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="392,1,127,128" color="15,190,15,255" origin="0,-1.8151317E-08" />
+    <AfflictionOverlay texture="%ModDir%/Afflictions/lineavirus.png" sourcerect="0,0,1024,680" color="255,255,255,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_lineaviruscontagion" description="" type="airborneinfection" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="20" showiconthreshold="75" karmachangeonapplied="-100" maxstrength="300">
+    <Effect minstrength="0" maxstrength="3" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-1" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals sealed" />
+        <Affliction identifier="scp_lineavirus" amount="1" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction name="" identifier="scp_latexcontamination" description="" type="airborneinfection" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="20" showiconthreshold="75" karmachangeonapplied="-100" maxstrength="10">
+    <Effect minstrength="0" maxstrength="5" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-2" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="neq cbrnsuit" />
+        <Affliction identifier="organdamage" amount="1" />
+        <Affliction identifier="organdamage" amount="2" probability="0.5" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="5" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-2" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="neq cbrnsuit" />
+        <Affliction identifier="organdamage" amount="2" />
+        <Affliction identifier="organdamage" amount="4" probability="0.5" />
+      </StatusEffect>
+      <StatusEffect target="Character" interval="0.5" targetlimb="torso">
+        <Conditional HasStatusTag="neq cbrnsuit" />
+        <Affliction identifier="scp_presolatexinfection" amount="1" probability="0.05" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction name="" identifier="scp_igniscontamination" description="" type="airborneinfection" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="20" showiconthreshold="75" karmachangeonapplied="-100" maxstrength="10">
+    <Effect minstrength="0" maxstrength="5" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-2" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.5">
+        <Conditional HasStatusTag="neq cbrnsuit" />
+        <Affliction identifier="scp_firelatexburn" amount="1" dividebylimbcount="true" />
+        <Affliction identifier="scp_firelatexburn" amount="2" probability="0.5" dividebylimbcount="true" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="5" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-2" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.5">
+        <Conditional HasStatusTag="neq cbrnsuit" />
+        <Affliction identifier="scp_firelatexburn" amount="3" dividebylimbcount="true" />
+        <Affliction identifier="scp_firelatexburn" amount="5" probability="0.5" dividebylimbcount="true" />
+      </StatusEffect>
+      <StatusEffect target="Character" interval="0.6" targetlimb="torso">
+        <Conditional HasStatusTag="neq cbrnsuit" />
+        <Affliction identifier="scp_devilpoisoning" amount="1" probability="0.02" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction name="" identifier="scp_vomiting" description="" type="nausea" causeofdeathdescription="Choked on vomit." selfcauseofdeathdescription="" limbspecific="false" maxstrength="100" treatmentthreshold="1000" karmachangeonapplied="-0.1" damageoverlayalpha="0" healcostmultiplier="2.25">
+    <Effect minstrength="0" maxstrength="100" strengthchange="-1" minfacetint="255,255,255,0" maxfacetint="255,255,255,100">
+      <StatusEffect target="Character" SpeedMultiplier="0.6" setvalue="true" />
+    </Effect>
+    <PeriodicEffect mininterval="2" maxinterval="6">
+      <StatusEffect target="Character" SpeedMultiplier="0.0" setvalue="true" duration="1.25" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional ishuman="true" />
+        <Conditional hasspecifiertag="male" />
+        <Sound file="Content/Sounds/HUMAN_chokeMale1.ogg" selectionmode="Random" />
+        <Sound file="Content/Sounds/HUMAN_chokeMale2.ogg" />
+        <Sound file="Content/Sounds/HUMAN_chokeMale3.ogg" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional ishuman="true" />
+        <Conditional hasspecifiertag="female" />
+        <Sound file="Content/Sounds/HUMAN_chokeFemale1.ogg" selectionmode="Random" />
+        <Sound file="Content/Sounds/HUMAN_chokeFemale2.ogg" />
+        <Sound file="Content/Sounds/HUMAN_chokeFemale3.ogg" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimb="torso">
+        <Affliction identifier="stun" strength="0.25" />
+        <Affliction identifier="stun" strength="0.25" probability="0.2" />
+        <Affliction identifier="organdamage" strength="2" />
+        <Affliction identifier="organdamage" strength="4" probability="0.15" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="Head" duration="1">
+        <ParticleEmitter particle="vomitsplash" copyentityangle="true" anglemin="-10" anglemax="10" particlespersecond="50" velocitymin="50" velocitymax="200" scalemin="0.1" scalemax="0.2" />
+        <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="vomitsplatter" decalsize="1.25" shockwave="false" underwaterbubble="false" />
+        <Conditional HideFace="eq False" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="896,896,128,128" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_vomitingblood" description="" type="nausea" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" maxstrength="100" treatmentthreshold="1000" karmachangeonapplied="-0.1" damageoverlayalpha="0" healcostmultiplier="2.25">
+    <Effect minstrength="0" maxstrength="100" strengthchange="-2" minfacetint="255,255,255,0" maxfacetint="255,255,255,100"></Effect>
+    <PeriodicEffect mininterval="4" maxinterval="8">
+      <StatusEffect target="Character" SpeedMultiplier="0.0" setvalue="true" duration="2" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional ishuman="true" />
+        <Conditional hasspecifiertag="male" />
+        <Sound file="Content/Sounds/HUMAN_chokeMale1.ogg" selectionmode="Random" />
+        <Sound file="Content/Sounds/HUMAN_chokeMale2.ogg" />
+        <Sound file="Content/Sounds/HUMAN_chokeMale3.ogg" />
+      </StatusEffect>
+      <StatusEffect target="Character" comparison="and">
+        <Conditional ishuman="true" />
+        <Conditional hasspecifiertag="female" />
+        <Sound file="Content/Sounds/HUMAN_chokeFemale1.ogg" selectionmode="Random" />
+        <Sound file="Content/Sounds/HUMAN_chokeFemale2.ogg" />
+        <Sound file="Content/Sounds/HUMAN_chokeFemale3.ogg" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimb="torso">
+        <Affliction identifier="stun" strength="0.25" />
+        <Affliction identifier="stun" strength="0.5" probability="0.25" />
+        <Affliction identifier="organdamage" strength="2" />
+        <Affliction identifier="bloodloss" strength="3" />
+        <Affliction identifier="organdamage" strength="2" probability="0.15" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="Head" duration="1">
+        <ParticleEmitter particle="vomitsplash" copyentityangle="true" anglemin="-10" anglemax="10" particlespersecond="50" velocitymin="50" velocitymax="200" scalemin="0.1" scalemax="0.2" colormultiplier="165,0,0,255" />
+        <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="blood" decalsize="1" shockwave="false" underwaterbubble="false" colormultiplier="165,0,0,255" />
+        <Conditional HideFace="eq False" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="896,896,128,128" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_devilsbreathexposure" description="" type="chemicalexposure" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="41" showiconthreshold="41" karmachangeonapplied="-100" maxstrength="40">
+    <Effect minstrength="0" maxstrength="20" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-3" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals cbrnsuit" />
+        <Affliction identifier="organdamage" amount="1" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="20" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-5" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals cbrnsuit" />
+        <Affliction identifier="organdamage" amount="2" />
+        <Affliction identifier="bloodloss" amount="1" />
+        <Affliction identifier="scp_devilpoisoning" amount="0.1" probability="0.25" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction name="" identifier="scp_presolatexexposure" description="" type="chemicalexposure" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="41" showiconthreshold="41" karmachangeonapplied="-100" maxstrength="40">
+    <Effect minstrength="0" maxstrength="20" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-5" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals cbrnsuit" />
+        <Affliction identifier="organdamage" amount="2" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="20" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-5" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals cbrnsuit" />
+        <Affliction identifier="organdamage" amount="3.5" />
+        <Affliction identifier="scp_vomiting" amount="2" />
+        <Affliction identifier="scp_presolatexinfection" amount="0.1" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="scp_ae035damage" description="" type="poison" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" karmachangeonapplied="-100" maxstrength="200">
+    <Effect minstrength="0" maxstrength="200" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="2" />
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="780,0,128,128" color="195,60,60,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_hexgasexposure" description="" type="chemicalexposure" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="41" showiconthreshold="41" karmachangeonapplied="-100" maxstrength="40">
+    <Effect minstrength="0" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-1" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals cbrnsuit" />
+        <Affliction identifier="organdamage" amount="2" />
+        <Affliction identifier="scp_hexgasdamage" amount="3" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="10" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-2" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals cbrnsuit" />
+        <Affliction identifier="organdamage" amount="2" />
+        <Affliction identifier="scp_vomitingblood" amount="8" />
+        <Affliction identifier="paralysis" amount="0.1" />
+        <Affliction identifier="scp_hexgasdamage" amount="6" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="scp_hexgasdamage" description="" type="poison" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" karmachangeonapplied="-100" maxstrength="200">
+    <Effect minstrength="0" maxstrength="15" minscreenblur="0" maxscreenblur="0.3" minvitalitydecrease="0" maxvitalitydecrease="30" screeneffectfluctuationfrequency="1">
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="scp_vomitingblood" amount="300" />
+        <Affliction identifier="organdamage" amount="1" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="15" maxstrength="30" minvitalitydecrease="30" maxvitalitydecrease="60" minscreenblur="0.3" maxscreenblur="0.6" screeneffectfluctuationfrequency="0.5">
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="scp_vomitingblood" amount="300" />
+        <Affliction identifier="organdamage" amount="2" />
+        <Affliction identifier="paralysis" amount="75" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="30" maxstrength="200" minvitalitydecrease="60" maxvitalitydecrease="300" minscreenblur="0.6" maxscreenblur="0.9" screeneffectfluctuationfrequency="0.33">
+      <StatusEffect target="Character" interval="1">
+        <Affliction identifier="scp_vomitingblood" amount="300" />
+        <Affliction identifier="organdamage" amount="4" />
+        <Affliction identifier="paralysis" amount="125" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="910,0,128,128" color="0,200,0,255" origin="0,0" />
+  </Affliction>
+  <Affliction identifier="npcprotection" type="npcprotection" isbuff="true" hideiconafterdelay="true" limbspecific="false" maxstrength="1" showiconthreshold="1000" treatmentthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000">
+    <Effect minstrength="0" maxstrength="1" strengthchange="0" resistancefor="oxygenlow" minresistance="1" maxresistance="1">
+      <AbilityFlag flagtype="ImmuneToPressure" />
+      <StatusEffect target="Character" usehulloxygen="false" interval="1" setvalue="true">
+        <ReduceAffliction identifier="oxygenlow" strength="100" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="scp_npcprotection" type="npcprotection" isbuff="true" hideiconafterdelay="true" limbspecific="false" maxstrength="1" showiconthreshold="1000" treatmentthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000">
+    <Effect minstrength="0" maxstrength="1" strengthchange="0" resistancefor="oxygenlow" minresistance="1" maxresistance="1">
+      <AbilityFlag flagtype="ImmuneToPressure" />
+      <StatusEffect target="Character" usehulloxygen="false" interval="1" setvalue="true">
+        <ReduceAffliction identifier="oxygenlow" strength="100" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction name="" identifier="scp_firelatexburn" description="" type="burn" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="true" maxstrength="200" burnoverlayalpha="1" healcostmultiplier="5">
+    <Description textidentifier="scpfirelatexburnmin" minstrength="0" maxstrength="30" />
+    <Description textidentifier="scpfirelatexburnmod" minstrength="30" maxstrength="60" />
+    <Description textidentifier="scpfirelatexburnsev" minstrength="60" maxstrength="200" />
+    <Effect minstrength="0" maxstrength="200" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="3" />
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="1170,0,128,128" color="195,104,60,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_wastingdiseasecontagion" description="" type="airborneinfection" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="20" showiconthreshold="715" karmachangeonapplied="-100" maxstrength="300">
+    <Effect minstrength="0" maxstrength="3" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-1" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals sealed" />
+        <Affliction identifier="scp_wastingdisease" amount="1" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction name="heavyweaponbulk" identifier="scp_protobulk" description="heavy weapon moment" type="misc" limbspecific="false" indicatorlimb="Torso" maxstrength="5" affectmachines="true" showiconthreshold="6" showinhealthscannerthreshold="6">
+    <Effect minstrength="0" maxstrength="5" minspeedmultiplier="1" maxspeedmultiplier="0.7" strengthchange="-0.6"></Effect>
+    <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="910,0,128,128" color="0,200,0,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="hastenoanim" description="" type="haste" isbuff="true" limbspecific="false" maxstrength="600" MedicalSkillGain="0.01">
+    <Effect minstrength="0" maxstrength="600" strengthchange="-1" minspeedmultiplier="1.0" maxspeedmultiplier="1.35" minfacetint="255,0,0,0" maxfacetint="255,0,0,150">
+      <StatValue stattype="MeleeAttackSpeed" minvalue="0" maxvalue="0.35" />
+      <StatValue stattype="SwimmingSpeed" minvalue="0" maxvalue="0.3" />
+      <StatusEffect target="Character" interval="1" setvalue="true">
+        <Conditional haste="gte 1" />
+        <ReduceAffliction identifier="hastenoanim" amount="600" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,896,128,128" color="10,193,114,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="strengthennoanim" description="" type="strengthbuff" isbuff="true" limbspecific="false" maxstrength="600" MedicalSkillGain="0.01">
+    <Effect minstrength="0" maxstrength="600" strengthchange="-1" resistancefor="damage" minresistance="0" maxresistance="0.5">
+      <StatValue stattype="MeleeAttackMultiplier" minvalue="0" maxvalue="0.35" />
+      <StatusEffect target="Character" interval="1" setvalue="true">
+        <Conditional strengthen="gte 1" />
+        <ReduceAffliction identifier="strengthennoanim" amount="600" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="256,896,128,128" color="10,193,114,255" origin="0,0" />
+  </Affliction>
+  <Affliction identifier="sgt_painkiller" type="misc" isbuff="true" hideiconafterdelay="true" limbspecific="false" maxstrength="100" treatmentthreshold="1000" iconcolors="33,75,78;126,211,224;126,211,224;227,247,249" MedicalSkillGain="0.001">
+    <Description textidentifier="afflictiondescription.sgt_painkiller.self" target="Self" />
+    <Description textidentifier="afflictiondescription.sgt_painkiller" target="OtherCharacter" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="-1.667" minvitalitydecrease="0" maxvitalitydecrease="-50" />
+    <Icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="1428,0,128,128" color="52,193,114,255" origin="0,0" />
+  </Affliction>
+</Afflictions>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="Russian" nowhitespace="false" translatedname="Русский">
+  <!-- Deads -->
+  <entityname.DBS1>CC's Мертвая охрана</entityname.DBS1>
+  <entityname.DBS2>CC's Мертвая охрана</entityname.DBS2>
+  <entityname.DBS3>CC's Мертвая охрана</entityname.DBS3>
+  <entityname.DBS4>CC's Мертвая охрана</entityname.DBS4>
+  <entityname.DBS5>CC's Мертвая охрана</entityname.DBS5>
+  <entityname.DBS6>CC's Мертвая охрана</entityname.DBS6>
+  <entityname.DBS7>CC's Мертвая охрана</entityname.DBS7>
+  <entityname.DBS8>CC's Мертвая охрана</entityname.DBS8>
+  <entityname.DBS9G>CC's Мертвая охрана</entityname.DBS9G>
+  <entityname.DBS10G>CC's Мертвая охрана</entityname.DBS10G>
+  <entityname.DBS11Sit>CC's Мертвая охрана</entityname.DBS11Sit>
+  <entityname.DBSArm>CC's Мертвая охрана Gib</entityname.DBSArm>
+  <entityname.DBSC1Sit>CC's Командир Мертвой охраны</entityname.DBSC1Sit>
+  <entityname.DBSC2>CC's Командир Мертвой охраны</entityname.DBSC2>
+  <entityname.DBSC3>CC's Командир Мертвой охраны</entityname.DBSC3>
+  <entityname.DBSC4>CC's Командир Мертвой охраны</entityname.DBSC4>
+  <entityname.DBSC5>CC's Командир Мертвой охраны</entityname.DBSC5>
+  <entityname.DBSC6>CC's Командир Мертвой охраны</entityname.DBSC6>
+  <entityname.DBSC7>CC's Командир Мертвой охраны</entityname.DBSC7>
+  <entityname.DBSGT>CC's Мертвая охрана Gib</entityname.DBSGT>
+  <entityname.DBSGL>CC's Мертвая охрана Gib</entityname.DBSGL>
+  <entityname.DBSG1H>CC's Мертвая охрана Gib</entityname.DBSG1H>
+  <entityname.DBSG2HHelm>CC's Мертвая охрана Gib</entityname.DBSG2HHelm>
+  <entityname.DBSG3Arm>CC's Мертвая охрана Gib</entityname.DBSG3Arm>
+  <entityname.DBSG4ArmNG>CC's Мертвая охрана Gib</entityname.DBSG4ArmNG>
+  <entityname.DBSG5Boot>CC's Мертвая охрана Gib</entityname.DBSG5Boot>
+  <entityname.DBCGTorso>CC's Мертвый гражданский Gib</entityname.DBCGTorso>
+  <entityname.DBCGArm>CC's Мертвый гражданский Gib</entityname.DBCGArm>
+  <entityname.DBCGLeg>CC's Мертвый гражданский Gib</entityname.DBCGLeg>
+  <entityname.DBCH1>CC's Мертвая гражданская голова</entityname.DBCH1>
+  <entityname.DBCH2>CC's Мертвая гражданская голова</entityname.DBCH2>
+  <entityname.DBCH3>CC's Мертвая гражданская голова</entityname.DBCH3>
+  <entityname.DBCH4>CC's Мертвая гражданская голова</entityname.DBCH4>
+  <entityname.DBCH5>CC's Мертвая гражданская голова</entityname.DBCH5>
+  <entityname.DBCH6>CC's Мертвая гражданская голова</entityname.DBCH6>
+  <entityname.DBCH7>CC's Мертвая гражданская голова</entityname.DBCH7>
+  <entityname.DBCH8>CC's Мертвая гражданская голова</entityname.DBCH8>
+  <entityname.DBCH9>CC's Мертвая гражданская голова</entityname.DBCH9>
+  <entityname.DBCH10>CC's Мертвая гражданская голова</entityname.DBCH10>
+  <entityname.DBCH11>CC's Мертвая гражданская голова</entityname.DBCH11>
+  <entityname.DBCH12>CC's Мертвая гражданская голова</entityname.DBCH12>
+  <entityname.DBCH13>CC's Мертвая гражданская голова</entityname.DBCH13>
+  <entityname.DBCH14>CC's Мертвая гражданская голова</entityname.DBCH14>
+  <entityname.DBCH15>CC's Мертвая гражданская голова</entityname.DBCH15>
+  <entityname.DBCH16>CC's Мертвая гражданская голова</entityname.DBCH16>
+  <entityname.DBCH17>CC's Мертвая гражданская голова</entityname.DBCH17>
+  <entityname.DBCH18>CC's Мертвая гражданская голова</entityname.DBCH18>
+  <entityname.DBCH19>CC's Мертвая гражданская голова</entityname.DBCH19>
+  <entityname.DBCH20>CC's Мертвая гражданская голова</entityname.DBCH20>
+  <entityname.DBCH21>CC's Мертвая гражданская голова</entityname.DBCH21>
+  <entityname.DBCH22>CC's Мертвая гражданская голова</entityname.DBCH22>
+  <entityname.DBCH23>CC's Мертвая гражданская голова</entityname.DBCH23>
+  <entityname.DBCH24>CC's Мертвая гражданская голова</entityname.DBCH24>
+  <entityname.DBCH25>CC's Мертвая гражданская голова</entityname.DBCH25>
+  <entityname.DBCH26>CC's Мертвая гражданская голова</entityname.DBCH26>
+  <entityname.DBCH27>CC's Мертвая гражданская голова</entityname.DBCH27>
+  <entityname.DBCH28>CC's Мертвая гражданская голова</entityname.DBCH28>
+  <entityname.DBCH29>CC's Мертвая гражданская голова</entityname.DBCH29>
+  <entityname.DBCH30>CC's Мертвая гражданская голова</entityname.DBCH30>
+  <entityname.DBCH31>CC's Мертвая гражданская голова</entityname.DBCH31>
+  <entityname.DBCH32>CC's Мертвая гражданская голова</entityname.DBCH32>
+  <entityname.DBC1>CC's Мертвый гражданин</entityname.DBC1>
+  <entityname.DBC2>CC's Мертвый гражданин</entityname.DBC2>
+  <entityname.DBC3>CC's Мертвый гражданин</entityname.DBC3>
+  <entityname.DBC4>CC's Мертвый гражданин</entityname.DBC4>
+  <entityname.DBC11>CC's Мертвый гражданин</entityname.DBC11>
+  <entityname.DBC21>CC's Мертвый гражданин</entityname.DBC21>
+  <entityname.DBC31>CC's Мертвый гражданин</entityname.DBC31>
+  <entityname.DBC41>CC's Мертвый гражданин</entityname.DBC41>
+  <entityname.DBC12>CC's Мертвый гражданин</entityname.DBC12>
+  <entityname.DBC22>CC's Мертвый гражданин</entityname.DBC22>
+  <entityname.DBC32>CC's Мертвый гражданин</entityname.DBC32>
+  <entityname.DBC42>CC's Мертвый гражданин</entityname.DBC42>
+  <entityname.DBC13>CC's Мертвый гражданин</entityname.DBC13>
+  <entityname.DBC23>CC's Мертвый гражданин</entityname.DBC23>
+  <entityname.DBC33>CC's Мертвый гражданин</entityname.DBC33>
+  <entityname.DBC43>CC's Мертвый гражданин</entityname.DBC43>
+  <entityname.DBCHt1>CC's Мертвый гражданский шлем</entityname.DBCHt1>
+  <entityname.DBCHt2>CC's Мертвый гражданский шлем</entityname.DBCHt2>
+  <entityname.DBCHt3>CC's Мертвый гражданский шлем</entityname.DBCHt3>
+  <entityname.DBCHt4>CC's Мертвый гражданский шлем</entityname.DBCHt4>
+  <entityname.DBMr1>CC's Мертвый Мудраптор</entityname.DBMr1>
+  <entityname.DBMr2>CC's Мертвый Мудраптор</entityname.DBMr2>
+  <entityname.DBMr3>CC's Мертвый Мудраптор</entityname.DBMr3>
+  <entityname.DBCr1>CC's Мертвый Ползун</entityname.DBCr1>
+  <entityname.DBCr2>CC's Мертвый Ползун</entityname.DBCr2>
+  <entityname.DBCr3>CC's Мертвый Ползун</entityname.DBCr3>
+  <entityname.DBCr4>CC's Мертвый Ползун</entityname.DBCr4>
+  <entityname.DBCr5>CC's Мертвый Ползун</entityname.DBCr5>
+  <!-- Decals -->
+  <entityname.CCB_1s1>CC's Кровавый декаль</entityname.CCB_1s1>
+  <entityname.CCB_1s2>CC's Кровавый декаль</entityname.CCB_1s2>
+  <entityname.CCB_1s3>CC's Кровавый декаль</entityname.CCB_1s3>
+  <entityname.CCB_1s4>CC's Кровавый декаль</entityname.CCB_1s4>
+  <entityname.CCB_1s5>CC's Кровавый декаль</entityname.CCB_1s5>
+  <entityname.CCB_1s6>CC's Кровавый декаль</entityname.CCB_1s6>
+  <entityname.CCB_1s7>CC's Кровавый декаль</entityname.CCB_1s7>
+  <entityname.CCB_1s8>CC's Кровавый декаль</entityname.CCB_1s8>
+  <entityname.CCB_1s9>CC's Кровавый декаль</entityname.CCB_1s9>
+  <entityname.CCB_1s10>CC's Кровавый декаль</entityname.CCB_1s10>
+  <entityname.CCB_1s11>CC's Кровавый декаль</entityname.CCB_1s11>
+  <entityname.CCB_1s12>CC's Кровавый декаль</entityname.CCB_1s12>
+  <entityname.CCB_1s13>CC's Кровавый декаль</entityname.CCB_1s13>
+  <entityname.CCB_1s14>CC's Кровавый декаль</entityname.CCB_1s14>
+  <entityname.CCB_1s15>CC's Кровавый декаль</entityname.CCB_1s15>
+  <entityname.CCB_1s16>CC's Кровавый декаль</entityname.CCB_1s16>
+  <entityname.CCB_1s17>CC's Кровавый декаль</entityname.CCB_1s17>
+  <entityname.CCB_2st1>CC's Кровавый декаль</entityname.CCB_2st1>
+  <entityname.CCB_2st2>CC's Кровавый декаль</entityname.CCB_2st2>
+  <entityname.CCB_2st3>CC's Кровавый декаль</entityname.CCB_2st3>
+  <entityname.CCB_2st4>CC's Кровавый декаль</entityname.CCB_2st4>
+  <entityname.CCB_2st5>CC's Кровавый декаль</entityname.CCB_2st5>
+  <entityname.CCB_2st6>CC's Кровавый декаль</entityname.CCB_2st6>
+  <entityname.CCB_2st7>CC's Кровавый декаль</entityname.CCB_2st7>
+  <entityname.CCB_2st8>CC's Кровавый декаль</entityname.CCB_2st8>
+  <entityname.CCB_2st9>CC's Кровавый декаль</entityname.CCB_2st9>
+  <entityname.CCB_2st10>CC's Кровавый декаль</entityname.CCB_2st10>
+  <entityname.CCB_2sl1>CC's Кровавый декаль</entityname.CCB_2sl1>
+  <entityname.CCB_2sl2>CC's Кровавый декаль</entityname.CCB_2sl2>
+  <entityname.CCB_3sl1>CC's Кровавый декаль</entityname.CCB_3sl1>
+  <entityname.CCB_4sl1>CC's Кровавый декаль</entityname.CCB_4sl1>
+</infotexts>

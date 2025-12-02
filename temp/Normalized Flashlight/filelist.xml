@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Normalized Flashlight" modversion="1.0.3" corepackage="False" steamworkshopid="3339841986" gameversion="1.5.9.2" expectedhash="F2559DA09906E2AFE2CC45838DEB9B48">
+  <Item file="%ModDir%/flash.xml" />
+  <Item file="%ModDir%/lamp.xml" />
+  <Text file="%ModDir%/English.xml" />
+</contentpackage>

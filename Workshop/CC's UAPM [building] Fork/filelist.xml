@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="CC's UAPM [building] Fork" modversion="1.0.10" corepackage="False" steamworkshopid="3434409381" gameversion="1.7.7.0" expectedhash="C606790534C523E14136F0AFABD5D1B2">
+  <Structure file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/BGWalls.xml" />
+  <Item file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/DDecals.xml" />
+  <Structure file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/SWalls.xml" />
+  <Other file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls1.png" />
+  <Other file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Dirt.png" />
+  <Other file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/DirtD1.png" />
+  <Item file="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/Deads.xml" />
+  <Item file="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/Decals.xml" />
+  <Item file="%ModDir%/Workshop/CC's UAPM [building] Fork/SydWad/Items.xml" />
+  <Text file="%ModDir%/Workshop/CC's UAPM [building] Fork/Text/English/EnglishCCs_UAPM_Building.xml" />
+  <Text file="%ModDir%/Workshop/CC's UAPM [building] Fork/Text/English/EnglishCCs_UAPM_deadNgore.xml" />
+  <Text file="%ModDir%/Workshop/CC's UAPM [building] Fork/Text/English/EnglishNew_Items.xml" />
+  <Text file="%ModDir%/Workshop/CC's UAPM [building] Fork/Text/Русский/РусскийCCs_UAPM_Building.xml" />
+  <Text file="%ModDir%/Workshop/CC's UAPM [building] Fork/Text/Русский/РусскийCCs_UAPM_deadNgore.xml" />
+  <Text file="%ModDir%/Workshop/CC's UAPM [building] Fork/Text/Русский/РусскийNew_Items.xml" />
+</contentpackage>

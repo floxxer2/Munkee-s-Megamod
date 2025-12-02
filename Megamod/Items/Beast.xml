@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!-- ************ -->
+  <!-- Tools & Misc -->
+  <!-- ************ -->
+  <Item identifier="mm_container" name="" description="" tags="mediumitem,mobilecontainer" Scale="0.5" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_heavy" showcontentsintooltip="true" fireproof="true" RequireAimToUse="True" allowasextracargo="false">
+    <Deconstruct time="10" />
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="640,256,64,64" origin="0.5,0.6" />
+    <Sprite texture="Content/Items/Tools/tools.png" sourcerect="314,1,94,74" origin="0.5,0.5" depth="0.6" />
+    <!--<Sprite texture="Content/Items/Containers/crates.png" depth="0.54" sourcerect="1,0,68,39"/>-->
+    <Body width="90" height="60" density="20" />
+    <MeleeWeapon slots="RightHand,LeftHand,Any" controlpose="true" aimpos="45,10" handle1="0,18" holdangle="90" reload="1" range="50" combatpriority="6" msg="ItemMsgPickUpSelect">
+      <Attack structuredamage="0" itemdamage="1" targetimpulse="2">
+        <Affliction identifier="blunttrauma" strength="2" />
+        <Affliction identifier="stun" strength="0.6" />
+        <StatusEffect type="OnUse" target="UseTarget">
+          <Conditional entitytype="eq Character" />
+          <Sound file="Content/Items/Weapons/Smack1.ogg" selectionmode="random" range="500" />
+          <Sound file="Content/Items/Weapons/Smack2.ogg" range="500" />
+        </StatusEffect>
+      </Attack>
+    </MeleeWeapon>
+    <ItemContainer capacity="56" keepopenwhenequipped="true" movableframe="true">
+      <Containable items="smallitem,mediumitem,largeitem,mountableweapon,divingsuit,alien,alienartifact,fabricator,deconstructor,junctionbox,battery,batterycellrecharger,supercapacitor,chargingdock,searchlight,camera,command,container,crate,engine,lualinkable,pump,dischargecoil,periscope,turret,donttakeitems,dontsellitems,medicalfabricator,geneticresearchstation,weaponholder,wreckweaponholder,medcontainer,locker,storage,cargocontainer,allowcleanup,suppliescontainer,vendingmachine,despawncontainer" />
+    </ItemContainer>
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+  </Item>
+  <!-- ******* -->
+  <!-- Weapons -->
+  <!-- ******* -->
+  <Item identifier="mm_grabber" name="" description="" tags="smallitem" scale="0.1" spritecolor="0, 0, 0, 0" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" hideinmenus="true" allowasextracargo="false" RequireAimToUse="true">
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="448,256,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,203,181,39" depth="0.55" origin="0.5,0.5" />
+    <Body width="160" height="10" density="30" />
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true" allowuioverlap="false">
+      <GuiFrame relativesize="0.12,0.1" anchor="CenterLeft" pivot="TopLeft" relativeoffset="0.006,0.006" style="ItemUI" />
+      <TickBox text="Pulse">
+        <StatusEffect type="OnUse" targettype="This">
+          <Sound file="%ModDir%/Megamod/Sounds/pulse.ogg" range="2000" volume="4" loop="true" />
+        </StatusEffect>
+      </TickBox>
+    </CustomInterface>
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="false" holdpos="75, -30" aimpos="125,-10" handle1="-20,-6" holdangle="-40" msg="ItemMsgPickUpSelect" />
+    <RangedWeapon reload="0.1" launchimpulse="20.0" barrelpos="85,14" spread="0" unskilledspread="0" combatPriority="60" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <RequiredItems items="grabberammo" type="Contained" />
+      <StatusEffect type="OnUse" targettype="This">
+        <ParticleEmitter particle="plasmaspark" copyentityangle="true" particleamount="60" scalemin="0.3" scalemax="0.6" anglemin="170" anglemax="190" velocitymin="200" velocitymax="800" colormultiplier="255,0,0,255" />
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer itempos="27,10" iteminterval="0,-4" hideitems="true" capacity="1" maxstacksize="1" containedspritedepths="0.551,0.552,0.553,0.554,0.555,0.556">
+      <Containable items="grabberammo" />
+      <StatusEffect type="Always" target="This" interval="1">
+        <SpawnItem identifiers="mm_grabberammo" spawnposition="ThisInventory" />
+      </StatusEffect>
+    </ItemContainer>
+  </Item>
+  <Item name="" identifier="mm_grabberammo" category="Weapon" noninteractable="true" spritecolor="255, 0, 0, 255" maxstacksize="32" maxstacksizecharacterinventory="6" cargocontaineridentifier="metalcrate" tags="grabberammo" Scale="0.5" hideinmenus="true" allowasextracargo="false">
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="320,968,55,55" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="85,368,168,11" depth="0.55" origin="0.5,0.5" />
+    <Body width="160" height="10" density="30" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Rope sourcepullforce="0" targetpullforce="750" projectilepullforce="0" maxlength="3000" snaponcollision="false" spritewidth="0" tile="true" origin="0.05,0.5" targetminmass="10" lerpforces="true" snapanimduration="0.5" ReelSoundPitchSlide="1.0,2.25">
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="2" checkconditionalalways="true">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" delay="35" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </Rope>
+    <Projectile characterusable="false" launchimpulse="5" sticktocharacters="true" sticktoitems="false" sticktostructures="false" sticktodeflective="true" sticktodoors="false" sticktolighttargets="true">
+      <Attack structuredamage="0" itemdamage="0" targetforce="0" severlimbsprobability="0.1">
+        <Affliction identifier="lacerations" strength="35" />
+        <Affliction identifier="bleeding" strength="35" />
+        <StatusEffect type="OnUse" targettype="UseTarget">
+          <Conditional entitytype="eq Character" />
+          <Sound file="%ModDir%/Megamod/Sounds/fleshimpact.ogg" range="1000" volume="1.5" />
+        </StatusEffect>
+      </Attack>
+      <StatusEffect type="OnActive" target="UseTarget,This" disabledeltatime="true">
+        <Affliction identifier="drag" strength="1" />
+        <Affliction identifier="incrementalstun" strength="1" />
+        <Affliction identifier="mm_hitbybeast" strength="10" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" disabledeltatime="true">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+        <ParticleEmitter particle="plasmaspark" copyentityangle="true" particleamount="60" scalemin="0.3" scalemax="0.6" anglemin="150" anglemax="210" velocitymin="200" velocitymax="800" colormultiplier="255,0,0,255" />
+      </StatusEffect>
+    </Projectile>
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+  </Item>
+</Items>

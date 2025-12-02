@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!--  <Item name="Mine Defuser" identifier="ek_defuser" aliases="mine_defuser, mine disarmer, mine_disarmer"
+  description="A handheld tool that emits modulated electromagnetic pulses which interface with mine failsafe controls, allowing you to disarm and recover live mines."
+  category="Equipment,Weapon" Tags="smallitem" cargocontaineridentifier="metalcrate" Scale="0.32" impactsoundtag="impact_metal_light" >
+    <Deconstruct time="15">
+      <Item identifier="steel" />
+      <Item identifier="plastic" />
+      <Item identifier="fpgacircuit" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/InventoryIcons.png" sourcerect="0,0,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Weapons/Images/weapons_ek.png" sourcerect="448,0,240,64" depth="0.55" />
+    <Body width="90" height="78" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" aimpos="50,0" handle1="-85,-35" handle2="0,-27" msg="ItemMsgPickUpSelect" >
+      <LightComponent LightColor="50,255,75,150" Flicker="0.05" range="300" IsOn="true" >
+        <LightTexture texture="Content/Lights/lightcone.png" origin="0.0, 0.5" size="1.0,0.5" />
+      </LightComponent>
+	</Holdable>
+    <RepairTool structurefixamount="0" range="300" barrelpos="35,13" repairthroughwalls="false" combatpriority="0">
+      <RequiredItems identifier="batterycell,fulguriumbatterycell" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      <ParticleEmitter particle="weld" particlespersecond="40" />
+      <ParticleEmitterHitStructure particle="plasmaspark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+      <sound file="Content/Items/Tools/WeldingLoop.ogg" type="OnUse" range="400.0" loop="true" />
+      <StatusEffect type="OnUse" target="Contained" targetidentifiers="batterycell,fulguriumbatterycell" Condition="-3.0" />
+      < <StatusEffect type="OnUse" target="UseTarget" targetidentifiers="ek_impact_mine" Condition="10.0" /> 
+    </RepairTool>
+    <ItemContainer autofill="False" capacity="1" hideitems="true">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,184,120,32" />
+      <Containable identifiers="batterycell,fulguriumbatterycell"/>
+    </ItemContainer>
+  </Item> -->
+  <!-- Works, trust me bro -->
+  <!-- Darts do not appear to impact characters. If they do, OnUse effects are not applying. Emulate syringes or try OnImpact effects. -->
+  <!--<Item name="" identifier="ek_dart_deusizine" aliases="dart deusizine" category="Equipment,Weapon" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,ek_dart" Scale="0.32" impactsoundtag="impact_soft" maxstacksize="32" MaxStackSizeHoldableOrWearableInventory="8" maxstacksizecharacterinventory="8">
+    <PreferredContainer primary="ek_ammotag_dart" />
+    <Deconstruct time="3"/>
+    <Fabricate suitablefabricators="modfabricator,fabricator,medicalfabricator" requiredtime="5" amount="4">
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="deusizine" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/InventoryIcons.png" sourcerect="192,320,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Weapons/Images/weapons_ek.png" sourcerect="0,688,48,16" depth="0.55" />
+    <Body width="24" height="8" density="40" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Projectile characterusable="false" hitscan="false" launchimpulse="20" removeonhit="true">
+      <Attack structuredamage="0" targetforce="0" />
+      <StatusEffect tags="medical" type="OnImpact" target="UseTarget" duration="20">
+        <ReduceAffliction identifier="damage" amount="1.5" />
+        <Affliction identifier="burn" amount="0.1" />
+        <ReduceAffliction identifier="oxygenlow" amount="1.5" />
+        <ReduceAffliction identifier="bloodloss" amount="1" />
+      </StatusEffect>
+    </Projectile>
+  </Item>-->
+  <!--<Item name="" identifier="ek_dart_ethanol" aliases="dart ethanol" category="Equipment,Weapon" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,ek_dart" Scale="0.32" impactsoundtag="impact_soft" maxstacksize="32" MaxStackSizeHoldableOrWearableInventory="8" maxstacksizecharacterinventory="8">
+    <PreferredContainer primary="ek_ammotag_dart" />
+    <Deconstruct time="3"/>
+    <Fabricate suitablefabricators="modfabricator,fabricator,medicalfabricator" requiredtime="5" amount="4">
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="ethanol" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/InventoryIcons.png" sourcerect="256,320,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Weapons/Images/weapons_ek.png" sourcerect="48,688,48,16" depth="0.55" />
+    <Body width="8" height="3" density="40" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Projectile characterusable="false" hitscan="false" launchimpulse="20" removeonhit="true">
+      <Attack structuredamage="0" targetforce="0" />
+      <StatusEffect tags="poison" type="OnImpact" target="UseTarget" duration="20">
+        <Affliction identifier="drunk" amount="0.75" />
+        <ReduceAffliction identifier="psychosis" amount="0.5" />
+      </StatusEffect>
+      <StatusEffect tags="poison" type="OnImpact" target="UseTarget" duration="15">
+        <Affliction identifier="psychosisresistance" amount="10" />
+      </StatusEffect>
+    </Projectile>
+  </Item>-->
+  <Item name="" identifier="ek_breachingcharge" aliases="ek breaching charge" category="Equipment,Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,explosive" scale="0.32" impactsoundtag="impact_metal_heavy" isshootable="true" hideinmenus="false" maxstacksize="4">
+    <Price baseprice="125" sold="false" minleveldifficulty="15">
+      <Price storeidentifier="merchantoutpost" multiplier="1.25" />
+      <Price storeidentifier="merchantcity" multiplier="1.1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.9" sold="true" minavailable="2" />
+      <Price storeidentifier="merchantmine" multiplier="1.25" />
+      <Price storeidentifier="merchantarmory" multiplier="1.2" sold="true" minavailable="1" />
+    </Price>
+    <Deconstruct time="15">
+      <Item identifier="fpgacircuit" outcondition="0.5" />
+      <Item identifier="uex" outcondition="0.5" />
+      <Item identifier="copper" outcondition="0.25" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponfabricator" requiredtime="20" amount="2">
+      <RequiredSkill identifier="weapons" level="45" />
+      <RequiredItem identifier="fpgacircuit" />
+      <RequiredItem identifier="uex" />
+      <RequiredItem identifier="copper" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/InventoryIcons.png" sourcerect="576,256,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Weapons/Images/weapons_ek.png" sourcerect="640,1296,48,96" depth="0.55" origin="0.5,0.5" />
+    <Body width="104" height="86" density="18" />
+    <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="10.0" holdpos="40,-10" aimpos="50,-5" handle1="0,-13" handle2="0,-13" attachable="true" Attached="false" AttachedByDefault="false" aimable="true">
+      <RequiredItem identifier="wrench" type="Equipped" />
+      <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.7" setvalue="true" />
+    </Holdable>
+    <!-- NEW CODE! -->
+    <PowerContainer capacity="60" Charge="8" canbeselected="false"></PowerContainer>
+    <LightComponent LightColor="255,0,0,255" range="20" blinkfrequency="1" powerconsumption="0" IsOn="false" canbeselected="false" AllowInGameEditing="false">
+      <sprite texture="%ModDir%/Workshop/EK Forked/Lights/satchelcharge_light.png" sourcerect="0,0,80,96" alpha="1" />
+      <!-- Detonator active, do the countdown -->
+      <StatusEffect type="OnActive" target="This" targetitemcomponent="PowerContainer" Charge="-1.0" interval="1" disabledeltatime="true" CheckConditionalAlways="true">
+        <Conditional IsActive="true" targetitemcomponentname="LightComponent" />
+        <sound file="Content/Items/WarningBeepSlow.ogg" range="750" frequencymultiplier="2.0" volume="0.3" />
+      </StatusEffect>
+      <!-- Double the warning beeps (due to .5s offset) -->
+      <StatusEffect type="OnActive" target="This" interval="1" disabledeltatime="true" checkconditionalalways="true" delay="0.5" blinkfrequency="2.0" setvalue="true">
+        <Conditional Charge="lt 3" targetitemcomponentname="PowerContainer" />
+        <sound file="Content/Items/WarningBeepSlow.ogg" range="750" frequencymultiplier="2.0" volume="0.3" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This,Contained" IsOn="false" checkconditionalalways="true" blinkfrequency="1.0" setvalue="true">
+        <Conditional Charge="lte 0.0" targetitemcomponentname="PowerContainer" />
+        <Use />
+        <sound file="Content/Items/Button/Switch1.ogg" range="500.0" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </LightComponent>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true" allowuioverlap="false" ElementStates="8, false">
+      <GuiFrame relativesize="0.2,0.15" anchor="CenterLeft" pivot="TopLeft" relativeoffset="0.006,0.006" style="ItemUI" />
+      <IntegerInput text="bomb.timer" targetitemcomponent="PowerContainer" propertyname="Charge" min="0" max="60" step="1" GetValueInterval="0.5" />
+      <TickBox text="bomb.armed" connection="signal_out1" targetitemcomponent="LightComponent" propertyname="IsOn" ContinuousSignal="false" GetValueInterval="1" />
+    </CustomInterface>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="activate" displayname="connection.activate">
+        <StatusEffect type="OnUse" target="This" TargetItemComponent="LightComponent" IsOn="true"></StatusEffect>
+      </input>
+    </ConnectionPanel>
+    <ItemComponent characterusable="false">
+      <StatusEffect type="OnUse" target="This" Condition="-100" disabledeltatime="true" />
+      <StatusEffect type="Always" targettype="This" condition="-100" disabledeltatime="true" stackable="false">
+        <Conditional Condition="lt 0.5" />
+        <SpawnItem identifier="ek_breachingcharge_effect" spawnposition="This" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" targettype="This" disabledeltatime="true" stackable="false">
+        <Sound file="%ModDir%/Workshop/EK Forked/Items/Weapons/Sounds/ek_breachingcharge1.ogg" selectionmode="Random" range="8000" />
+        <Sound file="%ModDir%/Workshop/EK Forked/Items/Weapons/Sounds/ek_breachingcharge2.ogg" selectionmode="Random" range="8000" />
+        <Sound file="%ModDir%/Workshop/EK Forked/Items/Weapons/Sounds/ek_breachingcharge3.ogg" selectionmode="Random" range="8000" />
+        <ParticleEmitter particle="weldspark" particleamount="15" distancemin="0" distancemax="60" anglemin="-360" anglemax="360" scalemin="1.5" scalemax="3.0" velocitymin="250" velocitymax="750" />
+        <ParticleEmitter particle="explosionfire" particleamount="5" distancemin="0" distancemax="30" anglemin="-360" anglemax="360" scalemin="0.5" scalemax="0.75" velocitymin="250" velocitymax="500" />
+        <ParticleEmitter particle="explosionsmoke" particleamount="2" distancemin="0" distancemax="30" anglemin="-360" anglemax="360" scalemin="1.5" scalemax="2.0" velocitymin="250" velocitymax="500" />
+        <ParticleEmitter particle="ekarmory_hdimpactmedium" particleamount="2" velocitymin="0" velocitymax="0" scalemin="2.0" scalemax="5.0" />
+        <ParticleEmitter particle="ekfireballnew_tiny" particleamount="1" scalemin="1" scalemax="1.25" velocitymin="0" velocitymax="35" distancemin="0" distancemax="10" />
+        <ParticleEmitter particle="ek_underwaterexplosionfix" particleamount="1" scalemin="0.75" scalemax="1.0" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" targettype="This" disabledeltatime="true" stackable="false">
+        <Explosion range="125.0" structuredamage="250" ballastfloradamage="110" levelwalldamage="500" itemdamage="1500" stun="5" force="20.0" severlimbsprobability="0.75">
+          <Affliction identifier="burn" strength="80" />
+          <Affliction identifier="explosiondamage" strength="30" />
+          <Affliction identifier="lacerations" strength="20" />
+          <Affliction identifier="bleeding" strength="15" />
+        </Explosion>
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+    <Quality>
+      <QualityStat stattype="ExplosionRadius" value="0.15" />
+      <QualityStat stattype="ExplosionDamage" value="0.15" />
+    </Quality>
+  </Item>
+  <Item name="ek_breachingcharge_effect" identifier="ek_breachingcharge_effect" Scale="0.5" impactsoundtag="impact_soft" hideinmenus="true">
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Weapons/Images/weapons_ek.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+    <!--<Body width="15" height="15" density="10" />-->
+    <ItemComponent characterusable="false">
+      <StatusEffect type="Always" target="This" Condition="-75" disabledeltatime="true">
+        <ParticleEmitter particle="weldspark" particlespersecond="60" distancemin="0" distancemax="60" anglemin="-360" anglemax="360" startsizemin="0.6,0.4" startsizemax="1.2,0.8" velocitymin="200" velocitymax="400" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" targettype="NearbyItems" range="100" condition="-200" Stuck="-200.0" disabledeltatime="true" stackable="false" delay="0.1" targetitemcomponent="door" targetidentifiers="door,hatch,windoweddoor,doorwbuttons,hatchwbuttons,windoweddoorwbuttons,ductblock">
+        <Conditional Condition="gt 25" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" targettype="NearbyItems" range="100" condition="-60" disabledeltatime="true" stackable="false" delay="0.1" targetitemcomponent="door" targetidentifiers="aliendoor,alienhatch">
+        <Conditional Condition="gt 25" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" disabledeltatime="true" stackable="false" delay="0.1">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <!-- UEX satchel charge -->
+  <!-- mininuke satchel charge -->
+</Items>

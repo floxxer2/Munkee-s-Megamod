@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <Item name="" identifier="door" tags="door,weldable" scale="0.5" health="100" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyexplosions="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="2" linkable="true">
+      <Sprite texture="Content/Items/Door/door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Door/door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
+      <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1">
+        <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+        <RequiredItem items="crowbar" type="Equipped" />
+        <Sprite texture="Content/Items/Door/door.png" sourcerect="158,0,42,416" depth="0.05" origin="0.5,0.0" />
+        <WeldedSprite texture="Content/Items/Door/door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite texture="Content/Items/Door/door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_open1.ogg" type="OnOpen" range="350.0" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_close1.ogg" type="OnClose" range="350.0" />
+        <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+        <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+        <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+        <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+        <StatusEffect type="OnDamaged" target="This">
+          <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+          <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+        </StatusEffect>
+      </Door>
+      <AiTarget sightrange="1500.0" static="True" />
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem items="wrench" type="equipped" />
+      </Repairable>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+        <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+        <output name="condition_out" displayname="connection.conditionout" />
+        <output name="activate_out" displayname="connection.activateout" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="windoweddoor" tags="door,weldable" scale="0.5" health="100" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="2" linkable="true">
+      <Sprite texture="Content/Items/Door/door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Door/door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
+      <Door window="0,0,50,227" canbepicked="true" canbeselected="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1">
+        <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+        <RequiredItem items="crowbar" type="Equipped" />
+        <Sprite texture="Content/Items/Door/door.png" sourcerect="106,0,50,416" depth="0.05" origin="0.5,0.0" />
+        <WeldedSprite texture="Content/Items/Door/door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite texture="Content/Items/Door/door.png" sourcerect="392,0,120,416" depth="0.509" origin="0.5,0.0" scale="true" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_open1.ogg" type="OnOpen" range="350.0" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_close1.ogg" type="OnClose" range="350.0" />
+        <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+        <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+        <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+        <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+        <StatusEffect type="OnDamaged" target="This">
+          <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+          <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+        </StatusEffect>
+      </Door>
+      <AiTarget sightrange="1500.0" static="True" />
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem items="wrench" type="equipped" />
+      </Repairable>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+        <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+        <output name="condition_out" displayname="connection.conditionout" />
+        <output name="activate_out" displayname="connection.activateout" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="doorwbuttons" tags="door,weldable" scale="0.5" health="100" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="2" linkable="true">
+      <Sprite texture="Content/Items/Door/door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Door/door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
+      <DecorativeSprite texture="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/DoorTerminal.png" sourcerect="0,0,142,68" depth="0.512" origin="0.5,0.86" />
+      <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true">
+        <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+        <RequiredItem items="crowbar" type="Equipped" optional="true" />
+        <Requireditem items="idcard" type="Picked" optional="true" />
+        <Sprite texture="Content/Items/Door/door.png" sourcerect="158,0,42,416" depth="0.05" origin="0.5,0.0" />
+        <WeldedSprite texture="Content/Items/Door/door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite texture="Content/Items/Door/door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_open1.ogg" type="OnOpen" range="350.0" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_close1.ogg" type="OnClose" range="350.0" />
+        <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+        <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+        <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+        <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+        <StatusEffect type="OnDamaged" target="This">
+          <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+          <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+        </StatusEffect>
+        <!-- Automatic color change when opened/closed | Disabled to allow chaning color via wiring -->
+        <!-- <StatusEffect type="OnOpen" target="This" lightcolor="150,255,80,0" IsOn="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnOpen" target="This" lightcolor="80,150,255,0" setvalue="true" disabledeltatime="true" delay="1.5" checkconditionalalways="true">
+          <Conditional IsOpen="true" />
+        </StatusEffect>
+        <StatusEffect type="OnClose" target="This" lightcolor="255,80,80,0" IsOn="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnClose" target="This" lightcolor="80,150,255,0" setvalue="true" disabledeltatime="true" delay="1.5" checkconditionalalways="true">
+          <Conditional IsOpen="false" />
+        </StatusEffect> -->
+      </Door>
+      <LightComponent range="10.0" lightcolor="80,150,255,0" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
+        <ActiveConditional HasTag="door" />
+        <sprite texture="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/DoorTerminalLights.png" depth="0.511" sourcerect="0,0,142,68" origin="0.5,0.86" alpha="1.0" />
+      </LightComponent>
+      <trigger x="-60" y="-140" width="170" height="85" />
+      <AiTarget sightrange="1500.0" static="True" />
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem items="wrench" type="equipped" />
+      </Repairable>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+        <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+        <output name="condition_out" displayname="connection.conditionout" />
+        <output name="activate_out" displayname="connection.activateout" />
+        <input name="set_color" displayname="connection.setcolor" />
+      </ConnectionPanel>
+    </Item>
+    <Item name="" identifier="windoweddoorwbuttons" tags="door,weldable" scale="0.5" health="100" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="2" linkable="true">
+      <Sprite texture="Content/Items/Door/door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Door/door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
+      <DecorativeSprite texture="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/DoorTerminal.png" sourcerect="0,0,142,68" depth="0.512" origin="0.5,0.86" />
+      <Door window="0,0,50,227" canbepicked="true" canbeselected="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true">
+        <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+        <RequiredItem items="crowbar" type="Equipped" optional="true" />
+        <Requireditem items="idcard" type="Picked" optional="true" />
+        <Sprite texture="Content/Items/Door/door.png" sourcerect="106,0,50,416" depth="0.05" origin="0.5,0.0" />
+        <WeldedSprite texture="Content/Items/Door/door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite texture="Content/Items/Door/door.png" sourcerect="392,0,120,416" depth="0.509" origin="0.5,0.0" scale="true" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_open1.ogg" type="OnOpen" range="350.0" />
+        <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/door_close1.ogg" type="OnClose" range="350.0" />
+        <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="4000.0" onlyinsamesub="true" />
+        <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+        <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+        <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="3000" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="3000" />
+        <StatusEffect type="OnDamaged" target="This">
+          <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+          <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+        </StatusEffect>
+        <!-- Automatic color change when opened/closed | Disabled to allow chaning color via wiring -->
+        <!-- <StatusEffect type="OnOpen" target="This" lightcolor="150,255,80,0" IsOn="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnOpen" target="This" lightcolor="80,150,255,0" setvalue="true" disabledeltatime="true" delay="1.5" checkconditionalalways="true">
+          <Conditional IsOpen="true" />
+        </StatusEffect>
+        <StatusEffect type="OnClose" target="This" lightcolor="255,80,80,0" IsOn="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnClose" target="This" lightcolor="80,150,255,0" setvalue="true" disabledeltatime="true" delay="1.5" checkconditionalalways="true">
+          <Conditional IsOpen="false" />
+        </StatusEffect> -->
+      </Door>
+      <LightComponent range="10.0" lightcolor="80,150,255,0" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
+        <ActiveConditional HasTag="door" />
+        <sprite texture="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/DoorTerminalLights.png" depth="0.511" sourcerect="0,0,142,68" origin="0.5,0.86" alpha="1.0" />
+      </LightComponent>
+      <trigger x="-60" y="-140" width="170" height="85" />
+      <AiTarget sightrange="1500.0" static="True" />
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem items="wrench" type="equipped" />
+      </Repairable>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+        <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+        <output name="condition_out" displayname="connection.conditionout" />
+        <output name="activate_out" displayname="connection.activateout" />
+        <input name="set_color" displayname="connection.setcolor" />
+      </ConnectionPanel>
+    </Item>
+    <!-- WRECKED -->
+    <!-- variantification of doors + fixes to sprite depth -->
+    <Item name="" identifier="doorwrecked" nameidentifier="door" tags="door,weldable" variantof="door" scale="0.5" health="40" category="Wrecked" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Sprite name="doorwrecked.background" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1790,1236,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1841,1236,44,417" depth="0.89" origin="0.5,0.5" />
+      <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="10.0" shadowscale="0.7,1">
+        <Sprite name="doorwrecked.door" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1936,1025,42,416" depth="0.05" origin="0.5,0" />
+        <WeldedSprite name="doorwrecked.welded" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1982,1024,64,378" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite name="doorwrecked.broken" texture="Content/Items/Door/door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
+      </Door>
+    </Item>
+    <Item name="" identifier="windoweddoorwrecked" nameidentifier="windoweddoor" variantof="windoweddoor" tags="door,weldable" scale="0.5" health="40" category="Wrecked" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Sprite name="windoweddoorwrecked.background" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1789,1236,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1840,1236,46,417" depth="0.89" origin="0.5,0.5" />
+      <Door window="0,0,50,227" canbepicked="true" canbeselected="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="10.0" shadowscale="0.7,1">
+        <Sprite name="windoweddoorwrecked.door" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1885,1025,50,416" depth="0.05" origin="0.5,0" />
+        <WeldedSprite name="windoweddoorwrecked.welded" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1982,1024,64,378" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite name="windoweddoorwrecked.broken" texture="Content/Items/Door/door.png" sourcerect="392,0,120,416" depth="0.509" origin="0.5,0.0" scale="true" />
+      </Door>
+    </Item>
+    <Item name="" identifier="hatchwrecked" nameidentifier="hatch" variantof="hatch" allowedlinks="gap, hull" tags="door,weldable" scale="0.5" health="40" category="Wrecked" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Sprite name="hatchwrecked.background" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1234,1815,256,98" depth="0.7" origin="0.5,0.5" />
+      <Door canbeselected="true" canbepicked="true" horizontal="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="10.0" shadowscale="1,0.8">
+        <Sprite name="hatchwrecked.door" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1775,1883,256,38" depth="0.05" origin="0,0.5" />
+        <WeldedSprite name="hatchwrecked.welded" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1233,1915,228,79" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite name="hatchwrecked.broken" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1775,1927,256,114" depth="0.051" origin="0.5,0.5" scale="true" />
+      </Door>
+    </Item>
+    <Item name="" identifier="doorwbuttonswrecked" nameidentifier="doorwbuttons" variantof="doorwbuttons" tags="door,weldable" scale="0.5" health="40" requirebodyinsidetrigger="false" category="Wrecked" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Sprite name="doorwbuttonswrecked.background" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1789,1236,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1884,1452,164,416" depth="0.89" origin="0.5,0.5" />
+      <DecorativeSprite />
+      <DecorativeSprite />
+      <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="10.0" shadowscale="0.7,1" hasintegratedbuttons="true">
+        <Sprite name="doorwbuttonswrecked.door" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1936,1025,42,416" depth="0.05" origin="0.5,0" />
+        <WeldedSprite name="doorwbuttonswrecked.welded" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1982,1024,64,378" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite name="doorwbuttonswrecked.broken" texture="Content/Items/Door/door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
+      </Door>
+      <LightComponent />
+    </Item>
+    <Item name="" identifier="windoweddoorwbuttonswrecked" nameidentifier="windoweddoorwbuttons" variantof="windoweddoorwbuttons" tags="door,weldable" scale="0.5" health="40" requirebodyinsidetrigger="false" category="Wrecked" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Sprite name="windoweddoorwbuttonswrecked.background" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1789,1236,49,416" depth="0.51" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1884,1452,164,416" depth="0.89" origin="0.5,0.5" />
+      <DecorativeSprite />
+      <DecorativeSprite />
+      <Door window="0,0,50,227" canbepicked="true" canbeselected="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="10.0" shadowscale="0.7,1" hasintegratedbuttons="true">
+        <Sprite name="windoweddoorwbuttonswrecked.door" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1885,1025,50,416" depth="0.05" origin="0.5,0" />
+        <WeldedSprite name="windoweddoorwbuttonswrecked.welded" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1982,1024,64,378" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite name="windoweddoorwbuttonswrecked.broken" texture="Content/Items/Door/door.png" sourcerect="392,0,120,416" depth="0.509" origin="0.5,0.0" scale="true" />
+      </Door>
+      <LightComponent />
+    </Item>
+    <Item name="" identifier="hatchwbuttonswrecked" nameidentifier="hatchwbuttons" variantof="hatchwbuttons" allowedlinks="gap, hull" tags="door,weldable" scale="0.5" health="40" requirebodyinsidetrigger="false" category="Wrecked" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Upgrade gameversion="0.9.7.0" spritedepth="0.7" />
+      <Sprite name="hatchwbuttonswrecked.background" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1234,1815,256,98" depth="0.7" origin="0.5,0.5" />
+      <DecorativeSprite texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1498,1851,263,196" depth="0.89" origin="0.5,0.5" />
+      <Door canbeselected="true" canbepicked="true" horizontal="true" pickkey="Action" msg="ItemMsgOpen" PickingTime="10.0" shadowscale="1,0.8" hasintegratedbuttons="true">
+        <Sprite name="hatchwbuttonswrecked.door" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1775,1883,256,38" depth="0.05" origin="0,0.5" />
+        <WeldedSprite name="hatchwbuttonswrecked.welded" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1233,1915,228,79" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite name="hatchwbuttonswrecked.broken" texture="Content/Items/Shipwrecks/MiscWrecked.png" sourcerect="1774,1927,256,114" depth="0.051" origin="0,0.50071234" scale="true" />
+      </Door>
+    </Item>
+  </Items>
+</Override>

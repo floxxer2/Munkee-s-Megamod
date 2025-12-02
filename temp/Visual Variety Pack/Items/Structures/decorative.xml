@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prefabs>
+  <fin name="Periscope Mast 1" identifier="periscope mast 1" scale="0.41" description="a periscope mast" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="17,442,56,360" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 2 base" identifier="periscope mast 2 base" scale="0.41" description="a periscope mast" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="164,600,58,416" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 3" identifier="periscope mast 3" scale="0.41" description="a periscope mast, too" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="262,610,87,408" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 4" identifier="periscope mast 4" scale="0.41" description="a periscope mast, there" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="377,564,116,455" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope mast 1 cap" identifier="periscope 1 cap" scale="0.41" description="a periscope mast cap" body="false">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="16,286,66,157" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 2 midpiece" identifier="periscope 2 midpiece" scale="0.41" description="a periscope" body="false">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="132,509,122,91" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 3 midpiece" identifier="periscope 3 midpiece" scale="0.41" description="a middle piece of the periscope mast" body="false">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="261,502,109,87" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 4 midpiece" identifier="periscope 4 midpiece" scale="0.41" description="a middle piece of the periscope mast" body="false">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="377,492,116,72" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 2 сap" identifier="periscope mast 2 cap" scale="0.41" description="a top piece of the periscope mast" body="false">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="167,48,50,461" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Periscope Mast 3 сap" identifier="periscope 3 cap" scale="0.41" description="a top piece of the periscope mast" body="false">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="323,1,19,501" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Comm mast base 1" identifier="comm mast base 1" scale="0.41" description="frame surrounding the comm mast inside the hull" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="506,540,115,478" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Comm mast base 2" identifier="comm mast base 2" scale="0.41" description="frame surrounding the comm mast inside the hull" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="631,540,79,478" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Comm mast base 3" identifier="comm mast base 3" scale="0.41" description="frame surrounding the comm mast inside the hull" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="717,568,72,564" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <fin name="Comm mast base 4" identifier="comm mast base 4" scale="0.41" description="frame surrounding the comm mast inside the hull" body="false" resizevertical="true">
+    <sprite texture="%ModDir%/Items/Structures/periscopes.png" sourcerect="795,568,79,454" depth="0.985" origin="0.5,0.5" />
+  </fin>
+  <Front name="Front A_dec" identifier="extA_Front_deco" description="Submarine front A, adapted to fit railgun launch hatches." scale="1.1" resizehorizontal="false" body="true" bodywidth="80" bodyheight="370" bodyoffset="-60,0" castshadow="false" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="586,5,306,500" depth="0.985" origin="0.5,0.5" />
+  </Front>
+  <Front name="Front B_dec" identifier="subfrontb_deco" description="Submarine front B, adapted to fit railgun launch hatches" scale="0.7" resizehorizontal="false" body="true" bodywidth="60" bodyheight="850" bodyoffset="-30,0" castshadow="true" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="0,0,271,975" depth="0.985" origin="0.238248,0.5" />
+  </Front>
+  <Front name="Front E p1_dec" identifier="subfrontep1_deco" description="Submarine front C, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="200" bodyheight="60" bodyrotation="32" bodyoffset="-10,-10" castshadow="true" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="294,0,260,163" depth="0.985" origin="0.5,0.5" />
+  </Front>
+  <Front name="Front E p2_dec" identifier="subfrontep2_deco" description="Submarine front C, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="420" bodyheight="120" bodyrotation="90" bodyoffset="40,0" castshadow="true" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="294,160,261,400" depth="0.985" origin="0.5,0.5" />
+  </Front>
+  <Front name="Front E p3_dec" identifier="subfrontep3_deco" description="Submarine front C, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="200" bodyheight="60" bodyrotation="-20" bodyoffset="0,25" castshadow="true" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="293,556,262,128" depth="0.985" origin="0.5,0.5" />
+  </Front>
+  <FrontF1P1 name="Front F1 p1_dec" identifier="subfrontf1p1_deco" description="Submarine front, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="200" bodyheight="60" bodyrotation="26" bodyoffset="15,-10" castshadow="false" health="400">
+    <sprite texture="Content/Map/SubRearBow3.png" sourcerect="-1,0,363,156" depth="0.985" origin="0.5,0.5" />
+  </FrontF1P1>
+  <FrontF1p2 name="Front F1 p2_dec" identifier="subfrontf1p2_deco" description="Submarine front, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="390" bodyheight="120" bodyrotation="90" bodyoffset="40,0" castshadow="false" health="400">
+    <sprite texture="Content/Map/SubRearBow3.png" sourcerect="74,154,285,279" depth="0.985" origin="0.5,0.5" />
+  </FrontF1p2>
+  <FrontF1p3 name="Front F1 p3_dec" identifier="subfrontf1p3_deco" description="Submarine front, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="230" bodyheight="60" bodyrotation="-20" bodyoffset="0,0" castshadow="false" health="400">
+    <sprite texture="Content/Map/SubRearBow3.png" sourcerect="0,432,359,159" depth="0.985" origin="0.5,0.5" />
+  </FrontF1p3>
+  <FrontF2p1 name="Front F2 p1_dec" identifier="subfrontf2p1_deco" description="Submarine front, adapted to fit railgun launch hatches" scale="1" body="true" bodywidth="250" bodyheight="30" bodyoffset="0,0" bodyrotation="-20" castshadow="false" health="400">
+    <sprite texture="Content/Map/SubRearBow3.png" sourcerect="0,752,270,121" depth="0.985" origin="0.5,0.5" />
+  </FrontF2p1>
+  <FrontF2p2 name="Front F2 p2_dec" identifier="subfrontf2p2_deco" description="Submarine front, adapted to fit railgun launch hatches" scale="1" body="true" bodywidth="138" bodyheight="158" bodyoffset="60,-3" castshadow="false" ishorizontal="false" health="400">
+    <sprite texture="Content/Map/SubRearBow3.png" sourcerect="1,593,269,160" depth="0.985" origin="0.5,0.5" />
+  </FrontF2p2>
+  <!---->
+  <FrontG1p1 name="Front G1 p1_dec" identifier="subfrontg1p1_deco" description="Submarine front C temp, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="240" bodyheight="60" bodyrotation="50" bodyoffset="-10,-10" castshadow="false" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="-1,0,271,299" depth="0.01" origin="0.5,0.5" />
+  </FrontG1p1>
+  <FrontG1p2 name="Front G1 p2_dec" identifier="subfrontg1p2_deco" description="Submarine front C temp, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="420" bodyheight="120" bodyrotation="90" bodyoffset="40,0" castshadow="false" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="0,299,271,438" depth="0.01" origin="0.5,0.5" />
+  </FrontG1p2>
+  <FrontG1p3 name="Front G1 p3_dec" identifier="subfrontg1p3_deco" description="Submarine front C temp, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="240" bodyheight="60" bodyrotation="-50" bodyoffset="0,25" castshadow="false" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="0,737,269,254" depth="0.01" origin="0.5,0.5" />
+  </FrontG1p3>
+  <FrontG2p1 name="Front G2 p1_dec" identifier="subfrontg2p1_deco" description="Submarine front C temp, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="150" bodyheight="60" bodyrotation="40" bodyoffset="-10,-16" castshadow="false" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="590,17,260,134" depth="0.01" origin="0.5,0.5" />
+  </FrontG2p1>
+  <FrontG2p2 name="Front G2 p2_dec" identifier="subfrontg2p2_deco" description="Submarine front C temp, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="300" bodyheight="120" bodyrotation="90" bodyoffset="0,0" castshadow="false" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="635,149,219,223" depth="0.01" origin="0.5,0.5" />
+  </FrontG2p2>
+  <FrontG2p3 name="Front G2 p3_dec" identifier="subfrontg2p3_deco" description="Submarine front C temp, adapted to fit railgun launch hatches" scale="1.5" body="true" bodywidth="150" bodyheight="60" bodyrotation="-40" bodyoffset="0,25" castshadow="false" health="400">
+    <sprite texture="Content/Map/MiscStructures.png" sourcerect="593,371,237,130" depth="0.01" origin="0.5,0.5" />
+  </FrontG2p3>
+</prefabs>

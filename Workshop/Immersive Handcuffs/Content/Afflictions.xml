@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Afflictions>
+    <!-- This affliction is used to handcuff someone -->
+    <Affliction name="" identifier="applyhandcuffs" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1.0">
+        <!-- Spawn the equipped version of the handcuffs that lock the characters hands and play a cuffing sound -->
+        <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false">
+          <SpawnItem identifier="handcuffsequipped" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="false" />
+          <!-- Disabled sound played via affliction because the game is stupid and doesn't play these sounds for other characters in range in MP, but it works in SP... -->
+          <!-- <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing2.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing3.ogg" volume="2" range="300" loop="false" selectionmode="random" /> -->
+        </StatusEffect>
+        <!-- Try spawn the second equipped version of the handcuffs if the first one didn't spawn in due to a blocked hand -->
+        <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false" delay="0.2" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="handcuffsequipped2" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="false" />
+        </StatusEffect>
+        <!-- Instantly remove the applyhandcuffs affliction and trigger change team on arrest event -->
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="arrested" triggeredEventEntityTag="arrested" eventTargetTags="arrested" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false">
+          <ReduceAffliction identifier="applyhandcuffs" amount="100" />
+          <TriggerEvent identifier="change_team_on_arrest" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="applyreinforcedhandcuffs" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1.0">
+        <!-- Spawn the equipped version of the handcuffs that lock the characters hands -->
+        <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false">
+          <SpawnItem identifier="reinforcedhandcuffsequipped" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+          <ReduceAffliction identifier="applyreinforcedhandcuffs" amount="100" />
+          <TriggerEvent identifier="change_team_on_arrest" />
+        </StatusEffect>
+        <!-- Try spawn the second equipped version of the handcuffs if the first one didn't spawn in due to a blocked hand -->
+        <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false" delay="0.1" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="reinforcedhandcuffsequipped2" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+        </StatusEffect>
+        <!-- Instantly remove the applyreinforcedhandcuffs affliction and trigger change team on arrest event -->
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="arrested" triggeredEventEntityTag="arrested" eventTargetTags="arrested" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false">
+          <ReduceAffliction identifier="applyreinforcedhandcuffs" amount="100" />
+          <TriggerEvent identifier="change_team_on_arrest" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <!-- This affliction is applied to both the character uncuffing as well as the character that's getting uncuffed -->
+    <Affliction name="" identifier="retrievehandcuffs" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1.0">
+        <!-- DISABLED DUE TO ITEM DUPLICATING | Check if the character is the one uncuffing the other by checking if the character has the "handcuffed" affliction. If the affliction wasn't found, spawn the regular handcuffs item in the character's inventory -->
+        <!-- <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false" interval="0.1">
+          <Conditional handcuffed="lte 0" />
+          <ReduceAffliction identifier="retrievehandcuffs" amount="1000" />
+          <SpawnItem identifier="handcuffsspawned" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" SpawnIfNotInInventory="true" />
+        </StatusEffect> -->
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="released" triggeredEventEntityTag="released" eventTargetTags="released" disabledeltatime="true">
+          <Conditional handcuffed="gt 0" />
+          <TriggerEvent identifier="change_team_on_released" />
+        </StatusEffect>
+        <!-- Check if the character is the one being uncuffed by checking if the character has the "handcuffed" affliction. If the affliction was found, tag the character with the temporary tag "unlocked" and remove the "handcuffed" affliction while playing an uncuffing sound -->
+        <StatusEffect type="OnActive" target="Character" tags="unlocked" duration="0.5" stackable="false" comparison="And">
+          <Conditional handcuffed="gt 0" />
+          <!-- Disabled sound played via affliction because the game is stupid and doesn't play these sounds for other characters in range in MP, but it works in SP... -->
+          <!-- <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/uncuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" /> -->
+          <ReduceAffliction identifier="handcuffed" amount="1000" />
+          <ReduceAffliction identifier="retrievehandcuffs" amount="1000" />
+          <!-- Handcuffs need to be spawned at the position of the cuffed character as the original approach of spawning in the uncuffer's inventory allowed for duplicating -->
+          <SpawnItem identifier="handcuffsspawned" spawnposition="This" SpawnIfInventoryFull="true" spawnifcantbecontained="true" SpawnIfNotInInventory="true" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="Character" tags="unlocked" duration="0.5" stackable="false" comparison="And">
+          <Conditional handcuffedreinforced="gt 0" />
+          <!-- Disabled sound played via affliction because the game is stupid and doesn't play these sounds for other characters in range in MP, but it works in SP... -->
+          <!-- <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/uncuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" /> -->
+          <ReduceAffliction identifier="handcuffedreinforced" amount="1000" />
+          <ReduceAffliction identifier="retrievehandcuffs" amount="1000" />
+          <!-- Handcuffs need to be spawned at the position of the cuffed character as the original approach of spawning in the uncuffer's inventory allowed for duplicating -->
+          <SpawnItem identifier="reinforcedhandcuffsspawned" spawnposition="This" SpawnIfInventoryFull="true" spawnifcantbecontained="true" SpawnIfNotInInventory="true" />
+        </StatusEffect>
+        <!-- Check if the character is the one being uncuffed by checking if the character has the "handcuffed" affliction. If the affliction was found, apply 4 seconds of stun to the character, but only if the character isn't suffering from a higher stun value already -->
+        <StatusEffect type="OnActive" target="Character" setvalue="true" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" comparison="And">
+          <Conditional handcuffed="gt 0" />
+          <Conditional stun="lte 4" />
+          <Affliction identifier="stun" amount="4" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <!-- This affliction is just for StatusEffects to identify a handcuffed person and for visual feedback in the health menu -->
+    <Affliction name="Handcuffed" identifier="handcuffed" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false" iconcolors="255,255,255,255;255,255,255,255">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0.0">
+        <StatusEffect target="Character" lockhands="true" setvalue="true" />
+        <StatusEffect target="Character" disabledeltatime="true" delay="0.1" stackable="false" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="handcuffsequipped" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+        </StatusEffect>
+        <StatusEffect target="Character" disabledeltatime="true" delay="0.2" stackable="false" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="handcuffsequipped2" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="Handcuffed" identifier="handcuffedreinforced" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false" iconcolors="255,255,255,255;255,255,255,255">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0.0">
+        <StatusEffect target="Character" lockhands="true" setvalue="true" />
+        <StatusEffect target="Character" disabledeltatime="true" delay="0.1" stackable="false" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="reinforcedhandcuffsequipped" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+        </StatusEffect>
+        <StatusEffect target="Character" disabledeltatime="true" delay="0.2" stackable="false" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="reinforcedhandcuffsequipped2" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="Blindfolded" identifier="blindfolded" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-2" MinAfflictionOverlayAlphaMultiplier="0.0" MaxAfflictionOverlayAlphaMultiplier="1.0" />
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Blindfolded.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+      <AfflictionOverlay texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/BlindfoldOverlay.png" />
+    </Affliction>
+    <Affliction name="Arrested Citizen" identifier="arrestedteam1" type="botarrest" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="10000" showicontoothersthreshold="10000" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0" />
+      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,128,128,128" color="255,255,255,255" origin="0,0" />
+      <!--<icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,0,128,128" color="255,255,255,255" origin="0,0"/>-->
+    </Affliction>
+    <Affliction name="Arrested Bandit" identifier="arrestedteam2" type="botarrest" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="10000" showicontoothersthreshold="10000" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="7200" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <!-- maxtrength of 7200 = 2h if strengthchange is 1 | would allow to track how long the person has been arrested for -->
+      <Effect minstrength="0" maxstrength="7200" strengthchange="1" />
+      <!-- 10% chance to break free every 15 minutes starting after half an hour of being cuffed -->
+      <PeriodicEffect minstrength="1800" maxtrength="7200" interval="900">
+        <StatusEffect target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true">
+          <Affliction identifier="retrievehandcuffs" amount="1" probability="0.1" />
+        </StatusEffect>
+      </PeriodicEffect>
+      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,128,128,128" color="255,255,255,255" origin="0,0" />
+      <!--<icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,0,128,128" color="255,255,255,255" origin="0,0"/>-->
+    </Affliction>
+    <Affliction name="Arrested Bandit" identifier="arrestednone" type="botarrest" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="7200" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <!-- maxtrength of 7200 = 2h if strengthchange is 1 | would allow to track how long the person has been arrested for -->
+      <Effect minstrength="0" maxstrength="7200" strengthchange="1" />
+      <!-- 10% chance to break free every 15 minutes starting after half an hour of being cuffed -->
+      <PeriodicEffect minstrength="1800" maxtrength="7200" interval="900">
+        <StatusEffect target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true">
+          <Affliction identifier="retrievehandcuffs" amount="1" probability="0.1" />
+        </StatusEffect>
+      </PeriodicEffect>
+      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,128,128,128" color="255,255,255,255" origin="0,0" />
+      <!--<icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,0,128,128" color="255,255,255,255" origin="0,0"/>-->
+    </Affliction>
+    <Affliction name="Arrested Citizen" identifier="arrestedfriendly" type="botarrest" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="7200" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <!-- maxtrength of 7200 = 2h if strengthchange is 1 | would allow to track how long the person has been arrested for -->
+      <Effect minstrength="0" maxstrength="7200" strengthchange="1" />
+      <!-- 10% chance to break free every 15 minutes starting after half an hour of being cuffed -->
+      <PeriodicEffect minstrength="1800" maxtrength="7200" interval="900">
+        <StatusEffect target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true">
+          <Affliction identifier="retrievehandcuffs" amount="1" probability="0.1" />
+        </StatusEffect>
+      </PeriodicEffect>
+      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,128,128,128" color="255,255,255,255" origin="0,0" />
+      <!--<icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,0,128,128" color="255,255,255,255" origin="0,0"/>-->
+    </Affliction>
+    <Affliction name="Arrested Prisoner" identifier="arrestedprisoner" type="botarrest" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="7200" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <!-- maxtrength of 7200 = 2h if strengthchange is 1 | would allow to track how long the person has been arrested for -->
+      <Effect minstrength="0" maxstrength="7200" strengthchange="1" />
+      <!-- 10% chance to break free every 5 minutes starting -->
+      <PeriodicEffect minstrength="600" maxtrength="7200" interval="300">
+        <StatusEffect target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true">
+          <Affliction identifier="retrievehandcuffs" amount="1" probability="0.1" />
+        </StatusEffect>
+      </PeriodicEffect>
+      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,128,128,128" color="255,255,255,255" origin="0,0" />
+      <!--<icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,0,128,128" color="255,255,255,255" origin="0,0"/>-->
+    </Affliction>
+    <Affliction name="sendtojail" identifier="sendtojail" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="10000" showicontoothersthreshold="10000" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="7200" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1">
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="imprison" triggeredEventEntityTag="imprison" eventTargetTags="imprison" disabledeltatime="true">
+          <Conditional handcuffed="gt 0" />
+          <TriggerEvent identifier="send_to_jail" />
+          <ReduceAffliction identifier="sendtojail" amount="1000" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="sendtobrig" identifier="sendtobrig" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="10000" showicontoothersthreshold="10000" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="7200" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1">
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="imprison" triggeredEventEntityTag="imprison" eventTargetTags="imprison" disabledeltatime="true" stackable="false" comparison="And">
+          <Conditional handcuffed="gt 0" />
+          <Conditional imprisonedbrig="lte 0" />
+          <TriggerEvent identifier="send_to_brig" />
+          <ReduceAffliction identifier="sendtobrig" amount="1000" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="Inside Brig" identifier="imprisonedbrig" type="none" Description="afflictiondescription.imprisonedbrig.self" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="10" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="150,150,150,255;255,255,255,255;255,255,255,255">
+      <Description textidentifier="afflictiondescription.imprisonedbrig.self" target="Self" />
+      <Description textidentifier="afflictiondescription.imprisonedbrig" target="OtherCharacter" />
+      <Effect minstrength="0" maxstrength="10" strengthchange="-1" />
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Jailed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="Inside Jail" identifier="imprisonedjail" type="none" Description="afflictiondescription.imprisonedbrig.self" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="10000" showicontoothersthreshold="10000" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="150,150,150,255;255,255,255,255;255,255,255,255">
+      <Description textidentifier="afflictiondescription.imprisonedbrig.self" target="Self" />
+      <Description textidentifier="afflictiondescription.imprisonedbrig" target="OtherCharacter" />
+      <Effect minstrength="0" maxstrength="1" strengthchange="-0.5" />
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Jailed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="Jail Time" identifier="jailtime" type="none" Description="afflictiondescription.jailtime.self" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="300" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <Description textidentifier="afflictiondescription.jailtime.self" target="Self" />
+      <Description textidentifier="afflictiondescription.jailtime" target="OtherCharacter" />
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1">
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="releasedfromjail" triggeredEventEntityTag="releasedfromjail" eventTargetTags="releasedfromjail" disabledeltatime="true">
+          <Conditional imprisonedjail="gt 0" />
+          <TriggerEvent identifier="release_from_jail" />
+          <ReduceAffliction identifier="jailtime" amount="1000" />
+        </StatusEffect>
+      </Effect>
+      <Effect minstrength="1" maxstrength="300" strengthchange="-1" />
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Jailed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="Banned" identifier="bannedtime" type="none" Description="afflictiondescription.bannedtime.self" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="10000" karmachangeonapplied="0" maxstrength="300" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false" iconcolors="255,255,255,255;255,255,255,255">
+      <Description textidentifier="afflictiondescription.bannedtime.self" target="Self" />
+      <Description textidentifier="afflictiondescription.bannedtime" target="OtherCharacter" />
+      <Effect minstrength="0" maxstrength="300" strengthchange="-1" />
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Banned.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="blackscreen" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="2" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-2" MinAfflictionOverlayAlphaMultiplier="0.0" MaxAfflictionOverlayAlphaMultiplier="1.0" />
+      <Effect minstrength="1" maxstrength="2" strengthchange="-1" MinAfflictionOverlayAlphaMultiplier="1.0" MaxAfflictionOverlayAlphaMultiplier="1.0" />
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Blindfolded.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+      <AfflictionOverlay texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/BlindfoldOverlay.png" />
+    </Affliction>
+    <!-- Sound Afflictions | Used because sounds would not play from events in multiplayer -->
+    <Affliction name="" identifier="playsound_openjail" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="2" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0">
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <Conditional isLocalPlayer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/openjail1.ogg" volume="1.5" range="300" loop="false" selectionmode="random" />
+        </StatusEffect>
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <ReduceAffliction identifier="playsound_openjail" amount="1000" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Blindfolded.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="playsound_lockjail" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="2" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0">
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <Conditional isLocalPlayer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/lockjail1.ogg" volume="1.5" range="300" loop="false" selectionmode="random" />
+        </StatusEffect>
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <ReduceAffliction identifier="playsound_lockjail" amount="1000" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Blindfolded.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="playsound_handcuff" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="2" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0">
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <Conditional isLocalPlayer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing2.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing3.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+        </StatusEffect>
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <ReduceAffliction identifier="playsound_handcuff" amount="1000" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Blindfolded.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="playsound_uncuff" type="none" limbspecific="false" indicatorlimb="Head" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="2" affectmachines="false" healableinmedicalclinic="false" afflictionoverlayalphaislinear="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0">
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <Conditional isLocalPlayer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/uncuffing1.ogg" volume="2.5" range="350" loop="false" />
+        </StatusEffect>
+        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="0.5">
+          <ReduceAffliction identifier="playsound_uncuff" amount="1000" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Blindfolded.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+  </Afflictions>
+</Override>

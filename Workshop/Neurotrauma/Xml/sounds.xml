@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sounds>
+  <Override>
+    <ecg1 file="%ModDir%/Workshop/Neurotrauma/Sound/BHUI/ecg1.ogg" />
+    <ecg2 file="%ModDir%/Workshop/Neurotrauma/Sound/BHUI/ecg2.ogg" />
+    <flatline1 file="%ModDir%/Workshop/Neurotrauma/Sound/BHUI/flatline1.ogg" />
+    <flatline2 file="%ModDir%/Workshop/Neurotrauma/Sound/BHUI/flatline2.ogg" />
+    <impact_squeak file="%ModDir%/Workshop/Neurotrauma/Sound/squeak1.ogg" range="500" />
+    <impact_squeak file="%ModDir%/Workshop/Neurotrauma/Sound/squeak2.ogg" range="500" />
+    <impact_squeak file="%ModDir%/Workshop/Neurotrauma/Sound/squeak3.ogg" range="500" />
+    <impact_squeak file="%ModDir%/Workshop/Neurotrauma/Sound/squeak4.ogg" range="500" />
+    <impact_squeak file="%ModDir%/Workshop/Neurotrauma/Sound/squeak5.ogg" range="500" />
+    <!-- override to remove oxygenlow heartbeat sound -->
+    <heartbeatdiastole file="%ModDir%/Workshop/Neurotrauma/Sound/silent.ogg" />
+    <heartbeatdiastole file="%ModDir%/Workshop/Neurotrauma/Sound/silent.ogg" />
+    <heartbeatdiastole file="%ModDir%/Workshop/Neurotrauma/Sound/silent.ogg" />
+    <heartbeatsystole file="%ModDir%/Workshop/Neurotrauma/Sound/silent.ogg" />
+    <heartbeatsystole file="%ModDir%/Workshop/Neurotrauma/Sound/silent.ogg" />
+    <heartbeatsystole file="%ModDir%/Workshop/Neurotrauma/Sound/silent.ogg" />
+  </Override>
+</sounds>

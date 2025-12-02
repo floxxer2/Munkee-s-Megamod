@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Randomevents>
+  <!-- Events defined in <EventPrefabs> can only be triggered via a console command or with a TriggerEventAction -->
+  <EventPrefabs>
+    <ScriptedEvent identifier="resumedetoriation">
+      <WaitAction time="3" />
+      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="itemtag:oxygengenerator" tag="playeroxygengenerator" submarinetype="player" ContinueIfNoTargetsFound="false" />
+      <TriggerAction target1tag="player" target2tag="playeroxygengenerator" radius="9000" disableincombat="false" disableiftargetincapacitated="false" waitforinteraction="false" allowmultipletargets="true" />
+      <StatusEffectAction targettag="playeroxygengenerator">
+        <!-- tag the oxygen generator with "deterioratefilter" to remove the "outpostoxygen" tag and allow the air filter condition draining StatusEffect on the oxygen generator to trigger again -->
+        <StatusEffect target="This" tags="deterioratefilter" setvalue="true" disabledeltatime="true" comparison="And">
+          <Conditional noninteractable="false" />
+          <Conditional nonplayerteaminteractable="false" />
+        </StatusEffect>
+      </StatusEffectAction>
+    </ScriptedEvent>
+    <!-- tag vents depending on their location -->
+    <ScriptedEvent identifier="taggingvents">
+      <WaitAction time="1" />
+      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="itemtag:vent" tag="playersubvent" submarinetype="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemtag:vent" tag="outpostvent" submarinetype="outpost" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemtag:oxygengenerator" tag="playersuboxygen" submarinetype="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemtag:oxygengenerator" tag="outpostoxygen" submarinetype="outpost" ContinueIfNoTargetsFound="true" />
+      <TriggerAction target1tag="player" target2tag="playersuboxygen" radius="9000" disableincombat="false" disableiftargetincapacitated="false" waitforinteraction="false" allowmultipletargets="true" />
+      <StatusEffectAction targettag="playersubvent">
+        <StatusEffect target="This" tags="playersubvent" noninteractable="false" setvalue="true" />
+      </StatusEffectAction>
+      <StatusEffectAction targettag="outpostvent">
+        <StatusEffect target="This" tags="outpostvent" nonplayerteaminteractable="true" setvalue="true" />
+      </StatusEffectAction>
+      <StatusEffectAction targettag="playersuboxygen">
+        <StatusEffect target="This" tags="playersuboxygen" setvalue="true" />
+      </StatusEffectAction>
+      <StatusEffectAction targettag="outpostoxygen">
+        <StatusEffect target="This" tags="outpostoxygen" setvalue="true" />
+      </StatusEffectAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="oxygensmokeplayer">
+      <SetDataAction identifier="oxygengeneratorfireplayer" operation="Set" value="1" />
+      <TagAction criteria="itemtag:playersubvent" tag="playersubvent" submarinetype="player" ContinueIfNoTargetsFound="true" />
+      <Label name="restart" />
+      <CheckDataAction identifier="oxygengeneratorfireplayer" condition="eq 1">
+        <Success>
+          <StatusEffectAction targettag="playersubvent">
+            <!-- Doesn't seem to be possible to target the hulls the vent is in.
+            Also tried giving the vent a holdable and body component to mimic the skyholder artifact, but still didn't allow targeting the hull.
+            Resorted to adding a StatusEffect on the vents that targets the hull and changing this StatusEffect to give a StatusTag instead of trying to deplete oxygen.
+            -->
+            <StatusEffect target="This" disabledeltatime="true">
+              <SpawnItem identifier="effect_smokingvents" spawnposition="This" />
+            </StatusEffect>
+            <!--StatusEffect target="This" tags="smoking" duration="1">
+              <ParticleEmitter particle="smoke" anglemax="360" velocitymin="50" velocitymax="200" particlespersecond="25" />
+            </StatusEffect>-->
+          </StatusEffectAction>
+          <WaitAction time="1" />
+          <GoTo name="restart" />
+        </Success>
+        <Failure />
+      </CheckDataAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="stopoxygensmokeplayer">
+      <SetDataAction identifier="oxygengeneratorfireplayer" operation="Set" value="0" />
+    </ScriptedEvent>
+    <!-- arrest players cracking something on a station with the safe cracker -->
+    <ScriptedEvent identifier="activedrill">
+      <TagAction criteria="itemtag:safecracker" tag="activedrill" submarinetype="outpost" />
+      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="humanprefabidentifier:securitynpccoalition" tag="securityguard" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:securitynpcseparatists" tag="securityguard" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:securitynpccoalition" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:securitynpcseparatists" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:outpostmanagerseparatists" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:outpostmanagercoalition" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:sergeantseparatists" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:quartermaster" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:bartender" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:tailor" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:botanist" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:pharmacist" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:gunsmith" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:hrmanager" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:reactoroperator" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:subupgradenpc" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:subsalesnpc" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantoutpost" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantcity" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantmine" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantresearch" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantmilitary" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantarmory" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantmedical" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:merchantengineering" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:armsdealer" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:cargomissiongiver" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:salvagemissiongiver" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:outpostdoctor" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:watchman" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:watchmanseparatist" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:commoner" tag="witness" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="humanprefabidentifier:researcher" tag="witness" ContinueIfNoTargetsFound="true" />
+      <Label name="restart" />
+      <TriggerAction target1tag="activedrill" target2tag="player" applytotarget2="ad_trig_player" waitforinteraction="false" radius="1500" allowmultiple="true" ContinueIfNoTargetsFound="true" />
+      <CheckVisibilityAction EntityTag="witness" TargetTag="activedrill" AllowSameEntity="false">
+        <Success>
+          <CombatAction combatmode="Arrest" npctag="securityguard" enemytag="ad_trig_player" isinstigator="false" guardreaction="none" witnessreaction="retreat" />
+          <ConversationAction targettag="ad_trig_player" text="EventText.activedrill.CalledSecurity" eventsprite="security" dialogtype="Small" />
+          <WaitAction time="30" />
+          <ClearTagAction tag="ad_trig_player" />
+          <GoTo name="restart" />
+        </Success>
+        <Failure>
+          <WaitAction time="1" />
+          <ClearTagAction tag="ad_trig_player" />
+          <GoTo name="restart" />
+        </Failure>
+      </CheckVisibilityAction>
+    </ScriptedEvent>
+  </EventPrefabs>
+  <!-- locationtype="construction,outpost,settlement,colony,city,camp,base,military,blockade,survey,mine,study,research,clinic,hospital,hydroponics,factory,shipyard,huskchurch,sinkingcircus,pirateoutpost,lair,lairmudraptor,lairthresher,huskgroundsde,militaryforces" -->
+  <EventSet identifier="ir.outpostevents" leveltype="outpost" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true" additive="true" selectalways="true">
+    <ScriptedEvent identifier="taggingvents" commonness="100" />
+  </EventSet>
+  <EventSet identifier="ir.transitevents" leveltype="locationconnection" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true" additive="true" selectalways="true" campaign="true">
+    <ScriptedEvent identifier="resumedetoriation" commonness="100" />
+  </EventSet>
+</Randomevents>

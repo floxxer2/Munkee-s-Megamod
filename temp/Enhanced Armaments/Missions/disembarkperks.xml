@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DisembarkPerks>
+  <Override>
+    <DisembarkPerk identifier="armorysurplus" cost="0" sortcategory="Armory">
+      <SpawnItemPerk identifier="revolver" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="revolverround" MinAmount="18" perplayer="6" PriorityContainerTag="revolver" />
+      <SpawnItemPerk identifier="shotgun" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="shotgunshell" MinAmount="12" perplayer="6" PriorityContainerTag="shotgun" />
+      <SpawnItemPerk identifier="smg" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="smgmagazine" MinAmount="2" perplayer="1" PriorityContainerTag="smg" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armorylongrange" cost="2" sortcategory="Armory">
+      <SpawnItemPerk identifier="rifle" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="riflebullet" MinAmount="10" perplayer="5" PriorityContainerTag="rifle" />
+      <SpawnItemPerk identifier="assaultrifle" MinAmount="1" perplayer="0.2" />
+      <SpawnItemPerk identifier="assaultriflemagazine" MinAmount="2" perplayer="0.5" PriorityContainerTag="assaultrifle" />
+    </DisembarkPerk>
+    <!-- Coalition Armory -->
+    <DisembarkPerk identifier="extrauniforms" cost="1" sortcategory="armorycoal" sortkey="1">
+      <SpawnItemPerk identifier="scp_lightuniform" MinAmount="2" perplayer="0.5" />
+      <SpawnItemPerk identifier="scp_heavyuniform" MinAmount="1" perplayer="0.125" />
+      <SpawnItemPerk identifier="sgt_coalitioncaptainuniform" MinAmount="1" />
+      <SpawnItemPerk identifier="sgt_coalitioncaptainhat" MinAmount="1" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armorysmall" cost="1" sortcategory="armorycoal" sortkey="2">
+      <SpawnItemPerk identifier="scp_p226" MinAmount="1" perplayer="0.5" />
+      <SpawnItemPerk identifier="scp_9mmmag" MinAmount="1" perplayer="2" PriorityContainerTag="scp_p226" />
+      <SpawnItemPerk identifier="scp_python" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="scp_357round" MinAmount="12" perplayer="6" PriorityContainerTag="scp_python" />
+      <SpawnItemPerk identifier="scp_smg9" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_9mmsmgmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_smg9" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryclosequarters" cost="2" sortcategory="armorycoal" sortkey="3">
+      <SpawnItemPerk identifier="scp_m590" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_m4s90" MinAmount="1" perplayer="0.2" />
+      <SpawnItemPerk identifier="shotgunshell" MinAmount="9" perplayer="6" PriorityContainerTag="scp_m590" />
+      <SpawnItemPerk identifier="shotgunshell" MinAmount="9" perplayer="6" PriorityContainerTag="scp_m4s90" />
+      <SpawnItemPerk identifier="scp_ump45" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="scp_umpmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_ump45" />
+      <SpawnItemPerk identifier="scp_sg550" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_556mag" MinAmount="1" perplayer="1.5" PriorityContainerTag="scp_sg550" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryhighcal" cost="3" sortcategory="armorycoal" sortkey="4">
+      <SpawnItemPerk identifier="scp_scar20" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_scar17" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_scarmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_scar20" />
+      <SpawnItemPerk identifier="scp_scarmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_scar17" />
+      <SpawnItemPerk identifier="scp_ash12" MinAmount="1" perplayer="0.2" />
+      <SpawnItemPerk identifier="scp_ash12extmag" MinAmount="1" perplayer="1" PriorityContainerTag="scp_ash12" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryheavyartillery" cost="3" sortcategory="armorycoal" sortkey="5">
+      <SpawnItemPerk identifier="scp_mag" MinAmount="1" perplayer="0.2" />
+      <SpawnItemPerk identifier="scp_pkpboxmag" MinAmount="2" perplayer="0.5" PriorityContainerTag="scp_mag" />
+      <SpawnItemPerk identifier="scp_ar50" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_50bmgfmj" MinAmount="3" perplayer="0.5" />
+      <SpawnItemPerk identifier="scp_50bmgapi" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_50bmgdura" MinAmount="1" perplayer="0.5" />
+      <SpawnItemPerk identifier="scp_mgl" MinAmount="1" perplayer="0.1" />
+      <SpawnItemPerk identifier="40mmgrenade" MinAmount="3" perplayer="1.2" PriorityContainerTag="scp_mgl" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armorylightarmor" cost="1" sortcategory="armorycoal" sortkey="6">
+      <SpawnItemPerk identifier="scp_softvest" MinAmount="2" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_riotvest" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="bodyarmor" MinAmount="1" perplayer="0.2" />
+      <SpawnItemPerk identifier="scp_combathelmet" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="ballistichelmet2" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="ballistichelmet1" MinAmount="1" perplayer="0.2" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryheavyarmor" cost="3" sortcategory="armorycoal" sortkey="7">
+      <SpawnItemPerk identifier="scp_heavyrig" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_heavyvest" MinAmount="2" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_heavycombathelmet" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_combathelmet" MinAmount="1" perplayer="0.25" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryspecops" cost="4" sortcategory="armorycoal" sortkey="8">
+      <SpawnItemPerk identifier="scp_veronuniform" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_veronrig" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_veronhelmet" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_physicoriumsword" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_lwmmg" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_pkpboxmag" MinAmount="3" PriorityContainerTag="scp_lwmmg" />
+      <SpawnItemPerk identifier="scp_ash12unique" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_ash12extmag" MinAmount="4" PriorityContainerTag="scp_ash12unique" />
+      <SpawnItemPerk identifier="scp_marauderuniform" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_marauderrig" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_marauderhelmet" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_dementonitemachete" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_m35a2" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_556apmag" MinAmount="9" PriorityContainerTag="scp_m35a2" />
+      <SpawnItemPerk identifier="scp_spas12" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_12gslug" MinAmount="32" PriorityContainerTag="scp_spas12" />
+    </DisembarkPerk>
+    <!-- Renegade Armory -->
+    <DisembarkPerk identifier="extrauniformsren" cost="1" sortcategory="armorysep" sortkey="1">
+      <SpawnItemPerk identifier="scp_renegadeuniform" MinAmount="2" perplayer="0.5" />
+      <SpawnItemPerk identifier="scp_heavyrenuniform" MinAmount="1" perplayer="0.125" />
+      <SpawnItemPerk identifier="scp_renegadecaptainuniform" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_renegadecaptainhat" MinAmount="1" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armorysmallren" cost="1" sortcategory="armorysep" sortkey="2">
+      <SpawnItemPerk identifier="scp_mp443" MinAmount="1" perplayer="0.5" />
+      <SpawnItemPerk identifier="scp_9mmmag" MinAmount="1" perplayer="2" PriorityContainerTag="scp_mp443" />
+      <SpawnItemPerk identifier="scp_python" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="scp_357round" MinAmount="12" perplayer="6" PriorityContainerTag="scp_python" />
+      <SpawnItemPerk identifier="scp_uzi" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_9mmsmgmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_uzi" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryclosequartersren" cost="2" sortcategory="armorysep" sortkey="3">
+      <SpawnItemPerk identifier="scp_rm93" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="scp_saiga" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="shotgunshell" MinAmount="12" perplayer="6" PriorityContainerTag="scp_rm93" />
+      <SpawnItemPerk identifier="scp_saigaextmag" MinAmount="3" perplayer="1" PriorityContainerTag="scp_saiga" />
+      <SpawnItemPerk identifier="scp_sr2" MinAmount="1" perplayer="0.35" />
+      <SpawnItemPerk identifier="scp_umpmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_sr2" />
+      <SpawnItemPerk identifier="scp_ak74m" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_ak74mag" MinAmount="1" perplayer="1.5" PriorityContainerTag="scp_ak74m" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryhighcalren" cost="3" sortcategory="armorysep" sortkey="4">
+      <SpawnItemPerk identifier="scp_ak103" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_tabuk" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_akmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_ak103" />
+      <SpawnItemPerk identifier="scp_akmag" MinAmount="2" perplayer="1" PriorityContainerTag="scp_tabuk" />
+      <SpawnItemPerk identifier="scp_malyuk" MinAmount="1" perplayer="0.2" />
+      <SpawnItemPerk identifier="scp_ash12extmag" MinAmount="1" perplayer="1" PriorityContainerTag="scp_malyuk" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryheavyartilleryren" cost="3" sortcategory="armorysep" sortkey="5">
+      <SpawnItemPerk identifier="scp_pkp" MinAmount="2" perplayer="0.2" />
+      <SpawnItemPerk identifier="scp_pkpboxmag" MinAmount="2" perplayer="0.5" PriorityContainerTag="scp_pkp" />
+      <SpawnItemPerk identifier="scp_rpg7" MinAmount="1" perplayer="0.1" />
+      <SpawnItemPerk identifier="scp_rpg7he" MinAmount="2" perplayer="0.25" PriorityContainerTag="scp_rpg7" />
+      <SpawnItemPerk identifier="scp_rpg7du" MinAmount="1" perplayer="0.15" />
+      <SpawnItemPerk identifier="scp_rpg7phys" MinAmount="1" perplayer="0.1" />
+      <SpawnItemPerk identifier="grenadelauncher" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="40mmgrenade" MinAmount="3" perplayer="1.2" PriorityContainerTag="grenadelauncher" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armorylightarmorsep" cost="1" sortcategory="armorysep" sortkey="6">
+      <SpawnItemPerk identifier="scp_renegadevest" MinAmount="2" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_riotvest" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_renegadeplatecarrier" MinAmount="1" perplayer="0.2" />
+      <SpawnItemPerk identifier="piratehelmet" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_renegadehelmet" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="ballistichelmet1" MinAmount="1" perplayer="0.2" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryheavyarmorsep" cost="3" sortcategory="armorysep" sortkey="7">
+      <SpawnItemPerk identifier="piratebodyarmor" MinAmount="2" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_renegadespecialrig" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="scp_renegadeheavyhelmet" MinAmount="1" perplayer="0.25" />
+      <SpawnItemPerk identifier="piratehelmet" MinAmount="2" perplayer="0.25" />
+    </DisembarkPerk>
+    <DisembarkPerk identifier="armoryspecopssep" cost="4" sortcategory="armorysep" sortkey="8">
+      <SpawnItemPerk identifier="scp_livuniform" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_livrig" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_livhelmet" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_dementonitemachete" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_hk21" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_pkpboxmag" MinAmount="3" PriorityContainerTag="scp_hk21" />
+      <SpawnItemPerk identifier="scp_akliv" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_akdumag" MinAmount="5" PriorityContainerTag="scp_akliv" />
+      <SpawnItemPerk identifier="scp_specopsuniform" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_yuirig" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_yuihelmet" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_physicoriumsword" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_sr3" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_valmag" MinAmount="9" PriorityContainerTag="scp_sr3" />
+      <SpawnItemPerk identifier="scp_kir" MinAmount="1" />
+      <SpawnItemPerk identifier="scp_ash12extmag" MinAmount="4" PriorityContainerTag="scp_kir" />
+    </DisembarkPerk>
+    <!--Talents/Experience Boosters>
+
+<DisembarkPerk identifier="experiencepoints" cost="1" sortcategory="Skills" sortkey="4">
+  <GiveSkill skillidentifier="electrical" amount="10" />
+  <GiveSkill skillidentifier="helm" amount="10" />
+  <GiveSkill skillidentifier="mechanical" amount="10" />
+  <GiveSkill skillidentifier="medical" amount="10" />
+  <GiveSkill skillidentifier="weapons" amount="10" />
+</DisembarkPerk>
+
+<DisembarkPerk identifier="experiencepointsadvanced" cost="2" sortcategory="Skills" prerequisite="experiencepoints" sortkey="5">
+  <GiveSkill skillidentifier="electrical" amount="10" />
+  <GiveSkill skillidentifier="helm" amount="10" />
+  <GiveSkill skillidentifier="mechanical" amount="10" />
+  <GiveSkill skillidentifier="medical" amount="10" />
+  <GiveSkill skillidentifier="weapons" amount="10" />
+</DisembarkPerk>
+
+<DisembarkPerk identifier="experiencepointsveteran" cost="4" sortcategory="Skills" prerequisite="experiencepointsextra" sortkey="6">
+  <GiveSkill skillidentifier="electrical" amount="20" />
+  <GiveSkill skillidentifier="helm" amount="20" />
+  <GiveSkill skillidentifier="mechanical" amount="20" />
+  <GiveSkill skillidentifier="medical" amount="20" />
+  <GiveSkill skillidentifier="weapons" amount="20" />
+</DisembarkPerk-->
+  </Override>
+</DisembarkPerks>

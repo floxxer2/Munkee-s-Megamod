@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style>
+  <Papersheet color="255,255,255,242" textcolor="0,0,0,255">
+    <Sprite name="Papersheet" texture="%ModDir%/Workshop/Immersive Ignitables/Content/Items/Papersheet.png" size="0.0, 0.0" sourcerect="0,0,512,512" slice="110,130,411,464" origin="0.5,0.5" compress="true" />
+  </Papersheet>
+</style>

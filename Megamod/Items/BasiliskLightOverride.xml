@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Copied from https://steamcommunity.com/sharedfiles/filedetails/?id=2863491324 -->
+<!-- Don't want to include a whole sub for a lamp override, so I just copied the override -->
+<override>
+  <Items>
+    <Item name="" nameidentifier="lamp" identifier="lightfluorescentl02" category="Electrical" Tags="largeitem,light" scale="0.5">
+      <Upgrade gameversion="0.10.0.0" scale="*0.5" />
+      <Sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="0,896,288,48" depth="0.8" origin="0.5,0.5" />
+      <LightComponent lightcolor="1.0,1.0,1.0,0.5" range="800.0" powerconsumption="5">
+        <LightTexture texture="%ModDir%/Megamod/Sprites/Lights/light_fluorescent_L7.png" origin="0.5,0.5" />
+        <!-- additive "top light" -->
+        <sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="480,896,288,48" alpha="1.0" />
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="power" displayname="connection.power" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+        <input name="set_color" displayname="connection.setcolor" />
+      </ConnectionPanel>
+    </Item>
+  </Items>
+</override>

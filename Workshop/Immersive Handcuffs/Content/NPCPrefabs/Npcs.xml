@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <npcsets>
+    <npcset identifier="ih_npcs">
+      <npc identifier="bountycollectorcoalition" job="captain" tags="bountycollector" spawnpointtags="admin" healthmultiplier="1.0" behavior="StayInHull">
+        <ItemSet>
+          <Item identifier="securityuniform2" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="smg">
+            <Item identifier="smgmagazine" />
+          </Item>
+          <Item identifier="smgmagazine" />
+          <Item identifier="smgmagazine" />
+          <Item identifier="divingknife" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="securityuniform2" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="divingknife" />
+          <Item identifier="handcuffs" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="shotgun">
+              <Item identifier="shotgunshell" amount="6" />
+            </Item>
+            <Item identifier="shotgunshell" amount="12" />
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="securityuniform2" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="revolver" equip="false">
+            <Item identifier="revolverround" amount="6" />
+          </Item>
+          <Item identifier="revolverround" amount="12" />
+          <Item identifier="divingknife" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="bountycollectorseparatists" job="captain" tags="bountycollector" spawnpointtags="admin" healthmultiplier="1.0" behavior="StayInHull">
+        <ItemSet>
+          <Item identifier="separatistcommoner1" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="smg">
+            <Item identifier="smgmagazine" />
+          </Item>
+          <Item identifier="smgmagazine" />
+          <Item identifier="smgmagazine" />
+          <Item identifier="divingknife" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="separatistcommoner3" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="divingknife" />
+          <Item identifier="handcuffs" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="assaultrifle">
+              <Item identifier="assaultriflemagazine" />
+            </Item>
+            <Item identifier="assaultriflemagazine" amount="5" />
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="separatistcommoner3" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="revolver" equip="false">
+            <Item identifier="revolverround" amount="6" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="bountycollectorpirates" job="captain" tags="bountycollector" spawnpointtags="admin" healthmultiplier="1.0" behavior="StayInHull">
+        <ItemSet>
+          <Item identifier="banditclothes1" equip="true" />
+          <Item identifier="captainsseparatistcap1" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="smg">
+            <Item identifier="smgmagazine" />
+          </Item>
+          <Item identifier="smgmagazine" />
+          <Item identifier="smgmagazine" />
+          <Item identifier="divingknife" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="banditclothes1" equip="true" />
+          <Item identifier="captainsseparatistcap1" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_captain,id_cap,id_master,id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="revolver" equip="false">
+            <Item identifier="revolverround" amount="6" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="jailguard" job="captain" tags="jailguard" spawnpointtags="hr" healthmultiplier="1.0" behavior="StayInHull">
+        <ItemSet>
+          <Item identifier="securityuniform1" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="smg">
+            <Item identifier="smgmagazine" />
+          </Item>
+          <Item identifier="smgmagazine" />
+          <Item identifier="smgmagazine" />
+          <Item identifier="divingknife" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="securityuniform1" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="divingknife" />
+          <Item identifier="handcuffs" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="shotgun">
+              <Item identifier="shotgunshell" amount="6" />
+            </Item>
+            <Item identifier="shotgunshell" amount="12" />
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="securityuniform1" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="handcuffs" />
+          <Item identifier="revolver" equip="false">
+            <Item identifier="revolverround" amount="6" />
+          </Item>
+          <Item identifier="revolverround" amount="12" />
+          <Item identifier="divingknife" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+    </npcset>
+  </npcsets>
+</Override>

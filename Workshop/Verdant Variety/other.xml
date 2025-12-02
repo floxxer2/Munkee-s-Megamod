@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<prefabs>
+  <structure name="Dead Grass Long" description="2048 pixels long" identifier="nev_deadgrass1c" resizehorizontal="true" scale="0.5" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/Verdant Variety/Environment/deadgrass.png" depth="0.06" sourcerect="22,118,2045,133" origin="0.5,0.5" />
+  </structure>
+</prefabs>

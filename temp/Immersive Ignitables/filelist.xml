@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Immersive Ignitables" modversion="1.0.11" corepackage="False" steamworkshopid="3217556378" gameversion="1.10.7.0" expectedhash="22217CE2B1BEFE3EF8D921FC2E305277">
+  <Afflictions file="%ModDir%/Content/Afflictions.xml" />
+  <Item file="%ModDir%/Content/Items/Misc/misc.xml" />
+  <Particles file="%ModDir%/Content/Particles/ParticlePrefabs.xml" />
+  <Text file="%ModDir%/Content/Texts/English.xml" />
+  <Text file="%ModDir%/Content/Texts/German.xml" />
+  <UIStyle file="%ModDir%/Content/style.xml" />
+</contentpackage>

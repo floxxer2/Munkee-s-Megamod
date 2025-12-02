@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<npcsets>
+  <npcset identifier="customnpcs9888">
+    <npc identifier="drjkatz" faction="separatists" name="Dr. Katz" moduleflags="none" behavior="Passive">
+      <Character speciesname="human" tags="male,head16" experiencepoints="10200" additionaltalentpoints="0" hairindex="11" beardindex="0" moustacheindex="0" faceattachmentindex="12" skincolor="243,198,150,255" haircolor="210,163,111,255" facialhaircolor="205,151,90,255" startitemsgiven="false" ragdoll="" personality="laid-back" missionscompletedsincedeath="0">
+        <job name="Celebrity Doctor" identifier="medicaldoctor">
+          <skill identifier="medical" level="98" />
+          <skill identifier="helm" level="23" />
+          <skill identifier="weapons" level="69" />
+          <skill identifier="mechanical" level="22" />
+          <skill identifier="electrical" level="38" />
+        </job>
+        <talents>
+          <talent identifier="commando" />
+          <talent identifier="extrapowder" />
+          <talent identifier="implacable" />
+          <talent identifier="crustyseaman" />
+          <talent identifier="skedaddle" />
+          <talent identifier="thefriendswemade" />
+          <talent identifier="aggressiveengineering" />
+          <talent identifier="selfcare" />
+        </talents>
+      </Character>
+      <ItemSet commonness="0.5">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="healthscanner" equip="true" />
+        <Item identifier="doctorsuniform1" equip="true" />
+        <Item identifier="advancedsyringegun"></Item>
+        <Item identifier="divingknife" />
+        <Item identifier="piratebodyarmor" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.4">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="healthscanner" equip="true" />
+        <Item identifier="prisonerclothes" equip="true" />
+        <Item identifier="handcannon">
+          <Item identifier="handcannonround" amount="6" />
+        </Item>
+        <Item identifier="divingknife" />
+        <Item identifier="piratebodyarmor" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="captainscap3" equip="true" />
+        <Item identifier="administratorclothes" equip="true" />
+        <Item identifier="handcannon">
+          <Item identifier="handcannonround" amount="6" />
+        </Item>
+      </ItemSet>
+    </npc>
+  </npcset>
+</npcsets>

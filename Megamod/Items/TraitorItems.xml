@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!-- Deep Vents Access Point -->
+  <Item name="" identifier="mm_dvpoint" scale="0.5" category="Machine" subcategory="Beast">
+    <sprite texture="Content/Map/Pirates/PirateShipAssets.png" sourcerect="1034,986,340,340" depth="0.700" origin="0.5,0.5" />
+    <LightComponent range="75" lightcolor="255,0,127,175" flicker="0.5" flickespeed="0.3" powerconsumption="0" IsOn="false" castshadows="true" alphablend="false" allowingameediting="false">
+      <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      <StatusEffect type="Always" target="This">
+        <Conditional targetitemcomponent="LightComponent" IsOn="eq true" />
+        <sound file="%ModDir%/Megamod/Sounds/portal.ogg" range="700" volume="1" loop="true" stream="true" />
+      </StatusEffect>
+      <!-- Toggle noninteractable based on the lightcomponent's IsOn state -->
+      <StatusEffect type="Always" target="This" interval="0.2" stackable="false" noninteractable="false">
+        <Conditional targetitemcomponent="LightComponent" IsOn="eq true" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" interval="0.2" stackable="false" noninteractable="true">
+        <Conditional targetitemcomponent="LightComponent" IsOn="eq false" />
+      </StatusEffect>
+    </LightComponent>
+    <Controller UserPos="0,-300" direction="Right" hidehud="true" canbeselected="true" drawuserbehind="true" allowingameediting="false">
+      <limbposition limb="Head" position="-26,-170" />
+      <limbposition limb="Torso" position="84,-140" />
+      <limbposition limb="Waist" position="224,-160" />
+      <limbposition limb="RightFoot" position="444,-160" />
+      <limbposition limb="LeftFoot" position="444,-160" />
+      <limbposition limb="RightHand" position="224,-160" allowusinglimb="false" />
+      <limbposition limb="LeftHand" position="224,-160" allowusinglimb="false" />
+      <StatusEffect type="OnPicked" target="Character">
+        <Affliction identifier="mm_enteringdvpoint" amount="1" />
+      </StatusEffect>
+      <StatusEffect type="OnPicked" target="Character" delay="0.2" stackable="false">
+        <LuaHook name="MM.dvpoint" />
+      </StatusEffect>
+    </Controller>
+  </Item>
+  <!-- Dimensional Essence -->
+  <Item identifier="mm_dime" name="" description="" scale="0.5" tags="smallitem" maxstacksize="32" category="Material" subcategory="Beast" hideinmenus="true" cargocontaineridentifier="metalcrate" fireproof="true">
+    <Deconstruct time="10" />
+    <InventoryIcon name="mm_dime_invicon" texture="%ModDir%/Megamod/Sprites/2.png" sourcerect="0,0,0,0" origin="0.5,0.5" />
+    <Sprite name="mm_dime_sprite" texture="%ModDir%/Megamod/Sprites/2.png" sourcerect="0,0,57,63" origin="0.5,0.5" depth="0.6" />
+    <Body radius="20" density="30" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!--Remove the item when fully used-->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+  <Item identifier="mm_uplink" name="" tags="smallitem,logic" hideinmenus="true" category="Hidden" scale="0.25" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" allowasextracargo="false">
+    <Price baseprice="100" sold="false" />
+    <InventoryIcon texture="%ModDir%/Megamod/Sprites/InventoryItemIconAtlas.png" sourcerect="322,15,64,51" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="520,35,76,61" depth="0.55" origin="0.5,0.5" />
+    <Body width="65" height="50" density="15" />
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.35,0.35" anchor="Center" style="ItemUI" />
+    </Terminal>
+    <ItemContainer capacity="1" maxstacksize="32">
+      <Containable item="mm_dime" />
+    </ItemContainer>
+  </Item>
+  <!-- ************************ -->
+  <!-- Medical Doctor / Surgeon -->
+  <!-- ************************ -->
+  <!-- Blood Scalpel -->
+  <Item identifier="multiscalpel_blood" name="" tags="smallitem,medical,surgery,surgerytool" hideinmenus="true" category="Hidden" cargocontaineridentifier="mediccrate" useinhealthinterface="True" scale="0.250" allowasextracargo="false">
+    <Deconstruct>
+      <Item identifier="advscalpel" />
+      <Item identifier="traumashears" />
+    </Deconstruct>
+    <Price baseprice="200" soldbydefault="true">
+      <Price storeidentifier="merchantmedical" sold="false" multiplier="0.9" minavailable="1" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/Workshop/Neurotrauma/Images/InventoryItemIconAtlas.png" sourcerect="0,256,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Workshop/Neurotrauma/Images/InGameItemIconAtlas.png" sourcerect="131,218,122,8" depth="0.55" origin="0.5,0.5" />
+    <Body width="65" height="15" density="50" />
+    <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="-7,-5" holdangle="60" reload="1.0">
+      <!-- extracting organ -->
+      <StatusEffect tags="medical" type="OnUse" target="This,Limb" comparison="and" disabledeltatime="true"></StatusEffect>
+    </MeleeWeapon>
+    <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="true">
+      <GuiFrame relativesize="0.14,0.25" anchor="CenterLeft" pivot="BottomLeft" relativeoffset="0.006,0" style="ItemUI" />
+      <Button text="multiscalpel.btn.incision">
+        <StatusEffect target="This" type="OnUse" stackable="true">
+          <LuaHook name="NT.multiscalpel.incision" />
+        </StatusEffect>
+      </Button>
+      <!-- <Button text="multiscalpel.btn.kidneys"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.kidneys"/></StatusEffect></Button> -->
+      <!-- <Button text="multiscalpel.btn.liver"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.liver"/></StatusEffect></Button> -->
+      <!-- <Button text="multiscalpel.btn.lungs"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.lungs"/></StatusEffect></Button> -->
+      <!-- <Button text="multiscalpel.btn.heart"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.heart"/></StatusEffect></Button> -->
+      <!-- <Button text="multiscalpel.btn.brain"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.brain"/></StatusEffect></Button> -->
+      <Button text="multiscalpel.btn.bandage">
+        <StatusEffect target="This" type="OnUse" stackable="true">
+          <LuaHook name="NT.multiscalpel.bandage" />
+        </StatusEffect>
+      </Button>
+      <Button text="multiscalpel.btn.speedflex">
+        <StatusEffect target="This" type="OnUse" stackable="true">
+          <LuaHook name="NT.multiscalpel.speedflex" />
+        </StatusEffect>
+      </Button>
+      <Button text="Blood">
+        <StatusEffect target="This" type="OnUse" stackable="true">
+          <LuaHook name="MM.traitoritems.bloodscalpel" />
+        </StatusEffect>
+      </Button>
+    </CustomInterface>
+  </Item>
+  <Item identifier="mm_bloodscalpel" name="" tags="smallitem,medical,surgery,surgerytool" hideinmenus="true" category="Hidden" cargocontaineridentifier="mediccrate" useinhealthinterface="True" scale="0.250" allowasextracargo="false">
+    <Deconstruct>
+      <Item identifier="advscalpel" />
+      <Item identifier="traumashears" />
+    </Deconstruct>
+    <Price baseprice="200" soldbydefault="true">
+      <Price storeidentifier="merchantmedical" sold="false" multiplier="0.9" minavailable="1" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/Megamod/Sprites/InventoryItemIconAtlas.png" sourcerect="5,9,58,58" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="4,5,119,11" depth="0.55" origin="0.5,0.5" />
+    <Body width="65" height="15" density="50" />
+    <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="12,-25" handle1="-10,0" holdangle="-20" reload="0.4" range="60" combatpriority="7" msg="ItemMsgPickUpSelect">
+      <Attack structuredamage="0" itemdamage="2" targetimpulse="2">
+        <Affliction identifier="lacerations" strength="35" />
+        <Affliction identifier="bleeding" strength="15" />
+        <Affliction identifier="bleeding" strength="15" probability="0.35" />
+        <Affliction identifier="stun" strength="0.05" />
+        <StatusEffect type="OnUse" target="UseTarget">
+          <Conditional entitytype="eq Character" />
+          <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" selectionmode="random" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="500" />
+        </StatusEffect>
+      </Attack>
+    </MeleeWeapon>
+    <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="true">
+      <GuiFrame relativesize="0.14,0.14" anchor="CenterLeft" pivot="BottomLeft" relativeoffset="0.006,0" style="ItemUI" />
+      <Button text="Revert">
+        <StatusEffect target="This" type="OnUse" stackable="true">
+          <LuaHook name="MM.traitoritems.bloodscalpel" />
+        </StatusEffect>
+      </Button>
+    </CustomInterface>
+  </Item>
+  <!-- Husk egg injector -->
+  <Item identifier="mm_huskegginjector" name="" tags="smallitem" hideinmenus="true" category="Hidden" cargocontaineridentifier="mediccrate" impactsoundtag="impact_metal_light" scale="0.250" allowasextracargo="false">
+    <Price baseprice="200" soldbydefault="false">
+      <Price storeidentifier="merchantmedical" sold="false" multiplier="0.9" minavailable="1" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/Megamod/Sprites/InventoryItemIconAtlas.png" sourcerect="74,9,79,57" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="137,7,65,49" depth="0.55" origin="0.5,0.5" />
+    <Body width="65" height="15" density="50" />
+    <Holdable slots="Any,RightHand,LeftHand" aimable="false" aimpos="28,10" handle1="0, 0" swingamount="0,0" swingspeed="0.5" swingwhenusing="true" msg="ItemMsgPickUpSelect" />
+    <ItemContainer hideitems="true" capacity="1" maxstacksize="1" slotsperrow="6" canbeselected="false">
+      <Containable tags="medical" />
+    </ItemContainer>
+    <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="true">
+      <GuiFrame relativesize="0.14,0.14" anchor="CenterLeft" pivot="BottomLeft" relativeoffset="0.006,0" style="ItemUI" />
+      <Button text="Inject">
+        <StatusEffect target="This" type="OnUse" stackable="true">
+          <!-- Cannot be used on surgery tools -->
+          <LuaHook name="MM.traitoritems.huskegginjector" />
+        </StatusEffect>
+      </Button>
+    </CustomInterface>
+  </Item>
+  <Item identifier="mm_huskegginjector2" name="" tags="smallitem" hideinmenus="true" category="Hidden" cargocontaineridentifier="mediccrate" impactsoundtag="impact_metal_light" scale="0.250" allowasextracargo="false">
+    <Price baseprice="200" soldbydefault="false">
+      <Price storeidentifier="merchantmedical" sold="false" multiplier="0.9" minavailable="1" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/Megamod/Sprites/InventoryItemIconAtlas.png" sourcerect="163,9,79,57" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="215,7,65,49" depth="0.55" origin="0.5,0.5" />
+    <Body width="65" height="15" density="50" />
+    <Holdable slots="Any,RightHand,LeftHand" aimable="false" aimpos="28,10" handle1="0, 0" swingamount="0,0" swingspeed="0.5" swingwhenusing="true" msg="ItemMsgPickUpSelect" />
+    <ItemContainer hideitems="true" capacity="1" maxstacksize="1" slotsperrow="6" canbeselected="false">
+      <Containable tags="medical" />
+    </ItemContainer>
+  </Item>
+  <!-- ******************* -->
+  <!-- Mechanic / Engineer -->
+  <!-- ******************* -->
+  <!-- Stun Prod -->
+  <Item identifier="mm_stunprod" name="" tags="smallitem,weapon,stunner" hideinmenus="true" category="Hidden" scale="0.5" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" RequireAimToUse="True" allowasextracargo="false">
+    <Upgrade gameversion="0.9.2.0" scale="0.5" />
+    <Price baseprice="200" soldbydefault="false">
+      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.35" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" sold="false" />
+      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="6" />
+      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="6" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Megamod/Sprites/InventoryItemIconAtlas.png" sourcerect="256,7,58,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="298,7,191,63" depth="0.55" origin="0.4954025,0.7936202" />
+    <Body width="170" height="30" density="20" />
+    <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="40,20" handle1="-30,15" holdangle="20" aimangle="30" reload="0.95" range="100" combatPriority="35" msg="ItemMsgPickUpSelect">
+      <Attack targetimpulse="5" itemdamage="1">
+        <StatusEffect type="OnUse" target="UseTarget">
+          <Conditional entitytype="eq Character" />
+          <Sound file="Content/Items/Weapons/Smack1.ogg" selectionmode="random" range="500" />
+          <Sound file="Content/Items/Weapons/Smack2.ogg" range="500" />
+        </StatusEffect>
+        <Affliction identifier="blunttrauma" strength="4" />
+        <Affliction identifier="stun" strength="0.2" />
+      </Attack>
+      <StatusEffect type="OnUse" target="UseTarget" disabledeltatime="true">
+        <Conditional mass="lt 40" />
+        <RequiredItem item="mm_dime" type="Contained" />
+        <Affliction identifier="stun" strength="7.5" />
+        <Affliction identifier="electricshock" strength="1000" />
+        <sound file="Content/Items/Weapons/StunBaton1.ogg" selectionmode="random" range="500" />
+        <sound file="Content/Items/Weapons/StunBaton2.ogg" range="500" />
+        <sound file="Content/Items/Weapons/StunBaton3.ogg" range="500" />
+        <sound file="Content/Items/Weapons/StunBaton4.ogg" range="500" />
+        <Explosion range="100.0" force="0.1" shockwave="false" flames="false" smoke="false" underwaterbubble="false" camerashake="6.0" />
+        <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="9" ScaleMin="0.09" ScaleMax="0.11" />
+      </StatusEffect>
+      <!-- A full dime is used per hit -->
+      <StatusEffect type="OnUse" target="Contained,UseTarget" Condition="-100" disabledeltatime="true">
+        <RequiredItem item="mm_dime" type="Contained" />
+        <Conditional entitytype="eq Character" />
+      </StatusEffect>
+    </MeleeWeapon>
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="battery">
+      <Containable item="mm_dime" />
+    </ItemContainer>
+    <aitarget sightrange="500" soundrange="500" fadeouttime="1" />
+  </Item>
+  <!-- ********* -->
+  <!-- Assistant -->
+  <!-- ********* -->
+  <!-- ******** -->
+  <!-- All Jobs -->
+  <!-- ******** -->
+</Items>

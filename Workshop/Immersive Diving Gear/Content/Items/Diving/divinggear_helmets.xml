@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <!-- Bot Exclusive Helmet -->
+    <Item name="Bot Diving Helmet" identifier="botdivingsuithelmet" tags="bothelmet" scale="0.3" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_light" botpriority="1" hideinmenus="true">
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="5,4,92,94" origin="0.5,0.5" />
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="5,4,92,94" depth="0.55" origin="0.5,0.5" />
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <Body radius="45" width="34" density="20" />
+      <ItemComponent canbeselected="false" allowingameediting="false">
+        <!-- apply low pass filter when worn -->
+        <StatusEffect type="OnWearing" target="Character" LowPassMultiplier="0.2" setvalue="true" disabledeltatime="true" />
+        <!-- obstruct vision -->
+        <StatusEffect type="OnWearing" target="Character" ObstructVision="true" setvalue="true" disabledeltatime="true" />
+        <!-- play air breathing sound when not in water -->
+        <StatusEffect type="OnWearing" target="Character" comparison="And">
+          <Conditional InWater="false" />
+          <Conditional IsDead="false" />
+          <Sound file="Content/Items/Diving/DivingSuitLoop1.ogg" range="250" volume="1.5" loop="true" />
+        </StatusEffect>
+        <!-- play underwater breathing sound and create bubbles when in water -->
+        <StatusEffect type="OnWearing" target="limb" targetlimb="head" interval="6" duration="0.5" comparison="And">
+          <Conditional InWater="true" />
+          <Conditional IsDead="false" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater1.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater2.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater3.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater4.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <ParticleEmitter particle="risingbubbles" velocitymin="10.0" velocitymax="10.0" scalemin="0.6" scalemax="0.6" particlespersecond="20" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- GreaterComponent used to toggle between releasing or building up pressure by changing and checking for the timeframe value (1 = closed valve, 0 = open valve) -->
+      <GreaterComponent canbeselected="false" canbepicked="false" allowingameediting="false" timeframe="0">
+        <!-- tag the character and helmet with "sealed" when wearing the suit, the pressure valve is closed and the character has the "hashelmet" and "hasseal" tags -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="sealed" interval="0.1" duration="0.2" comparison="And">
+          <Conditional timeframe="eq 1" />
+          <Conditional HasStatusTag="eq hassuit" />
+          <Conditional HasStatusTag="eq hasseal" />
+        </StatusEffect>
+        <!-- release pressure visually -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="releasepressure" interval="0.1" duration="0.2" comparison="And">
+          <Conditional timeframe="eq 0" />
+        </StatusEffect>
+        <!-- close the pressure valve when worn by a concious bot -->
+        <StatusEffect type="OnWearing" target="This,Character" timeframe="1" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 0" />
+          <Conditional IsBot="true" />
+          <Conditional vitaltiy="gt 0" />
+        </StatusEffect>
+        <!-- close the pressure valve when worn by a concious bot | NT compatibility -->
+        <StatusEffect type="OnWearing" target="This,Character" timeframe="1" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 0" />
+          <Conditional IsBot="true" />
+          <Conditional sym_unconsciousness="lte 0" />
+        </StatusEffect>
+        <!-- open the pressure valve if the wearer has the affliction "openvalve" while the pressure valve is closed -->
+        <StatusEffect type="OnWearing" target="This" timeframe="0" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 1" />
+          <Conditional openvalve="gt 0" targetcontainer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/OpenValve.ogg" volume="3.5" range="150" />
+        </StatusEffect>
+        <!-- close the pressure valve if the wearer has the affliction "closevalve" while the pressure valve is open -->
+        <StatusEffect type="OnWearing" target="This" timeframe="1" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 0" />
+          <Conditional closevalve="gt 0" targetcontainer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/CloseValve.ogg" volume="3.5" range="150" />
+        </StatusEffect>
+      </GreaterComponent>
+      <!-- Helmet Light Interface -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="false">
+        <GuiFrame style="ItemUI" absoluteoffset="200,-100" anchor="BottomCenter" relativesize="0.1,0.08" />
+        <TickBox text="interaction.togglesuitlight">
+          <StatusEffect type="OnUse" target="This" targetitemcomponent="LightComponent" IsOn="true" setvalue="true" />
+          <StatusEffect type="OnSecondaryUse" target="This" targetitemcomponent="LightComponent" IsOn="false" setvalue="true" />
+        </TickBox>
+      </CustomInterface>
+      <!-- Pressure Valve Interface -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="false">
+        <GuiFrame style="ItemUI" absoluteoffset="-50,-100" anchor="BottomCenter" relativesize="0.14,0.12" />
+        <Button text="interaction.openpressurevalve">
+          <StatusEffect type="OnUse" target="This" timeframe="0" setvalue="true">
+            <Conditional timeframe="eq 1" />
+            <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/OpenValve.ogg" volume="3.5" range="150" />
+          </StatusEffect>
+        </Button>
+        <Button text="interaction.closepressurevalve">
+          <StatusEffect type="OnUse" target="This" timeframe="1" setvalue="true">
+            <Conditional timeframe="eq 0" />
+            <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/CloseValve.ogg" volume="3.5" range="150" />
+          </StatusEffect>
+        </Button>
+      </CustomInterface>
+      <Wearable slots="OuterClothes" msg="ItemMsgEquipSelect" displaycontainedstatus="true" canbeselected="false" canbepicked="true" pickkey="Select">
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="5,4,92,94" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="250,224,165,175" powerconsumption="0" IsOn="true" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <!-- tag the character with "bothelmet" and "hashelmet" | this prevents the player from dying when switching to a bot in water -->
+        <StatusEffect type="OnWearing" target="Character" tags="hashelmet,bothelmet" setvalue="true" duration="0.1" />
+        <!-- remove the item when it's not contained -->
+        <StatusEffect type="OnNotContained" target="This">
+          <Remove />
+        </StatusEffect>
+        <!-- drop the helmet when the wearer is not a bot, not in water and isn't pressurized -->
+        <StatusEffect type="OnWearing" target="This" comparison="And">
+          <Conditional IsBot="false" targetcontainer="true" />
+          <Conditional InWater="false" targetcontainer="true" />
+          <Conditional HasStatusTag="neq pressurized" targetcontainer="true" />
+          <DropItem />
+        </StatusEffect>
+        <!-- drop the helmet if the bot unequips the suit -->
+        <StatusEffect type="OnWearing" target="This" comparison="And">
+          <Conditional IsBot="true" targetcontainer="true" />
+          <Conditional HasStatusTag="neq botsuit" targetcontainer="true" />
+          <DropItem />
+        </StatusEffect>
+      </Wearable>
+      <!-- HELMET INVENTORY | spawns with battery and seal for this specific helmet and is locked -->
+      <ItemContainer capacity="0" hideitems="true" spawnwithid="batterycell,suitseal" containedstateindicatorslot="1" allowaccess="false" locked="true">
+        <SlotIcon slotindex="1" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/SuitSealIcon.png" sourcerect="0,0,60,55" origin="0.5,0.5" />
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="mobilebattery" />
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="seal">
+            <StatusEffect type="OnContaining" target="This,Character" tags="hasseal" setvalue="true" duration="0.1">
+              <RequiredItem items="seal" type="Contained" />
+            </StatusEffect>
+          </Containable>
+        </SubContainer>
+      </ItemContainer>
+    </Item>
+    <!-- Bot Respawn Helmet -->
+    <Item name="Disposable Bot Diving Helmet" identifier="botrespawndivingsuithelmet" category="Diving,Equipment" tags="bothelmet" scale="0.3" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_light" botpriority="1" hideinmenus="true">
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <Deconstruct time="10" />
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="100,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="100,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/DisposableHelmetStored.png" sourcerect="0,0,77,214" scale="0.5" depth="0.55" origin="-0.12,-0.13" />-->
+      <Body radius="45" width="34" density="20" />
+      <ItemComponent canbeselected="false" allowingameediting="false">
+        <!-- TAGS -->
+        <!-- tag the character and suit with "sealed" if it's a player wearing the suit, the pressure valve is closed and the character has the "hasseal" tag -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="sealed" interval="0.1" duration="0.2" comparison="And">
+          <!--Conditional IsPlayer="true" /-->
+          <Conditional HasStatusTag="eq hassuit" />
+          <Conditional HasStatusTag="eq hasseal" />
+          <Conditional timeframe="eq 1" />
+        </StatusEffect>
+        <!-- tag the character with "hashelmet" if it's a player and wearing a diving suit + diving helmet -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="hashelmet" setvalue="true" interval="0.1" duration="0.2" comparison="And">
+          <!--Conditional IsPlayer="true" /-->
+          <!--<Conditional HasStatusTag="eq hasseal" />-->
+        </StatusEffect>
+        <!-- apply low pass filter when worn -->
+        <StatusEffect type="OnWearing" target="Character" LowPassMultiplier="0.2" setvalue="true" disabledeltatime="true" />
+        <!-- obstruct vision -->
+        <StatusEffect type="OnWearing" target="Character" ObstructVision="true" setvalue="true" disabledeltatime="true" />
+        <!-- play air breathing sound when not in water -->
+        <StatusEffect type="OnWearing" target="Character" comparison="And">
+          <Conditional InWater="false" />
+          <Conditional IsDead="false" />
+          <Sound file="Content/Items/Diving/DivingSuitLoop1.ogg" range="250" volume="1.5" loop="true" />
+        </StatusEffect>
+        <!-- play underwater breathing sound and create bubbles when in water -->
+        <StatusEffect type="OnWearing" target="limb" targetlimb="head" interval="6" duration="0.5" comparison="And">
+          <Conditional InWater="true" />
+          <Conditional IsDead="false" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater1.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater2.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater3.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater4.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <ParticleEmitter particle="risingbubbles" velocitymin="10.0" velocitymax="10.0" scalemin="0.6" scalemax="0.6" particlespersecond="20" />
+        </StatusEffect>
+        <!-- tag the character with sealed and close the valve if it's a bot -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="sealed" timeframe="1" setvalue="true" interval="0.1" duration="0.2" comparison="And">
+          <Conditional IsBot="true" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- GreaterComponent used to toggle between releasing or building up pressure by changing and checking for the timeframe value (1 = closed valve, 0 = open valve) -->
+      <GreaterComponent canbeselected="false" canbepicked="false" allowingameediting="false" timeframe="0">
+        <!-- tag the character and helmet with "sealed" when wearing the suit, the pressure valve is closed and the character has the "hashelmet" and "hasseal" tags -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="sealed" interval="0.1" duration="0.2" comparison="And">
+          <Conditional timeframe="eq 1" />
+          <Conditional HasStatusTag="eq hassuit" />
+          <Conditional HasStatusTag="eq hasseal" />
+        </StatusEffect>
+        <!-- release pressure visually -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="releasepressure" interval="0.1" duration="0.2" comparison="And">
+          <Conditional timeframe="eq 0" />
+        </StatusEffect>
+        <!-- close the pressure valve when worn by a concious bot -->
+        <StatusEffect type="OnWearing" target="This,Character" timeframe="1" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 0" />
+          <Conditional IsBot="true" />
+          <Conditional vitaltiy="gt 0" />
+        </StatusEffect>
+        <!-- close the pressure valve when worn by a concious bot | NT compatibility -->
+        <StatusEffect type="OnWearing" target="This,Character" timeframe="1" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 0" />
+          <Conditional IsBot="true" />
+          <Conditional sym_unconsciousness="lte 0" />
+        </StatusEffect>
+        <!-- open the pressure valve if the wearer has the affliction "openvalve" while the pressure valve is closed -->
+        <StatusEffect type="OnWearing" target="This" timeframe="0" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 1" />
+          <Conditional openvalve="gt 0" targetcontainer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/OpenValve.ogg" volume="3.5" range="150" />
+        </StatusEffect>
+        <!-- close the pressure valve if the wearer has the affliction "closevalve" while the pressure valve is open -->
+        <StatusEffect type="OnWearing" target="This" timeframe="1" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 0" />
+          <Conditional closevalve="gt 0" targetcontainer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/CloseValve.ogg" volume="3.5" range="150" />
+        </StatusEffect>
+      </GreaterComponent>
+      <!-- Pressure Valve Interface -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="false">
+        <GuiFrame style="ItemUI" absoluteoffset="-50,-100" anchor="BottomCenter" relativesize="0.14,0.12" />
+        <Button text="interaction.openpressurevalve">
+          <StatusEffect type="OnUse" target="This" timeframe="0" setvalue="true">
+            <Conditional timeframe="eq 1" />
+            <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/OpenValve.ogg" volume="3.5" range="150" />
+          </StatusEffect>
+        </Button>
+        <Button text="interaction.closepressurevalve">
+          <StatusEffect type="OnUse" target="This" timeframe="1" setvalue="true">
+            <Conditional timeframe="eq 0" />
+            <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/CloseValve.ogg" volume="3.5" range="150" />
+          </StatusEffect>
+        </Button>
+      </CustomInterface>
+      <Wearable slots="OuterClothes" msg="ItemMsgEquipSelect" displaycontainedstatus="true" canbeselected="false" canbepicked="true" pickkey="Select">
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="100,409,103,103" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="250,224,165,175" powerconsumption="0" IsOn="true" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.8" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+        <!-- tag the character with "bothelmet" and "hashelmet" and give max. pressure protection | this prevents the player from dying when switching to a bot in water -->
+        <StatusEffect type="OnWearing" target="Character" tags="hashelmet,bothelmet" setvalue="true" duration="0.1" />
+        <!-- remove the item when it's not contained -->
+        <StatusEffect type="OnNotContained" target="This">
+          <Remove />
+        </StatusEffect>
+        <!-- drop the helmet when the wearer is not a bot, not in water and isn't pressurized -->
+        <StatusEffect type="OnWearing" target="This" comparison="And">
+          <Conditional IsBot="false" targetcontainer="true" />
+          <Conditional InWater="false" targetcontainer="true" />
+          <Conditional HasStatusTag="neq pressurized" targetcontainer="true" />
+          <DropItem />
+        </StatusEffect>
+        <!-- drop the helmet if the bot unequips the suit -->
+        <StatusEffect type="OnWearing" target="This" comparison="And">
+          <Conditional IsBot="true" targetcontainer="true" />
+          <Conditional HasStatusTag="neq botsuit" targetcontainer="true" />
+          <DropItem />
+        </StatusEffect>
+      </Wearable>
+      <!-- HELMET INVENTORY -->
+      <ItemContainer capacity="0" hideitems="true" spawnwithid="suitseal" containedstateindicatorslot="1">
+        <SlotIcon slotindex="1" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/SuitSealIcon.png" sourcerect="0,0,60,55" origin="0.5,0.5" />
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="mobilebattery" />
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="seal">
+            <StatusEffect type="OnContaining" target="This,Character" tags="hasseal" setvalue="true" duration="0.1">
+              <RequiredItem items="seal" type="Contained" />
+            </StatusEffect>
+          </Containable>
+        </SubContainer>
+      </ItemContainer>
+      <aitarget maxsightrange="1500" />
+    </Item>
+    <!-- Respawn Helmet -->
+    <Item name="Disposable Diving Helmet" identifier="respawndivingsuithelmet" category="Diving,Equipment" tags="mediumitem,divinghelmet,provocative" scale="0.3" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy" botpriority="1" hideinmenus="false">
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <Deconstruct time="10" />
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="100,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="100,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/DisposableHelmetStored.png" sourcerect="0,0,77,214" scale="0.5" depth="0.55" origin="-0.12,-0.13" />-->
+      <Body radius="45" width="34" density="20" />
+      <ItemComponent canbeselected="false" allowingameediting="false">
+        <!-- TAGS -->
+        <!-- tag the character and suit with "sealed" if it's a player wearing the suit and the pressure valve is closed -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="sealed" interval="0.1" duration="0.2" comparison="And">
+          <!--Conditional IsPlayer="true" /-->
+          <Conditional HasStatusTag="eq hassuit" />
+          <Conditional timeframe="eq 1" />
+        </StatusEffect>
+        <!-- tag the character with "hashelmet" -->
+        <StatusEffect type="OnWearing" target="This,Character" tags="hashelmet" setvalue="true" interval="0.1" duration="0.2" comparison="And" />
+        <!-- damage suit seal when wearing the helmet in water -->
+        <StatusEffect type="OnWearing" target="Contained" targetslot="1" condition="-0.05">
+          <RequiredItem items="seal" type="Contained" />
+          <Conditional InWater="true" />
+        </StatusEffect>
+        <!-- apply low pass filter when worn -->
+        <StatusEffect type="OnWearing" target="Character" LowPassMultiplier="0.2" setvalue="true" disabledeltatime="true" />
+        <!-- obstruct vision -->
+        <StatusEffect type="OnWearing" target="Character" ObstructVision="true" setvalue="true" disabledeltatime="true" />
+        <!-- play air breathing sound when not in water -->
+        <StatusEffect type="OnWearing" target="Character" comparison="And">
+          <Conditional InWater="false" />
+          <Conditional IsDead="false" />
+          <Sound file="Content/Items/Diving/DivingSuitLoop1.ogg" range="250" volume="1.5" loop="true" />
+        </StatusEffect>
+        <!-- play underwater breathing sound and create bubbles when in water -->
+        <StatusEffect type="OnWearing" target="limb" targetlimb="head" interval="6" duration="0.5" comparison="And">
+          <Conditional InWater="true" />
+          <Conditional IsDead="false" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater1.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater2.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater3.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater4.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <ParticleEmitter particle="risingbubbles" velocitymin="10.0" velocitymax="10.0" scalemin="0.6" scalemax="0.6" particlespersecond="20" />
+        </StatusEffect>
+        <!-- damage the seal if the character has the "damageseal" tag which is applied on taking damage when having any suit pressure affliction -->
+        <StatusEffect type="OnWearing" target="Character,Contained" targetslot="1" condition="-40">
+          <Conditional HasStatusTag="eq damageseal" />
+        </StatusEffect>
+      </ItemComponent>
+      <GreaterComponent canbeselected="false" canbepicked="false" allowingameediting="false" timeframe="0">
+        <!-- open the pressure valve if the wearer has the affliction "openvalve" while the pressure valve is closed -->
+        <StatusEffect type="OnWearing" target="This" timeframe="0" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 1" />
+          <Conditional openvalve="gt 0" targetcontainer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/OpenValve.ogg" volume="3.5" range="150" />
+        </StatusEffect>
+        <!-- close the pressure valve if the wearer has the affliction "closevalve" while the pressure valve is open -->
+        <StatusEffect type="OnWearing" target="This" timeframe="1" setvalue="true" interval="0.1" comparison="And">
+          <Conditional timeframe="eq 0" />
+          <Conditional closevalve="gt 0" targetcontainer="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/CloseValve.ogg" volume="3.5" range="150" />
+        </StatusEffect>
+      </GreaterComponent>
+      <!-- Helmet Interface -->
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="false">
+        <GuiFrame style="ItemUI" absoluteoffset="200,-100" anchor="BottomCenter" relativesize="0.1,0.08" />
+        <TickBox text="interaction.togglesuitlight">
+          <StatusEffect type="OnUse" target="This" targetitemcomponent="LightComponent" IsOn="true" setvalue="true" />
+          <StatusEffect type="OnSecondaryUse" target="This" targetitemcomponent="LightComponent" IsOn="false" setvalue="true" />
+        </TickBox>
+      </CustomInterface>
+      <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="false">
+        <GuiFrame style="ItemUI" absoluteoffset="-50,-100" anchor="BottomCenter" relativesize="0.14,0.12" />
+        <Button text="interaction.openpressurevalve">
+          <StatusEffect type="OnUse" target="This" timeframe="0" setvalue="true">
+            <Conditional timeframe="eq 1" />
+            <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/OpenValve.ogg" volume="3.5" range="150" />
+          </StatusEffect>
+        </Button>
+        <Button text="interaction.closepressurevalve">
+          <StatusEffect type="OnUse" target="This" timeframe="1" setvalue="true">
+            <Conditional timeframe="eq 0" />
+            <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/CloseValve.ogg" volume="3.5" range="150" />
+          </StatusEffect>
+        </Button>
+      </CustomInterface>
+      <Wearable slots="OuterClothes" msg="ItemMsgEquipSelect" displaycontainedstatus="true" canbeselected="false" canbepicked="true" pickkey="Select">
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="100,409,103,103" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="250,224,165,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <!-- provide voltage automatically without requiring a battery for this helmet -->
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" setvalue="true" />
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.8" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+        <StatusEffect type="OnWearing" target="This,Character" condition="-0.1" comparison="And">
+          <Conditional HasStatusTag="eq hassuit" />
+          <Conditional InWater="true" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </Wearable>
+      <!--<Holdable slots="RightHand,LeftHand" controlpose="true" holdpos="0,-30" handle1="0,-30" aimable="false" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />-->
+      <Throwable slots="RightHand,LeftHand" controlpose="true" holdpos="0,-30" handle1="0,-10" aimable="true" aimpos="0,-30" msg="ItemMsgPickUpUse" throwforce="3.0" canbeselected="false" canbepicked="true" pickkey="Use">
+        <StatusEffect type="OnSecondaryUse" target="This" delay="0.08">
+          <Use />
+        </StatusEffect>
+      </Throwable>
+      <Projectile characterusable="false" launchimpulse="0.0" impulsespread="0.0" sticktocharacters="false" sticktoitems="false" sticktostructures="false" sticktodoors="false">
+        <Attack targetimpulse="3" severlimbsprobability="0.1" itemdamage="0" structuredamage="0" structuresoundtype="StructureSlash">
+          <Affliction identifier="blunttrauma" strength="5" />
+          <Affliction identifier="blunttrauma" strength="5" probability="0.5" />
+          <Affliction identifier="blunttrauma" strength="5" probability="0.25" />
+          <Affliction identifier="blunttrauma" strength="5" probability="0.1" />
+          <Affliction identifier="stun" strength="0.9" />
+          <Affliction identifier="stun" strength="0.9" probability="0.25" />
+        </Attack>
+        <StatusEffect type="OnImpact" target="UseTarget" disabledeltatime="true">
+          <Conditional entitytype="Character" />
+          <Sound file="Content/Items/Weapons/Smack1.ogg" selectionmode="random" range="1000" />
+          <Sound file="Content/Items/Weapons/Smack2.ogg" range="1000" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="LastLimb" disabledeltatime="true">
+          <Conditional limb="Head" />
+          <Affliction identifier="stun" strength="2.5" />
+          <Affliction identifier="concussion" strength="100.0" probability="0.4" />
+        </StatusEffect>
+      </Projectile>
+      <aitarget maxsightrange="1500" />
+    </Item>
+    <!-- Respawn Helmet Permanent -->
+    <Item name="Diving Helmet (Orange)" identifier="respawndivingsuithelmetpermanent" variantof="divingsuithelmetpreset" hideinmenus="false">
+      <Price baseprice="125">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="4" />
+        <Price storeidentifier="merchantresearch" minavailable="3" />
+        <Price storeidentifier="merchantmilitary" minavailable="3" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="5" />
+      </Price>
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <PreferredContainer primary="wreckedcrewcab,abandonedcrewcab" spawnprobability="0.02" />
+      <Deconstruct time="10" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="15">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="100,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="100,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/DisposableHelmetStored.png" sourcerect="0,0,77,214" scale="0.5" depth="0.55" origin="-0.12,-0.13" />-->
+      <Wearable>
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="100,409,103,103" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="250,224,165,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.8" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+      </Wearable>
+    </Item>
+    <!-- Default Helmet -->
+    <Item name="Diving Helmet (Regular)" identifier="divingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+      <Price baseprice="125">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="4" />
+        <Price storeidentifier="merchantresearch" minavailable="3" />
+        <Price storeidentifier="merchantmilitary" minavailable="3" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="5" />
+      </Price>
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <PreferredContainer primary="divingsuitcontainer" spawnprobability="1" campaignonly="true" maxleveldifficulty="35" />
+      <PreferredContainer primary="divingsuitcontainer" spawnprobability="1" notcampaign="true" />
+      <PreferredContainer primary="piratedivingsuitcontainer" spawnprobability="1" maxleveldifficulty="35" />
+      <PreferredContainer primary="wreckdivingsuitcontainer" spawnprobability="0.1" maxleveldifficulty="35" />
+      <PreferredContainer primary="wreckedcrewcab,abandonedcrewcab" spawnprobability="0.05" />
+      <Deconstruct time="10" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="15">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="5,4,92,94" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="5,4,92,94" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/DefaultHelmetStored.png" sourcerect="0,0,77,214" depth="0.55" origin="-0.12,-0.13" />-->
+      <Wearable>
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="5,4,92,94" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="88,138,92,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+      </Wearable>
+    </Item>
+    <!-- Abyss Helmet -->
+    <Item name="Diving Helmet (Abyss)" identifier="abyssdivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+      <Price baseprice="257" minleveldifficulty="35">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="1" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="2" />
+        <Price storeidentifier="merchantresearch" minavailable="1" />
+        <Price storeidentifier="merchantmilitary" minavailable="2" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="2" />
+      </Price>
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <PreferredContainer primary="wreckedcrewcab,abandonedcrewcab" spawnprobability="0.02" />
+      <Deconstruct time="10" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="15">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="0,409,103,103" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/AbyssHelmetStored.png" sourcerect="0,0,77,214" scale="0.5" depth="0.55" origin="-0.12,-0.13" />-->
+      <Wearable>
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="0,409,103,103" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="232,140,63,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.55" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+      </Wearable>
+    </Item>
+    <!-- Combat Helmet -->
+    <Item name="Diving Helmet (Combat)" identifier="combatdivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+      <Price baseprice="280" minleveldifficulty="35">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="0.9" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="2" sold="false" />
+        <Price storeidentifier="merchantresearch" sold="false" />
+        <Price storeidentifier="merchantmilitary" minavailable="3" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.85" minavailable="3" />
+      </Price>
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <PreferredContainer primary="wreckedcrewcab,abandonedcrewcab" spawnprobability="0.02" />
+      <Deconstruct time="10" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="15">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="326,0,103,103" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="326,0,103,103" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/CombatHelmetStored.png" sourcerect="0,0,77,214" scale="0.5" depth="0.55" origin="-0.12,-0.13" />-->
+      <Wearable>
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="326,0,103,103" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="80,222,244,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.6" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.55" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+      </Wearable>
+    </Item>
+    <!-- PUCS Helmet -->
+    <Item name="Diving Helmet (PUCS)" identifier="pucsdivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+      <Price baseprice="335" sold="false">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" minavailable="0" maxavailable="3" sold="true">
+          <Reputation faction="coalition" min="70" />
+        </Price>
+        <Price storeidentifier="merchantresearch" multiplier="1.2" />
+        <Price storeidentifier="merchantmilitary" />
+        <Price storeidentifier="merchantmine" multiplier="1.1" />
+      </Price>
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <PreferredContainer primary="wreckedcrewcab,abandonedcrewcab" spawnprobability="0.02" />
+      <Deconstruct time="10" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="15">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="127,520,105,124" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="127,520,105,124" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/PUCSHelmetStored.png" sourcerect="0,0,77,214" scale="0.5" depth="0.55" origin="-0.12,-0.13" />-->
+      <Wearable>
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="127,520,105,124" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="2,149,115,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.65" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.1" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.1" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.1" damagesound="LimbArmor" />
+      </Wearable>
+    </Item>
+    <!-- Slipsuit Helmet -->
+    <Item name="Diving Helmet (Slipsuit)" identifier="slipsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+      <Price baseprice="315" sold="false" />
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <PreferredContainer primary="wreckedcrewcab,abandonedcrewcab" spawnprobability="0.02" />
+      <Deconstruct time="10" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="15">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,520,105,124" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Items/Jobgear/headgears.png" sourcerect="0,520,105,124" depth="0.55" origin="0.5,0.5" />
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!--<ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Containers/SlipHelmetStored.png" sourcerect="0,0,77,214" scale="0.5" depth="0.55" origin="-0.12,-0.13" />-->
+      <Wearable>
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="0,520,105,124" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="145,45,31,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.6" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.55" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+      </Wearable>
+    </Item>
+    <Item name="" identifier="divingmask" scale="0.5" category="Diving,Equipment" Tags="smallitem,diving,lightdiving" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_light">
+      <Price baseprice="100">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="5" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="7" />
+        <Price storeidentifier="merchantresearch" minavailable="5" />
+        <Price storeidentifier="merchantmilitary" minavailable="6" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="15" />
+      </Price>
+      <PreferredContainer secondary="respawncontainer" amount="2" notcampaign="true" />
+      <PreferredContainer primary="divingcab" amount="2" allowtransfershere="false" />
+      <PreferredContainer primary="supplycab" amount="1" transferonlyonepercontainer="true" />
+      <PreferredContainer secondary="wrecksupplycab,beaconsupplycab" amount="1" spawnprobability="0.1" />
+      <PreferredContainer secondary="outpostsupplycab" amount="1" spawnprobability="0.5" />
+      <Deconstruct time="10">
+        <Item identifier="plastic" />
+        <Item identifier="rubber" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="25" />
+        <RequiredItem identifier="plastic" />
+        <RequiredItem identifier="rubber" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="515,322,57,62" origin="0.5,0.5" />
+      <Sprite name="Diving Mask" texture="Content/Items/Jobgear/headgears.png" depth="0.55" sourcerect="226,326,69,68" origin="0.5,0.5" />
+      <Body width="40" height="35" density="15" />
+      <Wearable limbtype="Head" slots="Any,Head" msg="ItemMsgPickUpSelect" displaycontainedstatus="true">
+        <sprite name="Diving Mask Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hidelimb="false" hideotherwearables="false" sourcerect="226,326,69,68" origin="0.4,0.3" hidewearablesoftype="moustache,beard" />
+        <StatusEffect type="OnWearing" target="Character" ObstructVision="true" HideFace="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnWearing" target="Contained,Character" OxygenAvailable="-100.0" Oxygen="-5.0" Condition="-5.0">
+          <Conditional IsDead="false" />
+          <RequiredItem items="weldingfueltank" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnWearing" target="Contained,Character" targetlimbs="Torso" OxygenAvailable="-100.0" Oxygen="-7.0" Condition="-5.0">
+          <RequiredItem items="incendiumfueltank" type="Contained" />
+          <Affliction identifier="burn" amount="3.0" />
+        </StatusEffect>
+        <StatusEffect type="OnWearing" target="Contained,Character" OxygenAvailable="1000.0" Condition="-0.5" comparison="And">
+          <Conditional IsDead="false" />
+          <Conditional InWater="true" />
+          <RequiredItem items="oxygensource" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnWearing" target="Contained,Character" OxygenAvailable="1000.0" Condition="-0.5" comparison="And">
+          <Conditional IsDead="false" />
+          <Conditional HullOxygenPercentage="lt 30" />
+          <Conditional InWater="false" />
+          <RequiredItem items="oxygensource" type="Contained" />
+        </StatusEffect>
+        <!-- play air breathing sound when not in water -->
+        <StatusEffect type="OnWearing" target="Character">
+          <Conditional InWater="false" />
+          <Sound file="Content/Items/Diving/DivingSuitLoop1.ogg" range="250" volume="1.5" loop="true" />
+        </StatusEffect>
+        <!-- play underwater breathing sound and create bubbles when in water -->
+        <StatusEffect type="OnWearing" target="limb" targetlimb="head" interval="6" duration="0.5">
+          <Conditional InWater="true" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater1.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater2.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater3.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/DivingSuitBreathUnderwater4.ogg" range="400" volume="1.5" selectionmode="Random" />
+          <ParticleEmitter particle="risingbubbles" velocitymin="10.0" velocitymax="10.0" scalemin="0.6" scalemax="0.6" particlespersecond="20" />
+        </StatusEffect>
+      </Wearable>
+      <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="tank">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
+        <Containable items="oxygensource,weldingtoolfuel" excludeditems="oxygenitetank" />
+        <Containable items="oxygenitetank">
+          <StatusEffect type="OnWearing" target="Character" SpeedMultiplier="1.2" setvalue="true" targetslot="0">
+            <Conditional IsDead="false" />
+          </StatusEffect>
+        </Containable>
+      </ItemContainer>
+    </Item>
+    <!-- Clown Diving Helmet -->
+    <Item name="Diving Helmet (Clown)" identifier="clowndivingsuithelmet" variantof="divingsuithelmetpreset" tags="clownmask,mediumitem,divinghelmet,provocative" description="Allows the wearer to gain clown power when worn with any clown related suit." hideinmenus="false">
+      <Price baseprice="150" sold="false" canbespecial="false">
+        <Price storeidentifier="merchantoutpost" maxavailable="1" />
+        <Price storeidentifier="merchantcity" maxavailable="3" />
+        <Price storeidentifier="merchantresearch" maxavailable="1" />
+        <Price storeidentifier="merchantmilitary" maxavailable="1" />
+        <Price storeidentifier="merchantmine" maxavailable="1" />
+        <Price storeidentifier="merchantclown" minavailable="3" maxavailable="6" sold="true">
+          <Reputation faction="clowns" min="30" />
+        </Price>
+      </Price>
+      <PreferredContainer primary="divingsuitcontainer" secondary="divingcab" />
+      <PreferredContainer primary="piratedivingsuitcontainer" spawnprobability="0.0" />
+      <PreferredContainer primary="wreckdivingsuitcontainer" spawnprobability="0.01" />
+      <PreferredContainer primary="wreckedcrewcab,abandonedcrewcab" spawnprobability="0.01" />
+      <Deconstruct time="10" />
+      <Sprite name="Diving Suit Item" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/ClownDivingSuit.png" sourcerect="574,164,98,91" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/ClownDivingSuit.png" sourcerect="574,164,98,91" depth="0.55" origin="0.5,0.5" />
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <Wearable>
+        <sprite name="Diving Suit Helmet Wearable" texture="%ModDir%/Workshop/Immersive Diving Gear/Content/Items/Diving/ClownDivingSuit.png" sourcerect="574,164,98,91" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" origin="0.5,0.5">
+          <LightComponent range="700.0" lightcolor="250,224,165,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.125">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+        <StatusEffect tags="clown" type="OnWearing" target="Character" HideFace="true" duration="0.1" stackable="false" />
+      </Wearable>
+    </Item>
+  </Items>
+</Override>

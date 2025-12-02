@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sounds>
+  <footstep_truebeast file="%ModDir%/Megamod/Sounds/Footsteps/step1.ogg" volume="1.2" range="1000" />
+  <footstep_truebeast file="%ModDir%/Megamod/Sounds/Footsteps/step2.ogg" volume="1.2" range="1000" />
+  <footstep_truebeast file="%ModDir%/Megamod/Sounds/Footsteps/step3.ogg" volume="1.2" range="1000" />
+  <footstep_truebeast file="%ModDir%/Megamod/Sounds/Footsteps/step4.ogg" volume="1.2" range="1000" />
+  <footstep_truebeast file="%ModDir%/Megamod/Sounds/Footsteps/step5.ogg" volume="1.2" range="1000" />
+  <footstep_truebeast file="%ModDir%/Megamod/Sounds/Footsteps/step6.ogg" volume="1.2" range="1000" />
+  <footstep_truebeast file="%ModDir%/Megamod/Sounds/Footsteps/step7.ogg" volume="1.2" range="1000" />
+</sounds>

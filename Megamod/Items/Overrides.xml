@@ -1,0 +1,1675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <!-- Removed fabrication recipe-->
+    <Item identifier="scope" category="Equipment" Tags="smallitem" cargocontaineridentifier="metalcrate" allowasextracargo="true" scale="0.5" impactsoundtag="impact_metal_light">
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="512,384,64,64"/>
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="80,256,64,16" depth="0.55"/>
+      <Body width="64" height="16" density="20"/>
+      <PreferredContainer primary="armcab" secondary="secarmcab"/>
+      <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.1"/>
+      <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab,piratesecarmcab" amount="1" spawnprobability="0.2"/>
+      <Price baseprice="250" minleveldifficulty="25">
+        <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false"/>
+        <Price storeidentifier="merchantcity" multiplier="1.25" sold="false"/>
+        <Price storeidentifier="merchantresearch" multiplier="1.25" sold="false"/>
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="2"/>
+        <Price storeidentifier="merchantmine" multiplier="1.25" sold="false"/>
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="2"/>
+      </Price>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="30">
+        <RequiredSkill identifier="weapons" level="40"/>
+        <RequiredItem identifier="iron"/>
+        <RequiredItem identifier="plastic"/>
+        <RequiredItem identifier="quartz"/>
+      </Fabricate>-->
+      <Deconstruct time="10">
+        <Item identifier="plastic"/>
+        <Item identifier="silicon" amount="2"/>
+      </Deconstruct>
+      <Holdable slots="Any,LeftHand,RightHand" controlpose="true" usehandrotationforholdangle="true" aimpos="37,24" handle1="0,0" cameraaimoffset="500" msg="ItemMsgPickUpSelect"/>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="uex" category="Weapon" description="" Scale="0.5" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+      <Upgrade gameversion="0.9.3.0" scale="0.5"/>
+      <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="0.5" notcampaign="true" notpvp="true"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0.1"/>
+      <PreferredContainer secondary="armcab"/>
+      <Price baseprice="95" minavailable="4" minleveldifficulty="5">
+        <Price storeidentifier="merchantoutpost" multiplier="1.4" minavailable="2" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" sold="false"/>
+        <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="1" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minleveldifficulty="0" />
+      </Price>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+        <RequiredSkill identifier="weapons" level="50" />
+        <RequiredItem identifier="sodium" />
+        <RequiredItem identifier="phosphorus" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="897,896,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="2,478,47,32" origin="0.5,0.5" />
+      <Body width="45" height="30" density="20" />
+      <Throwable characterusable="false" slots="Any,RightHand,LeftHand" canbecombined="true" removeoncombined="true" throwforce="3.5" aimpos="35,-10" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true"/>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="5000" />
+          <Explosion range="500.0" ballastfloradamage="100" structuredamage="150" itemdamage="500" force="15" severlimbsprobability="0.5" debris="true" decal="explosion" decalsize="0.5" penetration="0.5">
+            <Affliction identifier="explosiondamage" strength="125" dividebylimbcount="true"/>
+            <Affliction identifier="burn" strength="15" probability="0.2" dividebylimbcount="false"/>
+            <Affliction identifier="bleeding" strength="40" probability="0.05" dividebylimbcount="false"/>
+            <Affliction identifier="stun" strength="7" />
+          </Explosion>
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris5.ogg" range="3500" />
+        </StatusEffect>
+      </Throwable>
+      <Quality>
+        <QualityStat stattype="ExplosionRadius" value="0.1"/>
+        <QualityStat stattype="ExplosionDamage" value="0.1"/>
+      </Quality>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="c4block" category="Weapon" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" maxstacksizecharacterinventory="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+      <Upgrade gameversion="0.9.3.0" scale="0.5"/>
+      <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="0.5" notcampaign="true" notpvp="true"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0.05"/>
+      <PreferredContainer secondary="armcab"/>
+      <Price baseprice="160">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.4"/>
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" sold="false"/>
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25"/>
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="3" />
+        <Price storeidentifier="merchantmine" sold="false" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="3" />
+      </Price>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+        <RequiredSkill identifier="weapons" level="70" />
+        <RequiredItem identifier="uex" />
+        <RequiredItem identifier="plastic" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="768,64,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="51,478,48,33" origin="0.5,0.5" />
+      <Body width="45" height="30" density="20" />
+      <Throwable characterusable="false" slots="Any,RightHand,LeftHand" canbecombined="true" removeoncombined="true" throwforce="3.5" aimpos="35,-10" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true"/>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="8000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="8000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="8000" />
+          <Explosion range="750.0" ballastfloradamage="150" structuredamage="300" itemdamage="1000" force="20" severlimbsprobability="2" debris="true" decal="explosion" decalsize="0.75" penetration="0.5">
+            <Affliction identifier="explosiondamage" strength="250" />
+            <Affliction identifier="burn" strength="15" probability="0.2" dividebylimbcount="false"/>
+            <Affliction identifier="bleeding" strength="40" probability="0.05" dividebylimbcount="false"/>
+            <Affliction identifier="stun" strength="10" />
+          </Explosion>
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris5.ogg" range="6000" />
+        </StatusEffect>
+      </Throwable>
+      <Quality>
+        <QualityStat stattype="ExplosionRadius" value="0.1"/>
+        <QualityStat stattype="ExplosionDamage" value="0.1"/>
+      </Quality>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="ic4block" description="" category="Weapon" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" maxstacksizecharacterinventory="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+      <Upgrade gameversion="0.9.3.0" scale="0.5"/>
+      <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="0.5" notcampaign="true" notpvp="true"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0.02"/>
+      <PreferredContainer secondary="armcab"/>
+      <Price baseprice="400" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25"/>
+        <Price storeidentifier="merchantresearch" multiplier="1.25"/>
+        <Price storeidentifier="merchantmilitary" sold="true" multiplier="0.9" minavailable="1" />
+        <Price storeidentifier="merchantmine" sold="false" />
+        <Price storeidentifier="merchantarmory" sold="true" multiplier="0.9" minavailable="1" />
+      </Price>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,69,64,56" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="204,476,50,34" origin="0.5,0.5" />
+      <Body width="50" height="30" density="20" />
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+        <RequiredSkill identifier="weapons" level="50" />
+        <RequiredItem identifier="c4block" />
+        <RequiredItem identifier="incendium" />
+      </Fabricate>
+      <Throwable characterusable="false" slots="Any,RightHand,LeftHand" canbecombined="true" removeoncombined="true" throwforce="3.5" aimpos="35,-10" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnFire" target="This" Condition="0.0" setvalue="true" delay="0.5" />
+        <StatusEffect type="OnUse" target="This" Condition="-100" disabledeltatime="true"/>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="5000" />
+          <Explosion range="750.0" ballastfloradamage="300" structuredamage="50" itemdamage="200" force="10.0" severlimbsprobability="0.25" debris="true" decal="explosion" decalsize="0.5">
+            <Affliction identifier="explosiondamage" strength="50" />
+            <Affliction identifier="burn" strength="250" />
+            <Affliction identifier="burn" strength="30" probability="0.2" dividebylimbcount="false"/>
+            <Affliction identifier="stun" strength="7" />
+          </Explosion>
+          <Fire size="500" />
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris1.ogg" range="3500" />
+          <sound file="Content/Items/Weapons/ExplosionDebris2.ogg" range="3500" />
+        </StatusEffect>
+      </Throwable>
+      <Quality>
+        <QualityStat stattype="ExplosionRadius" value="0.1"/>
+        <QualityStat stattype="ExplosionDamage" value="0.1"/>
+      </Quality>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="compoundn" category="Weapon,Material" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" maxstacksizecharacterinventory="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+      <Upgrade gameversion="0.9.3.0" scale="0.5"/>
+      <PreferredContainer primary="secarmcab" secondary="armcab"/>
+      <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab,piratestoragecab" amount="1" spawnprobability="0.01"/>
+      <Price baseprice="150">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.4"/>
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" sold="false"/>
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25"/>
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="4" />
+        <Price storeidentifier="merchantmine" sold="false" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="4" />
+      </Price>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+        <RequiredSkill identifier="medical" level="60" />
+        <RequiredItem identifier="aluminium" />
+        <RequiredItem identifier="potassium" />
+        <RequiredItem identifier="sulphuricacid" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="832,64,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="101,476,49,34" origin="0.5,0.5" />
+      <Body width="45" height="30" density="20" />
+      <Throwable characterusable="false" slots="Any,RightHand,LeftHand" throwforce="3.5" canbecombined="true" removeoncombined="true" aimpos="35,-10" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnFire" target="This" Condition="0.0" setvalue="true" delay="0.5" />
+        <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true"/>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="5000" />
+          <Explosion range="500.0" ballastfloradamage="100" structuredamage="150" itemdamage="500" force="15" severlimbsprobability="0.5" debris="true" decal="explosion" decalsize="0.5" penetration="0.5">
+            <Affliction identifier="explosiondamage" strength="125" />
+            <Affliction identifier="burn" strength="15" probability="0.2" dividebylimbcount="false"/>
+            <Affliction identifier="bleeding" strength="40" probability="0.05" dividebylimbcount="false"/>
+            <Affliction identifier="stun" strength="7" />
+          </Explosion>
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris5.ogg" range="3500" />
+        </StatusEffect>
+      </Throwable>
+      <Quality>
+        <QualityStat stattype="ExplosionRadius" value="0.1"/>
+        <QualityStat stattype="ExplosionDamage" value="0.1"/>
+      </Quality>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="volatilecompoundn" category="Weapon,Material" Tags="smallitem,explosive,demolitionsexpert" impacttolerance="2" maxstacksize="32" maxstacksizecharacterinventory="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+      <Upgrade gameversion="0.9.3.0" scale="0.5"/>
+      <PreferredContainer primary="secarmcab" secondary="armcab"/>
+      <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab,piratestoragecab" amount="1" spawnprobability="0.01"/>
+      <Price baseprice="250" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" sold="false" />
+      </Price>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+        <RequiredSkill identifier="medical" level="40" />
+        <RequiredItem identifier="compoundn" />
+        <RequiredItem identifier="flashpowder" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="832,64,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="152,477,50,34" origin="0.5,0.5" />
+      <Body width="45" height="30" density="20" />
+      <Throwable characterusable="false" slots="Any,RightHand,LeftHand" throwforce="3.5" aimpos="35,-10" msg="ItemMsgPickUpSelect">
+        <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" type="OnBroken" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" type="OnBroken" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" type="OnBroken" range="5000" />
+        <StatusEffect type="Always" target="This" Condition="-0.04" />
+        <StatusEffect type="OnImpact" target="This" Condition="-20" disabledeltatime="true" />
+        <StatusEffect type="OnFire" target="This" Condition="0.0" setvalue="true" delay="0.5" />
+        <StatusEffect type="OnUse" target="This" Condition="-100" disabledeltatime="true"/>
+        <StatusEffect type="OnBroken" target="This">
+          <Explosion range="500.0" ballastfloradamage="100" structuredamage="150" itemdamage="500" force="18" severlimbsprobability="0.5" debris="true" decal="explosion" decalsize="0.5" penetration="0.5">
+            <Affliction identifier="explosiondamage" strength="150" />
+            <Affliction identifier="burn" strength="20" probability="0.2" dividebylimbcount="false"/>
+            <Affliction identifier="bleeding" strength="50" probability="0.05" dividebylimbcount="false"/>
+            <Affliction identifier="stun" strength="8" />
+          </Explosion>
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris5.ogg" range="3500" />
+        </StatusEffect>
+      </Throwable>
+      <Quality>
+        <QualityStat stattype="ExplosionRadius" value="0.1"/>
+        <QualityStat stattype="ExplosionDamage" value="0.1"/>
+      </Quality>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="dirtybomb" category="Weapon" Tags="smallitem,explosive,separatists" allowasextracargo="true" maxstacksize="8" Scale="0.5" impactsoundtag="impact_soft">
+      <PreferredContainer primary="secarmcab" secondary="armcab"/>
+      <Price baseprice="240" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.25" minavailable="0" maxavailable="2" sold="true">
+          <Reputation faction="separatists" min="50"/>
+        </Price>
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" maxavailable="4" sold="true">
+          <Reputation faction="separatists" min="50"/>
+        </Price>
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="4" maxavailable="8" sold="true">
+          <Reputation faction="separatists" min="50"/>
+        </Price>
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20" requiresrecipe="true">
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredItem identifier="uex" />
+        <RequiredItem identifier="uranium" />
+        <RequiredItem identifier="depletedfuel" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="448,640,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/JobGear/TalentGear.png" depth="0.8" sourcerect="202,1,47,32" origin="0.5,0.5" />
+      <Body width="45" height="30" density="20" />
+      <Throwable characterusable="false" slots="Any,RightHand,LeftHand" canbecombined="true" removeoncombined="true" throwforce="3.5" aimpos="35,-10" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="5000" />
+          <ParticleEmitter particle="fixfoam" anglemax="360" velocitymin="4000" velocitymax="4000" particlespersecond="64" colormultiplier="50,150,50" />
+          <Explosion range="250.0" ballastfloradamage="50" structuredamage="90" itemdamage="250" force="5" severlimbsprobability="0.25" debris="true" decal="explosion" decalsize="0.25">
+            <Affliction identifier="explosiondamage" strength="50" />
+            <Affliction identifier="burn" strength="5" probability="0.2" dividebylimbcount="false"/>
+            <Affliction identifier="bleeding" strength="20" probability="0.05" dividebylimbcount="false"/>
+            <Affliction identifier="stun" strength="3" />
+          </Explosion>
+          <Explosion range="1500" force="0.0" smoke="false" sparks="false" empstrength="2.5" applyfireeffects="false" ignorecover="true">
+            <Affliction identifier="emp" strength="25" multiplybymaxvitality="true" />
+          </Explosion>
+          <SpawnItem identifier="dirtybombafteremitter" spawnposition="This" />
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris5.ogg" range="3500" />
+        </StatusEffect>
+      </Throwable>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="advancedsyringegun" variantof="syringegun">
+      <PreferredContainer primary="armcab" amount="1" spawnprobability="0" notcampaign="true" />
+      <PreferredContainer secondary="secarmcab,weaponholder"/>
+      <PreferredContainer secondary="wreckmedcab,abandonedmedcab,piratemedcab,wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0" />
+      <Price baseprice="310" sold="false">
+        <Price storeidentifier="merchanthusk" minavailable="1" maxavailable="2" sold="true">
+          <Reputation faction="huskcult" min="50"/>
+        </Price>
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="titaniumaluminiumalloy" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="10" requiresrecipe="true">
+        <RequiredSkill identifier="medical" level="50" />
+        <RequiredItem identifier="titaniumaluminiumalloy" amount="1" />
+        <RequiredItem identifier="aluminium" amount="1" />
+        <RequiredItem identifier="plastic" amount="2" />
+      </Fabricate>
+      <InventoryIcon />
+      <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="354,429,145,78" depth="0.7" origin="0.5,0.5" />
+      <Body width="90" height="74" density="25" />
+      <RangedWeapon launchimpulse="10.0" barrelpos="71,30" spread="0" unskilledspread="10" drawhudwhenequipped="true" crosshairscale="0.2">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+        <Sound file="Content/Items/Weapons/SyringeGun1.ogg" type="OnUse" range="1000" volume="0.75"/>
+        <Sound file="Content/Items/Weapons/SyringeGun2.ogg" type="OnUse" range="1000" volume="0.75"/>
+        <RequiredItems items="syringe" type="Contained" msg="ItemMsgSyringeRequired" />
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredSkill identifier="medical" level="50" />
+      </RangedWeapon>
+      <ItemContainer capacity="2" maxstacksize="8" itempos="0,25" itemrotation="-90" hideitems="false" containedstateindicatorstyle="syringe" ShowTotalStackCapacityInContainedStateIndicator="true" containedstateindicatorslot="0">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="384,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="1" texture="Content/UI/StatusMonitorUI.png" sourcerect="384,448,64,64" origin="0.5,0.5" />
+        <Containable items="syringe" />
+      </ItemContainer>
+      <StatusHUD drawhudwhenequipped="true" />
+      <SkillRequirementHint identifier="weapons" level="30" />
+      <SkillRequirementHint identifier="medical" level="50" />
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="arcemitter" tags="mediumitem,weapon,gun,mountableweapon,provocativetohumanai" category="Weapon" isshootable="true" Scale="0.5">
+      <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="207,430,131,61" depth="0.55" origin="0.5,0.5" />
+      <Price baseprice="740" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.5" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+      </Price>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="75" requiresrecipe="true">
+        <RequiredSkill identifier="electrical" level="65" />
+        <RequiredItem identifier="fulgurium" amount="2" />
+        <RequiredItem identifier="titaniumaluminiumalloy" amount="3" />
+        <RequiredItem identifier="copper" />
+      </Fabricate>
+      <Deconstruct time="35">
+        <Item identifier="fulgurium" amount="2" />
+        <Item identifier="titaniumaluminiumalloy" amount="2" />
+        <Item identifier="copper" />
+      </Deconstruct>
+      <ElectricalDischarger duration="0.15" reload="5.0" ignoreuser="true" characterusable="true" raycastrange="500" range="150" rangemultiplierinwalls="1.25" outdoorsonly="false" powerconsumption="100" pickkey="Select">
+        <Attack targetimpulse="50">
+          <Affliction identifier="stun" strength="5"/>
+          <Affliction identifier="burn" strength="10"/>
+          <Affliction identifier="electricshock" strength="80"/>
+        </Attack>
+        <StatusEffect target="This" type="OnUse" forceplaysounds="true">
+          <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge1.ogg" range="20000" selectionmode="random"/>
+          <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge2.ogg" range="20000" />
+          <Explosion range="500.0" camerashake="15" stun="0" force="0.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="Contained" Condition="-25" disabledeltatime="true">
+          <RequiredItem items="mobilebattery" type="Contained" />
+        </StatusEffect>
+        <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      </ElectricalDischarger>
+      <RangedWeapon reload="5.0" barrelpos="118,14" combatPriority="80" spread="30" drawhudwhenequipped="true" crosshairscale="0.5">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      </RangedWeapon>
+      <Body width="130" height="55" density="25" />
+      <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-15" aimpos="70,4" handle1="-50,-10" handle2="10,-3" holdangle="-25" />
+      <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
+        <sprite name="Arc Emitter Worn" texture="Content/Items/JobGear/TalentGear.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="207,430,131,61" limb="Torso" scale="0.5" origin="0.5,0.9" />
+      </Wearable>
+      <ItemContainer itemrotation="90" capacity="1" maxstacksize="1" hideitems="false" itempos="10,-5" containedspritedepth="0.56" containedstateindicatorstyle="battery">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Containable items="mobilebattery">
+          <StatusEffect type="OnContaining" targettype="This" Voltage="1.0" setvalue="true" />
+        </Containable>
+      </ItemContainer>
+      <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="boardingaxe" category="Weapon" Tags="mediumitem,weapon,gunsmith,mountableweapon" scale="0.5" allowasextracargo="true" requireaimtouse="true" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="secarmcab" secondary="armcab"/>
+      <Price baseprice="350" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.25" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+      </Price>
+      <Deconstruct time="20">
+        <Item identifier="titaniumaluminiumalloy" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="25" requiresrecipe="true">
+        <RequiredSkill identifier="weapons" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/JobGear/TalentGear.png" sourcerect="165,366,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="1,425,164,53" depth="0.55" origin="0.5,0.2" />
+      <Body width="161" height="20" density="25" />
+      <MeleeWeapon slots="Any,RightHand+LeftHand" aimpos="50,0" handle1="-22,2" handle2="-32,5" holdangle="30" aimangle="10" reload="1.2" range="155" combatPriority="40" msg="ItemMsgPickUpSelect">
+        <Attack targetimpulse="5" severlimbsprobability="7.5" itemdamage="30" structuredamage="15">
+          <Affliction identifier="lacerations" strength="36" />
+          <Affliction identifier="bleeding" strength="10" />
+          <Affliction identifier="stun" strength="0.5" />
+          <StatusEffect type="OnUse" target="UseTarget">
+            <Conditional entitytype="eq Character"/>
+            <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" selectionmode="random" range="500" />
+            <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="500" />
+            <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="500" />
+            <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="500" />
+            <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="500" />
+            <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="500" />
+          </StatusEffect>
+        </Attack>
+      </MeleeWeapon>
+      <Quality>
+        <QualityStat stattype="StrikingPowerMultiplier" value="0.1" />
+      </Quality>
+      <aitarget sightrange="500" soundrange="250" fadeouttime="1" />
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="ceremonialsword" category="Weapon" Tags="smallitem,weapon,gunsmith,mountableweapon,sharptool" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+      <PreferredContainer primary="secarmcab" secondary="armcab"/>
+      <Price baseprice="340" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.5" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="titaniumaluminiumalloy" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiresrecipe="true" requiredtime="30">
+        <RequiredSkill identifier="weapons" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
+      </Fabricate>
+      <Sprite texture="Content/Items/Jobgear/TalentGear.png" sourcerect="0,484,153,18" depth="0.55" origin="0.5,0.5" />
+      <Body width="153" height="14" density="30" />
+      <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="35,10" handle1="-28,0" holdangle="30" aimangle="20" reload="0.75" range="75" combatPriority="30" msg="ItemMsgPickUpSelect">
+        <Attack targetimpulse="2" severlimbsprobability="0.55" itemdamage="6" structuredamage="1" structuresoundtype="StructureSlash">
+          <Affliction identifier="lacerations" strength="19" />
+          <Affliction identifier="bleeding" strength="14" />
+          <Affliction identifier="stun" strength="0.25" />
+        </Attack>
+        <StatusEffect type="OnUse" target="UseTarget">
+          <Conditional entitytype="eq Character"/>
+          <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" selectionmode="random" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="500" />
+          <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="500" />
+        </StatusEffect>
+        <StatusEffect type="OnSuccess" target="This" reload="0.4" setvalue="true">
+          <Conditional reload="gt 0.4" />
+        </StatusEffect>
+        <StatusEffect type="OnFailure" target="This" reload="1.5" setvalue="true" />
+        <RequiredSkill identifier="weapons" level="50" />
+        <RequiredSkill identifier="helm" level="50" />
+        <RequiredSkill identifier="electrical" level="50" />
+        <RequiredSkill identifier="mechanical" level="50" />
+        <RequiredSkill identifier="medical" level="50" />
+        <!--Reset the reload speed-->
+        <StatusEffect type="OnUse" target="This" reload="0.75" setvalue="true" delay="1"/>
+      </MeleeWeapon>
+      <aitarget sightrange="500" soundrange="250" fadeouttime="1" />
+      <Quality>
+        <QualityStat stattype="StrikingPowerMultiplier" value="0.15"/>
+      </Quality>
+      <SkillRequirementHint identifier="weapons" level="50" />
+      <SkillRequirementHint identifier="helm" level="50" />
+      <SkillRequirementHint identifier="electrical" level="50" />
+      <SkillRequirementHint identifier="mechanical" level="50" />
+      <SkillRequirementHint identifier="medical" level="50" />
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="detonator" description="" health="30" category="Equipment,Weapon" Tags="smallitem,detonator" DamagedByContainedItemExplosions="true" explosiondamagemultiplier="0.3" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_metal_light" isshootable="true">
+      <Upgrade gameversion="0.9.3.0" scale="0.5"/>
+      <PreferredContainer primary="secarmcab" amount="1" spawnprobability="0.5" notcampaign="true" notpvp="true"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0.05"/>
+      <PreferredContainer secondary="armcab"/>
+      <Price baseprice="100">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" sold="false"/>
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantmine" sold="false" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantengineering" multiplier="1.2" minavailable="1" />
+      </Price>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="704,64,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="215,242,41,21" origin="0.5,0.5" />
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredSkill identifier="electrical" level="10" />
+        <RequiredItem identifier="plastic" />
+        <RequiredItem identifier="fpgacircuit" />
+      </Fabricate>
+      <Deconstruct time="5">
+        <Item identifier="copper" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <Body width="40" height="22" density="20" />
+      <Holdable selectkey="Action" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" aimpos="35,-10" handle1="0,0" attachable="true" aimable="true">
+        <RequiredItem items="wrench,deattachtool" excludeditems="multitool" type="Equipped" />
+      </Holdable>
+      <ItemContainer canbeselected="true" capacity="1" maxstacksize="1" itempos="20,-11" hideitems="false" containedstateindicatorstyle="explosive" containedspritedepth="0.81">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,384,64,64" origin="0.5,0.5" />
+        <GuiFrame relativesize="0.11,0.17" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
+        <Containable items="explosive" />
+      </ItemContainer>
+      <!-- charge is set to maximum value of float so the detonator always starts at full capacity 
+            (charge acts as the timer for the explosion, so this allows editing the timer in the sub editor by adjusting the capacity) -->
+      <PowerContainer capacity="2.0" charge="3.402823466E+38" canbeselected="false" />
+      <LightComponent characterusable="false" LightColor="248,81,81,80" range="20" powerconsumption="0" IsOn="false" blinkfrequency="4.0" offset="13,0" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="239,243,14,18" origin="-0.24,0.5" alpha="1.0" />
+        <StatusEffect type="OnActive" target="This" IsOn="false">
+          <Conditional attached="false" targetitemcomponentname="Holdable" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" interval="0.2" disabledeltatime="true" charge="-0.2" stackable="false" forcePlaySounds="true">
+          <sound file="Content/Items/WarningBeepSlow.ogg" range="750" frequencymultiplier="2.0" volume="0.75" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" IsOn="false">
+          <sound file="Content/Items/Button/Switch1.ogg" range="500.0" />
+          <Conditional targetitemcomponent="PowerContainer" charge="0.0" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="Contained">
+          <Use />
+          <Conditional targetcontainer="true" targetitemcomponent="PowerContainer" charge="0.0" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </LightComponent>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="activate" displayname="connection.activate">
+          <StatusEffect type="OnUse" target="This" IsOn="true" charge="3.402823466E+38" setvalue="true">
+            <Conditional IsOn="false" />
+          </StatusEffect>
+        </input>
+      </ConnectionPanel>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item identifier="timeddetonator" health="30" description="" category="Equipment,Weapon" Tags="smallitem,detonator" DamagedByContainedItemExplosions="true" explosiondamagemultiplier="0.3" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_metal_light" isshootable="true">
+      <PreferredContainer primary="secarmcab" amount="1" spawnprobability="0.1" notcampaign="true" notpvp="true"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0.01"/>
+      <PreferredContainer secondary="armcab"/>
+      <Price baseprice="110" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" sold="true" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantmine" />
+        <Price storeidentifier="merchantarmory" sold="true" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantengineering" sold="true" multiplier="1.2" minavailable="1" />
+      </Price>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="704,64,64,64" origin="0.5,0.5" /><!-- TODO new InventoryIcon and Sprite-->
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="215,242,41,21" origin="0.5,0.5" />
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="5">
+        <RequiredSkill identifier="electrical" level="10" />
+        <RequiredItem identifier="detonator" />
+        <RequiredItem tag="wire" />
+      </Fabricate>
+      <Deconstruct time="5">
+        <Item identifier="copper" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <Body width="40" height="22" density="20" />
+      <Holdable selectkey="Action" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" aimpos="35,-10" handle1="0,0" attachable="true" aimable="true">
+        <RequiredItem items="wrench,deattachtool" excludeditems="multitool" type="Equipped" />
+        <StatusEffect target="This" type="Always">
+          <Conditional attached="false" targetitemcomponentname="Holdable"/>
+          <Use />
+        </StatusEffect>
+      </Holdable>
+      <ItemContainer canbeselected="true" capacity="1" maxstacksize="1" itempos="20,-11" hideitems="false" containedstateindicatorstyle="explosive" containedspritedepth="0.81">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,384,64,64" origin="0.5,0.5" />
+        <GuiFrame relativesize="0.11,0.17" anchor="CenterLeft" pivot="BottomLeft" relativeoffset="0.006,0.016" minsize="140,170" maxsize="280,280" style="ItemUI" />
+        <Containable items="explosive">
+          <StatusEffect type="OnRemoved" target="This" targetitemcomponent="LightComponent" blinkfrequency="1.0" IsOn="false" setvalue="true"/>    
+        </Containable>
+      </ItemContainer>
+      <PowerContainer capacity="60" Charge="8" canbeselected="false">
+      </PowerContainer>
+      <LightComponent LightColor="248,81,81,80" range="20" powerconsumption="0" IsOn="false" blinkfrequency="1.0" offset="13,0" castshadows="false" allowingameediting="false">
+        <sprite texture="Content/Items/Weapons/weapons_new.png" depth="0.55" sourcerect="239,243,14,18" origin="-0.24,0.5" alpha="1.0"/>
+        <!-- Detonator active, do the countdown -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="PowerContainer" Charge="-1.0" interval="1" disabledeltatime="true" CheckConditionalAlways="true">
+          <Conditional IsActive="true" targetitemcomponentname="LightComponent"/>
+          <sound file="Content/Items/WarningBeepSlow.ogg" range="750" frequencymultiplier="2.0" volume="0.3" />        
+        </StatusEffect>
+        <!-- Double the warning beeps (due to .5s offset) -->
+        <StatusEffect type="OnActive" target="This" interval="1" disabledeltatime="true" checkconditionalalways="true" delay="0.5" blinkfrequency="2.0" setvalue="true">
+          <Conditional Charge="lt 3" targetitemcomponentname="PowerContainer" />
+          <sound file="Content/Items/WarningBeepSlow.ogg" range="750" frequencymultiplier="2.0" volume="0.3" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This,Contained" IsOn="false" checkconditionalalways="true" blinkfrequency="1.0" setvalue="true">
+          <Conditional Charge="lte 0.0" targetitemcomponentname="PowerContainer" />
+          <Use />
+          <sound file="Content/Items/Button/Switch1.ogg" range="500.0" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </LightComponent>
+      <CustomInterface canbeselected="true" drawhudwhenequipped="true" allowuioverlap="false" ElementStates="8, false">
+        <GuiFrame relativesize="0.2,0.15" anchor="CenterLeft" pivot="TopLeft" relativeoffset="0.006,0.006" style="ItemUI" />
+        <IntegerInput text="bomb.timer" targetitemcomponent="PowerContainer" propertyname="Charge" min="0" max="60" step="1" GetValueInterval="0.5"/>
+        <TickBox text="bomb.armed" connection="signal_out1" targetitemcomponent="LightComponent" propertyname="IsOn" ContinuousSignal="false" GetValueInterval="1" />
+      </CustomInterface>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="activate" displayname="connection.activate">
+          <StatusEffect type="OnUse" target="This" TargetItemComponent="LightComponent" IsOn="true">
+          </StatusEffect>
+        </input>
+      </ConnectionPanel>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="empgrenade" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="explosivecrate" tags="smallitem,weapon,explosive,demolitionsexpert,handgrenade" scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="secarmcab" minamount="1" maxamount="3" spawnprobability="0.75" notcampaign="true" notpvp="true" />
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
+      <PreferredContainer secondary="armcab" />
+      <Price baseprice="175">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" sold="false" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="4" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="4" />
+        <Price storeidentifier="merchantengineering" multiplier="1.2" minavailable="2" />
+      </Price>
+      <Upgrade gameversion="0.9.3.0" scale="0.5" />
+      <Deconstruct time="10">
+        <Item identifier="iron" />
+        <Item identifier="copper" mincondition="0.9" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="10">
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredSkill identifier="electrical" level="20" />
+        <RequiredItem identifier="iron" />
+        <RequiredItem identifier="copper" />
+        <RequiredItem identifier="flashpowder" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="450,450,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="159,311,27,54" depth="0.55" origin="0.5,0.5185185" />
+      <BrokenSprite texture="Content/Items/Weapons/weapons_new.png" name="empgrenade" sourcerect="434,186,27,54" depth="0.55" origin="0.5,0.5185185" maxcondition="99.9" />
+      <Body width="26" height="50" density="30" />
+      <Throwable characterusable="false" slots="Any,RightHand,LeftHand" throwforce="4.0" aimpos="35,-10" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="1000" selectionmode="All" />
+          <sound file="Content/Items/Weapons/Emp.ogg" range="1000" />
+          <Explosion range="500" force="5" empstrength="10" applyfireeffects="false" flames="false">
+            <Affliction identifier="explosiondamage" strength="10" />
+            <Affliction identifier="stun" strength="5" />
+            <Affliction identifier="emp" strength="100" multiplybymaxvitality="true" />
+          </Explosion>
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnUse" targettype="This" Condition="0" setvalue="true" comparison="OR">
+          <Conditional HasTag="detonator" targetcontainer="true" />
+          <Conditional HasTag="railgunammo" targetcontainer="true" />
+          <Conditional HasTag="depthchargeammo" targetcontainer="true" />
+        </StatusEffect>
+        <StatusEffect type="OnSecondaryUse" target="This" disabledeltatime="true" checkconditionalalways="true">
+          <Conditional IsActive="false" targetitemcomponent="ItemComponent" />
+          <Use />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" duration="0.65">
+          <ParticleEmitter particle="ElectricShock" copyentityangle="false" anglemin="0" anglemax="360" particleamount="5" velocitymin="0" velocitymax="2000" scalemin="0.3" scalemax="0.33" />
+        </StatusEffect>
+        <!-- Drain condition of nearby batteries.-->
+        <StatusEffect type="OnBroken" target="nearbyItems" range="450" targettags="loadable" condition="-100" />
+      </Throwable>
+      <ItemComponent IsActive="false" CharacterUsable="true">
+        <!--reduce condition by 1 to mark the user as the one responsible for the item breaking and exploding -->
+        <StatusEffect type="OnUse" targettype="This" IsActive="true" DontCleanUp="true" comparison="AND" condition="-1">
+          <Conditional HasTag="neq detonator" targetcontainer="true" />
+          <Conditional HasTag="neq railgunammo" targetcontainer="true" />
+          <Conditional HasTag="neq depthchargeammo" targetcontainer="true" />
+          <Conditional IsActive="false" targetitemcomponent="ItemComponent" />
+          <ParticleEmitter particle="grenadepin" emitinterval="10" particleamount="1" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+          <ParticleEmitter particle="grenadelever" emitinterval="10" particleamount="1" anglemin="120" anglemax="210" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+          <Sound file="Content/Items/Weapons/pinpull.ogg" type="OnUse" range="720" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" targettype="This" Condition="-24">
+          <ParticleEmitter particle="flamethrowersmoke" particlespersecond="25" anglemin="0" anglemax="0" velocitymin="75" velocitymax="125" copyentityangle="true" scalemin="0.1" scalemax="0.15" colormultiplier="255,255,255,150" />
+        </StatusEffect>
+      </ItemComponent>
+      <Quality>
+        <QualityStat stattype="ExplosionRadius" value="0.1" />
+        <QualityStat stattype="ExplosionDamage" value="0.1" />
+      </Quality>
+    </Item>
+    <!-- Changed to fabricate in the ammo fabricator -->
+    <Item name="" identifier="40mmchemgrenade" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="8" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade" Scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="grenadelauncher" amount="1" spawnprobability="0"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" minamount="1" maxamount="2" spawnprobability="0"/>
+      <PreferredContainer primary="secarmcab" secondary="armcab"/>
+      <Price baseprice="130" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.5" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" />
+      </Price>
+      <Deconstruct time="5">
+        <Item identifier="iron" />
+        <Item identifier="sulphuricacid" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="ammofabricator" requiredtime="10" requiresrecipe="true">
+        <RequiredSkill identifier="weapons" level="30"/>
+        <RequiredItem identifier="iron"/>
+        <RequiredItem identifier="sulphuricacid"/>
+        <RequiredItem identifier="phosphorus"/>
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="512,448,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="185,159,41,17" depth="0.55" origin="0.5,0.5" />
+      <Body width="38" height="15" density="30" />
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect"/>
+      <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="false">
+        <StatusEffect type="OnUse" target="This" Condition="-100.0" delay="1.0" setvalue="true" />
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/FragGrenade40mmShot1.ogg" range="2000" />
+          <sound file="Content/Items/Weapons/FragGrenade40mmShot2.ogg" range="2000" />
+          <Explosion range="500" ballastfloradamage="0" itemdamage="0" force="0.5" sparks="true" shockwave="false" flames="false" smoke="false" flash="true">
+            <Affliction identifier="acidburn" strength="30" />
+            <Affliction identifier="acidburn" strength="15" probability="0.2" dividebylimbcount="false"/>
+            <Affliction identifier="stun" strength="0.5" />
+          </Explosion>
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This" delay="0.3">
+          <SpawnItem identifier="acidmistemitter" count="10" aimspread="360" impulse="30" rotationtype="Collider" rotation="0" spawnposition="This" />
+          <Remove />
+        </StatusEffect>
+      </Projectile>
+    </Item>
+    <!-- Changed to fabricate in the ammo fabricator -->
+    <Item name="" identifier="40mmstungrenade" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="8" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade" Scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
+      <PreferredContainer primary="secarmcab" secondary="armcab" />
+      <Price baseprice="120" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.5" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" sold="true" multiplier="0.9" minavailable="4" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" sold="true" multiplier="0.9" minavailable="4" />
+      </Price>
+      <Deconstruct time="5">
+        <Item identifier="iron" />
+        <Item identifier="phosphorus" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="ammofabricator" requiredtime="10">
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredItem identifier="iron" />
+        <RequiredItem identifier="phosphorus" />
+        <RequiredItem identifier="flashpowder" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="768,960,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="214,266,42,18" depth="0.55" origin="0.5,0.5" />
+      <Body width="38" height="15" density="30" />
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+      <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="false">
+        <sound file="Content/Items/Weapons/StunGrenade40mmShot1.ogg" type="OnImpact" range="2000" selectionmode="Random" />
+        <sound file="Content/Items/Weapons/StunGrenade40mmShot2.ogg" type="OnImpact" range="2000" />
+        <!--Grenade launcher ammo explodes on impact-->
+        <StatusEffect type="OnImpact" target="This" Condition="-100.0" disabledeltatime="true">
+          <sound file="Content/Items/Weapons/TrueStunGrenade.ogg" range="3000" />
+          <Explosion range="250" force="0.1" smoke="false" playtinnitus="true">
+            <Affliction identifier="explosiondamage" strength="5" />
+            <Affliction identifier="stun" strength="10" />
+            <Affliction identifier="blind" strength="30" />
+            <Affliction identifier="sensoryoverload" strength="15" />
+          </Explosion>
+          <Remove />
+        </StatusEffect>
+      </Projectile>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    </Item>
+    <!-- Changed to fabricate in the ammo fabricator -->
+    <Item name="" identifier="explosivespear" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,handheldammo,demolitionsexpert" Scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="harpoongun" />
+      <PreferredContainer primary="armcab" amount="6" spawnprobability="0.1" notcampaign="true" notpvp="true" />
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" minamount="1" maxamount="6" spawnprobability="0.1" />
+      <PreferredContainer primary="secarmcab" />
+      <Price baseprice="80">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="3" sold="false" />
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="6" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="6" />
+      </Price>
+      <Deconstruct time="5"></Deconstruct>
+      <Fabricate suitablefabricators="ammofabricator" requiredtime="10" amount="2">
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredItem identifier="spear" amount="2" />
+        <RequiredItem identifier="uex" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="385,968,55,55" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="85,381,168,15" depth="0.55" origin="0.5,0.5" />
+      <Body width="160" height="10" density="30" />
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+      <Projectile characterusable="false" launchimpulse="10.0" severlimbsprobability="0.1">
+        <Attack structuredamage="20" targetforce="10" penetration="0.5">
+          <Affliction identifier="explosiondamage" strength="25" />
+        </Attack>
+        <StatusEffect type="OnImpact" target="This" Condition="-100.0" disabledeltatime="true">
+          <Explosion range="200.0" ballastfloradamage="50" structuredamage="10" levelwalldamage="50" itemdamage="250" force="5" severlimbsprobability="0.25">
+            <Affliction identifier="burn" strength="50" />
+            <Affliction identifier="stun" strength="1.5" />
+          </Explosion>
+          <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="3000" />
+          <sound file="Content/Items/Weapons/ExplosionSmall2.ogg" range="3000" />
+          <sound file="Content/Items/Weapons/ExplosionSmall3.ogg" range="3000" />
+          <Remove />
+        </StatusEffect>
+      </Projectile>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="stunbaton" category="Weapon" Tags="smallitem,weapon,stunner,gunsmith,mountableweapon" Scale="0.5" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+      <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0.1" />
+      <PreferredContainer primary="secarmcab" secondary="armcab" />
+      <Upgrade gameversion="0.9.2.0" scale="0.5" />
+      <Price baseprice="200">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.35" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" sold="false" />
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="6" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="6" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="10">
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredItem identifier="steel" amount="2" />
+        <RequiredItem identifier="plastic" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="770,0,58,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,0,191,63" depth="0.55" origin="0.4954025,0.7936202" />
+      <Body width="170" height="30" density="20" />
+      <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="40,20" handle1="-30,15" holdangle="20" aimangle="30" reload="0.95" range="100" combatPriority="35" msg="ItemMsgPickUpSelect" preferredcontaineditems="mobilebattery">
+        <Attack targetimpulse="5" itemdamage="1">
+          <StatusEffect type="OnUse" target="UseTarget">
+            <Conditional entitytype="eq Character" />
+            <Sound file="Content/Items/Weapons/Smack1.ogg" selectionmode="random" range="500" />
+            <Sound file="Content/Items/Weapons/Smack2.ogg" range="500" />
+          </StatusEffect>
+          <Affliction identifier="blunttrauma" strength="4" />
+          <Affliction identifier="stun" strength="0.2" />
+        </Attack>
+        <!-- changed to use electricshock: normal batteries cause 45 points of electricshock. Due to strength change of -5/s we can expect full stun in three consecutive hits -->
+        <!-- keep weight check in place for now (affect targets with mass < 40, humans, mudraptors, etc.) -->
+        <StatusEffect type="OnUse" target="UseTarget" disabledeltatime="true">
+          <Conditional mass="lt 40" />
+          <Affliction identifier="stun" strength="0.3" />
+          <Affliction identifier="electricshock" strength="45" />
+          <sound file="Content/Items/Weapons/StunBaton1.ogg" selectionmode="random" range="500" />
+          <sound file="Content/Items/Weapons/StunBaton2.ogg" range="500" />
+          <sound file="Content/Items/Weapons/StunBaton3.ogg" range="500" />
+          <sound file="Content/Items/Weapons/StunBaton4.ogg" range="500" />
+          <RequiredItem items="mobilebattery" ExcludedIdentifiers="fulguriumbatterycell" type="Contained" msg="ItemMsgBatteryCellRequired" />
+          <Explosion range="100.0" force="0.1" shockwave="false" flames="false" smoke="false" underwaterbubble="false" camerashake="6.0" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="3" ScaleMin="0.07" ScaleMax="0.1" />
+        </StatusEffect>
+        <!-- changed to use electricshock: fulgurium batteries cause 60 points of electricshock -> full stun in two consecutive hits -->
+        <!-- keep weight check in place for now (affect targets with mass < 60, includes veteran mudraptors) -->
+        <StatusEffect type="OnUse" target="UseTarget" disabledeltatime="true">
+          <Conditional mass="lt 60" />
+          <Affliction identifier="stun" strength="0.3" />
+          <Affliction identifier="electricshock" strength="60" />
+          <sound file="Content/Items/Weapons/StunBaton1.ogg" selectionmode="random" range="500" />
+          <sound file="Content/Items/Weapons/StunBaton2.ogg" range="500" />
+          <sound file="Content/Items/Weapons/StunBaton3.ogg" range="500" />
+          <sound file="Content/Items/Weapons/StunBaton4.ogg" range="500" />
+          <RequiredItem items="fulguriumbatterycell" type="Contained" msg="ItemMsgBatteryCellRequired" />
+          <Explosion range="100.0" force="0.5" shockwave="false" flames="false" smoke="true" underwaterbubble="false" camerashake="6.0" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="10" DistanceMax="25" ParticleAmount="5" ScaleMin="0.1" ScaleMax="0.12" />
+        </StatusEffect>
+        <!-- 8 usages with normal battery, 16 with fulgurium -->
+        <StatusEffect type="OnUse" target="Contained,UseTarget" Condition="-12.5" disabledeltatime="true">
+          <RequiredItem items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
+          <Conditional entitytype="eq Character" />
+          <Conditional HasStatusTag="!equals outpostsecurity" /><!-- TODO ! Security wouldn't need so many batteries if we can prevent their batteries from draining (magically)-->
+        </StatusEffect>
+      </MeleeWeapon>
+      <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="battery">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Containable items="mobilebattery" />
+      </ItemContainer>
+      <aitarget sightrange="500" soundrange="500" fadeouttime="1" />
+      <Quality>
+        <QualityStat stattype="StrikingPowerMultiplier" value="0.25" />
+      </Quality>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="defensebotspawner" hideinmenus="true" category="Machine" >
+      <Price baseprice="700" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.25" />
+        <Price storeidentifier="merchantcity" multiplier="1" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+      </Price>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="35" requiresrecipe="true" movetoslot="Any">
+        <RequiredSkill identifier="electrical" level="40" />
+        <RequiredSkill identifier="mechanical" level="65" />
+        <RequiredItem identifier="fpgacircuit" />
+        <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
+        <RequiredItem identifier="smg" />
+      </Fabricate>-->
+      <Sprite texture="Content/Characters/Defensebot/Defensebot.png" depth="0.55" sourcerect="0,192,64,64" origin="0.5,0.5" />
+      <Pickable slots="Any">
+        <StatusEffect type="OnSpawn" targettype="This" delay="0.2">
+          <RemoveItem />
+          <SpawnCharacter speciesname="Defensebot" totalmaxcount="2" inheritteam="true"/>
+        </StatusEffect>
+      </Pickable>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="defensebotammobox" maxstacksize="1" scale="0.3" category="Weapons,Machine" cargocontaineridentifier="metalcrate" linkable="true" tags="smallitem,defensebotammo" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="defensebot,secarmcab" secondary="armcab"/>
+      <Price baseprice="200" displaynonempty="true" sold="false">
+        <Price storeidentifier="merchantmilitary" sold="true" multiplier="0.9" minavailable="0" maxavailable="2"/>
+        <Price storeidentifier="merchantarmory" sold="true" multiplier="0.9" minavailable="0" maxavailable="2"/>
+      </Price>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="25" requiresrecipe="true">
+        <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+        <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+        <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
+        <RequiredItem identifier="aluminium"/>
+      </Fabricate>
+      <Fabricate suitablefabricators="fabricator" requiredtime="15" requiresrecipe="true" displayname="recycleitem">
+        <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+        <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+        <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
+        <RequiredItem tag="defensebotammo" mincondition="0.0" maxcondition="0.1" usecondition="false" description="entitydescription.defensebotammobox" header="fabricationheader.ammoboxrecycle" defaultitem="defensebotammobox" />
+      </Fabricate>-->
+      <Deconstruct time="10">
+        <Item identifier="aluminium"/>
+      </Deconstruct>
+      <Sprite texture="Content/Characters/Defensebot/Defensebot.png" depth="0.54" sourcerect="135,189,115,58" origin="0.5,0.5" />
+      <Body width="90" height="60" density="25" />
+      <Holdable slots="LeftHand,RightHand,Any" holdpos="0,-80" handle1="-40,30" handle2="40,30" aimable="false" msg="ItemMsgPickUpSelect"/>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="divingknifehardened" variantof="divingknife" allowasextracargo="true" inventoryiconcolor="110,120,110,255" spritecolor="110,120,110">
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" spawnprobability="0"/>
+      <PreferredContainer secondary="abandonedstoragecab,piratestoragecab" spawnprobability="0"/>
+      <PreferredContainer secondary="beaconsupplycab" spawnprobability="0"/>
+      <PreferredContainer primary="armcab,secarmcab" spawnprobability="0" />
+      <Price baseprice="200" sold="false">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" multiplier="0.9" />
+        <Price storeidentifier="merchantresearch" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <Deconstruct>
+        <Item identifier="iron" />
+        <Item identifier="depletedfuel" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiresrecipe="true">
+        <RequiredItem identifier="depletedfuel" amount="2" />
+        <RequiredItem identifier="divingknife" />
+      </Fabricate>
+      <MeleeWeapon>
+        <Attack targetimpulse="4" itemdamage="4" penetration="0.25">
+          <Affliction identifier="lacerations" strength="15" />
+          <Affliction identifier="bleeding" strength="5" />
+          <Affliction identifier="radiationsickness" strength="1" />
+          <Affliction identifier="stun" strength="0.2" />
+        </Attack>
+      </MeleeWeapon>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="scrapcannon" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,provocativetohumanai" Scale="0.5" impactsoundtag="impact_metal_heavy">
+      <PreferredContainer primary="secarmcab" secondary="weaponholder,armcab"/>
+      <Price baseprice="640" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.5" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2" sold="true">
+          <Reputation faction="separatists" min="70"/>
+        </Price>
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="1" maxavailable="2" sold="true">
+          <Reputation faction="separatists" min="70"/>
+        </Price>
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="copper" />
+        <Item identifier="plastic" />
+        <Item identifier="lead" />
+        <Item identifier="titaniumaluminiumalloy" amount="2" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="70" requiresrecipe="true">
+        <RequiredSkill identifier="mechanical" level="65" />
+        <RequiredItem identifier="fpgacircuit" />
+        <RequiredItem identifier="lead" amount="2"/>
+        <RequiredItem identifier="titaniumaluminiumalloy" amount="3" />
+      </Fabricate>
+      <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="354,371,158,55" depth="0.55" origin="0.5,0.45" />
+      <Body width="158" height="40" density="25" />
+      <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-15" aimpos="55,4" handle1="-26,-20" handle2="10,-3" holdangle="-25" />
+      <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
+        <sprite name="Scrap Cannon Worn" texture="Content/Items/JobGear/TalentGear.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="354,371,158,55" limb="Torso" scale="0.5" origin="0.5,1.0" />
+      </Wearable>
+      <RangedWeapon reload="3.0" barrelpos="67,5" spread="0" unskilledspread="4" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+        <ParticleEmitter particle="explosionsmoke" particleamount="1" velocitymin="0" velocitymax="0" scalemin="0.5" scalemax="0.6" />
+        <ParticleEmitter particle="shrapnel" particleamount="50" velocitymin="500" velocitymax="1500" anglemin="-30" anglemax="30" scalemin="0.5" scalemax="1.0" />
+        <ParticleEmitter particle="spark" particleamount="50" velocitymin="500" velocitymax="1500" anglemin="-30" anglemax="30" scalemin="0.5" scalemax="1.0" />
+        <Sound file="Content/Items/Jobgear/Mechanic/WEAPON_scrapCannonShot1.ogg" range="3000" type="OnUse" selectionmode="Random" volume="2"/>
+        <Sound file="Content/Items/Jobgear/Mechanic/WEAPON_scrapCannonShot2.ogg" range="3000" type="OnUse" volume="2" />
+        <Sound file="Content/Items/Jobgear/Mechanic/WEAPON_scrapCannonShot3.ogg" range="3000" type="OnUse" volume="2" />
+        <StatusEffect type="OnUse" target="This">
+          <Explosion range="250.0" force="3" shockwave="false" smoke="true" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="6.0" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="Contained" Condition="-12.5" targetslot="1" disabledeltatime="true" />
+        <RequiredItems items="scrapcannonammo" type="Contained" msg="itemmsgammorequired" />
+        <RequiredItems items="mobilebattery" type="Contained" msg="itemmsgbatterycellrequired" />
+        <RequiredSkill identifier="weapons" level="25" />
+        <RequiredSkill identifier="mechanical" level="45" />
+      </RangedWeapon>
+      <ItemContainer capacity="1" maxstacksize="32" slotsperrow="3" hideitems="true" containedstateindicatorslot="1" containedstateindicatorstyle="battery">
+        <Containable items="scrapcannonammo" />
+        <SlotIcon slotindex="1" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <SubContainer capacity="1"  maxstacksize="1">
+          <Containable items="mobilebattery" />
+        </SubContainer>
+      </ItemContainer>
+      <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+      <Quality>
+        <QualityStat stattype="FirepowerMultiplier" value="0.1" />
+      </Quality>
+      <SkillRequirementHint identifier="weapons" level="25" />
+      <SkillRequirementHint identifier="mechanical" level="45" />
+    </Item>
+    <!-- Changed to fabricate in the medical fabricator -->
+    <Item identifier="advancedgenesplicer" variantof="genesplicer" allowasextracargo="true" descriptionidentifier="advancedgenesplicer">
+      <PreferredContainer primary="medcab" secondary="medcab"/>
+      <PreferredContainer secondary="abandonedmedcab,piratemedcab,wreckmedcab,outpostmedcab" spawnprobability="0"/>
+      <Price baseprice="550" sold="false" minleveldifficulty="65">
+        <Price storeidentifier="merchanthusk" minavailable="1" maxavailable="2" sold="true">
+          <Reputation faction="huskcult" min="50"/>
+        </Price>
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" multiplier="0.9" />
+        <Price storeidentifier="merchantresearch" multiplier="1.1" sold="true" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.1" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="fulgurium" amount="1" />
+        <Item identifier="copper" amount="2" />
+        <Item identifier="rubber" />
+        <Item identifier="silicon" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" requiresrecipe="true">
+        <RequiredSkill identifier="medical" level="60" />
+        <RequiredItem identifier="fulgurium" />
+        <RequiredItem identifier="fpgacircuit" amount="2" />
+        <RequiredItem identifier="rubber" amount="2" />
+        <RequiredItem identifier="silicon" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/Genetic/Genetic.png" sourcerect="327,62,73,65" origin="0.5,0.5" />
+      <Sprite name="Headset" texture="Content/Items/Genetic/Genetic.png" depth="0.6" sourcerect="148,85,73,35" origin="0.5,0.5" />
+      <Body radius="8" width="48" density="15" />
+      <ItemContainer capacity="2" maxstacksize="1" />
+      <Wearable>
+        <sprite name="Gene Splicer Wearable" texture="Content/Items/Genetic/Genetic.png" limb="Head" hidelimb="false" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.5" hideotherwearables="false" sourcerect="326,131,67,55" origin="0.6,0.0" />
+      </Wearable>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="chitinhelmet" category="Equipment" tags="smallitem" impactsoundtag="impact_metal_heavy" scale="0.4" cargocontaineridentifier="metalcrate">
+      <Price baseprice="175" sold="false">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" />
+        <Price storeidentifier="merchantresearch" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.6" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="chitin" />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredItem identifier="chitin" />
+        <RequiredItem identifier="chitin" />
+        <RequiredItem identifier="chitin" />
+      </Fabricate>-->
+      <Sprite texture="Content/Characters/Pets/pets.png" sourcerect="386,260,62,58" depth="0.6" origin="0.5,0.5" />
+      <InventoryIcon texture="Content/Characters/Pets/pets.png" sourcerect="453,258,56,56" origin="0.5,0.5" />
+      <Body radius="30" density="20" />
+      <Wearable slots="Any,Head" armorvalue="20.0" msg="ItemMsgPickUpSelect">
+        <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.4" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.6" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+        <sprite texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidewearablesoftype="Hair" sourcerect="207,8,100,95" origin="0.55,0.5" />
+      </Wearable>
+    </Item>
+    <!-- Changed to fabricate in the medical fabricator -->
+    <Item name="" identifier="genesplicer" scale="0.4" category="Equipment" tags="smallitem,geneticdevice" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="medcab" secondary="medcab"/>
+      <PreferredContainer secondary="abandonedmedcab,piratemedcab,wreckmedcab,outpostmedcab,researchcontainer" spawnprobability="0.02"/>
+      <Price baseprice="500" minleveldifficulty="15">
+        <Price storeidentifier="merchantresearch" />
+        <Price storeidentifier="merchantcity" sold="false"/>
+        <Price storeidentifier="merchantmedical" />
+        <Price storeidentifier="merchanthusk" minavailable="0" maxavailable="50">
+          <Reputation faction="huskcult" min="70"/>
+        </Price>
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="plastic" amount="2" />
+        <Item identifier="copper" amount="2" />
+        <Item identifier="rubber" />
+        <Item identifier="silicon" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="medicalfabricator" requiredtime="10">
+        <RequiredSkill identifier="medical" level="50" />
+        <RequiredItem identifier="plastic" />
+        <RequiredItem identifier="fpgacircuit" amount="2" />
+        <RequiredItem identifier="rubber" amount="2" />
+        <RequiredItem identifier="silicon" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/Genetic/Genetic.png" sourcerect="244,62,76,65" origin="0.5,0.5" />
+      <Sprite name="Headset" texture="Content/Items/Genetic/Genetic.png" depth="0.6" sourcerect="67,85,73,35" origin="0.5,0.5" />
+      <Body radius="15" width="45" density="25" />
+      <ItemContainer capacity="1" maxstacksize="1" autoinject="true" autoinjectthreshold="Infinity" allowswappingcontaineditems="false">
+        <Containable items="geneticmaterial" />
+      </ItemContainer>
+      <Wearable limbtype="Head" slots="Any,HealthInterface" msg="ItemMsgPickUpSelect" displaycontainedstatus="true">
+        <sprite name="Gene Splicer Wearable" texture="Content/Items/Genetic/Genetic.png" limb="Head" hidelimb="false" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.5" hideotherwearables="false" sourcerect="258,131,64,54" origin="0.6,0.0" />
+      </Wearable>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="makeshiftarmor" category="Equipment" tags="smallitem,clothing" scale="0.5" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy">
+      <PreferredContainer primary="secarmcab" amount="0" notcampaign="true"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab,outpostarmcab" amount="1" spawnprobability="0.01" />
+      <Price baseprice="140" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.3" />
+        <Price storeidentifier="merchantcity" multiplier="1.2" />
+        <Price storeidentifier="merchantresearch"  />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine"  />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" />
+      </Price>
+      <Deconstruct time="40">
+        <Item identifier="organicfiber" amount="1" />
+        <Item identifier="iron" amount="4" />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="30" requiresrecipe="true">
+        <RequiredSkill identifier="weapons" level="20" />
+        <RequiredSkill identifier="mechanical" level="20" />
+        <RequiredItem identifier="organicfiber" amount="2" />
+        <RequiredItem identifier="iron" amount="6" />
+      </Fabricate>-->
+      <InventoryIcon texture="Content/Items/Diving/MakeshiftArmor.png" sourcerect="448,0,64,64" origin="0.5,0.5" />
+      <Sprite name="Makeshift Armor Item" texture="Content/Items/Diving/MakeshiftArmor.png" sourcerect="167,25,86,126" depth="0.55" origin="0.5,0.5" />
+      <Body width="62" height="120" density="30" />
+      <Wearable slots="Any,OuterClothes" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnWearing" target="Character" SpeedMultiplier="0.7" setvalue="true" disabledeltatime="true" />
+        <damagemodifier afflictionidentifiers="bitewounds, lacerations" armorsector="0.0,360.0" damagemultiplier="0.4" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.3" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictiontypes="stun" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
+        <sprite name="Makeshift Armor Torso" texture="Content/Items/Diving/MakeshiftArmor.png" limb="Torso" hidelimb="false" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Right Hand" texture="Content/Items/Diving/MakeshiftArmor.png" limb="RightHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Left Hand" texture="Content/Items/Diving/MakeshiftArmor.png" limb="LeftHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Right Upper Arm" texture="Content/Items/Diving/MakeshiftArmor.png" limb="RightArm" depthlimb="RightForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Left Upper Arm" texture="Content/Items/Diving/MakeshiftArmor.png" limb="LeftArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Right Forearm" texture="Content/Items/Diving/MakeshiftArmor.png" limb="RightForearm" depthlimb="RightArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Left Forearm" texture="Content/Items/Diving/MakeshiftArmor.png" limb="LeftForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Waist" texture="Content/Items/Diving/MakeshiftArmor.png" limb="Waist" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Right Thigh" texture="Content/Items/Diving/MakeshiftArmor.png" limb="RightThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Left Thigh" texture="Content/Items/Diving/MakeshiftArmor.png" limb="LeftThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Right Leg" texture="Content/Items/Diving/MakeshiftArmor.png" limb="RightLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Left Leg" texture="Content/Items/Diving/MakeshiftArmor.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Left Shoe" texture="Content/Items/Diving/MakeshiftArmor.png" limb="LeftFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Makeshift Armor Right Shoe" texture="Content/Items/Diving/MakeshiftArmor.png" limb="RightFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <StatValue stattype="FlowResistance" value="0.5" />
+        <StatValue stattype="PropulsionSpeed" value="-0.3" />
+      </Wearable>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="ironhelmet" category="Equipment" tags="smallitem" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.325">
+      <PreferredContainer primary="secarmcab" amount="0" notcampaign="true"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab,outpostarmcab" amount="1" spawnprobability="0.01" />
+      <PreferredContainer secondary="armcab"/>
+      <Price baseprice="50" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.3" />
+        <Price storeidentifier="merchantcity" multiplier="1.2" />
+        <Price storeidentifier="merchantresearch"  />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine"  />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="iron" amount="2" />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="20" requiresrecipe="true">
+        <RequiredSkill identifier="weapons" level="20" />
+        <RequiredSkill identifier="mechanical" level="20" />
+        <RequiredItem identifier="iron" amount="4" />
+      </Fabricate>-->
+      <Body width="70" height="80" density="30"/>
+      <Sprite name="Makeshift Helmet Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="249,529,90,102" depth="0.6" origin="0.5,0.5" />
+      <Wearable slots="Any,Head" armorvalue="20.0" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnWearing" target="Character" HideFace="true" ObstructVision="true" SpeedMultiplier="0.9" setvalue="true" disabledeltatime="true" />
+        <damagemodifier afflictionidentifiers="lacerations, bitewounds" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+        <sprite name="Iron Helmet" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidewearablesoftype="Hair" sourcerect="249,529,90,102" origin="0.5,0.5" />
+      </Wearable>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="endocrinebooster" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem,chem,medical,syringe" allowasextracargo="true" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="medcab"/>
+      <Price baseprice="1400" sold="false">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" multiplier="0.9" />
+        <Price storeidentifier="merchantresearch" multiplier="1.1" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.1" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <!--<Fabricate suitablefabricators="medicalfabricator" requiredtime="50" amount="1" requiresrecipe="true">
+        <RequiredSkill identifier="medical" level="90" />
+        <RequiredItem identifier="sulphuriteshard" />
+        <RequiredItem identifier="sulphuriteshard" />
+        <RequiredItem identifier="paralyxis" />
+        <RequiredItem identifier="paralyxis" />
+        <RequiredItem identifier="deusizine" />
+      </Fabricate>-->
+      <Deconstruct time="25">
+        <Item identifier="sulphuricacid" />
+        <Item identifier="sulphuricacid" />
+        <Item identifier="paralyxis" />
+        <Item identifier="deusizine" />
+      </Deconstruct>
+      <InventoryIcon texture="Content/Items/Medical/Medicines.png" sourcerect="448,256,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Medical/Medicines.png" sourcerect="303,310,35,67" depth="0.6" origin="0.5,0.5" />
+      <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
+      <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+        <RequiredSkill identifier="medical" level="60" />
+        <StatusEffect type="OnSuccess" target="This" Condition="-100.0" setvalue="true"/>
+        <StatusEffect type="OnFailure" target="This" Condition="-100.0" setvalue="true"/>
+        <StatusEffect type="OnSuccess" target="UseTarget">
+          <GiveTalentInfo giverandom="true" talentidentifiers="prodigy,downwiththeship,lonewolf, physicalconditioning,swole,beatcop, exampleofhealth,laresistance,drsubmarine, egghead,grounded,unstoppablecuriosity, ballastdenizen,miner,mudraptorwrestler, skedaddle,revengesquad,thewaitinglist" />
+        </StatusEffect>
+        <StatusEffect type="OnFailure" target="UseTarget">
+          <GiveTalentInfo giverandom="true" talentidentifiers="prodigy,downwiththeship, physicalconditioning,swole, exampleofhealth,laresistance, egghead,grounded, ballastdenizen,miner, skedaddle,revengesquad" />
+        </StatusEffect>
+        <StatusEffect type="OnSuccess" target="UseTarget">
+          <Conditional entitytype="eq Character"/>
+          <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        </StatusEffect>
+        <StatusEffect type="OnFailure" target="UseTarget">
+          <Conditional entitytype="eq Character"/>
+          <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget" multiplyafflictionsbymaxvitality="true" AllowWhenBroken="true">
+          <Affliction identifier="stun" amount="0.1" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </MeleeWeapon>
+      <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+      <SkillRequirementHint identifier="medical" level="60" />
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="handhelditemfinder" category="Equipment" Tags="smallitem" cargocontaineridentifier="metalcrate" Scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="storagecab"/>
+      <Price baseprice="140" sold="false">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" multiplier="0.9" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <Deconstruct time="15">
+        <Item identifier="copper" />
+        <Item identifier="plastic" amount="2" />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="20" requiresrecipe="true">
+        <RequiredSkill identifier="mechanical" level="20" />
+        <RequiredSkill identifier="electrical" level="20" />
+        <RequiredItem identifier="fpgacircuit" />
+        <RequiredItem identifier="plastic" />
+      </Fabricate>-->
+      <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="445,228,34,28" depth="0.55" origin="0.5,0.5" />
+      <Body width="34" height="28" density="15" />
+      <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+      <MiniMap enableitemfinder="true" enablehullcondition="false" EnableElectricalView="false" EnableHullStatus="false" drawhudwhenequipped="true" displaybordersize="-0.1" characterusable="false" allowuioverlap="true">
+        <GuiFrame relativesize="0.4,0.4" anchor="CenterLeft" relativeoffset="0.006,-0.01" style="ItemUI" />
+      </MiniMap>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="heavywrench" variantof="wrench" addedrepairspeedmultiplier="0.4">
+      <Preferredcontainer secondary="respawncontainer" amount="1"  spawnprobability="0" notcampaign="true"/>
+      <PreferredContainer primary="engcab"  spawnprobability="0"/>
+      <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab,piratestoragecab"  spawnprobability="0" />
+      <PreferredContainer primary="wreckengcab,abandonedengcab,pirateengcab,outpostengcab,beaconengcab"  spawnprobability="0"/>
+      <PreferredContainer secondary="outpostcrewcabinet" spawnprobability="0"/>
+      <PreferredContainer secondary="outposttrashcan" spawnprobability="0" />
+      <Price baseprice="190" sold="false" />
+      <Deconstruct>
+        <Item identifier="steel" />
+        <Item identifier="titanium" />
+      </Deconstruct>
+      <!--<Fabricate requiresrecipe="true">
+        <RequiredItem identifier="titanium" amount="2" />
+        <RequiredItem identifier="steel" />
+      </Fabricate>-->
+      <!-- disable base inventory icon -->
+      <InventoryIcon />
+      <Sprite texture="Content/Items/Jobgear/TalentGear.png" sourcerect="157,492,114,20" depth="0.55" origin="0.5,0.5" />
+      <Body width="114" height="20" density="30" />
+      <MeleeWeapon slots="RightHand+LeftHand,Any" range="100" reload="1.1" controlpose="true" aimpos="45,10" handle1="-10,0" handle2="0,5" holdangle="60" combatpriority="20">
+        <StatusEffect type="OnFailure" target="This" reload="1.5" setvalue="true" />
+        <StatusEffect type="OnUse" target="This" reload="1.1" setvalue="true" delay="1.4"/>
+        <RequiredSkill identifier="mechanical" level="40" />
+        <Attack targetimpulse="15" structuredamage="9" itemdamage="9">
+          <Affliction identifier="blunttrauma" strength="25" />
+          <Affliction identifier="stun" strength="1" />
+          <StatusEffect type="OnUse" target="UseTarget">
+            <Conditional entitytype="eq Character"/>
+            <Sound file="Content/Items/Weapons/Smack1.ogg" selectionmode="random" range="500"/>
+            <Sound file="Content/Items/Weapons/Smack2.ogg" range="500" />
+          </StatusEffect>
+          <StatusEffect type="OnUse" target="Character" >
+            <Conditional skillrequirement="true" mechanical="lt 40" />
+            <Affliction identifier="stun" strength="0.3" />
+          </StatusEffect>
+        </Attack>
+        <!-- Use either this or the one above. The effect here has a random factor. The one above is deterministic.
+        <StatusEffect type="OnFailure" target="Character">
+          <Affliction identifier="stun" strength="0.3" />
+        </StatusEffect>
+        -->
+      </MeleeWeapon>
+      <SkillRequirementHint identifier="mechanical" level="40"/>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="clowndivingmask" variantof="divingmask" tags="smallitem,clownmask,diving,lightdiving">
+      <Price baseprice="150" sold="false" canbespecial="false" />
+      <PreferredContainer primary="divingcab,supplycab" amount="0"/>
+      <PreferredContainer amount="0"/>
+      <PreferredContainer amount="0"/>
+      <PreferredContainer amount="0"/>
+      <PreferredContainer amount="0"/>
+      <Sprite name="Clown Mask" texture="Content/Items/JobGear/TalentGear.png" sourcerect="328,304,51,51" origin="0.5,0.5" scale="0.5" />
+      <!-- clear inventory icon, we want to reuse the normal sprite -->
+      <InventoryIcon />
+      <Body width="5" radius="25" />
+      <!-- clear old fabrication and deconstruction elements, replace with new ones -->
+      <Fabricate />
+      <Deconstruct />
+      <Deconstruct time="10">
+        <Item identifier="divingmask" />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="10" requiresrecipe="true">
+        <RequiredItem identifier="clownmask" />
+        <RequiredItem identifier="divingmask" />
+      </Fabricate>-->
+      <Wearable>
+        <sprite name="Clown Diving Mask Wearable" texture="Content/Items/JobGear/TalentGear.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" sourcerect="378,301,80,70" origin="0.45,0.4" />
+        <StatusEffect tags="clown" type="OnWearing" target="Character" HideFace="true" duration="0.1" stackable="false" />
+      </Wearable>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="toyhammer" category="Weapon" Tags="smallitem,mountableweapon,clowns" Scale="0.5" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+      <PreferredContainer primary="crewcab" secondary="armcab"/>
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" spawnprobability="0.06"/>
+      <Price baseprice="80" sold="false" canbespecial="false">
+        <Price storeidentifier="merchantoutpost" sold="true" minavailable="1"/>
+        <Price storeidentifier="merchantcity" sold="true" minavailable="1"/>
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+        <Price storeidentifier="merchantclown" minavailable="1" maxavailable="2" sold="true">
+          <Reputation faction="clowns" min="50"/>
+        </Price>
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="bikehorn" />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredItem identifier="bikehorn"/>
+        <RequiredItem identifier="plastic"/>
+      </Fabricate>-->
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="641,960,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,311,121,55" depth="0.55" origin="0.5,0.5" />
+      <Body width="120" height="48" density="20" />
+      <MeleeWeapon slots="RightHand+LeftHand,Any" controlpose="true" aimpos="45,10" handle1="-20,0" handle2="-10,5" holdangle="60" reload="1" range="100" combatpriority="1" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnUse" target="UseTarget" delay="1" comparison="Or">
+          <Conditional speciesname="latcher"/>
+          <Conditional speciesname="endworm"/>
+          <Conditional speciesname="charybdis"/>
+          <Conditional speciesgroup="abyss"/>
+          <TriggerEvent identifier="toyhammeronabyssmonster" />
+        </StatusEffect>
+        <Attack targetimpulse="2">
+          <Affliction identifier="stun" strength="0.2" />
+        </Attack>
+        <StatusEffect type="OnUse" target="This" forceplaysounds="true">
+          <Sound type="OnUse" file="Content/Items/Weapons/ToyHammerHit1.ogg" range="800" selectionmode="Random"/>
+          <Sound type="OnUse" file="Content/Items/Weapons/ToyHammerHit2.ogg" range="800" />
+          <Sound type="OnUse" file="Content/Items/Weapons/ToyHammerHit3.ogg" range="800" />
+          <Sound type="OnUse" file="Content/Items/Weapons/ToyHammerHit4.ogg" range="800" />
+          <Sound type="OnUse" file="Content/Items/Weapons/ToyHammerHit5.ogg" range="800" />
+          <Sound type="OnUse" file="Content/Items/Weapons/ToyHammerHit6.ogg" range="800" />
+        </StatusEffect>
+      </MeleeWeapon>
+      <aitarget sightrange="500" soundrange="1000" fadeouttime="3" />
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="riotshield" category="Equipment" tags="mediumitem" health="75" impactsoundtag="impact_metal_light" cargocontaineridentifier="metalcrate" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyrepairtools="true" scale="1" allowasextracargo="true">
+      <PreferredContainer primary="armcab" secondary="secarmcab"/>
+      <Price baseprice="360" sold="true" minleveldifficulty="50" >
+        <Price storeidentifier="merchantoutpost" multiplier="1.4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" sold="true" multiplier="0.9" minavailable="0" maxavailable="2" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="plastic" amount="2" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="10" requiresrecipe="true">
+        <RequiredSkill identifier="weapons" level="30" />
+        <RequiredItem identifier="steel" amount="2" />
+        <RequiredItem identifier="plastic" amount="3" />
+      </Fabricate>
+      <Fabricate suitablefabricators="fabricator" requiredtime="5" requiresrecipe="true" displayname="recycleitem">
+        <RequiredItem identifier="riotshield" amount="1" mincondition="0.0" maxcondition="0.9" usecondition="false" />
+        <RequiredItem identifier="steel" amount="1" />
+        <RequiredItem identifier="plastic" amount="1" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="640,320,64,64" />
+      <Sprite texture="Content/Items/Jobgear/Security/riotgear.png" sourcerect="31,54,27,147" origin="0.5,0.5" depth="0.55" />
+      <Body height="120" radius="12" density="30" />
+      <Holdable slots="LeftHand" aimpos="50,-30" holdpos="35,-30" handle1="-10,0" handle2="-10,0" controlpose="true" blocksplayers="true" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.6" setvalue="true" />
+        <StatusEffect type="OnBroken" target="This">
+          <particleemitter particle="shrapnel" drawontop="true" particleamount="15" velocitymin="100" velocitymax="500" anglemin="0" anglemax="360" distancemin="0" distancemax="30" scalemin="0.35" scalemax="0.5" />
+          <Sound file="Content/Sounds/Damage/ArmorBreak4.ogg" range="800" />
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnDamaged" target="This">
+          <particleemitter particle="weldspark" drawontop="true" particleamount="10" velocitymin="100" velocitymax="500" anglemin="-45" anglemax="45" distancemin="0" distancemax="30" scalemin="0.35" scalemax="0.5" copyentityangle="true" />
+          <Sound file="Content/Sounds/Damage/HitArmor1.ogg" range="800" forcePlaySounds="true"/>
+          <!-- an invisible explosion to make the user "flinch" -->
+          <Explosion range="100.0" force="1" showeffects="false" camerashake="1.0" />
+        </StatusEffect>
+      </Holdable>
+      <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
+        <sprite name="Riot Shield Worn" texture="Content/Items/Jobgear/Security/riotgear.png" canbehiddenbyotherwearables="false" sourcerect="31,54,27,147" rotation="180" inheritlimbdepth="true" depth="0.6" limb="Torso" ignorelimbscale="true" scale="1" origin="-0.2,0.5" />
+      </Wearable>
+    </Item>
+    <!-- Changed to fabricate in the weapon fabricator -->
+    <Item name="" identifier="thermalgoggles" scale="0.5" category="Equipment" tags="smallitem" allowasextracargo="true" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="engcab"/>
+      <Price baseprice="350" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.3" />
+        <Price storeidentifier="merchantcity" multiplier="1.2" />
+        <Price storeidentifier="merchantresearch" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <Deconstruct time="20">
+        <Item identifier="copper" />
+        <Item identifier="plastic" amount="2" />
+        <Item identifier="fulgurium" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="40" requiresrecipe="true">
+        <RequiredSkill identifier="electrical" level="50" />
+        <RequiredItem identifier="fpgacircuit" />
+        <RequiredItem identifier="plastic" />
+        <RequiredItem identifier="fulgurium" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/JobGear/TalentGear.png" sourcerect="0,224,63,31" origin="0.5,0.5" />
+      <Sprite name="Thermal Goggles" texture="Content/Items/JobGear/TalentGear.png" sourcerect="0,224,64,31" depth="0.6" origin="0.5,0.5" />
+      <Body width="70" height="24" density="15" />
+      <Wearable limbtype="Head" slots="Any,Head" msg="ItemMsgPickUpSelect">
+        <sprite name="Thermal Goggles Wearable" texture="Content/Items/Jobgear/TalentGear.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" sourcerect="1,192,64,31" origin="0.4,0.5" />
+      </Wearable>
+      <StatusHUD drawhudwhenequipped="true" overlaycolor="176,0,0,120" range="3000" thermalgoggles="true" showdeadcharacters="false" showtexts="false" />
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="makeshiftshelf" tags="container,cargocontainer" linkable="true" canflipx="false" pickdistance="150" scale="0.5" isshootable="true">
+      <Price baseprice="140" sold="false">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" multiplier="0.9" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <Deconstruct time="15">
+        <Item identifier="steel" amount="3" />
+        <Item identifier="iron" amount="4" />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="20" requiresrecipe="true">
+        <RequiredSkill identifier="mechanical" level="20" />
+        <RequiredSkill identifier="electrical" level="20" />
+        <RequiredItem identifier="steel" amount="4" />
+        <RequiredItem identifier="iron" amount="6" />
+      </Fabricate>-->
+      <Sprite texture="Content/Items/Containers/UnitLoadDevice.png" depth="0.84" sourcerect="567,433,185,187" origin="0.5,0.5" />
+      <Body width="185" height="187" density="25" />
+      <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetach" PickingTime="20.0" aimpos="85,-10" handle1="0,0" attachable="true" attachedbydefault="true" limitedattachable="true" aimable="true">
+        <StatusEffect target="This" type="Always">
+          <Conditional attached="false" targetitemcomponentname="Holdable"/>
+          <DropContainedItems/>
+        </StatusEffect>
+      </Holdable>
+      <ItemContainer capacity="2" maxstacksize="1" canbeselected="true" hideitems="false" itempos="92,-48" iteminterval="0,-92" AllowAccessWhenDropped="false" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.15,0.2" anchor="Center" style="ItemUI" />
+        <Containable items="crate" />
+      </ItemContainer>
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="nuclearshellcheap" variantof="nuclearshell" hideineditors="true">
+      <PreferredContainer spawnprobability="0" />
+      <PreferredContainer spawnprobability="0" />
+      <Price baseprice="300" sold="false">
+        <Price sold="false" />
+        <Price sold="false" />
+        <Price sold="false" />
+        <Price sold="false" />
+        <Price sold="false" />
+        <Price sold="false" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="uranium" />
+        <!-- clear the rest of the deconstruction -->
+        <Item />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="30" requiresrecipe="true">
+        <RequiredSkill identifier="electrical" level="40" />
+        <RequiredItem identifier="steel" />
+        <RequiredItem identifier="fuelrod" mincondition="0.8" usecondition="false" />
+        <RequiredItem identifier="uex" />
+      </Fabricate>-->
+    </Item>
+    <!-- Removed fabrication recipe -->
+    <Item name="" identifier="nucleardepthdecoycheap" variantof="nucleardepthdecoy" hideineditors="true">
+      <Price baseprice="420" sold="false">
+        <Price sold="false" />
+        <Price sold="false" />
+        <Price sold="false" />
+        <Price sold="false" />
+        <Price sold="false" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="iron" />
+        <Item identifier="uranium" />
+        <!-- clear the rest of the deconstruction -->
+        <Item />
+      </Deconstruct>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="30" requiresrecipe="true">
+        <RequiredSkill identifier="electrical" level="40" />
+        <RequiredItem identifier="nucleardepthchargecheap" />
+        <RequiredItem identifier="sonarbeacon" />
+      </Fabricate>-->
+    </Item>
+    <!-- Removed cheap fabrication recipe -->
+    <Item name="" identifier="circuitbox" category="Electrical" Tags="smallitem" maxstacksize="1" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true" disablecommandmenuwhenselected="true" grabwhenselected="true">
+      <PreferredContainer primary="engcab"/>
+      <Sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="192,258,64,64" depth="0.8" canflipx="false" origin="0.5,0.5" />
+      <Body width="51" height="51" density="30" />
+      <Deconstruct time="10">
+        <Item identifier="plastic" />
+        <Item identifier="copper" />
+        <Item identifier="tin" />
+      </Deconstruct>
+      <Upgrade gameversion="1.6.0.0">
+        <CircuitBox>
+          <RequiredItems items="idcard" type="Picked" msg="itemmsgunauthorizedaccess" ignoreineditor="true" />
+        </CircuitBox>
+      </Upgrade>
+      <Fabricate suitablefabricators="fabricator" requiredtime="10">
+        <RequiredSkill identifier="electrical" level="35" />
+        <RequiredItem identifier="plastic" amount="2" />
+        <RequiredItem identifier="copper" amount="4" />
+        <RequiredItem identifier="tin" amount="4" />
+      </Fabricate>
+      <!--<Fabricate suitablefabricators="fabricator" requiredtime="10" requiresrecipe="true" displayname="cheapitem">
+        <RequiredSkill identifier="electrical" level="35" />
+        <RequiredItem identifier="plastic" amount="2" />
+        <RequiredItem identifier="copper" amount="2" />
+        <RequiredItem identifier="tin" amount="2" />
+      </Fabricate>-->
+      <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" MsgWhenDropped="ItemMsgPickupSelect" PickingTime="5.0" aimpos="85,-10" handle1="0,0" attachable="true" aimable="true">
+        <RequiredItem items="wrench,deattachtool" excludeditems="multitool" type="Equipped" />
+      </Holdable>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.4,0.62" minsize="400,350" maxsize="960,840" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="signal_in1" displayname="connection.signalinx~[num]=1" />
+        <input name="signal_in2" displayname="connection.signalinx~[num]=2" />
+        <input name="signal_in3" displayname="connection.signalinx~[num]=3" />
+        <input name="signal_in4" displayname="connection.signalinx~[num]=4" />
+        <input name="signal_in5" displayname="connection.signalinx~[num]=5" />
+        <input name="signal_in6" displayname="connection.signalinx~[num]=6" />
+        <input name="signal_in7" displayname="connection.signalinx~[num]=7" />
+        <input name="signal_in8" displayname="connection.signalinx~[num]=8" />
+        <output name="signal_out1" displayname="connection.signaloutx~[num]=1" />
+        <output name="signal_out2" displayname="connection.signaloutx~[num]=2" />
+        <output name="signal_out3" displayname="connection.signaloutx~[num]=3" />
+        <output name="signal_out4" displayname="connection.signaloutx~[num]=4" />
+        <output name="signal_out5" displayname="connection.signaloutx~[num]=5" />
+        <output name="signal_out6" displayname="connection.signaloutx~[num]=6" />
+        <output name="signal_out7" displayname="connection.signaloutx~[num]=7" />
+        <output name="signal_out8" displayname="connection.signaloutx~[num]=8" />
+      </ConnectionPanel>
+      <!-- container for components -->
+      <ItemContainer capacity="64" maxstacksize="1" canbeselected="false" allowdraganddrop="false" drawinventory="false" QuickUseMovesItemsInside="false">
+        <Containable items="circuitboxcomponent" />
+      </ItemContainer>
+      <!-- container for wires -->
+      <ItemContainer capacity="10" maxstacksize="32" canbeselected="false" allowdraganddrop="false" drawinventory="false" QuickUseMovesItemsInside="false">
+        <Containable items="wire" />
+      </ItemContainer>
+      <CircuitBox selectkey="Select" canbeselected="true" msg="ItemMsgInteractSelect" allowuioverlap="true">
+        <Requireditem items="idcard" type="Picked" msg="itemmsgunauthorizedaccess" ignoreineditor="true"/>
+        <GuiFrame relativesize="0.7,0.8" style="ItemUI" anchor="Center" />
+        <WireSprite texture="Content/Items/Electricity/wire.png" sourcerect="0,0,16,12" origin="0.5,0.5" />
+        <ConnectionSprite texture="Content/UI/UIAtlasDevices.png" sourcerect="1,1,56,55" origin="0.5,0.5" />
+        <WireConnectorSprite texture="Content/UI/UIAtlasDevices.png" sourcerect="69,3,45,85" origin="0.5,0.27" />
+        <ConnectionScrewSprite texture="Content/UI/UIAtlasDevices.png" sourcerect="88,92,45,45" origin="0.5,0.5" />
+      </CircuitBox>
+    </Item>
+  </Items>
+</Override>

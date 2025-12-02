@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prefabs>
+  <structure name="Fake Wall" category="Structure" subcategory="Beast" identifier="mm_ff_x_wall" description="Looks exactly like the real deal, but has no collision or LOS blocking." resizehorizontal="true" body="false" castshadow="false" scale="0.5">
+    <Upgrade gameversion="0.10.0.0" scale="*0.5" />
+    <sprite texture="Content/Map/LargeInsideWalls.png" depth="0.16" sourcerect="0,0,1024,96" origin="0.5,0.5" />
+  </structure>
+  <structure name="Fake Wall" category="Structure" subcategory="Beast" identifier="mm_ff_x_wall_cables" description="Looks exactly like the real deal, but has no collision or LOS blocking." resizehorizontal="true" body="false" castshadow="false" scale="0.5">
+    <Upgrade gameversion="0.10.0.0" scale="*0.5" rectheight="72" />
+    <sprite texture="Content/Map/LargeInsideWalls.png" depth="0.16" sourcerect="0,112,1024,144" origin="0.5,0.5" />
+  </structure>
+  <structure name="Fake Wall" category="Structure" subcategory="Beast" identifier="mm_ff_y_wall" description="Looks exactly like the real deal, but has no collision or LOS blocking." resizevertical="true" body="false" castshadow="false" scale="0.5">
+    <Upgrade gameversion="0.10.0.0" scale="*0.5" />
+    <sprite texture="Content/Map/LargeInsideWalls.png" depth="0.16" sourcerect="928,272,96,1024" origin="0.5,0.5" />
+  </structure>
+  <structure name="Fake Wall" category="Structure" subcategory="Beast" identifier="mm_inwalll90cables" description="Looks exactly like the real deal, but has no collision or LOS blocking." resizevertical="true" body="false" castshadow="false" scale="0.5">
+    <Upgrade gameversion="0.10.0.0" scale="*0.5" />
+    <sprite texture="Content/Map/LargeInsideWalls.png" depth="0.16" sourcerect="768,272,144,1024" origin="0.5,0.5" />
+  </structure>
+</prefabs>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <!-- Removing EK Tools that would conflict with the intended gameplay of immersive repairs -->
+    <Item name="" identifier="ekutility_miningdrill" category="Hidden" Tags="" cargocontaineridentifier="metalcrate" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="1" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="42" height="108" density="8" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <Item name="" identifier="ekutility_ioncutter" category="Hidden" Tags="" cargocontaineridentifier="metalcrate" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="1" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="42" height="108" density="8" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <Item name="" identifier="ekutility_arcwelder" category="Hidden" Tags="" cargocontaineridentifier="metalcrate" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="1" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="42" height="108" density="8" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <Item name="" identifier="ekutility_laserdrill" category="Hidden" Tags="" cargocontaineridentifier="metalcrate" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="1" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="42" height="108" density="8" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <Item name="" identifier="ekutility_sledgehammer" category="Hidden" Tags="" cargocontaineridentifier="metalcrate" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="1" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="42" height="108" density="8" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+    <Item name="" identifier="ekutility_hullrepairkit" category="Hidden" Tags="" cargocontaineridentifier="metalcrate" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="8" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,0,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="42" height="108" density="8" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" stackable="false">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+  </Items>
+</Override>

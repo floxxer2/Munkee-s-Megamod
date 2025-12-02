@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="CC's Blood Decal" identifier="CCB_1s1" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="10,11,165,163" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s2" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="193,17,159,154" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s3" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="366,15,160,156" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s4" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="543,16,160,159" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s5" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="721,17,159,154" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s6" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="11,186,163,164" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s7" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="192,192,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s8" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="368,192,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s9" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="544,192,161,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s10" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="721,192,159,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s11" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="720,368,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s12" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="13,542,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s13" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="192,544,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s14" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="366,544,160,159" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s15" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="544,544,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s16" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="14,720,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_1s17" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="896,720,160,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st1" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="896,16,161,337" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st2" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1072,16,96,336" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st3" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1184,16,224,336" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st4" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1424,16,219,336" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st5" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1652,10,108,342" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st6" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="896,368,176,336" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st7" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1088,368,285,336" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st8" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1384,368,200,337" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st9" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1605,368,156,336" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2st10" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="720,544,160,336" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2sl1" width="1000" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1072,720,330,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_2sl2" width="1000" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="1417,720,343,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_3sl1" width="1500" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="192,720,512,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="CC's Blood Decal" identifier="CCB_4sl1" width="2000" height="1000" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/DeadNGore/dNg blood.png" sourcerect="16,368,688,160" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+</Items>

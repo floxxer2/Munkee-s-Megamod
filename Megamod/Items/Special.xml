@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item identifier="mm_rift" name="" tags="smallitem" hideinmenus="true" category="Hidden" cargocontaineridentifier="metalcrate" scale="0.5" health="100" allowasextracargo="false">
+    <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.02" />
+    <Body width="36" height="40" density="20" bodytype="Kinematic" />
+    <LightComponent lightcolor="0,0,0,0" range="1" powerconsumption="0" allowingameediting="false" castshadows="false" IsOn="true">
+      <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.6" />
+      <StatusEffect type="OnActive" targettype="This">
+        <ParticleEmitter particle="beastblackhole" particlespersecond="1.5" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" delay="6" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </LightComponent>
+  </Item>
+  <Item identifier="mm_escapeportal" name="" tags="smallitem" hideinmenus="true" category="Hidden" cargocontaineridentifier="metalcrate" scale="0.5" health="100" allowasextracargo="false">
+    <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.02" />
+    <Body width="36" height="40" density="20" bodytype="Kinematic" />
+    <LightComponent lightcolor="0,255,255,255" PulseFrequency="1" PulseAmount="0.5" range="400" powerconsumption="0" allowingameediting="false" castshadows="true" IsOn="true">
+      <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.6" />
+      <StatusEffect type="OnActive" targettype="This">
+        <ParticleEmitter particle="beastblackhole" particlespersecond="1.5" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="NearbyCharacters" range="150">
+        <LuaHook name="megamod.escapeportal" />
+      </StatusEffect>
+    </LightComponent>
+  </Item>
+  <Item name="buzzer" identifier="mm_cloning_buzzer_failure" category="Hidden" hideinmenus="true" cargocontaineridentifier="metalcrate" tags="smallitem" scale="0.3" health="100" allowasextracargo="false">
+    <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.02" />
+    <Body width="40" radius="30" density="15" bodytype="Kinematic" />
+    <LightComponent lightcolor="255,0,0,255" range="100" powerconsumption="0" allowingameediting="false" castshadows="false" IsOn="true">
+      <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.6" />
+      <StatusEffect type="OnActive" targettype="This">
+        <sound file="%ModDir%/Megamod/Sounds/errorbuzzer.ogg" volume="1.0" range="1000" loop="false" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" delay="1.5" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </LightComponent>
+  </Item>
+  <Item name="buzzer" identifier="mm_cloning_buzzer_success" category="Hidden" hideinmenus="true" cargocontaineridentifier="metalcrate" tags="smallitem" scale="0.3" health="100" allowasextracargo="false">
+    <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.02" />
+    <Body width="40" radius="30" density="15" bodytype="Kinematic" />
+    <LightComponent lightcolor="0,255,0,255" range="100" powerconsumption="0" allowingameediting="false" castshadows="false" IsOn="true">
+      <Sprite name="hmm" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.6" />
+      <StatusEffect type="OnActive" targettype="This">
+        <sound file="%ModDir%/Megamod/Sounds/errorbuzzer.ogg" volume="1.0" range="1000" loop="false" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" delay="1.5" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </LightComponent>
+  </Item>
+  <Item name="beastalarm" identifier="mm_beastalarm" category="Hidden" hideinmenus="true" cargocontaineridentifier="metalcrate" tags="smallitem" scale="0.3" health="100" noninteractable="true" isshootable="false" allowasextracargo="false">
+    <Sprite name="hmm2" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.02" />
+    <Body width="36" height="40" density="20" bodytype="Kinematic" />
+    <LightComponent lightcolor="0,0,0,0" range="1" powerconsumption="0" allowingameediting="false" castshadows="false" IsOn="true">
+      <Sprite name="hmm2" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.6" />
+      <StatusEffect type="OnSpawn" targettype="This" disabledeltatime="false">
+        <sound file="%ModDir%/Megamod/Sounds/beast alarm.ogg" range="100000000" volume="0.8" loop="false" stream="true" />
+      </StatusEffect>
+      <StatusEffect type="OnSpawn" targettype="This" delay="70" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </LightComponent>
+  </Item>
+  <Item name="out" identifier="mm_out" category="Hidden" hideinmenus="true" cargocontaineridentifier="metalcrate" tags="smallitem" scale="0.3" health="100" noninteractable="true" isshootable="false" allowasextracargo="false">
+    <Sprite name="hmm2" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.02" />
+    <Body width="36" height="40" density="20" bodytype="Kinematic" />
+    <LightComponent lightcolor="0,0,0,0" range="1" powerconsumption="0" allowingameediting="false" castshadows="false" IsOn="true">
+      <Sprite name="hmm2" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.6" />
+      <StatusEffect type="OnSpawn" targettype="This" disabledeltatime="false">
+        <sound file="%ModDir%/Megamod/Sounds/powerout.ogg" range="100000000" volume="8" loop="false" />
+        <ParticleEmitter particle="beastshockwave" particleamount="1" />
+      </StatusEffect>
+      <StatusEffect type="OnSpawn" targettype="This" delay="70" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </LightComponent>
+  </Item>
+  <Item name="notifalarm" identifier="mm_notifalarm" category="Hidden" hideinmenus="true" cargocontaineridentifier="metalcrate" tags="smallitem" scale="0.3" health="100" noninteractable="true" isshootable="false" allowasextracargo="false">
+    <Sprite name="hmm2" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.02" />
+    <Body width="36" height="40" density="20" bodytype="Kinematic" />
+    <LightComponent lightcolor="0,0,0,0" range="1" powerconsumption="0" allowingameediting="false" castshadows="false" IsOn="true">
+      <Sprite name="hmm2" texture="Content/Items/Connector.png" sourcerect="1,1,1,1" origin="0.5,0.5" depth="0.6" />
+      <StatusEffect type="OnSpawn" targettype="This" disabledeltatime="false">
+        <sound file="%ModDir%/Megamod/Sounds/notifalarm.ogg" range="100000000" volume="0.45" loop="false" />
+      </StatusEffect>
+      <StatusEffect type="OnSpawn" targettype="This" delay="5" stackable="false">
+        <Remove />
+      </StatusEffect>
+    </LightComponent>
+  </Item>
+</Items>

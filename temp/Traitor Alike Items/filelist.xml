@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Traitor Alike Items" modversion="0.4" corepackage="False" steamworkshopid="3304206956" gameversion="1.8.8.1" expectedhash="8AA75C5D947BA36182538E8120BFB2DC">
+  <Item file="%ModDir%/Content/Items/Weapons/titems.xml" />
+  <Item file="%ModDir%/Content/Items/Weapons/bullets.xml" />
+  <Text file="%ModDir%/Texts/Russian.xml" />
+  <Text file="%ModDir%/Texts/English.xml" />
+</contentpackage>

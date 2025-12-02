@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Immersive Ammunition Boxes" modversion="1.0.4" corepackage="False" steamworkshopid="3089776991" gameversion="1.7.7.0" expectedhash="8180A54A6D42E9A5D6A5188EB6621DE8">
+  <Afflictions file="%ModDir%/Content/Afflictions.xml" />
+  <Item file="%ModDir%/Content/Items/ammoboxes.xml" />
+  <Talents file="%ModDir%/Content/TalentsSecurity.xml" />
+</contentpackage>

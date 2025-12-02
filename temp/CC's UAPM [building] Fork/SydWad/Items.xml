@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!-- Credit to SydWad -->
+  <!-- Sky Light -->
+  <Item name="Sky Light" identifier="skylight" description="" category="Electrical" Tags="lightcomponent" cargocontaineridentifier="metalcrate" scale="2.5" noninteractable="true" subcategory="CC's">
+    <Upgrade gameversion="1.5.8.0" hiddeningame="false" />
+    <Sprite texture="Content/Items/Electricity/signalcomp.png" depth="0.001" sourcerect="194,103,25,26" origin="0.5,0.5" />
+    <LightComponent canbeselected="true" color="255,255,255,230" alphablend="true" castshadows="false" range="800.0" ison="true" vulnerabletoemp="false">
+      <LightTexture texture="%ModDir%/SydWad/pointlight_pure.png" origin="0.5,0.5" />
+      <!-- I would normally do "OnSpawn" but thats not working -->
+      <StatusEffect type="Always" targettype="this" OneShot="True" spritecolor="255,255,255,1" delay="0.1" setvalue="true" />
+    </LightComponent>
+    <StaticBody width="28" height="23" />
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <input name="set_color" displayname="connection.setcolor" />
+    </ConnectionPanel>
+  </Item>
+  <!-- Sky Light Hexagon -->
+  <Item name="" identifier="skylighthex" description="" category="Electrical" Tags="lightcomponent" cargocontaineridentifier="metalcrate" scale="2.5" noninteractable="true" subcategory="CC's">
+    <Upgrade gameversion="1.5.8.0" hiddeningame="false" />
+    <Sprite texture="Content/Items/Electricity/signalcomp.png" depth="0.001" sourcerect="194,103,25,26" origin="0.5,0.5" />
+    <LightComponent canbeselected="true" color="255,255,255,230" alphablend="true" castshadows="false" range="800.0" ison="true" vulnerabletoemp="false">
+      <LightTexture texture="%ModDir%/SydWad/pointlight_pure_hex.png" origin="0.5,0.5" />
+      <!-- I would normally do "OnSpawn" but thats not working -->
+      <StatusEffect type="Always" targettype="this" OneShot="True" spritecolor="255,255,255,1" delay="0.1" setvalue="true" />
+    </LightComponent>
+    <StaticBody width="28" height="23" />
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <input name="set_color" displayname="connection.setcolor" />
+    </ConnectionPanel>
+  </Item>
+  <!-- Light Component Hidden -->
+  <Item name="" identifier="ccs_lightcomponentround" descriptionidentifier="lightcomponent" category="Electrical" Tags="smallitem,lightcomponent" cargocontaineridentifier="metalcrate" scale="1.0" impactsoundtag="impact_metal_light" noninteractable="true" subcategory="CC's">
+    <Sprite texture="Content/Items/Electricity/signalcomp.png" depth="0.001" sourcerect="194,103,25,26" origin="0.5,0.5" />
+    <LightComponent canbeselected="true" color="1.0,0.0,0.0,0.5" castshadows="false" IsOn="true" vulnerabletoemp="False">
+      <LightTexture texture="Content/Lights/pointlight_bounce.png" origin="0.5,0.5" />
+      <!-- I would normally do "OnSpawn" but thats not working -->
+      <StatusEffect type="Always" targettype="this" OneShot="True" spritecolor="255,255,255,1" delay="0.1" setvalue="true" />
+    </LightComponent>
+    <StaticBody width="28" height="23" />
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <input name="set_color" displayname="connection.setcolor" />
+    </ConnectionPanel>
+  </Item>
+  <!-- God Rays Light -->
+  <Item name="God Rays Light" identifier="ccs_god_rays" description="" category="Electrical" Tags="lightcomponent" cargocontaineridentifier="metalcrate" scale="2.5" noninteractable="true" subcategory="CC's">
+    <Upgrade gameversion="1.5.8.0" hiddeningame="false" />
+    <Sprite texture="Content/Items/Electricity/signalcomp.png" depth="0.001" sourcerect="194,103,25,26" origin="0.5,0.5" />
+    <LightComponent canbeselected="true" color="255,255,255,230" directional="true" alphablend="true" castshadows="true" range="800.0" ison="true" vulnerabletoemp="false">
+      <LightTexture texture="%ModDir%/SydWad/godray.png" origin="-0.5,0.5" size="1.0,1.0" />
+      <!-- I would normally do "OnSpawn" but thats not working -->
+      <StatusEffect type="Always" targettype="this" OneShot="True" spritecolor="255,255,255,1" delay="0.1" setvalue="true" />
+    </LightComponent>
+    <StaticBody width="28" height="23" />
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <input name="set_color" displayname="connection.setcolor" />
+    </ConnectionPanel>
+  </Item>
+  <!-- XML Doors -->
+  <Item name="Entry Door" identifier="ccs_door_enter" tags="door,chair,op_cafeteriachair" allowedlinks="ccs_door_exit" linkable="true" category="Machine" scale="0.45" invulnerabletodamage="true" allowrotatingineditor="true" GrabWhenSelected="false" pickkey="use">
+    <Sprite texture="Content/Map/Outposts/Art/EngineerColonyModule.png" depth="0.59" sourcerect="815,413,209,419" origin="0.5,0.5" />
+    <StaticBody width="199" height="409" />
+    <ItemContainer spawnwithid="ccs_teleporter" autointeractwithcontained="true" autointeractwithcontainedtags="ccs_teleporter" capacity="1" canbeselected="true" drawinventory="false" hideitems="False" pickkey="use" msg="ItemMsgInteractSelect">
+      <Containable items="ccs_teleporter" />
+      <StatusEffect type="OnUse" Target="LinkedEntities">
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="OnUse" Target="This" delay="0.01" disabledeltatime="True">
+        <Sound file="%ModDir%/SydWad/doorenter1.ogg" volume="1.0" range="400" loop="False" SelectionMode="Random" />
+        <Sound file="%ModDir%/SydWad/doorenter2.ogg" volume="1.25" range="400" loop="False" SelectionMode="Random" />
+        <Spawnitem identifier="ccs_teleporter" spawnposition="ThisInventory" />
+      </StatusEffect>
+    </ItemContainer>
+  </Item>
+  <Item name="Exit Door" identifier="ccs_door_exit" tags="door" allowedlinks="ccs_door_enter" linkable="true" category="Machine" scale="0.591" invulnerabletodamage="true" allowrotatingineditor="true" GrabWhenSelected="false" noninteractable="True">
+    <Sprite texture="Content/Map/Outposts/Art/Storage.png" depth="0.591" sourcerect="897,0,159,319" origin="0.5,0.5" />
+    <StaticBody width="149" height="299" />
+    <Turret reload="0.1" canbeselected="false" linkable="true" characterusable="false" barrelpos="79,145" rotationlimits="90,90" powerconsumption="0.0"></Turret>
+    <ConnectionPanel canbeselected="False" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="trigger_in" />
+      <input name="position_in" />
+    </ConnectionPanel>
+  </Item>
+  <Item name="Teleporter" identifier="ccs_teleporter" tags="ccs_teleporter,chair,op_cafeteriachair" scale="0.4" spritecolor="0,0,0,0" hideinmenus="True">
+    <Sprite texture="Content/Map/Outposts/Art/EngineerColonyModule.png" sourcerect="856,841,57,114" depth="0.501" origin="0.5,0.5" />
+    <Body width="50" height="50" density="10" gravityscale="0.0" />
+    <Projectile characterusable="false" launchimpulse="0.01" removeonhit="false">
+      <Attack structuredamage="0" itemdamage="0" severlimbsprobability="0" penetration="0" targetforce="0"></Attack>
+      <StatusEffect type="OnNotContained" target="This" OneShot="True" delay="0.1" disabledeltatime="True">
+        <Sound file="%ModDir%/SydWad/doorenter1.ogg" volume="1.0" range="400" loop="False" SelectionMode="Random" />
+        <Sound file="%ModDir%/SydWad/doorenter2.ogg" volume="1.25" range="400" loop="False" SelectionMode="Random" />
+        <RemoveItem />
+      </StatusEffect>
+    </Projectile>
+    <Controller direction="Right" canbeselected="true" AllowSelectingWhenSelectedByOther="false" AllowSelectingWhenSelectedByBot="True" selectkey="Select" forceusertostayattached="true" msg="itemmsggoinside">
+      <limbposition limb="LeftHand" position="74,-40" />
+      <limbposition limb="RightHand" position="74,-40" />
+      <StatusEffect type="OnActive" targettype="Character" PressureProtection="99999" invisibletimer="0.1" setvalue="true" duration="0.1" disabledeltatime="True" stackable="True" />
+      <StatusEffect type="OnActive" targettype="Character" invisibletimer="0.1" stackable="True" />
+      <StatusEffect type="OnActive" targettype="Parent" OneShot="True">
+        <Use />
+      </StatusEffect>
+    </Controller>
+    <!--<Ladder canbeselected="false" pickkey="Use" />-->
+  </Item>
+</Items>

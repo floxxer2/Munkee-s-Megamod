@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <!-- AFFLICTIONS -->
+  <afflictionname.handcuffed>Handcuffed</afflictionname.handcuffed>
+  <afflictiondescription.handcuffed>You have been handcuffed.</afflictiondescription.handcuffed>
+  <afflictionname.handcuffedreinforced>Handcuffed</afflictionname.handcuffedreinforced>
+  <afflictiondescription.handcuffedreinforced>You have been handcuffed.</afflictiondescription.handcuffedreinforced>
+  <afflictionname.imprisonedbrig>Inside Brig</afflictionname.imprisonedbrig>
+  <afflictiondescription.imprisonedbrig>This character is currently considered inside the brig and will spawn inside the brig when loading into the next round.</afflictiondescription.imprisonedbrig>
+  <afflictiondescription.imprisonedbrig.self>You will currently spawn inside the brig when loading into the next round.</afflictiondescription.imprisonedbrig.self>
+  <afflictionname.jailtime>Jail Time</afflictionname.jailtime>
+  <afflictiondescription.jailtime>This person has been arrested and needs to serve jail time. They will get in further trouble when seen roaming around by security.</afflictiondescription.jailtime>
+  <afflictiondescription.jailtime.self>You have been arrested and need to serve jail time. Unless someone bails for you, you are not allowed to leave your cell!</afflictiondescription.jailtime.self>
+  <afflictionname.bannedtime>Banned</afflictionname.bannedtime>
+  <afflictiondescription.bannedtime>This person has been temporarily banned from the current station. They should not enter the station to avoid further consequences.</afflictiondescription.bannedtime>
+  <afflictiondescription.bannedtime.self>You are currently banned from this station. Entering it may result in more trouble!</afflictiondescription.bannedtime.self>
+  <afflictionname.arrestedteam1>Arrested Citizen</afflictionname.arrestedteam1>
+  <afflictiondescription.arrestedteam1>This poor citizen of Europa is handcuffed.\n(Can be sold to pirates at Pirate Havens if DynamicEuropa is installed)</afflictiondescription.arrestedteam1>
+  <afflictionname.arrestedfriendly>Arrested Citizen</afflictionname.arrestedfriendly>
+  <afflictiondescription.arrestedfriendly>This poor citizen of Europa is handcuffed.\n(Can be sold to pirates at Pirate Havens if DynamicEuropa is installed)</afflictiondescription.arrestedfriendly>
+  <afflictionname.arrestedteam2>Arrested Bandit</afflictionname.arrestedteam2>
+  <afflictiondescription.arrestedteam2>A handcuffed bandit that can be brought to justice at a military type station.</afflictiondescription.arrestedteam2>
+  <afflictionname.arrestednone>Arrested Bandit</afflictionname.arrestednone>
+  <afflictiondescription.arrestednone>A handcuffed bandit that can be brought to justice at a military type station.</afflictiondescription.arrestednone>
+  <!-- ITEMS -->
+  <entityname.handcuffset>Handcuff Set</entityname.handcuffset>
+  <entitydescription.handcuffset>A set of handcuffs and a handcuff key.</entitydescription.handcuffset>
+  <entityname.handcuffkey>Handcuff Key</entityname.handcuffkey>
+  <entitydescription.handcuffkey>Fits any handcuff.</entitydescription.handcuffkey>
+  <entityname.brokenhandcuffs>Broken Handcuffs</entityname.brokenhandcuffs>
+  <entitydescription.brokenhandcuffs>These cuffs are damaged beyond repair and can no longer be used to restrain somebody.</entitydescription.brokenhandcuffs>
+  <entityname.reinforcedhandcuffsspawned>Reinforced Handcuffs</entityname.reinforcedhandcuffsspawned>
+  <entitydescription.reinforcedhandcuffsspawned>These handcuffs have been reinforced with titanium. Breaking out of these is impossible.</entitydescription.reinforcedhandcuffsspawned>
+  <entityname.securitywhistle>Security Whistle</entityname.securitywhistle>
+  <entitydescription.securitywhistle>A security guard whistle used to send nearby handcuffed prisoners back to the submarine's brig.\n- Only works within the submarine.</entitydescription.securitywhistle>
+  <!-- DIALOG -->
+  <eventtext.prisonertransport.prisoner.askforhelp>Psst... Hey you... Get me out of these cuffs, please! I got some cash stashed on me. 500 mk to be exact. It's yours if you help me out!</eventtext.prisonertransport.prisoner.askforhelp>
+  <eventtext.prisonertransport.prisoner.askforhelp.option.accept>500 mk? Alright, but you better not be lying to me! Let me grab a key for those cuffs.</eventtext.prisonertransport.prisoner.askforhelp.option.accept>
+  <eventtext.prisonertransport.prisoner.askforhelp.option.decline>No, I don't help scum like you!</eventtext.prisonertransport.prisoner.askforhelp.option.decline>
+  <eventtext.prisonertransport.prisoner.thanks>Thanks! Here's your money... Now you better get out of here before I start taking it back!</eventtext.prisonertransport.prisoner.thanks>
+  <eventtext.bountycollector.introduction>Hey you! You're from that submarine that just docked, aren't you? I'm working with security so let me know if you got any arrested outlaws on board and I'll take care of them. We pay up to 750mk for each arrest.</eventtext.bountycollector.introduction>
+  <eventtext.bountycollector.askforarrested>Got someone to bring to justice?</eventtext.bountycollector.askforarrested>
+  <eventtext.bountycollector.askforarrested.option.yes>Yes.</eventtext.bountycollector.askforarrested.option.yes>
+  <eventtext.bountycollector.askforarrested.option.yes.reply>Alright! I'll send the money for each arrest straight to your crew's bank account! Now let me see what we got here...</eventtext.bountycollector.askforarrested.option.yes.reply>
+  <eventtext.bountycollector.askforarrested.option.yes.reply.noarrested>Hmm... I can't seem to find any documentation of you currently having any arrested outlaws on board. Come back when you actually have someone we need to take care of.</eventtext.bountycollector.askforarrested.option.yes.reply.noarrested>
+  <eventtext.bountycollector.askforarrested.option.no>No I don't.</eventtext.bountycollector.askforarrested.option.no>
+  <eventtext.bountycollector.askforarrested.option.no.reply>Well I'm here if you find any.</eventtext.bountycollector.askforarrested.option.no.reply>
+  <eventtext.bountycollector.finished>Seems like that's all.</eventtext.bountycollector.finished>
+  <eventtext.bountycollector.pirate.introduction>Hey you! You're from that submarine that just docked, aren't you? We're looking for some hostages to extort some money. Let me know if you got any on board! We'll be very greatful and pay up to 500mk for each hostage you bring us.</eventtext.bountycollector.pirate.introduction>
+  <eventtext.bountycollector.pirate.askforarrested>Got any hostages for us?</eventtext.bountycollector.pirate.askforarrested>
+  <eventtext.bountycollector.pirate.askforarrested.option.yes.reply>Alright! I'll send the money for each hostage straight to your crew's bank account! Now let me see what we got here...</eventtext.bountycollector.pirate.askforarrested.option.yes.reply>
+  <eventtext.bountycollector.pirate.askforarrested.option.yes.reply.noarrested>Hmm... Something tells me you got none. Come back when you actually got someone for us!</eventtext.bountycollector.pirate.askforarrested.option.yes.reply.noarrested>
+  <eventtext.jailguard.ask>Are you here to bail out one of the prisoners? It's 500mk per prisoner.</eventtext.jailguard.ask>
+  <eventtext.jailguard.answer.yes>Yes, I'd like to bail someone out.</eventtext.jailguard.answer.yes>
+  <eventtext.jailguard.answer.yes.insufficientfunds>Sorry, but you don't seem to have enough money on you. Come back when you do!</eventtext.jailguard.answer.yes.insufficientfunds>
+  <eventtext.jailguard.answer.yes.success>Thank you! We'll release them immediately!</eventtext.jailguard.answer.yes.success>
+  <eventtext.jailguard.answer.yes.failure>Hmm... Actually it seems like we currently don't have someone you could bail out.</eventtext.jailguard.answer.yes.failure>
+  <eventtext.jailguard.answer.no>No, they deserve it.</eventtext.jailguard.answer.no>
+  <!-- OBJECTIVES -->
+  <eventtext.objective.prisonertransport.gethandcuffkey>Get a Handcuff Key</eventtext.objective.prisonertransport.gethandcuffkey>
+  <eventtext.objective.prisonertransport.unlockhandcuffs>Unlock the prisoner's handcuffs</eventtext.objective.prisonertransport.unlockhandcuffs>
+  <!-- GUI -->
+  <interaction.struggletofree>Struggle to free</interaction.struggletofree>
+</infotexts>

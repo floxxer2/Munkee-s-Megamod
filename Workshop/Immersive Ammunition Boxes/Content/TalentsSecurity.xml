@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Talents>
+  <Override>
+    <Talent identifier="gunrunner">
+      <Icon texture="Content/UI/TalentsIcons3.png" sheetindex="0,4" sheetelementsize="128,128" />
+      <Description tag="talentdescription.gunrunner">
+        <Replace tag="[amount]" value="25" color="gui.green" />
+      </Description>
+      <Description tag="talentdescription.walkfasterwhileaiming">
+        <Replace tag="[amount]" value="20" color="gui.green" />
+      </Description>
+      <AbilityGroupInterval interval="0.9">
+        <Conditions>
+          <AbilityConditionIsAiming weapontype="ranged" />
+        </Conditions>
+        <Abilities>
+          <CharacterAbilityModifyStat stattype="MovementSpeed" value="0.2" />
+        </Abilities>
+      </AbilityGroupInterval>
+      <AbilityGroupInterval interval="0.9">
+        <Conditions>
+          <AbilityConditionHoldingItem tags="ammobox,railgunammo" />
+        </Conditions>
+        <Abilities>
+          <CharacterAbilityModifyStat stattype="MovementSpeed" value="0.25" />
+          <CharacterAbilityApplyStatusEffects>
+            <StatusEffects>
+              <StatusEffect type="OnAbility" target="Character" tags="gunrunner" duration="1.0" />
+            </StatusEffects>
+          </CharacterAbilityApplyStatusEffects>
+        </Abilities>
+      </AbilityGroupInterval>
+    </Talent>
+  </Override>
+</Talents>

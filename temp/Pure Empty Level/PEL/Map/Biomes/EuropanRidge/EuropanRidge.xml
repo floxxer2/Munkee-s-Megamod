@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LevelGenerationParameters>
+  <Override>
+    <RidgeBasic identifier="ridgebasic" commonness="0" />
+    <RidgeAdvanced identifier="ridgeadvanced" commonness="0" />
+    <RidgeTransition identifier="ridgetransition" commonness="0" />
+  </Override>
+</LevelGenerationParameters>

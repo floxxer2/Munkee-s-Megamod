@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Enhanced Reactors" modversion="1.0.34" corepackage="False" steamworkshopid="3045796581" gameversion="1.8.8.1" expectedhash="8A9E580BBE192FC52B844ACEEC500200">
+  <Afflictions file="%ModDir%/Workshop/Enhanced Reactors/Content/Afflictions.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Containers/containers.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Effects/effects.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Effects/TriggerEffectItems.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Jobgear/Clown/clown.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Jobgear/Engineer/engineer_gear.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Jobgear/Engineer/engineer_talent_items.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Jobgear/Mechanic/mechanic_gear.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Jobgear/Mechanic/mechanic_talent_items.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Materials/minerals.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Medical/medical.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Misc/misc.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Reactor/reactor.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Reactor/reactor_ek.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Reactors/Content/Items/Tools/tools.xml" />
+  <Particles file="%ModDir%/Workshop/Enhanced Reactors/Content/Particles/ParticlePrefabs.xml" />
+  <RandomEvents file="%ModDir%/Workshop/Enhanced Reactors/Content/Events/Events.xml" />
+  <Sounds file="%ModDir%/Workshop/Enhanced Reactors/Content/Sounds/sounds.xml" />
+  <Talents file="%ModDir%/Workshop/Enhanced Reactors/Content/Talents/Engineer/TalentsEngineer.xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Reactors/Content/Texts/English.xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Reactors/Content/Texts/German.xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Reactors/Content/Texts/Russian.xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Reactors/Content/Texts/SimplifiedChinese.xml" />
+  <Text file="%ModDir%/Workshop/Enhanced Reactors/Content/Texts/TraditionalChinese.xml" />
+</contentpackage>

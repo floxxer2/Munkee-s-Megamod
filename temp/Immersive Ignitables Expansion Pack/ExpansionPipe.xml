@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Override>
+    <Item name="" identifier="captainspipe" category="Misc" Tags="smallitem" scale="0.5" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" isshootable="true" requireaimtouse="true">
+      <PreferredContainer primary="crewcab" spawnprobability="0.05" notcampaign="true" />
+      <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab" spawnprobability="0.1" />
+      <Price baseprice="50">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" />
+        <Price storeidentifier="merchantresearch" />
+        <Price storeidentifier="merchantmilitary" />
+        <Price storeidentifier="merchantmine" />
+      </Price>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="511,957,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Misc/Misc.png" sourcerect="105,73,50,30" depth="0.55" origin="0.5,0.5" />
+      <Body width="58" height="20" density="15" />
+      <!-- LightComponent that doesn't produce light and only turns on if the item has the tag "lit" and temporary tag "hastobacco" while not being in water -->
+      <LightComponent range="0" lightcolor="0,0,0,0" castshadows="false" powerconsumption="0" allowingameediting="false" comparison="And">
+        <ActiveConditional HasTag="lit" />
+        <ActiveConditional HasStatusTag="hastobacco" />
+        <ActiveConditional InWater="false" />
+        <!-- check on the tobacco every 5 seconds if the container of the captains pipe (pipe = targetcontainer | grandparent = container of the targetcontainer) is a trash can while being lit (lightcomponent is active) and create a fire after being contained in it for 45 seconds while also deleting the tobacco -->
+        <StatusEffect type="OnActive" target="Contained" interval="5" delay="45" stackable="false" checkconditionalalways="true" comparison="And">
+          <Conditional HasTag="outposttrashcan" targetcontainer="true" targetgrandparent="true" />
+          <Fire size="1" />
+          <Remove />
+        </StatusEffect>
+        <!-- extinguish the item by turning off the LightComponent and adding the tag "unlit" to override the "lit" tag, if the item was put back into the pocket or cabinet, unless it is a trash can -->
+        <StatusEffect type="OnActive" target="This" IsOn="false" tags="unlit" setvalue="true" comparison="And">
+          <Conditional PhysicsBodyActive="eq false" />
+          <Conditional HasTag="neq outposttrashcan" targetcontainer="true" />
+        </StatusEffect>
+        <!-- constantly burn down the tobacco when it was lit and procude smoke particles while not inhaling (using) -->
+        <StatusEffect type="OnActive" target="Contained" condition="-0.5" comparison="And">
+          <Conditional HasStatusTag="neq inhaling" />
+          <ParticleEmitter particle="fleshsmoke" colormultiplier="120,120,120,150" particlespersecond="3" copyentityangle="true" anglemin="0" anglemax="0" distancemin="9" distancemax="9" velocitymin="0" velocitymax="0" scalemin="0.1" scalemax="0.1" />
+        </StatusEffect>
+      </LightComponent>
+      <Holdable slots="Any,RightHand,LeftHand" aimable="false" holdpos="30,-5" aimpos="27,10" handle1="10,-15" swingamount="0,0" swingspeed="0.5" swingwhenusing="true" msg="ItemMsgPickUpSelect">
+        <!-- add the tag "ignitable" when the item is being held while it is not yet lit so it can be lit up by a lighter -->
+        <StatusEffect type="OnSecondaryUse" target="This" tags="ignitable" targetitemcomponent="LightComponent" setvalue="true" comparison="And" delay="1" checkconditionalalways="true">
+          <Conditional HasTag="neq ignitable" />
+          <Conditional HasTag="neq lit" />
+          <Conditional IsOn="false" />
+        </StatusEffect>
+        <!-- add the temporary "wet" tag that overrides the "lit" tag and spawn water drop particles for 10 seconds after the item entered water to block reigniting it again for that duration -->
+        <StatusEffect type="InWater" target="This" tags="wet" setvalue="true" duration="10" stackable="false" />
+        <!-- reduce the condition of the tobacco and prevent the pipe from producing smoke when actively smoking it (using) while it is on (has tag "lit" and temporary tag "hastobacco") -->
+        <StatusEffect type="OnUse" target="Contained,Character" tags="lit,inhaling" condition="-1" interval="0.1" duration="0.2">
+          <Conditional IsOn="true" targetcontainer="true" />
+        </StatusEffect>
+        <!-- remove the ability to breath oxygen, apply the custom "smokingcigarette" affliction and play a sizzling sound while inhaling the smoke (using the item while it is on, meaning it has the tag "lit" and temporary tag "hastobacco") -->
+        <StatusEffect type="OnUse" target="This,Character" availableoxygen="0" setvalue="true" interval="0.1" duration="0.2" multiplyafflictionsbymaxvitality="true" OnContaining="pipetobacco">
+          <Conditional IsOn="true" />
+          <Affliction identifier="smoking" amount="0.01" />
+          <Affliction identifier="oxygenlow" amount="0.15" />
+          <Sound file="%ModDir%/SmokingCigaretteLoop.ogg" range="200" volume="1.0" loop="true" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This,Character" availableoxygen="0" setvalue="true" interval="0.1" duration="0.2" multiplyafflictionsbymaxvitality="true" OnContaining="bubbleberryPacket">
+          <Conditional IsOn="true" />
+          <Affliction identifier="smokingnicotineless" amount="0.01" />
+          <Affliction identifier="oxygenlow" amount="0.15" />
+          <Sound file="%ModDir%/SmokingCigaretteLoop.ogg" range="200" volume="1.0" loop="true" />
+        </StatusEffect>
+        <!-- apply and reduce various afflictions when smoking (using the item while it is on, meaning it has the tag "lit" and temporary tag "hastobacco") | separate effect to allow better control over the applied amounts (configured value per second) -->
+        <StatusEffect type="OnUse" target="This,Character" multiplyafflictionsbymaxvitality="true" RequiredItems="pipetobacco">
+          <Conditional IsOn="true" />
+          <Affliction identifier="he-tobaccoaddiction" amount="0.15" />
+          <Affliction identifier="psychosisresistance" amount="7.5" />
+          <Affliction identifier="ii_recenttobaccointake" amount="70" />
+          <ReduceAffliction type="tobaccocraving" amount="4.0" />
+          <ReduceAffliction identifier="psychosis" amount="2.5" />
+          <ReduceAffliction identifier="hallucinating" amount="5" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This,Character" multiplyafflictionsbymaxvitality="true" RequiredItems="pipetobaccotesting">
+          <Conditional IsOn="true" />
+          <Affliction identifier="he-tobaccoaddiction" amount="0.15" />
+          <Affliction identifier="psychosisresistance" amount="7.5" />
+          <Affliction identifier="ii_recenttobaccointake" amount="70" />
+          <Affliction identifier="burn" amount="70" />
+          <ReduceAffliction type="tobaccocraving" amount="4.0" />
+          <ReduceAffliction identifier="psychosis" amount="2.5" />
+          <ReduceAffliction identifier="hallucinating" amount="5" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This,Character" multiplyafflictionsbymaxvitality="true" RequiredItems="bubbleberryPacket">
+          <Conditional IsOn="true" />
+          <Affliction identifier="psychosisresistance" amount="7.5" />
+          <ReduceAffliction identifier="mood" amount="5" />
+          <ReduceAffliction identifier="psychosis" amount="2.5" />
+          <ReduceAffliction identifier="hallucinating" amount="5" />
+        </StatusEffect>
+        <!-- tag the item with "unlit" to override the "lit" tag and essentially turn it off, if the contained pipe tobacco was used up or removed by checking if the item still has the temporary tag "hastobacco" -->
+        <StatusEffect type="OnActive" target="This" tags="unlit" setvalue="true" interval="0.1">
+          <Conditional HasStatusTag="neq hastobacco" />
+        </StatusEffect>
+      </Holdable>
+      <ItemContainer hideitems="true" drawinventory="true" capacity="1" maxstacksize="1" canbeselected="false">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="0,384,64,64" origin="0.5,0.5" />
+        <Containable tags="pipepacket">
+          <!-- apply a temporary tag "hastobacco" to the item when a pipe packet is contained -->
+          <StatusEffect type="OnContaining" target="This" tags="hastobacco" interval="0.1" duration="0.2" />
+        </Containable>
+      </ItemContainer>
+    </Item>
+    <Item name="" identifier="pipetobacco" category="Misc" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem,pipepacket" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
+      <PreferredContainer primary="captainspipe" spawnprobability="1" />
+      <PreferredContainer primary="crewcab" spawnprobability="0.05" notcampaign="true" />
+      <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab,piratecrewcab" spawnprobability="0.1" />
+      <Price baseprice="120">
+        <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="1" />
+        <Price storeidentifier="merchantcity" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantresearch" sold="false" />
+        <Price storeidentifier="merchantmilitary" sold="false" />
+        <Price storeidentifier="merchantmine" sold="false" />
+      </Price>
+      <Fabricate suitablefabricators="vendingmachine" requiredtime="1" requiredmoney="190" fabricationlimitmin="0" fabricationlimitmax="10" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="helm" level="30" />
+        <Item identifier="tobaccobud" />
+        <Item identifier="tobaccobud" />
+        <Item identifier="tobaccobud" />
+      </Fabricate>
+      <Deconstruct time="20">
+        <Item identifier="tobaccobud" />
+      </Deconstruct>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="192,320,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Gardening/GrowablePlants_Temp.png" sourcerect="848,774,44,58" depth="0.55" origin="0.5,0.5" />
+      <Body width="40" height="50" density="10.5" />
+      <Holdable slots="Any,RightHand,LeftHand" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+  </Override>
+  <Item name="EVIL FUCKED UP TOBACCO!!!" identifier="pipetobaccotesting" description="You should not have this so um... Just don't smoke it bestie." category="Misc" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem,pipepacket" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
+    <Price baseprice="120" soldeverywhere="false" />
+    <Deconstruct time="20" />
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="192,320,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Gardening/GrowablePlants_Temp.png" sourcerect="848,774,44,58" depth="0.55" origin="0.5,0.5" />
+    <Body width="40" height="50" density="10.5" />
+    <Holdable slots="Any,RightHand,LeftHand" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+  <Item name="" identifier="bubbleberryPacket" category="Misc" maxstacksize="32" maxstacksizecharacterinventory="8" Tags="smallitem,pipepacket" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
+    <PreferredContainer primary="captainspipe" spawnprobability="0.25" />
+    <PreferredContainer primary="crewcab" spawnprobability="0.02" notcampaign="true" />
+    <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab,piratecrewcab" spawnprobability="0.05" />
+    <Price baseprice="120">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="1" />
+      <Price storeidentifier="merchantcity" multiplier="0.9" minavailable="2" />
+      <Price storeidentifier="merchantresearch" sold="false" />
+      <Price storeidentifier="merchantmilitary" sold="false" />
+      <Price storeidentifier="merchantmine" sold="false" />
+    </Price>
+    <Fabricate suitablefabricators="vendingmachine" requiredtime="1" requiredmoney="250" fabricationlimitmin="0" fabricationlimitmax="10" />
+    <InventoryIcon texture="%ModDir%/InventoryIconAtlas2.png" sourcerect="192,320,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/GrowablePlants_Temp.png" sourcerect="848,774,44,58" depth="0.55" origin="0.5,0.5" />
+    <Body width="40" height="50" density="10.5" />
+    <Holdable slots="Any,RightHand,LeftHand" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+</Items>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="Rusty Chainsaw" identifier="Chainsawold" category="Equipment" Tags="smallitem,cuttingequipment,tool,mountableweapon" description="A large, rusty electrical chainsaw that has been noncommissioned to Europan miners. Its edges are still sharp and it seems to be bloodied. What use can this tool make?" cargocontaineridentifier="metalcrate" Scale="0.5" impactsoundtag="impact_metal_light">
+    <!--<Price baseprice="200" >
+      <Price locationtype="City" buyprice="200" />
+      <Price locationtype="Research" buyprice="240" />
+      <Price locationtype="Military" buyprice="200" />
+      <Price locationtype="Outpost" buyprice="200" />
+      <Price locationtype="Mine" buyprice="174" />
+	  </Price>-->
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="plastic" />
+      <Item identifier="titanium" />
+    </Deconstruct>
+    <!--<Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="steel" />
+		<RequiredItem identifier="titanium" />
+		<RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="plastic" />
+      </Fabricate>-->
+    <InventoryIcon texture="halloweenInventoryAtlas.png" sourcerect="0,0,64,64" origin="0.5,0.5" />
+    <Sprite texture="halloweenItems.png" sourcerect="0,0,290,92" depth="0.55" origin="0.5,0.5" />
+    <Body radius="40" width="60" density="25" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" aimpos="75,-25" handle1="-125,-25" handle2="-10,0" holdangle="45" swingamount="10,20" swingspeed="1" swingwhenusing="true" msg="ItemMsgPickUpSelect"></Holdable>
+    <RepairTool firedamage="10.0" structurefixamount="-0.125" range="45" barrelpos="20,10" combatpriority="10" repairmultiple="true" repairthroughwalls="false" maxoverlappingwalldist="0.0" repairthroughholes="true" levelwallfixamount="-5.0" targetforce="10">
+      <RequiredItems identifier="batterycell,fulguriumbatterycell" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      <StatusEffect type="OnUse" target="Contained" targetidentifiers="batterycell" Condition="-2.0" />
+      <StatusEffect type="OnUse" target="Contained" targetidentifiers="fulguriumbatterycell" Condition="-1.0" />
+      <StatusEffect type="OnPicked" target="Contained" targetidentifiers="batterycell,fulguriumbatterycell">
+        <sound file="%ModDir%/Workshop/Barotraumatic/Items/Tools/chainsaw.ogg" range="500.0" loop="true" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="UseTarget" targetidentifiers="door,windoweddoor,hatch,ductblock,aliendoor,alienhatch" Stuck="-20.0" Condition="-3.0">
+        <sound file="%ModDir%/Workshop/Barotraumatic/Items/Tools/chainsawMetal.ogg" range="500.0" loop="true" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="UseTarget" targetidentifiers="structure">
+        <sound file="%ModDir%/Workshop/Barotraumatic/Items/Tools/chainsawMetal.ogg" range="500.0" loop="true" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Limb" severlimbsprobability="0.01">
+        <Conditional EntityType="eq Limb" />
+        <Affliction identifier="internaldamage" strength="20" />
+        <Affliction identifier="lacerations" strength="15" />
+        <Affliction identifier="bleeding" amount="40" />
+        <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" range="800" selectionmode="Random" />
+        <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="800" />
+        <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="800" />
+        <!--  temporary workaround to a bug in v0.9.4.0: due to a bug in the MatchOnEmpty logic, 
+                conditionals would always be considered true if the StatusEffect has not targets or RequiredItems,
+                which in this case causing the sounds to always play when there's no valid Limb to target -->
+        <RequiredItems identifier="batterycell,fulguriumbatterycell" type="Contained" />
+      </StatusEffect>
+      <ParticleEmitterHitStructure particle="spark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="spark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitItem identifiers="ore" particle="iceshards" particlespersecond="5" anglemin="-40" anglemax="40" velocitymin="10" velocitymax="300" scalemin="0.5" scalemax="1.0" />
+      <ParticleEmitterHitCharacter particle="blood" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <sound file="%ModDir%/Workshop/Barotraumatic/Items/Tools/chainsawGas.ogg" type="OnUse" range="500.0" loop="true" />
+      <Fixable identifier="structure" />
+    </RepairTool>
+    <ItemContainer capacity="1" hideitems="true" itempos="20,-30" containedspritedepth="0.56" maxstacksize="1">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,157,92,27" />
+      <Containable identifiers="batterycell,fulguriumbatterycell" />
+    </ItemContainer>
+  </Item>
+  <!--<Item name="Blowtorch" identifier="blowtorch" category="Equipment" Tags="smallitem,weapon,gun,mountableweapon" cargocontaineridentifier="metalcrate" description="" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Price baseprice="150">
+      <Price storeidentifier="merchantoutpost" minavailable="3" />
+      <Price storeidentifier="merchantcity" minavailable="2" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" minavailable="2" />
+      <Price storeidentifier="merchantmine" multiplier="0.9" minavailable="10" />
+      <Price storeidentifier="merchantengineering" minavailable="5" multiplier="0.9" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/Workshop/Barotraumatic/Items/Tools/halloweenInventoryAtlas.png" sourcerect="192,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Workshop/Barotraumatic/Items/Tools/halloweenItems.png" sourcerect="200,100,190,70" depth="0.55" origin="0.5,0.5" />
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="titaniumaluminiumalloy" />
+      <Item identifier="phosphorus" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <Body width="150" height="60" density="25" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" aimpos="60,0" handle1="-62,-16" handle2="-10,-6" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="20.0" structurefixamount="0.0" usablein="Air" range="180" barrelpos="35,10" repairmultiple="true" repairthroughwalls="false" repairthroughholes="true" combatpriority="90" spread="25" unskilledspread="25">
+      <RequiredItems items="weldingtoolfuel" type="Contained" msg="ItemMsgWeldingFuelRequired" />
+      <ParticleEmitter particle="weld" particlespersecond="100" copyentityangle="true" />
+      <ParticleEmitterHitStructure particle="weldspark" particlespersecond="200" anglemin="-40" anglemax="40" velocitymin="200" velocitymax="800" />
+      <ParticleEmitterHitCharacter particle="fleshsmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <sound file="Content/Items/Weapons/FlameThrowerLoop.ogg" type="OnUse" range="500.0" loop="true" />
+      <StatusEffect type="OnFailure" target="UseTarget">
+        <ParticleEmitter particle="bubbles" particlespersecond="20" anglemin="-10" anglemax="10" scalemin="0.3" scalemax="0.7" velocitymin="5" velocitymax="100" copyentityangle="true" />
+        <ParticleEmitter particle="fleshsmoke" particlespersecond="10" anglemin="-10" anglemax="10" scalemin="1" scalemax="1.5" velocitymin="5" velocitymax="200" copyentityangle="true" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Hull,This" UsableIn="None">
+        <Conditional OxygenPercentage="lt 10" />
+      </StatusEffect>
+      <StatusEffect type="OnFailure" target="Hull,This" UsableIn="Air">
+        <Conditional OxygenPercentage="gt 10" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="Contained" targets="weldingfueltank" Condition="-8.0" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="incendiumfueltank" Condition="-3.5" />
+      <StatusEffect type="OnUse" target="UseTarget">
+        <Affliction identifier="burn" amount="2.45" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Character">
+        <Affliction identifier="burn" amount="0.1" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Hull" Oxygen="-10000" />
+      <RequiredSkill identifier="weapons" level="20" />
+      <StatusEffect type="OnFailure" targettype="Contained" targets="weldingfueltank,incendiumfueltank" Condition="-9.0" />
+      <LightComponent LightColor="255,174,121,255" Flicker="0.5" Range="500">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>
+    </RepairTool>
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="false" itempos="8,-20" containedspritedepth="0.56" containedstateindicatorstyle="tank">
+      <Containable items="weldingtoolfuel,oxygensource" />
+    </ItemContainer>
+    <aitarget sightrange="5000" soundrange="500" fadeouttime="5" />
+  </Item>
+  <Item name="Plasma Torcher" identifier="plasmaflamethrower" category="Weapon" Tags="mediumitem,cuttingequipment,tool,mountableweapon" cargocontaineridentifier="metalcrate" Scale="0.5" impactsoundtag="impact_metal_light" description="This modified plasma cutter has had additional electromagnets installed along with a beefy power supply to propel larger volumes of plasma much further than normal. The modifications made are so extreme, this could only have been made by a genius. Or a madman.">
+    <Fabricate suitablefabricators="fabricator" requiredtime="18">
+      <RequiredSkill identifier="mechanical" level="55" />
+      <RequiredItem identifier="incendium" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="batterycell" />
+      <RequiredItem identifier="phosphorus" />
+      <RequiredItem identifier="plasmacutter" />
+    </Fabricate>
+    <Price baseprice="600" sold="false" canbespecial="false">
+      <Price storeidentifier="merchantoutpost" minavailable="3" />
+      <Price storeidentifier="merchantcity" minavailable="2" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25" minavailable="2" />
+      <Price storeidentifier="merchantmine" multiplier="0.9" minavailable="10" />
+      <Price storeidentifier="merchantengineering" minavailable="5" multiplier="0.9" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="plastic" />
+      <Item identifier="titaniumaluminiumalloy" />
+    </Deconstruct>
+    <InventoryIcon texture="plasmatorchericon.png" sourcerect="0,0,214,94" origin="0.5,0.5" />
+    <Sprite texture="plasmatorture.png" sourcerect="0,0,214,94" depth="0.55" origin="0.5,0.5" />
+    <Body height="94" width="214" density="30" />
+    <Holdable slots="Any,RightHand+LeftHand" holdpos="30,-30" controlpose="true" aimpos="50,-20" handle1="-38,-16" handle2="28,-28" msg="ItemMsgPickUpSelect" />
+    <RepairTool firedamage="80.0" structurefixamount="-0.2" range="360" barrelpos="78,7" combatpriority="10" repairmultiple="true" repairthroughwalls="false" maxoverlappingwalldist="0.0" repairthroughholes="true" levelwallfixamount="-30.0" targetforce="20">
+      <RequiredItems items="oxygensource,weldingtoolfuel,batterycell,fulguriumbatterycell" type="Contained" msg="ItemMsgOxygenTankRequired" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="oxygentank" Condition="-5.0" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="batterycell" Condition="-4.0" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="fulguriumbatterycell" Condition="-1.0" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="oxygenitetank" Condition="-1" />
+      <StatusEffect type="OnUse" targettype="UseTarget" targets="door,ductblock,aliendoor" Stuck="-20.0" Condition="-3.0" />
+      <StatusEffect type="OnUse" targettype="UseTarget" Condition="-3.0" />
+      <StatusEffect type="OnUse" targettype="Limb" severlimbsprobability="0.1">
+        <Affliction identifier="burn" amount="30" />
+        <Affliction identifier="lacerations" amount="5" />
+        <Affliction identifier="bleeding" amount="10" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="Contained" targets="weldingfueltank" delay="1.0" stackable="false" Condition="-100.0" disabledeltatime="true">
+        <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionDebris1.ogg" range="5000" />
+        <Explosion range="150.0" force="3" applyfireeffects="false">
+          <Affliction identifier="burn" strength="25" />
+          <Affliction identifier="stun" strength="5" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="Contained" targets="incendiumfueltank" delay="1.0" stackable="false" Condition="-100.0" disabledeltatime="true">
+        <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionDebris1.ogg" range="5000" />
+        <Explosion range="150.0" ballastfloradamage="50" force="6" applyfireeffects="true" ignorefireeffectsfortags="incendiumfueltank">
+          <Affliction identifier="burn" strength="100" />
+          <Affliction identifier="stun" strength="10" />
+        </Explosion>
+      </StatusEffect>
+      <ParticleEmitter particle="plasma" particlespersecond="70" copyentityangle="true" scalemin="2" scalemax="2" />
+      <ParticleEmitterHitStructure particle="plasmaspark" particlespersecond="150" anglemin="-40" anglemax="40" velocitymin="30" velocitymax="100" />
+      <ParticleEmitterHitStructure particle="plasmasmoke" particlespersecond="4" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="20" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="plasmaspark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="plasmasmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <ParticleEmitterHitItem identifiers="ore" particle="iceshards" particlespersecond="5" anglemin="-40" anglemax="40" velocitymin="10" velocitymax="300" scalemin="0.5" scalemax="1.0" />
+      <ParticleEmitterHitCharacter particle="fleshsmoke" particlespersecond="20" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <sound file="%ModDir%/Workshop/Barotraumatic/Items/Tools/PlasmaTorcher.ogg" type="OnUse" range="400" loop="true" />
+      <Fixable identifier="structure" />
+      <RequiredSkill identifier="mechanical" level="30" />
+      <StatusEffect type="OnFailure" targettype="Contained" targets="oxygentank" Condition="-10.0" />
+      <StatusEffect type="OnFailure" targettype="Contained" targets="oxygenitetank" Condition="-3" />
+      <LightComponent LightColor="0.8,0.7,1.0,1.0" Flicker="0.5">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>
+    </RepairTool>
+    <SkillRequirementHint identifier="mechanical" level="30" />
+    <ItemContainer capacity="2" maxstacksize="1" hideitems="true" itempos="-70,0" itemrotation="-90" containedspritedepth="0.56">
+      <Containable items="weldingtoolfuel,oxygensource" />
+      <Containable identifiers="batterycell,fulguriumbatterycell" />
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="0,157,92,27" origin="0.5,0.45" />
+      <SlotIcon slotindex="1" texture="Content/UI/ContainerIndicators.png" sourcerect="3,187,118,27" origin="0.5,0.45" />
+    </ItemContainer>
+    <aitarget sightrange="2000" soundrange="500" fadeouttime="3" />
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <Upgrade gameversion="0.14.0.0">
+      <RepairTool>
+        <RequiredItems identifier="oxygensource,weldingtoolfuel" type="Contained" msg="ItemMsgOxygenTankRequired" />
+      </RepairTool>
+    </Upgrade>
+  </Item>
+  <Item name="Plasma Torcher" identifier="plasmaflamethrower" category="Equipment" Tags="mediumitem,weapon" description="A modified plasma cutter that uses an unstable jet of ionized gas as a crude form of flamethrower." impacttolerance="3" scale=".25">
+  <Fabricate suitablefabricators="fabricator" requiredtime="18">
+	<RequiredSkill identifier="mechanical" level="55" />
+	  <RequiredItem identifier="incendium" />
+	  <RequiredItem identifier="titaniumaluminiumalloy" />
+	  <RequiredItem identifier="titaniumaluminiumalloy" />
+	  <RequiredItem identifier="phosphorus" />
+	  <RequiredItem identifier="plasmacutter" />
+	</Fabricate>
+    <Deconstruct time="10">
+	  <Item identifer="carbon"/>
+	  <Item identifer="titaniumaluminiumalloy"/>
+	  <Item identifer="steel"/>
+    </Deconstruct>    
+    <Sprite texture="%ModDir%/Workshop/Barotraumatic/Items/Tools/weapons_new2.png" sourcerect="0,65,396,111" depth="0.55"/>
+      <InventoryIcon texture="%ModDir%/Workshop/Barotraumatic/Items/Tools/weapons_new2.png" sourcerect="0,65,396,111" origin="0.5,0.5" />
+    <Body width="76" height="16" density="40"/>
+    <RepairTool structurefixamount="-0.065" range="350" barrelpos="45,10" combatpriority="30" repairthroughholes="true">
+      <RequiredItems items="oxygentank,oxygenitetank,weldingfueltank,incendiumfueltank" type="Contained" msg="ItemMsgOxygenTankRequired" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="oxygentank" Condition="-1.0" />
+      <StatusEffect type="OnUse" targettype="Contained" targets="oxygenitetank" Condition="-0.5" />
+      <StatusEffect type="OnUse" targettype="UseTarget" targets="door,ductblock,aliendoor" Stuck="-20.0" Condition="-3.0" />
+      <StatusEffect type="OnUse" targettype="UseTarget" Condition="-3.0" />
+      <StatusEffect type="OnUse" targettype="UseTarget" >        
+        <Affliction identifier="burn" amount="2.45" />
+        <Affliction identifier="internaldamage" amount="2" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="Contained" targets="weldingfueltank,incendiumfueltank" delay="1.0" stackable="false" Condition="-100.0" disabledeltatime="true">
+        <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionDebris1.ogg" range="5000" />
+        <Explosion range="250.0" structuredamage="25" force="3.0">
+          <Affliction identifier="burn" strength="50" />
+          <Affliction identifier="stun" strength="5" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="Contained" targets="incendiumfueltank" delay="1.0" stackable="false" Condition="-100.0" disabledeltatime="true">
+        <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="5000" />
+        <sound file="Content/Items/Weapons/ExplosionDebris1.ogg" range="5000" />
+        <Explosion range="250.0" structuredamage="55" force="6.0">
+          <Affliction identifier="burn" strength="75" />
+          <Affliction identifier="stun" strength="5" />
+        </Explosion>
+      </StatusEffect>
+      <ParticleEmitter particle="plasma" particlespersecond="50" copyentityangle="true"/>
+      <ParticleEmitterHitStructure particle="plasmaspark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitStructure particle="plasmasmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="20" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="plasmaspark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+      <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="plasmasmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <ParticleEmitterHitItem identifiers="ore" particle="iceshards" particlespersecond="5" anglemin="-40" anglemax="40" velocitymin="10" velocitymax="300" scalemin="0.5" scalemax="1.0" />
+      <ParticleEmitterHitCharacter particle="fleshsmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+      <sound file="%ModDir%/Workshop/Barotraumatic/Items/Tools/PlasmaTorcher.ogg" type="OnUse" range="650.0" loop="true" />
+      <Fixable identifier="structure" />
+      <RequiredSkill identifier="mechanical" level="60" />
+      <StatusEffect type="OnFailure" targettype="Contained" targets="oxygentank" Condition="-3.0" />
+      <StatusEffect type="OnFailure" targettype="Contained" targets="oxygenitetank" Condition="-1.5" />
+      <LightComponent LightColor="0.8,0.7,1.0,1.0" Flicker="0.5">
+        <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+      </LightComponent>      
+    </RepairTool>
+     <ItemContainer capacity="1" hideitems="false" itempos="0,-39" containedspritedepth="0.56" maxstacksize="1">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,157,92,27" />
+      <Containable items="weldingfuel,oxygensource" />
+    </ItemContainer>	
+	<Holdable slots="RightHand+LeftHand,Any" controlpose="true"
+              holdpos="35,-10" aimpos="60,5" handle1="-15,-6" handle2="40,7"/>
+  </Item>-->
+</Items>

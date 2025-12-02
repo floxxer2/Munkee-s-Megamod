@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item identifier="mm_cloningmachine" name="" description="" scale="0.5" tags="largeitem" category="Machine" subcategory="Beast" linkable="false" allowedlinks="" damagedbyexplosions="false" explosiondamagemultiplier="0.0" allowasextracargo="false">
+    <Upgrade gameversion="0.10.4.0">
+      <Repairable Msg="ItemMsgRepairWrench" />
+    </Upgrade>
+    <Sprite name="C.M. Body" texture="%ModDir%/Megamod/Sprites/CloningMachine.png" sourcerect="202,0,219,254" depth="0.800" origin="0.5,0.5" />
+    <DecorativeSprite name="C.M. Spinny Thing" texture="%ModDir%/Megamod/Sprites/CloningMachine.png" depth="0.789" offset="0.0,0.0" sourcerect="0,58,200,196" origin="0.5,0.4" rotationspeed="400">
+      <AnimationConditional IsOn="True" targetitemcomponent="LightComponent" />
+      <IsActiveConditional Condition="gt 0.0" />
+    </DecorativeSprite>
+    <ItemContainer capacity="6" canbeselected="true" slotsperrow="3" uilabel="Rift Material" allowuioverlap="false">
+      <SlotIcon texture="%ModDir%/Megamod/Sprites/riftmatoutline.png" sourcerect="0,126,0,126" origin="0.5,0.5" />
+      <GuiFrame relativesize="0.25,0.25" anchor="Center" pivot="Center" style="ItemUI" />
+      <Containable items="riftmat" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <SlotIcon texture="%ModDir%/Megamod/Sprites/hypomaximoutline.png" sourcerect="0,126,0,126" origin="0.5,0.5" />
+        <Containable items="mm_hypomaximdevice" />
+      </SubContainer>
+    </ItemContainer>
+    <LightComponent range="0" lightcolor="0,0,0,0" flicker="0.0" powerconsumption="0" IsOn="false" castshadows="false" alphablend="false" allowingameediting="false">
+      <sprite texture="Content/Items/Electricity/lightsprite.png" origin="0.5,0.5" />
+    </LightComponent>
+    <CustomInterface canbeselected="true" allowuioverlap="false">
+      <GuiFrame style="ItemUI" absoluteoffset="0,300" anchor="BottomCenter" relativesize="0.1,0.15" />
+      <Button text="Start">
+        <StatusEffect type="OnUse" target="This">
+          <LuaHook name="mm.cloningstart" />
+        </StatusEffect>
+      </Button>
+      <Button text="Stop">
+        <StatusEffect type="OnUse" target="This">
+          <LuaHook name="mm.cloningstop" />
+        </StatusEffect>
+      </Button>
+    </CustomInterface>
+    <ConnectionPanel selectkey="Action" canbeselected="true" hudpriority="10" msg="ItemMsgRewireScrewdriver">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel"/>
+      <RequiredSkill identifier="electrical" level="55" />
+      <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        <Affliction identifier="stun" strength="4" probability="0.5" />
+        <Affliction identifier="electricshock" strength="60"/>
+        <Affliction identifier="burn" strength="5" />
+        <ParticleEmitter particle="ElectricShock" DistanceMin="10" DistanceMax="25" ParticleAmount="5" ScaleMin="0.1" ScaleMax="0.12" />
+      </StatusEffect>
+      <RequiredItem items="screwdriver" type="Equipped"/>
+      <!-- Controlled by Lua -->
+      <input name="power_in" displayname="connection.powerin"/>
+      <output name="status_out" displayname="STATUS_OUT" />
+      <output name="clonee_out" displayname="CLONEE_OUT" />
+      <output name="time_out" displayname="TIME_OUT" />
+      <output name="riftcost_out" displayname="RIFTCOST_OUT" />
+    </ConnectionPanel>
+  </Item>
+  <Item name="" identifier="mm_hypomaximdevice" category="Medical" subcategory="Beast" maxstacksize="1" maxstacksizecharacterinventory="1" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <Fabricate suitablefabricators="medicalfabricator" requiredtime="50">
+      <RequiredSkill identifier="medical" level="80" />
+      <RequiredItem identifier="fulgurium" />
+    </Fabricate>
+    <Deconstruct time="20"/>
+    <InventoryIcon texture="%ModDir%/Megamod/Sprites/InventoryItemIconAtlas.png" sourcerect="402,14,46,53" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="734,26,37,68" depth="0.6" origin="0.5,0.5" />
+    <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
+    <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+      <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
+        <LuaHook name="mm.hypomaximUse" />
+      </StatusEffect>
+      <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
+        <LuaHook name="mm.hypomaximUse" />
+      </StatusEffect>
+      <StatusEffect type="OnSuccess" target="UseTarget">
+        <Conditional entitytype="eq Character" />
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+      </StatusEffect>
+      <StatusEffect type="OnFailure" target="UseTarget">
+        <Conditional entitytype="eq Character" />
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget" multiplyafflictionsbymaxvitality="true" AllowWhenBroken="true">
+        <Affliction identifier="stun" amount="0.1" />
+      </StatusEffect>
+    </MeleeWeapon>
+    <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="false">
+      <GuiFrame style="ItemUI" absoluteoffset="200,-100" anchor="BottomCenter" relativesize="0.1,0.1" />
+      <Button text="Info">
+        <StatusEffect type="OnUse" target="This">
+          <LuaHook name="mm.hypomaximInfo" />
+        </StatusEffect>
+      </Button>
+      <Button text="Reset">
+        <StatusEffect type="OnUse" target="This">
+          <LuaHook name="mm.hypomaximReset" />
+        </StatusEffect>
+      </Button>
+      <Button text="Mode">
+        <StatusEffect type="OnUse" target="This">
+          <LuaHook name="mm.hypomaximMode" />
+        </StatusEffect>
+      </Button>
+    </CustomInterface>
+  </Item>
+</Items>

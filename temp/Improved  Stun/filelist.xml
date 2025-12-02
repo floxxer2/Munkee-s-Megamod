@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Improved  Stun" modversion="5.6" corepackage="False" steamworkshopid="3005836987" gameversion="1.4.5.0" expectedhash="A4A8846992351B1AE331458101AE2EB6">
+  <Afflictions file="%ModDir%/stun.xml" />
+  <Item file="%ModDir%/items.xml" />
+  <Text file="%ModDir%/eng.xml" />
+  <Text file="%ModDir%/rus.xml" />
+</contentpackage>

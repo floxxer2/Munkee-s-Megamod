@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!-- CC's Sign 1 -->
+  <Item name="" description="No entry Sign " identifier="CCD_NED" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls1.png" sourcerect="1375,698,113,50" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Sign 2 -->
+  <Item name="" description="Emergency Exit Sign " identifier="CCD_EED" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls1.png" sourcerect="1377,835,76,55" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Sign 3 -->
+  <Item name="" description="Resperators Required Sign " identifier="CCD_RRD" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls1.png" sourcerect="1376,754,158,78" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Sign 4 -->
+  <Item name="" description="Biohazard Sign " identifier="CCD_BHS" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1474,976,88,44" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Sign 5 -->
+  <Item name="" description="Biohazard Sign 1" identifier="CCD_BHS1" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1474,1020,88,44" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Decal -->
+  <Item name="" description="Caution decal  RU/ENG" identifier="CCD_RuEng-CD" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1565,982,151,79" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Periodic system -->
+  <Item name="" description="Periodic system of chemical elements RU" identifier="CCD_Ru-PeriodicSystem" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1567,813,225,163" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Timesheet Calendar -->
+  <Item name="" description="Timesheet Calendar RU" identifier="CCD_Ru-TimesheetCalender" width="500" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1387,813,179,163" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Door -->
+  <Item name="" description="Changes depending on condition: 100,50" identifier="CCD_LBD" width="114" height="226" scale="0.95" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls1.png" sourcerect="1375,234,113,226" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls1.png" name="CC's LBD" depth="0.96" sourcerect="1375,234,113,226" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls1.png" name="CC's GD" depth="0.96" sourcerect="1375,465,113,226" origin="0.5,0.5" maxcondition="50" />
+  </Item>
+  <!-- CC's Door -->
+  <Item name="" description="Hermodoor" identifier="CCD_HD" width="228" height="228" scale="0.95" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="2,460,228,228" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Door -->
+  <Item name="" description="Industrial Gate" identifier="CCD_IG" width="455" height="228" scale="0.95" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="3,689,455,227" depth="0.96" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Tree -->
+  <Item name="" description="Changes depending on condition: 0-25,26-50,51-75,76-100" identifier="CCD_DefT" width="562" height="908" scale="0.6" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees.png" sourcerect="0,0,380,579" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees.png" name="CC's Tree1" depth="0.7" sourcerect="0,0,380,579" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees.png" name="CC's Tree2" depth="0.7" sourcerect="380,0,345,579" origin="0.5,0.5" maxcondition="75" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees.png" name="CC's Tree3" depth="0.7" sourcerect="725,0,437,579" origin="0.5,0.5" maxcondition="50" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees.png" name="CC's Tree3" depth="0.7" sourcerect="1209,549,117,91" origin="0.5,0.5" maxcondition="25" />
+  </Item>
+  <!-- CC's Tree Trunks -->
+  <Item name="" description="Changes depending on condition: 0-50,51-75,76-100" identifier="CCD_DefTT" width="28" height="111" scale="0.6" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees 2.png" sourcerect="0,0,28,69" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees 2.png" name="CC's TreeTrunk1" depth="0.7" sourcerect="0,0,28,69" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees 2.png" name="CC's TreeTrunk2" depth="0.7" sourcerect="37,0,24,111" origin="0.5,0.5" maxcondition="75" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/trees 2.png" name="CC's TreeTrunk3" depth="0.7" sourcerect="68,0,19,99" origin="0.5,0.5" maxcondition="50" />
+  </Item>
+  <!-- CC's Air Conditioner  -->
+  <Item name="" description="Changes depending on condition: 100,50" identifier="CCD_AC" width="107" height="76" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1387,1067,106,76" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's AC1" depth="0.7" sourcerect="1387,1067,106,76" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's AC2" depth="0.7" sourcerect="1494,1067,106,76" origin="0.5,0.5" maxcondition="50" />
+  </Item>
+  <!-- CC's Relay Antenna -->
+  <Item name="" description="Changes depending on condition: 100,75,50,25" identifier="CCD_RA" width="228" height="228" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1628,6,204,513" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's RA1" depth="0.7" sourcerect="1851,50,256,183" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's RA2" depth="0.7" sourcerect="1628,6,204,513" origin="0.5,0.5" maxcondition="75" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's RA3" depth="0.7" sourcerect="1849,249,122,250" origin="0.5,0.5" maxcondition="50" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's RA4" depth="0.7" sourcerect="1988,245,211,254" origin="0.5,0.5" maxcondition="25" />
+  </Item>
+  <!-- CC's Old Railing -->
+  <Item name="" description="Changes depending on condition: 100,75,50" identifier="CCD_OR" width="455" height="228" scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" sourcerect="1605,1076,461,68" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's OR1" depth="0.7" sourcerect="1605,1076,461,68" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's OR2" depth="0.7" sourcerect="1679,1076,307,68" origin="0.5,0.5" maxcondition="75" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="CC's OR3" depth="0.7" sourcerect="1754,1076,157,68" origin="0.5,0.5" maxcondition="50" />
+  </Item>
+  <!--Floor stuff-->
+  <!-- CC's DW Grass -->
+  <Item name="" nameidentifier="CCs_DWG_1335p_CORRECTED" description="1335 pixels long" identifier="CC's DWG_1335p" width="1335" height="90" scale="0.5" noninteractable="true" category="structure" hideinmenus="true" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/DirtD1.png" depth="0.001" sourcerect="21,405,1336,125" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's DW Grass -->
+  <Item name="" nameidentifier="CCs_DWG_446p_CORRECTED" description="446 pixels long" identifier="CC's DWG_446p" width="446" height="90" scale="0.5" noninteractable="true" category="structure" hideinmenus="true" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/DirtD1.png" depth="0.001" sourcerect="1365,403,448,131" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's DW Snow -->
+  <Item name="" nameidentifier="CCs_DWS_1335p_CORRECTED" description="1335 pixels long" identifier="CC's DWS_1335p" width="1335" height="90" scale="0.5" noninteractable="true" category="structure" hideinmenus="true" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/DirtD1.png" depth="0.001" sourcerect="22,314,1335,91" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's DW Snow -->
+  <Item name="" nameidentifier="CCs_DWS_446p_CORRECTED" description="446 pixels long" identifier="CC's DWS_446p" width="446" height="90" scale="0.5" noninteractable="true" category="structure" hideinmenus="true" subcategory="CC's">
+    <sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/DirtD1.png" depth="0.001" sourcerect="1366,310,447,92" origin="0.5,0.5" />
+  </Item>
+  <!--Agitation-->
+  <!-- CC's OTD Agitation Poster -->
+  <Item name="" nameidentifier="CCs_OTDAP_CORRECTED" description="Changes depending on condition: 100" identifier="CC's OTDAP" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Agit.png" depth="0.8" sourcerect="2,2,405,604" canflipy="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Agit.png" name="OTD AP1" depth="0.8" sourcerect="2,2,405,604" origin="0.5,0.5" maxcondition="100" />
+  </Item>
+  <!--Portraits-->
+  <!-- CC's OTD Portrait -->
+  <Item name="" nameidentifier="CCs_OTDP_CORRECTED" description="Changes depending on condition: 6,12,18,24,30,36,42,48,54,60,66,72,78,84,90,100" identifier="CC's OTDP" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" depth="0.8" sourcerect="7,8,209,307" canflipy="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P1" depth="0.8" sourcerect="7,8,209,307" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P2" depth="0.8" sourcerect="218,8,209,307" origin="0.5,0.5" maxcondition="90" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P3" depth="0.8" sourcerect="429,8,209,307" origin="0.5,0.5" maxcondition="84" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P4" depth="0.8" sourcerect="640,8,209,308" origin="0.5,0.5" maxcondition="78" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P5" depth="0.8" sourcerect="851,8,209,309" origin="0.5,0.5" maxcondition="72" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P6" depth="0.8" sourcerect="1062,8,208,310" origin="0.5,0.5" maxcondition="66" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P7" depth="0.8" sourcerect="1273,8,209,311" origin="0.5,0.5" maxcondition="60" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P8" depth="0.8" sourcerect="1484,8,209,312" origin="0.5,0.5" maxcondition="54" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P9" depth="0.8" sourcerect="7,379,209,307" origin="0.5,0.5" maxcondition="48" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P10" depth="0.8" sourcerect="218,379,209,307" origin="0.5,0.5" maxcondition="42" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P11" depth="0.8" sourcerect="429,379,209,309" origin="0.5,0.5" maxcondition="36" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P12" depth="0.8" sourcerect="640,380,209,309" origin="0.5,0.5" maxcondition="30" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P13" depth="0.8" sourcerect="851,381,209,309" origin="0.5,0.5" maxcondition="24" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P14" depth="0.8" sourcerect="1061,383,210,308" origin="0.5,0.5" maxcondition="18" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P15" depth="0.8" sourcerect="1273,384,209,308" origin="0.5,0.5" maxcondition="12" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD P16" depth="0.8" sourcerect="1483,386,209,307" origin="0.5,0.5" maxcondition="6" />
+  </Item>
+  <!-- CC's OTD Tablo -->
+  <Item name="" nameidentifier="CCs_OTDT_CORRECTED" identifier="CC's OTDT" description="Changes depending on condition: 0-6,7-12,13-18,19-24,25-30,31-36,37-42,43-48,49-54,55-60,61-66,67-72,73-78,79-84,85-90,91-100" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" depth="0.8" sourcerect="7,316,209,62" canflipy="false" origin="0.5,0.5" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T1" depth="0.8" sourcerect="7,316,209,62" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T2" depth="0.8" sourcerect="217,316,209,62" origin="0.5,0.5" maxcondition="90" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T3" depth="0.8" sourcerect="428,316,209,62" origin="0.5,0.5" maxcondition="84" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T4" depth="0.8" sourcerect="639,317,209,62" origin="0.5,0.5" maxcondition="78" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T5" depth="0.8" sourcerect="850,318,209,62" origin="0.5,0.5" maxcondition="72" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T6" depth="0.8" sourcerect="1061,319,209,62" origin="0.5,0.5" maxcondition="66" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T7" depth="0.8" sourcerect="1272,320,209,62" origin="0.5,0.5" maxcondition="60" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T8" depth="0.8" sourcerect="1483,321,209,62" origin="0.5,0.5" maxcondition="54" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T9" depth="0.8" sourcerect="6,688,209,62" origin="0.5,0.5" maxcondition="48" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T10" depth="0.8" sourcerect="217,688,209,62" origin="0.5,0.5" maxcondition="42" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T11" depth="0.8" sourcerect="428,689,209,62" origin="0.5,0.5" maxcondition="36" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T12" depth="0.8" sourcerect="639,690,209,62" origin="0.5,0.5" maxcondition="30" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T13" depth="0.8" sourcerect="850,691,209,62" origin="0.5,0.5" maxcondition="24" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T14" depth="0.8" sourcerect="1061,692,209,62" origin="0.5,0.5" maxcondition="18" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T15" depth="0.8" sourcerect="1272,693,209,62" origin="0.5,0.5" maxcondition="12" />
+    <BrokenSprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/OTD Portraits.png" name="OTD T16" depth="0.8" sourcerect="1483,694,209,62" origin="0.5,0.5" maxcondition="6" />
+  </Item>
+  <!-- Алфавит РУ -->
+  <!-- CC's RUS Alphabet-А -->
+  <Item name="" nameidentifier="CCs_RUA1_CORRECTED" identifier="CC's RUA1" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 1" depth="0.8" sourcerect="1389,522,33,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Б -->
+  <Item name="" nameidentifier="CCs_RUA2_CORRECTED" identifier="CC's RUA2" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 2" depth="0.8" sourcerect="1428,522,32,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-В -->
+  <Item name="" nameidentifier="CCs_RUA3_CORRECTED" identifier="CC's RUA3" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 3" depth="0.8" sourcerect="1466,522,34,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Г -->
+  <Item name="" nameidentifier="CCs_RUA4_CORRECTED" identifier="CC's RUA4" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 4" depth="0.8" sourcerect="1503,522,25,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Д -->
+  <Item name="" nameidentifier="CCs_RUA5_CORRECTED" identifier="CC's RUA5" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 5" depth="0.8" sourcerect="1530,522,43,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Е -->
+  <Item name="" nameidentifier="CCs_RUA6_CORRECTED" identifier="CC's RUA6" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 6" depth="0.8" sourcerect="1574,522,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ё -->
+  <Item name="" nameidentifier="CCs_RUA7_CORRECTED" identifier="CC's RUA7" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 7" depth="0.8" sourcerect="1607,522,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ж -->
+  <Item name="" nameidentifier="CCs_RUA8_CORRECTED" identifier="CC's RUA8" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 8" depth="0.8" sourcerect="1635,522,55,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-З -->
+  <Item name="" nameidentifier="CCs_RUA9_CORRECTED" identifier="CC's RUA9" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 9" depth="0.8" sourcerect="1692,522,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-И -->
+  <Item name="" nameidentifier="CCs_RUA10_CORRECTED" identifier="CC's RUA10" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 10" depth="0.8" sourcerect="1725,522,37,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Й -->
+  <Item name="" nameidentifier="CCs_RUA11_CORRECTED" identifier="CC's RUA11" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 11" depth="0.8" sourcerect="1768,522,37,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-К -->
+  <Item name="" nameidentifier="CCs_RUA12_CORRECTED" identifier="CC's RUA12" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 12" depth="0.8" sourcerect="1811,522,35,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Л -->
+  <Item name="" nameidentifier="CCs_RUA13_CORRECTED" identifier="CC's RUA13" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 13" depth="0.8" sourcerect="1847,522,35,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-М -->
+  <Item name="" nameidentifier="CCs_RUA14_CORRECTED" identifier="CC's RUA14" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 14" depth="0.8" sourcerect="1884,522,47,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Н -->
+  <Item name="" nameidentifier="CCs_RUA15_CORRECTED" identifier="CC's RUA15" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 15" depth="0.8" sourcerect="1937,522,36,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-О -->
+  <Item name="" nameidentifier="CCs_RUA16_CORRECTED" identifier="CC's RUA16" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 16" depth="0.8" sourcerect="1973,522,37,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-П -->
+  <Item name="" nameidentifier="CCs_RUA17_CORRECTED" identifier="CC's RUA17" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 17" depth="0.8" sourcerect="2016,522,36,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Р -->
+  <Item name="" nameidentifier="CCs_RUA18_CORRECTED" identifier="CC's RUA18" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 18" depth="0.8" sourcerect="2060,522,31,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-С -->
+  <Item name="" nameidentifier="CCs_RUA19_CORRECTED" identifier="CC's RUA19" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 19" depth="0.8" sourcerect="2097,522,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Т -->
+  <Item name="" nameidentifier="CCs_RUA20_CORRECTED" identifier="CC's RUA20" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 20" depth="0.8" sourcerect="2157,522,35,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-У -->
+  <Item name="" nameidentifier="CCs_RUA21_CORRECTED" identifier="CC's RUA21" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 21" depth="0.8" sourcerect="2196,522,50,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ф -->
+  <Item name="" nameidentifier="CCs_RUA22_CORRECTED" identifier="CC's RUA22" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 22" depth="0.8" sourcerect="2196,522,50,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Х -->
+  <Item name="" nameidentifier="CCs_RUA23_CORRECTED" identifier="CC's RUA23" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 23" depth="0.8" sourcerect="1386,594,39,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ц -->
+  <Item name="" nameidentifier="CCs_RUA24_CORRECTED" identifier="CC's RUA24" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 24" depth="0.8" sourcerect="1427,594,39,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ч -->
+  <Item name="" nameidentifier="CCs_RUA25_CORRECTED" identifier="CC's RUA25" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 25" depth="0.8" sourcerect="1468,594,33,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ш -->
+  <Item name="" nameidentifier="CCs_RUA26_CORRECTED" identifier="CC's RUA26" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 26" depth="0.8" sourcerect="1507,594,47,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Щ -->
+  <Item name="" nameidentifier="CCs_RUA27_CORRECTED" identifier="CC's RUA27" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 27" depth="0.8" sourcerect="1558,594,52,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ъ -->
+  <Item name="" nameidentifier="CCs_RUA28_CORRECTED" identifier="CC's RUA28" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 28" depth="0.8" sourcerect="1611,594,43,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ы -->
+  <Item name="" nameidentifier="CCs_RUA29_CORRECTED" identifier="CC's RUA29" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 29" depth="0.8" sourcerect="1658,594,48,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ь -->
+  <Item name="" nameidentifier="CCs_RUA30_CORRECTED" identifier="CC's RUA30" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 30" depth="0.8" sourcerect="1710,594,33,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Э -->
+  <Item name="" nameidentifier="CCs_RUA31_CORRECTED" identifier="CC's RUA31" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 31" depth="0.8" sourcerect="1746,594,31,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Ю -->
+  <Item name="" nameidentifier="CCs_RUA32_CORRECTED" identifier="CC's RUA32" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 32" depth="0.8" sourcerect="1781,594,53,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's RUS Alphabet-Я -->
+  <Item name="" nameidentifier="CCs_RUA33_CORRECTED" identifier="CC's RUA33" description="Letter from a Russian (Cyrillic) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter 33" depth="0.8" sourcerect="1837,594,37,68" origin="0.5,0.5" />
+  </Item>
+  <!-- Alphabet ENG -->
+  <!-- CC's Eng Alphabet-A -->
+  <Item name="" nameidentifier="CCs_ENGA1_CORRECTED" identifier="CC's ENGA1" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e1" depth="0.8" sourcerect="1389,666,33,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-B -->
+  <Item name="" nameidentifier="CCs_ENGA2_CORRECTED" identifier="CC's ENGA2" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e2" depth="0.8" sourcerect="1428,666,34,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-C -->
+  <Item name="" nameidentifier="CCs_ENGA3_CORRECTED" identifier="CC's ENGA3" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e3" depth="0.8" sourcerect="1468,666,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-D -->
+  <Item name="" nameidentifier="CCs_ENGA4_CORRECTED" identifier="CC's ENGA4" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e4" depth="0.8" sourcerect="1499,666,33,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-E -->
+  <Item name="" nameidentifier="CCs_ENGA5_CORRECTED" identifier="CC's ENGA5" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e5" depth="0.8" sourcerect="1539,666,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-F -->
+  <Item name="" nameidentifier="CCs_ENGA6_CORRECTED" identifier="CC's ENGA6" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e6" depth="0.8" sourcerect="1572,666,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-G -->
+  <Item name="" nameidentifier="CCs_ENGA7_CORRECTED" identifier="CC's ENGA7" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e7" depth="0.8" sourcerect="1603,666,34,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-H -->
+  <Item name="" nameidentifier="CCs_ENGA8_CORRECTED" identifier="CC's ENGA8" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e8" depth="0.8" sourcerect="1640,666,36,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-I -->
+  <Item name="" nameidentifier="CCs_ENGA9_CORRECTED" identifier="CC's ENGA9" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e9" depth="0.8" sourcerect="1683,666,13,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-J -->
+  <Item name="" nameidentifier="CCs_ENGA10_CORRECTED" identifier="CC's ENGA10" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e10" depth="0.8" sourcerect="1700,666,26,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-K -->
+  <Item name="" nameidentifier="CCs_ENGA11_CORRECTED" identifier="CC's ENGA11" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e11" depth="0.8" sourcerect="1733,666,35,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-L -->
+  <Item name="" nameidentifier="CCs_ENGA12_CORRECTED" identifier="CC's ENGA12" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e12" depth="0.8" sourcerect="1770,666,25,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-M -->
+  <Item name="" nameidentifier="CCs_ENGA13_CORRECTED" identifier="CC's ENGA13" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e13" depth="0.8" sourcerect="1799,666,47,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-N -->
+  <Item name="" nameidentifier="CCs_ENGA14_CORRECTED" identifier="CC's ENGA14" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e14" depth="0.8" sourcerect="1851,666,41,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-O -->
+  <Item name="" nameidentifier="CCs_ENGA15_CORRECTED" identifier="CC's ENGA15" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e15" depth="0.8" sourcerect="1898,666,33,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-P -->
+  <Item name="" nameidentifier="CCs_ENGA16_CORRECTED" identifier="CC's ENGA16" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e16" depth="0.8" sourcerect="1937,666,32,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-Q -->
+  <Item name="" nameidentifier="CCs_ENGA17_CORRECTED" identifier="CC's ENGA17" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e17" depth="0.8" sourcerect="1974,666,36,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-R -->
+  <Item name="" nameidentifier="CCs_ENGA18_CORRECTED" identifier="CC's ENGA18" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e18" depth="0.8" sourcerect="2013,666,36,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-S -->
+  <Item name="" nameidentifier="CCs_ENGA19_CORRECTED" identifier="CC's ENGA19" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e19" depth="0.8" sourcerect="2051,666,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-T -->
+  <Item name="" nameidentifier="CCs_ENGA20_CORRECTED" identifier="CC's ENGA20" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e20" depth="0.8" sourcerect="2080,666,32,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-U -->
+  <Item name="" nameidentifier="CCs_ENGA21_CORRECTED" identifier="CC's ENGA21" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e21" depth="0.8" sourcerect="2114,666,35,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-V -->
+  <Item name="" nameidentifier="CCs_ENGA22_CORRECTED" identifier="CC's ENGA22" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e22" depth="0.8" sourcerect="2152,666,38,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-W -->
+  <Item name="" nameidentifier="CCs_ENGA23_CORRECTED" identifier="CC's ENGA23" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e23" depth="0.8" sourcerect="2191,666,55,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-X -->
+  <Item name="" nameidentifier="CCs_ENGA24_CORRECTED" identifier="CC's ENGA24" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e24" depth="0.8" sourcerect="1386,738,39,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-Y -->
+  <Item name="" nameidentifier="CCs_ENGA25_CORRECTED" identifier="CC's ENGA25" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e25" depth="0.8" sourcerect="1428,738,35,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Eng Alphabet-Z -->
+  <Item name="" nameidentifier="CCs_ENGA26_CORRECTED" identifier="CC's ENGA26" description="Letter from an English (Roman) alphabet" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Letter e26" depth="0.8" sourcerect="1463,738,33,68" origin="0.5,0.5" />
+  </Item>
+  <!-- Symbols / Символы -->
+  <!-- CC's Number 1 -->
+  <Item name="" nameidentifier="CCs_Number_1_CORRECTED" identifier="CC's Number 1" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 1" depth="0.8" sourcerect="1890,594,21,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 2 -->
+  <Item name="" nameidentifier="CCs_Number_2_CORRECTED" identifier="CC's Number 2" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 2" depth="0.8" sourcerect="1916,594,27,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 3 -->
+  <Item name="" nameidentifier="CCs_Number_3_CORRECTED" identifier="CC's Number 3" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 3" depth="0.8" sourcerect="1949,594,28,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 4 -->
+  <Item name="" nameidentifier="CCs_Number_4_CORRECTED" identifier="CC's Number 4" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 4" depth="0.8" sourcerect="1980,594,30,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 5 -->
+  <Item name="" nameidentifier="CCs_Number_5_CORRECTED" identifier="CC's Number 5" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 5" depth="0.8" sourcerect="2015,594,29,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 6 -->
+  <Item name="" nameidentifier="CCs_Number_6_CORRECTED" identifier="CC's Number 6" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 6" depth="0.8" sourcerect="2050,594,30,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 7 -->
+  <Item name="" nameidentifier="CCs_Number_7_CORRECTED" identifier="CC's Number 7" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 7" depth="0.8" sourcerect="2085,594,31,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 8 -->
+  <Item name="" nameidentifier="CCs_Number_8_CORRECTED" identifier="CC's Number 8" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 8" depth="0.8" sourcerect="2118,594,30,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 9 -->
+  <Item name="" nameidentifier="CCs_Number_9_CORRECTED" identifier="CC's Number 9" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 9" depth="0.8" sourcerect="2154,594,30,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Number 0   -->
+  <Item name="" nameidentifier="CCs_Number_0_CORRECTED" identifier="CC's Number 0" description="A regular Number" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Number 0" depth="0.8" sourcerect="2190,594,31,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol ! -->
+  <Item name="" nameidentifier="CCs_Symbol_1_CORRECTED" identifier="CC's Symbol 1" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 1" depth="0.8" sourcerect="1508,738,13,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol » -->
+  <Item name="" nameidentifier="CCs_Symbol_2_CORRECTED" identifier="CC's Symbol 2" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 2" depth="0.8" sourcerect="1524,738,30,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol № -->
+  <Item name="" nameidentifier="CCs_Symbol_3_CORRECTED" identifier="CC's Symbol 3" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 3" depth="0.8" sourcerect="1558,738,50,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol % -->
+  <Item name="" nameidentifier="CCs_Symbol_4_CORRECTED" identifier="CC's Symbol 4" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 4" depth="0.8" sourcerect="1612,738,47,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol ? -->
+  <Item name="" nameidentifier="CCs_Symbol_5_CORRECTED" identifier="CC's Symbol 5" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 5" depth="0.8" sourcerect="1663,738,28,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol ＆ -->
+  <Item name="" nameidentifier="CCs_Symbol_6_CORRECTED" identifier="CC's Symbol 6" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 6" depth="0.8" sourcerect="1695,738,38,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol ( -->
+  <Item name="" nameidentifier="CCs_Symbol_7_CORRECTED" identifier="CC's Symbol 7" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 7" depth="0.8" sourcerect="1735,738,15,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol - -->
+  <Item name="" nameidentifier="CCs_Symbol_8_CORRECTED" identifier="CC's Symbol 8" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 8" depth="0.8" sourcerect="1753,738,21,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol _ -->
+  <Item name="" nameidentifier="CCs_Symbol_9_CORRECTED" identifier="CC's Symbol 9" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 9" depth="0.8" sourcerect="1774,738,30,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol + -->
+  <Item name="" nameidentifier="CCs_Symbol_10_CORRECTED" identifier="CC's Symbol 10" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 10" depth="0.8" sourcerect="1804,738,28,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol ] -->
+  <Item name="" nameidentifier="CCs_Symbol_11_CORRECTED" identifier="CC's Symbol 11" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 11" depth="0.8" sourcerect="1833,738,18,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol } -->
+  <Item name="" nameidentifier="CCs_Symbol_12_CORRECTED" identifier="CC's Symbol 12" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 12" depth="0.8" sourcerect="1855,738,22,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol / -->
+  <Item name="" nameidentifier="CCs_Symbol_13_CORRECTED" identifier="CC's Symbol 13" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 13" depth="0.8" sourcerect="1891,738,20,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol &gt; -->
+  <Item name="" nameidentifier="CCs_Symbol_14_CORRECTED" identifier="CC's Symbol 14" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 14" depth="0.8" sourcerect="1914,738,25,68" origin="0.5,0.5" />
+  </Item>
+  <!-- CC's Symbol . -->
+  <Item name="" nameidentifier="CCs_Symbol_15_CORRECTED" identifier="CC's Symbol 15" description="A simple symbol" Scale="0.5" noninteractable="true" category="Decorative" subcategory="CC's">
+    <Sprite texture="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/Walls2.png" name="Symbol 15" depth="0.8" sourcerect="1942,738,10,68" origin="0.5,0.5" />
+  </Item>
+</Items>

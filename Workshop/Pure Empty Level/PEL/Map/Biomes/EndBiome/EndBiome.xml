@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LevelGenerationParameters>
+  <Override>
+    <EndLocationBasic identifier="endlocationbasic" commonness="0" />
+    <EndLocationOutpost identifier="endlocationoutpost" commonness="0" />
+  </Override>
+</LevelGenerationParameters>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <sounds>
+    <footstep_armor_exosuit file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExosuit1.ogg" volume="1.5" range="700" />
+    <footstep_armor_exosuit file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExosuit2.ogg" volume="1.5" range="700" />
+    <footstep_armor_exosuit file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExosuit3.ogg" volume="1.5" range="700" />
+    <footstep_armor_exosuit file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExosuit4.ogg" volume="1.5" range="700" />
+    <footstep_armor_exosuit_clown file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExoClown1.ogg" volume="1.5" range="700" />
+    <footstep_armor_exosuit_clown file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExoClown2.ogg" volume="1.5" range="700" />
+    <footstep_armor_exosuit_clown file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExoClown3.ogg" volume="1.5" range="700" />
+    <footstep_armor_exosuit_clown file="%ModDir:3074045632%/Content/Sounds/Footsteps/Armor/FootstepExoClown4.ogg" volume="1.5" range="700" />
+  </sounds>
+</Override>

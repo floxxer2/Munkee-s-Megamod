@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!--
+	Grass
+  -->
+  <item name="Dead Grass" description="" identifier="nev_deadgrass1a" width="1335" height="90" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Environment/deadgrass.png" depth="0.001" sourcerect="21,405,1336,125" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Grass" description="" identifier="nev_deadgrass1b" width="446" height="90" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Environment/deadgrass.png" depth="0.001" sourcerect="1365,403,448,131" origin="0.5,0.5" />
+  </item>
+  <!--
+	Trees
+  -->
+  <item name="Tree" description="tree1" identifier="nev_tree1" width="724" height="900" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree1.png" sourcerect="0,0,724,900" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree2" identifier="nev_tree2" width="536" height="700" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree2.png" sourcerect="0,0,536,700" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree3" identifier="nev_tree3" width="500" height="736" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree3.png" sourcerect="0,0,500,736" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree4" identifier="nev_tree4" width="740" height="792" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree4.png" sourcerect="0,0,740,792" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree5" identifier="nev_tree5" width="600" height="700" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree5.png" sourcerect="0,0,600,700" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree6" identifier="nev_tree6" width="600" height="1200" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree6.png" sourcerect="0,0,600,1200" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Tree" description="tree7" identifier="nev_tree7" width="514" height="1014" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree7.png" sourcerect="0,0,514,1014" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree8" identifier="nev_tree8" width="420" height="612" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree8.png" sourcerect="0,0,420,612" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Tree" description="tree9" identifier="nev_tree9" width="688" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree9.png" sourcerect="0,0,688,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Tree" description="tree10" identifier="nev_tree10" width="752" height="924" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree10.png" sourcerect="0,0,752,924" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Snowy Pine Tree" description="tree11" identifier="nev_tree11" width="651" height="897" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree11.png" sourcerect="0,0,651,897" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Tree" description="tree12" identifier="nev_tree12" width="712" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree12.png" sourcerect="0,0,712,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Snowy Pine Tree" description="tree13" identifier="nev_tree13" width="1024" height="1024" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree13.png" sourcerect="0,0,1024,1024" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree14" identifier="nev_tree14" width="736" height="1024" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree14.png" sourcerect="0,0,736,1024" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree15" identifier="nev_tree15" width="644" height="1400" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree15.png" sourcerect="0,0,644,1400" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree16" identifier="nev_tree16" width="800" height="816" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree16.png" sourcerect="0,0,800,816" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree17" identifier="nev_tree17" width="400" height="1092" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree17.png" sourcerect="0,0,400,1092" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree18" identifier="nev_tree18" width="368" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree18.png" sourcerect="0,0,368,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree19" identifier="nev_tree19" width="648" height="1200" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree19.png" sourcerect="0,0,648,1200" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree20" identifier="nev_tree20" width="740" height="1200" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree20.png" sourcerect="0,0,740,1200" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree21" identifier="nev_tree21" width="364" height="836" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree21.png" sourcerect="0,0,364,836" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Birch Tree" description="tree22" identifier="nev_tree22" width="324" height="544" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree22.png" sourcerect="0,0,324,544" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Birch Tree" description="tree23" identifier="nev_tree23" width="284" height="534" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree23.png" sourcerect="0,0,284,534" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Birch Tree" description="tree24" identifier="nev_tree24" width="284" height="544" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree24.png" sourcerect="0,0,284,544" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree25" identifier="nev_tree25" width="852" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree25.png" sourcerect="0,0,852,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree26" identifier="nev_tree26" width="480" height="1024" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree26.png" sourcerect="0,0,480,1024" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree27" identifier="nev_tree27" width="464" height="900" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree27.png" sourcerect="0,0,464,900" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Small Pine Tree" description="tree28" identifier="nev_tree28" width="400" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree28.png" sourcerect="0,0,400,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Small Pine Tree" description="tree29" identifier="nev_tree29" width="344" height="552" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree29.png" sourcerect="0,0,344,552" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree30" identifier="nev_tree30" width="96" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree30.png" sourcerect="0,0,96,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree31" identifier="nev_tree31" width="364" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree31.png" sourcerect="0,0,364,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree32" identifier="nev_tree32" width="224" height="1007" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree32.png" sourcerect="0,0,224,1007" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Snowy Pine Tree" description="tree33" identifier="nev_tree33" width="624" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree33.png" sourcerect="0,0,624,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Snowy Pine Tree" description="tree34" identifier="nev_tree34" width="256" height="512" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree34.png" sourcerect="0,0,256,512" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Snowy Pine Tree" description="tree35" identifier="nev_tree35" width="544" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree35.png" sourcerect="0,0,544,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree36" identifier="nev_tree36" width="486" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree36.png" sourcerect="0,0,486,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree37" identifier="nev_tree37" width="500" height="812" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree37.png" sourcerect="0,0,500,812" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Snowy Pine Tree" description="tree38" identifier="nev_tree38" width="580" height="944" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree38.png" sourcerect="0,0,580,944" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree39" identifier="nev_tree39" width="760" height="1200" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree39.png" sourcerect="0,0,760,1200" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree40" identifier="nev_tree40" width="376" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree40.png" sourcerect="0,0,376,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tree" description="tree41" identifier="nev_tree41" width="652" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/tree41.png" sourcerect="0,0,652,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	tall trees
+  -->
+  <item name="Tall Tree 1" description="talltree1" identifier="nev_talltree1" width="212" height="756" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/talltree1.png" sourcerect="0,0,212,756" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tall Tree 2" description="talltree2" identifier="nev_talltree2" width="216" height="764" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/talltree2.png" sourcerect="0,0,216,764" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tall Tree 3" description="talltree3" identifier="nev_talltree3" width="224" height="764" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/talltree3.png" sourcerect="0,0,224,764" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!-- 
+	dead trees
+  -->
+  <item name="Dead Tree" description="deadtree1" identifier="nev_deadtree1" width="524" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree1.png" sourcerect="0,0,524,600" depth="0.8" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree2" identifier="nev_deadtree2" width="336" height="524" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree2.png" sourcerect="0,0,336,524" depth="0.8" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree3" identifier="nev_deadtree3" width="272" height="516" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree3.png" sourcerect="0,0,272,516" depth="0.8" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree4" identifier="nev_deadtree4" width="315" height="510" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree4.png" sourcerect="0,0,315,510" depth="0.8" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree5" identifier="nev_deadtree5" width="458" height="512" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree5.png" sourcerect="0,0,458,512" depth="0.8" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree6" identifier="nev_deadtree6" width="208" height="524" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree6.png" sourcerect="0,0,208,524" depth="0.8" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree7" identifier="nev_deadtree7" width="200" height="568" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree7.png" sourcerect="0,0,200,568" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree8" identifier="nev_deadtree8" width="800" height="672" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree8.png" sourcerect="0,0,800,672" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree9" identifier="nev_deadtree9" width="964" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree9.png" sourcerect="0,0,964,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree10" identifier="nev_deadtree10" width="464" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree10.png" sourcerect="0,0,464,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree11" identifier="nev_deadtree11" width="256" height="764" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree11.png" sourcerect="0,0,256,764" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree12" identifier="nev_deadtree12" width="484" height="784" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree12.png" sourcerect="0,0,484,784" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree13" identifier="nev_deadtree13" width="588" height="916" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree13.png" sourcerect="0,0,588,916" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree Branch" description="deadtree14" identifier="nev_deadtree14" width="256" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree14.png" sourcerect="0,0,256,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Snowy Tree" description="deadtree15" identifier="nev_deadtree15" width="640" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree15.png" sourcerect="0,0,640,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree16" identifier="nev_deadtree16" width="1000" height="764" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree16.png" sourcerect="0,0,1000,764" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree17" identifier="nev_deadtree17" width="224" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree17.png" sourcerect="0,0,224,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree18" identifier="nev_deadtree18" width="1200" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree18.png" sourcerect="0,0,1200,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree19" identifier="nev_deadtree19" width="536" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree19.png" sourcerect="0,0,536,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree20" identifier="nev_deadtree20" width="964" height="964" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree20.png" sourcerect="0,0,964,964" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree21" identifier="nev_deadtree21" width="372" height="648" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree21.png" sourcerect="0,0,372,648" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree22" identifier="nev_deadtree22" width="262" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree22.png" sourcerect="0,0,262,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree23" identifier="nev_deadtree23" width="172" height="512" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree23.png" sourcerect="0,0,172,512" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree24" identifier="nev_deadtree24" width="596" height="504" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree24.png" sourcerect="0,0,596,504" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree25" identifier="nev_deadtree25" width="600" height="792" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree25.png" sourcerect="0,0,600,792" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Tree" description="deadtree26" identifier="nev_deadtree26" width="500" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadtree26.png" sourcerect="0,0,500,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	bushes
+  -->
+  <item name="Bush" description="bush1" identifier="nev_bush1" width="1200" height="403" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush1.png" sourcerect="0,0,1200,403" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Hedge Bush" description="bush2" identifier="nev_bush2" width="283" height="199" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush2.png" sourcerect="0,0,283,199" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Hedge Bush" description="bush3" identifier="nev_bush3" width="564" height="484" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush3.png" sourcerect="0,0,564,484" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Bush" description="bush4" identifier="nev_bush4" width="1200" height="400" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush4.png" sourcerect="0,0,1200,400" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Fern Bush" description="bush5" identifier="nev_bush5" width="400" height="200" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush5.png" sourcerect="0,0,400,200" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Bush" description="bush6" identifier="nev_bush6" width="500" height="376" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush6.png" sourcerect="0,0,500,376" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Bush" description="bush7" identifier="nev_bush7" width="600" height="372" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush7.png" sourcerect="0,0,600,372" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Bush" description="bush8" identifier="nev_bush8" width="600" height="424" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush8.png" sourcerect="0,0,600,424" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Bush" description="bush9" identifier="nev_bush9" width="384" height="384" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush9.png" sourcerect="0,0,384,384" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Bush" description="bush10" identifier="nev_bush10" width="800" height="212" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush10.png" sourcerect="0,0,800,212" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+  <item name="Bush" description="bush11" identifier="nev_bush11" width="2000" height="672" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Environment/bush11.png" sourcerect="0,0,2000,672" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  -->
+  <item name="Fern Bush" description="bush12" identifier="nev_bush12" width="400" height="404" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush12.png" sourcerect="0,0,400,404" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Bush" description="bush13" identifier="nev_bush13" width="800" height="240" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush13.png" sourcerect="0,0,800,240" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Fern Bush" description="bush14" identifier="nev_bush14" width="400" height="200" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush14.png" sourcerect="0,0,400,200" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Creeping Vines Bush" description="bush15" identifier="nev_bush15" width="1000" height="584" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush15.png" sourcerect="0,0,1000,584" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush16" identifier="nev_bush16" width="700" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush16.png" sourcerect="0,0,700,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush17" identifier="nev_bush17" width="364" height="700" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush17.png" sourcerect="0,0,364,700" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush18" identifier="nev_bush18" width="1200" height="400" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush18.png" sourcerect="0,0,1200,400" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush19" identifier="nev_bush19" width="736" height="448" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush19.png" sourcerect="0,0,736,448" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush20" identifier="nev_bush20" width="400" height="200" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush20.png" sourcerect="0,0,400,200" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush21" identifier="nev_bush21" width="336" height="404" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush21.png" sourcerect="0,0,336,404" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Creeping Vines Bush" description="bush22" identifier="nev_bush22" width="500" height="1000" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush22.png" sourcerect="0,0,500,1000" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Small Creeping Vines Bush" description="bush23" identifier="nev_bush23" width="136" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush23.png" sourcerect="0,0,136,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Creeping Vines Bush" description="bush24" identifier="nev_bush24" width="726" height="1147" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush24.png" sourcerect="0,0,726,1147" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Tall Grass Patch Bush" description="bush25" identifier="nev_bush25" width="276" height="272" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush25.png" sourcerect="0,0,276,272" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+  <item name="Banana Plant Bush" description="bush26" identifier="nev_bush26" width="349" height="598" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Environment/bush26.png" sourcerect="0,0,349,598" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  -->
+  <item name="Banana Plant Bush" description="bush27" identifier="nev_bush27" width="400" height="352" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush27.png" sourcerect="0,0,400,352" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Bush" description="bush28" identifier="nev_bush28" width="600" height="400" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush28.png" sourcerect="0,0,600,400" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Bush" description="bush29" identifier="nev_bush29" width="600" height="400" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush29.png" sourcerect="0,0,600,400" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush30" identifier="nev_bush30" width="800" height="388" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush30.png" sourcerect="0,0,800,388" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush Tree" description="bush31" identifier="nev_bush31" width="900" height="500" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush31.png" sourcerect="0,0,900,500" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush32" identifier="nev_bush32" width="800" height="252" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush32.png" sourcerect="0,0,800,252" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+  <item name="Flowering Bush" description="bush33" identifier="nev_bush33" width="576" height="636" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Environment/bush33.png" sourcerect="0,0,576,636" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  -->
+  <item name="Small Creeping Vines Bush" description="bush34" identifier="nev_bush34" width="172" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush34.png" sourcerect="0,0,172,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Flowering Bush" description="bush35" identifier="nev_bush35" width="1200" height="308" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush35.png" sourcerect="0,0,1200,308" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Hedge Bush" description="bush36" identifier="nev_bush36" width="600" height="400" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush36.png" sourcerect="0,0,600,400" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Bush" description="bush37" identifier="nev_bush37" width="400" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush37.png" sourcerect="0,0,400,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Hedge Bush" description="bush38" identifier="nev_bush38" width="500" height="384" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush38.png" sourcerect="0,0,500,384" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Pine Bush" description="bush39" identifier="nev_bush39" width="644" height="300" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bush39.png" sourcerect="0,0,644,300" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	dead bushes
+  -->
+  <item name="Dead Bush" description="deadbush1" identifier="nev_deadbush1" width="600" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadbush1.png" sourcerect="0,0,600,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Bush" description="deadbush2" identifier="nev_deadbush2" width="528" height="464" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadbush2.png" sourcerect="0,0,528,464" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Bush" description="deadbush3" identifier="nev_deadbush3" width="744" height="584" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadbush3.png" sourcerect="0,0,744,584" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Bush" description="deadbush4" identifier="nev_deadbush4" width="684" height="612" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadbush4.png" sourcerect="0,0,684,612" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Bush" description="deadbush5" identifier="nev_deadbush5" width="600" height="360" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadbush5.png" sourcerect="0,0,600,360" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Snowy Dead Bush" description="deadbush6" identifier="nev_deadbush6" width="524" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadbush6.png" sourcerect="0,0,524,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Bush Branches" description="deadbush7" identifier="nev_deadbush7" width="380" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/deadbush7.png" sourcerect="0,0,380,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	debris
+  -->
+  <item name="Dead Wood Debris" description="debris1" identifier="nev_debris1" width="412" height="512" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/debris1.png" sourcerect="0,0,412,512" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Wood Debris" description="debris2" identifier="nev_debris2" width="512" height="492" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/debris2.png" sourcerect="0,0,512,492" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Wood Debris" description="debris3" identifier="nev_debris3" width="512" height="154" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/debris3.png" sourcerect="0,0,512,154" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Wood Debris" description="debris4" identifier="nev_debris4" width="160" height="256" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/debris4.png" sourcerect="0,0,160,256" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Dead Wood Debris" description="debris5" identifier="nev_debris5" width="152" height="256" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/debris5.png" sourcerect="0,0,152,256" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	dead background trees
+  -->
+  <item name="Background Tree Dead" description="background_deadtree1" identifier="nev_bgdeadtree1" width="780" height="844" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree1.png" sourcerect="0,0,780,844" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree2" identifier="nev_bgdeadtree2" width="696" height="1036" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree2.png" sourcerect="0,0,696,1036" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree3" identifier="nev_bgdeadtree3" width="664" height="1036" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree3.png" sourcerect="0,0,664,1036" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree4" identifier="nev_bgdeadtree4" width="784" height="916" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree4.png" sourcerect="0,0,784,916" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree5" identifier="nev_bgdeadtree5" width="672" height="1024" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree5.png" sourcerect="0,0,672,1024" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree6" identifier="nev_bgdeadtree6" width="696" height="1012" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree6.png" sourcerect="0,0,696,1012" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree7" identifier="nev_bgdeadtree7" width="728" height="1028" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree7.png" sourcerect="0,0,728,1028" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree8" identifier="nev_bgdeadtree8" width="1024" height="804" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree8.png" sourcerect="0,0,1024,804" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree9" identifier="nev_bgdeadtree9" width="672" height="1012" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree9.png" sourcerect="0,0,672,1012" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree10" identifier="nev_bgdeadtree10" width="656" height="928" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree10.png" sourcerect="0,0,656,928" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree11" identifier="nev_bgdeadtree11" width="736" height="1008" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree11.png" sourcerect="0,0,736,1008" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree12" identifier="nev_bgdeadtree12" width="704" height="1012" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree12.png" sourcerect="0,0,704,1012" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree13" identifier="nev_bgdeadtree13" width="824" height="1024" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree13.png" sourcerect="0,0,824,1024" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree14" identifier="nev_bgdeadtree14" width="836" height="1032" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree14.png" sourcerect="0,0,836,1032" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree15" identifier="nev_bgdeadtree15" width="704" height="1056" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree15.png" sourcerect="0,0,704,1056" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Background Tree Dead" description="background_deadtree16" identifier="nev_bgdeadtree16" width="816" height="984" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/bg_deadtree16.png" sourcerect="0,0,816,984" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	potted plants
+  -->
+  <item name="Potted Plant" description="plant1" identifier="nev_plant1" width="400" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant1.png" sourcerect="0,0,400,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant2" identifier="nev_plant2" width="600" height="512" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant2.png" sourcerect="0,0,600,512" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+  <item name="Potted Plant" description="plant3" identifier="nev_plant3" width="400" height="700" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Environment/plant3.png" sourcerect="0,0,400,700" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  -->
+  <item name="Potted Plant" description="plant4" identifier="nev_plant4" width="700" height="808" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant4.png" sourcerect="0,0,700,808" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant5" identifier="nev_plant5" width="180" height="208" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant5.png" sourcerect="0,0,180,208" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant6" identifier="nev_plant6" width="256" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant6.png" sourcerect="0,0,256,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant7" identifier="nev_plant7" width="552" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant7.png" sourcerect="0,0,552,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant8" identifier="nev_plant8" width="228" height="324" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant8.png" sourcerect="0,0,228,324" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+  <item name="Potted Plant" description="plant9" identifier="nev_plant9" width="980" height="1472" scale="0.35" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Environment/plant9.png" sourcerect="0,0,980,1472" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  -->
+  <item name="Potted Plant" description="plant10" identifier="nev_plant10" width="200" height="800" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant10.png" sourcerect="0,0,200,800" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant11" identifier="nev_plant11" width="124" height="196" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant11.png" sourcerect="0,0,124,196" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant12" identifier="nev_plant12" width="544" height="764" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant12.png" sourcerect="0,0,544,764" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant13" identifier="nev_plant13" width="92" height="128" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant13.png" sourcerect="0,0,92,128" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant14" identifier="nev_plant14" width="484" height="448" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant14.png" sourcerect="0,0,484,448" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant15" identifier="nev_plant15" width="156" height="164" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant15.png" sourcerect="0,0,156,164" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant16" identifier="nev_plant16" width="152" height="400" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant16.png" sourcerect="0,0,152,400" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant17" identifier="nev_plant17" width="500" height="600" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant17.png" sourcerect="0,0,500,600" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant18" identifier="nev_plant18" width="500" height="512" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant18.png" sourcerect="0,0,500,512" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant19" identifier="nev_plant19" width="284" height="700" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant19.png" sourcerect="0,0,284,700" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant20" identifier="nev_plant20" width="300" height="724" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant20.png" sourcerect="0,0,300,724" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant21" identifier="nev_plant21" width="200" height="374" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant21.png" sourcerect="0,0,200,374" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant22" identifier="nev_plant22" width="300" height="700" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant22.png" sourcerect="0,0,300,700" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant23" identifier="nev_plant23" width="284" height="724" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant23.png" sourcerect="0,0,284,724" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant24" identifier="nev_plant24" width="76" height="128" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant24.png" sourcerect="0,0,76,128" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant25" identifier="nev_plant25" width="236" height="236" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant25.png" sourcerect="0,0,236,236" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant26" identifier="nev_plant26" width="104" height="396" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant26.png" sourcerect="0,0,104,396" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Potted Plant" description="plant27" identifier="nev_plant27" width="96" height="128" scale="0.5" noninteractable="true" category="Decorative" subcategory="Vegetation">
+    <sprite texture="%ModDir%/Environment/plant27.png" sourcerect="0,0,96,128" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	signs
+  -->
+  <item name="Sign" description="sign1" identifier="nev_sign1" width="300" height="292" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign1.png" sourcerect="0,0,300,292" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Sign" description="sign2" identifier="nev_sign2" width="264" height="132" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign2.png" sourcerect="0,0,264,132" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Sign" description="sign3" identifier="nev_sign3" width="128" height="92" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign3.png" sourcerect="0,0,128,92" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Sign" description="sign4" identifier="nev_sign4" width="852" height="284" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign4.png" sourcerect="0,0,852,284" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Caution Sign" description="sign5" identifier="nev_sign5" width="128" height="96" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign5.png" sourcerect="0,0,128,96" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Caution Sign" description="sign6" identifier="nev_sign6" width="96" height="128" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign6.png" sourcerect="0,0,96,128" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Caution Sign" description="sign7" identifier="nev_sign7" width="128" height="88" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign7.png" sourcerect="0,0,128,88" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Caution Sign" description="sign8" identifier="nev_sign8" width="256" height="176" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign8.png" sourcerect="0,0,256,176" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Caution Sign" description="sign9" identifier="nev_sign9" width="184" height="216" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign9.png" sourcerect="0,0,184,216" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Caution Sign" description="sign10" identifier="nev_sign10" width="128" height="128" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign10.png" sourcerect="0,0,128,128" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <item name="Caution Sign" description="sign11" identifier="nev_sign11" width="128" height="116" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/sign11.png" sourcerect="0,0,128,116" depth="0.7" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+  <!--
+	other stuff
+  -->
+  <item name="Stacked Boxes" description="box1" identifier="nev_box1" width="164" height="196" scale="0.5" noninteractable="true" category="Decorative">
+    <sprite texture="%ModDir%/Building/box1.png" sourcerect="0,0,164,196" depth="0.8" premultiplyalpha="false" origin="0.5,0.5" />
+  </item>
+</Items>

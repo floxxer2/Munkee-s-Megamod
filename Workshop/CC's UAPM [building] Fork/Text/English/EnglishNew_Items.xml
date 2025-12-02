@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <entityname.skylight>Sky Light Square</entityname.skylight>
+  <entitydescription.skylight>If the light cuts out when standing in a corner, use hexagon sky light. A very bright and matte light that becomes invisible once the game starts.</entitydescription.skylight>
+  <entityname.skylighthex>Sky Light Hexagon</entityname.skylighthex>
+  <entitydescription.skylighthex>Use this light if you encounter problems with the square light vanishing when standing near the corner of it. A very bright and matte light that becomes invisible once the game starts.</entitydescription.skylighthex>
+  <entityname.ccs_lightcomponentround>Light Component Hidden</entityname.ccs_lightcomponentround>
+  <entityname.spawner>Spawner by hUbert 2</entityname.spawner>
+  <entitydescription.spawner>A simple item/creature spawner that can be wired.
+If you find the EntitySpawner confusing just lower the condition of this item to 0 to see detailed instructions.
+If you plan on using the EntitySpawnerComponent at the bottom then leave the CustomInterface blank, if you use the CustomInterface then leave EntitySpawnerComponent blank.</entitydescription.spawner>
+</infotexts>

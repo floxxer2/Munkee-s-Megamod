@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item identifier="endwormarmor" name="Endworm Chest Piece" category="Equipment" tags="smallitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" allowasextracargo="true" impactsoundtag="impact_soft">
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="128,960,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Jobgear/AlienGear.png" sourcerect="17,10,97,131" depth="0.6" origin="0.5,0.5" />
+    <Body width="97" height="131" density="40" />
+    <Wearable slots="Any,OuterClothes" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.4" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.05" damagesound="LimbArmor" deflectprojectiles="true" />
+      <sprite texture="Content/Items/Jobgear/AlienGear.png" limb="Torso" hidelimb="false" hideotherwearables="false" inherittexturescale="true" inheritscale="false" scale="0.4" inheritorigin="false" origin="0.45,0.75" inheritsourcerect="false" sourcerect="17,10,97,131" />
+    </Wearable>
+  </Item>
+  <Item identifier="endwormhelmet" name="Endworm Helmet" nameidentifier="alienhelmet" category="Equipment" tags="smallitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" allowasextracargo="true" impactsoundtag="impact_soft">
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="192,960,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Jobgear/AlienGear.png" depth="0.6" sourcerect="133,21,95,94" origin="0.5,0.5" />
+    <Body width="95" height="94" density="40" />
+    <Wearable limbtype="Head" slots="Any,Head" msg="ItemMsgPickUpSelect">
+      <sprite texture="Content/Items/Jobgear/AlienGear.png" limb="Head" inheritlimbdepth="true" hidelimb="false" hideotherwearables="false" inherittexturescale="true" inheritscale="false" scale="0.35" inheritorigin="false" origin="0.5,0.55" sourcerect="133,21,95,94" />
+      <StatusEffect type="OnWearing" target="Character" HideFace="true" setvalue="true" disabledeltatime="true" />
+      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.4" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.05" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
+    </Wearable>
+  </Item>
+</Items>

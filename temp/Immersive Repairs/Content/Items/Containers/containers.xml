@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <!-- TODO: switch to SecureSteelLockRed.png when access denied and SecureSteelLockGreen.png when access granted-->
+    <Item name="" identifier="securesteelcabinet" tags="locker,container,securecontainer,repairablecabinet" linkable="true" spritecolor="255,255,255,255" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Sprite texture="Content/Items/Containers/containers.png" depth="0.84" sourcerect="1,380,105,160" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="392,0,105,160" origin="0.5,0.5" maxcondition="99" fadein="true" />
+      <BrokenSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="497,0,105,160" origin="0.5,0.5" maxcondition="0" fadein="false" />
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="937,864,86,138" depth="0.839" origin="0.505,0.509">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="873,854,63,169" depth="0.838" origin="1.67,0.465">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <!-- ItemComponent is only used as a workaround to play a sound if someone stopped interacting with the container since that can't really be done otherwise other than with "Always" StatusEffects which drain performance nonstop instead of only when interaction is happening. -->
+      <ItemComponent canbeselected="false" canbepicked="false" allowingameediting="false" IsActive="false">
+        <!-- play a closing sound and disable the ItemComponent, stopping to execute the check for the "opened" tag which gets applied while someone is interacting with the container -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="false" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/locker_close2.ogg" volume="2" range="250" selectionmode="Random" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- Controller to check if someone is interacting with the container -->
+      <Controller canbeselected="true" selectkey="Select" hidehud="false" drawuserbehind="false" noninteractablewhenflippedy="false" allowingameediting="false" drawhudwhenequipped="false" comparison="And">
+        <!-- only be active if the ItemComponent is turned on, which can only happen if someone with access to the container interacted with it -->
+        <IsActive IsActive="true" targetitemcomponent="ItemComponent" />
+        <!-- tag the container with "opened" if the controller is active, meaning someone is interacting with it -->
+        <StatusEffect type="OnActive" target="This" tags="opened" duration="0.1" />
+        <!-- prevent allowing to configure an output for the controller to hide the controller UI. This StatusEffect only executes once per round -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="Controller" allowingameediting="false" setvalue="true" oneshot="true" />
+      </Controller>
+      <ItemContainer capacity="20" slotsperrow="5" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" />
+        <RequiredItem items="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" ignoreineditor="true" />
+        <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
+        <SubContainer capacity="3" maxstacksize="1">
+          <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
+          <Containable items="mobilecontainer" />
+        </SubContainer>
+        <!-- play an opening sound and turn on the ItemComponent when starting to interact with the container -->
+        <StatusEffect type="OnPicked" target="this" targetitemcomponent="ItemComponent" IsActive="true" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/safe_open1.ogg" volume="1" range="250" selectionmode="Random" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" locked="true" allowaccess="false" setvalue="true">
+          <sound file="Content/Items/Door/DoorBreak1.ogg" range="800" />
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This,NearbyItems" range="20" tags="crackedsafe" setvalue="true" duration="1" />
+      </ItemContainer>
+      <!-- backwards compatibility for older versions in which mobile containers like storage containers were containable in any cabinet -->
+      <Upgrade gameversion="1.1.0.0" campaignsaveonly="true">
+        <ItemContainer>
+          <Containable items="smallitem,mediumitem" />
+          <ClearSubContainerRestrictions />
+        </ItemContainer>
+      </Upgrade>
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" deteriorationspeed="0.0" mindeteriorationdelay="60" maxdeteriorationdelay="270" MinDeteriorationCondition="0" minsabotagecondition="101" RepairThreshold="100" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="-0.1,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="75" />
+        <RequiredItem items="wrench" type="Equipped" />
+        <StatusEffect type="OnSuccess" target="This" locked="false" allowaccess="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnSuccess" target="This" condition="1" disabledeltatime="true" />
+        <StatusEffect type="OnFailure" target="This" locked="false" allowaccess="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnFailure" target="This" condition="1" disabledeltatime="true" />
+      </Repairable>
+    </Item>
+    <Item name="" identifier="securesteelcabinetwrecked" variantof="securesteelcabinet" nameidentifier="securesteelcabinet" tags="container,securecontainer" category="Wrecked" spritecolor="200,150,100,255">
+      <Sprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="392,0,105,160" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="497,0,105,160" origin="0.5,0.5" maxcondition="0" fadein="false" />
+    </Item>
+    <Item name="" identifier="toxcabinet" tags="container,toxcontainer,repairablecabinet" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.1">
+      <Sprite texture="Content/Items/Containers/containers.png" depth="0.84" sourcerect="889,483,125,158" />
+      <BrokenSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="605,0,122,145" origin="0.5,0.5" maxcondition="99" fadein="true" />
+      <BrokenSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="725,0,122,145" origin="0.5,0.5" maxcondition="0" fadein="false" />
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="786,917,86,96" depth="0.839" origin="0.5,0.51">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="737,907,48,116" depth="0.838" origin="2.0,0.51">
+        <Conditional HasStatusTag="opened" />
+      </DecorativeSprite>
+      <!-- ItemComponent is only used as a workaround to play a sound if someone stopped interacting with the container since that can't really be done otherwise other than with "Always" StatusEffects which drain performance nonstop instead of only when interaction is happening. -->
+      <ItemComponent canbeselected="false" canbepicked="false" allowingameediting="false" IsActive="false">
+        <!-- play a closing sound and disable the ItemComponent, stopping to execute the check for the "opened" tag which gets applied while someone is interacting with the container -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="false" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/cabinet_close1.ogg" volume="2" range="250" selectionmode="Random" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- Controller to check if someone is interacting with the container -->
+      <Controller canbeselected="true" selectkey="Select" hidehud="false" drawuserbehind="false" noninteractablewhenflippedy="false" allowingameediting="false" drawhudwhenequipped="false" comparison="And">
+        <!-- only be active if the ItemComponent is turned on, which can only happen if someone with access to the container interacted with it -->
+        <IsActive IsActive="true" targetitemcomponent="ItemComponent" />
+        <!-- tag the container with "opened" if the controller is active, meaning someone is interacting with it -->
+        <StatusEffect type="OnActive" target="This" tags="opened" duration="0.1" />
+        <!-- prevent allowing to configure an output for the controller to hide the controller UI. This StatusEffect only executes once per round -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="Controller" allowingameediting="false" setvalue="true" oneshot="true" />
+      </Controller>
+      <ItemContainer capacity="20" slotsperrow="5" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" />
+        <RequiredItem items="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" ignoreineditor="true" />
+        <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
+        <SubContainer capacity="3" maxstacksize="1">
+          <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
+          <Containable items="mobilecontainer" />
+        </SubContainer>
+        <!-- play an opening sound and turn on the ItemComponent when starting to interact with the container -->
+        <StatusEffect type="OnPicked" target="this" targetitemcomponent="ItemComponent" IsActive="true" setvalue="true" forceplaysounds="true">
+          <Conditional HasStatusTag="neq opened" />
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/cabinet_open1.ogg" volume="1" range="250" selectionmode="Random" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" locked="true" allowaccess="false" setvalue="true">
+          <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This,NearbyItems" range="20" tags="crackedsafe" setvalue="true" duration="1" />
+      </ItemContainer>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      <!-- backwards compatibility for older versions in which mobile containers like storage containers were containable in any cabinet -->
+      <Upgrade gameversion="1.1.0.0" campaignsaveonly="true">
+        <ItemContainer>
+          <Containable items="smallitem,mediumitem" />
+          <ClearSubContainerRestrictions />
+        </ItemContainer>
+      </Upgrade>
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" deteriorationspeed="0.0" mindeteriorationdelay="60" maxdeteriorationdelay="270" MinDeteriorationCondition="0" minsabotagecondition="101" RepairThreshold="100" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="-0.1,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="75" />
+        <RequiredItem items="wrench" type="Equipped" />
+        <StatusEffect type="OnSuccess" target="This" locked="false" allowaccess="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnSuccess" target="This" condition="1" disabledeltatime="true" />
+        <StatusEffect type="OnFailure" target="This" locked="false" allowaccess="true" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnFailure" target="This" condition="1" disabledeltatime="true" />
+      </Repairable>
+    </Item>
+    <Item name="" identifier="toxcabinetwrecked" variantof="toxcabinet" nameidentifier="toxcabinet" tags="container,wrecktoxcontainer" waterproof="true" scale="0.4" category="Wrecked" spritecolor="200,150,100,255">
+      <Sprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="604,0,110,144" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.84" sourcerect="727,0,110,144" origin="0.5,0.5" maxcondition="0" fadein="false" />
+    </Item>
+    <Item name="Fuel Refill Station" identifier="fuelrefillstation" tags="container,concentratedweldingrefill" category="Machines" description="Allows the refilling of tanks using canisters." scale="0.5" isshootable="true" requireaimtouse="true" impactsoundtag="impact_metal_heavy">
+      <Sprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" depth="0.786" sourcerect="0,0,185,346" origin="0.5,0.5" />
+      <!-- DecorativeSprite to display the concentrated welding fuel canister when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="186,0,56,284" depth="0.785" origin="1.35,0.44" comparison="And">
+        <IsActiveConditional HasTag="largeconcentratedweldingfueltank" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the concentrated welding fuel tank when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="300,132,22,56" depth="0.785" origin="-0.09,1.68" comparison="And">
+        <IsActiveConditional HasTag="concentratedweldingfuel" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the extinguisher fuel canister when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="243,0,56,284" depth="0.785" origin="1.35,0.44" comparison="And">
+        <IsActiveConditional HasTag="extinguisherfuelcanister" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the fire extinguisher when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="300,192,31,94" depth="0.785" origin="-1.37,1" comparison="And">
+        <IsActiveConditional HasTag="fireextinguisher" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <GreaterComponent canbeselected="false" selectkey="Select" canbepicked="false" allowingameediting="false" timeframe="0" />
+      <Body width="184" height="345" density="20" />
+      <CustomInterface drawhudwhenequipped="false" canbeselected="true" selectkey="Select">
+        <GuiFrame relativesize="0.1,0.1" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <Button text="interaction.refill">
+          <StatusEffect type="OnUse" target="This" timeframe="1" />
+          <StatusEffect type="OnUse" target="This" IsOn="false" timeframe="0" setvalue="true">
+            <Conditional timeframe="gt 1" />
+            <Sound file="%ModDir:3114087512%/Content/Items/Containers/CompressorStop.ogg" loop="false" range="500" />
+          </StatusEffect>
+          <StatusEffect type="OnUse" target="This" IsOn="true" setvalue="true">
+            <Conditional timeframe="eq 1" />
+          </StatusEffect>
+        </Button>
+      </CustomInterface>
+      <Deconstruct time="10">
+        <Item identifier="steel" amount="2" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20" requiresrecipe="false">
+        <RequiredSkill identifier="mechanical" level="30" />
+        <RequiredItem identifier="steel" amount="3" />
+        <RequiredItem identifier="fpgacircuit" amount="1" />
+      </Fabricate>
+      <!-- ItemComponent is used to turn the LightComponent off and reset the timeframe, if one of the contained items was removed during refilling -->
+      <ItemComponent canbepicked="false" canbeselected="false" allowingameediting="false" comparison="And">
+        <IsActiveConditional timeframe="1" targetitemcomponent="GreaterComponent" />
+        <!-- turn the device off by setting the timeframe to "0" and turning the LightComponent off, if it was still active when it wasn't supposed to be -->
+        <StatusEffect type="OnActive" target="This" IsOn="false" timeframe="0" setvalue="true" comparison="And" stackable="false" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq canrefill" />
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/CompressorStop.ogg" loop="false" range="500" />
+        </StatusEffect>
+        <!-- turn the device off by setting the timeframe to "0" and turning the LightComponent off, if no power is supplied -->
+        <StatusEffect type="OnActive" target="This" IsOn="false" timeframe="0" setvalue="true" comparison="And" delay="0.5" CheckConditionalAlways="true" stackable="false">
+          <Conditional voltage="lt 0.5" targetitemcomponent="LightComponent" />
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/CompressorStop.ogg" loop="false" range="500" />
+        </StatusEffect>
+      </ItemComponent>
+      <!-- CONCENTRATED WELDING FUEL REFILL -->
+      <LightComponent LightColor="0,0,0,0" IsOn="false" powerconsumption="400" range="0" castshadows="false" allowingameediting="false" canbeselected="false" comparison="And">
+        <IsActiveConditional timeframe="1" targetitemcomponent="GreaterComponent" />
+        <IsActiveConditional hastag="largeconcentratedweldingfueltank" targetcontaineditem="true" />
+        <IsActiveConditional hastag="concentratedweldingfuel" targetcontaineditem="true" />
+        <Sound file="%ModDir:3114087512%/Content/Items/Containers/CompressorLoop.ogg" type="OnActive" loop="true" range="500" />
+        <!-- increase the condition of the contained concentrated welding fuel tank if a concentrated welding fuel canister is present in the device and the device is turned on -->
+        <StatusEffect type="OnActive" target="Contained" targetslot="1" condition="20">
+          <RequiredItem items="largeconcentratedweldingfueltank" type="Contained" />
+        </StatusEffect>
+        <!-- reduce the condition of the concentrated welding fuel canister if a concentrated welding fuel tank is present in the device and the device is turned on -->
+        <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-2">
+          <RequiredItem items="concentratedweldingfuel" type="Contained" matchonempty="true" />
+        </StatusEffect>
+        <!-- turn the device off by setting the timeframe to "0" and turning the LightComponent off, if the contained tank is full -->
+        <StatusEffect type="OnActive" target="This" targetslot="0" IsOn="false" timeframe="0" setvalue="true">
+          <Conditional conditionpercentage="eq 100" targetcontaineditem="true" targetslot="1" />
+          <!-- targetslot seems to be ignored in here. It still recognizes targetslot 0 item condition -->
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/Compressorstop.ogg" loop="false" range="500" />
+        </StatusEffect>
+      </LightComponent>
+      <!-- FIRE EXTINGUISHER REFILL -->
+      <LightComponent LightColor="0,0,0,0" IsOn="false" powerconsumption="400" range="0" castshadows="false" allowingameediting="false" canbeselected="false" comparison="And">
+        <IsActiveConditional timeframe="1" targetitemcomponent="GreaterComponent" />
+        <IsActiveConditional hastag="extinguisherfuelcanister" targetcontaineditem="true" />
+        <IsActiveConditional hastag="fireextinguisher" targetcontaineditem="true" />
+        <Sound file="%ModDir:3114087512%/Content/Items/Containers/CompressorLoop.ogg" type="OnActive" loop="true" range="500" />
+        <!-- increase the condition of the contained fire extinguisher if a extinguisher fuel canister is present in the device and the device is turned on -->
+        <StatusEffect type="OnActive" target="Contained" targetslot="1" condition="10">
+          <RequiredItem items="extinguisherfuelcanister" type="Contained" />
+        </StatusEffect>
+        <!-- reduce the condition of the extinguisher fuel canister if a fire extinguisher is present in the device and the device is turned on -->
+        <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-2">
+          <RequiredItem items="fireextinguisher" type="Contained" matchonempty="true" />
+        </StatusEffect>
+        <!-- turn the device off by setting the timeframe to "0" and turning the LightComponent off, if the contained tank is full -->
+        <StatusEffect type="OnActive" target="This" targetslot="0" IsOn="false" timeframe="0" setvalue="true">
+          <Conditional conditionpercentage="eq 100" targetcontaineditem="true" targetslot="1" />
+          <!-- targetslot seems to be ignored in here. It still recognizes targetslot 0 item condition -->
+          <Sound file="%ModDir:3114087512%/Content/Items/Containers/Compressorstop.ogg" loop="false" range="500" />
+        </StatusEffect>
+      </LightComponent>
+      <Holdable slots="RightHand+LeftHand" canbeselected="true" selectkey="Select" canbepicked="true" pickkey="Action" PickingTime="5" attachable="true" holdpos="70,-40" handle1="-60,30" handle2="-20,50">
+        <RequiredItem items="wrench" type="Equipped" />
+        <!-- slow down the character carrying the device -->
+        <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.3" PropulsionSpeedMultiplier="0.3" setvalue="true" duration="0.1" />
+        <!-- drop contained items if the device is detached -->
+        <StatusEffect type="OnContained" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <!-- tag the device with "canrefill" if both required items for a refill are contained -->
+        <StatusEffect type="Always" target="This" tags="canrefill" interval="0.1" duration="0.2" setvalue="true" comparison="And">
+          <Conditional HasTag="largeconcentratedweldingfueltank" targetcontaineditem="true" />
+          <Conditional HasTag="concentratedweldingfuel" targetcontaineditem="true" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This" tags="canrefill" interval="0.1" duration="0.2" setvalue="true" comparison="And">
+          <Conditional HasTag="extinguisherfuelcanister" targetcontaineditem="true" />
+          <Conditional HasTag="fireextinguisher" targetcontaineditem="true" />
+        </StatusEffect>
+      </Holdable>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredSkill identifier="electrical" level="55" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <ParticleEmitter particle="damagebubbles" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemax="360" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+        <ParticleEmitter particle="MistSmoke" particlespersecond="60" anglemin="0" anglemax="360" distancemin="0" distancemax="10" velocitymin="0" velocitymax="20" mincondition="0.0" maxcondition="50.0" />
+        <ParticleEmitter particle="spark" particleamount="5" emitinterval="2" particlespersecond="5" anglemax="360" distancemax="30" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
+        <ParticleEmitter particle="fleshsmoke" particlespersecond="2" scalemin="1" scalemax="2" mincondition="0.0" maxcondition="50.0" />
+        <input name="power_in" displayname="connection.powerin" />
+      </ConnectionPanel>
+      <ItemContainer canbeselected="true" selectkey="Select" capacity="1" maxstacksize="1" hideitems="true">
+        <GuiFrame relativesize="0.11,0.17" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
+        <SlotIcon slotindex="0" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="510,0,85,85" origin="0.5,0.5" />
+        <SlotIcon slotindex="1" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
+        <Containable items="largeconcentratedweldingfueltank,extinguisherfuelcanister" />
+        <SubContainer capacity="1">
+          <Containable items="concentratedweldingfuel,fireextinguisher" />
+        </SubContainer>
+      </ItemContainer>
+    </Item>
+    <Item name="Firefighter Cabinet" identifier="firefightercabinet" tags="firecab" description="A cabinet built exclusively for firefighter equipment to keep things organized." scale="0.5" fireproof="true" impactsoundtag="impact_metal_heavy" isshootable="true">
+      <Sprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="0,556,205,375" origin="0.5,0.5" depth="0.79" />
+      <!-- DecorativeSprite to display the fire extinguisher when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="219,352,65,133" depth="0.788" origin="1.52,0.01" comparison="And">
+        <IsActiveConditional HasTag="fireextinguisher" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the halligan-tool when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="166,352,46,199" depth="0.788" origin="1.35,0.92" comparison="And">
+        <IsActiveConditional HasTag="halligantool" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the fire axe when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="77,348,89,192" depth="0.789" origin="1.148,0.92" comparison="And">
+        <IsActiveConditional HasTag="fireaxe" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the industrial flashlight when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="185,287,85,65" depth="0.789" origin="1.15,-1.79" comparison="And">
+        <IsActiveConditional HasTag="industrialflashlight" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the oxygen tnak when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="300,1,64,25" depth="0.789" origin="-0.0,-3.8" comparison="And">
+        <IsActiveConditional HasTag="oxygensource" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the firefighter suit when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="0,348,77,207" depth="0.789" origin="0,0.69" comparison="And">
+        <IsActiveConditional HasTag="firefightersuit" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <!-- DecorativeSprite to display the CO2 grenade when it is contained -->
+      <DecorativeSprite texture="%ModDir:3114087512%/Content/Items/IR-ItemsAtlas.png" sourcerect="300,27,44,77" depth="0.789" origin="1.32,-0.63" comparison="And">
+        <IsActiveConditional HasTag="co2grenade" targetcontaineditem="true" />
+      </DecorativeSprite>
+      <Body width="205" height="375" density="30" />
+      <Deconstruct time="15">
+        <Item identifier="steel" amount="2" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="30">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <Item identifier="steel" amount="4" />
+      </Fabricate>
+      <Powered powerconsumption="10" currpowerconsumption="10" isactive="true">
+        <GuiFrame relativesize="0.18,0.15" minsize="350,160" maxsize="420,192" anchor="Center" relativeoffset="0,-0.1" style="ItemUI" msg="ItemMsgInteractSelect" />
+        <StatusEffect type="OnActive" targettype="Contained" targets="loadable,refillableoxygensource" Condition="2.0" comparison="and">
+          <!-- the statuseffect targets the contained item (a battery cell that's being charged), but the conditional targets the container (this cabinet) -->
+          <Conditional voltage="gt 0.01" targetcontainer="true" targetitemcomponent="Powered" />
+        </StatusEffect>
+      </Powered>
+      <Holdable slots="RightHand+LeftHand" canbeselected="true" selectkey="Select" canbepicked="true" pickkey="Action" PickingTime="5" attachable="true" attachedbydefault="false" holdpos="70,-10" handle1="-60,0" handle2="-50,-40">
+        <RequiredItem items="wrench" type="Equipped" />
+        <!-- slow the character holding the cabinet -->
+        <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.6" setvalue="true" duration="0.1" />
+        <!-- drop all contained items if the cabinet is picked up to prevent it from being used as a shitty mobile container -->
+        <StatusEffect type="OnContained" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+      </Holdable>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredSkill identifier="electrical" level="25" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" stun="0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <ParticleEmitter particle="spark" particleamount="5" emitinterval="1.05" anglemax="360" distancemax="20" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
+        <ParticleEmitter particle="fleshsmoke" particlespersecond="2" scalemin="1" scalemax="2" mincondition="0.0" maxcondition="50.0" />
+        <input name="power_in" displayname="connection.powerin" />
+      </ConnectionPanel>
+      <ItemContainer capacity="1" maxstacksize="1" slotsperrow="3" hideitems="true" canbeselected="true">
+        <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" />
+        <SlotIcon slotindex="0" texture="Content/Map/LabelIcons.png" sourcerect="512,0,256,179" origin="0.5,0.5" />
+        <SlotIcon slotindex="1" texture="Content/Map/LabelIcons.png" sourcerect="512,0,256,256" origin="0.5,0.5" />
+        <SlotIcon slotindex="2" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="765,0,85,85" origin="0.5,0.5" />
+        <SlotIcon slotindex="3" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="913,0,111,118" origin="0.5,0.5" />
+        <SlotIcon slotindex="4" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="913,0,111,118" origin="0.5,0.5" />
+        <SlotIcon slotindex="5" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="913,0,111,118" origin="0.5,0.5" />
+        <SlotIcon slotindex="6" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="595,0,85,85" origin="0.5,0.5" />
+        <SlotIcon slotindex="7" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="8" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="9" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="680,0,85,85" origin="0.5,0.5" />
+        <SlotIcon slotindex="10" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="680,0,85,85" origin="0.5,0.5" />
+        <SlotIcon slotindex="11" texture="%ModDir:3114087512%/Content/UI/IR-IconsAtlas.png" sourcerect="680,0,85,85" origin="0.5,0.5" />
+        <Containable items="firefighterhelmet" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="firefightersuit" />
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="4">
+          <Containable items="co2grenade" />
+        </SubContainer>
+        <SubContainer capacity="3" maxstacksize="1">
+          <Containable items="fireequipment" excludeditems="firefighterhelmet,firefightersuit,co2grenade" />
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable identifier="industrialflashlight" />
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="mobilebattery" />
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="oxygensource" excludeditems="oxygenitetank" />
+        </SubContainer>
+        <SubContainer capacity="3" maxstacksize="4">
+          <Containable items="chem,medical" />
+        </SubContainer>
+      </ItemContainer>
+    </Item>
+  </Items>
+</Override>

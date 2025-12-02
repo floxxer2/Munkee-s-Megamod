@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Cortizide name="Cortizide" identifier="cortizide" aliases="" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <PreferredContainer primary="toxcab" secondary="toxcontainer" amount="1" spawnprobability="1" />
+    <PreferredContainer primary="wrecktoxcab,abandonedtoxcab" minamount="1" maxamount="2" spawnprobability="0.05" />
+    <PreferredContainer secondary="wreckmedcab,abandonedmedcab,beaconmedcab" amount="1" spawnprobability="0.02" />
+    <PreferredContainer secondary="outpostmedcab" amount="1" spawnprobability="0.005" />
+    <PreferredContainer secondary="outpostmedcompartment" amount="1" spawnprobability="0.005" />
+    <PreferredContainer secondary="outposttrashcan" amount="1" spawnprobability="0.001" />
+    <Price baseprice="600" minavailable="3">
+      <Price storeidentifier="merchantcity" />
+      <Price storeidentifier="merchantresearch" />
+      <Price storeidentifier="merchantmedical" multiplier="0.9" />
+    </Price>
+    <SuitableTreatment type="brainhemorrhage" suitability="100" />
+    <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
+      <RequiredSkill identifier="medical" level="50" />
+      <RequiredItem identifier="smartgraft" />
+      <RequiredItem identifier="adrenaline" />
+      <RequiredItem identifier="deusizine" />
+    </Fabricate>
+    <Deconstruct time="20">
+      <Item identifier="adrenaline" />
+      <Item identifier="deusizine" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Workshop/Real Sonar/Icons/medicineIcons.png" sourcerect="0,0,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Workshop/Real Sonar/Icons/medicines.png" sourcerect="0,0,37,69" depth="0.6" origin="0.5,0.5" />
+    <Body width="35" height="65" density="15" />
+    <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect">
+      <RequiredSkill identifier="medical" level="70" />
+      <StatusEffect type="OnFailure" target="This" Condition="-100.0" disabledeltatime="true">
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+      </StatusEffect>
+      <StatusEffect type="OnSuccess" target="This" Condition="-100.0" disabledeltatime="true">
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+      </StatusEffect>
+      <StatusEffect type="OnFailure" target="UseTarget, Limb" comparison="and">
+        <Conditional isLocalPlayer="true" />
+        <Conditional limbtype="eq head" />
+        <Sound file="%ModDir%/Workshop/Real Sonar/Sounds/cortizideInjection.ogg" dontmuffle="true" volume="1.5" />
+      </StatusEffect>
+      <StatusEffect type="OnSuccess" target="UseTarget, Limb" comparison="and">
+        <Conditional isLocalPlayer="true" />
+        <Conditional limbtype="eq head" />
+        <Sound file="%ModDir%/Workshop/Real Sonar/Sounds/cortizideInjection.ogg" dontmuffle="true" volume="1.5" />
+      </StatusEffect>
+      <!-- Apply "cortizideinjection" if administered to the head. This affliction handles the visuals. -->
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="1" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional serversidelua="lteq 0" />
+        <Conditional limbtype="eq head" />
+        <Affliction identifier="cortizideinjection" amount="1" />
+      </StatusEffect>
+      <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="1" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional serversidelua="lteq 0" />
+        <Conditional limbtype="eq head" />
+        <Affliction identifier="cortizideinjection" amount="1" />
+      </StatusEffect>
+      <!-- On success, with affliction -->
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhage="gt 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="brainhemorrhage" amount="1" />
+        <ReduceAffliction type="bleeding" amount="0.3" />
+        <Affliction identifier="damageimmunity" amount="1" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="removehemorrhagefx" amount="1" />
+      </StatusEffect>
+      <!-- On failure, with affliction -->
+      <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhage="gt 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="brainhemorrhage" amount="1" />
+        <ReduceAffliction type="bleeding" amount="0.2" />
+        <Affliction identifier="damageimmunity" amount="1" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="removehemorrhagefx" amount="1" />
+      </StatusEffect>
+      <!-- On success, with affliction LOWFX-->
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhagelowfx="gt 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="brainhemorrhagelowfx" amount="1" />
+        <ReduceAffliction type="bleeding" amount="0.3" />
+        <Affliction identifier="damageimmunity" amount="1" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="removehemorrhagefx" amount="1" />
+      </StatusEffect>
+      <!-- On failure, with affliction LOWFX-->
+      <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhagelowfx="gt 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="brainhemorrhagelowfx" amount="1" />
+        <ReduceAffliction type="bleeding" amount="0.2" />
+        <Affliction identifier="damageimmunity" amount="1" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="removehemorrhagefx" amount="1" />
+      </StatusEffect>
+      <!-- On success, with affliction NOFX-->
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhagenofx="gt 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="brainhemorrhagenofx" amount="1" />
+        <ReduceAffliction type="bleeding" amount="0.3" />
+        <Affliction identifier="damageimmunity" amount="1" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="removehemorrhagefx" amount="1" />
+      </StatusEffect>
+      <!-- On failure, with affliction NOFX-->
+      <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhagenofx="gt 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="brainhemorrhagenofx" amount="1" />
+        <ReduceAffliction type="bleeding" amount="0.2" />
+        <Affliction identifier="damageimmunity" amount="1" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="removehemorrhagefx" amount="1" />
+      </StatusEffect>
+      <!-- On success, no affliction -->
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhage="lteq 0" />
+        <Conditional brainhemorrhagelowfx="lteq 0" />
+        <Conditional brainhemorrhagenofx="lteq 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="bleeding" amount="0.3" />
+        <Affliction identifier="burn" amount="0.07" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="psychosis" amount="0.1" />
+      </StatusEffect>
+      <!-- Delayed head explosion -->
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" comparison="and" duration="0">
+        <Conditional brainhemorrhage="lteq 0" />
+        <Conditional brainhemorrhagelowfx="lteq 0" />
+        <Conditional brainhemorrhagenofx="lteq 0" />
+        <Conditional limbtype="eq head" />
+        <Affliction identifier="cortizidedeathdelay" amount="1" />
+      </StatusEffect>
+      <!-- On failure, no affliction -->
+      <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
+        <Conditional brainhemorrhage="lteq 0" />
+        <Conditional brainhemorrhagelowfx="lteq 0" />
+        <Conditional brainhemorrhagenofx="lteq 0" />
+        <Conditional limbtype="eq head" />
+        <ReduceAffliction type="bleeding" amount="0.2" />
+        <Affliction identifier="burn" amount="0.09" />
+        <Affliction identifier="stun" amount="0.01" />
+        <Affliction identifier="psychosis" amount="0.1" />
+      </StatusEffect>
+      <!-- For some reason, just doing limbtype="! head" doesn't work. And at the time of writing this, neither does "eq leftleg" or "eq rightleg". -->
+      <!-- On success, body injection -->
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="or">
+        <Conditional limbtype="eq torso" />
+        <Conditional limbtype="eq leftarm" />
+        <Conditional limbtype="eq rightarm" />
+        <Conditional limbtype="eq leftleg" />
+        <Conditional limbtype="eq rightleg" />
+        <ReduceAffliction type="bleeding" amount="0.3" target="limb" />
+        <Affliction identifier="burn" amount="0.07" target="limb" />
+      </StatusEffect>
+      <!-- On failure, body injection -->
+      <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="or">
+        <Conditional limbtype="eq torso" />
+        <Conditional limbtype="eq leftarm" />
+        <Conditional limbtype="eq rightarm" />
+        <Conditional limbtype="eq leftleg" />
+        <Conditional limbtype="eq rightleg" />
+        <ReduceAffliction type="bleeding" amount="0.2" target="limb" />
+        <Affliction identifier="burn" amount="0.09" target="limb" />
+      </StatusEffect>
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </MeleeWeapon>
+    <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+  </Cortizide>
+</Items>

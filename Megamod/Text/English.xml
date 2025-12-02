@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <!-- ***** -->
+  <!-- Items -->
+  <!-- ***** -->
+
+  <!-- Unused, for now -->
+  <entityname.mm_container>Dimensional Vault Controller</entityname.mm_container>
+  <entitydescription.mm_container>Stores items of most any size.</entitydescription.mm_container>
+
+  <!-- Traitor stuff -->
+
+  <entityname.mm_dvpoint>Deep Vents Access Point</entityname.mm_dvpoint>
+  <entitydescription.mm_dvpoint>Used by traitors to access the Deep Vents.</entitydescription.mm_dvpoint>
+
+  <entityname.mm_uplink>Uplink</entityname.mm_uplink>
+  <entitydescription.mm_uplink><!-- Set by Lua code --></entitydescription.mm_uplink>
+  <entityname.mm_grabber>Grabber</entityname.mm_grabber>
+  <entitydescription.mm_grabber>It grabs.</entitydescription.mm_grabber>
+  <entityname.multiscalpel_blood>Multipurpose scalpel</entityname.multiscalpel_blood>
+  <entitydescription.multiscalpel_blood><!-- Set by Lua code --></entitydescription.multiscalpel_blood>
+  <entityname.mm_bloodscalpel>Blood Scalpel</entityname.mm_bloodscalpel>
+  <entitydescription.mm_bloodscalpel>The blade rends through flesh with no resistance. Armor is a challenge, however.</entitydescription.mm_bloodscalpel>
+  <entityname.mm_huskegginjector>Husk Egg Injector</entityname.mm_huskegginjector>
+  <entitydescription.mm_huskegginjector>You know what to do.</entitydescription.mm_huskegginjector>
+  <entityname.mm_huskegginjector2>Broken Device</entityname.mm_huskegginjector2>
+  <entitydescription.mm_huskegginjector2>What is this thing?</entitydescription.mm_huskegginjector2>
+  <entityname.mm_stunprod>Stun Prod</entityname.mm_stunprod>
+  <entitydescription.mm_stunprod>A modified stun baton, using a strange contraption that seems to only accept perfectly round orbs as fuel.</entitydescription.mm_stunprod>
+  <entityname.mm_dime>Dimensional Essence</entityname.mm_dime>
+  <entitydescription.mm_dime>Red gas, trapped in a blue field. Somehow, it's perfectly round.</entitydescription.mm_dime>
+
+  <!-- Cloning -->
+
+  <entityname.mm_cloningmachine>Cloning Machine</entityname.mm_cloningmachine>
+  <entitydescription.mm_cloningmachine></entitydescription.mm_cloningmachine>
+  <entityname.mm_hypomaximdevice>Hypomaxim Device</entityname.mm_hypomaximdevice>
+  <entitydescription.mm_hypomaximdevice>A syringe-like device that holds a unique mechanism capable of directly reviving the dead, or storing the data of the alive so that a cloning machine may reconstruct them should they die.</entitydescription.mm_hypomaximdevice>
+
+  <!-- Misc. -->
+
+  <entityname.mm_anechoicdivingsuithelmet>Diving Helmet (Anechoic)</entityname.mm_anechoicdivingsuithelmet>
+  <entitydescription.mm_anechoicdivingsuithelmet></entitydescription.mm_anechoicdivingsuithelmet>
+
+  <!-- Anechoic Diving Suit description override -->
+  <entitydescription.mm_anechoicsuit>A stealthy, lightweight suit designed to absorb the sound waves of active sonar with its anechoic plating. It offers minor protection against damage and can withstand pressures of up to 4,000 meters.</entitydescription.mm_anechoicsuit>
+
+  <entityname.mm_renegadedivingsuithelmet>Diving Helmet (Renegade)</entityname.mm_renegadedivingsuithelmet>
+  <entitydescription.mm_renegadedivingsuithelmet></entitydescription.mm_renegadedivingsuithelmet>
+
+  <!-- Renegade Diving Suit description override -->
+  <entitydescription.mm_renegadedivingsuit>A diving suit utilised by Jovian Separatists to show which faction they are a part of, it has been designed to protect mostly against small arms fire. Has a depth rating of 5,700m.</entitydescription.mm_renegadedivingsuit>
+
+  <!-- Renegade Anti-Sub Grenade Launcher name/description override -->
+  <entityname.mm_rpg>Anti-Sub Grenade Launcher</entityname.mm_rpg>
+  <entitydescription.mm_rpg>A simple 40mm recoilless muzzle loading launcher, as a result of not being restricted to the bore diameter, it is able to use a variety of warhead types for different purposes.</entitydescription.mm_rpg>
+
+  <!-- Combat Hardsuit description override -->
+  <entitydescription.mm_combathardsuit>A powerhouse of a Diving Suit meant for heavy combat, featuring thick anti-ballistic materials and sharp angles to maximize deflection. However this suit severely hampers tool usage in addition to poorer oxygen cycling efficiency.</entitydescription.mm_combathardsuit>
+
+  <!-- Empty Syringe name override -->
+  <entityname.mm_emptysyringe>Bone Marrow Collection Syringe</entityname.mm_emptysyringe>
+
+  <!-- Reverse Bear Trap name / description override -->
+  <entityname.mm_reversebeartrap>Reverse Bear Trap</entityname.mm_reversebeartrap>
+  <entitydescription.mm_reversebeartrap>Wear it at your own discretion.</entitydescription.mm_reversebeartrap>
+
+  <!-- Metallic Foam Sprayer description override -->
+  <entitydescription.mm_metalfoamsprayer></entitydescription.mm_metalfoamsprayer>
+  <!-- Metallic Foam Canister description override -->
+  <entitydescription.mm_metalfoamcanister></entitydescription.mm_metalfoamcanister>
+
+  <!-- ********** -->
+  <!-- Characters -->
+  <!-- ********** -->
+
+  <character.truebeast>???</character.truebeast>
+
+  <!-- *********** -->
+  <!-- Afflictions -->
+  <!-- *********** -->
+
+  <afflictionname.mm_monsterantiparalysis>Paralysis Resistance</afflictionname.mm_monsterantiparalysis>
+  <afflictiondescription.mm_monsterantiparalysis>The patient is immune to paralysis.</afflictiondescription.mm_monsterantiparalysis>
+  <afflictioncauseofdeath.mm_monsterantiparalysis>What</afflictioncauseofdeath.mm_monsterantiparalysis>
+  <afflictionname.mm_hypomaxim>Hypomaxim</afflictionname.mm_hypomaxim>
+  <afflictiondescription.mm_hypomaxim>Death refusal. Canceled out by extreme neurotrauma.</afflictiondescription.mm_hypomaxim>
+  <afflictioncauseofdeath.mm_hypomaxim>What</afflictioncauseofdeath.mm_hypomaxim>
+</infotexts>

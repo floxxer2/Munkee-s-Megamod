@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <Item name="" identifier="divingsuitlocker" category="Diving" tags="container,divingsuitcontainer,divingsuitcontainerwindow" pickdistance="50" scale="0.5">
+      <Sprite name="Diving Suit Locker Vertical" texture="Content/Items/Containers/containers.png" depth="0.84" sourcerect="714,1,99,256" origin="0.5,0.5" />
+      <!-- decorative "halo", goes on top of the suit, is colored by suit lighting -->
+      <DecorativeSprite texture="%ModDir%/Content/Items/Diving/SuitlockerLighting.png" sourcerect="0,0,99,256" color="255,255,255,80" depth="0.839" offset="0,0" origin="0.5,0.5">
+        <!-- <IsActiveConditional targetcontaineditem="true" hastag="eq deepdiving"/> -->
+      </DecorativeSprite>
+      <!-- backlight -->
+      <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="5" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <sprite texture="%ModDir%/Content/Items/Diving/SuitlockerLighting.png" depth="0.83" sourcerect="0,0,99,256" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <Powered powerconsumption="10" currpowerconsumption="10" isactive="true">
+        <GuiFrame relativesize="0.18,0.15" minsize="350,160" maxsize="420,192" anchor="Center" relativeoffset="0,-0.1" style="ItemUI" msg="ItemMsgInteractSelect" />
+      </Powered>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredSkill identifier="electrical" level="25" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" stun="0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <ParticleEmitter particle="spark" particleamount="5" emitinterval="1.05" anglemax="360" distancemax="20" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
+        <ParticleEmitter particle="fleshsmoke" particlespersecond="2" scalemin="1" scalemax="2" mincondition="0.0" maxcondition="50.0" />
+        <input name="power_in" displayname="connection.powerin" />
+      </ConnectionPanel>
+      <ItemContainer hideitems="false" drawinventory="true" capacity="1" slotsperrow="1" itempos="0,0" iteminterval="0,0" canbeselected="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.2,0.375" anchor="Center" minsize="140,170" maxsize="280,440" style="ItemUI" />
+        <SlotIcon slotindex="0" texture="Content/Map/LabelIcons.png" sourcerect="512,0,256,256" origin="0.5,0.5" />
+        <SlotIcon slotindex="1" texture="Content/Map/LabelIcons.png" sourcerect="512,0,256,179" origin="0.5,0.5" />
+        <Containable items="deepdiving" excludeditems="deepdivinglarge" />
+        <SubContainer capacity="1">
+          <Containable items="divinghelmet" />
+        </SubContainer>
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:3074045632%/Content/Items/Containers/divingcabinet_open.ogg" volume="5" range="250" selectionmode="Random" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+    <Item name="" identifier="divingsuitlockerwrecked" nameidentifier="divingsuitlocker" tags="divingsuitcontainerwindow,wreckdivingsuitcontainer" pickdistance="50" scale="0.5" category="Wrecked">
+      <Sprite texture="Content/Items/Shipwrecks/MiscWrecked.png" depth="0.84" sourcerect="1126,1710,99,254" origin="0.5,0.5" />
+      <!-- decorative "halo", goes on top of the suit, is colored by suit lighting -->
+      <DecorativeSprite texture="%ModDir%/Content/Items/Diving/SuitlockerLighting.png" sourcerect="0,0,99,256" color="255,255,255,80" depth="0.839" offset="0,0" origin="0.5,0.5">
+        <!-- <IsActiveConditional targetcontaineditem="true" hastag="eq deepdiving"/> -->
+      </DecorativeSprite>
+      <!-- backlight -->
+      <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="5" IsOn="true" castshadows="false" flicker="0.4" flickerspeed="0.3" alphablend="false" allowingameediting="false">
+        <sprite texture="%ModDir%/Content/Items/Diving/SuitlockerLighting.png" depth="0.83" sourcerect="0,0,99,256" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <ItemContainer hideitems="false" drawinventory="true" capacity="1" slotsperrow="1" itempos="0,0" iteminterval="0,0" canbeselected="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.2,0.375" anchor="Center" minsize="140,170" maxsize="280,440" style="ItemUI" />
+        <SlotIcon slotindex="0" texture="Content/Map/LabelIcons.png" sourcerect="512,0,256,256" origin="0.5,0.5" />
+        <SlotIcon slotindex="1" texture="Content/Map/LabelIcons.png" sourcerect="512,0,256,179" origin="0.5,0.5" />
+        <Containable items="deepdiving" excludeditems="deepdivinglarge" />
+        <SubContainer capacity="1">
+          <Containable items="divinghelmet" />
+        </SubContainer>
+        <StatusEffect type="OnPicked" target="this">
+          <Sound file="%ModDir:3074045632%/Content/Items/Containers/divingcabinet_open.ogg" volume="5" range="250" selectionmode="Random" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+  </Items>
+</Override>

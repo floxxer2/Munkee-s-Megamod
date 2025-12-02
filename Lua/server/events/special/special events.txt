@@ -1,0 +1,1 @@
+Events of type "Special" are not automatically triggered by the event manager.

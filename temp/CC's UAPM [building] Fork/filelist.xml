@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="CC's UAPM [building] Fork" modversion="1.0.10" corepackage="False" steamworkshopid="3434409381" gameversion="1.7.7.0" expectedhash="C606790534C523E14136F0AFABD5D1B2">
+  <Structure file="%ModDir%/Building/BGWalls.xml" />
+  <Item file="%ModDir%/Building/DDecals.xml" />
+  <Structure file="%ModDir%/Building/SWalls.xml" />
+  <Other file="%ModDir%/Building/Walls1.png" />
+  <Other file="%ModDir%/Building/Dirt.png" />
+  <Other file="%ModDir%/Building/DirtD1.png" />
+  <Item file="%ModDir%/DeadNGore/Deads.xml" />
+  <Item file="%ModDir%/DeadNGore/Decals.xml" />
+  <Item file="%ModDir%/SydWad/Items.xml" />
+  <Text file="%ModDir%/Text/English/EnglishCCs_UAPM_Building.xml" />
+  <Text file="%ModDir%/Text/English/EnglishCCs_UAPM_deadNgore.xml" />
+  <Text file="%ModDir%/Text/English/EnglishNew_Items.xml" />
+  <Text file="%ModDir%/Text/Русский/РусскийCCs_UAPM_Building.xml" />
+  <Text file="%ModDir%/Text/Русский/РусскийCCs_UAPM_deadNgore.xml" />
+  <Text file="%ModDir%/Text/Русский/РусскийNew_Items.xml" />
+</contentpackage>

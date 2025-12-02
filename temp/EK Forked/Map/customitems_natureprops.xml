@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Override>
+    <!-- Biome Props -->
+    <Item name="" identifier="ekdockyard_biomeice_walledgechunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/IceCave/WallEdgeChunks.png" sourcerect="0,0,512,512" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/IceCave/WallEdgeChunks.png" depth="0.89" sourcerect="128,64,256,256" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/WallEdgeChunks.png" depth="0.89" sourcerect="0,0,512,512" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/WallEdgeChunks.png" depth="0.89" sourcerect="512,0,512,512" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/WallEdgeChunks.png" depth="0.89" sourcerect="0,512,512,512" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/WallEdgeChunks.png" depth="0.89" sourcerect="512,512,512,512" origin="0.5,0.5" maxcondition="71" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeice_backgroundchunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/IceCave/BackgroundChunks.png" sourcerect="4,4,333,504" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/IceCave/BackgroundChunks.png" depth="0.89" sourcerect="48,96,256,256" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/BackgroundChunks.png" depth="0.89" sourcerect="4,4,333,504" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/BackgroundChunks.png" depth="0.89" sourcerect="345,4,333,504" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/BackgroundChunks.png" depth="0.89" sourcerect="687,4,333,504" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/BackgroundChunks.png" depth="0.89" sourcerect="4,516,504,504" origin="0.5,0.5" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/IceCave/BackgroundChunks.png" depth="0.89" sourcerect="516,516,504,504" origin="0.5,0.5" maxcondition="61" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Needed to replace icecave/cavehazards with crystalcave/cavehazards due to Barotrauma's internal changes. -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeice_levelobjects1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" sourcerect="0,0,209,388" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="16,16,192,192" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="0,0,257,445" origin="0.5,0.25" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="260,0,182,430" origin="0.5,0.25" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="451,0,184,462" origin="0.5,0.25" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="690,3,265,273" origin="0.5,0.5" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="689,279,327,244" origin="0.5,0.5" maxcondition="61" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomerock_walledgechunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" sourcerect="0,0,512,512" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" depth="0.89" sourcerect="128,64,256,256" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" depth="0.89" sourcerect="0,0,512,512" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" depth="0.89" sourcerect="512,0,512,512" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" depth="0.89" sourcerect="0,512,512,512" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" depth="0.89" sourcerect="512,512,512,512" origin="0.5,0.5" maxcondition="71" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomerock_backgroundchunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" sourcerect="4,4,333,504" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" depth="0.89" sourcerect="48,96,256,256" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" depth="0.89" sourcerect="4,4,333,504" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" depth="0.89" sourcerect="345,4,333,504" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" depth="0.89" sourcerect="687,4,333,504" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" depth="0.89" sourcerect="4,516,504,504" origin="0.5,0.5" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" depth="0.89" sourcerect="516,516,504,504" origin="0.5,0.5" maxcondition="61" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Same as the IceCave/CaveHazards; seems like a lot of CaveHazards were moved to that one image. -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomerock_levelobjects1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" sourcerect="287,556,211,425" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="287,556,211,425" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="287,556,211,425" origin="0.5,0.25" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="497,562,293,462" origin="0.5,0.25" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="790,534,232,490" origin="0.5,0.25" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="5,787,276,237" origin="0.5,0.5" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" depth="0.89" sourcerect="0,456,283,328" origin="0.5,0.5" maxcondition="61" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomemushroom_walledgechunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/MushroomCave/WallEdgeChunks.png" sourcerect="0,0,512,512" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/MushroomCave/WallEdgeChunks.png" depth="0.89" sourcerect="128,96,256,256" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/WallEdgeChunks.png" depth="0.89" sourcerect="0,0,512,512" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/WallEdgeChunks.png" depth="0.89" sourcerect="512,0,512,512" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/WallEdgeChunks.png" depth="0.89" sourcerect="0,512,512,512" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/WallEdgeChunks.png" depth="0.89" sourcerect="512,512,512,512" origin="0.5,0.5" maxcondition="71" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomemushroom_levelobjects1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="19,96,308,253" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" sourcerect="19,96,308,253" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="100" sourcerect="19,96,308,253" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="91" sourcerect="351,49,316,300" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="81" sourcerect="697,35,314,310" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="71" sourcerect="6,366,329,318" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="61" sourcerect="345,366,329,318" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="51" sourcerect="688,383,321,302" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="41" sourcerect="15,715,314,305" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="31" sourcerect="367,769,329,253" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" maxcondition="31" sourcerect="700,722,318,301" origin="0.5,0.5" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Item name="Mushroom Rock" identifier="ekdockyard_biomemushroom_levelobjects2" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+    <InventoryIcon texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="342,0,342,342" origin="0.5,0.5" />
+    <Sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" depth="0.89" sourcerect="342,0,342,342" canflipy="false" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="3,20,252,237" origin="0.5,0.5" maxcondition="100" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="262,47,243,204" origin="0.5,0.5" maxcondition="91" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="515,14,250,238" origin="0.5,0.5" maxcondition="81" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="777,18,240,232" origin="0.5,0.5" maxcondition="71" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="5,316,250,187" origin="0.5,0.5" maxcondition="61" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="264,317,242,190" origin="0.5,0.5" maxcondition="51" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="516,321,249,189" origin="0.5,0.5" maxcondition="41" />
+    <BrokenSprite texture="Content/Map/Biomes/MushroomCave/CaveHazards.png" depth="0.89" sourcerect="776,370,243,136" origin="0.5,0.5" maxcondition="31" />
+    <ItemComponent>
+      <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+        <Conditional indestructible="false" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <!-- Volcanic Rocks -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomevolcanic_walledgechunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" sourcerect="0,0,823,420" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="320,64,256,256" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="0,0,823,420" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="828,0,388,420" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="1218,64,826,1364" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="0,420,1016,515" origin="0.5,0.5" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="16,935,758,1113" origin="0.5,0.5" maxcondition="61" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="790,1451,452,597" origin="0.5,0.5" maxcondition="51" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/WallEdgeChunks.png" depth="0.89" sourcerect="1246,1435,798,609" origin="0.5,0.5" maxcondition="41" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Volcanic Clusters -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomevolcanic_levelobjects1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" sourcerect="10,10,576,545" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" sourcerect="192,128,256,256" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="100" sourcerect="2530,63,735,536" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="95" sourcerect="3275,63,811,536" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="91" sourcerect="1972,610,799,662" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="85" sourcerect="2781,610,654,673" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="81" sourcerect="3445,610,641,682" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="75" sourcerect="2019,1282,651,702" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="71" sourcerect="2680,1315,695,669" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="65" sourcerect="3385,1317,701,667" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="61" sourcerect="1328,11,396,567" origin="0.5,0.9" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="55" sourcerect="1734,11,481,589" origin="0.5,0.9" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="51" sourcerect="2225,43,295,558" origin="0.5,0.9" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="45" sourcerect="9,1401,449,637" origin="0.5,0.9" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="41" sourcerect="468,1310,521,728" origin="0.5,0.9" />
+      <BrokenSprite texture="Content/Map/Biomes/HydrothermalWastes/LevelObjects.png" depth="0.89" maxcondition="35" sourcerect="999,1290,474,748" origin="0.5,0.9" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Stumps -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeforest_walledgechunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/ForestCave/CaveHazards.png" sourcerect="29,860,424,346" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="29,860,424,346" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="29,860,424,346" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="550,927,385,268" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="59,1245,382,280" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="572,1305,348,226" origin="0.5,0.5" maxcondition="71" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Clusters -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeforest_levelobjects1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/ForestCave/CaveHazards.png" sourcerect="1353,1135,334,330" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="1353,1135,334,330" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="100" depth="0.89" sourcerect="1353,1135,334,330" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="91" depth="0.89" sourcerect="1695,1131,342,342" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="81" depth="0.89" sourcerect="1042,1808,326,235" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="71" depth="0.89" sourcerect="1756,1775,292,260" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="61" depth="0.89" sourcerect="1715,1489,317,291" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="51" depth="0.89" sourcerect="1363,1466,342,342" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="41" depth="0.89" sourcerect="1018,1490,331,314" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" maxcondition="31" depth="0.89" sourcerect="1017,1144,342,342" origin="0.5,0.5" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Branches -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeforest_cavehazards1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/ForestCave/CaveHazards.png" sourcerect="0,0,431,817" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="128,384,192,192" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="0,0,431,817" origin="0.5,0.75" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="453,0,453,874" origin="0.5,0.75" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="906,0,469,805" origin="0.5,0.75" maxcondition="81" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Vents (sus) -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeforest_cavehazards2" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/ForestCave/CaveHazards.png" sourcerect="1063,875,315,250" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="1063,875,315,250" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="1063,875,315,250" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="1391,917,293,207" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="1713,849,319,272" origin="0.5,0.5" maxcondition="81" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <!-- Forest Rock -->
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeforest_backgroundchunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/ForestCave/CaveHazards.png" sourcerect="0,1564,317,482" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="0,1564,317,482" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="0,1564,317,482" origin="0.5,0.5" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="339,1555,318,488" origin="0.5,0.5" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="680,1591,319,414" origin="0.5,0.5" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="1455,45,464,398" origin="0.5,0.5" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/ForestCave/CaveHazards.png" depth="0.89" sourcerect="1447,478,369,350" origin="0.5,0.5" maxcondition="61" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeaphotic_walledgechunks1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="0,0,512,512" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="0,0,512,512" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="100" sourcerect="0,0,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="95" sourcerect="512,0,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="91" sourcerect="1024,0,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="85" sourcerect="1536,0,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="81" sourcerect="0,512,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="75" sourcerect="512,512,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="71" sourcerect="1024,512,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="65" sourcerect="1536,512,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="61" sourcerect="0,1024,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="55" sourcerect="512,1024,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="51" sourcerect="1024,1024,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="45" sourcerect="1536,1024,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="41" sourcerect="0,1536,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="35" sourcerect="512,1536,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="31" sourcerect="1024,1536,512,512" origin="0.5,0.8" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" maxcondition="25" sourcerect="1536,1536,512,512" origin="0.5,0.8" />
+      <!--<BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/WallEdgeChunks.png" depth="0.89" sourcerect="0,0,0,0" origin="0.5,0.5" maxcondition="10" />-->
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeaphotic_levelobjects1" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="0,0,512,512" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="160,228,192,192" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="0,0,512,512" origin="0.5,0.65" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="512,0,512,512" origin="0.5,0.65" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1024,0,512,512" origin="0.5,0.65" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1536,0,512,512" origin="0.5,0.65" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="0,512,512,512" origin="0.5,0.65" maxcondition="61" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="512,512,512,512" origin="0.5,0.65" maxcondition="51" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1024,512,512,512" origin="0.5,0.65" maxcondition="41" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1536,512,512,512" origin="0.5,0.65" maxcondition="31" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="0,1024,512,512" origin="0.5,0.65" maxcondition="21" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="512,1024,512,512" origin="0.5,0.65" maxcondition="10" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="" identifier="ekdockyard_biomeaphotic_levelobjects2" category="Decorative" tags="smallitem" focusonselected="false" linkable="false" Scale="0.5" noninteractable="True" spritecolor="255,255,255,255">
+      <InventoryIcon texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1024,1024,512,512" origin="0.5,0.5" />
+      <Sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1184,1184,192,192" canflipy="false" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1024,1024,512,512" origin="0.5,0.65" maxcondition="100" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1536,1024,512,512" origin="0.5,0.65" maxcondition="91" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="0,1536,512,512" origin="0.5,0.65" maxcondition="81" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="512,1536,512,512" origin="0.5,0.65" maxcondition="71" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1024,1536,512,512" origin="0.5,0.65" maxcondition="61" />
+      <BrokenSprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" depth="0.89" sourcerect="1536,1536,512,512" origin="0.5,0.65" maxcondition="51" />
+      <ItemComponent>
+        <StatusEffect type="Always" target="This" indestructible="true" setvalue="true">
+          <Conditional indestructible="false" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Override>
+</Items>

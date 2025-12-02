@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <Affliction name="cthulhusmallheadarmordamage" identifier="cthulhusmallheadarmordamage" type="cthulhusmallheadarmordamage" showiconthreshold="1000" ShowIconToOthersThreshold="1000" showinhealthscannerthreshold="1000" maxstrength="100" affectmachines="true">
+    <Effect minstrength="0" maxstrength="100" strengthchange="0" />
+  </Affliction>
+  <Affliction name="cthulhusmallwaistarmordamage" identifier="cthulhusmallwaistarmordamage" type="cthulhusmallwaistarmordamage" showiconthreshold="1000" ShowIconToOthersThreshold="1000" showinhealthscannerthreshold="1000" maxstrength="100" affectmachines="true">
+    <Effect minstrength="0" maxstrength="100" strengthchange="0" />
+  </Affliction>
+</Afflictions>

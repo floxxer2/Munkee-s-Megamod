@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="NT BrainTrans (Beta)" modversion="1.0.2" corepackage="False" steamworkshopid="3400663333" gameversion="1.7.7.0" expectedhash="97DDC7244E75CB93F266442CB11318B7">
+  <Item file="%ModDir%/dumb_item.xml" />
+</contentpackage>
