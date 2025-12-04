@@ -18,6 +18,7 @@
     "Lua.diagnostics.globals": [
         "Screen",
         "HF",
-        "NTI"
+        "NTI",
+        "NT"
     ]
 }
