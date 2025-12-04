@@ -14,5 +14,10 @@
         "deprecated",
         "duplicate-set-field",
         "inject-field"
+    ],
+    "Lua.diagnostics.globals": [
+        "Screen",
+        "HF",
+        "NTI"
     ]
 }
