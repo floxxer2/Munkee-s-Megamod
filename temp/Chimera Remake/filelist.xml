@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Chimera Remake" modversion="1.7" corepackage="False" steamworkshopid="3368559590" gameversion="1.6.19.1" expectedhash="05A7E3BB7FC5653E402361671DDE44E8">
-  <Character file="%ModDir%/Husk_chimera.xml" />
-  <Character file="%ModDir%/Chimera_head/Chimera_head.xml" />
-</contentpackage>

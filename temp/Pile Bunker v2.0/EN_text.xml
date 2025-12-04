@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<infotexts language="English" nowhitespace="false" translatedname="English">
-  <entityname.pilebunker>Pile Bunker</entityname.pilebunker>
-  <entitydescription.pilebunker>Industrial large-bore rivet gun modified into a brutal and unwieldy melee weapon. Drives a captive steel pile into the target with an explosive charge, invariably fatal against most living creatures.</entitydescription.pilebunker>
-  <entityname.pilechargemagazine>Pile Bunker Charge</entityname.pilechargemagazine>
-  <entitydescription.pilecharge>Plastic explosive encased in a heavy steel canister. Used as the pile bunker's explosive primer. Very stable.</entitydescription.pilecharge>
-  <zr_unload>Unload</zr_unload>
-</infotexts>

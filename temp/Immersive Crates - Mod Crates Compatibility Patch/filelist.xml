@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Immersive Crates - Mod Crates Compatibility Patch" modversion="1.0.1" corepackage="False" steamworkshopid="3337851889" gameversion="1.5.9.2" expectedhash="E0A845001497576B0E92A475D741C1BD">
-  <Item file="%ModDir%/Content/Items/moddedcrates.xml" />
-</contentpackage>

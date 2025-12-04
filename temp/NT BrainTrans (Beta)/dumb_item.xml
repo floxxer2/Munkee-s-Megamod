@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Items>
-  <Item name="" identifier="dumb_item_0_8_14_17_27_52_69_73_101_115_228_314_404_420_666_777_1234_1337_1488_3301_9000" category="Equipment" Tags="dumb" cargocontaineridentifier="metalcrate">
-    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="192,64,64,64" origin="0.5,0.5" />
-    <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
-    <Body width="16" height="12" density="10.05" />
-  </Item>
-</Items>

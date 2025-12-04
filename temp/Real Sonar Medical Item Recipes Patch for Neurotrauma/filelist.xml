@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Real Sonar Medical Item Recipes Patch for Neurotrauma" modversion="1.4.2" corepackage="False" steamworkshopid="2965750397" gameversion="1.2.8.0" expectedhash="B76C78721C96997CC4B3571A241280B5">
-  <Item file="%ModDir%/medicines.xml" />
-  <Other file="%ModDir%/Images/medicineIcons.png" />
-  <Other file="%ModDir%/Images/medicines.png" />
-</contentpackage>

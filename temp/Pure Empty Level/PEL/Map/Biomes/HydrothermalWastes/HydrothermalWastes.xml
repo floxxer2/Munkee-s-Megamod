@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<LevelGenerationParameters>
-  <Override>
-    <WastesBasic identifier="wastesbasic" commonness="0" />
-    <WastesGraveyard identifier="wastesgraveyard" commonness="0" />
-    <WastesAbyss identifier="wastesabyss" commonness="0" />
-  </Override>
-</LevelGenerationParameters>
