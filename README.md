@@ -19,3 +19,5 @@ During this step, it will create three text files in Lua/utils/automation/. Two 
 This is important so that the Lua function require() will work, as it, well, requires files to be in the /Lua/ folder. This is a limitation of the Barotrauma Lua extension.
 12. Make sure to re-comment the first line in mega init.lua, and optionally for next time, set Auto.Step = 0.
 If you are forking the Megamod, make sure to delete everything in /temp/, before using your fork on your server or uploading it to the Workshop. Not doing so will nearly double the file size. You can also delete other backend things like steamcmd and auto.bat to save a little more space.
+
+This script currently does not handle C# files. You have to manually copy them into /CSharp/ and make sure they'll work.
