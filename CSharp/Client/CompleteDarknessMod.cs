@@ -15,6 +15,7 @@ using Barotrauma.Extensions;
 using System.Threading;
 
 using Barotrauma.Lights;
+using FarseerPhysics;
 
       // patching this method https://github.com/evilfactory/LuaCsForBarotrauma/blob/5e89e2ea118cb5dbafa3214227ed2eaf57a77901/Barotrauma/BarotraumaClient/ClientSource/Map/Lights/LightManager.cs#L246
 namespace CompleteDarkness
@@ -42,6 +43,120 @@ namespace CompleteDarkness
 
         //controlled by Lua
         public static bool HuntActive = false;
+        //public static bool IsMonsterAntagonist = false;
+
+        private static readonly List<Entity> highlightedEntities = new List<Entity>();
+
+        /*public static bool UpdateHighlights(GraphicsDevice graphics, SpriteBatch spriteBatch, Matrix spriteBatchTransform, Camera cam, Barotrauma.Lights.LightManager __instance)
+        {
+            Barotrauma.Lights.LightManager _ = __instance;
+
+            if (GUI.DisableItemHighlights) { return false; }
+
+            highlightedEntities.Clear();
+            Character closestCharacter = null;
+            Vector2 mouseSimPos = ConvertUnits.ToSimUnits(GameMain.GameScreen.Cam.ScreenToWorld(PlayerInput.MousePosition));
+            float closestDist = ConvertUnits.ToSimUnits(Character.MaxHighlightDistance);
+            foreach (Character c in Character.CharacterList)
+            {
+                if (c.AnimController?.SimplePhysicsEnabled ?? true) { continue; }
+
+                float dist = c.GetDistanceToClosestLimb(mouseSimPos);
+                if (dist < closestDist || 
+                    (c.CampaignInteractionType != CampaignMode.InteractionType.None && closestCharacter?.CampaignInteractionType == CampaignMode.InteractionType.None && dist * 0.9f < closestDist))
+                {
+                    closestCharacter = c;
+                    closestDist = dist;
+                }
+            }
+            if (closestCharacter != null)
+            {
+                highlightedEntities.Add(closestCharacter);
+            }
+            if (highlightedEntities.Count == 0) { return false; }
+
+            //draw characters in light blue first
+            graphics.SetRenderTarget(_.HighlightMap);
+            _.SolidColorEffect.CurrentTechnique = _.SolidColorEffect.Techniques["SolidColor"];
+            _.SolidColorEffect.Parameters["color"].SetValue(Color.LightBlue.ToVector4());
+            _.SolidColorEffect.CurrentTechnique.Passes[0].Apply();
+            DeformableSprite.Effect.CurrentTechnique = DeformableSprite.Effect.Techniques["DeformShaderSolidColor"];
+            DeformableSprite.Effect.Parameters["solidColor"].SetValue(Color.LightBlue.ToVector4());
+            DeformableSprite.Effect.CurrentTechnique.Passes[0].Apply();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, samplerState: SamplerState.LinearWrap, effect: _.SolidColorEffect, transformMatrix: spriteBatchTransform);
+            foreach (Entity highlighted in highlightedEntities)
+            {
+                if (highlighted is Item item)
+                {
+                    if (item.IconStyle != null && (item != Character.Controlled.FocusedItem || Character.Controlled.FocusedItem == null))
+                    {
+                        //wait until next pass
+                    }
+                    else
+                    {
+                        item.Draw(spriteBatch, false, true);
+                    }
+                }
+                else if (highlighted is Character character)
+                {
+                    character.Draw(spriteBatch, cam);
+                }
+            }
+            spriteBatch.End();
+
+            //draw items with iconstyles in the style's color
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, samplerState: SamplerState.LinearWrap, effect: _.SolidColorEffect, transformMatrix: spriteBatchTransform);
+            foreach (Entity highlighted in highlightedEntities)
+            {
+                if (highlighted is Item item)
+                {
+                    if (item.IconStyle != null && (item != Character.Controlled.FocusedItem || Character.Controlled.FocusedItem == null))
+                    {
+                        _.SolidColorEffect.Parameters["color"].SetValue(item.IconStyle.Color.ToVector4());
+                        _.SolidColorEffect.CurrentTechnique.Passes[0].Apply();
+                        item.Draw(spriteBatch, false, true);
+                    }
+                }
+            }
+            spriteBatch.End();
+
+            //draw characters in black with a bit of blur, leaving the white edges visible
+            float phase = (float)(Math.Sin(Timing.TotalTime * 3.0f) + 1.0f) / 2.0f; //phase oscillates between 0 and 1
+            Vector4 overlayColor = Color.Black.ToVector4() * MathHelper.Lerp(0.5f, 0.9f, phase);
+            _.SolidColorEffect.Parameters["color"].SetValue(overlayColor);
+            _.SolidColorEffect.CurrentTechnique = _.SolidColorEffect.Techniques["SolidColorBlur"];
+            _.SolidColorEffect.CurrentTechnique.Passes[0].Apply();
+            DeformableSprite.Effect.Parameters["solidColor"].SetValue(overlayColor);
+            DeformableSprite.Effect.CurrentTechnique.Passes[0].Apply();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, samplerState: SamplerState.LinearWrap, effect: _.SolidColorEffect, transformMatrix: spriteBatchTransform);
+            foreach (Entity highlighted in highlightedEntities)
+            {
+                if (highlighted is Item item)
+                {
+                    _.SolidColorEffect.Parameters["blurDistance"].SetValue(0.02f);
+                    item.Draw(spriteBatch, false, true);
+                }
+                else if (highlighted is Character character)
+                {
+                    _.SolidColorEffect.Parameters["blurDistance"].SetValue(0.05f);
+                    character.Draw(spriteBatch, cam);
+                }
+            }
+            spriteBatch.End();
+
+            //raster pattern on top of everything
+            spriteBatch.Begin(blendState: BlendState.NonPremultiplied, samplerState: SamplerState.LinearWrap);
+            spriteBatch.Draw(_.highlightRaster,
+                new Rectangle(0, 0, _.HighlightMap.Width, _.HighlightMap.Height),
+                new Rectangle(0, 0, (int)(_.HighlightMap.Width / _.currLightMapScale * 0.5f), (int)(_.HighlightMap.Height / _.currLightMapScale * 0.5f)),
+                Color.White * 0.5f);
+            spriteBatch.End();
+
+            DeformableSprite.Effect.CurrentTechnique = DeformableSprite.Effect.Techniques["DeformShader"];
+
+            return true;
+        }*/
+
 
         public static bool RenderLightMap(GraphicsDevice graphics, SpriteBatch spriteBatch, Camera cam, Barotrauma.Lights.LightManager __instance, RenderTarget2D backgroundObstructor = null)
         {
@@ -188,6 +303,7 @@ namespace CompleteDarkness
             }
             spriteBatch.End();
 
+            // Don't draw gap lights
             /*spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, transformMatrix: spriteBatchTransform);
             Vector3 glowColorHSV = ToolBox.RGBToHSV(_.AmbientLight);
             glowColorHSV.Z = Math.Max(glowColorHSV.Z, 0.4f);
@@ -240,12 +356,12 @@ namespace CompleteDarkness
             }
             spriteBatch.End();
 
-            /*if (highlightsVisible)
+            if (highlightsVisible)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
                 spriteBatch.Draw(_.HighlightMap, Vector2.Zero, Color.White);
                 spriteBatch.End();
-            }*/
+            }
 
             //draw characters to obstruct the highlighted items/characters and light sprites
             //---------------------------------------------------------------------------------------------------

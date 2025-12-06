@@ -10,8 +10,7 @@ rs.SelectedPlayers = {}
 
 rs.Strength = 0
 
--- Doesn't select players
---rs.AntagName = "Monster"
+rs.AntagName = "Monster"
 
 rs.FailReason = ""
 
@@ -42,7 +41,35 @@ Hook.Patch("Megamod.AIPerceptionPatch", "Barotrauma.EnemyAIController", "GetPerc
     return ptable["range"] * mult
 end, Hook.HookMethodType.Before)
 
--- Strength x10, then + / - 5
+-- Received when a client wants to control or leave a monster
+Networking.Receive("mm_monster", function(message, sender)
+    if not rs.SelectedPlayers[sender] then
+        Megamod.Log("Client '" .. tostring(sender.Name) .. "' tried to send an invalid mm_monster net message.", true)
+        return
+    end
+    local control = message.ReadBoolean()
+    if control then
+        local id = message.ReadUInt64()
+        local monster
+        for char in Character.CharacterList do
+            if char.ID == id and not Megamod.BlacklistedPlayerMonsters[char.ID] then
+                monster = char
+                break
+            end
+        end
+        if not monster then
+            Megamod.SendChatMessage(sender, "Couldn't find the monster to control, please try again. If this persists, tell an admin!", Color(255, 0, 255, 255))
+            Megamod.Error("Monster character not found, or was blacklisted. Aborting control swap.")
+            return
+        end
+        sender.SetClientCharacter(monster)
+    else
+        -- Sends the client to freecam
+        sender.SetClientCharacter(nil)
+    end
+end)
+
+-- Strength x10, then +/- 5
 rs.WaveStrength = 0
 
 -- Use table.insert() / table.remove()
@@ -60,13 +87,12 @@ rs.KillStacks = 0
 rs.KillCount = 0
 rs.LastKillTime = nil
 rs.InitialKillTime = nil
--- How long (seconds) without a monster kill before we start decrementing the kill count until it fails
+-- How long (seconds) without a monster kill before we start decrementing the kill count until the ruleset fails
 rs.FailAfterSeconds = 120 -- 2 minutes
 
 --[[ [Group name] = {
     [Specices name] = { creature strength, min wave strength, max wave strength }
 }]]
-
 rs.SpawnTable = {
     crawler = {
         -- Could add hatchlings, but they can't actually damage the sub
@@ -89,8 +115,8 @@ rs.SpawnTable = {
     },
     thresher = {
         Tigerthresher = { 8, 25, 100 },
-        Lavathresher = { 9, 25, 100 },
-        Abyssalthresher = { 11, 25, 100 },
+        Lavathresher = { 12, 25, 100 },
+        Abyssalthresher = { 12, 25, 100 },
         Bonethresher = { 14, 32, 100 },
     },
 }

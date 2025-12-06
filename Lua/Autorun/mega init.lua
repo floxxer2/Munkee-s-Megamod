@@ -22,6 +22,10 @@ Megamod.Admins = {
 -- clients in this receive Megamod logs in chat
 Megamod.Omni = {}
 
+Megamod.BlacklistedPlayerMonsters = {
+    "Truebeast"
+}
+
 -- Static/Dynamic/Kinematic
 Megamod.PhysicsBodyTypes = LuaUserData.CreateEnumTable("FarseerPhysics.BodyType")
 
@@ -57,6 +61,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua") -- This has the side-effect of making the "control panel" option the last in the list
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
+        --dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
     end, 1)
 end
 
@@ -167,6 +172,13 @@ end, Hook.HookMethodType.Before)
 -- Remove random NPC conversations
 Hook.Patch("Megamod.NoConversations", "Barotrauma.CrewManager", "CreateRandomConversation", function(instance, ptable)
     ptable.PreventExecution = true
+end, Hook.HookMethodType.Before)
+
+LuaUserData.MakeFieldAccessible(Descriptors["Barotrauma.MonsterEvent"], "disallowed")
+-- Prevent vanilla monster spawning logic
+Hook.Patch("Megamod.NoVanillaMonsters", "Barotrauma.MonsterEvent", "Update", function(instance, ptable)
+    -- This is basically the same as unticking boxes in the "Monster Spawns" box in server settings
+    instance.disallowed = true
 end, Hook.HookMethodType.Before)
 
 
