@@ -173,7 +173,7 @@ function event.Start()
     end, 72500)
 end
 
-function event.End()
+function event.End(fast)
     event.CanEnd = false
     Hook.Remove("client.connected", "Megamod.Events.HuntEvent.ClientConnected")
     Hook.RemovePatch("Megamod.Events.Hunt.NoFire", "Barotrauma.FireSource", "Update", Hook.HookMethodType.Before)

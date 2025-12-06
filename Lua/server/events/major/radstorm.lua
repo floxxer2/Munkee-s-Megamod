@@ -62,11 +62,10 @@ function event.End(fast)
     event.Started = false
     event.CanEnd = false
     timer = -1 -- Stops the loop
-    if Game.RoundStarted then
-        local str = "The radiation storm has passed."
-        for client in Client.ClientList do
-            Megamod.SendChatMessage(client, str, Color(255, 50, 50, 255))
-        end
+    if not Game.RoundStarted then return end
+    local str = "The radiation storm has passed."
+    for client in Client.ClientList do
+        Megamod.SendChatMessage(client, str, Color(255, 50, 50, 255))
     end
 end
 

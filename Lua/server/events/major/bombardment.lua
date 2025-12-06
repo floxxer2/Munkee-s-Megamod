@@ -103,6 +103,7 @@ function event.End(fast)
     event.CanEnd = false
     event.Started = false
     Timer.Wait(function()
+        if not Game.RoundStarted then return end
         local str = "The bombardment has ended."
         for client in Client.ClientList do
             Megamod.SendChatMessage(client, str, Color(255, 50, 50, 255))

@@ -24,7 +24,6 @@ end
 
 ---@param fast boolean
 function event.End(fast)
-    if not fast then fast = false end
     event.Started = false
     event.CanEnd = false
 end
