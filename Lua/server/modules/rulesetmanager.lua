@@ -66,16 +66,15 @@ function rsm.SyncAdmin(client)
     Networking.Send(msg, client.Connection)
 end
 
-function rsm.AntagStatus(client, targetAntagName)
+function rsm.AntagStatus(client, targetAntagName, targetRuleSetName)
     local antagRoles = {}
-    for ruleset in rsm.RuleSets do
-        if (not targetAntagName
-        and ruleset.SelectedPlayers[client])
-        or (targetAntagName
-        and ruleset.SelectedPlayers[client]
-        and ruleset.SelectedPlayers[client][1] == targetAntagName)
+    for ruleSet in pairs(rsm.RuleSets) do
+        local sel = ruleSet.SelectedPlayers[client]
+        if (targetRuleSetName and ruleSet.Name == targetRuleSetName)
+        or ((not targetAntagName and sel)
+        or (targetAntagName and sel and sel[1] == targetAntagName))
         then
-            table.insert(antagRoles, ruleset.SelectedPlayers[client])
+            table.insert(antagRoles, sel)
         end
     end
     return antagRoles
