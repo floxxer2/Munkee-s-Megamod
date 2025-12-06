@@ -300,7 +300,20 @@ Auto.XMLChanges = {
       },
     },
   },
-  -- Remove
+  ["handcuffkey"] = {
+    mod = "Immersive Handcuffs",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = XElement.Parse([[
+          <Fabricate suitablefabricators="weaponfabricator" requiredtime="5" amount="2">
+            <RequiredSkill identifier="weapons" level="20" />
+            <RequiredItem identifier="steel" />
+          </Fabricate>]])
+      },
+    },
+  },
+  -- Items to remove
   ["securitywhistle"] = {
     mod = "Immersive Handcuffs",
     xml = ""
@@ -313,7 +326,7 @@ Auto.XMLChanges = {
     mod = "Immersive Handcuffs",
     xml = ""
   },
-  ["reinforcedhandcuffsequipped2"] = {
+  ["applyreinforcedhandcuffs"] = {
     mod = "Immersive Handcuffs",
     xml = ""
   },
@@ -322,6 +335,71 @@ Auto.XMLChanges = {
     mod = "Immersive Handcuffs",
     xml = ""
   },]]
+  -- Afflictions to remove
+  ["handcuffedreinforced"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["arrestedteam1"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["arrestedteam2"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["arrestednone"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["arrestedfriendly"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["arrestedprisoner"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["sendtojail"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["sendtobrig"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["imprisonedbrig"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["imprisonedjail"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["jailtime"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["bannedtime"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["blackscreen"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["playsound_openjail"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["playsound_handcuff"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["playsound_uncuff"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
 
   -- ******************
   -- Enhanced Immersion
@@ -9302,15 +9380,15 @@ end]]
 }
 
 Auto.ModTable = {
-  [2518816103] = { name = "Barotraumatic", version = "1.0.202" },
+  [2518816103] = { name = "Barotraumatic", version = "1.0.208" },
   [3434409381] = { name = "CC's UAPM [building] Fork", version = "1.0.10" },
   [3368559590] = { name = "Chimera Remake", version = "1.7" },
   [2807566753] = { name = "Dont Open Debug Console On Errors", version = "1.0.5" },
-  [3434408187] = { name = "EK Forked", version = "1.2.139" },
-  [2764968387] = { name = "Enhanced Armaments", version = "1.5" },
-  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.6" },
+  [3434408187] = { name = "EK Forked", version = "1.2.141" },
+  [2764968387] = { name = "Enhanced Armaments", version = "1.9" },
+  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.10" },
   [2968896556] = { name = "Enhanced Immersion", version = "1.0.24" },
-  [3045796581] = { name = "Enhanced Reactors", version = "1.0.34" },
+  [3045796581] = { name = "Enhanced Reactors", version = "1.0.35" },
   [2829557108] = { name = "Extract It!", version = "2.0.1" },
   [2914415949] = { name = "Husk Church Cathedral Visual Pack", version = "1.0.8" },
   [3089776991] = { name = "Immersive Ammunition Boxes", version = "1.0.4" },
