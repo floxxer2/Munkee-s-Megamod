@@ -1,7 +1,5 @@
 -- "client.lua" is all misc stuff that doesn't deserve its own file
 
-local mm = require 'utils.misc math'
-
 function Megamod_Client.GetSound(file, isStream) return Megamod_Client.GameMain.SoundManager.LoadSound(file, isStream) end
 
 -- Set all subs to static and tell the server we need to sync sub positions
@@ -91,16 +89,16 @@ Hook.Patch("Megamod.SubmarineIndicator", "Barotrauma.GUI", "Draw", function(inst
     then
         local from = Character.Controlled.AnimController.MainLimb.WorldPosition
         local to = Submarine.MainSub.WorldPosition
-        local angle = math.deg(mm.AngleBetweenVector2(from, to))
-        local inner = mm.FunnyMaths(from, angle, 200)
-        local outer = mm.FunnyMaths(from, angle, 300)
+        local angle = math.deg(Megamod.AngleBetweenVector2(from, to))
+        local inner = Megamod.FunnyMaths(from, angle, 200)
+        local outer = Megamod.FunnyMaths(from, angle, 300)
         GUI.DrawLine(
                 ptable["spriteBatch"],
-                mm.WorldToScreen(inner), mm.WorldToScreen(outer),
+                Megamod.WorldToScreen(inner), Megamod.WorldToScreen(outer),
                 Color(255, 0, 255, math.random(150, 255)),
                 0, 1
             )
-        GUI.DrawString(ptable["spriteBatch"], mm.WorldToScreen(inner),
+        GUI.DrawString(ptable["spriteBatch"], Megamod.WorldToScreen(inner),
             "Station", Color(255, 0, 255, 255), Color.Black * 0.5, 0, GUI.Style.SmallFont)
     end
 end, Hook.HookMethodType.Before)

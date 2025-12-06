@@ -11,14 +11,12 @@ local HIT_STRENGTH = 2 -- Multiplier on how long the lines get when they "see" s
 local INNER = 50 -- Base distance the lines can move towards you
 local OUTER = 75 -- Base distance the lines can move away from you
 
-local mm = require 'utils.misc math'
-
 --- @param from System.Numerics.Vector2 The origin point, the player
 --- @param to System.Numerics.Vector2 The target
 --- @param angle number The angle (in degrees) of the line
 --- @return number Multiplier value (float), higher when the line points toward the source
 local function calcMult(from, to, angle)
-    local sourceAngle = math.deg(mm.AngleBetweenVector2(from, to))
+    local sourceAngle = math.deg(Megamod.AngleBetweenVector2(from, to))
     local normalizedSourceAngle = (sourceAngle + 360) % 360
     local diff = ((normalizedSourceAngle - angle + 180) % 360) - 180
     local absDiff = math.abs(diff)
@@ -155,11 +153,11 @@ local function draw(ptable)
         local INNER2 = INNER + line[2]
         local OUTER2 = OUTER + line[2] * line[6]
         if OUTER2 < INNER2 then OUTER2 = INNER2 end
-        local inner = mm.FunnyMaths(from, line[1], INNER2)
-        local outer = mm.FunnyMaths(from, line[1], OUTER2)
+        local inner = Megamod.FunnyMaths(from, line[1], INNER2)
+        local outer = Megamod.FunnyMaths(from, line[1], OUTER2)
         GUI.DrawLine(
                 ptable["spriteBatch"],
-                mm.WorldToScreen(inner), mm.WorldToScreen(outer),
+                Megamod.WorldToScreen(inner), Megamod.WorldToScreen(outer),
                 Color(255, 0, 255, math.random(150, 255)),
                 0, 1
             )

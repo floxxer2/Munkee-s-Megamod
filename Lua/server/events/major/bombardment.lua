@@ -20,8 +20,6 @@ end
 function event.Start()
     event.Started = true
 
-    local mm = require 'utils.misc math'
-
     -- ["shell id"] = points value
     --[[local shellTable = {
         ["railgunshell"] = 1,
@@ -57,7 +55,7 @@ function event.Start()
     local spawnPoint = Vector2(Submarine.MainSub.WorldPosition.X + (r * math.cos(randTheta)),
         Submarine.MainSub.WorldPosition.Y + (r * math.sin(randTheta)))
     spawnPoint = Vector2.Add(spawnPoint, Vector2(math.random(1000), math.random(1000)))
-    local rotation = mm.AngleBetweenVector2(spawnPoint, Vector2.Add(Submarine.MainSub.WorldPosition, Vector2(0, 2000)))
+    local rotation = Megamod.AngleBetweenVector2(spawnPoint, Vector2.Add(Submarine.MainSub.WorldPosition, Vector2(0, 2000)))
 
     Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab("mm_notifalarm"), spawnPoint)
     for client in Client.ClientList do
@@ -105,8 +103,9 @@ function event.End(fast)
     event.CanEnd = false
     event.Started = false
     Timer.Wait(function()
+        local str = "The bombardment has ended."
         for client in Client.ClientList do
-            Megamod.SendChatMessage(client, "The bombardment has ended.", Color(255, 50, 50, 255))
+            Megamod.SendChatMessage(client, str, Color(255, 50, 50, 255))
         end
     end, 8000)
 end

@@ -31,6 +31,16 @@ function Megamod.RandomWord(chars)
     return word
 end
 
+---@return boolean "true=dead, false=alive"
+function Megamod.CheckIsDead(client)
+    if not client or not client.InGame or client.Character == nil or client.Character.IsDead then
+        return true
+    end
+    return false
+end
+
+-- Math stuff
+
 function Megamod.Lerp(a, b, t)
 	return a + (b - a) * t
 end
@@ -39,12 +49,20 @@ function Megamod.Normalize(x, min, max)
   return (x - min) / (max - min)
 end
 
----@return boolean "true=dead, false=alive"
-function Megamod.CheckIsDead(client)
-    if not client or not client.InGame or client.Character == nil or client.Character.IsDead then
-        return true
-    end
-    return false
+function Megamod.WorldToScreen(worldPosition)
+    return Game.GameScreen.Cam.WorldToScreen(worldPosition)
+end
+
+function Megamod.FunnyMaths(point, angle, distance)
+    angle = math.rad(angle)
+    return Vector2(point.X + distance * math.cos(angle), point.Y + distance * math.sin(angle))
+end
+
+function Megamod.AngleBetweenVector2(from, to)
+    local dx = to.x - from.x
+    local dy = to.y - from.y
+    local angle = math.atan2(dy, dx)
+    return angle
 end
 
 

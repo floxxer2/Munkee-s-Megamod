@@ -1,7 +1,5 @@
 -- Stuff that has to do with The Beast
 
-local mm = require 'utils.misc math'
-
 LuaUserData.RegisterType("CompleteDarkness.CompleteDarknessMod")
 ---@type CompleteDarkness.CompleteDarknessMod
 Megamod_Client.LightMapOverride = LuaUserData.CreateStatic("CompleteDarkness.CompleteDarknessMod", false)
@@ -196,7 +194,7 @@ Networking.Receive("mm_huntactive", function(message)
             else -- Facing right
                 pos.X = pos.X + 25
             end
-            GUI.DrawString(ptable["spriteBatch"], mm.WorldToScreen(pos),
+            GUI.DrawString(ptable["spriteBatch"], Megamod.WorldToScreen(pos),
                 beastMessage, beastMessageColor, Color(0, 0, 0, beastMessageColor.A * 0.5), 0, GUI.Style.SmallFont)
         end, Hook.HookMethodType.Before)
     end
