@@ -7133,7 +7133,7 @@ Auto.XMLChanges = {
       {
         targetComponent = "fabricate",
         override = XElement.Parse([[
-          <Fabricate suitablefabricators="fabricator" requiredtime="50">
+          <Fabricate suitablefabricators="weaponfabricator" requiredtime="50">
             <RequiredSkill identifier="weapons" level="50" />
             <RequiredSkill identifier="electrical" level="75" />
             <RequiredItem identifier="nuclearshell" />

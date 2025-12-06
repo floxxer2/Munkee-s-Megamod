@@ -356,12 +356,12 @@ namespace CompleteDarkness
             }
             spriteBatch.End();
 
-            if (highlightsVisible)
+            /*if (highlightsVisible)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
                 spriteBatch.Draw(_.HighlightMap, Vector2.Zero, Color.White);
                 spriteBatch.End();
-            }
+            }*/
 
             //draw characters to obstruct the highlighted items/characters and light sprites
             //---------------------------------------------------------------------------------------------------
