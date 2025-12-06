@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Munkee's Megamod" modversion="1.0.0.0" corepackage="False" steamworkshopid="3318261393">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Munkee's Megamod" modversion="1.2.3.1" corepackage="False" steamworkshopid="3318261393" gameversion="1.10.7.2">
   <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
