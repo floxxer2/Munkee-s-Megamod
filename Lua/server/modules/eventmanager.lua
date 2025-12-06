@@ -164,16 +164,19 @@ if Game.RoundStarted then
     evm.EventTriggerLoop()
 end
 
--- Manually end all events on roundend, doesn't use EndEvent()
+-- Manually end all events on roundend
 Hook.Add("roundEnd", "Megamod.EventManager.RoundEnd", function()
-    for k, event in pairs(evm.ActiveEvents) do
-        -- True as first arg means end faster
-        event.End(true)
-        evm.ActiveEvents[k] = nil
-    end
-    evm.MajorEventTriggered = false
-    evm.TriggerChance = 10
-    evm.LoopTimer = 30
+    -- Waiting here allows events to detect if the round is over in their end() function
+    Timer.Wait(function()
+        for k, event in pairs(evm.ActiveEvents) do
+            -- Intentionally doesn't use evm.EndEvent(), as that checks the event's CanEnd, we need all events to end on roundend no matter what
+            event.End(true) -- True as first arg = ended
+            evm.ActiveEvents[k] = nil
+        end
+        evm.MajorEventTriggered = false
+        evm.TriggerChance = 10
+        evm.LoopTimer = 30
+    end, 1000)
 end)
 
 return evm
