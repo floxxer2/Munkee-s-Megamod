@@ -51,17 +51,17 @@ namespace CompleteDarkness
         {
             Barotrauma.Lights.LightManager _ = __instance;
 
-            if (GUI.DisableItemHighlights) { return false; }
+            if (!IsMonsterAntagonist || GUI.DisableItemHighlights) { return false; }
 
             highlightedEntities.Clear();
             Character closestCharacter = null;
-            Vector2 mouseSimPos = ConvertUnits.ToSimUnits(GameMain.GameScreen.Cam.ScreenToWorld(PlayerInput.MousePosition));
-            float closestDist = ConvertUnits.ToSimUnits(Character.MaxHighlightDistance);
+            Vector2 mousePos = GameMain.GameScreen.Cam.ScreenToWorld(PlayerInput.MousePosition);
+            float closestDist = 500;
             foreach (Character c in Character.CharacterList)
             {
                 if (c.AnimController?.SimplePhysicsEnabled ?? true) { continue; }
 
-                float dist = c.GetDistanceToClosestLimb(mouseSimPos);
+                float dist = Vector2.Distance(mousePos, c.WorldPosition);
                 if (dist < closestDist || 
                     (c.CampaignInteractionType != CampaignMode.InteractionType.None && closestCharacter?.CampaignInteractionType == CampaignMode.InteractionType.None && dist * 0.9f < closestDist))
                 {
@@ -356,6 +356,7 @@ namespace CompleteDarkness
             }
             spriteBatch.End();
 
+            // && (Character.Controlled == null || Character.Controlled?.IsDead == true)
             /*if (highlightsVisible)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
