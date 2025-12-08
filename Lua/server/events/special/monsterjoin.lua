@@ -2,9 +2,9 @@ local event = {}
 
 event.Name = "Monster Join"
 
-event.Severity = "medium"
+event.Severity = "special"
 
-event.Enabled = false
+event.Enabled = true
 
 event.Started = false
 
@@ -86,10 +86,12 @@ function event.OnSelected(option, client)
     option = option == 1
     if option then -- They clicked "yes"
         Megamod.Log("Setting client '" .. tostring(client.Name) .. "' to be a monster player.", true)
-        for ruleSet in Megamod.RuleSetManager.RuleSets do
-            if ruleSet.Name == "Monster" then
-                event.Monster = ruleSet
-                break
+        if not event.Monster then
+            for ruleSet in Megamod.RuleSetManager.RuleSets do
+                if ruleSet.Name == "Monster" then
+                    event.Monster = ruleSet
+                    break
+                end
             end
         end
         if not event.Monster then
@@ -130,6 +132,7 @@ function event.Start()
     event.Started = true
     for client in Client.ClientList do
         if client.InGame
+        and Megamod.GetData(client, "Monster")
         and #Megamod.RuleSetManager.AntagStatus(client) == 0
         and (not client.Character or client.Character.IsDead)
         then

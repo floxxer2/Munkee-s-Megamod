@@ -49,16 +49,18 @@ Networking.Receive("mm_monster", function(message, sender)
     end
     local control = message.ReadBoolean()
     if control then
-        local id = message.ReadUInt64()
+        local id = tonumber(message.ReadUInt64())
         local monster
         for char in Character.CharacterList do
-            if char.ID == id and not Megamod.BlacklistedPlayerMonsters[char.ID] then
+            if char.ID == id
+            and not char.IsHuman
+            and not Megamod.BlacklistedPlayerMonsters[tostring(char.SpeciesName)] then
                 monster = char
                 break
             end
         end
         if not monster then
-            Megamod.SendChatMessage(sender, "Couldn't find the monster to control, please try again. If this persists, tell an admin!", Color(255, 0, 255, 255))
+            Megamod.SendChatMessage(sender, "ERROR: Couldn't find the monster to control, please try again. If this persists, tell an admin!", Color(255, 0, 255, 255))
             Megamod.Error("Monster character not found, or was blacklisted. Aborting control swap.")
             return
         end
@@ -295,6 +297,18 @@ end
 
 
 function rs.Reset()
+    for monsterClient, _ in pairs(rs.SelectedPlayers) do
+        Megamod.SendChatMessage(monsterClient, "The monster ruleset has failed. You are no longer a monster.", Color(255, 0, 255, 255))
+        local msg = Networking.Start("mm_monster")
+        msg.WriteBoolean(false)
+        Networking.Send(msg, monsterClient.Connection)
+        if monsterClient.Character
+        and not monsterClient.Character.IsDead
+        and not monsterClient.Character.IsHuman then
+            -- Send to spectator if they're still controlling something
+            monsterClient.SetClientCharacter(nil)
+        end
+    end
     rs.SelectedPlayers = {}
     rs.Strength = 0
     rs.WaveStrength = 0
