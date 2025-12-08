@@ -43,15 +43,16 @@ namespace CompleteDarkness
 
         //controlled by Lua
         public static bool HuntActive = false;
-        //public static bool IsMonsterAntagonist = false;
+        //not used in this file, but Lua uses it
+        public static bool IsMonsterAntagonist = true;
 
-        private static readonly List<Entity> highlightedEntities = new List<Entity>();
+        //private static readonly List<Entity> highlightedEntities = new List<Entity>();
 
         /*public static bool UpdateHighlights(GraphicsDevice graphics, SpriteBatch spriteBatch, Matrix spriteBatchTransform, Camera cam, Barotrauma.Lights.LightManager __instance)
         {
-            Barotrauma.Lights.LightManager _ = __instance;
-
             if (!IsMonsterAntagonist || GUI.DisableItemHighlights) { return false; }
+
+            Barotrauma.Lights.LightManager _ = __instance;
 
             highlightedEntities.Clear();
             Character closestCharacter = null;
@@ -173,7 +174,7 @@ namespace CompleteDarkness
             Matrix transform = cam.ShaderTransform
                 * Matrix.CreateOrthographic(GameMain.GraphicsWidth, GameMain.GraphicsHeight, -1, 1) * 0.5f;
 
-            bool highlightsVisible = _.UpdateHighlights(graphics, spriteBatch, spriteBatchTransform, cam);
+            //bool highlightsVisible = _.UpdateHighlights(graphics, spriteBatch, spriteBatchTransform, cam);
 
             Rectangle viewRect = cam.WorldView;
             viewRect.Y -= cam.WorldView.Height;
