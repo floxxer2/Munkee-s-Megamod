@@ -27,10 +27,6 @@ Networking.Receive("mm_subpos", function(message)
     end
 end)
 
--- #TODO#
--- If we are a monster, draw nametags of monster players besides The Beast
--- People will just see "The Beast" instead of the actual player's name
-
 
 -- When someone is revived via cloning, set their team to 1 client-side
 -- This makes their name normal-colored, instead of red like they're a pirate
@@ -80,6 +76,10 @@ Networking.Receive("mm_luacheck", function(message)
     Networking.Send(message2)
 end)
 
+local closestHull
+local closestHullDist = math.huge
+HULL_UPDATE_TIMER_BASE = 15
+local hullUpdateTimer = HULL_UPDATE_TIMER_BASE
 -- Draw a line towards the station if we're a monster outside
 Hook.Patch("Megamod.SubmarineIndicator", "Barotrauma.GUI", "Draw", function(instance, ptable)
     if Character.Controlled
@@ -88,8 +88,23 @@ Hook.Patch("Megamod.SubmarineIndicator", "Barotrauma.GUI", "Draw", function(inst
     and not Character.Controlled.CurrentHull
     then
         local from = Character.Controlled.AnimController.MainLimb.WorldPosition
-        local to = Submarine.MainSub.WorldPosition
-        local angle = math.deg(Megamod.AngleBetweenVector2(from, to))
+        hullUpdateTimer = hullUpdateTimer - 1
+        if not closestHull or hullUpdateTimer <= 0 then
+            hullUpdateTimer = HULL_UPDATE_TIMER_BASE
+            local selHull
+            local closestDist = math.huge
+            for hull in Hull.HullList do
+                local dist = Vector2.Distance(from, hull.WorldPosition)
+                if dist < closestDist then
+                    selHull = hull
+                    closestDist = dist
+                    closestHullDist = dist
+                end
+            end
+            closestHull = selHull
+        end
+        if closestHullDist < 1000 then return end
+        local angle = math.deg(Megamod.AngleBetweenVector2(from, closestHull.WorldPosition))
         local inner = Megamod.FunnyMaths(from, angle, 200)
         local outer = Megamod.FunnyMaths(from, angle, 300)
         GUI.DrawLine(
@@ -99,7 +114,7 @@ Hook.Patch("Megamod.SubmarineIndicator", "Barotrauma.GUI", "Draw", function(inst
                 0, 1
             )
         GUI.DrawString(ptable["spriteBatch"], Megamod.WorldToScreen(inner),
-            "Station", Color(255, 0, 255, 255), Color.Black * 0.5, 0, GUI.Style.SmallFont)
+            string.format("Station (%s)", tostring(closestHull.DisplayName)), Color(255, 0, 255, 255), Color.Black * 0.5, 0, GUI.Style.SmallFont)
     end
 end, Hook.HookMethodType.Before)
 
