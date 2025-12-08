@@ -53,6 +53,10 @@ function Megamod.WorldToScreen(worldPosition)
     return Game.GameScreen.Cam.WorldToScreen(worldPosition)
 end
 
+function Megamod.ScreenToWorld(screenPos)
+    return Game.GameScreen.Cam.ScreenToWorld(screenPos)
+end
+
 function Megamod.FunnyMaths(point, angle, distance)
     angle = math.rad(angle)
     return Vector2(point.X + distance * math.cos(angle), point.Y + distance * math.sin(angle))
