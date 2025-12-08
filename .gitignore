@@ -2,7 +2,6 @@
 Workshop/
 Lua/workshop/
 temp/
-steamcmd/
 # Files
 Lua/utils/automation/pf list.txt
 auto.bat
