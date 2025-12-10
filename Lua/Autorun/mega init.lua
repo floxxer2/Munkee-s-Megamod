@@ -223,16 +223,18 @@ if SERVER then
     NetConfig.MaxHealthUpdateInterval = 0
     NetConfig.LowPrioCharacterPositionUpdateInterval = 0
     NetConfig.MaxEventPacketsPerUpdate = 8
-    NetConfig.RoundStartSyncDuration = 60
-    NetConfig.EventRemovalTime = 40
-    NetConfig.OldReceivedEventKickTime = 50
-    NetConfig.OldEventKickTime = 60
+    -- No longer necessary, changed (fixed?) by barodevs
+    --NetConfig.RoundStartSyncDuration = 60
+    --NetConfig.EventRemovalTime = 40
+    --NetConfig.OldReceivedEventKickTime = 50
+    --NetConfig.OldEventKickTime = 60
     NetConfig.SparseHullUpdateInterval = 5
     NetConfig.HullUpdateInterval = 0.5
     LuaUserData.MakePropertyAccessible(Descriptors["Barotrauma.Networking.ServerSettings"], "MinimumMidRoundSyncTimeout")
-    if Game.ServerSettings and Game.ServerSettings.MinimumMidRoundSyncTimeout == 10 then
+    -- set() in MinimumMidRoundSyncTimeout is now privated, must be for good reason
+    --[[if Game.ServerSettings and Game.ServerSettings.MinimumMidRoundSyncTimeout == 10 then
         Game.ServerSettings.MinimumMidRoundSyncTimeout = 100
-    end
+    end]]
 end
 
 -- Vanilla settings
