@@ -214,9 +214,12 @@ if SERVER then
     end)
 
     -- Need to wait for the server to fully start up
-    Timer.Wait(function()
-        Game.ExecuteCommand("enablecheats")
-    end, 5000)
+    -- (NOT USEFUL FOR PUBLIC SERVERS DUE TO HOW BARO WORKS)
+    if not Game.ServerSettings.IsPublic then
+        Timer.Wait(function()
+            Game.ExecuteCommand("enablecheats")
+        end, 5000)
+    end
 
     -- Network Tweaks (https://steamcommunity.com/sharedfiles/filedetails/?id=3329396988)
     -- It's small enough to reasonably just do this instead of including the whole mod
