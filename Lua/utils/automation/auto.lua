@@ -3,7 +3,7 @@ Auto = {}
 ---@type string
 Auto.Path = ...
 
-local version = "1.0.0.0"
+local version = "1.2.3.2"
 
 --[[
 1: Rewrite auto.bat to download mods
@@ -8862,8 +8862,8 @@ Auto.LuaChanges = {
     mod = "Neurotrauma",
     replacements = {
       {
-        startLine = 812,
-        endLine = 852,
+        startLine = 820,
+        endLine = 860,
         replace = [[
     lockedhands = {
 		update = function(c, i)
@@ -8920,12 +8920,12 @@ Auto.LuaChanges = {
 	},]]
       },
       {
-        line = 1748,
+        line = 1781,
         replace = [[
 				+ HF.Clamp(c.afflictions.afthiamine.strength, 0, 1) * 20]]
       },
       {
-        line = 1930,
+        line = 1963,
         replace = [[
     HF.SetAffliction(character, "luabotomy", 0.1)
 		return]]
@@ -9011,7 +9011,7 @@ Auto.LuaChanges = {
   ["Neurotrauma/Lua/ConsentRequiredExtended/init.lua"] = {
     mod = "Neurotrauma",
     replacements = {
-      { line = 11, replace = "	local requireStr = \"workshop.Neurotrauma.Lua.\" .. SRC_NAMESPACE .. MAIN" },
+      { line = 13, replace = "	local requireStr = \"workshop.Neurotrauma.Lua.\" .. SRC_NAMESPACE .. MAIN" },
     }
   },
   ["Neurotrauma/Lua/ConsentRequiredExtended/Main.lua"] = {
@@ -9020,7 +9020,8 @@ Auto.LuaChanges = {
       { line = 7,  replace = "local Api = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Api\")" },
       { line = 8,  replace = "local OnItemApplied = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.OnItemApplied\")" },
       { line = 9,  replace = "local onMeleeWeaponHandleImpact = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.onMeleeWeaponHandleImpact\")" },
-      { line = 10, replace = "local Config = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Config\")" },
+      { line = 11, replace = "local onHandleProjectileCollision = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.onHandleProjectileCollision\")" },
+      { line = 11, replace = "local Config = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Config\")" },
     }
   },
   ["Neurotrauma/Lua/ConsentRequiredExtended/OnItemApplied.lua"] = {
@@ -9380,13 +9381,13 @@ end]]
 }
 
 Auto.ModTable = {
-  [2518816103] = { name = "Barotraumatic", version = "1.0.208" },
+  [2518816103] = { name = "Barotraumatic", version = "1.0.211" },
   [3434409381] = { name = "CC's UAPM [building] Fork", version = "1.0.10" },
   [3368559590] = { name = "Chimera Remake", version = "1.7" },
   [2807566753] = { name = "Dont Open Debug Console On Errors", version = "1.0.5" },
-  [3434408187] = { name = "EK Forked", version = "1.2.141" },
-  [2764968387] = { name = "Enhanced Armaments", version = "1.9" },
-  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.10" },
+  [3434408187] = { name = "EK Forked", version = "1.2.142" },
+  [2764968387] = { name = "Enhanced Armaments", version = "1.12" },
+  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.11" },
   [2968896556] = { name = "Enhanced Immersion", version = "1.0.24" },
   [3045796581] = { name = "Enhanced Reactors", version = "1.0.35" },
   [2829557108] = { name = "Extract It!", version = "2.0.1" },
@@ -9397,12 +9398,12 @@ Auto.ModTable = {
   [3074045632] = { name = "Immersive Diving Gear", version = "1.0.19" },
   [3321850228] = { name = "Immersive Handcuffs", version = "1.0.10" },
   [3217556378] = { name = "Immersive Ignitables", version = "1.0.11" },
-  [3231351969] = { name = "Immersive Ignitables Expansion Pack", version = "1.9.5" },
+  [3231351969] = { name = "Immersive Ignitables Expansion Pack", version = "1.9.6" },
   [3114087512] = { name = "Immersive Repairs", version = "1.0.34" },
   [3172965454] = { name = "Immersive Sonar UI - A Real Sonar Add-On", version = "1.0.4" },
   [3005836987] = { name = "Improved  Stun", version = "5.6" },
-  [3355559986] = { name = "Mercy Hospital Updated", version = "1.0.2" },
-  [3190189044] = { name = "Neurotrauma", version = "1.0.21" },
+  [3355559986] = { name = "Mercy Hospital Updated", version = "1.0.5" },
+  [3190189044] = { name = "Neurotrauma", version = "1.0.24" },
   [3339841986] = { name = "Normalized Flashlight", version = "1.0.3" },
   [3429100373] = { name = "NT Bio Printer", version = "1.0.2" },
   [3400663333] = { name = "NT BrainTrans (Beta)", version = "1.0.2" },
