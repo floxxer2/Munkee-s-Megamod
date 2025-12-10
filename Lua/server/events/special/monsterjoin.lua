@@ -25,8 +25,7 @@ function event.Check()
         return false
     end
     for client in Client.ClientList do
-        if client.InGame
-        and (not client.Character or client.Character.IsDead)
+        if Megamod.CheckIsSpectating(client)
         and #Megamod.RuleSetManager.AntagStatus(client) == 0 then
             validPlayer = true
             break
@@ -134,7 +133,7 @@ function event.Start()
         if client.InGame
         and Megamod.GetData(client, "Monster")
         and #Megamod.RuleSetManager.AntagStatus(client) == 0
-        and (not client.Character or client.Character.IsDead)
+        and Megamod.CheckIsSpectating(client)
         then
             table.insert(event.ValidClients, client)
         end

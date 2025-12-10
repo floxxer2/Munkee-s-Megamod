@@ -11,7 +11,7 @@ function mrs.SpawnPlayer(client)
         Megamod.SendChatMessage(client, "You can't be in the lobby. Join the round first.", Color(255, 0, 255, 255))
         return
     end
-    if Megamod.CheckIsDead(client) then
+    if Megamod.CheckIsSpectating(client) then
         if not mrs.SpawnedPlayers[client.SteamID] then
             local jobPrefab, jobVariant
             if client.JobPreferences and #client.JobPreferences > 0 then

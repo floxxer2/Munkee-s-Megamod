@@ -33,10 +33,24 @@ end
 
 ---@return boolean "true=dead, false=alive"
 function Megamod.CheckIsDead(client)
-    if not client or not client.InGame or client.Character == nil or client.Character.IsDead then
+    if not client
+    or not client.InGame
+    or client.Character == nil
+    or client.Character.IsDead then
         return true
     end
     return false
+end
+
+-- Specifically check if a client is spectating while ingame
+---@return boolean "true=spectating, false=not spectating"
+function Megamod.CheckIsSpectating(client)
+    if not client
+    or not client.InGame
+    or (client.Character and not client.Character.IsDead) then
+        return false
+    end
+    return true
 end
 
 -- Math stuff
