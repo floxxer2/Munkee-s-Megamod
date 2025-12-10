@@ -16,32 +16,34 @@ Auto.XMLChanges = {
   -- ****************
   -- Pure Empty Level
   -- ****************
-  -- Change height to 200 000, change background / ambient light to purple-ish
+  -- 1. Change height to 200 000, change background / ambient light to purple-ish
+  -- 2. Add background effects
   ["pureemptylevel"] = {
     mod = "Pure Empty Level",
     xml = XElement.Parse([[
-    <Empty identifier="pureemptylevel" type="LocationConnection" biomes="any" commonness="100"
-      forcebeaconstation="%ModDir%/PEL/Map/BeaconStations/PEL_BeaconStation_Dummy.sub"
-      minleveldifficulty="0" maxleveldifficulty="100" startposition="0.5,0.5" endposition="0.9,0.1"
-      createholenexttoend="false" createholetoabyss="false" nolevelgeometry="true"
-      levelobjectamount="0" backgroundcreatureamount="0" minwidth="200000" maxwidth="200000"
-      height="200000" InitialDepthMin="100000" InitialDepthMax="200000" mintunnelradius="20000"
-      sidetunnelcount="0,0" voronoisiteinterval="20000,20000" voronoisitevariance="0,0"
-      cellroundingamount="0.0" cellirregularity="0.0" mainpathvariance="0.0" cavecount="0"
-      itemcount="0" floatingicechunkcount="0" islandcount="0" icespirecount="0" abyssislandcount="0"
-      SeaFloorDepth="-200000" seafloorvariance="0" mountaincountmin="0" mountaincountmax="0" ruincount="0"
-      minwreckcount="0" maxwreckcount="0" mincorpsecount="0" maxcorpsecount="0"
-      thalamusprobability="0.0" bottomholeprobability="1.0" AmbientLightColor="5,0,5,255"
-      BackgroundTextureColor="15,0,15,255" BackgroundColor="5,0,5,255" walltexturesize="512"
-      walledgetexturewidth="1024" walledgeexpandoutwardsamount="128" walledgeexpandinwardsamount="128">
-      <!-- <WaterParticles
-        texture="Content/Map/Biomes/TheGreatSea/BackgroundParticles.png" /> -->
-      <Wall texture="Content/Map/Biomes/TheGreatSea/LevelWall.png" premultiplyalpha="false" />
-      <WallEdge texture="Content/Map/Biomes/TheGreatSea/LevelWallEdge.png" />
-      <DestructibleWall texture="Content/Map/Biomes/DestructibleWall.png" />
-      <DestructibleWallEdge texture="Content/Map/Biomes/DestructibleWallEdge.png" />
-      <WallDestroyed texture="Content/Map/Biomes/DestroyedWall.png" premultiplyalpha="false" />
-    </Empty>]])
+      <Empty identifier="pureemptylevel" type="LocationConnection" biomes="any" commonness="100"
+        forcebeaconstation="%ModDir%/PEL/Map/BeaconStations/PEL_BeaconStation_Dummy.sub"
+        minleveldifficulty="0" maxleveldifficulty="100" startposition="0.5,0.5" endposition="0.9,0.1"
+        createholenexttoend="false" createholetoabyss="false" nolevelgeometry="true"
+        levelobjectamount="0" backgroundcreatureamount="80" minwidth="200000" maxwidth="200000"
+        height="200000" InitialDepthMin="100000" InitialDepthMax="200000" mintunnelradius="20000"
+        sidetunnelcount="0,0" voronoisiteinterval="20000,20000" voronoisitevariance="0,0"
+        cellroundingamount="0.0" cellirregularity="0.0" mainpathvariance="0.0" cavecount="0"
+        itemcount="0" floatingicechunkcount="0" islandcount="0" icespirecount="0" abyssislandcount="0"
+        SeaFloorDepth="-200000" seafloorvariance="0" mountaincountmin="0" mountaincountmax="0"
+        ruincount="0" minwreckcount="0" maxwreckcount="0" mincorpsecount="0" maxcorpsecount="0"
+        thalamusprobability="0.0" bottomholeprobability="1.0" AmbientLightColor="5,0,5,255"
+        BackgroundTextureColor="15,0,15,255" BackgroundColor="5,0,5,255" walltexturesize="512"
+        walledgetexturewidth="1024" walledgeexpandoutwardsamount="128" walledgeexpandinwardsamount="128">
+        <Background texture="Content/Map/Background.png" />
+        <BackgroundTop texture="Content/Map/Background2.png" premultiplyalpha="false" />
+        <WaterParticles texture="Content/Map/Biomes/ColdCaverns/BackgroundParticles.png" />
+        <Wall texture="Content/Map/Biomes/TheGreatSea/LevelWall.png" premultiplyalpha="false" />
+        <WallEdge texture="Content/Map/Biomes/TheGreatSea/LevelWallEdge.png" />
+        <DestructibleWall texture="Content/Map/Biomes/DestructibleWall.png" />
+        <DestructibleWallEdge texture="Content/Map/Biomes/DestructibleWallEdge.png" />
+        <WallDestroyed texture="Content/Map/Biomes/DestroyedWall.png" premultiplyalpha="false" />
+      </Empty>]])
   },
 
   -- ***********
