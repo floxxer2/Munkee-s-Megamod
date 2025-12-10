@@ -1,6 +1,6 @@
 local event = {}
 
-event.Name = "Husk Respawner"
+event.Name = "Graverise"
 
 event.Severity = "special"
 
@@ -17,6 +17,7 @@ function event.Check()
     return true
 end
 
+-- Admin-triggered; gives all dead players the ability to endlessly respawn as monsters
 function event.Start()
     event.Started = true
     event.CanEnd = true
