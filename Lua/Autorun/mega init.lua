@@ -28,18 +28,18 @@ Megamod.BlacklistedPlayerMonsters = {
 
 -- Static/Dynamic/Kinematic
 Megamod.PhysicsBodyTypes = LuaUserData.CreateEnumTable("FarseerPhysics.BodyType")
+Megamod.GameMain = LuaUserData.CreateStatic("Barotrauma.GameMain")
 
 if CLIENT then
     Megamod_Client = {}
     ---@type Barotrauma.GameMain
-    Megamod_Client.GameMain = LuaUserData.CreateStatic("Barotrauma.GameMain")
     ---@type string
     Megamod_Client.Path = path
 
     -- NOTE: Nil return on and near runtime
     ---@return Barotrauma.Networking.Client
     function Megamod_Client.GetSelfClient()
-        return Megamod_Client.GameMain.Client.MyClient
+        return Megamod.GameMain.Client.MyClient
     end
     -- Client is nil on runtime, so we wait for it to be set
     Timer.Wait(function()
@@ -61,7 +61,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua") -- This has the side-effect of making the "control panel" option the last in the list
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
-        dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
+        --dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
     end, 1)
 end
 
@@ -202,7 +202,7 @@ if SERVER then
     -- hypomaxims, as that relies on the body still being there
     Hook.Add("character.death", "Megamod.CharacterDeath", function(character)
         -- Only happens during serious rounds
-        if not character.IsHuman or not Util.FindClientCharacter(character) or Megamod.RuleSetManager.RoundType ~= 1 then return end
+        if not character or character.IsHuman or not Util.FindClientCharacter(character) or Megamod.RuleSetManager.RoundType ~= 1 then return end
         character.EnableDespawn = false
     end)
 

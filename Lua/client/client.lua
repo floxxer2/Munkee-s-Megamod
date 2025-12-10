@@ -1,6 +1,6 @@
 -- "client.lua" is all misc stuff that doesn't deserve its own file
 
-function Megamod_Client.GetSound(file, isStream) return Megamod_Client.GameMain.SoundManager.LoadSound(file, isStream) end
+function Megamod_Client.GetSound(file, isStream) return Megamod.GameMain.SoundManager.LoadSound(file, isStream) end
 
 -- Set all subs to static and tell the server we need to sync sub positions
 Hook.Add("roundStart", "Megamod.RoundStart", function()

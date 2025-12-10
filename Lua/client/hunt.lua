@@ -28,7 +28,7 @@ Hook.Add("roundEnd", "Megamod.RoundEnd", stop)
 
 -- Delete all old horror sfx if we reload CL Lua
 for i = 1, 31 do
-    local soundChannel = Megamod_Client.GameMain.SoundManager.GetSoundChannelFromIndex(0, i)
+    local soundChannel = Megamod.GameMain.SoundManager.GetSoundChannelFromIndex(0, i)
     if soundChannel then
         local filePath = soundChannel.Sound.Filename
         local _, start = filePath:reverse():find("[/\\]")
@@ -49,16 +49,16 @@ Networking.Receive("mm_huntactive", function(message)
     local shouldShake = message.ReadBoolean()
     -- Cause some screenshake the moment the hunt starts
     if shouldShake then
-        Megamod_Client.GameMain.GameScreen.Cam.Shake = 100
+        Megamod.GameMain.GameScreen.Cam.Shake = 100
         -- Not a great way to do it, but it works
         Timer.Wait(function()
-            Megamod_Client.GameMain.GameScreen.Cam.Shake = 100
+            Megamod.GameMain.GameScreen.Cam.Shake = 100
         end, 150)
         Timer.Wait(function()
-            Megamod_Client.GameMain.GameScreen.Cam.Shake = 100
+            Megamod.GameMain.GameScreen.Cam.Shake = 100
         end, 300)
         Timer.Wait(function()
-            Megamod_Client.GameMain.GameScreen.Cam.Shake = 100
+            Megamod.GameMain.GameScreen.Cam.Shake = 100
         end, 450)
     end
 
@@ -107,12 +107,12 @@ Networking.Receive("mm_huntactive", function(message)
             end
             local dist = Vector2.Distance(
                 (Character.Controlled and Character.Controlled.WorldPosition)
-                or Megamod_Client.GameMain.GameScreen.Cam.GetPosition(),
+                or Megamod.GameMain.GameScreen.Cam.GetPosition(),
                 Megamod_Client.TheBeast.WorldPosition)
                 local shake = Megamod.Normalize(dist, MAX_BEAST_DIST, 0) * MULT
             -- Acts like a minimum value for screenshake, it won't go below but can go above
-            if Megamod_Client.GameMain.GameScreen.Cam.Shake <= shake then
-                Megamod_Client.GameMain.GameScreen.Cam.Shake = shake
+            if Megamod.GameMain.GameScreen.Cam.Shake <= shake then
+                Megamod.GameMain.GameScreen.Cam.Shake = shake
             end
         end
     end)
