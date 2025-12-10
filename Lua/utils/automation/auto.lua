@@ -9024,6 +9024,12 @@ Auto.LuaChanges = {
       { line = 11, replace = "local Config = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Config\")" },
     }
   },
+  ["Neurotrauma/Lua/ConsentRequiredExtended/onHandleProjectileCollision.lua"] = {
+    mod = "Neurotrauma",
+    replacements = {
+      { line = 1,  replace = "local Api = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Api\")" },
+    }
+  },
   ["Neurotrauma/Lua/ConsentRequiredExtended/OnItemApplied.lua"] = {
     mod = "Neurotrauma",
     replacements = {
