@@ -493,7 +493,7 @@ do
             else
                 for otherUplink, tbl in pairs(rs.Items.Uplinks) do
                     if otherUplink ~= uplinkItem then
-                        Megamod.SendHoverMessage(tbl[2], "Uplink: RECEIVED MESSAGE (from " .. ownTbl[1] ..")", Color(255, 100, 100))
+                        Megamod.SendClientSideMsg(tbl[2], "Uplink: RECEIVED MESSAGE (from " .. ownTbl[1] ..")", Color(255, 100, 100))
 
                         local otherTerminal = otherUplink.GetComponentString("Terminal")
                         otherTerminal.ShowMessage = "RECEIVED MESSAGE (from " .. ownTbl[1] .. "): " .. argument
@@ -717,7 +717,7 @@ do
             str = "Cannot send message to self."
         else
             if not Megamod.CheckIsDead(tbl[2]) then
-                Megamod.SendHoverMessage(tbl[2], "Uplink: RECEIVED MESSAGE (from " .. ownTbl[1] ..")", Color(255, 100, 100))
+                Megamod.SendClientSideMsg(tbl[2], "Uplink: RECEIVED MESSAGE (from " .. ownTbl[1] ..")", Color(255, 100, 100))
             end
             local otherTerminal = otherUplink.GetComponentString("Terminal")
             otherTerminal.ShowMessage = "RECEIVED MESSAGE (from " .. ownTbl[1] .. "): " .. argument
