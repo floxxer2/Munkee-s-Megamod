@@ -44,13 +44,20 @@ do
     -- Used to make sure all messages are displayed
     local counter = 0
     -- Only use for short messages, the lifetime is fixed at ~4 seconds
-    Networking.Receive("mm_selfcharmsg", function(message)
+    Networking.Receive("mm_selfmsg", function(message)
+        local bool = message.ReadBoolean()
         local str = message.ReadString()
         local color = message.ReadColorR8G8B8()
-        if not Character.Controlled then return end
-        Character.Controlled.AddMessage(str, color, true, tostring(counter), 0)
-        counter = counter + 1
-        if counter >= 25 then counter = 0 end
+        if bool then
+            if not Character.Controlled then return end
+            -- Message hovering above own character
+            Character.Controlled.AddMessage(str, color, true, tostring(counter), 0)
+            counter = counter + 1
+            if counter >= 25 then counter = 0 end
+        else
+            -- Message at top of screen like husk warnings
+            GUI.AddMessage(str, color, 5)
+        end
     end)
 end
 
