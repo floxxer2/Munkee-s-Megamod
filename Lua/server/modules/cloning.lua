@@ -1,7 +1,8 @@
 local cloning = {}
 
 local BASE_COST_MULTIPLIER = 1
-local BASE_CLONING_DURATION = 60 -- 1 minute
+-- #DEBUG#
+local BASE_CLONING_DURATION = 5 -- 1 minute
 local BASE_RM_COST = 10
 local COST_INCREASE_PER_CLONE = 0
 local BASE_RM_RATE = BASE_RM_COST / BASE_CLONING_DURATION
@@ -15,6 +16,10 @@ cloning.RMRate = BASE_RM_RATE
 -- The current cloning process
 cloning.ActiveProcess = nil
 
+-- If set, a dead player using !clone can start their own cloning process
+-- References the cloning machine in question
+cloning.SelfClone = nil
+
 -- Hypomaxim devices
 cloning.Hypomaxims = {}
 
@@ -24,6 +29,7 @@ function cloning.Reset()
     cloning.RMRate = BASE_RM_RATE
     cloning.ActiveProcess = nil
     cloning.Hypomaxims = {}
+    cloning.SelfClone = nil
 end
 
 function cloning.ToggleMachineActive(bool, machine, reset)
@@ -57,6 +63,7 @@ end
 ---@param sendMessage boolean
 -- true = successful, false = unsuccessful
 function cloning.StopClone(sendMessage, buzzerType, refund)
+    if cloning.SelfClone then cloning.SelfClone = nil end
     if not buzzerType then buzzerType = false end
     if not sendMessage then sendMessage = false end
     if refund then
@@ -74,14 +81,16 @@ end
 
 function cloning.Tick()
     Timer.Wait(function()
-        if not Game.RoundStarted or not cloning.ActiveProcess then return end
+        if not Game.RoundStarted or not cloning.ActiveProcess then return cloning.Tick() end
 
-        if not Megamod.CheckIsDead(cloning.ActiveProcess[1])
+        -- Stop cloning if the client somehow stops spectating (returns to lobby, starts controlling something alive, etc)
+        -- We have to check if there is a client because of sleeves (cloning w/o a client makes an empty body)
+        if (cloning.ActiveProcess[1] and not Megamod.CheckIsSpectating(cloning.ActiveProcess[1]))
         or Megamod.EventManager.GetEventActive("Hunt") -- Don't clone during Hunts
         then
             cloning.ToggleMachineActive(false, cloning.ActiveProcess[4])
             cloning.StopClone(true, "failure", true)
-            return
+            return cloning.Tick()
         end
 
         if cloning.ActiveProcess[2] > 0 then
@@ -102,8 +111,8 @@ function cloning.Tick()
                 cloning.ActiveProcess[3] = cloning.ActiveProcess[3] - 1
                 cloning.ActiveProcess[7] = cloning.ActiveProcess[7] + 1
                 -- Remove a rift material from the cloning machine
-                Entity.Spawner.AddItemToRemoveQueue(mats[1])
-                table.remove(mats, 1)
+                Entity.Spawner.AddItemToRemoveQueue(mats[#mats])
+                table.remove(mats, #mats)
             end
         end
 
@@ -252,6 +261,7 @@ function cloning.Tick()
         return cloning.Tick()
     end, 1000)
 end
+cloning.Tick()
 
 function cloning.StartProcess(client, machine, infoTbl)
     local tbl = {
@@ -272,14 +282,35 @@ function cloning.StartProcess(client, machine, infoTbl)
         cloning.ActiveProcess[4].SendSignal("_SLEEVE_", "clonee_out")
     end
     cloning.ActiveProcess[4].SendSignal("Active", "status_out")
-    cloning.Tick()
 end
 
+local lastSelfCloningMsgTime = 0
+local SELF_CLONING_CDN = 15
+local cdn = {}
+local CDN_BASE = 5
 Hook.Add("mm.cloningstart", "Megamod.Cloning.CloningStart", function(effect, deltaTime, item, targets, worldPosition)
     -- Doesn't work if there's already a process, or during Hunts
     if cloning.ActiveProcess
     or Megamod.EventManager.GetEventActive("Hunt")
     then return end
+    local cloners = {}
+    for client in Client.ClientList do
+        if not Megamod.CheckIsDead(client) then
+            local dist = Vector2.Distance(client.Character.WorldPosition, item.WorldPosition)
+            if dist < 190 then
+                table.insert(cloners, client)
+            end
+        end
+    end
+    for cloner in cloners do
+        if cdn[cloner] and Timer.GetTime() - cdn[cloner] < CDN_BASE then
+            for cloner in cloners do
+                Megamod.SendChatMessage(cloner, "Please don't spam the cloning machine.\n(Wait ~5 seconds before you hit 'start' again.)", Color(255, 0, 255, 255))
+            end
+            return
+        end
+        cdn[cloner] = Timer.GetTime() + CDN_BASE
+    end
     local hypomaxim = item.OwnInventory.GetItemAt(6)
     -- No hypomaxim -> make a "sleeve," a human with no consciousness
     if not hypomaxim then
@@ -287,8 +318,28 @@ Hook.Add("mm.cloningstart", "Megamod.Cloning.CloningStart", function(effect, del
         return
     end
     local targetClient = cloning.Hypomaxims[hypomaxim] and cloning.Hypomaxims[hypomaxim][1]
-    if not targetClient then return end
-    if Megamod.CheckIsDead(targetClient) then
+    -- Hypomaxim inserted but no stored client = self clone (ask dead players to clone)
+    if not targetClient and not cloning.SelfClone then
+        Megamod.CreateEntityEvent(hypomaxim, hypomaxim, "NonInteractable", true)
+        cloning.SelfClone = item
+        if Timer.GetTime() - lastSelfCloningMsgTime < SELF_CLONING_CDN then
+            local str = "Self-cloning enabled, but dead players were not notified because you're spamming the machine.\n(Wait ~15 seconds to activate self-cloning again.)"
+            for cloner in cloners do
+                Megamod.SendChatMessage(cloner, str, Color(255, 0, 255, 255))
+            end
+            return
+        end
+        lastSelfCloningMsgTime = Timer.GetTime()
+        local str = "Self-cloning activated. Use the chat command \"!clone\" to respawn yourself at a cloning machine.\nYOU SPAWN WITH NOTHING! Only do this if you are sure you will survive!"
+        for client in Client.ClientList do
+            if #Megamod.RuleSetManager.AntagStatus(client) == 0
+            and Megamod.CheckIsSpectating(client) then
+                Megamod.SendChatMessage(client, str, Color(255, 0, 255, 255))
+            end
+        end
+        return
+    end
+    if Megamod.CheckIsSpectating(targetClient) then
         cloning.StartProcess(targetClient, item, cloning.Hypomaxims[hypomaxim][4])
         cloning.Hypomaxims[hypomaxim] = nil
         Entity.Spawner.AddItemToRemoveQueue(hypomaxim)
@@ -299,21 +350,47 @@ Hook.Add("mm.cloningstop", "Megamod.Cloning.CloningStop", function(effect, delta
     if cloning.ActiveProcess then
         cloning.ToggleMachineActive(false, cloning.ActiveProcess[4], true)
         cloning.StopClone(true, "failure", true)
+    elseif cloning.SelfClone then
+        cloning.SelfClone = nil
+        local hypomaxim = item.OwnInventory.GetItemAt(6)
+        if hypomaxim then
+            Megamod.CreateEntityEvent(hypomaxim, hypomaxim, "NonInteractable", false)
+        else
+            Megamod.Error("Self clone was enabled, but hypomaxim not found in cloning machine.")
+        end
     end
 end)
+
+function cloning.InitHypomaxim(hypomaxim)
+    if not cloning.Hypomaxims[hypomaxim] then
+        cloning.Hypomaxims[hypomaxim] = { [3] = 2 }
+        return true
+    end
+    return false
+end
+
+function cloning.SetHypomaxim(hypomaxim, client)
+    if not client then return end
+    if not hypomaxim then return false end
+    local char =  client.Character
+    if not char then return false end
+    cloning.InitHypomaxim(hypomaxim)
+    cloning.Hypomaxims[hypomaxim][1] = client
+    cloning.Hypomaxims[hypomaxim][2] = char.DisplayName
+    cloning.Hypomaxims[hypomaxim][4] = { tostring(client.Name), char.Info.Job, char.Info.Head }
+    return true
+end
 
 Hook.Add("mm.hypomaximUse", "Megamod.Cloning.HypomaximUse", function(effect, deltaTime, item, targets, worldPosition)
     local usingChar = item.GetRootInventoryOwner()
     if not usingChar then return end
     local client = Util.FindClientCharacter(usingChar)
     if not client then return end
-    if not cloning.Hypomaxims[item] then
-        cloning.Hypomaxims[item] = { [3] = 2 }
-    end
+    cloning.InitHypomaxim(item)
     local t = targets[1]
     local targetClient = Util.FindClientCharacter(t)
     if not t.IsHuman or not targetClient then
-        Megamod.SendHoverMessage(client, "Invalid target.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Invalid target.", Color(255, 0, 255))
         return
     end
     -- Revive them if this hypomaxim is in revive mode (don't care if they're dead or not)
@@ -330,18 +407,17 @@ Hook.Add("mm.hypomaximUse", "Megamod.Cloning.HypomaximUse", function(effect, del
         Megamod.SendChatMessage(targetClient, "You have been revived by a hypomaxim device.", Color(255, 0, 255, 255))
         Megamod.Log("Client '" .. tostring(targetClient.Name) .. "' (Steam: " .. targetClient.SteamID .. ") was revived via hypomaxim.", true)
 
-        Megamod.SendHoverMessage(client, "Revived " .. tostring(t.DisplayName) .. ".", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Revived " .. tostring(t.DisplayName) .. ".", Color(255, 0, 255))
 
         cloning.Hypomaxims[item] = nil
         Entity.Spawner.AddItemToRemoveQueue(item)
         return
     end
+    -- Hypomaxim is in store mode...
 
-    cloning.Hypomaxims[item][1] = targetClient
-    cloning.Hypomaxims[item][2] = t.DisplayName
-    cloning.Hypomaxims[item][4] = { tostring(targetClient.Name), t.Info.Job, t.Info.Head }
+    cloning.SetHypomaxim(item, targetClient)
 
-    Megamod.SendHoverMessage(client, tostring(t.DisplayName) .. " stored.", Color(255, 0, 255))
+    Megamod.SendClientSideMsg(client, tostring(t.DisplayName) .. " stored.", Color(255, 0, 255))
 end)
 
 Hook.Add("mm.hypomaximReset", "Megamod.Cloning.HypomaximReset", function(effect, deltaTime, item, targets, worldPosition)
@@ -349,25 +425,27 @@ Hook.Add("mm.hypomaximReset", "Megamod.Cloning.HypomaximReset", function(effect,
     if not usingChar then return end
     local client = Util.FindClientCharacter(usingChar)
     if not client then return end
+    cloning.InitHypomaxim(item)
     if cloning.Hypomaxims[item] and cloning.Hypomaxims[item][1] or cloning.Hypomaxims[item][2] then
         cloning.Hypomaxims[item][1] = nil
         cloning.Hypomaxims[item][2] = nil
-        Megamod.SendHoverMessage(client, "Successful - reset current data.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Successful - reset current data.", Color(255, 0, 255))
     else
-        Megamod.SendHoverMessage(client, "No data to reset.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "No data to reset.", Color(255, 0, 255))
     end
 end)
 
 Hook.Add("mm.hypomaximInfo", "Megamod.Cloning.HypomaximInfo", function(effect, deltaTime, item, targets, worldPosition)
     local usingChar = item.GetRootInventoryOwner()
-    if not usingChar then return end
+    if not usingChar or not LuaUserData.IsTargetType(usingChar, "Barotrauma.Character") then return end
     local client = Util.FindClientCharacter(usingChar)
     if not client then return end
+    cloning.InitHypomaxim(item)
     local targetName = cloning.Hypomaxims[item] and cloning.Hypomaxims[item][2]
     if targetName then
-        Megamod.SendHoverMessage(client, "Stored: " .. targetName, Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Stored: " .. targetName, Color(255, 0, 255))
     else
-        Megamod.SendHoverMessage(client, "No data.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "No data.", Color(255, 0, 255))
     end
 end)
 
@@ -376,16 +454,14 @@ Hook.Add("mm.hypomaximMode", "Megamod.Cloning.HypomaximMode", function(effect, d
     if not usingChar then return end
     local client = Util.FindClientCharacter(usingChar)
     if not client then return end
-    if not cloning.Hypomaxims[item] then
-        cloning.Hypomaxims[item] = { [3] = 2 }
-    end
-    local currentMode = cloning.Hypomaxims[item] and cloning.Hypomaxims[item][3]
+    cloning.InitHypomaxim(item)
+    local currentMode = cloning.Hypomaxims[item][3]
     if currentMode == 1 then
         cloning.Hypomaxims[item][3] = 2
-        Megamod.SendHoverMessage(client, "Set mode to Store.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Set mode to Store.", Color(255, 0, 255))
     elseif currentMode == 2 then
         cloning.Hypomaxims[item][3] = 1
-        Megamod.SendHoverMessage(client, "Set mode to Revive.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Set mode to Revive.", Color(255, 0, 255))
     end
 end)
 
