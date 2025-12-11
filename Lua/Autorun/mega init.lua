@@ -245,8 +245,15 @@ end
 Game.OverrideTraitors(true) -- No vanilla traitors
 Game.EnableControlHusk(true) -- Players who turn into husks control the husk
 
--- Toolbox of *shared* code
+-- Shared toolbox
 require 'shared.mega'
+
+if SERVER then
+    -- Server-side toolbox
+    require 'server.mega'
+end
+
+-- Shared modules
 
 -- Chat commands
 Megamod.Commands = require 'shared.commands'
