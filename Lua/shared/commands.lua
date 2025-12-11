@@ -249,10 +249,28 @@ cmds.AddCommand("generic", "role", function(sender, argument)
 end)
 
 cmds.AddCommand("generic", { "clone", "cloning" }, function(sender, argument)
+    if not Megamod.CheckIsSpectating(sender) then
+        Megamod.SendChatMessage(sender, "You must be spectating the round.", Color(255, 0, 255, 255))
+        return
+    end
+    local machine = Megamod.Cloning.SelfClone
+    if machine then
+        local hypomaxim = machine.OwnInventory.GetItemAt(6)
+        if hypomaxim then
+            Megamod.Cloning.SetHypomaxim(hypomaxim, sender)
+            -- This is the same as someone pressing the "start" button on a cloning machine
+            Hook.Call("mm.cloningstart", nil, nil, Megamod.Cloning.SelfClone)
+            -- Client gets notified by the cloning code
+            return
+        else
+            Megamod.Error("!clone was used to self-clone, but there was no hypomaxim.")
+            -- Don't return
+        end
+    end
     if Megamod.Cloning.ActiveProcess and Megamod.Cloning.ActiveProcess[1] == sender then
         Megamod.SendChatMessage(sender, tostring(Megamod.Cloning.ActiveProcess[2]) .. " seconds remaining.", Color(255, 0, 255, 255))
     else
-        Megamod.SendChatMessage(sender, "You are not being cloned!", Color(255, 0, 255, 255))
+        Megamod.SendChatMessage(sender, "You are not being cloned, and self-cloning is currently unavailable.\n(Someone else might have taken the opportunity to self-clone before you.)", Color(255, 0, 255, 255))
     end
 end)
 
