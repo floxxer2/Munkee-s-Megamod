@@ -55,7 +55,7 @@ function mrs.SpawnPlayer(client)
                 return
             end
             local spawnPoint = spawnPoints[math.random(#spawnPoints)]
-            local char = Character.Create("Human", spawnPoint.WorldPosition, "e", info, 0, true, false, true, info.Ragdoll, true, false)
+            local char = Character.Create(info, spawnPoint.WorldPosition, info.Name, 0, false, false)
             char.TeamID = CharacterTeamType.Team1
             char.GiveJobItems(false, spawnPoint)
             -- Give pressure resistance

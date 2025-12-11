@@ -254,7 +254,7 @@ function rs.WavesTick()
                     for _, id in pairs(wave) do
                         if #rs.SpawnedMonsters < rs.MaxSpawnedMonsters then
                             --print("Spawned '" .. id .. "'")
-                            local char = Character.Create(id, spawnPoint, "", nil, 0, false, true, true, nil, true, true)
+                            local char = Character.Create(id, spawnPoint, "")
                             table.insert(rs.SpawnedMonsters, { monster = char, stacks = 0 })
                         else
                             break

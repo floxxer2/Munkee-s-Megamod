@@ -199,10 +199,11 @@ function cloning.Tick()
             cloning.RMRate = BASE_RM_RATE * cloning.CloningCostMultiplier
 
             if cloning.ActiveProcess[1] then -- Players
+                local pos = cloning.ActiveProcess[4].WorldPosition
                 local info = CharacterInfo("Human", cloning.ActiveProcess[8][1], cloning.ActiveProcess[8][1], cloning.ActiveProcess[8][2], cloning.ActiveProcess[8][2].Variant, RandSync.ServerAndClient, nil)
-                -- Copies over the cosmetic choices
+                -- Copies over cosmetic choices
                 info.Head = cloning.ActiveProcess[8][3]
-                local char = Character.Create("Human", cloning.ActiveProcess[4].WorldPosition, 0, info, 0, true, false, true, info.Ragdoll, true, false)
+                local char = Character.Create(info, pos, info.Name, 0, false, false)
 
                 char.TeamID = 1
                 -- Make sure all clients have the clonee's team set to 1
@@ -224,7 +225,7 @@ function cloning.Tick()
             else -- Sleeves, 'empty' humans
                 local pos = cloning.ActiveProcess[4].WorldPosition
                 local info = CharacterInfo("Human", "Sleeve", "Sleeve", JobPrefab.Get("assistant"), nil, RandSync.ServerAndClient, nil)
-                local sleeve = Character.Create("Human", pos, 0, info, 0, true, false, true, info.Ragdoll, true, false)
+                local sleeve = Character.Create(info, pos, info.Name, 0, false, false)
 
                 sleeve.TeamID = 1
                 -- Make sure all clients have the sleeve's team set to 1
