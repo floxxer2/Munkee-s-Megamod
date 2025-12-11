@@ -6,6 +6,7 @@ esc.SavedLoot = {}
 
 local timers = {}
 Hook.Add("roundEnd", "Megamod.EscapePortal.RoundEnd", function() timers = {} end) -- Reset timers between rounds
+
 Hook.Add("megamod.escapeportal", "Megamod.EscapePortal", function(effect, deltaTime, item, targets, worldPosition)
     for target in targets do
         if target and target.IsHuman and not target.IsDead then
@@ -16,7 +17,8 @@ Hook.Add("megamod.escapeportal", "Megamod.EscapePortal", function(effect, deltaT
             if not timers[target]
             or Timer.GetTime() - timers[target][2] > 4 -- Resets if they step away for more than 0.25 seconds
             then timers[target] = { 75, Timer.GetTime() } end
-            if timers[target][1] >= 0 then
+            -- Only count down when not moving
+            if timers[target][1] >= 0 and target.CurrentSpeed < 1 then
                 timers[target][1] = timers[target][1] - 1
                 return
             end
