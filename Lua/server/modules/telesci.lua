@@ -1,5 +1,5 @@
-local tsc = {}
+local telsci = {}
 
 -- #TODO#
 
-return tsc
+return telsci
