@@ -62,7 +62,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua") -- This has the side-effect of making the "control panel" option the last in the list
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
         --dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
-        --dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
+        dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
     end, 1)
 end
 

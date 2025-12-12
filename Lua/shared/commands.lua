@@ -133,10 +133,6 @@ cmds.AddCommand("generic", "help", function(sender, argument)
         "Information regarding your antagonist role. Use the 'obj' argument (\"!role obj\") to view antagonist objectives.\n\n" ..
         "!clone !cloning\n" ..
         "If you are being cloned, tells you the time left until you revive.\n\n" ..
-        "!preference !preferences !pp\n" ..
-        "Toggle the possibility of being selected as the specified antagonist.\n\n" ..
-        "!seepreferences !seepreference !sp\n" ..
-        "See all of your antagonist preferences without changing them.\n\n" ..
         "!round\n" ..
         "Tells you what round type it currently is (silly or serious).\n\n" ..
         "!summary\n" ..
@@ -270,71 +266,8 @@ cmds.AddCommand("generic", { "clone", "cloning" }, function(sender, argument)
     if Megamod.Cloning.ActiveProcess and Megamod.Cloning.ActiveProcess[1] == sender then
         Megamod.SendChatMessage(sender, tostring(Megamod.Cloning.ActiveProcess[2]) .. " seconds remaining.", Color(255, 0, 255, 255))
     else
-        Megamod.SendChatMessage(sender, "You are not being cloned, and self-cloning is currently unavailable.\n(Someone else might have taken the opportunity to self-clone before you.)", Color(255, 0, 255, 255))
+        Megamod.SendChatMessage(sender, "You are not being cloned, and self-cloning is currently unavailable.", Color(255, 0, 255, 255))
     end
-end)
-
-cmds.AddCommand("generic", { "preference", "preferences", "pp" }, function(sender, argument)
-    -- Capitalize the first letter, lowercase others
-    argument = Megamod.Capitalize(argument)
-
-    local str = "<"
-    for type1 in Megamod.RuleSetManager.AntagTypes do
-        str = str .. type1 .. "/"
-    end
-    str = str:sub(1, -2) .. ">"
-
-    if argument == "" then
-        Megamod.SendChatMessage(sender, "Toggles whether or not you can be selected as ...\nUsage: !pp " .. str, Color(255, 0, 255, 255))
-        return
-    end
-
-    local validType = false
-    for type1 in Megamod.RuleSetManager.AntagTypes do
-        if argument == type1 then
-            validType = true
-            break
-        end
-    end
-    if not validType then
-        Megamod.SendChatMessage(sender, "That is not a valid type. Valid types:\n" .. str, Color(255, 0, 255, 255))
-        return
-    end
-
-    if argument == "Beast" and not Megamod.CertifiedBeasters[sender.SteamID] then
-        Megamod.SendChatMessage(sender,
-            "The darkness does not recognize you.\n(You need special permission to play as Beasts. Ask munkee.)", Color(255, 0, 255, 255))
-        return
-    end
-
-    local enabled = Megamod.GetData(sender, argument)
-    if SERVER then -- Only write data change server-side
-        Megamod.ClientData[sender.SteamID][argument] = not enabled
-    end
-    if not enabled then
-        Megamod.SendChatMessage(sender, "Enabled " .. argument .. ".", Color(255, 0, 255, 255))
-        if argument == "Beast" then
-            Megamod.SendChatMessage(sender, "The darkness embraces you.", Color(255, 0, 255, 255))
-        end
-    else
-        Megamod.SendChatMessage(sender, "Disabled " .. argument .. ".", Color(255, 0, 255, 255))
-    end
-end)
-
-cmds.AddCommand("generic", { "seepreferences", "seepreference", "sp" }, function(sender, argument)
-    local text = "Antagonist preferences:\n"
-    for type1 in Megamod.RuleSetManager.AntagTypes do
-        local enabled = Megamod.GetData(sender, type1)
-        if enabled then
-            text = text .. type1 .. ": enabled\n"
-        else
-            text = text .. type1 .. ": disabled\n"
-        end
-    end
-    -- Remove the last newline
-    text = text:sub(1, -2)
-
-    Megamod.SendChatMessage(sender, text, Color(255, 0, 255, 255))
 end)
 
 cmds.AddCommand("generic", "round", function(sender, argument)

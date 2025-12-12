@@ -2,37 +2,78 @@ Megamod.ClientData = {}
 
 local json = require 'utils.json'
 
-Megamod.ClientDataMap = {
-    Messaging = {
-        desc = "How do you want certain messages from TBG to be displayed? This affects messages that you can send to yourself constantly, like those of hypomaxims.",
-        defaultValue = 1,
-        valueMap = {
-            ["Hover above my character (like skill gain messages)"] = 1,
-            ["Float at the top of the screen (like the messages when you have husk)"] = 2,
-            ["Appear in the chatbox"] = 3,
-        },
-    },
+local prefMap = {
+    { name = "Traitor", type = "boolean" },
+    { name = "Monster", type = "boolean" },
+    { name = "Beast", type = "boolean" },
 }
-Timer.Wait(function()
-    for antagType in Megamod.RuleSetManager.AntagTypes do
-        local default = antagType ~= "Beast"
-        Megamod.ClientDataMap[antagType] = {
-            desc = "Do you want to be (potentially) selected as this antagonist?",
-            defaultValue = default,
-            valueMap = {
-                Yes = true,
-                No = false,
-            },
-        }
+
+Networking.Receive("mm_changeprefs", function(message, client)
+    local amount = message.ReadByte()
+    if not amount
+    or math.ceil(amount) ~= amount -- Integer
+    or 0 >= amount or amount > #prefMap then
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent malformed mm_changeprefs (invalid amount).", true)
+        return
     end
-end, 1)
+    for i = 1, amount do
+        local prefName = message.ReadString()
+        if not prefName then
+            Megamod.Log("Client '" .. tostring(client.Name) .. "' sent malformed mm_changeprefs (no prefName).", true)
+            return
+        end
+        local prefType = prefMap[prefName]
+        if not prefType then
+            Megamod.Log("Client '" .. tostring(client.Name) .. "' sent malformed mm_changeprefs (invalid prefName).", true)
+            return
+        end
+        local prefValue
+        if prefType == "boolean" then
+            prefValue = message.ReadBoolean()
+        end
+        if prefValue == nil then
+            Megamod.Log("Client '" .. tostring(client.Name) .. "' sent malformed mm_changeprefs (invalid prefValue).", true)
+            return
+        end
+        if prefName == "Beast" and prefValue == true
+        and not Megamod.CertifiedBeasters[client.SteamID] then
+            -- This should be blocked client-side, if they sent a message, their client was modified
+            Megamod.Log("Client '" .. tostring(client.Name) .. "' tried to enable Beast, but was not a CB.", true)
+            return
+        end
+        Megamod.SetData(client, prefName, prefValue)
+        --print(tostring(tostring(client.Name) .. " - " .. tostring(prefName) .. " - " .. tostring(prefValue)))
+    end
+end)
+
+Networking.Receive("mm_getprefs", function(message, client)
+    local msg = Networking.Start("mm_getprefs")
+    msg.WriteByte(#prefMap)
+    for prefName, prefType in pairs(prefMap) do
+        msg.WriteString(prefName)
+        local value = Megamod.GetData(client, prefName)
+        if prefType == "boolean" then
+            msg.WriteBoolean(value)
+        end
+    end
+    Networking.Send(msg, client.Connection)
+end)
+
+local defaultPrefMap = {
+    Traitor = true,
+    Monster = true,
+    Beast = false -- Value doesn't matter for Beast
+}
 
 function Megamod.NewClientData(client)
     Megamod.ClientData[client.SteamID] = {}
     Megamod.ClientData[client.SteamID]["Name"] = client.Name
     Megamod.ClientData[client.SteamID]["Prefs"] = {}
-    for valueName, valueTbl in pairs(Megamod.ClientDataMap) do
-        Megamod.ClientData[client.SteamID]["Prefs"][valueName] = valueTbl
+    for valueName, value in pairs(defaultPrefMap) do
+        if valueName == "Beast" then
+            value = Megamod.CertifiedBeasters[client.SteamID] == true
+        end
+        Megamod.ClientData[client.SteamID][valueName] = value
     end
 end
 
