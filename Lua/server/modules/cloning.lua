@@ -264,6 +264,9 @@ end
 cloning.Tick()
 
 function cloning.StartProcess(client, machine, infoTbl)
+    local c = machine.GetComponentString('LightComponent')
+    local powered = c.Voltage >= c.MinVoltage
+    if not powered then return end
     local tbl = {
         [1] = client, -- The client, if nil then we're making an "empty" human - a sleeve
         [2] = cloning.CloningDuration, -- How long till the clonee is revived, as an integer in seconds
