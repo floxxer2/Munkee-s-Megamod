@@ -372,7 +372,8 @@ cmds.AddCommand("admin", "info", function(sender, argument)
         end
 
         Megamod.SendChatMessage(sender, str, Color(255, 0, 255, 255))
-    elseif argument == "roles" then -- #TODO#
+    elseif argument == "roles" then
+        -- #TODO#
         do return end
         if not Game.RoundStarted then
             Megamod.SendChatMessage(sender, "Cannot be used in the lobby", Color(255, 0, 255, 255))
