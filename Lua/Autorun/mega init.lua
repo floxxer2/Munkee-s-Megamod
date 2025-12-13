@@ -18,10 +18,6 @@ Megamod.Admins = {
     ["76561199139073814"] = true, -- munkee
 }
 
--- Omniscience table (structured with table.insert()),
--- clients in this receive Megamod logs in chat
-Megamod.Omni = {}
-
 Megamod.BlacklistedPlayerMonsters = {
     Truebeast = true
 }
@@ -221,6 +217,10 @@ if SERVER then
             Game.ExecuteCommand("enablecheats")
         end, 5000)
     end
+
+    -- Omniscience table (structured with table.insert()),
+    -- clients in this receive Megamod logs in chat
+    Megamod.Omni = {}
 
     -- Network Tweaks (https://steamcommunity.com/sharedfiles/filedetails/?id=3329396988)
     -- It's small enough to reasonably just do this instead of including the whole mod
