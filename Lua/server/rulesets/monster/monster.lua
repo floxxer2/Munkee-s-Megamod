@@ -23,6 +23,18 @@ local NIGHTMARE_MODE_DEFAULT = false
 rs.PerceptionMultExtra = PERCEPTION_MULT_EXTRA_DEFAULT
 rs.NightmareMode = NIGHTMARE_MODE_DEFAULT
 
+rs.RoleMessage =
+">> You are a monster overlord, like a crawler or mudraptor,\n" ..
+">> Click on any monster to start controlling it, when controlling, click the button at the top to stop controlling.\n" ..
+">> Kill all humans!"
+
+function rs.RoleHelp(client)
+    if rs.SelectedPlayers[client] then
+        return true, rs.RoleMessage
+    end
+    return false, ""
+end
+
 LuaUserData.MakeMethodAccessible(Descriptors["Barotrauma.EnemyAIController"], "GetPerceptionRange")
 
 -- Mimics the original, but multiplies by the strength of the ruleset
@@ -42,7 +54,7 @@ Hook.Patch("Megamod.AIPerceptionPatch", "Barotrauma.EnemyAIController", "GetPerc
 end, Hook.HookMethodType.Before)
 
 -- Received when a client wants to control or leave a monster
-Networking.Receive("mm_monster", function(message, sender)
+Networking.Receive("mm_monstercontrol", function(message, sender)
     if not rs.SelectedPlayers[sender] then
         Megamod.Log("Client '" .. tostring(sender.Name) .. "' tried to send an invalid mm_monster net message.", true)
         return
@@ -61,14 +73,30 @@ Networking.Receive("mm_monster", function(message, sender)
         end
         if not monster then
             Megamod.SendChatMessage(sender, "ERROR: Couldn't find the monster to control, please try again. If this persists, tell an admin!", Color(255, 0, 255, 255))
-            Megamod.Error("Monster character not found, or was blacklisted. Aborting control swap.")
+            Megamod.Log("Monster character not found for client '" .. tostring(sender.Name) .. "', or was blacklisted. Aborting control swap.", true)
+            return
+        end
+        local monsterClient = Util.FindClientCharacter(monster)
+        -- Don't try to control it if there is already someone controlling it
+        if monsterClient then
+            Megamod.SendChatMessage(sender, "ERROR: That is already being controlled by someone else!", Color(255, 0, 255, 255))
+            Megamod.Log("Client '" .. tostring(sender.Name) .."' tried to control '" .. tostring(monster.SpeciesName) .. "', which is already controlled by '" .. tostring(monsterClient.Name) .. "'")
             return
         end
         sender.SetClientCharacter(monster)
+        Megamod.Log("Client '" .. tostring(sender.Name) .."' started controlling '" .. tostring(monster.SpeciesName) .. "' via monster antagonist")
     else
         -- Sends the client to freecam
         sender.SetClientCharacter(nil)
+        Megamod.Log("Client '" .. tostring(sender.Name) .. "' went to spectator via monster antagonist")
     end
+end)
+
+-- Received when a client wants to sync if they are an antag in this ruleset
+Networking.Receive("mm_getmonster", function(message, sender)
+    local msg = Networking.Start("mm_monster")
+    msg.WriteBoolean(rs.SelectedPlayers[sender] ~= nil)
+    Networking.Send(msg, sender.Connection)
 end)
 
 -- Strength x10, then +/- 5

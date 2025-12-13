@@ -44,7 +44,7 @@ namespace CompleteDarkness
         //controlled by Lua
         public static bool HuntActive = false;
         //not used in this file, but Lua uses it
-        public static bool IsMonsterAntagonist = true;
+        public static bool IsMonsterAntagonist = false;
 
         //private static readonly List<Entity> highlightedEntities = new List<Entity>();
 

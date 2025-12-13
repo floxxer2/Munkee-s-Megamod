@@ -50,17 +50,18 @@ end
 
 function event.PromptRandom()
     local selectedClient = event.ValidClients[math.random(#event.ValidClients)]
-    local str = "Would you like to join the monsters and attack the station?\n(15 seconds to choose)\nTip: Use the chat command \"!pp monster\" to disable these messages."
+    local str = "Would you like to join the monsters and attack the station?\n(15 seconds to choose)"
     tpu.Prompt(str, { "Yes", "No" }, selectedClient, event.OnSelected, nil, false)
     event.NoSelectTimer = coroutine.create(function(timer)
         ::restart::
-        if not Game.RoundStarted then return end
+        if not Game.RoundStarted or not event.NoSelectTimer then return end
         if timer <= 0 then
             -- Act as if the client clicked "no"
             event.OnSelected(2, selectedClient)
             return
         end
         Timer.Wait(function()
+            if not Game.RoundStarted or not event.NoSelectTimer then return end
             timer = timer - 1
             coroutine.resume(event.NoSelectTimer, timer)
         end, 1000)
@@ -81,7 +82,7 @@ function event.OnSelected(option, client)
         end
     end
     if not IsValidClient then return end
-    coroutine.close(event.NoSelectTimer)
+    event.NoSelectTimer = nil
     option = option == 1
     if option then -- They clicked "yes"
         Megamod.Log("Setting client '" .. tostring(client.Name) .. "' to be a monster player.", true)
@@ -98,6 +99,9 @@ function event.OnSelected(option, client)
             return
         end
         event.Monster.SelectedPlayers[client] = { event.Monster.AntagName, {} }
+        local msg = Networking.Start("mm_monster")
+        msg.WriteBoolean(true)
+        Networking.Send(msg, client.Connection)
         for admin in Client.ClientList do
             if Megamod.Admins[admin.SteamID] then
                 local msg = Networking.Start("mm_ruleset")

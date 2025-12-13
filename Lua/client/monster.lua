@@ -8,15 +8,19 @@ Hook.Patch("Barotrauma.GameScreen", "AddToGUIUpdateList", function()
 end)
 
 --[[local dropDown = GUI.DropDown(GUI.RectTransform(Vector2(0.15, 0.15), frame.RectTransform, GUI.Anchor.TopCenter), "Monster List", 3, nil, false)
+dropDown.Visible = false
 dropDown.OnSelected = function(guiComponent, object)
-    print(object)
+    local msg = Networking.Start("mm_monstercontrol")
+    msg.WriteBoolean(true)
+    msg.WriteUInt64(object.ID)
+    Networking.Send(msg)
 end]]
 
 local exitButton = GUI.Button(GUI.RectTransform(Vector2(0.15, 0.15), frame.RectTransform, GUI.Anchor.TopCenter), "Stop Controlling Monster", GUI.Alignment.Center, "GUIButton")
 exitButton.Visible = false
 exitButton.OnClicked = function()
     if Character.Controlled and not Character.Controlled.IsDead then
-        local msg = Networking.Start("mm_monster")
+        local msg = Networking.Start("mm_monstercontrol")
         msg.WriteBoolean(false)
         Networking.Send(msg)
     end
@@ -25,16 +29,11 @@ end
 Networking.Receive("mm_monster", function(message)
     local bool = message.ReadBoolean()
     Megamod_Client.LightMapOverride.IsMonsterAntagonist = bool
-    if bool then
-        if Character.Controlled and not Character.Controlled.IsDead then
-            exitButton.Visible = true
-            --dropDown.Visible = false
-        else
-            exitButton.Visible = false
-            --dropDown.Visible = true
-        end
-    end
 end)
+Timer.Wait(function()
+    local msg = Networking.Start("mm_getmonster")
+    Networking.Send(msg)
+end, 100)
 
 local cooldown = 0
 local function cooldownLoop()
@@ -57,18 +56,33 @@ local function setSuicideButtonVisible(bool)
     end
 end
 
+local function findValidMonsters()
+    local monsters = {}
+    for char in Character.CharacterList do
+        if char
+        and not char.IsDead
+        and not char.IsHuman
+        and not Megamod.BlacklistedPlayerMonsters[tostring(char.SpeciesName)] then
+            table.insert(monsters, char)
+        end
+    end
+    return monsters
+end
+
 --DROPDOWNUPDATE_BASE = 15
 --local dropDownUpdateTimer = DROPDOWNUPDATE_BASE
 local closestChar
+local charClient
 local wasMonsterAntag = false
 LuaUserData.MakeFieldAccessible(Descriptors["Barotrauma.GameMain"], "spriteBatch")
-Hook.Add("think", "Megamod.MonsterGUIThink", function()
+Hook.Add("think", "Megamod.MonsterClient.Think", function()
     if not Megamod_Client.LightMapOverride.IsMonsterAntagonist then
         if wasMonsterAntag then
             wasMonsterAntag = false
             --dropDown.Visible = false
             exitButton.Visible = false
             closestChar = nil
+            charClient = nil
             setSuicideButtonVisible(true)
         end
         return
@@ -80,23 +94,12 @@ Hook.Add("think", "Megamod.MonsterGUIThink", function()
         --dropDown.Visible = false
         exitButton.Visible = true
         closestChar = nil
+        charClient = nil
         return
     else
         setSuicideButtonVisible(true)
         --dropDown.Visible = true
         exitButton.Visible = false
-    end
-    local function findValidMonsters()
-        local monsters = {}
-        for char in Character.CharacterList do
-            if char
-            and not char.IsDead
-            and not char.IsHuman
-            and not Megamod.BlacklistedPlayerMonsters[tostring(char.SpeciesName)] then
-                table.insert(monsters, char)
-            end
-        end
-        return monsters
     end
     --[[if dropDownUpdateTimer <= 0 then
         dropDownUpdateTimer = DROPDOWNUPDATE_BASE
@@ -116,19 +119,24 @@ Hook.Add("think", "Megamod.MonsterGUIThink", function()
         local dist = Vector2.Distance(Megamod.ScreenToWorld(PlayerInput.MousePosition), monster.WorldPosition)
         if dist < closestDist then
             closestChar = monster
+            charClient = Util.FindClientCharacter(closestChar)
             closestDist = dist
             foundChar = true
         end
     end
-    if not foundChar then closestChar = nil return end
+    if not foundChar then closestChar = nil charClient = nil return end
     if PlayerInput.PrimaryMouseButtonClicked() then
+        if charClient and charClient ~= Megamod_Client.GetSelfClient() then
+            GUI.AddMessage("That is being controlled by someone else.", Color(255, 0, 255, 255), 5)
+            return
+        end
         if cooldown > 0 then
             GUI.AddMessage("Please don't spam control monsters.", Color(255, 0, 255, 255), 5)
             return
         end
         cooldown = 5
         cooldownLoop()
-        local msg = Networking.Start("mm_monster")
+        local msg = Networking.Start("mm_monstercontrol")
         msg.WriteBoolean(true)
         msg.WriteUInt64(closestChar.ID)
         Networking.Send(msg)
@@ -136,9 +144,24 @@ Hook.Add("think", "Megamod.MonsterGUIThink", function()
 end)
 
 Hook.Patch("Megamod.ControlMonsterCursorText", "Barotrauma.GUI", "Draw", function(instance, ptable)
+    if not Megamod_Client.LightMapOverride.IsMonsterAntagonist then return end
     if closestChar then
-        GUI.DrawString(ptable["spriteBatch"], PlayerInput.MousePosition - Vector2(0, -30),
-            string.format("[%s] Control '%s'", tostring(PlayerInput.PrimaryMouseLabel), tostring(closestChar.DisplayName)),
+        local str = string.format("[%s] Control '%s'", tostring(PlayerInput.PrimaryMouseLabel), tostring(closestChar.DisplayName))
+        if charClient and charClient ~= Megamod_Client.GetSelfClient() then
+            str = string.format("'%s' is controlling '%s'", tostring(charClient.Name), tostring(closestChar.DisplayName))
+        end
+        GUI.DrawString(ptable["spriteBatch"], PlayerInput.MousePosition + Vector2(0, 30),
+            str,
             Color(255, 0, 255, 255), Color.Black * 0.5, 0, GUI.Style.SmallFont)
+    end
+    for client in Client.ClientList do
+        if client ~= Megamod_Client.GetSelfClient()
+        and client.Character
+        and not client.Character.IsDead
+        and not client.Character.IsHuman then
+            GUI.DrawString(ptable["spriteBatch"], Megamod.WorldToScreen(client.Character.WorldPosition),
+                tostring(client.Name),
+                Color(255, 0, 255, 255), Color.Black * 0.5, 0, GUI.Style.SmallFont)
+        end
     end
 end, Hook.HookMethodType.Before)

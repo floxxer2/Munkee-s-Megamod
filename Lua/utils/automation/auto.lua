@@ -9110,7 +9110,8 @@ function NTEYE.UpdateLights()
 	local ControlledCharacter = Character.Controlled
 	local LevelLight = Level.Loaded.LevelData.GenerationParams
 	-- Very slight night vision inside the sub for spectators
-	if not ControlledCharacter or ControlledCharacter.IsDead then
+	if not Megamod_Client.LightMapOverride.IsMonsterAntagonist
+	and (not ControlledCharacter or ControlledCharacter.IsDead) then
 		LevelLight.AmbientLightColor = Color(0, 0, 0, 0)
 		for _, HullLight in pairs(Hull.HullList) do
 			HullLight.AmbientLight = Color(29, 29, 29, 9)
@@ -9118,14 +9119,15 @@ function NTEYE.UpdateLights()
 		return
 	-- Prevent human night vision during Hunts
 	elseif Megamod_Client.LightMapOverride.HuntActive
-	and ControlledCharacter.IsHuman then
+	and ControlledCharacter and ControlledCharacter.IsHuman then
 		LevelLight.AmbientLightColor = Color(0, 0, 0, 0)
 		for _, HullLight in pairs(Hull.HullList) do
 			HullLight.AmbientLight = Color(0, 0, 0, 0)
 		end
 		return
-	-- If controlled character is a monster, give purple night vision
-	elseif not ControlledCharacter.IsHuman then
+	-- If we are a monster, give purple night vision
+	elseif (ControlledCharacter and not ControlledCharacter.IsHuman)
+	or Megamod_Client.LightMapOverride.IsMonsterAntagonist then
 		LevelLight.AmbientLightColor = Color(25, 0, 75, 40)
 		for _, HullLight in pairs(Hull.HullList) do
 			HullLight.AmbientLight = Color(50, 0, 200, 75)
