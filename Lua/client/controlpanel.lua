@@ -100,7 +100,6 @@ end)
 
 -- We need to sync every time CL Lua (re)loads
 local msg = Networking.Start("mm_ruleset")
-msg.WriteByte(0)
 Networking.Send(msg)
 
 -- Highly based on easySettings by Evil Factory >>

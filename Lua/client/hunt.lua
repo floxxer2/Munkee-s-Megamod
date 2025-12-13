@@ -1,4 +1,4 @@
--- Stuff that has to do with The Beast
+-- Stuff that has to do with (being hunted by) The Beast
 
 LuaUserData.RegisterType("CompleteDarkness.CompleteDarknessMod")
 ---@type CompleteDarkness.CompleteDarknessMod
@@ -202,5 +202,4 @@ end)
 
 -- We need to know if a Hunt is active if we reload CL Lua midround
 local msg = Networking.Start("mm_huntactive")
-msg.WriteByte(0)
 Networking.Send(msg)
