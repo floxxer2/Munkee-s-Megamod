@@ -68,11 +68,11 @@ Networking.Receive("mm_traitor", function(message)
     Character.Controlled.IsTraitor = message.ReadBoolean()
 end)
 
--- We need to know if we're a traitor if we reload CL Lua midround
-if Megamod_Client.GetSelfClient() and Megamod_Client.GetSelfClient().InGame then
+-- We need to know if we're a traitor if we reload CL Lua or join midround
+Timer.Wait(function()
     local msg = Networking.Start("mm_traitor")
     Networking.Send(msg)
-end
+end, 100)
 
 -- 1984
 Networking.Receive("mm_luacheck", function(message)
@@ -140,7 +140,7 @@ Hook.Patch("Megamod.NoItemFinder", "Barotrauma.Items.Components.MiniMap", "Visib
     return false
 end, Hook.HookMethodType.Before)
 
--- Prevent ID card monitoring on status monitors (op for finding traitors)
+-- Prevent ID card monitoring on status monitors
 Hook.Patch("Megamod.NoIDCardMonitoring", "Barotrauma.Items.Components.MiniMap", "UpdateIDCards", function(instance, ptable)
     ptable.PreventExecution = true
 end, Hook.HookMethodType.Before)
