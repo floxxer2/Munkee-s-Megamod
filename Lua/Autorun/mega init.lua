@@ -261,12 +261,12 @@ Megamod.Commands = require 'shared.commands'
 -- Sub stuff
 Megamod.Subs = require 'shared.subs'
 
--- Escape portal, saving loot between rounds
-Megamod.EscapePortal = require 'shared.escapeportal'
-
 if SERVER then
     -- Midround spawn
     Megamod.MidRoundSpawn = require 'server.modules.midroundspawn'
+
+    -- Escape portal, saving loot between rounds
+    Megamod.EscapePortal = require 'server.modules.escapeportal'
 
     -- Reviving people via cloning & hypomaxim
     Megamod.Cloning = require 'server.modules.cloning'
