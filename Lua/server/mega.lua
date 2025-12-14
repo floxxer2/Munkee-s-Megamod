@@ -89,6 +89,12 @@ function Megamod.LoadData()
         File.Write(cfgFile, "{}")
     end
     Megamod.ClientData = json.decode(File.Read(cfgFile)) or {}
+    -- If someone was a CB, then got their CB status removed, reset their Beast "preference" to false
+    for steamID, tbl in pairs(Megamod.ClientData) do
+        if not Megamod.CertifiedBeasters[tostring(steamID)] then
+            tbl.Beast = false
+        end
+    end
 end
 Megamod.LoadData()
 
