@@ -5,6 +5,7 @@ local json = require 'utils.json'
 local prefMap = {
     { name = "Traitor", type = "boolean" },
     { name = "Monster", type = "boolean" },
+    { name = "Raider", type = "boolean" },
     { name = "Beast", type = "boolean" },
 }
 
@@ -68,13 +69,13 @@ end)
 local defaultPrefMap = {
     Traitor = true,
     Monster = true,
+    Raider = true,
     Beast = false -- Value doesn't matter for Beast
 }
 
 function Megamod.NewClientData(client)
     Megamod.ClientData[client.SteamID] = {}
     Megamod.ClientData[client.SteamID]["Name"] = client.Name
-    Megamod.ClientData[client.SteamID]["Prefs"] = {}
     for valueName, value in pairs(defaultPrefMap) do
         if valueName == "Beast" then
             value = Megamod.CertifiedBeasters[client.SteamID] == true
