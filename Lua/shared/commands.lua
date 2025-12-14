@@ -248,6 +248,8 @@ cmds.AddCommand("admin", "helpadmin", function(sender, argument)
         "Argument: <cloning/roles/events/roundtype/time> | See information about one of those.\n\n" ..
         "!luacheck\n" ..
         "Find those pesky non-Lua-ers.\n\n" ..
+        "!end\n" ..
+        "Start the end round timer.\n\n" ..
         "!event-toggle\n" ..
         "Toggles automatic event triggering.\n\n" ..
         "!event-start\n" ..
@@ -364,6 +366,10 @@ cmds.AddCommand("admin", "luacheck", function(sender, argument)
     end
 end)
 
+cmds.AddCommand("admin", "end", function(sender, argument)
+    Megamod.RuleSetManager.EndRoundTimer(120, argument)
+end)
+
 -- Admins could just use the control panel to do ruleset stuff, but these are good as backups
 
 cmds.AddCommand("admin", "ruleset-forceround", function(sender, argument)
@@ -412,9 +418,9 @@ cmds.AddCommand("admin", "ruleset-toggle", function(sender, argument)
     Megamod.SendChatMessage(sender, str, Color(255, 0, 255, 255))
 end)
 
---[[cmds.AddCommand("admin", "debug", function(sender, argument)
-    
-end)]]
+cmds.AddCommand("admin", "debug", function(sender, argument)
+    Megamod.EscapePortal.SpawnPortal()
+end)
 
 -- Event commands
 do
