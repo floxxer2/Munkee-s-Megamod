@@ -26,7 +26,10 @@ function event.Check()
     end
     for client in Client.ClientList do
         if Megamod.CheckIsSpectating(client)
-        and #Megamod.RuleSetManager.AntagStatus(client) == 0 then
+        and #Megamod.RuleSetManager.AntagStatus(client) == 0
+        and not (Megamod.Cloning.ActiveProcess
+        and Megamod.Cloning.ActiveProcess[1] == client) -- Don't include people being cloned
+        then
             validPlayer = true
             break
         end
@@ -138,6 +141,8 @@ function event.Start()
         and Megamod.GetData(client, "Monster")
         and #Megamod.RuleSetManager.AntagStatus(client) == 0
         and Megamod.CheckIsSpectating(client)
+        and (not Megamod.Cloning.ActiveProcess
+        and Megamod.Cloning.ActiveProcess[1] == client) -- Don't include people being cloned
         then
             table.insert(event.ValidClients, client)
         end
