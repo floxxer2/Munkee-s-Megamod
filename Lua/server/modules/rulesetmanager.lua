@@ -183,10 +183,6 @@ function rsm.Start()
     end, 10000)
 end
 Hook.Add("roundStart", "Megamod.RuleSetManager.RoundStart", rsm.Start)
--- Call Start() if we reload Lua midround
-if Game.RoundStarted then
-    rsm.Start()
-end
 
 local function getTimeToEnd(time)
     time = math.ceil(time)
@@ -410,6 +406,11 @@ if Game.RoundStarted then
         msg.WriteBoolean(false)
         Networking.Send(msg, client.Connection)
     end
+end
+
+-- Call Start() if we reload Lua midround
+if Game.RoundStarted then
+    rsm.Start()
 end
 
 return rsm
