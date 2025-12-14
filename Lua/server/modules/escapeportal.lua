@@ -6,14 +6,25 @@ esc.SavedLoot = {}
 
 local TIMER_START = 15
 local timers = {}
+local antagMessages = {}
 -- Reset timers between rounds
-Hook.Add("roundEnd", "Megamod.EscapePortal.RoundEnd", function() timers = {} end)
+Hook.Add("roundEnd", "Megamod.EscapePortal.RoundEnd", function()
+    timers = {}
+    antagMessages = {}
+end)
 
 Hook.Add("megamod.escapeportal", "Megamod.EscapePortal.Portal", function(effect, deltaTime, item, targets, worldPosition)
     for target in targets do
         if target and target.IsHuman and not target.IsDead then
             local client = Util.FindClientCharacter(target)
             if not client then return end
+            -- Antags can't escape
+            if not antagMessages[client]
+            and #Megamod.RuleSetManager.AntagStatus(client) > 0 then
+                antagMessages[client] = true
+                Megamod.SendChatMessage(client, "Antagonists cannot use the escape portal.", Color(255, 0, 255, 255))
+                return
+            end
 
             if not timers[target] then
                 timers[target] = TIMER_START
