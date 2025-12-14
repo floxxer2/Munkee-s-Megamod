@@ -22,7 +22,13 @@ Networking.Receive("mm_changeprefs", function(message, client)
             Megamod.Log("Client '" .. tostring(client.Name) .. "' sent malformed mm_changeprefs (no prefName).", true)
             return
         end
-        local prefType = prefMap[prefName]
+        local prefType
+        for tbl in prefMap do
+            if tbl.name == prefName then
+                prefType = tbl.type
+                break
+            end
+        end
         if not prefType then
             Megamod.Log("Client '" .. tostring(client.Name) .. "' sent malformed mm_changeprefs (invalid prefName).", true)
             return
@@ -49,10 +55,10 @@ end)
 Networking.Receive("mm_getprefs", function(message, client)
     local msg = Networking.Start("mm_getprefs")
     msg.WriteByte(#prefMap)
-    for prefName, prefType in pairs(prefMap) do
-        msg.WriteString(prefName)
-        local value = Megamod.GetData(client, prefName)
-        if prefType == "boolean" then
+    for _, prefTbl in pairs(prefMap) do
+        msg.WriteString(prefTbl.name)
+        local value = Megamod.GetData(client, prefTbl.name)
+        if prefTbl.type == "boolean" then
             msg.WriteBoolean(value)
         end
     end
