@@ -221,7 +221,6 @@ local endRoundTimerActive = false
 function rsm.EndRoundTimer(timer, inputStr)
     if endRoundTimerActive or not Game.RoundStarted then return end
     endRoundTimerActive = true
-    -- Whitespace at the start will be ignored by ServerMessageBoxInGame if there's nothing before it
     local str = " The round is ending in " .. getTimeToEnd(timer) .. " Escape portal opened somewhere on the station, get out of there!"
     if inputStr then
         str = inputStr .. str -- Can't have newlines in ServerMessageBoxInGame
