@@ -28,13 +28,6 @@ rs.RoleMessage =
 ">> Click on any monster to start controlling it, when controlling, click the button at the top to stop controlling.\n" ..
 ">> Kill all humans!"
 
-function rs.RoleHelp(client)
-    if rs.SelectedPlayers[client] then
-        return true, rs.RoleMessage
-    end
-    return false, ""
-end
-
 LuaUserData.MakeMethodAccessible(Descriptors["Barotrauma.EnemyAIController"], "GetPerceptionRange")
 
 -- Mimics the original, but multiplies by the strength of the ruleset
@@ -353,7 +346,7 @@ end
 
 function rs.RoleHelp(client)
     if rs.SelectedPlayers[client] then
-        return true, rs.SelectedPlayers[client][3]
+        return true, rs.RoleMessage
     end
     return false, ""
 end
