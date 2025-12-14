@@ -361,7 +361,7 @@ local funcs = {
 }
 Networking.Receive("mm_ruleset", function(message, sender)
     if not Megamod.Admins[sender.SteamID] then
-        Megamod.Log(tostring(sender.Name) .. " tried to send a ruleset message", true)
+        Megamod.Log("Client '" .. tostring(sender.Name) .. "' tried to send a ruleset message, but was not an admin.", true)
         return
     end
     local id = message.ReadByte()
