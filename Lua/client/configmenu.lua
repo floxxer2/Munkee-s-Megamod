@@ -12,6 +12,9 @@ Megamod_Client.Prefs = {
         Monster = {
             guiType = "tickbox",
         },
+        Raider = {
+            guiType = "tickbox",
+        },
         Beast = {
             guiType = "tickbox",
         },
@@ -38,7 +41,10 @@ end
 
 end]]
 
-local amCB = Megamod.CertifiedBeasters[Megamod_Client.GetSelfClient().SteamID] == true
+local amCB
+Timer.Wait(function()
+    amCB = Megamod.CertifiedBeasters[Megamod_Client.GetSelfClient().SteamID] == true
+end, 100)
 
 local function sendUpdate()
     local msg = Networking.Start("mm_changeprefs")
