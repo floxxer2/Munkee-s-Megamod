@@ -4,24 +4,37 @@ local esc = {}
 -- have in your inventory, so you can use it in the next round
 esc.SavedLoot = {}
 
+local TIMER_START = 15
 local timers = {}
 -- Reset timers between rounds
-Hook.Add("roundEnd", "esc.RoundEnd", function() timers = {} end)
+Hook.Add("roundEnd", "Megamod.EscapePortal.RoundEnd", function() timers = {} end)
 
-Hook.Add("esc", "Megamod.EscapePortal.Portal", function(effect, deltaTime, item, targets, worldPosition)
+Hook.Add("megamod.escapeportal", "Megamod.EscapePortal.Portal", function(effect, deltaTime, item, targets, worldPosition)
     for target in targets do
         if target and target.IsHuman and not target.IsDead then
             local client = Util.FindClientCharacter(target)
             if not client then return end
 
-            -- This system gives you 3.75 seconds of standing in the portal before it takes you
-            if not timers[target]
-            or Timer.GetTime() - timers[target][2] > 4 -- Resets if they step away for more than 0.25 seconds
-            then timers[target] = { 75, Timer.GetTime() } end
-            -- Only count down when not moving
-            if timers[target][1] >= 0 and target.CurrentSpeed < 1 then
-                timers[target][1] = timers[target][1] - 1
+            if not timers[target] then
+                timers[target] = TIMER_START
                 return
+            else
+                -- Ragdolls tend to bounce around, so the max speed for them is higher
+                local speedLimit = 0.1
+                if target.Vitality < 5 or target.IsRagdolled then
+                    speedLimit = 1
+                end
+                -- Don't tick the timer if the target is still moving
+                if timers[target] >= 0 and target.CurrentSpeed < speedLimit then
+                    timers[target] = timers[target] - 1
+                    return
+                elseif timers[target] <= 0 then
+                    timers[target] = nil
+                    -- Don't return
+                else
+                    timers[target] = TIMER_START
+                    return
+                end
             end
 
             -- // "Escaping" // 
@@ -158,7 +171,7 @@ function GiveLootMessage(client, delete)
 end
 
 -- Give players their hard-earned loot
-Hook.Add("roundStart", "esc.RoundStart", function()
+Hook.Add("roundStart", "Megamod.EscapePortal.RoundStart", function()
     Timer.Wait(function()
         -- Don't do anything if it's a silly round, keep loot until a serious round
         if Megamod.RuleSetManager.RoundType ~= 1 then return end

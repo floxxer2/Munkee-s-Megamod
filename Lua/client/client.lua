@@ -27,6 +27,45 @@ Networking.Receive("mm_subpos", function(message)
     end
 end)
 
+do
+    local TIMER_START = 15
+    local timers = {}
+    -- Reset timers between rounds
+    Hook.Add("roundEnd", "Megamod_Client.EscapePortal.RoundEnd", function() timers = {} end)
+    -- Makes escaping characters look a lot nicer
+    Hook.Add("megamod.escapeportal", "Megamod_Client.EscapePortal.Portal", function(effect, deltaTime, item, targets, worldPosition)
+        for target in targets do
+            if target and target.IsHuman and not target.IsDead then
+                local client = Util.FindClientCharacter(target)
+                if not client then return end
+
+                if not timers[target] then
+                    timers[target] = TIMER_START
+                    return
+                else
+                    -- Ragdolls tend to bounce around, so the max speed for them is higher
+                    local speedLimit = 0.1
+                    if target.Vitality < 5 or target.IsRagdolled then
+                        speedLimit = 1
+                    end
+                    -- Don't tick the timer if the target is still moving
+                    if timers[target] >= 0 and target.CurrentSpeed < speedLimit then
+                        timers[target] = timers[target] - 1
+                        return
+                    elseif timers[target] <= 0 then
+                        timers[target] = nil
+                        -- Don't return
+                    else
+                        timers[target] = TIMER_START
+                        return
+                    end
+                end
+
+                target.TeleportTo(Vector2(0, -1000000))
+            end
+        end
+    end)
+end
 
 -- When someone is revived via cloning, set their team to 1 client-side
 -- This makes their name normal-colored, instead of red like they're a pirate
