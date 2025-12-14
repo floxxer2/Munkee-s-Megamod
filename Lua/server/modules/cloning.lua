@@ -1,8 +1,8 @@
 local cloning = {}
 
 local BASE_COST_MULTIPLIER = 1
--- #DEBUG#
-local BASE_CLONING_DURATION = 5 -- 1 minute
+
+local BASE_CLONING_DURATION = 60 -- 1 minute
 local BASE_RM_COST = 10
 local COST_INCREASE_PER_CLONE = 0
 local BASE_RM_RATE = BASE_RM_COST / BASE_CLONING_DURATION
