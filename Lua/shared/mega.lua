@@ -27,6 +27,7 @@ function Megamod.RandomWord(chars)
     return word
 end
 
+-- Use to check if a client is controlling an alive character
 ---@return boolean "true=dead, false=alive"
 function Megamod.CheckIsDead(client)
     if not client
@@ -38,7 +39,7 @@ function Megamod.CheckIsDead(client)
     return false
 end
 
--- Specifically check if a client is spectating while ingame
+-- Specifically check if a client is dead & spectating the round, different than CheckIsDead
 ---@return boolean "true=spectating, false=not spectating"
 function Megamod.CheckIsSpectating(client)
     if not client
