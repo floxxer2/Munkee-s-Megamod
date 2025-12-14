@@ -398,4 +398,18 @@ Networking.Receive("mm_ruleset", function(message, sender)
     funcs[id](message, sender)
 end)
 
+-- If Lua was reloaded midround, tell all clients
+-- that they are no longer antags
+if Game.RoundStarted then
+    for client in Client.ClientList do
+        local msg = Networking.Start("mm_traitor")
+        msg.WriteBoolean(false)
+        Networking.Send(msg, client.Connection)
+
+        local msg = Networking.Start("mm_monster")
+        msg.WriteBoolean(false)
+        Networking.Send(msg, client.Connection)
+    end
+end
+
 return rsm
