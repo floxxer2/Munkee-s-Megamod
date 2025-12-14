@@ -174,7 +174,7 @@ end)
 
 cmds.AddCommand("generic", { "clone", "cloning" }, function(sender, argument)
     if not Megamod.CheckIsSpectating(sender) then
-        Megamod.SendChatMessage(sender, "You must be spectating the round.", Color(255, 0, 255, 255))
+        Megamod.SendChatMessage(sender, "You must be dead.", Color(255, 0, 255, 255))
         return
     end
     local machine = Megamod.Cloning.SelfClone
