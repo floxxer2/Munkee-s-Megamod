@@ -418,9 +418,9 @@ cmds.AddCommand("admin", "ruleset-toggle", function(sender, argument)
     Megamod.SendChatMessage(sender, str, Color(255, 0, 255, 255))
 end)
 
-cmds.AddCommand("admin", "debug", function(sender, argument)
-    Megamod.EscapePortal.SpawnPortal()
-end)
+--[[cmds.AddCommand("admin", "debug", function(sender, argument)
+    
+end)]]
 
 -- Event commands
 do
