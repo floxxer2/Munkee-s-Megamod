@@ -8,15 +8,19 @@ Megamod_Client.Prefs = {
     Antagonists = {
         Traitor = {
             guiType = "tickbox",
+            defaultValue = true,
         },
         Monster = {
             guiType = "tickbox",
+            defaultValue = true,
         },
         Raider = {
             guiType = "tickbox",
+            defaultValue = true,
         },
         Beast = {
             guiType = "tickbox",
+            defaultValue = false,
         },
     },
 }
@@ -44,24 +48,34 @@ end]]
 local amCB
 Timer.Wait(function()
     amCB = Megamod.CertifiedBeasters[Megamod_Client.GetSelfClient().SteamID] == true
+    Megamod_Client.Prefs.Antagonists.Beast.defaultValue = amCB
 end, 100)
 
 local function sendUpdate()
     local msg = Networking.Start("mm_changeprefs")
-    local amountPrefs = amCB and 0 or -1 -- -1 because if we're not a CB, the Beast antag doesn't count
+    local amountPrefs = 0
     for _, tbl in pairs(Megamod_Client.Prefs) do
-        for _, _ in pairs(tbl) do
-            amountPrefs = amountPrefs + 1
+        for name, _ in pairs(tbl) do
+            if not amCB and name == "Beast" then
+                goto continue
+            end
+            do
+                amountPrefs = amountPrefs + 1
+            end
+            ::continue::
         end
     end
     msg.WriteByte(amountPrefs)
     for groupName, groupTbl in pairs(Megamod_Client.Prefs) do
         for prefName, prefTbl in pairs(groupTbl) do
-            if prefName == "Beast" and not amCB then
+            if not amCB and prefName == "Beast" then
                 goto continue
             end
             do
                 msg.WriteString(prefName)
+                if prefTbl.value == nil then
+                    prefTbl.value = prefTbl.defaultValue
+                end
                 if type(prefTbl.value) == "boolean" then
                     msg.WriteBoolean(prefTbl.value)
                 end
@@ -81,7 +95,7 @@ Networking.Receive("mm_getprefs", function(message)
         local prefValue = message.ReadBoolean()
         for groupName, groupTbl in pairs(Megamod_Client.Prefs) do
             for tblPrefName, prefTbl in pairs(groupTbl) do
-                if tblPrefName == prefName then
+                if tostring(tblPrefName) == tostring(prefName) then
                     prefTbl.value = prefValue
                     prefTbl.defaultValue = prefValue
                     break
