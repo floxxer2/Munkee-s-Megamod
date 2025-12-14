@@ -5,9 +5,10 @@ local esc = {}
 esc.SavedLoot = {}
 
 local timers = {}
-Hook.Add("roundEnd", "Megamod.EscapePortal.RoundEnd", function() timers = {} end) -- Reset timers between rounds
+-- Reset timers between rounds
+Hook.Add("roundEnd", "esc.RoundEnd", function() timers = {} end)
 
-Hook.Add("megamod.escapeportal", "Megamod.EscapePortal", function(effect, deltaTime, item, targets, worldPosition)
+Hook.Add("esc", "Megamod.EscapePortal.Portal", function(effect, deltaTime, item, targets, worldPosition)
     for target in targets do
         if target and target.IsHuman and not target.IsDead then
             local client = Util.FindClientCharacter(target)
@@ -27,80 +28,137 @@ Hook.Add("megamod.escapeportal", "Megamod.EscapePortal", function(effect, deltaT
 
             target.GodMode = true
 
-            if SERVER then
-                -- Save inventory as loot for next round, if it's a serious round
-                if Megamod.RuleSetManager.RoundType == 1 then
-                    local tbl, tbl2 = {}, {}
-                    tbl.ClientID = client.SteamID
-                    tbl.Role = tostring(client.Character.JobIdentifier)
-                    tbl.Items = {}
-                    local function addItem(lootItem, isInHiddenInventory, parentItem)
-                        -- Don't include hidden items in hidden inventories (i.e. bullets in a magazine)
-                        if isInHiddenInventory and lootItem.Prefab.HideInMenus then return end
+            if Megamod.RuleSetManager.RoundType == 1 then
+                local tbl, tbl2 = {}, {}
+                tbl.ClientID = client.SteamID
+                tbl.Role = tostring(client.Character.JobIdentifier)
+                tbl.Items = {}
+                local function addItem(lootItem, isInHiddenInventory, parentItem)
+                    -- Don't include hidden items in hidden inventories (i.e. bullets in a magazine)
+                    if isInHiddenInventory and lootItem.Prefab.HideInMenus then return end
 
-                        local itemTbl = {}
-                        -- Still search the inventory if its an invalid item, but don't save the item itself
-                        if esc.DetermineValidLootItem(lootItem) then
-                            itemTbl.Condition = lootItem.Condition
-                            itemTbl.ID = lootItem.Prefab.Identifier
-                            if lootItem.OwnInventory then
-                                itemTbl.Inventory = {}
-                            end
-                            tbl2[lootItem] = itemTbl -- Used for inventory saving
-                            if parentItem then
-                                local parentTbl = tbl2[parentItem]
-                                if parentTbl then
-                                    table.insert(parentTbl.Inventory, itemTbl)
-                                else -- No parent table = parent item was blacklisted, so spawn it by itself
-                                    table.insert(tbl.Items, itemTbl)
-                                end
-                            else
+                    local itemTbl = {}
+                    -- Still search the inventory if its an invalid item, but don't save the item itself
+                    if esc.DetermineValidLootItem(lootItem) then
+                        itemTbl.Condition = lootItem.Condition
+                        itemTbl.ID = lootItem.Prefab.Identifier
+                        if lootItem.OwnInventory then
+                            itemTbl.Inventory = {}
+                        end
+                        tbl2[lootItem] = itemTbl -- Used for inventory saving
+                        if parentItem then
+                            local parentTbl = tbl2[parentItem]
+                            if parentTbl then
+                                table.insert(parentTbl.Inventory, itemTbl)
+                            else -- No parent table = parent item was blacklisted, so spawn it by itself
                                 table.insert(tbl.Items, itemTbl)
                             end
+                        else
+                            table.insert(tbl.Items, itemTbl)
                         end
+                    end
 
-                        if lootItem.OwnInventory then
-                            local containerComponent = lootItem.GetComponentString('ItemContainer')
-                            for childLootItem in lootItem.OwnInventory.FindAllItems() do
-                                addItem(childLootItem, containerComponent.hideItems, lootItem)
-                            end
+                    if lootItem.OwnInventory then
+                        local containerComponent = lootItem.GetComponentString('ItemContainer')
+                        for childLootItem in lootItem.OwnInventory.FindAllItems() do
+                            addItem(childLootItem, containerComponent.hideItems, lootItem)
                         end
                     end
-                    for lootItem in client.Character.Inventory.FindAllItems() do
-                        addItem(lootItem, false)
-                    end
-                    table.insert(esc.SavedLoot, tbl)
                 end
-
-                table.insert(Megamod.RuleSetManager.ExtraSummary, tostring(client.Name) .. " - Escaped")
-                Megamod.SendChatMessage(client, "You escaped! Use the chat command '!loot' to view what items you can bring with you into the next round.", Color(255, 0, 255, 255))
-                client.SetClientCharacter(nil)
-
-                -- "Escape"
-                target.TeleportTo(Vector2(0, -1000000))
-            elseif CLIENT then
-                -- Wait a few milliseconds so that the client who is escaping
-                -- disconnects from the character and isn't sent to spectator in the shadow realm
-                Timer.Wait(function()
-                    target.TeleportTo(Vector2(0, -1000000))
-                end, 300)
+                for lootItem in client.Character.Inventory.FindAllItems() do
+                    addItem(lootItem, false)
+                end
+                table.insert(esc.SavedLoot, tbl)
             end
+
+            table.insert(Megamod.RuleSetManager.ExtraSummary, tostring(client.Name) .. " - Escaped")
+            Megamod.SendChatMessage(client, "You escaped! Use the chat command '!loot' to view what items you can bring with you into the next round.", Color(255, 0, 255, 255))
+            client.SetClientCharacter(nil)
+
+            -- "Escape"
+            target.TeleportTo(Vector2(0, -1000000))
         end
     end
 end)
 
+function GiveLootMessage(client, delete)
+    for k, lootTbl in pairs(esc.SavedLoot) do
+        do
+            if client.SteamID ~= lootTbl.ClientID then goto continue end
 
+            if delete then
+                table.remove(esc.SavedLoot, k)
+                Megamod.SendChatMessage(client, "Deleted saved gear.", Color(255, 0, 255, 255))
+                return
+            end
 
--- **********************
+            local str = "You have saved gear! If you don't spawn as a valid role next round, it will be lost. You may also use '!loot delete' to manually delete it.\n\n" ..
+            "Valid roles:\n"
+            local roles = {
+                "captain",
+                "securityofficer",
+                "surgeon",
+                "medicaldoctor",
+                "engineer",
+                "mechanic",
+                "assistant",
+            }
+            local lines = {}
+            local validRoles = esc.DetermineValidRoles(lootTbl.Role)
+            for role in roles do
+                local isValid = false
+                for validRole in validRoles do
+                    if role == validRole then
+                        isValid = true
+                        break
+                    end
+                end
+                if isValid then
+                    local roleName = tostring(JobPrefab.Get(role).Name)
+                    table.insert(lines, ">" .. roleName)
+                end
+            end
+            for line in lines do
+                str = str .. line .. "\n"
+            end
 
-if CLIENT then return end
+            str = str .. "\nItems (some may be in nested inventories):\n"
+            local dupes = {}
+            local function inventorySearch(itemTbl)
+                for childItemTbl in itemTbl.Inventory do
+                    local prefab = ItemPrefab.GetItemPrefab(childItemTbl.ID)
+                    local key = tostring(prefab.Name) .. " (" .. tostring(childItemTbl.Condition) .. "%)"
+                    dupes[key] = (dupes[key] or 0) + 1
+                    if childItemTbl.Inventory and #childItemTbl.Inventory > 0 then
+                        inventorySearch(childItemTbl)
+                    end
+                end
+            end
+            for itemTbl in lootTbl.Items do
+                local prefab = ItemPrefab.GetItemPrefab(itemTbl.ID)
+                local key = tostring(prefab.Name) .. " (" .. tostring(itemTbl.Condition) .. "%)"
+                dupes[key] = (dupes[key] or 0) + 1
+                if itemTbl.Inventory and #itemTbl.Inventory > 0 then
+                    inventorySearch(itemTbl)
+                end
+            end
+            for key, count in pairs(dupes) do
+                if key:sub(-6) == "(100%)" then
+                    key = key:sub(1, -8)
+                end
+                str = str .. "x" .. count .. " " .. key .. "\n"
+            end
+            Megamod.SendMessage(client, str)
+            return
+        end
 
--- **********************
-
-
+        ::continue::
+    end
+    Megamod.SendChatMessage(client, "No saved gear.", Color(255, 0, 255, 255))
+end
 
 -- Give players their hard-earned loot
-Hook.Add("roundStart", "Megamod.EscapePortal.RoundStart", function()
+Hook.Add("roundStart", "esc.RoundStart", function()
     Timer.Wait(function()
         -- Don't do anything if it's a silly round, keep loot until a serious round
         if Megamod.RuleSetManager.RoundType ~= 1 then return end
@@ -166,38 +224,34 @@ function esc.DetermineValidRoles(roleID)
             "medicaldoctor",
             "surgeon",
             "securityofficer",
-            "captain"
+            "captain",
         },
 
         ["engineer"] = {
             "engineer",
             "mechanic",
-            "securityofficer",
-            "captain"
         },
         ["mechanic"] = {
             "engineer",
             "mechanic",
-            "securityofficer",
-            "captain"
         },
 
         ["medicaldoctor"] = {
             "medicaldoctor",
-            "surgeon"
+            "surgeon",
         },
         ["surgeon"] = {
             "medicaldoctor",
-            "surgeon"
+            "surgeon",
         },
 
         ["securityofficer"] = {
             "securityofficer",
-            "captain"
+            "captain",
         },
         ["captain"] = {
             "securityofficer",
-            "captain"
+            "captain",
         },
     }
     return validRoles[roleID]
