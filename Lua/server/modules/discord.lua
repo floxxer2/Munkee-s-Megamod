@@ -69,7 +69,8 @@ end
 discord.Loop()
 
 -- Send a "server is up" message when the server starts
-discord.SendHTTP("The Barotrauma server has started up under the name ***" .. Game.ServerSettings.ServerName .. "***")
+-- Pings the discord role "Host Ping"
+discord.SendHTTP("<@&1449941529425744045> The Barotrauma server has started up under the name ***" .. Game.ServerSettings.ServerName .. "***")
 
 Hook.Add("roundStart", "Megamod.Discord.RoundStart", function()
     discord.RoundCounter = discord.RoundCounter + 1
