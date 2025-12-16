@@ -278,7 +278,7 @@ if SERVER then
     Megamod.RuleSetManager = require 'server.modules.rulesetmanager'
 
     -- "Teleport Science" aka Telescience, used for all things portals, including ending the round
-    Megamod.Telesci = require 'server.modules.telesci'
+    Megamod.Telesci = require 'server.modules.telescience'
 
     -- Plants
     Megamod.Botany = require 'server.modules.botany'
