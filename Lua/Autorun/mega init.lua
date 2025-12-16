@@ -289,6 +289,9 @@ if SERVER then
     -- The station's AI player, who acts as Big Brother in the sky
     Megamod.StationAI = require 'server.modules.stationai'
 
+    -- Scientists do research to unlock stuff
+    Megamod.Research = require 'server.modules.research'
+
     -- Map stuff
     Megamod.Map = require 'server.modules.map'
 
