@@ -223,11 +223,6 @@ function Megamod.Log(message, important)
     end
 end
 
----@param name string
-function Megamod.EventLog(name)
-    Megamod.Log("Event started: " .. name, true)
-end
-
 ---@param message string
 function Megamod.Error(message, ...)
     Game.Log("\\[Megamod-Error] " .. message, 9)
