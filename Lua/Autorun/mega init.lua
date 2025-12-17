@@ -21,6 +21,7 @@ Megamod.Admins = {
     ["76561198951804184"] = true, -- Hex
 }
 
+-- Humans are always blacklisted
 Megamod.BlacklistedPlayerMonsters = {
     Truebeast = true
 }
