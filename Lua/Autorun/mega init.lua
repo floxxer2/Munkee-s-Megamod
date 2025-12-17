@@ -11,11 +11,14 @@ Megamod.Path = path
 -- People allowed to play as Beasts
 Megamod.CertifiedBeasters = {
     ["76561199139073814"] = true, -- munkee
+    ["76561198951804184"] = true, -- Hex
+    ["76561198174656237"] = true, -- Pepsi-Cola / Barry Ballast
 }
 
 -- No need to hide this, vanilla Baro tells everyone who the admins are anyway
 Megamod.Admins = {
     ["76561199139073814"] = true, -- munkee
+    ["76561198951804184"] = true, -- Hex
 }
 
 Megamod.BlacklistedPlayerMonsters = {
