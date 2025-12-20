@@ -43,7 +43,7 @@ end
 
 local weightedRandom = require 'utils.weightedrandom'
 
-function rsm.SyncAdmin(client)
+function rsm.SyncAdminAll(client)
     if not Megamod.Admins[client.SteamID] then return end
     local msg = Networking.Start("mm_ruleset")
     msg.WriteByte(0)
@@ -361,7 +361,7 @@ end
 local funcs = {
     -- Client needs syncing
     [0] = function(message, sender)
-        rsm.SyncAdmin(sender)
+        rsm.SyncAdminAll(sender)
     end,
     -- Manager toggled
     [1] = function(message, sender)
