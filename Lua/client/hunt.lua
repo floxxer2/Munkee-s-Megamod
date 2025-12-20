@@ -2,6 +2,7 @@
 
 LuaUserData.RegisterType("CompleteDarkness.CompleteDarknessMod")
 ---@type CompleteDarkness.CompleteDarknessMod
+---@diagnostic disable-next-line: redundant-parameter
 Megamod_Client.LightMapOverride = LuaUserData.CreateStatic("CompleteDarkness.CompleteDarknessMod", false)
 
 Megamod_Client.HorrorSFXLoaded = Megamod_Client.GetSound(Megamod_Client.Path .. "/Megamod/Sounds/horrorambience.ogg", true)
