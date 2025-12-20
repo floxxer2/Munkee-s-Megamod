@@ -25,7 +25,7 @@ rsm.MinSeriousPlayers = 5 -- Min server pop for serious rounds, inclusive
 -- Set by admins, no auto-fail if true
 rsm.NoFail = false
 
--- Do not remove rulesets from this table, they are static
+-- Rulesets are static tables
 rsm.RuleSets = {}
 -- Populate rsm.RuleSets with all active rulesets
 -- We store the original require() because rulesets can have hooks
