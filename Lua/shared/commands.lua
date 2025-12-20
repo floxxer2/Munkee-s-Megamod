@@ -150,21 +150,20 @@ cmds.AddCommand("generic", "loot", function(sender, argument)
 end)
 
 cmds.AddCommand("generic", "role", function(sender, argument)
+    -- Non-humans need to have the antag overlay force-removed
+    if not Megamod.CheckIsDead(sender) then
+        if sender.Character.IsHuman then
+            HF.AddAffliction(sender.Character, "mm_antagoverlay2", 10)
+        else
+            HF.SetAffliction(sender.Character, "mm_antagoverlay", 0)
+        end
+    end
     argument = string.lower(argument or "")
     local obj = argument == "obj"
     for ruleset in Megamod.RuleSetManager.RuleSets do
         -- Returns true/false + a string for the message, which can also contain objectives
         local isSelected, str = ruleset.RoleHelp(sender, obj)
         if isSelected then
-            -- Remove the antag overlay, if they have it
-            if not Megamod.CheckIsDead(sender) then
-                -- Non-humans need to have it forcefully removed
-                if sender.Character.IsHuman then
-                    HF.AddAffliction(sender.Character, "mm_antagoverlay2", 10)
-                else
-                    HF.SetAffliction(sender.Character, "mm_antagoverlay", 0)
-                end
-            end
             Megamod.SendMessage(sender, str)
             return
         end
