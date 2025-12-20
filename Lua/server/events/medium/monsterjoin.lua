@@ -17,7 +17,6 @@ local tpu = require 'utils.textpromptutils'
 
 -- Need at least one non-antag dead player, and the Monster ruleset to be active
 function event.Check()
-    local validPlayer
     if not event.Monster
     or not event.Monster.Enabled
     or event.Monster.Strength == 0
@@ -30,11 +29,10 @@ function event.Check()
         and not (Megamod.Cloning.ActiveProcess
         and Megamod.Cloning.ActiveProcess[1] == client) -- Don't include people being cloned
         then
-            validPlayer = true
-            break
+            return true
         end
     end
-    return validPlayer
+    return false
 end
 
 event.ValidClients = {}
