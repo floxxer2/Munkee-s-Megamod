@@ -3,7 +3,7 @@ Auto = {}
 ---@type string
 Auto.Path = ...
 
-local version = "1.2.3.2"
+local version = "1.2.4.2"
 
 --[[
 1: Rewrite auto.bat to download mods
