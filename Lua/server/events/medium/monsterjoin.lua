@@ -135,11 +135,10 @@ end
 function event.Start()
     event.Started = true
     for client in Client.ClientList do
-        if client.InGame
+        if Megamod.CheckIsSpectating(client)
         and Megamod.GetData(client, "Monster")
         and #Megamod.RuleSetManager.AntagStatus(client) == 0
-        and Megamod.CheckIsSpectating(client)
-        and (not Megamod.Cloning.ActiveProcess
+        and not (Megamod.Cloning.ActiveProcess
         and Megamod.Cloning.ActiveProcess[1] == client) -- Don't include people being cloned
         then
             table.insert(event.ValidClients, client)
