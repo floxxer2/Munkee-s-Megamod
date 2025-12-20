@@ -231,7 +231,8 @@ Auto.XMLChanges = {
   -- *******************
   -- Immersive Handcuffs
   -- *******************
-  -- Stun Required patch
+  -- 1. Stun Required patch
+  -- 2. Change fabricator to weapon fabricator
   ["handcuffsspawned"] = {
     mod = "Immersive Handcuffs",
     -- Holdable component is 90% of the item, so just do a full override
@@ -288,65 +289,34 @@ Auto.XMLChanges = {
       </Holdable>
     </Item>]])
   },
-  -- Change fabricator to weapon fabricator
+  -- This is the "handcuff set," it replaces vanilla handcuffs
+  -- Should not be used, instead just place handcuffsspawned in the sub editor
+  -- Remove fabrication recipe
   ["handcuffs"] = {
     mod = "Immersive Handcuffs",
     componentOverrides = {
       {
         targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="weaponfabricator" requiredtime="10">
-            <RequiredSkill identifier="weapons" level="20" />
-            <RequiredItem identifier="steel" />
-          </Fabricate>]])
-      },
-      {
-        targetComponent = "wearable",
-        override = XElement.Parse([[
-          <Wearable slots="Any,RightHand+LeftHand" msg="ItemMsgPickUpSelect" autoequipwhenfull="false">
-            <sprite texture="Content/Items/Jobgear/Mechanic/safetyharness.png" limb="RightHand" sourcerect="462,1,25,16" origin="0.5,0.8" depth="0.09" inheritlimbdepth="false" inherittexturescale="true" />
-            <sprite texture="Content/Items/Jobgear/Mechanic/safetyharness.png" limb="LeftHand" sourcerect="487,1,25,16" origin="0.5,0.8" depth="0.09" inheritlimbdepth="true" inherittexturescale="true" />
-            <!-- When item is not contained, set its condition to 50 so the BrokenSprite is displayed instead | The item's condition bar is hidden -->
-            <StatusEffect type="OnNotContained" target="This" condition="50" setvalue="true" oneshot="true" />
-            <!-- Give the "handcuffed" affliction which spawns "handcuffsequipped" on the character | Specifically used for prisoner mission or when getting cuffed by outpost security -->
-            <StatusEffect type="OnWearing" target="Character" setvalue="true">
-              <Affliction identifier="handcuffed" amount="1" />
-            </StatusEffect>
-            <!--<StatusEffect type="OnWearing" target="Character" triggeredEventTargetTag="isarrested" triggeredEventEntityTag="isarrested" eventTargetTags="isarrested" disabledeltatime="true" stackable="false">
-              <Conditional IsPlayer="true" />
-              <Affliction identifier="sendtojail" amount="1" />
-            </StatusEffect>-->
-            <!-- Remove the item when it is worn since it gets replaced by the "handcuffsequipped" -->
-            <StatusEffect type="OnWearing" target="This" disabledeltatime="true">
-              <Remove />
-            </StatusEffect>
-            <!-- When the item is contained inside a player inventory, remove the item, spawn the new handcuffs and spawn a key in the same inventory | Should fail if cuffed by security, but no matter what, it always succeeds when cuffed by security, despite the item being at 25 condition, having the tag "cuffed" and the character having the "handcuffed" affliction -->
-            <StatusEffect type="OnContained" target="This" comparison="And" delay="0.1" checkconditionalalways="true">
-              <Conditional IsPlayer="true" targetcontainer="true" />
-              <Conditional handcuffed="lte 0" targetcontainer="true" />
-              <Conditional handcuffedreinforced="lte 0" targetcontainer="true" />
-              <Remove />
-              <SpawnItem identifier="handcuffsspawned" spawnposition="SameInventory" spawnifcantbecontained="true" SpawnIfInventoryFull="true" Equip="true" />
-              <SpawnItem identifier="handcuffkey" spawnposition="SameInventory" spawnifcantbecontained="true" SpawnIfInventoryFull="true" />
-            </StatusEffect>
-          </Wearable>]])
+        override = ""
       },
     },
   },
+  -- 1. Change fabricator to weapon fabricator
+  -- 2. Reduce amount fabricated to 1
   ["handcuffkey"] = {
     mod = "Immersive Handcuffs",
     componentOverrides = {
       {
         targetComponent = "fabricate",
         override = XElement.Parse([[
-          <Fabricate suitablefabricators="weaponfabricator" requiredtime="5" amount="2">
+          <Fabricate suitablefabricators="weaponfabricator" requiredtime="5">
             <RequiredSkill identifier="weapons" level="20" />
             <RequiredItem identifier="steel" />
           </Fabricate>]])
       },
     },
   },
-  -- Items to remove
+  -- Stuff to remove
   ["securitywhistle"] = {
     mod = "Immersive Handcuffs",
     xml = ""
@@ -359,6 +329,10 @@ Auto.XMLChanges = {
     mod = "Immersive Handcuffs",
     xml = ""
   },
+  ["reinforcedhandcuffsequipped2"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
   ["applyreinforcedhandcuffs"] = {
     mod = "Immersive Handcuffs",
     xml = ""
@@ -368,7 +342,6 @@ Auto.XMLChanges = {
     mod = "Immersive Handcuffs",
     xml = ""
   },]]
-  -- Afflictions to remove
   ["handcuffedreinforced"] = {
     mod = "Immersive Handcuffs",
     xml = ""
@@ -430,6 +403,14 @@ Auto.XMLChanges = {
     xml = ""
   },
   ["playsound_uncuff"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["playsound_lockjail"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["blindfolded"] = {
     mod = "Immersive Handcuffs",
     xml = ""
   },
