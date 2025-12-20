@@ -69,7 +69,7 @@ end
 
 -- When someone is revived via cloning, set their team to 1 client-side
 -- This makes their name normal-colored, instead of red like they're a pirate
-Networking.Receive("mm_clone", function(message)
+Networking.Receive("mm_setteam", function(message)
     local charID = message.ReadUInt64()
     for char in Character.CharacterList do
         if char.ID == charID then

@@ -216,7 +216,7 @@ function cloning.Tick()
 
                 char.TeamID = 1
                 -- Make sure all clients have the clonee's team set to 1
-                local msg = Networking.Start("mm_clone")
+                local msg = Networking.Start("mm_setteam")
                 msg.WriteUInt64(char.ID)
                 for client in Client.ClientList do
                     Networking.Send(msg, client.Connection)
@@ -238,7 +238,7 @@ function cloning.Tick()
 
                 sleeve.TeamID = 1
                 -- Make sure all clients have the sleeve's team set to 1
-                local msg = Networking.Start("mm_clone")
+                local msg = Networking.Start("mm_setteam")
                 msg.WriteUInt64(sleeve.ID)
                 for client in Client.ClientList do
                     Networking.Send(msg, client.Connection)
