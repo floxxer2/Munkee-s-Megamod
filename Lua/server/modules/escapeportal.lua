@@ -105,7 +105,7 @@ Hook.Add("megamod.escapeportal", "Megamod.EscapePortal.Portal", function(effect,
     end
 end)
 
-function GiveLootMessage(client, delete)
+function esc.GiveLootMessage(client, delete)
     for k, lootTbl in pairs(esc.SavedLoot) do
         do
             if client.SteamID ~= lootTbl.ClientID then goto continue end
