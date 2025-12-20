@@ -9034,7 +9034,7 @@ Auto.LuaChanges = {
       { line = 7,  replace = "local Api = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Api\")" },
       { line = 8,  replace = "local OnItemApplied = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.OnItemApplied\")" },
       { line = 9,  replace = "local onMeleeWeaponHandleImpact = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.onMeleeWeaponHandleImpact\")" },
-      { line = 11, replace = "local onHandleProjectileCollision = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.onHandleProjectileCollision\")" },
+      { line = 10, replace = "local onHandleProjectileCollision = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.onHandleProjectileCollision\")" },
       { line = 11, replace = "local Config = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Config\")" },
     }
   },
