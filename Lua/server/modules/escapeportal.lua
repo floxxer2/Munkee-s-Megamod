@@ -22,7 +22,7 @@ Hook.Add("megamod.escapeportal", "Megamod.EscapePortal.Portal", function(effect,
             if not antagMessages[client]
             and #Megamod.RuleSetManager.AntagStatus(client) > 0 then
                 antagMessages[client] = true
-                Megamod.SendChatMessage(client, "Antagonists cannot use the escape portal.", Color(255, 0, 255, 255))
+                Megamod.SendChatMessage(client, "Antagonists (you) cannot use the escape portal.", Color(255, 0, 255, 255))
                 return
             end
 
