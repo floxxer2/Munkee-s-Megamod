@@ -9806,13 +9806,14 @@ function Auto.Finish()
   File.Write(Auto.Path .. "/filelist.xml", str)
 
   -- PF priority list
-  local str = ""
+  local str = "\""
   for _, identifier in pairs(Auto.PFHighPriorityList) do
-    str = str .. identifier .. ","
+    str = str .. identifier .. "\",\""
   end
-  -- Remove the last ","
+  -- Remove the last ",", add a "
   if str ~= "" then
     str = str:sub(1, -2)
+    str = str .. "\""
   end
   File.Write(Auto.Path .. "/Lua/utils/automation/pf list.txt", str)
 
