@@ -310,7 +310,8 @@ function rsm.Draft(forced)
         draft = weightedRandom.Choose(potentialDrafts)
     else
         for ruleSet in rsm.RuleSets do
-            if ruleSet.Name == forced then
+            if ruleSet.Name == forced
+            and ruleSet.FailReason == "" then
                 draft = ruleSet
                 break
             end
