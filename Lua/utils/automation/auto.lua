@@ -9409,7 +9409,7 @@ Auto.ModTable = {
   [2807566753] = { name = "Dont Open Debug Console On Errors", version = "1.0.5" },
   [3434408187] = { name = "EK Forked", version = "1.2.145" },
   [2764968387] = { name = "Enhanced Armaments", version = "1.15" },
-  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.11" },
+  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.2" },
   [2968896556] = { name = "Enhanced Immersion", version = "1.0.24" },
   [3045796581] = { name = "Enhanced Reactors", version = "1.0.35" },
   [2829557108] = { name = "Extract It!", version = "2.0.1" },
