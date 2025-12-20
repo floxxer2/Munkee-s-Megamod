@@ -42,6 +42,7 @@ for i = LINE_ANGLES, 360, LINE_ANGLES do
 end
 
 Networking.Receive("mm_leak", function(message)
+    if not Character.Controlled then return end
     local amount = message.ReadUInt32()
     local newLeakSources = {}
     for i = 1, amount do
