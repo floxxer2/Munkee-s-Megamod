@@ -417,8 +417,49 @@ cmds.AddCommand("admin", "ruleset-toggle", function(sender, argument)
     Megamod.SendChatMessage(sender, str, Color(255, 0, 255, 255))
 end)
 
---[[cmds.AddCommand("admin", "debug", function(sender, argument)
+--[[cmds.AddCommand("admin", "d", function(sender, argument)
     
+end)]]
+
+--[[cmds.AddCommand("admin", "d-raid", function(sender, argument)
+    local char = sender.Character
+    for item in char.Inventory.GetAllItems(false) do
+        Entity.Spawner.AddItemToRemoveQueue(item)
+    end
+    local gearSet = {
+        {
+            
+        },
+    }
+    for skillID, skillRange in pairs(gearSet[1].skills) do
+        local skillLevel = math.random(skillRange[1], skillRange[2])
+        char.Info.SetSkillLevel(skillID, skillLevel, false)
+    end
+    for gearItemID, tbl in pairs(gearSet[1].loadout) do
+        local prefab = ItemPrefab.GetItemPrefab(gearItemID)
+        -- tbl[1] is the amount to spawn
+        for p = 1, tbl[1] do
+            Entity.Spawner.AddItemToSpawnQueue(prefab, char.Inventory, nil, nil, function(item)
+                -- Items to spawn in the item
+                if tbl[4] then
+                    for gearItemID2, amountToSpawn in pairs(tbl[4]) do
+                        local prefab2 = ItemPrefab.GetItemPrefab(gearItemID2)
+                        for l = 1, amountToSpawn do
+                            Entity.Spawner.AddItemToSpawnQueue(prefab2, item.OwnInventory)
+                        end
+                    end
+                end
+                -- tbl[2] is the inventory index to move the item to, for clothing/armor
+                if tbl[2] then
+                    char.Inventory.TryPutItem(item, tbl[2], false, false, char, true, true)
+                end
+                -- Set to noninteractable
+                if tbl[3] then
+                    Megamod.CreateEntityEvent(item, item, "NonInteractable", true)
+                end
+            end)
+        end
+    end
 end)]]
 
 -- Event commands
