@@ -396,6 +396,10 @@ Hook.Add("mm.hypomaximUse", "Megamod.Cloning.HypomaximUse", function(effect, del
         Megamod.SendClientSideMsg(client, "Invalid target.", Color(255, 0, 255))
         return
     end
+    if usingChar.TeamID ~= t.TeamID then
+        Megamod.SendClientSideMsg(client, "That is an enemy.", Color(255, 0, 255))
+        return
+    end
     -- Revive them if this hypomaxim is in revive mode (don't care if they're dead or not)
     if cloning.Hypomaxims[item][3] == 1 then
         -- Give the hypomaxim affliction so they won't die again right after being revived
