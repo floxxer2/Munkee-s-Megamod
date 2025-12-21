@@ -21,7 +21,9 @@ rs.Started = false
 local loopActive = false
 local messaged = {}
 function rs.Loop()
-    if not Game.RoundStarted or rs.FailReason ~= "" then
+    if not Game.RoundStarted
+    or rs.FailReason ~= ""
+    or rs.Strength == 0 then
         loopActive = false
         return
     end
@@ -72,7 +74,7 @@ function rs.TryStartRaid()
         return false
     end
 
-    -- Reset messaged in case an admin resets and re-drafts this ruleset midround
+    -- Reset messaged in case an admin re-drafts this ruleset midround
     messaged = {}
 
     -- // Starting the raid //
@@ -104,6 +106,7 @@ function rs.TryStartRaid()
     local str = "Gave %s gear to " .. raiderAmount .. " raiders."
     local str2 = ""
     local gearSets
+    -- 2 loadouts
     local bestGear = {
         -- Vanguard
         [1] = {
@@ -127,7 +130,7 @@ function rs.TryStartRaid()
                 -- Vanguard Rig
                 scp_livrig = { 1, 4, true },
                 -- Assault Backpack
-                scp_assaultpack = { 1, 7, false, { scp_akmag = 10 } },
+                scp_assaultpack = { 1, 7, false, { scp_akmag = 12 } },
                 -- Durasteel Crowbar
                 sgt_crowbar = { 1 },
                 -- Vanguard Oppressor AR, with a mag and flashlight
@@ -164,7 +167,7 @@ function rs.TryStartRaid()
                 -- Infiltrator Vest
                 scp_yuirig = { 1, 4, true },
                 -- Assault Backpack
-                scp_assaultpack = { 1, 7, false, { scp_ak74mag = 10 } },
+                scp_assaultpack = { 1, 7, false, { scp_ak74mag = 12 } },
                 -- Durasteel Crowbar
                 sgt_crowbar = { 1 },
                 -- Infiltrator Covert AR, with a mag
@@ -182,13 +185,14 @@ function rs.TryStartRaid()
             },
         },
     }
+    -- 5 loadouts
     local averageGear = {
         -- Heavy Soldier
         [1] = {
             job = "securityofficer",
             talentLevel = 0,
             skills = {
-                weapons = { 55, 70 },
+                weapons = { 70, 85 },
                 surgery = { 0, 5 },
                 medical = { 10, 25 },
                 helm = { 0, 10 },
@@ -256,7 +260,7 @@ function rs.TryStartRaid()
             job = "securityofficer",
             talentLevel = 0,
             skills = {
-                weapons = { 50, 65 },
+                weapons = { 70, 75 },
                 surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
@@ -274,10 +278,10 @@ function rs.TryStartRaid()
                 scp_renegadeplatecarrier = { 1, 4, true },
                 -- Crowbar
                 crowbar = { 1 },
-                -- Renegade Pump Action Shotgun, with shells and a flashlight
-                scp_rm93 = { 1, nil, false, { shotgunshell = 6, flashlight = 1 } },
-                -- Shotgun shells
-                shotgunshell = { 24 },
+                -- Renegade Combat Shotgun, with a drum mag and flashlight
+                scp_saiga12 = { 1, nil, false, { scp_saigadrummag = 1, flashlight = 1 } },
+                -- Renegade Combat Shotgun Mags
+                scp_saigaextmag = { 4 },
                 -- Bandage
                 antibleeding1 = { 8 },
                 -- Battery cells
@@ -313,8 +317,8 @@ function rs.TryStartRaid()
                 scp_mp443 = { 1, nil, false, { scp_9mmmag = 1, flashlight = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 5 },
-                -- Frag rockets, 3 stacks
-                scp_rpg7he = { 6 },
+                -- Frag rockets
+                scp_rpg7he = { 2 },
                 -- Bandage
                 antibleeding1 = { 8 },
                 -- Battery cells
@@ -328,7 +332,7 @@ function rs.TryStartRaid()
             skills = {
                 weapons = { 10, 25 },
                 surgery = { 25, 35 },
-                medical = { 50, 65 },
+                medical = { 60, 75 },
                 helm = { 0, 4 },
                 mechanical = { 0, 8 },
                 electrical = { 0, 7 },
@@ -345,26 +349,34 @@ function rs.TryStartRaid()
                 -- Crowbar
                 crowbar = { 1 },
                 -- Renegade Pistol, with a mag and flashlight
-                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1, flashlight = 1 } },
+                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 10 },
                 -- Wrench (for dislocations)
                 wrench = { 1 },
-                -- Plastiseal
-                antibleeding2 = { 8 },
-                -- Morphine
-                antidama1 = { 8 },
-                -- Antibiotic ointment
-                ointment = { 1 },
-                -- Tourniquets
-                tourniquet = { 4 },
-                -- Gypsum
-                gypsum = { 4 },
+                -- Medical Container, with medical supplies
+                medtoolbox = { 1, nil, false, {
+                    antibleeding1 = 6,
+                    antibleeding2 = 4,
+                    antidama1 = 4,
+                    deusizine = 3,
+                    ointment = 1,
+                    tourniquet = 2,
+                    gypsum = 2,
+                    needle = 1,
+                    suture = 16
+                    }
+                },
                 -- Battery cell
                 batterycell = { 1 },
+                -- Flashlight
+                flashlight = { 1 },
+                -- Hypomaxim
+                mm_hypomaxim = { 1 },
             },
         },
     }
+    -- 8 loadouts
     local worstGear = {
         -- Soldier 1
         [1] = {
@@ -392,7 +404,7 @@ function rs.TryStartRaid()
                 -- Renegade SMG, with a mag and flashlight
                 scp_uzi = { 1, nil, false, { scp_9mmsmgmag = 1, flashlight = 1 } },
                 -- SMG mags
-                scp_9mmsmgmag = { 2 },
+                scp_9mmsmgmag = { 4 },
                 -- Bandage
                 antibleeding1 = { 4 },
                 -- Battery cells
@@ -425,7 +437,7 @@ function rs.TryStartRaid()
                 -- Renegade SMG, with a mag and flashlight
                 scp_uzi = { 1, nil, false, { scp_9mmsmgmag = 1, flashlight = 1 } },
                 -- SMG mags
-                scp_9mmsmgmag = { 2 },
+                scp_9mmsmgmag = { 4 },
                 -- Bandage
                 antibleeding1 = { 4 },
                 -- Battery cells
@@ -458,7 +470,7 @@ function rs.TryStartRaid()
                 -- Renegade SMG, with a mag and flashlight
                 scp_uzi = { 1, nil, false, { scp_9mmsmgmag = 1, flashlight = 1 } },
                 -- SMG mags
-                scp_9mmsmgmag = { 2 },
+                scp_9mmsmgmag = { 4 },
                 -- Bandage
                 antibleeding1 = { 2 },
                 -- Battery cells
@@ -491,7 +503,7 @@ function rs.TryStartRaid()
                 -- Renegade SMG, with a mag and flashlight
                 scp_uzi = { 1, nil, false, { scp_9mmsmgmag = 1, flashlight = 1 } },
                 -- SMG mags
-                scp_9mmsmgmag = { 2 },
+                scp_9mmsmgmag = { 4 },
                 -- Bandage
                 antibleeding1 = { 2 },
                 -- Battery cells
@@ -522,7 +534,7 @@ function rs.TryStartRaid()
                 -- Crowbar
                 crowbar = { 1 },
                 -- Renegade Pistol, with a mag and flashlight
-                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1, flashlight = 1 } },
+                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 3 },
                 -- Surplus Grenade Launcher
@@ -535,6 +547,8 @@ function rs.TryStartRaid()
                 antibleeding1 = { 2 },
                 -- Battery cells
                 batterycell = { 2 },
+                -- Flashlight
+                flashlight = { 1 },
             },
         },
         -- Bomber
@@ -613,8 +627,8 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 10, 25 },
-                surgery = { 10, 25 },
-                medical = { 30, 45 },
+                surgery = { 25, 35 },
+                medical = { 60, 75 },
                 helm = { 0, 4 },
                 mechanical = { 0, 8 },
                 electrical = { 0, 7 },
@@ -627,31 +641,38 @@ function rs.TryStartRaid()
                 -- Crowbar
                 crowbar = { 1 },
                 -- Renegade Pistol, with a mag and flashlight
-                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1, flashlight = 1 } },
+                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
-                scp_9mmmag = { 3 },
+                scp_9mmmag = { 5 },
                 -- Wrench (for dislocations)
                 wrench = { 1 },
-                -- Plastiseal
-                antibleeding2 = { 8 },
-                -- Morphine
-                antidama1 = { 4 },
-                -- Antibiotic ointment
-                ointment = { 1 },
-                -- Tourniquets
-                tourniquet = { 2 },
-                -- Gypsum
-                gypsum = { 2 },
-                -- Battery cells
-                batterycell = { 2 },
+                -- Medical Container, with medical supplies
+                medtoolbox = { 1, nil, false, {
+                    antibleeding1 = 6,
+                    antibleeding2 = 4,
+                    antidama1 = 4,
+                    deusizine = 3,
+                    ointment = 1,
+                    tourniquet = 2,
+                    gypsum = 2,
+                    needle = 1,
+                    suture = 16
+                    }
+                },
+                -- Battery cell
+                batterycell = { 1 },
+                -- Flashlight
+                flashlight = { 1 },
             },
         },
     }
     -- Give best gear if there's a lot of people to kill and few raiders, etc etc
-    if #Client.ClientList >= 8 and raiderAmount <= 2 then
+    -- Also affected by ruleset strength
+    local gearStrength = math.max(1, rs.Strength / 3) * (#Client.ClientList / math.max(1, raiderAmount / 2))
+    if gearStrength >= 10 then
         gearSets = bestGear
         str2 = "best"
-    elseif #Client.ClientList >= 4 and raiderAmount > 2 and raiderAmount <= 5 then
+    elseif gearStrength >= 5 then
         gearSets = averageGear
         str2 = "average"
     else
@@ -660,29 +681,9 @@ function rs.TryStartRaid()
     end
     Megamod.Log(string.format(str, str2), true)
 
-    -- Same as the code for spawning the escape portal
-    local spawnHull
-    local hulls = Submarine.MainSub.GetHulls(true)
-    local removeHulls = {}
-    for k, v in pairs(hulls) do
-        if v.RectWidth * v.RectHeight < 100000 then
-            table.insert(removeHulls, v)
-        end
-    end
-    for k in removeHulls do
-        for k1, v in pairs(hulls) do
-            if v == k then
-                table.remove(hulls, k1)
-                break
-            end
-        end
-    end
-    spawnHull = hulls[math.random(#hulls)]
-    local max = spawnHull.RectWidth / 3
-    local rand = math.random(-max, max)
-    local x = spawnHull.WorldPosition.X + rand
-    local y = spawnHull.WorldPosition.Y - (spawnHull.RectHeight / 2) + 115
-    local spawnPoint = Vector2(x, y)
+    local dvos = Megamod.Map.DVOutside
+    local dvo = dvos[math.random(#dvos)]
+    local spawnPoint = dvo.WorldPosition
 
     local prefab = ItemPrefab.GetItemPrefab("mm_rift")
     Entity.Spawner.AddItemToSpawnQueue(prefab, spawnPoint)
@@ -690,13 +691,28 @@ function rs.TryStartRaid()
     local amountGearSets = #gearSets
 
     Timer.Wait(function()
+        -- Update the spawnpoint, in case the station somehow moved
+        spawnPoint = dvo.WorldPosition
+        -- Spawn a flare and light it
+        local prefab = ItemPrefab.GetItemPrefab("flare")
+        Entity.Spawner.AddItemToSpawnQueue(prefab, spawnPoint, nil, nil, function(item)
+            -- Yes, this "throws" the flare, but it works
+            item.Use(0, nil, nil, nil, nil)
+        end)
         for i = 1, raiderAmount do
-            local newRaider = availablePlayers[math.random(#availablePlayers)]
+            local newRaider = table.remove(availablePlayers, math.random(#availablePlayers))
 
             rs.SelectedPlayers[newRaider] = { "Raider", {} }
 
             local key = math.random(#gearSets)
             local gearSet = gearSets[key]
+            -- Don't spawn medics with small raids
+            if raiderAmount < 3 and gearSet.job == "medicaldoctor" then
+                table.remove(gearSets, key)
+                key = math.random(#gearSets)
+                gearSet = gearSets[key]
+            end
+            -- There should only be one medic loadout per gearset
 
             local info = CharacterInfo("Human", newRaider.Name, newRaider.Name, JobPrefab.Get(gearSet.job), 0, nil, nil)
             if newRaider.CharacterInfo and newRaider.CharacterInfo.Head then -- Sometimes these aren't set?? If not set, info.Head will be randomized
@@ -704,8 +720,8 @@ function rs.TryStartRaid()
             end
             info.TeamID = 2
 
-            -- Talents are unused currently
-            info.GiveExperience(info.GetExperienceRequiredForLevel(gearSet.talentLevel))
+            -- Talents are currently unused
+            --info.GiveExperience(info.GetExperienceRequiredForLevel(gearSet.talentLevel))
 
             for skillID, skillRange in pairs(gearSet.skills) do
                 local skillLevel = math.random(skillRange[1], skillRange[2])
@@ -714,6 +730,14 @@ function rs.TryStartRaid()
 
             local raiderCharacter = Character.Create(info, spawnPoint, info.Name, 0, false, false)
             raiderCharacter.TeamID = 2
+            -- Make sure everyone knows what team the raider is on
+            local msg = Networking.Start("mm_setteam")
+            msg.WriteUInt64(raiderCharacter.ID)
+            for client in Client.ClientList do
+                Networking.Send(msg, client.Connection)
+            end
+
+            HF.AddAffliction(raiderCharacter, "pressurestabilized", 180)
 
             for gearItemID, tbl in pairs(gearSet.loadout) do
                 local prefab = ItemPrefab.GetItemPrefab(gearItemID)
