@@ -1558,53 +1558,11 @@
         <Containable items="crate" />
       </ItemContainer>
     </Item>
-    <!-- Removed fabrication recipe -->
-    <Item name="" identifier="nuclearshellcheap" variantof="nuclearshell" hideineditors="true">
-      <PreferredContainer spawnprobability="0" />
-      <PreferredContainer spawnprobability="0" />
-      <Price baseprice="300" sold="false">
-        <Price sold="false" />
-        <Price sold="false" />
-        <Price sold="false" />
-        <Price sold="false" />
-        <Price sold="false" />
-        <Price sold="false" />
-      </Price>
-      <Deconstruct time="10">
-        <Item identifier="steel" />
-        <Item identifier="uranium" />
-        <!-- clear the rest of the deconstruction -->
-        <Item />
-      </Deconstruct>
-      <!--<Fabricate suitablefabricators="fabricator" requiredtime="30" requiresrecipe="true">
-        <RequiredSkill identifier="electrical" level="40" />
-        <RequiredItem identifier="steel" />
-        <RequiredItem identifier="fuelrod" mincondition="0.8" usecondition="false" />
-        <RequiredItem identifier="uex" />
-      </Fabricate>-->
+    <!-- Removed (basically) -->
+    <Item name="" identifier="nuclearshellcheap" hideineditors="true">
+      <Sprite texture="Content/Items/Containers/UnitLoadDevice.png" depth="0.84" sourcerect="567,433,185,187" origin="0.5,0.5" />
     </Item>
-    <!-- Removed fabrication recipe -->
-    <Item name="" identifier="nucleardepthdecoycheap" variantof="nucleardepthdecoy" hideineditors="true">
-      <Price baseprice="420" sold="false">
-        <Price sold="false" />
-        <Price sold="false" />
-        <Price sold="false" />
-        <Price sold="false" />
-        <Price sold="false" />
-      </Price>
-      <Deconstruct time="10">
-        <Item identifier="iron" />
-        <Item identifier="uranium" />
-        <!-- clear the rest of the deconstruction -->
-        <Item />
-      </Deconstruct>
-      <!--<Fabricate suitablefabricators="fabricator" requiredtime="30" requiresrecipe="true">
-        <RequiredSkill identifier="electrical" level="40" />
-        <RequiredItem identifier="nucleardepthchargecheap" />
-        <RequiredItem identifier="sonarbeacon" />
-      </Fabricate>-->
-    </Item>
-    <!-- Removed cheap fabrication recipe -->
+    <!-- Removed "cheap" fabrication recipe -->
     <Item name="" identifier="circuitbox" category="Electrical" Tags="smallitem" maxstacksize="1" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true" disablecommandmenuwhenselected="true" grabwhenselected="true">
       <PreferredContainer primary="engcab"/>
       <Sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="192,258,64,64" depth="0.8" canflipx="false" origin="0.5,0.5" />
@@ -1670,6 +1628,14 @@
         <WireConnectorSprite texture="Content/UI/UIAtlasDevices.png" sourcerect="69,3,45,85" origin="0.5,0.27" />
         <ConnectionScrewSprite texture="Content/UI/UIAtlasDevices.png" sourcerect="88,92,45,45" origin="0.5,0.5" />
       </CircuitBox>
+    </Item>
+    <!-- Removed (basically) -->
+    <Item name="" identifier="nucleardepthchargecheap" hideineditors="true">
+      <Sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="192,258,64,64" depth="0.8" canflipx="false" origin="0.5,0.5" />
+    </Item>
+    <!-- Removed (basically) -->
+    <Item name="" identifier="nucleardepthdecoycheap" hideineditors="true">
+      <Sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="192,258,64,64" depth="0.8" canflipx="false" origin="0.5,0.5" />
     </Item>
   </Items>
 </Override>
