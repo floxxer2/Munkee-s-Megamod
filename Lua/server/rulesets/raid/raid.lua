@@ -23,7 +23,8 @@ local messaged = {}
 function rs.Loop()
     if not Game.RoundStarted
     or rs.FailReason ~= ""
-    or rs.Strength == 0 then
+    or rs.Strength == 0
+    or rs.Started then
         loopActive = false
         return
     end
@@ -843,7 +844,7 @@ function rs.CheckShouldFail()
 end
 
 function rs.Draft()
-    if not loopActive then
+    if not loopActive and not rs.Started then
         loopActive = true
         rs.Loop()
     end
