@@ -1,5 +1,3 @@
-local menu = {}
-
 -- Highly based on easySettings by Evil Factory >>
 
 -- Each has a ["value"] and ["defaultValue"] that should be set by mm_getprefs
@@ -228,5 +226,3 @@ function Megamod_Client.PreferenceMenu(frame)
     closeButton(row)
     resetButton(row)
 end
-
-return menu
