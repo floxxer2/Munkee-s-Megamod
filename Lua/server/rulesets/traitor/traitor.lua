@@ -1692,7 +1692,7 @@ function rs.PatienceLoop()
                 Megamod.SendChatMessage(traitor, "UPLINK " .. rs.Items.Uplinks[tbl[2][2]][1] .. ": OBJECTIVE READY", Color(255, 100, 100, 255))
                 tbl[2][8] = true
             elseif not tbl[2][8] and not tbl[2][2] and not tbl[2][1] then
-                -- If the traitor hasn't spawned their uplink on the initial objective cooldown, force it to spawn
+                -- If the traitor hasn't spawned their uplink before the initial objective cooldown, force it to spawn
                 rs.SelectedPlayers[traitor][2][1] = true
                 tbl[2][8] = true
                 Megamod.SendChatMessage(traitor, "Your uplink was force-spawned. Don't wait too long to spawn it!", Color(255, 0, 255, 255))
