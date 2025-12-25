@@ -1540,7 +1540,7 @@ do
             Name = "Payment",
             Jobs = "all",
             Chance = 15,
-            Credit = 2,
+            Credit = 0,
             MinStrength = 0,
             DescriptionChat = {
                 "I NEED %d ESSENCE",
