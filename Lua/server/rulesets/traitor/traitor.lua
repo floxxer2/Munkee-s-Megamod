@@ -1019,7 +1019,7 @@ do
             Name = "Murder",
             Jobs = "all",
             Chance = 50,
-            Credit = 6,
+            Credit = 4,
             MinStrength = 4,
             DescriptionChat = {
                 "KILL \"%s\" FOR ME WOULD YOU",
@@ -1098,7 +1098,7 @@ do
             Name = "Kidnapping",
             Jobs = "all",
             Chance = 40,
-            Credit = 7,
+            Credit = 5,
             MinStrength = 5,
             DescriptionChat = {
                 "I NEED TO HAVE A WORD WITH \"%s\"",
@@ -1182,7 +1182,7 @@ do
             Name = "Regicide",
             Jobs = "all",
             Chance = 10,
-            Credit = 9,
+            Credit = 7,
             MinStrength = 8,
             DescriptionChat = {
                 "\"%s\" HAS BEEN IN POWER FOR TOO LONG FIX THAT",
@@ -1259,7 +1259,7 @@ do
             Name = "Brainwashing",
             Jobs = "all",
             Chance = 30,
-            Credit = 7,
+            Credit = 5,
             MinStrength = 3,
             DescriptionChat = {
                 "TAKE \"%s\" TO ME AND I'LL GIVE THEM A HELPING HAND",
@@ -1348,7 +1348,7 @@ do
             Name = "Double Agent",
             Jobs = "all",
             Chance = 200, -- Very high chance if check() succeeds
-            Credit = 8,
+            Credit = 7,
             MinStrength = 0,
             DescriptionChat = {
                 "\"%s\" HASN'T BEEN UP TO SNUFF",
@@ -1413,7 +1413,7 @@ do
             Name = "Loan Shark",
             Jobs = "all",
             Chance = 200, -- Very high chance if check() succeeds
-            Credit = 8,
+            Credit = 7,
             MinStrength = 0,
             DescriptionChat = {
                 "\"%s\" HASN'T BEEN UP TO SNUFF",
