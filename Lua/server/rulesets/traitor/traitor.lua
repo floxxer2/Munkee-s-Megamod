@@ -514,32 +514,28 @@ do
                 return "You must be near a DV Access Point."
             end
             local closest
-            local minDist = math.huge
-            local roomName = tostring(client.Character.CurrentHull.RoomName)
-            if roomName == "Maintenance" then
-                for dvo in Megamod.Map.DVOutside do
-                    -- Hidden = disabled
-                    if not dvo.HiddenInGame then
-                        local distance = Vector2.Distance(client.Character.WorldPosition, dvo.WorldPosition)
-                        if distance < minDist then
-                            minDist = distance
-                            closest = dvo
-                        end
-                    end
-                end
-            elseif roomName == "???" then
-                for dvi in Megamod.Map.DVInside do
-                    -- Hidden = disabled
-                    if not dvi.HiddenInGame then
-                        local distance = Vector2.Distance(client.Character.WorldPosition, dvi.WorldPosition)
-                        if distance < minDist then
-                            minDist = distance
-                            closest = dvi
-                        end
+            local minDist = 115
+            for dvo in Megamod.Map.DVOutside do
+                -- Hidden = disabled
+                if not dvo.HiddenInGame then
+                    local distance = Vector2.Distance(client.Character.WorldPosition, dvo.WorldPosition)
+                    if distance < minDist then
+                        minDist = distance
+                        closest = dvo
                     end
                 end
             end
-            if minDist < 115 then
+            for dvi in Megamod.Map.DVInside do
+                -- Hidden = disabled
+                if not dvi.HiddenInGame then
+                    local distance = Vector2.Distance(client.Character.WorldPosition, dvi.WorldPosition)
+                    if distance < minDist then
+                        minDist = distance
+                        closest = dvi
+                    end
+                end
+            end
+            if closest then
                 local c = closest.GetComponentString('LightComponent')
                 if c.IsOn then
                     return "This DV Access Point is already active."
