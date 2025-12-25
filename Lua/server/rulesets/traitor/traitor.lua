@@ -1711,12 +1711,11 @@ end
 -- You probably want to give them the antag overlay
 function rs.SetTraitor(client, brainwashed)
     rs.TraitorAmount = rs.TraitorAmount + 1
-    local antagName = "Traitor"
     if brainwashed then
         table.insert(Megamod.RuleSetManager.ExtraSummary, "'" .. tostring(client.Name) .. "' was brainwashed into becoming a traitor.")
     end
     rs.SelectedPlayers[client] = {
-        antagName,
+        "Traitor",
         {
             [1] = false, -- If the traitor has spawned their uplink
             [2] = nil, -- The traitor's assigned uplink, may be nil even if [1] is true, because uplinks can be "returned" (deleted)
