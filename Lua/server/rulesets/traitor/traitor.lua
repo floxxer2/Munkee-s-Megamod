@@ -1000,8 +1000,10 @@ do
         rs.SelectedPlayers[traitor][2][8] = false
         rs.SelectedPlayers[traitor][2][3] = nil
         local prefab = ItemPrefab.GetItemPrefab("mm_dime")
-        for i = 1, self.Credit do
-            Entity.Spawner.AddItemToSpawnQueue(prefab, traitor.Inventory, nil, nil, nil, true)
+        if not Megamod.CheckIsDead(traitor) then
+            for i = 1, self.Credit do
+                Entity.Spawner.AddItemToSpawnQueue(prefab, traitor.Character.Inventory, nil, nil, nil, true)
+            end
         end
         return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
     end
