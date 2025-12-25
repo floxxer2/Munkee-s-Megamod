@@ -1628,7 +1628,7 @@ function rs.SetTraitor(client, brainwashed)
             [4] = 0, -- Can be negative; timer (counting up) representing the Lender's dwindling patience, if too high, this traitor may be the target of another traitor
             [5] = false, -- If the traitor is in a "Meeting" objective
             [6] = 0, -- The traitor's accumulated "Credit," used for bragging rights in the end-of-round summary
-            [7] = 150, -- Cooldown for objectives, [4] doesn't go up while this is >0 and you can't get another objective either; starts at 2.5 minutes
+            [7] = 60, -- Cooldown for objectives, [4] doesn't go up while this is >0 and you can't get another objective either; starts at 1 minute
             [8] = false, -- If the traitor has received the "you can get another objective" message
         }
     }
