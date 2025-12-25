@@ -50,6 +50,16 @@ function Megamod.CheckIsSpectating(client)
     return true
 end
 
+function Megamod.GetClients()
+    local clients = {}
+    for client in Client.ClientList do
+        if client then
+            table.insert(clients, client)
+        end
+    end
+    return clients
+end
+
 -- Math stuff
 
 function Megamod.Lerp(a, b, t)
