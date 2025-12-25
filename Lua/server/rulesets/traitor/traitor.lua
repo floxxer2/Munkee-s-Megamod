@@ -1562,7 +1562,7 @@ do
     function rs.CreateObjective(traitor)
         if rs.SelectedPlayers[traitor][2][3] then return end -- If they already have an objective
         if rs.SelectedPlayers[traitor][2][7] > 0 then
-            return "I need not of you right now."
+            return "I NEED NOT OF YOU RIGHT NOW"
         end
         local potentialObjectives = {}
         for objective in rs.Objectives do
