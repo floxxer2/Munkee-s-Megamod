@@ -18,7 +18,7 @@ Hook.Add("megamod.escapeportal", "Megamod.EscapePortal.Portal", function(effect,
         if target and target.IsHuman and not target.IsDead then
             local client = Util.FindClientCharacter(target)
             if not client then return end
-            -- Antags can't escape
+            -- Antags can't use the escape portal
             if #Megamod.RuleSetManager.AntagStatus(client) > 0 then
                 if not antagMessages[client] then
                     antagMessages[client] = true
