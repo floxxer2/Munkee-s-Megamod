@@ -1597,7 +1597,7 @@ do
         { -- End of the Road: Kill all non-traitors; handled separately but shown as an objective in uplinks
             Name = "End of the Road",
             Jobs = "all",
-            Chance = 1, -- Doesn't matter what value, but must be >0
+            Chance = 1, -- n/a, but must be >0
             EOTR = true, -- This obj is special
             Credit = 15,
             MinStrength = 0, -- n/a - kept for consistency
