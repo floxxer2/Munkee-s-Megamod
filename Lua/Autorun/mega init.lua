@@ -36,6 +36,8 @@ if CLIENT then
     ---@type string
     Megamod_Client.Path = path
 
+    Megamod_Client.AmAntag = false
+
     -- NOTE: Nil return on and near runtime
     ---@return Barotrauma.Networking.Client
     function Megamod_Client.GetSelfClient()

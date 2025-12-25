@@ -703,6 +703,10 @@ function rs.TryStartRaid()
             local newRaider = table.remove(availablePlayers, math.random(#availablePlayers))
 
             rs.SelectedPlayers[newRaider] = { "Raider", {} }
+            -- Let them know they're an antag
+            local msg = Networking.Start("mm_antag")
+            msg.WriteBoolean(true)
+            Networking.Send(msg, newRaider.Connection)
 
             local key = math.random(#gearSets)
             local gearSet = gearSets[key]

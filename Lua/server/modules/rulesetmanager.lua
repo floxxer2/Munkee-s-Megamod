@@ -80,6 +80,12 @@ function rsm.AntagStatus(client, targetAntagName, targetRuleSetName)
     return antagRoles
 end
 
+Networking.Receive("mm_antag", function(message, sender)
+    local msg = Networking.Start("mm_antag")
+    msg.WriteBoolean(#rsm.AntagStatus(sender) > 0)
+    Networking.Send(msg, sender.Connection)
+end)
+
 function rsm.GiveSummary(client)
     local str = ""
     for line in rsm.ExtraSummary do

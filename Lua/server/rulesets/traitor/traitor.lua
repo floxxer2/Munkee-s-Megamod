@@ -1647,6 +1647,10 @@ function rs.SetTraitor(client, brainwashed)
     local message = Networking.Start("mm_traitor")
     message.WriteBoolean(true)
     Networking.Send(message, client.Connection)
+    -- Let them know they're an antag
+    local msg = Networking.Start("mm_antag")
+    msg.WriteBoolean(true)
+    Networking.Send(msg, client.Connection)
 end
 
 function rs.EOTRLoop()

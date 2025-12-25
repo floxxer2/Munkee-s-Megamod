@@ -38,6 +38,10 @@ do
             if target and target.IsHuman and not target.IsDead then
                 local client = Util.FindClientCharacter(target)
                 if not client then return end
+                -- Antags can't use the escape portal
+                if client == Megamod_Client.GetSelfClient() and Megamod_Client.AmAntag then
+                    return
+                end
 
                 if not timers[target] then
                     timers[target] = TIMER_START
@@ -99,6 +103,19 @@ do
         end
     end)
 end
+
+-- Sent to you when you become an antagonist of any variety
+Networking.Receive("mm_antag", function(message)
+    Megamod_Client.AmAntag = message.ReadBoolean()
+end)
+
+Hook.Add("roundEnd", "Megamod_Client.EscapePortal.RoundEnd", function() Megamod_Client.AmAntag = false end)
+
+-- We need to know if we're a antag if we reload CL Lua or join midround
+Timer.Wait(function()
+    local msg = Networking.Start("mm_antag")
+    Networking.Send(msg)
+end, 100)
 
 -- Sent to you when you become a traitor / need to sync being a traitor
 -- IsTraitor allows vanilla traitor features, such as sabotage and hidden fabricator recipes
