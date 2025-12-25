@@ -598,12 +598,12 @@ do
 
                 -- Deactivate after 25-35 seconds
                 Timer.Wait(function()
-                    if not Game.RoundStarted then return end
+                    if not Game.RoundStarted or not closest or not exit then return end
                     local c = closest.GetComponentString('LightComponent')
                     Megamod.CreateEntityEvent(c, closest, "IsOn", not c.IsOn)
 
                     local c2 = exit.GetComponentString('LightComponent')
-                    Megamod.CreateEntityEvent(c2, closest, "IsOn", not c2.IsOn)
+                    Megamod.CreateEntityEvent(c2, exit, "IsOn", not c2.IsOn)
                 end, math.random(25000, 35000))
             else
                 str = "You must be near a DV Access Point."
