@@ -975,15 +975,15 @@ end
 -- Objectives
 do
     rs.SuccessMessages = {
-    "GOOD JOB  NOW DO IT AGAIN, WHEN I TELL YOU TO",
+    "GOOD JOB  NOW DO IT AGAIN WHEN I TELL YOU TO",
     "YOUR ABILITIES AMUSE ME",
     "YOUR ABILITIES SURPRISE ME",
-    "GREAT  GET BACK TO WORK, THAT WASN'T THE LAST ONE",
-    "AWESOME  NO, YOU DON'T GET A BREAK",
-    "KEEP ON IT, LEST ONE OF YOUR FRIENDS GETS AN IDEA",
-    "THAT WAS GOOD, BUT NOT ENOUGH  STAY FOCUSED",
+    "GREAT  GET BACK TO WORK THAT WASN'T THE LAST ONE",
+    "AWESOME  NO YOU DON'T GET A BREAK",
+    "KEEP ON IT LEST ONE OF YOUR FRIENDS GETS AN IDEA",
+    "THAT WAS GOOD BUT NOT ENOUGH  STAY FOCUSED",
     "SATISFACTORY  AWAIT YOUR NEXT ASSIGNMENT",
-    "ALRIGHT, NOW MOVE ON",
+    "ALRIGHT NOW MOVE ON",
     "I WILL STILL REQUIRE MORE FROM YOU",
     }
 
@@ -1001,9 +1001,9 @@ do
             Credit = 6,
             MinStrength = 4,
             DescriptionChat = {
-                "KILL \"%s\" FOR ME, WOULD YOU",
+                "KILL \"%s\" FOR ME WOULD YOU",
                 "I NEED \"%s\" OUT OF THE PICTURE",
-                "DISPOSE OF \"%s,\" PLEASE",
+                "DISPOSE OF \"%s\" PLEASE",
                 "LET \"%s\" SLEEP WITH THE FISHES",
                 "I NEED \"%s\" TO BE DONE AWAY WITH",
             },
@@ -1097,7 +1097,7 @@ do
             DescriptionChat = {
                 "I NEED TO HAVE A WORD WITH \"%s\"",
                 "GIVE ME \"%s\"",
-                "COME TO ME, AND TAKE \"%s\" WITH YOU",
+                "COME TO ME AND TAKE \"%s\" WITH YOU",
                 "GET \"%s\"",
                 "RIP \"%s\" FROM THE STATION",
             },
@@ -1194,7 +1194,7 @@ do
             Credit = 9,
             MinStrength = 8,
             DescriptionChat = {
-                "\"%s\" HAS BEEN IN POWER FOR TOO LONG, FIX THAT",
+                "\"%s\" HAS BEEN IN POWER FOR TOO LONG FIX THAT",
                 "REMOVE \"%s\" FROM OFFICE",
                 "TAKE \"%s\" OFF THEIR THRONE",
                 "IMPEACH \"%s\"",
@@ -1286,11 +1286,11 @@ do
             Credit = 7,
             MinStrength = 3,
             DescriptionChat = {
-                "TAKE \"%s\" TO ME, AND I'LL GIVE THEM A HELPING HAND",
+                "TAKE \"%s\" TO ME AND I'LL GIVE THEM A HELPING HAND",
                 "\"%s\" LOOKS LIKE A FINE CANDIDATE",
                 "THE TEAM IS FALTERING. \"%s\" COULD FIX THAT",
                 "\"%s\" SEEMS LIKE THEY ARE RESPONSIBLE ENOUGH",
-                "TAKE \"%s\" TO ME, AND I'LL DO THE REST",
+                "TAKE \"%s\" TO ME AND I'LL DO THE REST",
             },
             DescriptionReal = "(Take %s to the Deep Vents and use the 'obj' command in your uplink near them. They will turn into another traitor.)",
             -- >=50% of crew must be alive and healthy
@@ -1544,10 +1544,10 @@ do
             MinStrength = 0,
             DescriptionChat = {
                 "I NEED %d ESSENCE",
-                "%d ESSENCE, THAT'S IT",
+                "%d ESSENCE THAT'S IT",
                 "I REQUIRE %d ESSENCE FROM YOU",
                 "%d ESSENCE",
-                "ESSENCE, %d UNITS",
+                "ESSENCE %d UNITS",
             },
             DescriptionReal = "(Have %d dime(s) in your hotbar, then use the 'obj' command in your uplink.)",
             Check = function(traitor) -- Always available
