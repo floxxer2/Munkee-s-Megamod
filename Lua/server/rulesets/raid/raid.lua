@@ -55,7 +55,6 @@ end
 function rs.TryStartRaid()
     if #Client.ClientList == 0 or rs.Strength < 3 then return false end
     local raiderAmount = math.ceil(#Client.ClientList / 3)
-    if raiderAmount > 8 then raiderAmount = 8 end
     local availablePlayers = {}
     for client in Client.ClientList do
         if Megamod.CheckIsSpectating(client)
