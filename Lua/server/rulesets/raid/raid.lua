@@ -69,7 +69,7 @@ function rs.TryStartRaid()
 
     -- // Chance to start the raid //
 
-    local chance = (rs.Strength / 5) * (#raiderAmount / #availablePlayers)
+    local chance = (rs.Strength / 5) * (raiderAmount / #availablePlayers)
     if math.random() >= chance then
         return false
     end
