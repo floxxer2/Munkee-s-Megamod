@@ -1270,7 +1270,7 @@ do
             DescriptionChat = {
                 "TAKE \"%s\" TO ME AND I'LL GIVE THEM A HELPING HAND",
                 "\"%s\" LOOKS LIKE A FINE CANDIDATE",
-                "THE TEAM IS FALTERING. \"%s\" COULD FIX THAT",
+                "THE TEAM IS FALTERING \"%s\" COULD FIX THAT",
                 "\"%s\" SEEMS LIKE THEY ARE RESPONSIBLE ENOUGH",
                 "TAKE \"%s\" TO ME AND I'LL DO THE REST",
             },
