@@ -1864,7 +1864,7 @@ function rs.Draft()
     rs.DLeakLoop()
 
     -- Spawn a leak as we're drafted, so traitors have some initial dimes
-    rs.SpawnDLeak(rs.DLeakTbl[2])
+    rs.SpawnDLeak(rs.DLeakTbl[2] / 2)
 
     -- Success
     return true, ""
