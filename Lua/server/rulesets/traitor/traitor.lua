@@ -937,7 +937,7 @@ do
         return math.random(math.floor(base * 3), math.ceil(base * 5))
     end
 
-    local DIME_ACCUMULATION = 0.03
+    local DIME_ACCUMULATION = 0.01
     rs.DLeakTbl = {
         0, -- Current dime count
         0 -- Target dime count, more likely to spawn when current is close to this
@@ -999,6 +999,10 @@ do
         rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
         rs.SelectedPlayers[traitor][2][8] = false
         rs.SelectedPlayers[traitor][2][3] = nil
+        local prefab = ItemPrefab.GetItemPrefab("mm_dime")
+        for i = 1, self.Credit do
+            Entity.Spawner.AddItemToSpawnQueue(prefab, traitor.Inventory, nil, nil, nil, true)
+        end
         return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
     end
 
