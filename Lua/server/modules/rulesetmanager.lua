@@ -70,7 +70,7 @@ function rsm.AntagStatus(client, targetAntagName, targetRuleSetName)
     local antagRoles = {}
     for ruleSet in rsm.RuleSets do
         local sel = ruleSet.SelectedPlayers[client]
-        if (targetRuleSetName and ruleSet.Name == targetRuleSetName)
+        if (targetRuleSetName and ruleSet.Name == targetRuleSetName and sel)
         or ((not targetAntagName and sel)
         or (targetAntagName and sel and sel[1] == targetAntagName))
         then
