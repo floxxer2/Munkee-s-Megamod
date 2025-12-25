@@ -992,6 +992,27 @@ do
         return creditValue * 50
     end
 
+    local function completeObj(self, traitor)
+        Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
+        rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
+        rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
+        rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
+        rs.SelectedPlayers[traitor][2][8] = false
+        rs.SelectedPlayers[traitor][2][3] = nil
+        return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
+    end
+
+    local function assign(self, traitor, target, desc, objFunc)
+        rs.SelectedPlayers[traitor][2][3] = {
+            Name = self.Name,
+            Desc = desc,
+            Credit = self.Credit,
+            Target = target,
+            NoPenalty = false,
+            Obj = objFunc
+        }
+    end
+
     -- #TODO#: Thief, Meeting
     rs.Objectives = {
         { -- Murder: Kill a crewmate who is not security or captain - must kill confirm
@@ -1052,41 +1073,26 @@ do
                 local target = potentialTargets[math.random(#potentialTargets)]
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
                 local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Obj = function(client)
-                        if not client.Character then return "" end
-                        if not target[2] then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target no longer exists. Canceling this will not incur a penalty."
-                        end
-                        local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                        if distance < 115 then
-                            if target[2].IsDead then
-                                return self:Complete(traitor)
-                            else
-                                return "Target is not dead."
-                            end
+                assign(self, traitor, target, desc, function(client)
+                    if not client.Character then return "" end
+                    if not target[2] then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target no longer exists. Canceling this will not incur a penalty."
+                    end
+                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
+                    if distance < 115 then
+                        if target[2].IsDead then
+                            return self:Complete(traitor)
                         else
-                            return "Target not in range."
+                            return "Target is not dead."
                         end
-                    end,
-                }
+                    else
+                        return "Target not in range."
+                    end
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
         { -- Kidnapping: Kidnap a crewmate who is not security or captain and take them to the Deep Vents
             Name = "Kidnapping",
@@ -1146,46 +1152,31 @@ do
                 local target = potentialTargets[math.random(#potentialTargets)]
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
                 local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Obj = function(client)
-                        if not client.Character then return "" end
-                        if not target[2] then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target no longer exists. Canceling this will not incur a penalty."
-                        elseif target[2].IsDead then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target is dead. Canceling this will not incur a penalty."
-                        end
-                        local hull = client.Character.CurrentHull
-                        if hull.RoomName ~= "???" then
-                            return "You must be in the Deep Vents."
-                        end
-                        local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                        if distance < 115 then
-                            Megamod.SendChatMessage(target[1], "You have been kidnapped by a traitor. Your only hope is to be cloned...", Color(255, 100, 100, 255))
-                            Entity.Spawner.AddEntityToRemoveQueue(target[2])
-                            return self:Complete(traitor)
-                        else
-                            return "Target not in range."
-                        end
-                    end,
-                }
+                assign(self, traitor, target, desc, function(client)
+                    if not client.Character then return "" end
+                    if not target[2] then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target no longer exists. Canceling this will not incur a penalty."
+                    elseif target[2].IsDead then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target is dead. Canceling this will not incur a penalty."
+                    end
+                    local hull = client.Character.CurrentHull
+                    if hull.RoomName ~= "???" then
+                        return "You must be in the Deep Vents."
+                    end
+                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
+                    if distance < 115 then
+                        Megamod.SendChatMessage(target[1], "You have been kidnapped by a traitor. Your only hope is to be cloned...", Color(255, 100, 100, 255))
+                        Entity.Spawner.AddEntityToRemoveQueue(target[2])
+                        return self:Complete(traitor)
+                    else
+                        return "Target not in range."
+                    end
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
         { -- Regicide: Kill a captain or security - must kill confirm
             Name = "Regicide",
@@ -1243,41 +1234,26 @@ do
                 local target = potentialTargets[math.random(#potentialTargets)]
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
                 local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Obj = function(client)
-                        if not client.Character then return "" end
-                        if not target[2] then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target no longer exists. Canceling this will not incur a penalty."
-                        end
-                        local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                        if distance < 115 then
-                            if target[2].IsDead then
-                                return self:Complete(traitor)
-                            else
-                                return "Target is not dead."
-                            end
+                assign(self, traitor, target, desc, function(client)
+                    if not client.Character then return "" end
+                    if not target[2] then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target no longer exists. Canceling this will not incur a penalty."
+                    end
+                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
+                    if distance < 115 then
+                        if target[2].IsDead then
+                            return self:Complete(traitor)
                         else
-                            return "Target not in range."
+                            return "Target is not dead."
                         end
-                    end,
-                }
+                    else
+                        return "Target not in range."
+                    end
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
         { -- Brainwashing: Same as Kidnap, but instead of deleting the victim, they turn into another traitor
             Name = "Brainwashing",
@@ -1339,49 +1315,34 @@ do
                 local target = potentialTargets[math.random(#potentialTargets)]
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
                 local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Obj = function(client)
-                        if not client.Character then return "" end
-                        if not target[2] then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target no longer exists. Canceling this will not incur a penalty."
-                        elseif target[2].IsDead then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target is dead. Canceling this will not incur a penalty."
+                assign(self, traitor, target, desc, function(client)
+                    if not client.Character then return "" end
+                    if not target[2] then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target no longer exists. Canceling this will not incur a penalty."
+                    elseif target[2].IsDead then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target is dead. Canceling this will not incur a penalty."
+                    end
+                    local hull = client.Character.CurrentHull
+                    if hull.RoomName ~= "???" then
+                        return "You must be in the Deep Vents."
+                    end
+                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
+                    if distance < 115 then
+                        if target[1] then
+                            Megamod.SendChatMessage(target[1], "You have been converted into a traitor.", Color(255, 0, 255, 255))
+                            Megamod.GiveAntagOverlay(target[2])
+                            rs.SetTraitor(target[1], true)
                         end
-                        local hull = client.Character.CurrentHull
-                        if hull.RoomName ~= "???" then
-                            return "You must be in the Deep Vents."
-                        end
-                        local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                        if distance < 115 then
-                            if target[1] then
-                                Megamod.SendChatMessage(target[1], "You have been converted into a traitor.", Color(255, 0, 255, 255))
-                                Megamod.GiveAntagOverlay(target[2])
-                                rs.SetTraitor(target[1], true)
-                            end
-                            return self:Complete(traitor)
-                        else
-                            return "Target not in range."
-                        end
-                    end,
-                }
+                        return self:Complete(traitor)
+                    else
+                        return "Target not in range."
+                    end
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
         { -- Double Agent: Kill a traitor who hasn't been following their objectives - must kill confirm
             Name = "Double Agent",
@@ -1427,41 +1388,26 @@ do
                 local target = potentialTargets[math.random(#potentialTargets)]
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
                 local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Obj = function(client)
-                        if not client.Character then return "" end
-                        if not target[2] then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target no longer exists. Canceling this will not incur a penalty."
-                        end
-                        local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                        if distance < 115 then
-                            if target[2].IsDead then
-                                return self:Complete(traitor)
-                            else
-                                return "Target is not dead."
-                            end
+                assign(self, traitor, target, desc, function(client)
+                    if not client.Character then return "" end
+                    if not target[2] then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target no longer exists. Canceling this will not incur a penalty."
+                    end
+                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
+                    if distance < 115 then
+                        if target[2].IsDead then
+                            return self:Complete(traitor)
                         else
-                            return "Target not in range."
+                            return "Target is not dead."
                         end
-                    end,
-                }
+                    else
+                        return "Target not in range."
+                    end
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
         { -- Loan Shark: Same as Double Agent, but use the 'return' command on their uplink instead of killing them
             Name = "Loan Shark",
@@ -1507,34 +1453,17 @@ do
                 local target = potentialTargets[math.random(#potentialTargets)]
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
                 local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Uplink = rs.SelectedPlayers[target[1]][2][2], -- Used in the 'return' command for objective completion
-                    Complete = self.Complete, -- Also used in the 'return' command for objective completion
-                    Obj = function(client)
-                        if not client.Character then return "" end
-                        if not target[2] then
-                            rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                            return "Target no longer exists. Canceling this will not incur a penalty."
-                        end
-                        return "Use the 'return' command on the target's uplink."
-                    end,
-                }
+                assign(self, traitor, target, desc, function(client)
+                    if not client.Character then return "" end
+                    if not target[2] then
+                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
+                        return "Target no longer exists. Canceling this will not incur a penalty."
+                    end
+                    return "Use the 'return' command on the target's uplink."
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
         { -- Payment: Send the Lender some amount of dimes
             Name = "Payment",
@@ -1557,42 +1486,27 @@ do
                 local target = math.random(rs.Strength, math.floor(rs.Strength * 1.5))
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: " .. tostring(target) .. ") to '" .. tostring(traitor.Name) .. "'")
                 local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target, target)
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Obj = function(client)
-                        if not client.Character then return "" end
-                        local items = client.Character.Inventory.GetAllItems(false)
-                        local dimes = {}
-                        for item in items do
-                            if tostring(item.Prefab.Identifier) == "mm_dime" then
-                                table.insert(dimes, item)
-                            end
+                assign(self, traitor, target, desc, function(client)
+                    if not client.Character then return "" end
+                    local items = client.Character.Inventory.GetAllItems(false)
+                    local dimes = {}
+                    for item in items do
+                        if tostring(item.Prefab.Identifier) == "mm_dime" then
+                            table.insert(dimes, item)
                         end
-                        if #dimes >= target then
-                            for i = 1, target do
-                                Entity.Spawner.AddItemToRemoveQueue(dimes[i])
-                            end
-                            return self:Complete(traitor)
-                        else
-                            return "Not enough dimes."
+                    end
+                    if #dimes >= target then
+                        for i = 1, target do
+                            Entity.Spawner.AddItemToRemoveQueue(dimes[i])
                         end
-                    end,
-                }
+                        return self:Complete(traitor)
+                    else
+                        return "Not enough dimes."
+                    end
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
         { -- End of the Road: Kill all non-traitors; handled separately but shown as an objective in uplinks
             Name = "End of the Road",
@@ -1616,27 +1530,12 @@ do
                 local target = "n/a"
                 Megamod.Log("Gave objective '" .. self.Name .. "' (target: " .. tostring(target) .. ") to '" .. tostring(traitor.Name) .. "'")
                 local desc = self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal
-                rs.SelectedPlayers[traitor][2][3] = {
-                    Name = self.Name,
-                    Desc = desc,
-                    Credit = self.Credit,
-                    Target = target,
-                    NoPenalty = false,
-                    Obj = function(client)
-                        return "Kill them all. This objective will complete automatically."
-                    end,
-                }
+                assign(self, traitor, target, desc, function(client)
+                    return "Kill them all. This objective will complete automatically."
+                end)
                 return self.Name .. "\n" .. desc
             end,
-            Complete = function(self, traitor)
-                Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-                rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-                rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-                rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
-                rs.SelectedPlayers[traitor][2][8] = false
-                rs.SelectedPlayers[traitor][2][3] = nil
-                return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-            end,
+            Complete = completeObj
         },
     }
 
@@ -1723,9 +1622,9 @@ function rs.SetTraitor(client, brainwashed)
             [4] = 0, -- Can be negative; timer (counting up) representing the Lender's dwindling patience, if too high, this traitor may be the target of another traitor
             [5] = false, -- If the traitor is in a "Meeting" objective
             [6] = 0, -- The traitor's accumulated "Credit," used for bragging rights in the end-of-round summary
-            [7] = 105, -- Cooldown for objectives, [4] doesn't go up while this is >0 and you can't get another objective either; starts at 2.5 minutes
+            [7] = 1, -- Cooldown for objectives, [4] doesn't go up while this is >0 and you can't get another objective either; starts at 2.5 minutes
             [8] = false, -- If the traitor has received the "you can get another objective" message
-        }
+        } -- #DEBUG#
     }
     for admin in Client.ClientList do
         if Megamod.Admins[admin.SteamID] then
