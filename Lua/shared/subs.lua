@@ -10,7 +10,7 @@ function s.SetSubBodyType(sub, bodyType)
     elseif bodyType == "kinematic" then
         sub.PhysicsBody.BodyType = Megamod.PhysicsBodyTypes.Kinematic
     else
-        Megamod.Error("Invalid body type")
+        Megamod.Error("Invalid body type.")
     end
 end
 

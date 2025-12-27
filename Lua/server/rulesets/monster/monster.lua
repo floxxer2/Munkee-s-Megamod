@@ -73,15 +73,15 @@ Networking.Receive("mm_monstercontrol", function(message, sender)
         -- Don't try to control it if there is already someone controlling it
         if monsterClient then
             Megamod.SendChatMessage(sender, "ERROR: That is already being controlled by someone else!", Color(255, 0, 255, 255))
-            Megamod.Log("Client '" .. tostring(sender.Name) .."' tried to control '" .. tostring(monster.SpeciesName) .. "', which is already controlled by '" .. tostring(monsterClient.Name) .. "'")
+            Megamod.Log("Client '" .. tostring(sender.Name) .."' tried to control '" .. tostring(monster.SpeciesName) .. "', which is already controlled by '" .. tostring(monsterClient.Name) .. ".'")
             return
         end
         sender.SetClientCharacter(monster)
-        Megamod.Log("Client '" .. tostring(sender.Name) .."' started controlling '" .. tostring(monster.SpeciesName) .. "' via monster antagonist")
+        Megamod.Log("Client '" .. tostring(sender.Name) .."' started controlling '" .. tostring(monster.SpeciesName) .. "' via monster antagonist.")
     else
         -- Sends the client to freecam
         sender.SetClientCharacter(nil)
-        Megamod.Log("Client '" .. tostring(sender.Name) .. "' went to spectator via monster antagonist")
+        Megamod.Log("Client '" .. tostring(sender.Name) .. "' went to spectator via monster antagonist.")
     end
 end)
 

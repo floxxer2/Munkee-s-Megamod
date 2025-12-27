@@ -58,10 +58,10 @@ Networking.Receive("mm_luacheck", function(message, client)
         if str == lc.String then
             lc.ReceivedClients[client] = true
         else
-            Megamod.Log("Client '" .. tostring(client.Name) .. "' did not send the correct Lua check string", true)
+            Megamod.Log("Client '" .. tostring(client.Name) .. "' did not send the correct Lua check string.", true)
         end
     else
-        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent a Lua check message randomly", true)
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent a Lua check message randomly.", true)
     end
 end)
 

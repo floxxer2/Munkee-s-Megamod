@@ -305,8 +305,7 @@ do
 
             -- Failsafe
             if #rs.UplinkIDChars < 3 then
-                Megamod.Error(
-                    "Not enough characters to choose from for traitor lender IDs. Resetting potential characters.")
+                Megamod.Error("Not enough characters to choose from for traitor lender IDs. Resetting potential characters.")
                 rs.UplinkIDChars = BASE_UPLINK_ID_CHARS
             end
 
@@ -556,7 +555,7 @@ do
                     end
                 end
                 if not exit then
-                    Megamod.Error("No DV connection found")
+                    Megamod.Error("No DV connection found.")
                     return "Error: This DV Access Point is not connected."
                 end
                 local c2 = exit.GetComponentString('LightComponent')
@@ -788,7 +787,7 @@ do
             end
         end
         if not exit then
-            Megamod.Error("No DV connection found")
+            Megamod.Error("No DV connection found.")
             return
         end
         if target.SelectedCharacter then

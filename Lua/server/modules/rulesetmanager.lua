@@ -337,7 +337,7 @@ function rsm.Draft(forced)
             Networking.Send(msg, client.Connection)
         end
     end
-    Megamod.Log("Drafted '" .. draft.Name .. "' - Strength: " .. tostring(draft.Strength), true)
+    Megamod.Log("Drafted '" .. draft.Name .. "' - Strength: " .. tostring(draft.Strength) .. ".", true)
     draft.Draft()
 end
 
