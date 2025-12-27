@@ -43,7 +43,7 @@ function discord.GetClientListStr()
     if clientListStr ~= "" then
         clientListStr = clientListStr:sub(1, -2) -- Remove the last newline
     else -- Can happen while a round is loading
-        clientListStr = "***(ERROR LOADING PLAYERS)***"
+        clientListStr = "***(ERROR LOADING PLAYERS)*** - This can happen if there is nobody on the server, or this message was sent while a round was starting."
         Megamod.Log("Discord: There was an error loading the playerlist.", true)
     end
     return clientListStr
