@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Munkee's Megamod" modversion="1.2.5.1" corepackage="False" steamworkshopid="3318261393" gameversion="1.11.5.0">
+<contentpackage name="Munkee's Megamod" modversion="1.2.6.0" corepackage="False" steamworkshopid="3318261393" gameversion="1.11.5.0">
   <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
   <Text file="%ModDir%/Megamod/Text/English.xml" />
   <Sounds file="%ModDir%/Megamod/Sounds/beastsounds.xml" />
