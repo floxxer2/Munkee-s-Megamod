@@ -9835,7 +9835,7 @@ function Auto.Finish()
   -- Remove the last ","
   if str ~= "" then
     str = str:sub(1, -2)
-  File.Write(Auto.Path .. "/Lua/utils/automation/pf list.txt", str)
+    File.Write(Auto.Path .. "/Lua/utils/automation/pf list.txt", str)
   end
 
   -- Item variants list, whip this out when needed
