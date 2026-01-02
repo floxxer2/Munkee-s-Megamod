@@ -9832,12 +9832,11 @@ function Auto.Finish()
   for _, identifier in pairs(Auto.PFHighPriorityList) do
     str = str .. identifier .. "\",\""
   end
-  -- Remove the last ",", add a "
+  -- Remove the last ","
   if str ~= "" then
     str = str:sub(1, -2)
-    str = str .. "\""
-  end
   File.Write(Auto.Path .. "/Lua/utils/automation/pf list.txt", str)
+  end
 
   -- Item variants list, whip this out when needed
   --[[local str = ""
