@@ -689,6 +689,7 @@ Auto.XMLChanges = {
       }
     }
   },
+  -- Nerf damage
   ["halligantool"] = {
     mod = "Immersive Repairs",
     componentOverrides = {
