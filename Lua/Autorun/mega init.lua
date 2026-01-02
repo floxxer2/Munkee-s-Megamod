@@ -23,7 +23,7 @@ Megamod.Admins = {
 
 -- Humans are always blacklisted
 Megamod.BlacklistedPlayerMonsters = {
-    Truebeast = true
+    ["Truebeast"] = true
 }
 
 -- Static/Dynamic/Kinematic
