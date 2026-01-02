@@ -6664,6 +6664,16 @@ Auto.XMLChanges = {
       },
     },
   },
+  -- Remove fabrication recipe (Renegade Heavy Plate Carrier)
+  ["piratebodyarmor"] = {
+    mod = "Enhanced Armaments",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      },
+    },
+  },
   -- Remove fabrication recipe
   ["scp_renegadevest"] = {
     mod = "Enhanced Armaments",
@@ -7106,6 +7116,37 @@ Auto.XMLChanges = {
       },
     },
   },
+  -- Remove fabrication recipe
+  ["scp_saiga12"] = {
+    mod = "Enhanced Armaments",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      },
+    },
+  },
+  -- Remove fabrication recipe
+  ["scp_saigaextmag"] = {
+    mod = "Enhanced Armaments",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      },
+    },
+  },
+  -- Remove fabrication recipe
+  ["scp_saigamag"] = {
+    mod = "Enhanced Armaments",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      },
+    },
+  },
+
   -- Tweak fabrication recipe
   ["scp_railgunthermoshell"] = {
     mod = "Enhanced Armaments",
