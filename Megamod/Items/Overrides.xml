@@ -1471,7 +1471,7 @@
         <RequiredItem identifier="steel" amount="2" />
         <RequiredItem identifier="plastic" amount="3" />
       </Fabricate>
-      <Fabricate suitablefabricators="fabricator" requiredtime="5" requiresrecipe="true" displayname="recycleitem">
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="5" requiresrecipe="true" displayname="recycleitem">
         <RequiredItem identifier="riotshield" amount="1" mincondition="0.0" maxcondition="0.9" usecondition="false" />
         <RequiredItem identifier="steel" amount="1" />
         <RequiredItem identifier="plastic" amount="1" />
