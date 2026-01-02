@@ -231,75 +231,256 @@ Auto.XMLChanges = {
   -- *******************
   -- Immersive Handcuffs
   -- *******************
-  -- 1. Stun Required patch
-  -- 2. Change fabricator to weapon fabricator
+  -- Remove
   ["handcuffsspawned"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  -- Fix: Replace "handcuffsspawned" with "handcuffs"
+  ["handcuffsequipped"] = {
+    mod = "Immersive Handcuffs",
+    xml = XElement.Parse([[
+      <Item nameidentifier="handcuffs" descriptionidentifier="handcuffs" identifier="handcuffsequipped" category="Equipment" maxstacksize="1" cargocontaineridentifier="metalcrate" tags="smallitem,handcuffs,handlocker,regularcuffs" scale="0.5" impactsoundtag="impact_metal_light" noninteractable="true" hideinmenus="true">
+        <Deconstruct time="1" />
+        <InventoryIcon texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" sourcerect="57,0,52,40" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" sourcerect="57,0,52,40" depth="0.6" origin="0.5,0.5" />
+        <Body width="50" height="34" density="30" />
+        <Wearable slots="RightHand" msg="ItemMsgPickUpSelect" autoequipwhenfull="true">
+          <sprite texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" limb="RightForearm" sourcerect="117,1,25,16" origin="0.53,-1.3" depth="0.09" inheritlimbdepth="true" inherittexturescale="true" />
+          <sprite texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" limb="LeftForearm" sourcerect="142,1,25,16" origin="0.53,-1.3" depth="0.09" inheritlimbdepth="true" inherittexturescale="true" />
+          <!-- Constantly reduce the timeframe value at different intervals to make it harder to break free -->
+          <StatusEffect type="OnWearing" target="This" timeframe="-1.5" interval="0.5" disabledeltatime="true" />
+          <StatusEffect type="OnWearing" target="This" timeframe="-5" interval="4" disabledeltatime="true" />
+          <!-- Lock the hands of the character wearing the item | disabled since it's done via "handcuffed" affliction
+          <StatusEffect type="OnWearing" target="Character" lockhands="true" setvalue="true" />-->
+          <StatusEffect type="OnWearing" target="Character" statuseffecttags="cuffed" duration="0.1" interval="0.1" />
+          <!-- Remove the item, if the character has the temporary tag "unlocked" gained from the "retrievehandcuffs" affliction -->
+          <StatusEffect type="OnWearing" target="This" condition="0" setvalue="true">
+            <Conditional HasStatusTag="eq unlocked" targetcontainer="true" />
+          </StatusEffect>
+          <StatusEffect type="OnWearing" target="This" oneshot="true" disabledeltatime="true">
+            <Conditional isdead="true" targetcontainer="true" />
+            <SpawnItem identifier="handcuffs" spawnposition="SameInventory" spawnifcantbecontained="true" SpawnIfInventoryFull="true" />
+            <Remove />
+          </StatusEffect>
+          <!-- Had to break the item instead of removing directly as the sound would otherwise refuse to play. I really hate this game sometimes... -->
+          <StatusEffect type="OnBroken" target="This">
+            <Sound file="%ModDir%/Content/Sounds/uncuffing1.ogg" volume="2.5" range="350" loop="false" />
+            <Remove />
+          </StatusEffect>
+          <!-- Remove the item if it was somehow spawned into a container other than the character's inventory -->
+          <StatusEffect type="OnContained" target="This">
+            <Conditional HasTag="eq container" />
+            <Remove />
+          </StatusEffect>
+          <!-- Remove the item if it was somehow spawned outside an inventory -->
+          <StatusEffect type="OnNotContained" target="This">
+            <Remove />
+          </StatusEffect>
+        </Wearable>
+        <!-- GreaterComponent is used for its timeframe value to keep track of progress breaking free -->
+        <!-- By pressing the GUI button, the timeframe value increases and if it reaches a value of 25 or higher, the player will be freed -->
+        <GreaterComponent canbeselected="false" canbepicked="false" allowingameediting="false" timeframe="0" />
+        <CustomInterface canbeselected="false" drawhudwhenequipped="true">
+          <GuiFrame style="ItemUI" absoluteoffset="0,0" anchor="BottomCenter" relativesize="0.12,0.08" />
+          <Button text="interaction.struggletofree">
+            <!-- Increase the timeframe value per button press and create an invisible explosion to jiggle the character a little -->
+            <StatusEffect type="OnUse" target="This" timeframe="1" disabledeltatime="true">
+              <Explosion range="50" force="0.2" itemdamage="0.0" structuredamage="0.0" ignorecover="true" ballastfloradamage="0.0" camerashake="1" camerashakerange="100" explosiondamage="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false" playtinnitus="false" />
+            </StatusEffect>
+            <!-- Play a rattling sound loop if you spam the button -->
+            <StatusEffect type="OnUse" target="This" duration="0.3">
+              <Sound file="%ModDir%/Content/Sounds/cuffrattleloop.ogg" range="400" volume="1" frequencymultiplier="1.5" loop="true" />
+            </StatusEffect>
+            <!-- Apply random amounts of bluntrauma and bleeding to the hands on each button press -->
+            <StatusEffect type="OnUse" target="Character" targetlimbs="LeftHand" disabledeltatime="true">
+              <Affliction identifier="blunttrauma" amount="3" probability="0.1" />
+              <Affliction identifier="blunttrauma" amount="2" probability="0.15" />
+              <Affliction identifier="blunttrauma" amount="1" probability="0.2" />
+              <Affliction identifier="bleeding" amount="1" probability="0.1" />
+            </StatusEffect>
+            <StatusEffect type="OnUse" target="Character" targetlimbs="RightHand" disabledeltatime="true">
+              <Affliction identifier="blunttrauma" amount="3" probability="0.1" />
+              <Affliction identifier="blunttrauma" amount="2" probability="0.15" />
+              <Affliction identifier="blunttrauma" amount="1" probability="0.2" />
+              <Affliction identifier="bleeding" amount="1" probability="0.1" />
+            </StatusEffect>
+            <!-- On button pressed, if the timeframe is at or above 25, remove the handcuffed affliction from the character and play an uncuffing sound -->
+            <StatusEffect type="OnUse" target="This,Character" disabledeltatime="true">
+              <Conditional timeframe="gte 25" />
+              <ReduceAffliction identifier="handcuffed" amount="1000" />
+              <Sound file="%ModDir%/Content/Sounds/uncuffing1.ogg" volume="2.5" range="350" loop="false" />
+            </StatusEffect>
+            <!-- On button pressed, if the timeframe is at or above 25, create a stronger invisible explosion to make the character jiggle harder, play a breaking sound, remove the handcuffs and spawn the broken version at their position -->
+            <StatusEffect type="OnUse" target="This" disabledeltatime="true" forceplaysounds="true">
+              <Conditional timeframe="gte 25" />
+              <Sound file="Content/Sounds/Damage/HitMetal1.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal2.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal3.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal4.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal5.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal6.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Explosion range="100" force="1.5" itemdamage="0.0" structuredamage="0.0" ignorecover="true" ballastfloradamage="0.0" camerashake="1" camerashakerange="100" explosiondamage="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false" playtinnitus="false" />
+              <Remove />
+              <SpawnItem identifier="brokenhandcuffs" spawnposition="This" />
+            </StatusEffect>
+          </Button>
+        </CustomInterface>
+      </Item>]])
+  },
+  -- Fix: Replace "handcuffsspawned" with "handcuffs"
+  ["handcuffsequipped2"] = {
+    mod = "Immersive Handcuffs",
+    xml = XElement.Parse([[
+      <Item nameidentifier="handcuffs" descriptionidentifier="handcuffs" identifier="handcuffsequipped2" category="Equipment" maxstacksize="1" cargocontaineridentifier="metalcrate" tags="smallitem,handcuffs,handlocker,regularcuffs" scale="0.5" impactsoundtag="impact_metal_light" noninteractable="true" hideinmenus="true">
+        <Deconstruct time="1" />
+        <InventoryIcon texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" sourcerect="57,0,52,40" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" sourcerect="57,0,52,40" depth="0.6" origin="0.5,0.5" />
+        <Body width="50" height="34" density="30" />
+        <Wearable slots="LeftHand" msg="ItemMsgPickUpSelect" autoequipwhenfull="true">
+          <sprite texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" limb="RightForearm" sourcerect="117,1,25,16" origin="0.53,-1.3" depth="0.09" inheritlimbdepth="true" inherittexturescale="true" />
+          <sprite texture="%ModDir%/Content/Items/IH-ItemsAtlas.png" limb="LeftForearm" sourcerect="142,1,25,16" origin="0.53,-1.3" depth="0.09" inheritlimbdepth="true" inherittexturescale="true" />
+          <!-- Constantly reduce the timeframe value at different intervals to make it harder to break free -->
+          <StatusEffect type="OnWearing" target="This" timeframe="-1.5" interval="0.5" disabledeltatime="true" />
+          <StatusEffect type="OnWearing" target="This" timeframe="-5" interval="4" disabledeltatime="true" />
+          <!-- Lock the hands of the character wearing the item | disabled since it's done via "handcuffed" affliction
+          <StatusEffect type="OnWearing" target="Character" lockhands="true" setvalue="true" />-->
+          <StatusEffect type="OnWearing" target="Character" statuseffecttags="cuffed" duration="0.1" interval="0.1" />
+          <!-- Remove the item, if the character has the temporary tag "unlocked" gained from the "retrievehandcuffs" affliction -->
+          <StatusEffect type="OnWearing" target="This" condition="0" setvalue="true">
+            <Conditional HasStatusTag="eq unlocked" targetcontainer="true" />
+          </StatusEffect>
+          <StatusEffect type="OnWearing" target="This" oneshot="true" disabledeltatime="true">
+            <Conditional isdead="true" targetcontainer="true" />
+            <SpawnItem identifier="handcuffs" spawnposition="SameInventory" spawnifcantbecontained="true" SpawnIfInventoryFull="true" />
+            <Remove />
+          </StatusEffect>
+          <!-- Had to break the item instead of removing directly as the sound would otherwise refuse to play. I really hate this game sometimes... -->
+          <StatusEffect type="OnBroken" target="This">
+            <Sound file="%ModDir%/Content/Sounds/uncuffing1.ogg" volume="2.5" range="350" loop="false" />
+            <Remove />
+          </StatusEffect>
+          <!-- Remove the item if it was somehow spawned into a container other than the character's inventory -->
+          <StatusEffect type="OnContained" target="This">
+            <Conditional HasTag="eq container" />
+            <Remove />
+          </StatusEffect>
+          <!-- Remove the item if it was somehow spawned outside an inventory -->
+          <StatusEffect type="OnNotContained" target="This">
+            <Remove />
+          </StatusEffect>
+        </Wearable>
+        <!-- GreaterComponent is used for its timeframe value to keep track of progress breaking free -->
+        <!-- By pressing the GUI button, the timeframe value increases and if it reaches a value of 25 or higher, the player will be freed -->
+        <GreaterComponent canbeselected="false" canbepicked="false" allowingameediting="false" timeframe="0" />
+        <CustomInterface canbeselected="false" drawhudwhenequipped="true">
+          <GuiFrame style="ItemUI" absoluteoffset="0,0" anchor="BottomCenter" relativesize="0.12,0.08" />
+          <Button text="interaction.struggletofree">
+            <!-- Increase the timeframe value per button press and create an invisible explosion to jiggle the character a little -->
+            <StatusEffect type="OnUse" target="This" timeframe="1" disabledeltatime="true">
+              <Explosion range="50" force="0.2" itemdamage="0.0" structuredamage="0.0" ignorecover="true" ballastfloradamage="0.0" camerashake="1" camerashakerange="100" explosiondamage="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false" playtinnitus="false" />
+            </StatusEffect>
+            <!-- Play a rattling sound loop if you spam the button -->
+            <StatusEffect type="OnUse" target="This" duration="0.3">
+              <Sound file="%ModDir%/Content/Sounds/cuffrattleloop.ogg" range="400" volume="1" frequencymultiplier="1.5" loop="true" />
+            </StatusEffect>
+            <!-- Apply random amounts of bluntrauma and bleeding to the hands on each button press -->
+            <StatusEffect type="OnUse" target="Character" targetlimbs="LeftHand" disabledeltatime="true">
+              <Affliction identifier="blunttrauma" amount="3" probability="0.1" />
+              <Affliction identifier="blunttrauma" amount="2" probability="0.15" />
+              <Affliction identifier="blunttrauma" amount="1" probability="0.2" />
+              <Affliction identifier="bleeding" amount="1" probability="0.1" />
+            </StatusEffect>
+            <StatusEffect type="OnUse" target="Character" targetlimbs="RightHand" disabledeltatime="true">
+              <Affliction identifier="blunttrauma" amount="3" probability="0.1" />
+              <Affliction identifier="blunttrauma" amount="2" probability="0.15" />
+              <Affliction identifier="blunttrauma" amount="1" probability="0.2" />
+              <Affliction identifier="bleeding" amount="1" probability="0.1" />
+            </StatusEffect>
+            <!-- On button pressed, if the timeframe is at or above 25, remove the handcuffed affliction from the character and play an uncuffing sound -->
+            <StatusEffect type="OnUse" target="This,Character" disabledeltatime="true">
+              <Conditional timeframe="gte 25" />
+              <ReduceAffliction identifier="handcuffed" amount="1000" />
+              <Sound file="%ModDir%/Content/Sounds/uncuffing1.ogg" volume="2.5" range="350" loop="false" />
+            </StatusEffect>
+            <!-- On button pressed, if the timeframe is at or above 25, create a stronger invisible explosion to make the character jiggle harder, play a breaking sound, remove the handcuffs and spawn the broken version at their position -->
+            <StatusEffect type="OnUse" target="This" disabledeltatime="true" forceplaysounds="true">
+              <Conditional timeframe="gte 25" />
+              <Sound file="Content/Sounds/Damage/HitMetal1.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal2.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal3.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal4.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal5.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Sound file="Content/Sounds/Damage/HitMetal6.ogg" volume="1.0" loop="false" range="500" selectionmode="Random" />
+              <Explosion range="100" force="1.5" itemdamage="0.0" structuredamage="0.0" ignorecover="true" ballastfloradamage="0.0" camerashake="1" camerashakerange="100" explosiondamage="0" flames="false" smoke="false" shockwave="false" sparks="false" flash="false" underwaterbubble="false" playtinnitus="false" />
+              <Remove />
+              <SpawnItem identifier="brokenhandcuffs" spawnposition="This" />
+            </StatusEffect>
+          </Button>
+        </CustomInterface>
+      </Item>]])
+  },
+  -- Replace the "handcuff set" item with the actual cuffs, this makes security spawn with the correct cuffs
+  -- Also integrate the stun required patch
+  ["handcuffs"] = {
     mod = "Immersive Handcuffs",
     -- Holdable component is 90% of the item, so just do a full override
     xml = XElement.Parse([[
-    <Item nameidentifier="handcuffs" descriptionidentifier="handcuffs" identifier="handcuffsspawned" category="Equipment" maxstacksize="8" cargocontaineridentifier="metalcrate" tags="smallitem" scale="0.5" impactsoundtag="impact_metal_light" requireaimtouse="false" isshootable="false" useinhealthinterface="true" hideconditionbar="true" noninteractable="false">
-      <Upgrade gameversion="0.10.0.0" scale="0.5" />
-      <PreferredContainer primary="armcab" secondary="secarmcab" />
-      <Price baseprice="30" sold="false" canbespecial="false">
-        <Price storeidentifier="merchantoutpost" minavailable="1" />
-        <Price storeidentifier="merchantcity" multiplier="0.9" minavailable="2" sold="false" />
-        <Price storeidentifier="merchantresearch" sold="false" />
-        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="3" />
-        <Price storeidentifier="merchantmine" sold="false" />
-        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="3" />
-      </Price>
-      <Deconstruct time="5" />
-      <Sprite texture="%ModDir:3321850228%/Content/Items/IH-ItemsAtlas.png" sourcerect="57,0,52,40" depth="0.6" origin="0.5,0.5" />
-      <Body width="48" height="34" density="30" />
-      <!-- original values for meleeweapon: aimable="true" aimpos="0,-50" aimangle="270" -->
-      <Holdable characterusable="false" canBeCombined="false" slots="Any,RightHand+LeftHand" aimable="false" handle1="-7,-3" handle2="7,-3" holdpos="30,-20" holdangle="0" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-        <!-- DISABLE DUE TO ITEM NO LONGER SPAWNING IN THE INVENTORY AFTER UNCUFFING | Make the item interactable as it spawns noninteractable to simulate a cooldown to prevent instantly recuffing a person over and over again to stunlock them. Only executes once per round per handcuff to prevent any performance impact -->
-        <!-- <StatusEffect type="Always" target="This" noninteractable="false" delay="5" setvalue="true" stackable="false" oneshot="true" /> -->
-        <!-- When used via Health Menu on a human without the "handcuffed" affliction, apply an affliction that spawns the equipped version of the handcuffs on the character and apply the "handcuffed" affliction -->
-        <StatusEffect type="OnSuccess" target="This,UseTarget" multiplyafflictionsbymaxvitality="true" comparison="And" delay="0.1" stackable="false" disabledeltatime="true">
-          <Conditional handcuffed="lte 0" />
-          <Conditional IsHuman="eq true" />
-          <Conditional stun="gte 0.5" />
-          <Affliction identifier="stun" amount="0.25" />
-          <Affliction identifier="applyhandcuffs" amount="1" />
-          <Affliction identifier="handcuffed" amount="100" />
-        </StatusEffect>
-        <!-- Play a handcuffing sound | Had to be its own effect as the sounds would otherwise refuse to play... -->
-        <StatusEffect type="OnUse" target="This">
-          <Sound file="%ModDir:3321850228%/Content/Sounds/cuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" />
-          <Sound file="%ModDir:3321850228%/Content/Sounds/cuffing2.ogg" volume="2" range="300" loop="false" selectionmode="random" />
-          <Sound file="%ModDir:3321850228%/Content/Sounds/cuffing3.ogg" volume="2" range="300" loop="false" selectionmode="random" />
-        </StatusEffect>
-        <!-- DISABLED FOR CONSISTENCY WITH THE HANDCUFF KEY | When used as a melee weapon on a human without the "handcuffed" affliction, apply an affliction that spawns the equipped version of the handcuffs on the character and apply the "handcuffed" affliction
-        <Attack targetimpulse="2" severlimbsprobability="0.0" itemdamage="0" structuredamage="0" structuresoundtype="StructureSlash">
-          <StatusEffect type="OnUse" target="UseTarget" multiplyafflictionsbymaxvitality="true" comparison="And" delay="0.1" stackable="false">
+      <Item nameidentifier="handcuffs" descriptionidentifier="handcuffs" identifier="handcuffs" category="Equipment" maxstacksize="8" cargocontaineridentifier="metalcrate" tags="smallitem" scale="0.5" impactsoundtag="impact_metal_light" requireaimtouse="false" isshootable="false" useinhealthinterface="true" hideconditionbar="true" noninteractable="false">
+        <Upgrade gameversion="0.10.0.0" scale="0.5" />
+        <PreferredContainer primary="armcab" secondary="secarmcab" />
+        <Price baseprice="30" sold="false" canbespecial="false">
+          <Price storeidentifier="merchantoutpost" minavailable="1" />
+          <Price storeidentifier="merchantcity" multiplier="0.9" minavailable="2" sold="false" />
+          <Price storeidentifier="merchantresearch" sold="false" />
+          <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="3" />
+          <Price storeidentifier="merchantmine" sold="false" />
+          <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="3" />
+        </Price>
+        <Deconstruct time="5" />
+        <Fabricate suitablefabricators="fabricator" requiredtime="10" amount="2">
+          <RequiredSkill identifier="weapons" level="20" />
+          <RequiredItem identifier="steel" />
+        </Fabricate>
+        <Sprite texture="%ModDir:3321850228%/Content/Items/IH-ItemsAtlas.png" sourcerect="57,0,52,40" depth="0.6" origin="0.5,0.5" />
+        <Body width="48" height="34" density="30" />
+        <!-- original values for meleeweapon: aimable="true" aimpos="0,-50" aimangle="270" -->
+        <Holdable characterusable="false" canBeCombined="false" slots="Any,RightHand+LeftHand" aimable="false" handle1="-7,-3" handle2="7,-3" holdpos="30,-20" holdangle="0" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+          <!-- DISABLED DUE TO ITEM NO LONGER SPAWNING IN THE INVENTORY AFTER UNCUFFING | Make the item interactable as it spawns noninteractable to simulate a cooldown to prevent instantly recuffing a person over and over again to stunlock them. Only executes once per round per handcuff to prevent any performance impact -->
+          <!-- <StatusEffect type="Always" target="This" noninteractable="false" delay="5" setvalue="true" stackable="false" oneshot="true" /> -->
+          <!-- When used via Health Menu on a human without the "handcuffed" affliction, apply an affliction that spawns the equipped version of the handcuffs on the character and apply the "handcuffed" affliction -->
+          <StatusEffect type="OnSuccess" target="This,UseTarget" multiplyafflictionsbymaxvitality="true" comparison="And" delay="0.1" stackable="false" disabledeltatime="true">
             <Conditional handcuffed="lte 0" />
             <Conditional IsHuman="eq true" />
+            <Conditional stun="gte 0.5" />
+            <Affliction identifier="stun" amount="0.25" />
             <Affliction identifier="applyhandcuffs" amount="1" />
             <Affliction identifier="handcuffed" amount="100" />
           </StatusEffect>
-        </Attack> -->
-        <!-- Remove the item when it was used on a valid target -->
-        <StatusEffect type="OnUse" target="This,UseTarget" comparison="And">
-          <Conditional handcuffed="lte 0" />
-          <Conditional IsHuman="eq true" />
-          <Conditional stun="gte 0.5" />
-          <Remove />
-        </StatusEffect>
-      </Holdable>
-    </Item>]])
-  },
-  -- This is the "handcuff set," it replaces vanilla handcuffs
-  -- Should not be used, instead just place handcuffsspawned in the sub editor
-  -- Remove fabrication recipe
-  ["handcuffs"] = {
-    mod = "Immersive Handcuffs",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
+          <!-- Play a handcuffing sound | Had to be its own effect as the sounds would otherwise refuse to play... -->
+          <StatusEffect type="OnUse" target="This">
+            <Sound file="%ModDir:3321850228%/Content/Sounds/cuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+            <Sound file="%ModDir:3321850228%/Content/Sounds/cuffing2.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+            <Sound file="%ModDir:3321850228%/Content/Sounds/cuffing3.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+          </StatusEffect>
+          <!-- DISABLED FOR CONSISTENCY WITH THE HANDCUFF KEY | When used as a melee weapon on a human without the "handcuffed" affliction, apply an affliction that spawns the equipped version of the handcuffs on the character and apply the "handcuffed" affliction
+          <Attack targetimpulse="2" severlimbsprobability="0.0" itemdamage="0" structuredamage="0" structuresoundtype="StructureSlash">
+            <StatusEffect type="OnUse" target="UseTarget" multiplyafflictionsbymaxvitality="true" comparison="And" delay="0.1" stackable="false">
+              <Conditional handcuffed="lte 0" />
+              <Conditional IsHuman="eq true" />
+              <Affliction identifier="applyhandcuffs" amount="1" />
+              <Affliction identifier="handcuffed" amount="100" />
+            </StatusEffect>
+          </Attack> -->
+          <!-- Remove the item when it was used on a valid target -->
+          <StatusEffect type="OnUse" target="This,UseTarget" comparison="And">
+            <Conditional handcuffed="lte 0" />
+            <Conditional IsHuman="eq true" />
+            <Conditional stun="gte 0.5" />
+            <Remove />
+          </StatusEffect>
+        </Holdable>
+      </Item>]])
   },
   -- 1. Change fabricator to weapon fabricator
   -- 2. Reduce amount fabricated to 1
@@ -315,6 +496,43 @@ Auto.XMLChanges = {
           </Fabricate>]])
       },
     },
+  },
+  -- Fix: Replace "handcuffsspawned" with "handcuffs"
+  ["retrievehandcuffs"] = {
+    mod = "Immersive Handcuffs",
+    -- Holdable component is 90% of the item, so just do a full override
+    xml = XElement.Parse([[
+      <Affliction name="" identifier="retrievehandcuffs" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1.0">
+        <!-- DISABLED DUE TO ITEM DUPLICATING | Check if the character is the one uncuffing the other by checking if the character has the "handcuffed" affliction. If the affliction wasn't found, spawn the regular handcuffs item in the character's inventory -->
+        <!-- <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false" interval="0.1">
+          <Conditional handcuffed="lte 0" />
+          <ReduceAffliction identifier="retrievehandcuffs" amount="1000" />
+          <SpawnItem identifier="handcuffsspawned" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" SpawnIfNotInInventory="true" />
+        </StatusEffect> -->
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="released" triggeredEventEntityTag="released" eventTargetTags="released" disabledeltatime="true">
+          <Conditional handcuffed="gt 0" />
+          <TriggerEvent identifier="change_team_on_released" />
+        </StatusEffect>
+        <!-- Check if the character is the one being uncuffed by checking if the character has the "handcuffed" affliction. If the affliction was found, tag the character with the temporary tag "unlocked" and remove the "handcuffed" affliction while playing an uncuffing sound -->
+        <StatusEffect type="OnActive" target="Character" tags="unlocked" duration="0.5" stackable="false" comparison="And">
+          <Conditional handcuffed="gt 0" />
+          <!-- Disabled sound played via affliction because the game is stupid and doesn't play these sounds for other characters in range in MP, but it works in SP... -->
+          <!-- <Sound file="%ModDir:3321850228%/Content/Sounds/uncuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" /> -->
+          <ReduceAffliction identifier="handcuffed" amount="1000" />
+          <ReduceAffliction identifier="retrievehandcuffs" amount="1000" />
+          <!-- Handcuffs need to be spawned at the position of the cuffed character as the original approach of spawning in the uncuffer's inventory allowed for duplicating -->
+          <SpawnItem identifier="handcuffs" spawnposition="This" SpawnIfInventoryFull="true" spawnifcantbecontained="true" SpawnIfNotInInventory="true" />
+        </StatusEffect>
+        <!-- Check if the character is the one being uncuffed by checking if the character has the "handcuffed" affliction. If the affliction was found, apply 4 seconds of stun to the character, but only if the character isn't suffering from a higher stun value already -->
+        <StatusEffect type="OnActive" target="Character" setvalue="true" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" comparison="And">
+          <Conditional handcuffed="gt 0" />
+          <Conditional stun="lte 4" />
+          <Affliction identifier="stun" amount="4" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir:3321850228%/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>]])
   },
   -- Stuff to remove
   ["securitywhistle"] = {
