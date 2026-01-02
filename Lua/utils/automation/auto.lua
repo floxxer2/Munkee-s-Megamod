@@ -1711,7 +1711,7 @@ Auto.XMLChanges = {
     },
   },
   -- Change fabricator to medical fabricator
-  ["eye_laser_tool"] = {
+  ["it_lasersurgerytool"] = {
     mod = "NT Eyes",
     componentOverrides = {
       {
@@ -1719,6 +1719,7 @@ Auto.XMLChanges = {
         override = XElement.Parse([[
           <Fabricate suitablefabricators="medicalfabricator" requiredtime="31">
             <RequiredSkill identifier="medical" level="80" />
+            <RequiredSkill identifier="mechanical" level="45" />
             <RequiredItem identifier="fpgacircuit" />
             <RequiredItem identifier="incendium" />
             <RequiredItem identifier="aluminium" />
