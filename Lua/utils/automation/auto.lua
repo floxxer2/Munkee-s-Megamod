@@ -9444,13 +9444,13 @@ end]]
 }
 
 Auto.ModTable = {
-  [2518816103] = { name = "Barotraumatic", version = "1.0.215" },
+  [2518816103] = { name = "Barotraumatic", version = "1.0.225" },
   [3434409381] = { name = "CC's UAPM [building] Fork", version = "1.0.10" },
   [3368559590] = { name = "Chimera Remake", version = "1.7" },
   [2807566753] = { name = "Dont Open Debug Console On Errors", version = "1.0.5" },
-  [3434408187] = { name = "EK Forked", version = "1.2.145" },
-  [2764968387] = { name = "Enhanced Armaments", version = "1.15" },
-  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.2" },
+  [3434408187] = { name = "EK Forked", version = "1.2.146" },
+  [2764968387] = { name = "Enhanced Armaments", version = "1.17" },
+  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.5" },
   [2968896556] = { name = "Enhanced Immersion", version = "1.0.24" },
   [3045796581] = { name = "Enhanced Reactors", version = "1.0.35" },
   [2829557108] = { name = "Extract It!", version = "2.0.1" },
@@ -9461,7 +9461,7 @@ Auto.ModTable = {
   [3074045632] = { name = "Immersive Diving Gear", version = "1.0.19" },
   [3321850228] = { name = "Immersive Handcuffs", version = "1.0.10" },
   [3217556378] = { name = "Immersive Ignitables", version = "1.0.11" },
-  [3231351969] = { name = "Immersive Ignitables Expansion Pack", version = "1.9.6" },
+  [3231351969] = { name = "Immersive Ignitables Expansion Pack", version = "1.9.7" },
   [3114087512] = { name = "Immersive Repairs", version = "1.0.35" },
   [3172965454] = { name = "Immersive Sonar UI - A Real Sonar Add-On", version = "1.0.4" },
   [3005836987] = { name = "Improved  Stun", version = "5.6" },
