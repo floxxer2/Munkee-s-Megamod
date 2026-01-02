@@ -9152,10 +9152,14 @@ Auto.LuaChanges = {
 			local rightHandItem = HF.GetItemInRightHand(c.character)
 			if handcuffed then
 				-- drop non-handcuff items
-				if leftHandItem ~= nil and tostring(leftHandItem.Prefab.Identifier) ~= "handcuffsequipped" then
+				if leftHandItem ~= nil
+				and tostring(leftHandItem.Prefab.Identifier) ~= "handcuffsequipped"
+				and tostring(rightHandItem.Prefab.Identifier) ~= "handcuffsequipped2" then
 					leftHandItem.Drop(c.character)
 				end
-				if rightHandItem ~= nil and tostring(rightHandItem.Prefab.Identifier) ~= "handcuffsequipped" then
+				if rightHandItem ~= nil
+				and tostring(rightHandItem.Prefab.Identifier) ~= "handcuffsequipped"
+				and tostring(rightHandItem.Prefab.Identifier) ~= "handcuffsequipped2" then
 					rightHandItem.Drop(c.character)
 				end
 				if leftHandItem == nil and rightHandItem == nil then
@@ -9165,10 +9169,14 @@ Auto.LuaChanges = {
 					end)
 				end
 			else -- FAILSAFE: drop handcuffs if no "handcuffed" affliction
-				if leftHandItem ~= nil and tostring(leftHandItem.Prefab.Identifier) == "handcuffsequipped" then
+				if leftHandItem ~= nil
+				and (tostring(leftHandItem.Prefab.Identifier) == "handcuffsequipped"
+				or tostring(leftHandItem.Prefab.Identifier) == "handcuffsequipped2") then
 					leftHandItem.Drop(c.character)
 				end
-				if rightHandItem ~= nil and tostring(rightHandItem.Prefab.Identifier) == "handcuffsequipped" then
+				if rightHandItem ~= nil
+				and (tostring(rightHandItem.Prefab.Identifier) == "handcuffsequipped"
+				or tostring(rightHandItem.Prefab.Identifier) == "handcuffsequipped2") then
 					rightHandItem.Drop(c.character)
 				end
 			end
@@ -9192,6 +9200,7 @@ Auto.LuaChanges = {
 
 			c.afflictions[i].strength = HF.BoolToNum((c.stats.lockleftarm and c.stats.lockrightarm) or handcuffed, 100)
 		end,
+	},
 	},]]
       },
       {
