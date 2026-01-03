@@ -375,9 +375,9 @@ end
 
 function cloning.SetHypomaxim(hypomaxim, client)
     if not client then return end
-    if not hypomaxim then return false end
-    local char =  client.Character
-    if not char then return false end
+    if not hypomaxim then return end
+    local char = client.Character
+    if not char then return end
     cloning.InitHypomaxim(hypomaxim)
     cloning.Hypomaxims[hypomaxim][1] = client
     cloning.Hypomaxims[hypomaxim][2] = char.DisplayName
