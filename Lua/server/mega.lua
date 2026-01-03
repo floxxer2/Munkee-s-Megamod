@@ -185,6 +185,7 @@ function Megamod.SendChatMessage(client, text, color)
     Game.SendDirectChatMessage(chatMessage, client)
 end
 
+-- This can crash the server if used improperly
 function Megamod.CreateEntityEvent(entity, originalEntity, propID, value)
     entity[propID] = value
     local prop = entity.SerializableProperties[Identifier(propID)]
