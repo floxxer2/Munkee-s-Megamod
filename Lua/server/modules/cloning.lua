@@ -264,6 +264,9 @@ end
 cloning.Tick()
 
 function cloning.StartProcess(client, machine, infoTbl)
+    if cloning.ActiveProcess
+    or Megamod.EventManager.GetEventActive("Hunt")
+    then return end
     local c = machine.GetComponentString('LightComponent')
     local powered = c.Voltage >= c.MinVoltage
     if not powered then return end
