@@ -362,8 +362,6 @@ Hook.Add("mm.cloningstop", "Megamod.Cloning.CloningStop", function(effect, delta
         local hypomaxim = item.OwnInventory.GetItemAt(6)
         if hypomaxim then
             Megamod.CreateEntityEvent(hypomaxim, hypomaxim, "NonInteractable", false)
-        else
-            Megamod.Error("Self clone was enabled, but hypomaxim not found in cloning machine.")
         end
     end
 end)
