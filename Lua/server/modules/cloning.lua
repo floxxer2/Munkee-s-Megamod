@@ -353,7 +353,8 @@ Hook.Add("mm.cloningstop", "Megamod.Cloning.CloningStop", function(effect, delta
     if cloning.ActiveProcess then
         cloning.ToggleMachineActive(false, cloning.ActiveProcess[4], true)
         cloning.StopClone(true, "failure", true)
-    elseif cloning.SelfClone then
+    end
+    if cloning.SelfClone then
         cloning.SelfClone = nil
         local hypomaxim = item.OwnInventory.GetItemAt(6)
         if hypomaxim then
