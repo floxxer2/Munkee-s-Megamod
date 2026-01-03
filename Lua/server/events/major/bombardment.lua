@@ -63,7 +63,7 @@ function event.Start()
     end
 
     local shellPrefab = ItemPrefab.GetItemPrefab("railgunshell")
-    local c4Prefab = ItemPrefab.GetItemPrefab("c4block")
+    --local c4Prefab = ItemPrefab.GetItemPrefab("c4block")
 
     local volleyTimer = coroutine.create(function(self)
         ::restart::
@@ -73,8 +73,8 @@ function event.Start()
         for i = 1, amountShellsInVolley do
             Timer.Wait(function()
                 Entity.Spawner.AddItemToSpawnQueue(shellPrefab, spawnPoint, nil, nil, function(shell)
-                    -- Give the shell a c4 payload
-                    Entity.Spawner.AddItemToSpawnQueue(c4Prefab, shell.OwnInventory, nil, nil, function() end)
+                    -- Give the shell a c4 payload (DISABLED)
+                    --Entity.Spawner.AddItemToSpawnQueue(c4Prefab, shell.OwnInventory, nil, nil, function() end)
                     local c = shell.GetComponentString("Projectile")
                     c.Shoot(nil, shell.SimPosition, shell.SimPosition, rotation + math.rad(math.random(-5, 5)), {}, true, 1, 10000)
                 end)
