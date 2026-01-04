@@ -984,7 +984,7 @@ do
 
     -- Get the timer reduction from the credit value of the objective
     local function creditTimer(creditValue)
-        return creditValue * 50
+        return (creditValue + 1) * 50
     end
 
     local function completeObj(self, traitor)
