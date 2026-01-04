@@ -205,7 +205,7 @@ if SERVER then
     -- hypomaxims, as that relies on the body still being there
     Hook.Add("character.death", "Megamod.CharacterDeath", function(character)
         -- Only happens during serious rounds
-        if not character or character.IsHuman or not Util.FindClientCharacter(character) or Megamod.RuleSetManager.RoundType ~= 1 then return end
+        if not character or not character.IsHuman or not Util.FindClientCharacter(character) or Megamod.RuleSetManager.RoundType ~= 1 then return end
         character.EnableDespawn = false
     end)
 
