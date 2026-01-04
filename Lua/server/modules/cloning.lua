@@ -4,13 +4,14 @@ local BASE_COST_MULTIPLIER = 1
 
 local BASE_CLONING_DURATION = 60 -- 1 minute
 local BASE_RM_COST = 10
-local COST_INCREASE_PER_CLONE = 0
+--local COST_MULT_PER_CLONE = 0
+local COST_MULT_SELF_CLONE = 2
 local BASE_RM_RATE = BASE_RM_COST / BASE_CLONING_DURATION
 
 cloning.CloningCostMultiplier = BASE_COST_MULTIPLIER
 cloning.CloningDuration = BASE_CLONING_DURATION -- Always same as base atm but it's set up to be able to be changed
 -- cloning.BaseRMCost = BASE_RM_COST -- Unused
-cloning.CostIncreasePerClone = COST_INCREASE_PER_CLONE
+--cloning.CostIncreasePerClone = COST_MULT_PER_CLONE
 cloning.RMRate = BASE_RM_RATE
 
 -- The current cloning process
@@ -23,13 +24,42 @@ cloning.SelfClone = nil
 -- Hypomaxim devices
 cloning.Hypomaxims = {}
 
+-- Keeps track of the last human body controlled by each client
+-- Used in case someone leaves after dying
+--[[cloning.BodyClients = {}
+
+Hook.Add("character.death", "Megamod.Cloning.CharacterDeath", function(character)
+    if not character or not character.IsHuman then return end
+    local client = Util.FindClientCharacter(character)
+    local removePos = {}
+    for k, tbl in pairs(cloning.BodyClients) do
+        if (client and tbl[1] == client)
+        or tbl[2] == character then
+            table.insert(removePos, k)
+        end
+    end
+    for k in removePos do
+        table.remove(cloning.BodyClients, k)
+    end
+    table.insert(cloning.BodyClients, { client, character })
+    for tbl in cloning.BodyClients do
+        print(tbl[1].Name .. " - " .. tostring(character)) -- #DEBUG#
+    end
+end)]]
+
 function cloning.Reset()
     cloning.CloningCostMultiplier = BASE_COST_MULTIPLIER
     cloning.CloningDuration = BASE_CLONING_DURATION
     cloning.RMRate = BASE_RM_RATE
     cloning.ActiveProcess = nil
     cloning.Hypomaxims = {}
+    --cloning.BodyClients = {}
     cloning.SelfClone = nil
+end
+
+function cloning.SetRMMult(mult)
+    cloning.CloningCostMultiplier = mult
+    cloning.RMRate = BASE_RM_RATE * cloning.CloningCostMultiplier
 end
 
 function cloning.ToggleMachineActive(bool, machine, reset)
@@ -44,7 +74,7 @@ function cloning.ToggleMachineActive(bool, machine, reset)
             machine.SendSignal("Idle", "status_out")
             machine.SendSignal("n/a", "clonee_out")
             machine.SendSignal("n/a", "time_out")
-            machine.SendSignal("RM: " .. tostring(BASE_RM_COST * cloning.CloningCostMultiplier), "riftcost_out")
+            machine.SendSignal("n/a", "riftcost_out")
         end
     end
     Megamod.CreateEntityEvent(c, machine, "PowerConsumption", consumption)
@@ -63,7 +93,10 @@ end
 ---@param sendMessage boolean
 -- true = successful, false = unsuccessful
 function cloning.StopClone(sendMessage, buzzerType, refund)
-    if cloning.SelfClone then cloning.SelfClone = nil end
+    cloning.SetRMMult(BASE_COST_MULTIPLIER)
+    if cloning.SelfClone then
+        cloning.SelfClone = nil
+    end
     if not buzzerType then buzzerType = false end
     if not sendMessage then sendMessage = false end
     if refund then
@@ -79,6 +112,14 @@ function cloning.StopClone(sendMessage, buzzerType, refund)
     cloning.ActiveProcess = nil
 end
 
+local function getStatusText()
+    if cloning.SelfClone then
+        return "Active (S)"
+    else
+        return "Active"
+    end
+end
+
 function cloning.Tick()
     Timer.Wait(function()
         if not Game.RoundStarted or not cloning.ActiveProcess then return cloning.Tick() end
@@ -88,7 +129,7 @@ function cloning.Tick()
         if (cloning.ActiveProcess[1] and not Megamod.CheckIsSpectating(cloning.ActiveProcess[1]))
         or Megamod.EventManager.GetEventActive("Hunt") -- Don't clone during Hunts
         then
-            cloning.ToggleMachineActive(false, cloning.ActiveProcess[4])
+            cloning.ToggleMachineActive(false, cloning.ActiveProcess[4], true)
             cloning.StopClone(true, "failure", true)
             return cloning.Tick()
         end
@@ -131,7 +172,7 @@ function cloning.Tick()
                 if cloning.ActiveProcess[1] then
                     Megamod.SendChatMessage(cloning.ActiveProcess[1], "Cloning has resumed.", Color(255, 0, 255, 255))
                 end
-                cloning.ActiveProcess[4].SendSignal("Active", "status_out")
+                cloning.ActiveProcess[4].SendSignal(getStatusText(), "status_out")
             end
             -- Initial beep on process start
             if cloning.ActiveProcess[2] == cloning.CloningDuration then
@@ -204,8 +245,8 @@ function cloning.Tick()
             end
 
             -- This increases the amount of rift material used for the next cloning process
-            cloning.CloningCostMultiplier = cloning.CloningCostMultiplier + cloning.CostIncreasePerClone
-            cloning.RMRate = BASE_RM_RATE * cloning.CloningCostMultiplier
+            --[[cloning.CloningCostMultiplier = cloning.CloningCostMultiplier + cloning.CostIncreasePerClone
+            cloning.RMRate = BASE_RM_RATE * cloning.CloningCostMultiplier]]
 
             if cloning.ActiveProcess[1] then -- Players
                 local pos = cloning.ActiveProcess[4].WorldPosition
@@ -280,6 +321,9 @@ function cloning.StartProcess(client, machine, infoTbl)
         [7] = 0, -- Amount of rift material used
         [8] = infoTbl, -- Table for data about how we should respawn the person
     }
+    if cloning.SelfClone then
+        cloning.SetRMMult(COST_MULT_SELF_CLONE)
+    end
     cloning.ActiveProcess = tbl
     if client then
         Megamod.SendChatMessage(client, "A cloning machine is reviving you.\nUse the command !clone to check your progress.", Color(255, 0, 255, 255))
@@ -287,7 +331,7 @@ function cloning.StartProcess(client, machine, infoTbl)
     else
         cloning.ActiveProcess[4].SendSignal("_SLEEVE_", "clonee_out")
     end
-    cloning.ActiveProcess[4].SendSignal("Active", "status_out")
+    cloning.ActiveProcess[4].SendSignal(getStatusText(), "status_out")
 end
 
 local lastSelfCloningMsgTime = 0

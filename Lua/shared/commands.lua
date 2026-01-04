@@ -176,22 +176,22 @@ cmds.AddCommand("generic", { "clone", "cloning" }, function(sender, argument)
         Megamod.SendChatMessage(sender, "You must be dead.", Color(255, 0, 255, 255))
         return
     end
-    local machine = Megamod.Cloning.SelfClone
+    local cloning = Megamod.Cloning
+    local machine = cloning.SelfClone
     if machine then
         local hypomaxim = machine.OwnInventory.GetItemAt(6)
         if hypomaxim then
-            Megamod.Cloning.SetHypomaxim(hypomaxim, sender)
-            -- This is the same as someone pressing the "start" button on a cloning machine
-            Hook.Call("mm.cloningstart", nil, nil, Megamod.Cloning.SelfClone)
-            -- Client gets notified by the cloning code
+            cloning.SetHypomaxim(hypomaxim, sender)
+            cloning.StartProcess(sender, machine, cloning.Hypomaxims[hypomaxim][4])
+            Entity.Spawner.AddItemToRemoveQueue(hypomaxim)
             return
         else
             Megamod.Error("!clone was used to self-clone, but there was no hypomaxim.")
             -- Don't return
         end
     end
-    if Megamod.Cloning.ActiveProcess and Megamod.Cloning.ActiveProcess[1] == sender then
-        Megamod.SendChatMessage(sender, tostring(Megamod.Cloning.ActiveProcess[2]) .. " seconds remaining.", Color(255, 0, 255, 255))
+    if cloning.ActiveProcess and cloning.ActiveProcess[1] == sender then
+        Megamod.SendChatMessage(sender, tostring(cloning.ActiveProcess[2]) .. " seconds remaining.", Color(255, 0, 255, 255))
     else
         Megamod.SendChatMessage(sender, "You are not being cloned, and self-cloning is currently unavailable.", Color(255, 0, 255, 255))
     end
