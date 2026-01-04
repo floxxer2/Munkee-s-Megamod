@@ -991,7 +991,7 @@ do
         Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
         rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
         rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-        rs.SelectedPlayers[traitor][2][7] = math.random(90, 150) -- Cooldown of 1.5-2.5 minutes till you can get another objective
+        rs.SelectedPlayers[traitor][2][7] = math.random(30, 60) -- Cooldown of 30-60 seconds till you can get another objective
         rs.SelectedPlayers[traitor][2][8] = false
         rs.SelectedPlayers[traitor][2][3] = nil
         local prefab = ItemPrefab.GetItemPrefab("mm_dime")
