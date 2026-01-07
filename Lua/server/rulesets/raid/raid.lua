@@ -69,9 +69,12 @@ function rs.TryStartRaid()
 
     -- // Chance to start the raid //
 
-    local chance = (rs.Strength / 5) * (raiderAmount / #availablePlayers)
-    if math.random() >= chance then
-        return false
+    -- Always start the raid on strength 10
+    if rs.Strength < 10 then
+        local chance = (rs.Strength / 5) * (raiderAmount / #availablePlayers)
+        if math.random() >= chance then
+            return false
+        end
     end
 
     -- Reset messaged in case an admin re-drafts this ruleset midround
