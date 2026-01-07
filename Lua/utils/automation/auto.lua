@@ -438,7 +438,7 @@ Auto.XMLChanges = {
           <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="3" />
         </Price>
         <Deconstruct time="5" />
-        <Fabricate suitablefabricators="fabricator" requiredtime="10" amount="2">
+        <Fabricate suitablefabricators="weaponfabricator" requiredtime="10" amount="2">
           <RequiredSkill identifier="weapons" level="20" />
           <RequiredItem identifier="steel" />
         </Fabricate>
