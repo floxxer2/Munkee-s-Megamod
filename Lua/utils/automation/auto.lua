@@ -7683,6 +7683,11 @@ Auto.XMLChanges = {
       },
     },
   },
+  -- Remove (for now)
+  ["longrangejammer"] = {
+    mod = "EK Forked",
+    xml = ""
+  },
   -- Replace sound with Enhanced Immersion's version
   ["ekdockyard_glassdoor"] = {
     mod = "EK Forked",
