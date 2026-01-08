@@ -277,17 +277,72 @@ do
                     return true, "" -- success
                 end
             },
-            --[[["poison box"] = { -- #TODO#
+            ["cyanide"] = {
                 type = "item",
-                cost = 5,
-                stock = 1,
-                desc = "Some random poisons in a crate.",
+                cost = 4,
+                stock = 3,
+                desc = "Kills fast, but it's very obvious.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("metalcrate")
+                    local prefab = ItemPrefab.GetItemPrefab("cyanide")
                     Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
                     return true, "" -- success
                 end
-            },]]
+            },
+            ["morbusine"] = {
+                type = "item",
+                cost = 3,
+                stock = 3,
+                desc = "It's not really meant for humans.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("morbusine")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },
+            ["sufforin"] = {
+                type = "item",
+                cost = 4,
+                stock = 3,
+                desc = "Sneakier than the others.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("sufforin")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },
+            ["radiotoxin"] = {
+                type = "item",
+                cost = 4,
+                stock = 3,
+                desc = "Very deadly.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("radiotoxin")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },
+            ["paralyzant"] = {
+                type = "item",
+                cost = 4,
+                stock = 3,
+                desc = "What are you plotting?",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("paralyzant")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },
+            ["huskeggs"] = {
+                type = "item",
+                cost = 4,
+                stock = 3,
+                desc = "I enjoy these little guys. Maybe not so much for you.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("huskeggs")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },
             ["dime locator"] = {
                 type = "upgrade",
                 cost = 1,
