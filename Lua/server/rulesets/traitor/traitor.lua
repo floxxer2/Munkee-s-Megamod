@@ -213,7 +213,7 @@ do
             },
             ["revolver"] = {
                 type = "item",
-                cost = 5,
+                cost = 7,
                 stock = 1,
                 desc = "A .357 revolver, with 16 shots.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
