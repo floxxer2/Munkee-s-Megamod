@@ -45,7 +45,7 @@ rs.RoleMessage =
 
 -- Uplinks
 do
-    local BASE_DIME_AMOUNT = 2
+    local BASE_DIME_AMOUNT = 10
 
     local SHOP_BASE = {
         [{ "medicaldoctor", "surgeon" }] = {
