@@ -7683,7 +7683,7 @@ Auto.XMLChanges = {
       },
     },
   },
-  -- Remove (for now)
+  -- Remove (for now) #TODO#
   ["longrangejammer"] = {
     mod = "EK Forked",
     xml = ""
