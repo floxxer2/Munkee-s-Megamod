@@ -347,7 +347,7 @@ do
                     return true, "" -- success
                 end
             },
-            ["huskeggs"] = {
+            ["calyx extract"] = {
                 type = "item",
                 cost = 4,
                 stock = 3,
