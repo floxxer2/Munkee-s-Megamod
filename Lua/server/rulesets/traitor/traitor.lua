@@ -211,6 +211,21 @@ do
                     return true, "" -- success
                 end
             },
+            ["revolver"] = {
+                type = "item",
+                cost = 5,
+                stock = 1,
+                desc = "A .357 revolver, with 16 shots.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("scp_r8")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    local prefab = ItemPrefab.GetItemPrefab("scp_357round")
+                    for i = 1, 16 do
+                        Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    end
+                    return true, "" -- success
+                end
+            },
             ["contraband shiv"] = {
                 type = "item",
                 cost = 2,
