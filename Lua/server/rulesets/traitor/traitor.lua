@@ -167,17 +167,6 @@ do
                     return true, "" -- success
                 end
             },
-            ["molotov"] = {
-                type = "item",
-                cost = 2,
-                stock = 5,
-                desc = "A spicy cocktail.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("molotovcoctail")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
             ["blindfold"] = {
                 type = "item",
                 cost = 1,
@@ -262,6 +251,17 @@ do
                 desc = "Hide your tools.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("scp_contrabandcontainer")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },
+            ["molotov"] = {
+                type = "item",
+                cost = 2,
+                stock = 5,
+                desc = "A spicy cocktail.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("molotovcoctail")
                     Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
                     return true, "" -- success
                 end
