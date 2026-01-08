@@ -277,6 +277,17 @@ do
                     return true, "" -- success
                 end
             },
+            --[[["poison box"] = { -- #TODO#
+                type = "item",
+                cost = 5,
+                stock = 1,
+                desc = "Some random poisons in a crate.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("metalcrate")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },]]
             ["dime locator"] = {
                 type = "upgrade",
                 cost = 1,
