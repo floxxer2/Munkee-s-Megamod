@@ -87,7 +87,7 @@ do
             ["stun prod"] = {
                 type = "item",
                 cost = 4,
-                stock = 3,
+                stock = 2,
                 desc = "Old stun batons supercharged when fueled with dimes.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("mm_stunprod")
@@ -98,7 +98,7 @@ do
             ["contraband welder"] = {
                 type = "item",
                 cost = 4,
-                stock = 4,
+                stock = 2,
                 desc = "It won't give *you* eye damage.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("scp_contrawelder")
@@ -115,7 +115,7 @@ do
             ["radio jammer"] = {
                 type = "item",
                 cost = 3,
-                stock = 10,
+                stock = 2,
                 desc = "It's on the tin.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("radiojammer")
@@ -126,7 +126,7 @@ do
             ["zip ties"] = {
                 type = "item",
                 cost = 1,
-                stock = 10,
+                stock = 3,
                 desc = "A traitor's handcuffs.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("stasky")
@@ -137,7 +137,7 @@ do
             ["plastic bag"] = {
                 type = "item",
                 cost = 1,
-                stock = 10,
+                stock = 3,
                 desc = "The most effective weapon.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("plasticbag")
@@ -170,7 +170,7 @@ do
             ["blindfold"] = {
                 type = "item",
                 cost = 1,
-                stock = 10,
+                stock = 3,
                 desc = "It blinds. And folds.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("blindfold")
@@ -181,7 +181,7 @@ do
             ["muzzle"] = {
                 type = "item",
                 cost = 1,
-                stock = 10,
+                stock = 3,
                 desc = "It has use.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("muzzle")
@@ -192,7 +192,7 @@ do
             ["alcd"] = {
                 type = "item",
                 cost = 2,
-                stock = 10,
+                stock = 1,
                 desc = "ID card access level copy device.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("emag")
@@ -203,7 +203,7 @@ do
             ["reverse bear trap"] = {
                 type = "item",
                 cost = 2,
-                stock = 5,
+                stock = 3,
                 desc = "I want to play a game.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("reversebeartrap")
@@ -262,7 +262,7 @@ do
             ["contraband container"] = {
                 type = "item",
                 cost = 2,
-                stock = 10,
+                stock = 2,
                 desc = "Hide your tools.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("scp_contrabandcontainer")
@@ -273,7 +273,7 @@ do
             ["molotov"] = {
                 type = "item",
                 cost = 2,
-                stock = 5,
+                stock = 3,
                 desc = "A spicy cocktail.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("molotovcoctail")
