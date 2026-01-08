@@ -270,7 +270,7 @@ do
                 type = "item",
                 cost = 4,
                 stock = 3,
-                desc = "Three frag grenades taped together.",
+                desc = "Three frag grenades taped together. Rather loud.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
                     local prefab = ItemPrefab.GetItemPrefab("sgt_fraggrenadebouquet")
                     Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
