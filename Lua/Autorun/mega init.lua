@@ -30,6 +30,9 @@ Megamod.BlacklistedPlayerMonsters = {
 Megamod.PhysicsBodyTypes = LuaUserData.CreateEnumTable("FarseerPhysics.BodyType")
 Megamod.GameMain = LuaUserData.CreateStatic("Barotrauma.GameMain")
 
+--LuaUserData.RegisterType("Megamod.MegamodShared")
+--Megamod.WaterOverride = LuaUserData.CreateStatic("Megamod.MegamodShared")
+
 if CLIENT then
     Megamod_Client = {}
     ---@type Barotrauma.GameMain
