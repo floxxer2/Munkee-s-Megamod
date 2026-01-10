@@ -292,6 +292,17 @@ do
                     return true, "" -- success
                 end
             },
+            --[[["dart gun"] = {
+                type = "item",
+                cost = 4,
+                stock = 3,
+                desc = "Uses mostly any syringe to synthesize and fire nearly undetectable darts. The gun itself is not as stealthy as the darts.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("cyanide")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },]]
             ["cyanide"] = {
                 type = "item",
                 cost = 4,

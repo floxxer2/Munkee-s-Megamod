@@ -66,6 +66,10 @@ function rs.TryStartRaid()
             table.insert(availablePlayers, client)
         end
     end
+    -- Can't start a raid with 0 raiders
+    if #availablePlayers == 0 then
+        return false
+    end
 
     -- // Chance to start the raid //
 

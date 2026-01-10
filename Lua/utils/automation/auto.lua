@@ -7688,6 +7688,16 @@ Auto.XMLChanges = {
     mod = "EK Forked",
     xml = ""
   },
+  -- Make a traitor item
+  --[[["ek_dartgun"] = {
+    mod = "EK Forked",
+    xml = ""
+  },]]
+  -- Just used as the "dart" for the dartgun,
+  --[[["ek_dart_explosive"] = {
+    mod = "EK Forked",
+    xml = ""
+  },]]
   -- Replace sound with Enhanced Immersion's version
   ["ekdockyard_glassdoor"] = {
     mod = "EK Forked",
@@ -8958,7 +8968,6 @@ Auto.XMLChanges = {
   ["ek_alienrifle_mag"] = { mod = "EK Forked", xml = "" },
   ["ek_alienrifle_round"] = { mod = "EK Forked", xml = "" },
   ["ek_micro_dartgun"] = { mod = "EK Forked", xml = "" },
-  ["ek_dartgun"] = { mod = "EK Forked", xml = "" },
   ["ek_dart_hemostat"] = { mod = "EK Forked", xml = "" },
   ["ek_dart_stabilozine"] = { mod = "EK Forked", xml = "" },
   ["ek_dart_morphine"] = { mod = "EK Forked", xml = "" },
@@ -8977,7 +8986,6 @@ Auto.XMLChanges = {
   ["ek_dart_sufforin"] = { mod = "EK Forked", xml = "" },
   ["ek_dart_paralyzant"] = { mod = "EK Forked", xml = "" },
   ["ek_dart_raptorbane"] = { mod = "EK Forked", xml = "" },
-  ["ek_dart_explosive"] = { mod = "EK Forked", xml = "" },
   ["ek_mini_smg"] = { mod = "EK Forked", xml = "" },
   ["ek_mini_smg_mag"] = { mod = "EK Forked", xml = "" },
   ["ek_mini_smg_round"] = { mod = "EK Forked", xml = "" },
