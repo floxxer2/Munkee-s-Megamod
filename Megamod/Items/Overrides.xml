@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Override>
   <Items>
-    <!-- Removed fabrication recipe-->
+    <!-- Changed fabricator to weapon fabricator -->
     <Item identifier="scope" category="Equipment" Tags="smallitem" cargocontaineridentifier="metalcrate" allowasextracargo="true" scale="0.5" impactsoundtag="impact_metal_light">
       <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="512,384,64,64"/>
       <Sprite texture="Content/Items/Tools/tools.png" sourcerect="80,256,64,16" depth="0.55"/>
@@ -17,12 +17,12 @@
         <Price storeidentifier="merchantmine" multiplier="1.25" sold="false"/>
         <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="2"/>
       </Price>
-      <!--<Fabricate suitablefabricators="fabricator" requiredtime="30">
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="30">
         <RequiredSkill identifier="weapons" level="40"/>
         <RequiredItem identifier="iron"/>
         <RequiredItem identifier="plastic"/>
         <RequiredItem identifier="quartz"/>
-      </Fabricate>-->
+      </Fabricate>-
       <Deconstruct time="10">
         <Item identifier="plastic"/>
         <Item identifier="silicon" amount="2"/>
