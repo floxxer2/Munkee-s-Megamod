@@ -1,4 +1,4 @@
--- "client.lua" is all misc stuff that doesn't deserve its own file
+-- Misc stuff that doesn't deserve its own file
 
 function Megamod_Client.GetSound(file, isStream) return Megamod.GameMain.SoundManager.LoadSound(file, isStream) end
 
