@@ -133,7 +133,6 @@ local function closeButton(parent)
 
 	button.OnClicked = function()
 		GUI.GUI.TogglePauseMenu()
-
 	end
 
 	return button
