@@ -156,10 +156,11 @@ local function draw(ptable)
         if OUTER2 < INNER2 then OUTER2 = INNER2 end
         local inner = Megamod.FunnyMaths(from, line[1], INNER2)
         local outer = Megamod.FunnyMaths(from, line[1], OUTER2)
+        local alpha = math.min(255, math.random(50, 65) * line[6])
         GUI.DrawLine(
                 ptable["spriteBatch"],
                 Megamod.WorldToScreen(inner), Megamod.WorldToScreen(outer),
-                Color(255, 0, 255, math.random(150, 255)),
+                Color(255, 0, 255, alpha),
                 0, 1
             )
     end
