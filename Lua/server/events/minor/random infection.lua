@@ -63,7 +63,9 @@ function event.Start()
     -- Targets must be alive, healthy, and not infected
     local targets = {}
     for client in Client.ClientList do
-        if not Megamod.CheckIsDead(client) and client.Character.Vitality > 75 then
+        if not Megamod.CheckIsDead(client)
+        and client.Character.IsHuman == true
+        and client.Character.Vitality > 75 then
             -- Check for husk infection
             if HF.GetAfflictionStrength(client.Character, "huskinfection", 0) <= 0 then
                 local isInfected = false
