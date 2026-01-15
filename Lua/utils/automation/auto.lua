@@ -9527,7 +9527,6 @@ end]]},
   -- NT Infections
   -- *************
   -- Add a return value in InfectCharacterRandom for the infection picked
-  -- Prevent infections on cyberlimbs
   ["NT Infections/Lua/Scripts/helperfunctions.lua"] = {
     mod = "NT BrainTrans (Beta)",
     replacements = {
