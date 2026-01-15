@@ -9528,7 +9528,7 @@ end]]},
   -- *************
   -- Add a return value in InfectCharacterRandom for the infection picked
   ["NT Infections/Lua/Scripts/helperfunctions.lua"] = {
-    mod = "NT BrainTrans (Beta)",
+    mod = "NT Infections",
     replacements = {
       {
         startline = 293,
@@ -9551,7 +9551,7 @@ end]]
   },
   -- Remove infection if the limb is cyber
   ["NT Infections/Lua/Scripts/humanupdate.lua"] = {
-    mod = "NT BrainTrans (Beta)",
+    mod = "NT Infections",
     replacements = {
       {
         startline = 264,
