@@ -9224,8 +9224,8 @@ Auto.LuaChanges = {
       {
         line = 1963,
         replace = [[
-    HF.SetAffliction(character, "luabotomy", 0.1)
-		return]]
+      HF.SetAffliction(character, "luabotomy", 0.1)
+		  return]]
       },
     }
   },
