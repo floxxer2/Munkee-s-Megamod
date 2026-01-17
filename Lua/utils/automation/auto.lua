@@ -9531,8 +9531,8 @@ end]]},
     mod = "NT Infections",
     replacements = {
       {
-        startline = 293,
-        endline = 302,
+        startLine = 293,
+        endLine = 302,
         replace = [[
 function NTI.InfectCharacterRandom(character, limb)
     if NTI.LimbIsInfected(character, limb) or HF.GetAfflictionStrengthLimb(character, limb, "ntc_cyberlimb") > 0 then
@@ -9554,8 +9554,8 @@ end]]
     mod = "NT Infections",
     replacements = {
       {
-        startline = 264,
-        endline = 291,
+        startLine = 264,
+        endLine = 291,
         replace = [[
     NT.LimbAfflictions.infectionlevel={update=function(c,limbaff,i,type)
         if c.stats.stasis then return end
