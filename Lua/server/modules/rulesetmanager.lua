@@ -275,6 +275,7 @@ function rsm.End()
     rsm.DraftLoopTime = math.random(420, 600) -- 7-10 minutes
     rsm.RoundType = 0
     rsm.ForceDraft = nil
+    rsm.NoFail = false
 end
 Hook.Add("roundEnd", "Megamod.RuleSetManager.RoundEnd", rsm.End)
 
