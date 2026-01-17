@@ -96,37 +96,34 @@ function event.Start()
     local infectionName
     -- Husk
     if infectionChance <= 0.25 then
-        infectionName = "huskinfection"
+        infectionName = "husk infection"
         limbName = char.AnimController.MainLimb.Name
         HF.SetAffliction(char, infectionName, 1)
     else -- Every regular infection that NT Infections can throw at you
-        local function tryToInfect()
-            local potentialLimbs = {}
-            -- Make sure we don't pick a limb that is already infected
-            for tbl in limbTypes do
-                if not NTI.LimbIsInfected(char, tbl[2]) then
-                    table.insert(potentialLimbs, tbl)
-                end
-            end
-            if #potentialLimbs == 0 then return end
-            local i = math.random(#potentialLimbs)
-            -- This function was overriden to return the picked infection
-            infectionName = NTI.InfectCharacterRandom(char, potentialLimbs[i][2])
-            -- Find the name of the limb for logging
-            for tbl in limbTypes do
-                if tbl[2] == potentialLimbs[i][2] then
-                    limbName = tbl[1]
-                    break
-                end
+        infectionName = "an NTI infection"
+        local potentialLimbs = {}
+        -- Make sure we don't pick a limb that is already infected
+        for tbl in limbTypes do
+            if not NTI.LimbIsInfected(char, tbl[2]) then
+                table.insert(potentialLimbs, tbl)
             end
         end
-        tryToInfect()
+        if #potentialLimbs == 0 then return end
+        local i = math.random(#potentialLimbs)
+        NTI.InfectCharacterRandom(char, potentialLimbs[i][2])
+        -- Find the name of the limb for logging
+        for tbl in limbTypes do
+            if tbl[2] == potentialLimbs[i][2] then
+                limbName = tbl[1]
+                break
+            end
+        end
     end
     if not infectionName or not limbName then
         Megamod.Log("Failed to infect target.", true)
         return
     end
-    Megamod.Log("Infected '" .. tostring(target.Name) .. "' with '" .. infectionName .. "' in their '" .. limbName .. "'", true)
+    Megamod.Log("Infected '" .. tostring(target.Name) .. "' with " .. infectionName .. " in their " .. limbName, true)
 end
 
 ---@param fast boolean
