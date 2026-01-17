@@ -663,7 +663,7 @@ do
                 Megamod.CreateEntityEvent(c, closest, "IsOn", not c.IsOn)
                 Megamod.CreateEntityEvent(c2, exit, "IsOn", not c2.IsOn)
 
-                ownTbl[5] = 120
+                ownTbl[5] = 20
                 local function cooldownLoop()
                     Timer.Wait(function()
                         -- Uplink could be deleted (returned) when on cooldown
