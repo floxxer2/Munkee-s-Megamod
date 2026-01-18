@@ -37,7 +37,7 @@ rs.RoleMessage =
 ">> You are a traitor, given power by the Lender in the form of an uplink.\n" ..
 ">> Type \"!uplink\" to spawn your uplink when you're ready, and don't lose it; you can only use \"!uplink\" once.\n" ..
 ">> Use your uplink to get special gear and communicate with other traitors.\n" ..
-">> Dimensional Leaks will appear in the Deep Vents. Siphon them with your uplink to get more 'dimes,' which are used to buy things in your uplink.\n" ..
+">> There are 'dimes' in your uplink. You use them to buy stuff. There are two ways to get more dimes - complete objectives, or siphon leaks in the Deep Vents.\n" ..
 ">> Your goal is to fulfill the Lender's requests, in the form of objectives.\n" ..
 ">> Objectives are given to you through your uplink; use the command 'obj' in it to receive your next or advance the current one.\n" ..
 ">> Type \"!role obj\" (in chat, not your uplink) to view your current objective, if you have accepted one.\n" ..
