@@ -7683,6 +7683,16 @@ Auto.XMLChanges = {
       },
     },
   },
+  -- Remove fabrication recipe
+  ["ekgunnery_heavyrailgunboardingshell"] = {
+    mod = "EK Forked",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      },
+    },
+  },
   -- Remove (for now) #TODO#
   ["longrangejammer"] = {
     mod = "EK Forked",
