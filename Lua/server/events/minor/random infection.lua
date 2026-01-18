@@ -30,23 +30,7 @@ function event.Check()
     for client in Client.ClientList do
         if not Megamod.CheckIsDead(client) then
             alive = alive + 1
-            local function isInfected()
-                -- Check for husk infection
-                if HF.GetAfflictionStrength(client.Character, "huskinfection", 0) > 0 then
-                    return true
-                end
-                -- Check for NT Infections
-                for i = 1, #NTI.InfInfo do
-                    local inf = NTI.InfInfo[i]
-                    for tbl in limbTypes do
-                        if HF.GetAfflictionStrengthLimb(client.Character, tbl[2], inf[1], nil) > 0 then
-                            return true
-                        end
-                    end
-                end
-                return false
-            end
-            if not isInfected() and client.Character.Vitality > 75 then
+            if client.Character.Vitality > 75 then
                 healthy = healthy + 1
             end
         end
@@ -60,30 +44,24 @@ function event.Start()
         Megamod.Log("No clients to infect. Canceling...", true)
         return
     end
-    -- Targets must be alive, healthy, and not infected
+    -- Targets must be alive and healthy
     local targets = {}
     for client in Client.ClientList do
         if not Megamod.CheckIsDead(client)
         and client.Character.IsHuman == true
         and client.Character.Vitality > 75 then
             -- Check for husk infection
-            if HF.GetAfflictionStrength(client.Character, "huskinfection", 0) <= 0 then
-                local isInfected = false
-                -- Check for NT Infections
-                for i = 1, #NTI.InfInfo do
-                    local inf = NTI.InfInfo[i]
-                    for tbl in limbTypes do
-                        if HF.GetAfflictionStrengthLimb(client.Character, tbl[2], inf[1], nil) > 0 then
-                            isInfected = true
-                            break
-                        end
-                    end
-                end
-                if not isInfected then
-                    table.insert(targets, client)
+            if HF.GetAfflictionStrength(client.Character, "huskinfection", 0) > 0 then
+                goto continue
+            end
+            for tbl in limbTypes do
+                if NTI.LimbIsInfected(client.Character, tbl[2]) then
+                    goto continue
                 end
             end
+            table.insert(targets, client)
         end
+        ::continue::
     end
     if #targets == 0 then
         Megamod.Log("No valid targets found for infection. Canceling...", true)
@@ -98,7 +76,7 @@ function event.Start()
     if infectionChance <= 0.25 then
         infectionName = "husk infection"
         limbName = char.AnimController.MainLimb.Name
-        HF.SetAffliction(char, infectionName, 1)
+        HF.SetAffliction(char, "huskinfection", 1)
     else -- Every regular infection that NT Infections can throw at you
         infectionName = "an NTI infection"
         local potentialLimbs = {}
@@ -108,7 +86,10 @@ function event.Start()
                 table.insert(potentialLimbs, tbl)
             end
         end
-        if #potentialLimbs == 0 then return end
+        if #potentialLimbs == 0 then
+            Megamod.Log("All limbs are already infected.", true)
+            return
+        end
         local i = math.random(#potentialLimbs)
         NTI.InfectCharacterRandom(char, potentialLimbs[i][2])
         -- Find the name of the limb for logging
