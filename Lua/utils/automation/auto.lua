@@ -1897,23 +1897,18 @@ Auto.XMLChanges = {
   -- *******
   -- NT Eyes
   -- *******
-  -- Change fabricator to medical fabricator
-  ["eyespoon"] = {
+  -- Remove fabrication recipe
+  ["it_spoon"] = {
     mod = "NT Eyes",
     componentOverrides = {
       {
         targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="10">
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" />
-            <RequiredItem identifier="carbon" />
-          </Fabricate>]])
+        override = ""
       },
     },
   },
   -- Change fabricator to medical fabricator
-  ["eyeglasses"] = {
+  ["it_glasses"] = {
     mod = "NT Eyes",
     componentOverrides = {
       {
@@ -1923,7 +1918,7 @@ Auto.XMLChanges = {
             <RequiredSkill identifier="mechanical" level="30" />
             <RequiredSkill identifier="medical" level="40" />
             <RequiredItem identifier="plastic" amount="2" />
-            <RequiredItem identifier="steel" amount="2" />
+            <RequiredItem identifier="steel" amount="1" />
           </Fabricate>]])
       },
     },
@@ -1945,36 +1940,19 @@ Auto.XMLChanges = {
       },
     },
   },
-  -- Change fabricator to medical fabricator
-  ["nightgoggles"] = {
+  -- Change fabricator to weapon fabricator
+  ["it_nvg"] = {
     mod = "NT Eyes",
     componentOverrides = {
       {
         targetComponent = "fabricate",
         override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="160">
+          <Fabricate suitablefabricators="fabricator" requiredtime="80">
             <RequiredSkill identifier="electrical" level="35" />
             <RequiredSkill identifier="weapons" level="50" />
             <RequiredItem identifier="fpgacircuit" />
             <RequiredItem identifier="plastic" amount="2" />
-            <RequiredItem identifier="fulgurium" />
             <RequiredItem identifier="phosphorus" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["organscalpel_eyes"] = {
-    mod = "NT Eyes",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" />
-            <RequiredItem identifier="zinc" mincondition="0.5" usecondition="true" />
           </Fabricate>]])
       },
     },
