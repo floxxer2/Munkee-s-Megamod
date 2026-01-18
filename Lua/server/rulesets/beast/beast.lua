@@ -32,7 +32,6 @@ function rs.RoleHelp(client)
 end
 
 function rs.Check()
-    if rs.Strength >= 10 or not Game.RoundStarted then return false end
     -- Can't be drafted if ANY other ruleset has been drafted this round
     for ruleSet in Megamod.RuleSetManager.RuleSets do
         if ruleSet.Strength > 0 or ruleSet.FailReason ~= "" then
