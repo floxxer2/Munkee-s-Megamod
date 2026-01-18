@@ -369,6 +369,17 @@ do
                     return true, "" -- success
                 end
             },
+            ["pale horse"] = {
+                type = "item",
+                cost = 6,
+                stock = 1,
+                desc = "Makes you comparable.",
+                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
+                    local prefab = ItemPrefab.GetItemPrefab("sgt_berserk")
+                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
+                    return true, "" -- success
+                end
+            },
             ["dime locator"] = {
                 type = "upgrade",
                 cost = 1,
