@@ -1654,7 +1654,7 @@
       <RequiredItem identifier="rubber" />
       <RequiredItem identifier="fpgacircuit" />
     </Fabricate>-->
-    <InventoryIcon texture="Content/Items/Weapons/Content/Items/InventoryIconAtlas2.png" sourcerect="512,320,64,64" origin="0.5,0.5" />
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="512,320,64,64" origin="0.5,0.5" />
     <Sprite texture="Content/Items/Weapons/TurretsAndDepthCharges.png" sourcerect="629,0,279,142" depth="0.55" origin="0.5,0.5" />
     <ContainedSprite name="Boarding Pod Contained" allowedcontainertags="depthchargeammosource" texture="TurretsAndDepthCharges.png" sourcerect="489,90,119,95" depth="0.54" origin="0.5,0.5" />
     <Body width="250" height="120" density="30" />
