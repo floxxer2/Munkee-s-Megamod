@@ -1897,6 +1897,33 @@ Auto.XMLChanges = {
   -- *******
   -- NT Eyes
   -- *******
+  -- Add "medical" tag so it can be put in medical containers
+  ["it_organiclens"] = {
+    mod = "NT Eyes",
+    xml = XElement.Parse([[
+      <Item identifier="it_organiclens" aliases="eyelens" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" scale="0.1" useinhealthinterface="True" impactsoundtag="impact_soft" cargocontaineridentifier="mediccrate" impacttolerance="5.5" Tags="smallitem,petfood1,petfood2,petfood3,eyesurgery,surgery,surgerytool,medical">
+        <PreferredContainer secondary="wreckmedcab,abandonedmedcab,piratemedcab" amount="1" spawnprobability="0.05" />
+        <Sprite texture="%ModDir%/Textures/ItemIcons.png" sourcerect="256,896,128,128" depth="0.6" origin="0.5,0.5" />
+        <Body width="14" height="22" density="10" />
+        <Price baseprice="45" soldbydefault="false">
+          <Price storeidentifier="merchantmedical" sold="true" />
+        </Price>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="3">
+          <RequiredSkill identifier="medical" level="40" />
+          <RequiredItem identifier="carbon" />
+        </Fabricate>
+        <Deconstruct time="3" />
+        <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="5,0" handle1="-5,0" holdangle="10" reload="1.0">
+          <RequiredSkill identifier="medical" level="30" />
+          <StatusEffect type="OnUse" target="This">
+            <!-- add custom SFX for this <Sound file="Content/Items/Medical/Syringe.ogg" range="500" /> -->
+          </StatusEffect>
+          <StatusEffect type="OnBroken" target="This">
+            <Remove />
+          </StatusEffect>
+        </MeleeWeapon>
+      </Item>]])
+  },
   -- Remove fabrication recipe
   ["it_spoon"] = {
     mod = "NT Eyes",
