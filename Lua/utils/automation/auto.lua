@@ -3956,6 +3956,16 @@ Auto.XMLChanges = {
   -- *********************
   -- EHA Fuel For The Fire
   -- *********************
+  -- Remove fabrication recipe
+  ["sgt_berserk"] = {
+    mod = "Enhanced Armaments Fuel for the Fire Expansion",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      },
+    },
+  },
   -- Change fabricator to weapon fabricator
   ["sgt_syringeshotgun"] = {
     mod = "Enhanced Armaments Fuel for the Fire Expansion",
