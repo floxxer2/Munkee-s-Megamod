@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Munkee's Megamod" modversion="1.2.6.3" corepackage="False" steamworkshopid="3318261393" gameversion="1.11.5.0">
+<contentpackage name="Munkee's Megamod" modversion="1.2.6.5" corepackage="False" steamworkshopid="3318261393" gameversion="1.11.5.0">
+  <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
+  <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
   <Text file="%ModDir%/Megamod/Text/English.xml" />
   <Sounds file="%ModDir%/Megamod/Sounds/beastsounds.xml" />
@@ -40,7 +42,6 @@
   <Item file="%ModDir%/Workshop/Barotraumatic/Items/Creatureegg/Embyro.xml" />
   <Item file="%ModDir%/Workshop/Barotraumatic/Items/Petitems/creatureitems.xml" />
   <Item file="%ModDir%/Workshop/Barotraumatic/Items/Petitems/peteggs.xml" />
-  <Item file="%ModDir%/Workshop/Barotraumatic/Items/Tools/halloweenitems.xml" />
   <Item file="%ModDir%/Workshop/Barotraumatic/Items/Tools/tools.xml" />
   <Item file="%ModDir%/Workshop/Barotraumatic/Items/ballastinfectionitems.xml" />
   <Item file="%ModDir%/Workshop/Barotraumatic/Items/Tools/humanweapons.xml" />
@@ -172,20 +173,20 @@
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Abyssalthresher/Abyssalthresher.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Endurance/Endurance.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Praywhale/Praywhale.xml" />
-  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Molochmagma/Molochmagma.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Molochthermal/Molochthermal.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Scorpion/Scorpion.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Thalamusk/Thalamusk.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Europanboxcutter/Europanboxcutter.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Cyclopslatcher/Cyclops.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Praywhalemineral/Praywhalemineral.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Praywhalebaby/Praywhalebaby.xml" />
-  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Hammerhead_maneater/Hammerhead_maneater.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Hammerhead_hunter/Hammerhead_hunter.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Hammerhead_swordfish/Hammerhead_swordfish.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Hammerheadmatriarchconcept/Hammerheadmatriarchconcept.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Hammerhead_swordfish/Hammerhead_swordfishexplode.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/GiantTrapper/GiantTrapper.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Deepseaclownnew/Deepseaclownnew.xml" />
-  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Deepseaclownvariant/DeepseaclownnewSaw/DeepseaclownnewSaw.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/DeepseaclownnewSaw/DeepseaclownnewSaw.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Fractalguardianwanderer/Fractalguardianwanderer.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/FractalEnforcer2/FractalEnforcer2.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Mudraptor_veteranold/Mudraptor_veteranold.xml" />
@@ -336,6 +337,15 @@
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Cthulhuadolescent/Cthulhuadolescent.xml" />
   <Afflictions file="%ModDir%/Workshop/Barotraumatic/Characters/Cthulhuadolescent/Cthulhuarmordamage.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Husk_chimera_artifact/Husk_chimera_artifact.xml" />
+  <Text file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/Crooklocalizationenglish.xml" />
+  <Talents file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/Crooktalents.xml" />
+  <Sounds file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/Crooksteps.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/CrookBTC.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/CrookBTCaggressive.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/CrookBTCinside.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/CrookBTCoutside.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Crook/CrookBTCsatisfied.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Humancrookcape/Humancrookcape.xml" />
   <Item file="%ModDir%/Workshop/BrainTrans/dumb_item.xml" />
   <Text file="%ModDir%/Workshop/BrainTrans/russian.xml" />
   <Text file="%ModDir%/Workshop/BrainTrans/english.xml" />
@@ -436,6 +446,7 @@
   <Item file="%ModDir%/Workshop/Enhanced Armaments/Weapons/meleeweapons.xml" />
   <Item file="%ModDir%/Workshop/Enhanced Armaments/Weapons/hightierweapons.xml" />
   <Item file="%ModDir%/Workshop/Enhanced Armaments/Weapons/renegadeweapons.xml" />
+  <Item file="%ModDir%/Workshop/Enhanced Armaments/Weapons/variantweapons.xml" />
   <Item file="%ModDir%/Workshop/Enhanced Armaments/Weapons/misc.xml" />
   <Item file="%ModDir%/Workshop/Enhanced Armaments/Weapons/overrides.xml" />
   <Jobs file="%ModDir%/Workshop/Enhanced Armaments/Jobs/joboverrides.xml" />
@@ -722,7 +733,6 @@
   <Text file="%ModDir%/Workshop/NT Symbiote/Localization/German/German.xml" />
   <Item file="%ModDir%/Workshop/Pile Bunker v2.0/weapons.xml" />
   <Text file="%ModDir%/Workshop/Pile Bunker v2.0/EN_text.xml" />
-  <BeaconStation file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/BeaconStations/PEL_BeaconStation_Dummy.sub" />
   <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/Empty/Empty.xml" />
   <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/AphoticPlateau/AphoticPlateau.xml" />
   <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/ColdCaverns/ColdCaverns.xml" />
@@ -730,6 +740,10 @@
   <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/HydrothermalWastes/HydrothermalWastes.xml" />
   <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/TheGreatSea/TheGreatSea.xml" />
   <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/EndBiome/EndBiome.xml" />
+  <Sounds file="%ModDir%/Workshop/Pure Empty Level/sounds.xml" />
+  <OutpostConfig file="%ModDir%/Workshop/Pure Empty Level/OutpostGenerationParameters.xml" />
+  <OutpostModule file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/BeaconStations/DockableRock.sub" />
+  <BeaconStation file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/BeaconStations/PEL_BeaconStation_Dummy.sub" />
   <Item file="%ModDir%/Workshop/Real Sonar/command.xml" />
   <Item file="%ModDir%/Workshop/Real Sonar/items.xml" />
   <Item file="%ModDir%/Workshop/Real Sonar/treatments.xml" />
@@ -788,6 +802,4 @@
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Misc/misc.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Weapons/weaponsystems.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Medbay/medbay_props.xml" />
-  <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
-  <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
 </contentpackage>
