@@ -243,7 +243,7 @@ if SERVER then
     --NetConfig.OldEventKickTime = 60
     NetConfig.SparseHullUpdateInterval = 5
     NetConfig.HullUpdateInterval = 0.5
-    LuaUserData.MakePropertyAccessible(Descriptors["Barotrauma.Networking.ServerSettings"], "MinimumMidRoundSyncTimeout")
+    --LuaUserData.MakePropertyAccessible(Descriptors["Barotrauma.Networking.ServerSettings"], "MinimumMidRoundSyncTimeout")
     -- set() in MinimumMidRoundSyncTimeout is now privated, must be for good reason
     --[[if Game.ServerSettings and Game.ServerSettings.MinimumMidRoundSyncTimeout == 10 then
         Game.ServerSettings.MinimumMidRoundSyncTimeout = 100
