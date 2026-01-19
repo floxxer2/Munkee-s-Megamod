@@ -220,12 +220,9 @@ if SERVER then
     end)
 
     -- Need to wait for the server to fully start up
-    -- (NOT USEFUL FOR PUBLIC SERVERS DUE TO HOW BARO WORKS)
-    if not Game.ServerSettings.IsPublic then
-        Timer.Wait(function()
-            Game.ExecuteCommand("enablecheats")
-        end, 5000)
-    end
+    Timer.Wait(function()
+        Game.ExecuteCommand("enablecheats")
+    end, 5000)
 
     -- Omniscience table (structured with table.insert()),
     -- clients in this receive Megamod logs in chat
