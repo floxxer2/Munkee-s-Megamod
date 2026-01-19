@@ -141,7 +141,7 @@ function cloning.Tick()
 
             local mats = {}
             for item in cloning.ActiveProcess[4].OwnInventory.FindAllItems() do
-                if item.Prefab.Identifier == "riftmat" then
+                if item.Prefab.Identifier == "riftmat" and item.IsFullCondition then
                     table.insert(mats, item)
                 end
             end
