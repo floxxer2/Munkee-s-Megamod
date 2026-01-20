@@ -7713,16 +7713,16 @@ Auto.XMLChanges = {
     mod = "EK Forked",
     xml = ""
   },
-  -- Make a traitor item
-  --[[["ek_dartgun"] = {
+  -- Turned into a traitor item in the Megamod's TraitorItems
+  ["ek_dartgun"] = {
     mod = "EK Forked",
     xml = ""
-  },]]
-  -- Just used as the "dart" for the dartgun,
-  --[[["ek_dart_explosive"] = {
+  },
+  -- Used as the "dart" for the dartgun in TraitorItems
+  ["ek_dart_explosive"] = {
     mod = "EK Forked",
     xml = ""
-  },]]
+  },
   -- Replace sound with Enhanced Immersion's version
   ["ekdockyard_glassdoor"] = {
     mod = "EK Forked",
