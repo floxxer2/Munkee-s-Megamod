@@ -238,4 +238,53 @@
   <!-- ******** -->
   <!-- All Jobs -->
   <!-- ******** -->
+  <!-- Dart gun -->
+  <Item name="" identifier="mm_dartgun" hideinmenus="true" category="Hidden" cargocontaineridentifier="metalcrate" tags="smallitem,weapon" Scale="0.32" impactsoundtag="impact_metal_light">
+    <Price baseprice="200" sold="false" minleveldifficulty="25" />
+    <Deconstruct time="15">
+      <Item identifier="steel" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/InventoryIcons.png" sourcerect="256,256,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Weapons/Images/weapons_ek.png" sourcerect="0,576,288,112" depth="0.55" />
+    <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Workshop/EK Forked/Items/Items/Weapons/Images/weapons_ek.png" sourcerect="0,576,288,112" depth="0.83" />
+    <Body width="275" height="60" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="50,-5" aimpos="45,0" handle1="-50,-20" handle2="50,5" holdangle="-40" msg="ItemMsgPickUpSelect" />
+    <!-- barrelpos="90,9" holdpos="45,-10" aimpos="40,10" handle1="-30,-15" handle2="50,-5" holdangle="-40" -->
+    <RangedWeapon barrelpos="144,16" spread="4" unskilledspread="8" reload="1.25" combatPriority="50" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <Sound file="%ModDir%/Megamod/Sounds/dartgun.ogg" type="OnUse" range="200" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="5.0" force="0.1" shockwave="false" smoke="false" flames="false" flash="false" sparks="false" underwaterbubble="false" camerashake="1.0" />
+      </StatusEffect>
+      <RequiredItems identifiers="mm_dart" type="Contained" />
+    </RangedWeapon>
+    <ItemContainer autofill="False" capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorslot="0">
+      <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="0,152,120,32" />
+      <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="384,448,64,64" origin="0.5,0.5" />
+      <Containable items="mm_dart,syringe" />
+    </ItemContainer>
+    <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="false">
+      <GuiFrame style="ItemUI" absoluteoffset="200,-100" anchor="BottomCenter" relativesize="0.12,0.12" />
+      <Button text="Synthesize Dart">
+        <StatusEffect type="OnUse" target="This">
+          <LuaHook name="MM.traitoritems.dartsynth" />
+        </StatusEffect>
+      </Button>
+    </CustomInterface>
+  </Item>
+  <Item name="" identifier="mm_dart" dontcleanup="True" category="Hidden" noninteractable="true" hideinmenus="true" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem" Scale="0.32" impactsoundtag="impact_soft" maxstacksize="32" MaxStackSizeHoldableOrWearableInventory="8" maxstacksizecharacterinventory="8">
+    <Deconstruct time="3" />
+    <InventoryIcon texture="%ModDir%/Workshop/EK Forked/Items/InventoryIcons.png" sourcerect="384,320,64,64" />
+    <Sprite texture="%ModDir%/Workshop/EK Forked/Items/Weapons/Images/weapons_ek.png" sourcerect="96,688,64,16" depth="0.55" />
+    <Body width="25" height="15" density="30" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Projectile characterusable="false" hitscan="false" launchimpulse="20" removeonhit="true" sticktocharacters="false" sticktoitems="false" sticktodoors="false">
+      <Attack structuredamage="0" targetforce="0" />
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <LuaHook name="MM.traitoritems.darthit" />
+      </StatusEffect>
+    </Projectile>
+  </Item>
 </Items>

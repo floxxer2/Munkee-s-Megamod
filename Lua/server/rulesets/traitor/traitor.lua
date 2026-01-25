@@ -292,17 +292,17 @@ do
                     return true, "" -- success
                 end
             },
-            --[[["dart gun"] = {
+            ["dart gun"] = {
                 type = "item",
                 cost = 4,
                 stock = 3,
                 desc = "Uses mostly any syringe to synthesize and fire nearly undetectable darts. The gun itself is not as stealthy as the darts.",
                 buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("cyanide")
+                    local prefab = ItemPrefab.GetItemPrefab("mm_dartgun")
                     Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
                     return true, "" -- success
                 end
-            },]]
+            },
             ["cyanide"] = {
                 type = "item",
                 cost = 4,
@@ -973,9 +973,24 @@ do
         local prefab = AfflictionPrefab.Prefabs["huskinfection"]
         local limbType = LimbType.Torso
         local affliction = prefab.Instantiate(1)
-        targetCharacter.CharacterHealth.ApplyAffliction(targetCharacter.AnimController.GetLimb(limbType), affliction,
-            false, false, false)
+        targetCharacter.CharacterHealth.ApplyAffliction(targetCharacter.AnimController.GetLimb(limbType), affliction, false, false, false)
     end)
+    --
+    -- Dart Gun
+    --
+    --[[actionTypes = LuaUserData.CreateEnumTable("Barotrauma.ActionType")
+    Hook.Add("MM.traitoritems.dartsynth", "Megamod.traitoritems.dartsynth", function(effect, deltaTime, item, targets, worldPosition, element)
+        local containedSyringe = item.OwnInventory.GetItemAt(0)
+        if not containedSyringe then return end
+        
+        Entity.Spawner.AddEntityToRemoveQueue(containedSyringe)
+        Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab("mm_dart"), item.OwnInventory, nil, nil, function(dart)
+            print(tostring(dart))
+        end)
+    end)
+    Hook.Add("MM.traitoritems.darthit", "Megamod.traitoritems.darthit", function(effect, deltaTime, item, targets, worldPosition, element)
+       print(tostring(item))
+    end)]]
 end
 
 -- Dimensional leaks
