@@ -396,6 +396,7 @@ end
 function rs.Draft()
     -- Things when the ruleset is first drafted
     if rs.Strength == 1 then
+        Game.ExecuteCommand("enableenemyai")
         local str = "Some hostile Europan fauna has been detected approaching the station. They should retreat if we hold strong."
         local color = Color(255, 200, 50, 255)
         if math.random(1, 100) == 1 or rs.NightmareMode then
