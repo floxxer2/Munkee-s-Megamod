@@ -1304,7 +1304,7 @@ do
             Credit = 7,
             MinStrength = 8,
             DescriptionChat = {
-                "\"%s\" HAS BEEN IN POWER FOR TOO LONG FIX THAT",
+                "\"%s\" HAS BEEN IN POWER FOR TOO LONG  FIX THAT",
                 "REMOVE \"%s\" FROM OFFICE",
                 "TAKE \"%s\" OFF THEIR THRONE",
                 "IMPEACH \"%s\"",
@@ -1383,7 +1383,7 @@ do
             DescriptionChat = {
                 "TAKE \"%s\" TO ME AND I'LL GIVE THEM A HELPING HAND",
                 "\"%s\" LOOKS LIKE A FINE CANDIDATE",
-                "THE TEAM IS FALTERING \"%s\" COULD FIX THAT",
+                "THE TEAM IS FALTERING  \"%s\" COULD FIX THAT",
                 "\"%s\" SEEMS LIKE THEY ARE RESPONSIBLE ENOUGH",
                 "TAKE \"%s\" TO ME AND I'LL DO THE REST",
             },
@@ -1592,10 +1592,10 @@ do
             MinStrength = 0,
             DescriptionChat = {
                 "I NEED %d ESSENCE",
-                "%d ESSENCE THAT'S IT",
+                "%d ESSENCE  THAT'S IT",
                 "I REQUIRE %d ESSENCE FROM YOU",
                 "%d ESSENCE",
-                "ESSENCE %d UNITS",
+                "ESSENCE  %d UNITS",
             },
             DescriptionReal = "(Have %d dime(s) in your hotbar, then use the 'obj' command in your uplink.)",
             Check = function(traitor) -- Always available
@@ -1643,7 +1643,7 @@ do
             },
             DescriptionReal = "(Kill everybody who isn't a traitor. This objective ends the round when completed.)",
             Check = function(traitor) -- n/a
-                
+
             end,
             Assign = function(self, traitor)
                 local target = "n/a"
