@@ -311,6 +311,7 @@ function esc.SpawnPortal()
     local y = portalHull.WorldPosition.Y - (portalHull.RectHeight / 2) + 115
     local prefab = ItemPrefab.GetItemPrefab("mm_escapeportal")
     Entity.Spawner.AddItemToSpawnQueue(prefab, Vector2(x, y))
+    return portalHull
 end
 
 local blackListedItems = {

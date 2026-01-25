@@ -223,7 +223,8 @@ local endRoundTimerActive = false
 function rsm.EndRoundTimer(timer, inputStr)
     if endRoundTimerActive or not Game.RoundStarted then return end
     endRoundTimerActive = true
-    local str = " The round is ending in " .. getTimeToEnd(timer) .. " Escape portal opened somewhere on the station, get out of there!"
+    local hull = Megamod.EscapePortal.SpawnPortal()
+    local str = " The round is ending in " .. getTimeToEnd(timer) .. " Escape portal opened in \"" .. tostring(hull.RoomName) .. "\", get out of there!"
     if inputStr then
         str = inputStr .. str -- Can't have newlines in ServerMessageBoxInGame
     end
@@ -231,7 +232,6 @@ function rsm.EndRoundTimer(timer, inputStr)
         Megamod.SendChatMessage(client, str, Color(255, 0, 255, 255))
         Game.SendDirectChatMessage("", str, nil, ChatMessageType.ServerMessageBoxInGame, client, nil)
     end
-    Megamod.EscapePortal.SpawnPortal()
     local function loop()
         if not Game.RoundStarted then endRoundTimerActive = false return end
         timer = timer - 1
