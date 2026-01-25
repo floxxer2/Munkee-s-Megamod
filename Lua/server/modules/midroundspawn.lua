@@ -11,6 +11,17 @@ function mrs.SpawnPlayer(client)
         Megamod.SendChatMessage(client, "You can't be in the lobby. Join the round first.", Color(255, 0, 255, 255))
         return
     end
+    local hasEscaped = false
+    for escapedClient in Megamod.EscapePortal.Escaped do
+        if escapedClient == client then
+            hasEscaped = true
+            break
+        end
+    end
+    if hasEscaped then
+        Megamod.SendChatMessage(client, "You can't midround spawn right now, because you escaped with the portal.", Color(255, 0, 255, 255))
+        return
+    end
     if Megamod.CheckIsSpectating(client) then
         if not mrs.SpawnedPlayers[client.SteamID] then
             local jobPrefab, jobVariant
