@@ -41,6 +41,10 @@ if CLIENT then
 
     Megamod_Client.AmAntag = false
 
+    LuaUserData.RegisterType("CompleteDarkness.CompleteDarknessMod")
+    ---@type CompleteDarkness.CompleteDarknessMod
+    Megamod_Client.LightMapOverride = LuaUserData.CreateStatic("CompleteDarkness.CompleteDarknessMod")
+
     -- NOTE: Nil return on and near runtime
     ---@return Barotrauma.Networking.Client
     function Megamod_Client.GetSelfClient()

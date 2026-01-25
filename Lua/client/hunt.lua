@@ -1,9 +1,5 @@
 -- Stuff that has to do with (being hunted by) The Beast
 
-LuaUserData.RegisterType("CompleteDarkness.CompleteDarknessMod")
----@type CompleteDarkness.CompleteDarknessMod
-Megamod_Client.LightMapOverride = LuaUserData.CreateStatic("CompleteDarkness.CompleteDarknessMod")
-
 Megamod_Client.HorrorSFXLoaded = Megamod_Client.GetSound(Megamod_Client.Path .. "/Megamod/Sounds/horrorambience.ogg", true)
 Megamod_Client.HorrorSFX = nil
 
