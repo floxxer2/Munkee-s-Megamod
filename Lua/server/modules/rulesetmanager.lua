@@ -25,6 +25,9 @@ rsm.MinSeriousPlayers = 5 -- Min server pop for serious rounds, inclusive
 -- Set by admins, no auto-fail if true
 rsm.NoFail = false
 
+-- Default time to wait (in seconds) before ending the round
+ENDTIMER = 120
+
 -- Rulesets are static tables
 rsm.RuleSets = {}
 -- Populate rsm.RuleSets with all active rulesets
@@ -246,6 +249,15 @@ function rsm.EndRoundTimer(timer, inputStr)
     end
     loop()
 end
+Hook.Add("think", "Megamod.RuleSetManager.Think", function()
+    if not Game.RoundStarted then
+        Megamod.CS_Server.endGame = false
+        return
+    end
+    if Megamod.CS_Server.endGame and not endRoundTimerActive then
+        rsm.EndRoundTimer(ENDTIMER, "")
+    end
+end)
 
 function rsm.End()
     for ruleSet in rsm.RuleSets do

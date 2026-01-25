@@ -366,7 +366,8 @@ cmds.AddCommand("admin", "luacheck", function(sender, argument)
 end)
 
 cmds.AddCommand("admin", "end", function(sender, argument)
-    Megamod.RuleSetManager.EndRoundTimer(120, argument)
+    if not argument then argument = "" end
+    Megamod.RuleSetManager.EndRoundTimer(ENDTIMER, argument)
 end)
 
 -- Admins could just use the control panel to do ruleset stuff, but these are good as backups
