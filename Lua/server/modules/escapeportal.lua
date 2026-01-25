@@ -4,6 +4,9 @@ local esc = {}
 -- have in your inventory, so you can use it in the next round
 esc.SavedLoot = {}
 
+-- Everyone who has escaped this round
+esc.Escaped = {}
+
 local TIMER_START = 15
 local timers = {}
 local antagMessages = {}
@@ -11,6 +14,7 @@ local antagMessages = {}
 Hook.Add("roundEnd", "Megamod.EscapePortal.RoundEnd", function()
     timers = {}
     antagMessages = {}
+    esc.Escaped = {}
 end)
 
 Hook.Add("megamod.escapeportal", "Megamod.EscapePortal.Portal", function(effect, deltaTime, item, targets, worldPosition)
@@ -97,7 +101,12 @@ Hook.Add("megamod.escapeportal", "Megamod.EscapePortal.Portal", function(effect,
             end
 
             table.insert(Megamod.RuleSetManager.ExtraSummary, tostring(client.Name) .. " - Escaped")
-            Megamod.SendChatMessage(client, "You escaped! Use the chat command '!loot' to view what items you can bring with you into the next round.", Color(255, 0, 255, 255))
+            table.insert(esc.Escaped, client)
+            if Megamod.RuleSetManager.RoundType == 1 then
+                Megamod.SendChatMessage(client, "You escaped! Use the chat command '!loot' to view what items you can bring with you into the next round.", Color(255, 0, 255, 255))
+            elseif Megamod.RuleSetManager.RoundType == 2 then
+                Megamod.SendChatMessage(client, "You escaped, but it was a silly round, so none of your gear was saved.", Color(255, 0, 255, 255))
+            end
             client.SetClientCharacter(nil)
 
             -- "Escape"
