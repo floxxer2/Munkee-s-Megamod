@@ -29,8 +29,6 @@ Megamod.BlacklistedPlayerMonsters = {
 -- Static/Dynamic/Kinematic
 Megamod.PhysicsBodyTypes = LuaUserData.CreateEnumTable("FarseerPhysics.BodyType")
 Megamod.GameMain = LuaUserData.CreateStatic("Barotrauma.GameMain")
-LuaUserData.RegisterType("Megamod.MegamodServer")
-Megamod.CS_Server = LuaUserData.CreateStatic("Megamod.MegamodServer")
 
 --LuaUserData.RegisterType("Megamod.MegamodShared")
 --Megamod.WaterOverride = LuaUserData.CreateStatic("Megamod.MegamodShared")
@@ -191,6 +189,9 @@ end, Hook.HookMethodType.Before)
 
 
 if SERVER then
+    LuaUserData.RegisterType("Megamod.MegamodServer")
+    Megamod.CS_Server = LuaUserData.CreateStatic("Megamod.MegamodServer")
+
     -- Add a normal hook "megamod.terminalWrite," called every time something is entered on a terminal component
     -- This was adapted from Traitormod
     Hook.Patch("Megamod.TerminalPatch", "Barotrauma.Items.Components.Terminal", "ServerEventRead", function(instance, ptable)
