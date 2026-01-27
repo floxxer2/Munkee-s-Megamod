@@ -15,6 +15,9 @@ using System.Threading;
 
 using Barotrauma.Networking;
 using FarseerPhysics;
+using System.Numerics;
+
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Megamod
 {
@@ -25,10 +28,10 @@ namespace Megamod
         {
             harmony = new Harmony("mega.mod");
 
-            /*harmony.Patch(
+            harmony.Patch(
               original: typeof(Barotrauma.Ragdoll).GetMethod("UpdateRagdoll"),
               prefix: new HarmonyMethod(typeof(MegamodShared).GetMethod("UpdateRagdoll"))
-            );*/
+            );
         }
         public void OnLoadCompleted() { }
         public void PreInitPatching() { }
@@ -42,10 +45,14 @@ namespace Megamod
         //controlled by Lua
         public static bool ForceInWater = false;
 
-        public static void UpdateRagdoll(float deltaTime, Camera cam, Barotrauma.Ragdoll __instance)
+        public static bool UpdateRagdoll(float deltaTime, Camera cam, Barotrauma.Ragdoll __instance)
         {
             Barotrauma.Ragdoll _ = __instance;
-            if (!_.character.Enabled || _.character.Removed || _.Frozen || _.Invalid || _.Collider == null || _.Collider.Removed) { return; }
+            if (!_.character.Enabled || _.character.Removed || _.Frozen || _.Invalid || _.Collider == null || _.Collider.Removed) { return false; }
+            if (_.character.SpeciesName.ToString() == "Truebeast")
+            {
+                _.Collider.FarseerBody.IgnoreGravity = ForceInWater;
+            }
 
             while (_.impactQueue.Count > 0)
             {
@@ -103,7 +110,7 @@ namespace Megamod
                 _.headInWater = false;
                 _.RefreshFloorY(deltaTime, ignoreStairs: _.Stairs == null);
             }
-            else if (ForceInWater) //added
+            else if (ForceInWater && _.character.SpeciesName.ToString() == "Truebeast") //added
             {
                 _.inWater = true;
                 _.headInWater = true;
@@ -174,7 +181,7 @@ namespace Megamod
                 {
                     limb.InWater = false;
                 }
-                else if (ForceInWater) //added
+                else if (ForceInWater && _.character.SpeciesName.ToString() == "Truebeast") //added
                 {
                     limb.InWater = true;
                     if (limb.type == LimbType.Head) { _.headInWater = true; }
@@ -268,6 +275,7 @@ namespace Megamod
             _.UpdateProjSpecific(deltaTime, cam);
             #endif
             _.forceNotStanding = false;
+            return false;
         }
     }
 }

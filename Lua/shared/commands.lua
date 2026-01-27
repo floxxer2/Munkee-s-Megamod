@@ -418,9 +418,10 @@ cmds.AddCommand("admin", "ruleset-toggle", function(sender, argument)
     Megamod.SendChatMessage(sender, str, Color(255, 0, 255, 255))
 end)
 
---[[cmds.AddCommand("admin", "d", function(sender, argument)
-    
-end)]]
+cmds.AddCommand("admin", "d", function(sender, argument)
+    Megamod.CS_Shared.ForceInWater = not Megamod.CS_Shared.ForceInWater
+    print(tostring(Megamod.CS_Shared.ForceInWater))
+end, true)
 
 --[[cmds.AddCommand("admin", "d-raid", function(sender, argument)
     local char = sender.Character
