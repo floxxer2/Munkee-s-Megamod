@@ -292,7 +292,7 @@ do
                     return true, "" -- success
                 end
             },
-            ["dart gun"] = {
+            --[[["dart gun"] = {
                 type = "item",
                 cost = 4,
                 stock = 3,
@@ -302,7 +302,7 @@ do
                     Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
                     return true, "" -- success
                 end
-            },
+            },]]
             ["cyanide"] = {
                 type = "item",
                 cost = 4,

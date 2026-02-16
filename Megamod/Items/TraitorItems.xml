@@ -239,7 +239,7 @@
   <!-- All Jobs -->
   <!-- ******** -->
   <!-- Dart gun -->
-  <Item name="" identifier="mm_dartgun" hideinmenus="true" category="Hidden" cargocontaineridentifier="metalcrate" tags="smallitem,weapon" Scale="0.32" impactsoundtag="impact_metal_light">
+  <!--<Item name="" identifier="mm_dartgun" hideinmenus="true" category="Hidden" cargocontaineridentifier="metalcrate" tags="smallitem,weapon" Scale="0.32" impactsoundtag="impact_metal_light">
     <Price baseprice="200" sold="false" minleveldifficulty="25" />
     <Deconstruct time="15">
       <Item identifier="steel" />
@@ -250,7 +250,6 @@
     <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Workshop/EK Forked/Items/Items/Weapons/Images/weapons_ek.png" sourcerect="0,576,288,112" depth="0.83" />
     <Body width="275" height="60" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="50,-5" aimpos="45,0" handle1="-50,-20" handle2="50,5" holdangle="-40" msg="ItemMsgPickUpSelect" />
-    <!-- barrelpos="90,9" holdpos="45,-10" aimpos="40,10" handle1="-30,-15" handle2="50,-5" holdangle="-40" -->
     <RangedWeapon barrelpos="144,16" spread="4" unskilledspread="8" reload="1.25" combatPriority="50" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
@@ -286,5 +285,5 @@
         <LuaHook name="MM.traitoritems.darthit" />
       </StatusEffect>
     </Projectile>
-  </Item>
+  </Item>-->
 </Items>
