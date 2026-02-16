@@ -12,13 +12,15 @@ Megamod.Path = path
 Megamod.CertifiedBeasters = {
     ["76561199139073814"] = true, -- munkee
     ["76561198951804184"] = true, -- Hex
-    ["76561198174656237"] = true, -- Pepsi-Cola / Barry Ballast
+    ["76561199598407172"] = true, -- Fish
+    ["76561199887600640"] = true, -- Dr. Bean
 }
 
 -- No need to hide this, vanilla Baro tells everyone who the admins are anyway
 Megamod.Admins = {
     ["76561199139073814"] = true, -- munkee
     ["76561198951804184"] = true, -- Hex
+    ["76561199887600640"] = true, -- Dr. Bean
 }
 
 -- Humans are always blacklisted
