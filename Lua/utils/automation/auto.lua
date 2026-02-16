@@ -9644,55 +9644,71 @@ end]]},
 }
 
 Auto.ModTable = {
-  [2518816103] = { name = "Barotraumatic", version = "1.0.230" },
-  [3434409381] = { name = "CC's UAPM [building] Fork", version = "1.0.10" },
-  [3368559590] = { name = "Chimera Remake", version = "1.7" },
+  -- QOL
   [2807566753] = { name = "Dont Open Debug Console On Errors", version = "1.0.5" },
-  [3434408187] = { name = "EK Forked", version = "1.2.149" },
+  [2701251094] = { name = "Performance Fix", version = "1.0.15" },
+  [3277215877] = { name = "Pickup Notifier", version = "0.3.4" },
+
+  -- Combat
   [2764968387] = { name = "Enhanced Armaments", version = "1.21" },
   [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.9" },
+  [3293221471] = { name = "Pile Bunker v2.0", version = "v2.23" },
+  [3486903116] = { name = "Stun Gun Revamp", version = "1.0.1" },
+  [3005836987] = { name = "Improved Stun", version = "5.6" },
+
+  -- Monsters
+  [2518816103] = { name = "Barotraumatic", version = "1.0.230" },
+  [3368559590] = { name = "Chimera Remake", version = "1.7" },
+
+  -- "Immersive..." / "Enhanced..." | Overhauls or additions of one mechanic
   [2968896556] = { name = "Enhanced Immersion", version = "1.0.24" },
   [3045796581] = { name = "Enhanced Reactors", version = "1.0.35" },
-  [2829557108] = { name = "Extract It!", version = "2.0.1" },
-  [2914415949] = { name = "Husk Church Cathedral Visual Pack", version = "1.0.8" },
+  [3321850228] = { name = "Immersive Handcuffs", version = "1.0.10" },
   [3089776991] = { name = "Immersive Ammunition Boxes", version = "1.0.4" },
   [3239164008] = { name = "Immersive Crates", version = "1.0.6" },
   [3337851889] = { name = "Immersive Crates - Mod Crates Compatibility Patch", version = "1.0.1" },
   [3074045632] = { name = "Immersive Diving Gear", version = "1.0.19" },
-  [3321850228] = { name = "Immersive Handcuffs", version = "1.0.10" },
   [3217556378] = { name = "Immersive Ignitables", version = "1.0.11" },
   [3231351969] = { name = "Immersive Ignitables Expansion Pack", version = "1.9.7" },
   [3114087512] = { name = "Immersive Repairs", version = "1.0.36" },
+
+  -- Sonar
   [3172965454] = { name = "Immersive Sonar UI - A Real Sonar Add-On", version = "1.0.4" },
-  [3005836987] = { name = "Improved  Stun", version = "5.6" },
-  [3355559986] = { name = "Mercy Hospital Updated", version = "1.0.5" },
-  [3190189044] = { name = "Neurotrauma", version = "1.0.24" },
-  [3339841986] = { name = "Normalized Flashlight", version = "1.0.3" },
-  [3429100373] = { name = "NT Bio Printer", version = "1.0.2" },
-  [3400663333] = { name = "BrainTrans", version = "1.0.4" },
-  [3324062208] = { name = "NT Cybernetics Enhanced", version = "1.1.4" },
-  [3294574390] = { name = "NT Eyes", version = "2.1.0h2" },
-  [3286567141] = { name = "NT Infections", version = "1.5.5" },
-  [3326291860] = { name = "NT Lobotomy", version = "1.0.1h4" },
-  [3478084070] = { name = "NT Surgery Plus", version = "1.3.0" },
-  [3478666406] = { name = "NT Symbiote", version = "1.0.0" },
-  [2701251094] = { name = "Performance Fix", version = "1.0.15" },
-  [3277215877] = { name = "Pickup Notifier", version = "0.3.4" },
-  [3293221471] = { name = "Pile Bunker v2.0", version = "v2.23" },
-  [3033618197] = { name = "Pure Empty Level", version = "1.5b" },
   [2936760984] = { name = "Real Sonar", version = "2.1.0" },
-  [2965750397] = { name = "Real Sonar Medical Item Recipes Patch for Neurotrauma", version = "1.4.2" },
-  [2962899782] = { name = "Rift Engine", version = "1.0.32" },
+
+  -- Submarine | Pieces for the sub editor
+  [3434408187] = { name = "EK Forked", version = "1.2.149" }, -- Basically everything removed except sub editor pieces
+  [2914415949] = { name = "Husk Church Cathedral Visual Pack", version = "1.0.8" },
   [2526456135] = { name = "SOFA'S DECO", version = "1.0.2" },
-  [3486903116] = { name = "Stun Gun Revamp", version = "1.0.1" },
-  [3304206956] = { name = "Traitor Alike Items", version = "0.4" },
-  [3437714291] = { name = "Tweaked Glowlers", version = "1.0" },
   [3018824355] = { name = "Verdant Variety", version = "1.3.6" },
   [2161488150] = { name = "Visual Variety Pack", version = "1.0.8" },
-  --[3329396988] = { name = "Network Tweaks", version = "0" } Small enough to just shove it in mega init.lua
-  --[3323344505] = { name = "Immersive Handcuffs - Stun Required Patch", version = "0" } Small enough to just have as an XML override in auto.lua
-  --[2831987252] = { name = "Barotraumatic Creature Pack", version = "1.0.181" }, No longer needed; part of Barotraumatic
-  --[3543916066] = { name = "Ammo Penetrate Corpse", version = "1.0.8" }, Mod is entirely CSharp, so it can't be automated (yet)
+  [3434409381] = { name = "CC's UAPM [building] Fork", version = "1.0.10" },
+
+  -- Level
+  [3033618197] = { name = "Pure Empty Level", version = "1.5b" },
+
+  -- Misc
+  [3304206956] = { name = "Traitor Alike Items", version = "0.4" },
+  [2962899782] = { name = "Rift Engine", version = "1.0.32" },
+  [2829557108] = { name = "Extract It!", version = "2.0.1" },
+  [3339841986] = { name = "Normalized Flashlight", version = "1.0.3" },
+  [3437714291] = { name = "Tweaked Glowlers", version = "1.0" },
+
+  --[[
+  Other mods that are in the Megamod but not downloaded automatically
+
+  Small enough to just shove it in mega init.lua
+  [3329396988] = { name = "Network Tweaks", version = "0" }
+
+  Small enough to just have as an XML override in auto.lua
+  [3323344505] = { name = "Immersive Handcuffs - Stun Required Patch", version = "0" }
+
+  No longer needed; part of Barotraumatic
+  [2831987252] = { name = "Barotraumatic Creature Pack", version = "1.0.181" },
+
+  Mod is entirely CSharp, so it can't be automated (yet)
+  [3543916066] = { name = "Ammo Penetrate Corpse", version = "1.0.8" },
+  ]]
 }
 
 local declaration = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
