@@ -9646,7 +9646,6 @@ end]]},
 Auto.ModTable = {
   -- QOL
   [2807566753] = { name = "Dont Open Debug Console On Errors", version = "1.0.5" },
-  [2701251094] = { name = "Performance Fix", version = "1.0.15" },
   [3277215877] = { name = "Pickup Notifier", version = "0.3.4" },
 
   -- Combat
@@ -9693,6 +9692,8 @@ Auto.ModTable = {
   [2829557108] = { name = "Extract It!", version = "2.0.1" },
   [3339841986] = { name = "Normalized Flashlight", version = "1.0.3" },
   [3437714291] = { name = "Tweaked Glowlers", version = "1.0" },
+
+  --[2701251094] = { name = "Performance Fix", version = "1.0.15" },
 
   --[[
   Other mods that are in the Megamod but not downloaded automatically
@@ -10043,8 +10044,8 @@ function Auto.Finish()
   str = declaration .. tostring(str)
   File.Write(Auto.Path .. "/filelist.xml", str)
 
-  -- PF priority list
-  local str = "\""
+  -- PF priority list (NO LONGER USED)
+  --[[local str = "\""
   for _, identifier in pairs(Auto.PFHighPriorityList) do
     str = str .. identifier .. "\",\""
   end
@@ -10052,7 +10053,7 @@ function Auto.Finish()
   if str ~= "" then
     str = str:sub(1, -2)
     File.Write(Auto.Path .. "/Lua/utils/automation/pf list.txt", str)
-  end
+  end]]
 
   -- Item variants list, whip this out when needed
   --[[local str = ""
