@@ -51,7 +51,7 @@ function event.Start()
         and client.Character.IsHuman == true
         and client.Character.Vitality > 75 then
             -- Check for husk infection
-            if HF.GetAfflictionStrength(client.Character, "huskinfection", 0) > 0 then
+            if Megamod.GetAfflictionStrength(client.Character, "huskinfection", 0) > 0 then
                 goto continue
             end
             for tbl in limbTypes do
@@ -76,7 +76,7 @@ function event.Start()
     if infectionChance <= 0.25 then
         infectionName = "husk infection"
         limbName = char.AnimController.MainLimb.Name
-        HF.SetAffliction(char, "huskinfection", 1)
+        Megamod.SetAffliction(char, "huskinfection", 1)
     else -- Every regular infection that NT Infections can throw at you
         infectionName = "an NTI infection"
         local potentialLimbs = {}

@@ -34,7 +34,7 @@ function event.Loop()
             or (hull.Submarine ~= Submarine.MainSub -- Don't irradiate on the station
             and hull.Submarine ~= Megamod.Map.DeepVents) -- Don't irradiate in the Deep Vents
             then
-                HF.AddAffliction(character, "radiationsickness", 7)
+                Megamod.AddAffliction(character, "radiationsickness", 7)
             end
         end
     end

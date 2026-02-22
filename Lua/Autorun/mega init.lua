@@ -225,7 +225,7 @@ if SERVER then
     Hook.Add("character.applyDamage", "Megamod.CharacterDamage", function(characterHealth, attackResult, hitLimb, allowStacking)
         local char = characterHealth.Character
         char.InvisibleTimer = 0
-        HF.SetAffliction(char, "mm_invis", 0)
+        Megamod.SetAffliction(char, "mm_invis", 0)
     end)
 
     -- Need to wait for the server to fully start up

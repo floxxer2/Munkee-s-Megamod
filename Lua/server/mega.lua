@@ -186,10 +186,10 @@ function Megamod.SendChatMessage(client, text, color)
 end
 
 -- Neurotrauma affliction functions
-function HF.SetAffliction(character, identifier, strength, aggressor, prevstrength)
-	HF.SetAfflictionLimb(character, identifier, LimbType.Torso, strength, aggressor, prevstrength)
+function Megamod.SetAffliction(character, identifier, strength, aggressor, prevstrength)
+	Megamod.SetAfflictionLimb(character, identifier, LimbType.Torso, strength, aggressor, prevstrength)
 end
-function HF.SetAfflictionLimb(character, identifier, limbtype, strength, aggressor, prevstrength)
+function Megamod.SetAfflictionLimb(character, identifier, limbtype, strength, aggressor, prevstrength)
 	local prefab = AfflictionPrefab.Prefabs[identifier]
 	local resistance = character.CharacterHealth.GetResistance(prefab, limbtype)
 	if resistance >= 1 then
@@ -208,7 +208,7 @@ function HF.SetAfflictionLimb(character, identifier, limbtype, strength, aggress
 	)
 end
 
-function HF.GetAfflictionStrength(character, identifier, defaultvalue)
+function Megamod.GetAfflictionStrength(character, identifier, defaultvalue)
 	if character == nil or character.CharacterHealth == nil then
 		return defaultvalue
 	end
@@ -220,7 +220,7 @@ function HF.GetAfflictionStrength(character, identifier, defaultvalue)
 	end
 	return res
 end
-function HF.GetAfflictionStrengthLimb(character, limbtype, identifier, defaultvalue)
+function Megamod.GetAfflictionStrengthLimb(character, limbtype, identifier, defaultvalue)
 	if character == nil or character.CharacterHealth == nil or character.AnimController == nil then
 		return defaultvalue
 	end
@@ -237,7 +237,7 @@ function HF.GetAfflictionStrengthLimb(character, limbtype, identifier, defaultva
 	return res
 end
 
-function HF.HasAffliction(character, identifier, minamount)
+function Megamod.HasAffliction(character, identifier, minamount)
 	if character == nil or character.CharacterHealth == nil then
 		return false
 	end
@@ -249,7 +249,7 @@ function HF.HasAffliction(character, identifier, minamount)
 	end
 	return res
 end
-function HF.HasAfflictionLimb(character, identifier, limbtype, minamount)
+function Megamod.HasAfflictionLimb(character, identifier, limbtype, minamount)
 	local limb = character.AnimController.GetLimb(limbtype)
 	if limb == nil then
 		return false

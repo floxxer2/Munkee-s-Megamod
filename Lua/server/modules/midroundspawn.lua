@@ -70,7 +70,7 @@ function mrs.SpawnPlayer(client)
             char.TeamID = CharacterTeamType.Team1
             char.GiveJobItems(false, spawnPoint)
             -- Give pressure resistance
-            HF.AddAffliction(char, "pressurestabilized", 180)
+            Megamod.AddAffliction(char, "pressurestabilized", 180)
             -- Make their idcard noninteractable if it's a silly round
             if Megamod.RuleSetManager.RoundType == 2 then
                 for item in char.Inventory.GetAllItems(false) do

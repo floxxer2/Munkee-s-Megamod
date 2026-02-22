@@ -748,7 +748,7 @@ function rs.TryStartRaid()
                 Networking.Send(msg, client.Connection)
             end
 
-            HF.AddAffliction(raiderCharacter, "pressurestabilized", 180)
+            Megamod.AddAffliction(raiderCharacter, "pressurestabilized", 180)
 
             for gearItemID, tbl in pairs(gearSet.loadout) do
                 local prefab = ItemPrefab.GetItemPrefab(gearItemID)
