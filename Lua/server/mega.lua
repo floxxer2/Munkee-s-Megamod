@@ -185,6 +185,83 @@ function Megamod.SendChatMessage(client, text, color)
     Game.SendDirectChatMessage(chatMessage, client)
 end
 
+-- Neurotrauma affliction functions
+function HF.SetAffliction(character, identifier, strength, aggressor, prevstrength)
+	HF.SetAfflictionLimb(character, identifier, LimbType.Torso, strength, aggressor, prevstrength)
+end
+function HF.SetAfflictionLimb(character, identifier, limbtype, strength, aggressor, prevstrength)
+	local prefab = AfflictionPrefab.Prefabs[identifier]
+	local resistance = character.CharacterHealth.GetResistance(prefab, limbtype)
+	if resistance >= 1 then
+		return
+	end
+	local strength = strength * character.CharacterHealth.MaxVitality / 100 / (1 - resistance)
+	local affliction = prefab.Instantiate(strength, aggressor)
+	--local recalculateVitality = NTC.AfflictionsAffectingVitality[identifier] ~= nil
+
+	character.CharacterHealth.ApplyAffliction(
+		character.AnimController.GetLimb(limbtype),
+		affliction,
+		false,
+		false,
+		true --recalculateVitality
+	)
+end
+
+function HF.GetAfflictionStrength(character, identifier, defaultvalue)
+	if character == nil or character.CharacterHealth == nil then
+		return defaultvalue
+	end
+
+	local aff = character.CharacterHealth.GetAffliction(identifier)
+	local res = defaultvalue or 0
+	if aff ~= nil then
+		res = aff.Strength
+	end
+	return res
+end
+function HF.GetAfflictionStrengthLimb(character, limbtype, identifier, defaultvalue)
+	if character == nil or character.CharacterHealth == nil or character.AnimController == nil then
+		return defaultvalue
+	end
+	local limb = character.AnimController.GetLimb(limbtype)
+	if limb == nil then
+		return defaultvalue
+	end
+
+	local aff = character.CharacterHealth.GetAffliction(identifier, limb)
+	local res = defaultvalue or 0
+	if aff ~= nil then
+		res = aff.Strength
+	end
+	return res
+end
+
+function HF.HasAffliction(character, identifier, minamount)
+	if character == nil or character.CharacterHealth == nil then
+		return false
+	end
+
+	local aff = character.CharacterHealth.GetAffliction(identifier)
+	local res = false
+	if aff ~= nil then
+		res = aff.Strength >= (minamount or 0.5)
+	end
+	return res
+end
+function HF.HasAfflictionLimb(character, identifier, limbtype, minamount)
+	local limb = character.AnimController.GetLimb(limbtype)
+	if limb == nil then
+		return false
+	end
+	local aff = character.CharacterHealth.GetAffliction(identifier, limb)
+	local res = false
+	if aff ~= nil then
+		res = aff.Strength >= (minamount or 0.5)
+	end
+	return res
+end
+
 -- This can crash the server if used improperly
 function Megamod.CreateEntityEvent(entity, originalEntity, propID, value)
     entity[propID] = value
