@@ -63,10 +63,10 @@
   <!-- Medical Doctor / Surgeon -->
   <!-- ************************ -->
   <!-- Blood Scalpel -->
-  <Item identifier="multiscalpel_blood" name="" tags="smallitem,medical,surgery,surgerytool" hideinmenus="true" category="Hidden" cargocontaineridentifier="mediccrate" useinhealthinterface="True" scale="0.250" allowasextracargo="false">
+  <!--<Item identifier="multiscalpel_blood" name="" tags="smallitem,medical,surgery,surgerytool" hideinmenus="true" category="Hidden" cargocontaineridentifier="mediccrate" useinhealthinterface="True" scale="0.250" allowasextracargo="false">
     <Deconstruct>
       <Item identifier="advscalpel" />
-      <Item identifier="traumashears" />
+     <></> <Item identifier="traumashears" />
     </Deconstruct>
     <Price baseprice="200" soldbydefault="true">
       <Price storeidentifier="merchantmedical" sold="false" multiplier="0.9" minavailable="1" />
@@ -75,7 +75,6 @@
     <Sprite texture="%ModDir%/Workshop/Neurotrauma/Images/InGameItemIconAtlas.png" sourcerect="131,218,122,8" depth="0.55" origin="0.5,0.5" />
     <Body width="65" height="15" density="50" />
     <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="-7,-5" holdangle="60" reload="1.0">
-      <!-- extracting organ -->
       <StatusEffect tags="medical" type="OnUse" target="This,Limb" comparison="and" disabledeltatime="true"></StatusEffect>
     </MeleeWeapon>
     <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="true">
@@ -85,11 +84,6 @@
           <LuaHook name="NT.multiscalpel.incision" />
         </StatusEffect>
       </Button>
-      <!-- <Button text="multiscalpel.btn.kidneys"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.kidneys"/></StatusEffect></Button> -->
-      <!-- <Button text="multiscalpel.btn.liver"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.liver"/></StatusEffect></Button> -->
-      <!-- <Button text="multiscalpel.btn.lungs"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.lungs"/></StatusEffect></Button> -->
-      <!-- <Button text="multiscalpel.btn.heart"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.heart"/></StatusEffect></Button> -->
-      <!-- <Button text="multiscalpel.btn.brain"><StatusEffect type="OnUse" stackable="true"><LuaHook name="NT.multiscalpel.brain"/></StatusEffect></Button> -->
       <Button text="multiscalpel.btn.bandage">
         <StatusEffect target="This" type="OnUse" stackable="true">
           <LuaHook name="NT.multiscalpel.bandage" />
@@ -143,7 +137,7 @@
         </StatusEffect>
       </Button>
     </CustomInterface>
-  </Item>
+  </Item>-->
   <!-- Husk egg injector -->
   <Item identifier="mm_huskegginjector" name="" tags="smallitem" hideinmenus="true" category="Hidden" cargocontaineridentifier="mediccrate" impactsoundtag="impact_metal_light" scale="0.250" allowasextracargo="false">
     <Price baseprice="200" soldbydefault="false">

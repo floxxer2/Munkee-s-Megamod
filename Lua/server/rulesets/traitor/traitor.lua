@@ -900,8 +900,8 @@ do
     end)
     --
     --  Blood Scalpel
-    --
-    NT.ItemMethods["multiscalpel_blood"] = NT.ItemMethods["multiscalpel"]
+    -- #TODO# Re-add
+    --[[NT.ItemMethods["multiscalpel_blood"] = NT.ItemMethods["multiscalpel"]
     Hook.Add("MM.traitoritems.bloodscalpel", "Megamod.traitoritems.bloodscalpel", function(effect, deltaTime, item, targets, worldPosition, element)
         local itemPrefab = item.Prefab
         if itemPrefab.Identifier == "mm_bloodscalpel" then -- Revert to a multiscalpel
@@ -941,7 +941,7 @@ do
                 end)
             end, 35)
         end
-    end)
+    end)]]
     --
     --  Husk Egg Injector
     --
