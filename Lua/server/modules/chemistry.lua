@@ -389,6 +389,8 @@ local function writeSubContainers(msg, containerTbl)
     msg.WriteByte(#containerTbl.SubContainers)
     for subContainer in containerTbl.SubContainers do
         msg.WriteUInt64(subContainer.Capacity)
+        msg.WriteUInt64(subContainer.TemperatureK)
+        msg.WriteString(subContainer.Site)
         local amountReagents = 0
         for _, _ in pairs(subContainer.Reagents) do
             amountReagents = amountReagents + 1
@@ -396,35 +398,11 @@ local function writeSubContainers(msg, containerTbl)
         msg.WriteUInt32(amountReagents)
         for reagentID, reagentTbl in pairs(subContainer.Reagents) do
             msg.WriteString(reagentID)
-            msg.WriteString(reagentTbl.Name)
-            msg.WriteString(reagentTbl.Desc)
-            msg.WriteString(reagentTbl.Type)
-            msg.WriteUInt32(reagentTbl.DepletionRate)
-            -- Ignore Effect field
             msg.WriteUInt64(reagentTbl.Amount)
         end
         msg.WriteUInt32(#subContainer.Reactions)
         for reactionTbl in subContainer.Reactions do
             msg.WriteString(reactionTbl.ID)
-            msg.WriteUInt64(reactionTbl.ReqTempK)
-            msg.WriteBoolean(reactionTbl.AffectedByStabilizine)
-            local amountAllowedSites = 0
-            for _, _ in pairs(reactionTbl.AllowedSites) do
-                amountAllowedSites = amountAllowedSites + 1
-            end
-            msg.WriteByte(amountAllowedSites)
-            for site, _ in pairs(reactionTbl.AllowedSites) do
-                msg.WriteString(site)
-            end
-            local amountReactants = 
-
-
-            ID = reaction.ID,
-            ReqTempK = reaction.ReqTempK,
-            AffectedByStabilizine = reaction.AffectedByStabilizine,
-            AllowedSites = reaction.AllowedSites,
-            Reactants = reaction.Reactants,
-            Products = reaction.Products,
         end
     end
 end
