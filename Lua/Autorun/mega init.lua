@@ -194,6 +194,83 @@ Hook.Patch("Megamod.NoVanillaMonsters", "Barotrauma.MonsterEvent", "Update", fun
     instance.disallowed = true
 end, Hook.HookMethodType.Before)
 
+if SERVER then
+    local unconsciousDamageReduction = 0.65
+    unconsciousDamageReduction = 1 - unconsciousDamageReduction
+    local d = 0
+    local function printLimited(str) -- #DEBUG#
+        if d <= 500 then
+            d = d + 1
+            print(str)
+        end
+    end
+    local stop = false -- #DEBUG#
+    -- Reduce damage by 65% if vitality is below 0
+    local function reduceDamage(character, afflictions, hitLimb, attacker)
+        if stop then return end -- #DEBUG#
+        local success, result = pcall(function() -- #DEBUG#
+        -- Can't loop through afflictions twice for some reason
+        local afflictions2 = {}
+        local totalVitalityDecrease = 0
+        for affliction in afflictions do
+            -- Ignore non-damaging afflictions i.e. steroids
+            local vitalityDecrease = affliction.GetVitalityDecrease(character.CharacterHealth)
+            if vitalityDecrease > 0 then
+                table.insert(afflictions2, affliction)
+                totalVitalityDecrease = totalVitalityDecrease + vitalityDecrease
+                if affliction.MultiplyByMaxVitality then
+                    totalVitalityDecrease = totalVitalityDecrease * (character.MaxVitality / 100)
+                end
+            end
+        end
+        if character.Vitality <= 0 or character.Vitality - totalVitalityDecrease <= 0 then
+            for affliction in afflictions2 do
+                local newStrength = affliction.Strength * unconsciousDamageReduction
+                affliction.SetStrength(newStrength)
+            end
+        end
+        end) -- #DEBUG#
+        if not success then stop = true printLimited(result) end -- #DEBUG#
+    end
+    Hook.Add("character.damageLimb", "Megamod.DamagePatch", function(
+        character,
+        worldPosition,
+        hitLimb,
+        afflictions,
+        stun,
+        playSound,
+        attackImpulse,
+        attacker,
+        damageMultiplier,
+        allowStacking,
+        penetration,
+        shouldImplode
+        )
+        if character == nil
+            or character.IsDead
+            or not character.IsHuman
+            or afflictions == nil
+            or hitLimb == nil
+            or hitLimb.IsSevered
+            or attacker == nil
+        then return end
+        reduceDamage(character, afflictions, hitLimb, attacker)
+    end)
+    Hook.Add("character.applyDamage", "Megamod.DamagePatch2", function(characterHealth, attackResult, hitLimb)
+        if characterHealth == nil
+            or characterHealth.Character == nil
+            or characterHealth.Character.IsDead
+            or not characterHealth.Character.IsHuman
+            or attackResult == nil
+            or attackResult.Afflictions == nil
+            or #attackResult.Afflictions <= 0
+            or hitLimb == nil
+            or hitLimb.IsSevered
+        then return end
+        reduceDamage(characterHealth.Character, attackResult.Afflictions, hitLimb, nil)
+    end)
+end
+
 
 if SERVER then
     LuaUserData.RegisterType("Megamod.MegamodServer")
