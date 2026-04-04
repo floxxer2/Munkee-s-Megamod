@@ -88,24 +88,24 @@ Auto.XMLChanges = {
   },
 
   -- *************
-  -- BaroTraumatic
+  -- Barotraumatic
   -- *************
   -- Prioritize BT's overrides
   ["headset"] = {
-    mod = "BaroTraumatic",
+    mod = "Barotraumatic",
   },
   ["BTCpressureinjectorheadset"] = {
-    mod = "BaroTraumatic",
+    mod = "Barotraumatic",
   },
   ["autoinjectorheadset"] = {
-    mod = "BaroTraumatic",
+    mod = "Barotraumatic",
   },
   ["ekutility_advancedheadset"] = {
-    mod = "BaroTraumatic",
+    mod = "Barotraumatic",
   },
   -- Change fabricator to weapon fabricator
   ["ek_security_radio"] = {
-    mod = "BaroTraumatic",
+    mod = "Barotraumatic",
     componentOverrides = {
       {
         targetComponent = "fabricate",
@@ -119,40 +119,6 @@ Auto.XMLChanges = {
           </Fabricate>]])
       }
     }
-  },
-
-  -- ***************************
-  -- Barotraumatic Creature Pack
-  -- ***************************
-  -- Remove fabrication recipe
-  ["largefleshstinger"] = {
-    mod = "Barotraumatic Creature Pack",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
-  },
-  -- Remove fabrication recipe
-  ["banditoxygentankbomb"] = {
-    mod = "Barotraumatic Creature Pack",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
-  },
-  -- Remove fabrication recipe
-  ["banditweldingbomb"] = {
-    mod = "Barotraumatic Creature Pack",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
   },
 
   -- *********************************
@@ -637,6 +603,21 @@ Auto.XMLChanges = {
   -- Enhanced Immersion
   -- ******************
   -- Change fabricator to weapon fabricator
+  ["syringegun"] = {
+    mod = "Enhanced Immersion",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = XElement.Parse([[
+          <Fabricate suitablefabricators="weaponfabricator" requiredtime="10">
+            <RequiredSkill identifier="medical" level="50" />
+            <RequiredItem identifier="aluminium" amount="2" />
+            <RequiredItem identifier="plastic" amount="2" />
+          </Fabricate>]])
+      },
+    },
+  },
+  -- Change fabricator to weapon fabricator
   ["flamer"] = {
     mod = "Enhanced Immersion",
     componentOverrides = {
@@ -776,7 +757,6 @@ Auto.XMLChanges = {
     }
   },
   -- Remove fabrication recipe
-  -- [Override Conflict] - with EI and Robotrauma
   ["clownexosuit"] = {
     mod = "Immersive Diving Gear",
     componentOverrides = {
@@ -872,6 +852,7 @@ Auto.XMLChanges = {
       }
     }
   },
+  -- #TODO#: Add as a traitor item
   -- Remove fabrication recipe
   ["safecracker"] = {
     mod = "Immersive Repairs",
@@ -1114,43 +1095,13 @@ Auto.XMLChanges = {
     mod = "Real Sonar",
     xml = ""
   },
-
-  -- ****************
-  -- Real Sonar Patch
-  -- ****************
-  -- Prioritize overrides
-  -- Change "allblood" tag to "bloodbag" tag
-  ["smartgraft"] = {
-    mod = "Real Sonar Medical Item Recipes Patch for Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="25" amount="2">
-            <RequiredSkill identifier="medical" level="25" />
-            <RequiredItem identifier="antibleeding2" amount="2" />
-            <RequiredItem tag="bloodbag" />
-          </Fabricate>]])
-      }
-    }
+  -- Prioritize
+  ["shuttlenavterminal"] = {
+    mod = "Real Sonar"
   },
-  ["manna"] = {
-    mod = "Real Sonar Medical Item Recipes Patch for Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="25" amount="2">
-            <RequiredSkill identifier="medical" level="30" />
-            <RequiredItem tag="bloodbag" amount="2" />
-            <RequiredItem identifier="alienblood" amount="2" />
-            <RequiredItem identifier="stabilozine" amount="1" />
-            <RequiredItem identifier="pomegrenadeextract" amount="1" />
-          </Fabricate>]])
-      }
-    }
+  ["navterminal"] = {
+    mod = "Real Sonar"
   },
-  -- Blood pack overrides are set in Neurotrauma
 
   -- *******************
   -- IC Mod Compat Patch
@@ -1177,1578 +1128,6 @@ Auto.XMLChanges = {
   ["radioactivematcrate"] = {
     mod = "Immersive Crates - Mod Crates Compatibility Patch",
   },
-
-  -- ***********************
-  -- NT Cybernetics Enhanced
-  -- ***********************
-  -- Change fabricator to medical fabricator
-  ["cyberarm"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="60">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
-            <RequiredItem identifier="steel" amount="4" />
-            <RequiredItem identifier="fpgacircuit" amount="4" />
-            <RequiredItem identifier="fulgurium" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["cyberleg"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="60">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
-            <RequiredItem identifier="steel" amount="4" />
-            <RequiredItem identifier="fpgacircuit" amount="4" />
-            <RequiredItem identifier="fulgurium" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["waterproofcyberarm"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredItem identifier="cyberarm" />
-            <RequiredItem identifier="fulgurium" amount="1" />
-            <RequiredItem identifier="plastic" amount="3" />
-            <RequiredItem identifier="rubber" amount="4" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["waterproofcyberleg"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredItem identifier="cyberleg" />
-            <RequiredItem identifier="fulgurium" amount="1" />
-            <RequiredItem identifier="plastic" amount="3" />
-            <RequiredItem identifier="rubber" amount="4" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabrication recipes for all augmented organs,
-  -- as they were broken
-  ["augmentedliver"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="60" />
-            <RequiredItem identifier="livertransplant" mincondition="0.50" usecondition="false" />
-            <RequiredItem identifier="fulgurium" amount="1" />
-            <RequiredItem identifier="fpgacircuit" amount="1" />
-            <RequiredItem identifier="stabilozine" amount="1" />
-          </Fabricate>]])
-      },
-    },
-  },
-  ["augmentedkidney"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="60" />
-            <RequiredItem identifier="kidneytransplant" mincondition="0.30" usecondition="false" />
-            <RequiredItem identifier="fulgurium" amount="1" />
-            <RequiredItem identifier="fpgacircuit" amount="1" />
-            <RequiredItem identifier="stabilozine" amount="1" />
-          </Fabricate>]])
-      },
-    },
-  },
-  ["augmentedlung"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="60" />
-            <RequiredItem identifier="lungtransplant" mincondition="0.50" usecondition="false" />
-            <RequiredItem identifier="fulgurium" amount="1" />
-            <RequiredItem identifier="fpgacircuit" amount="1" />
-            <RequiredItem identifier="stabilozine" amount="1" />
-          </Fabricate>]])
-      },
-    },
-  },
-  ["augmentedheart"] = {
-    mod = "NT Cybernetics Enhanced",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="70" />
-            <RequiredSkill identifier="medical" level="60" />
-            <RequiredItem identifier="hearttransplant" mincondition="0.50" usecondition="false" />
-            <RequiredItem identifier="fulgurium" amount="1" />
-            <RequiredItem identifier="fpgacircuit" amount="1" />
-            <RequiredItem identifier="stabilozine" amount="1" />
-          </Fabricate>]])
-      },
-    },
-  },
-
-  -- ***************
-  -- NT Surgery Plus
-  -- ***************
-  -- Change fabricator back to medical fabricator (Surgery Plus changes it to normal fabricator for some reason)
-  ["osteosynthesisimplants"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="titaniumaluminiumalloy" />
-            <RequiredItem identifier="liquidoxygenite" />
-            <RequiredItem identifier="calcium" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator back to medical fabricator (Surgery Plus changes it to normal fabricator for some reason)
-  ["spinalimplant"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="70" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="titaniumaluminiumalloy" />
-            <RequiredItem identifier="liquidoxygenite" />
-            <RequiredItem identifier="calcium" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["aed"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="60" requiresrecipe="true">
-            <RequiredSkill identifier="electrical" level="80" />
-            <RequiredSkill identifier="medical" level="70" />
-            <RequiredItem identifier="plastic" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="batterycell" />
-            <RequiredItem identifier="oxygeniteshard" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Buff inventory to be the same as the combat medic uniform
-  ["surgeonclothes"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "itemcontainer",
-        override = XElement.Parse([[
-          <ItemContainer capacity="6">
-            <Containable items="smallitem" excludeditems="clothing,toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack" />
-          </ItemContainer>]])
-      },
-    },
-  },
-  -- Add rift engine fabrication recipe
-  ["skillbooksurgery"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="riftfabricator" requiredtime="5">
-            <RequiredItem identifier="riftmat" amount="32" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["organscalpel_liver"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["organscalpel_kidneys"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["organscalpel_lungs"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["organscalpel_heart"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="35" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["organscalpel_brain"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="60" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="oxygeniteshard" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- 1. Add (tweaked) fabrication recipes from NT Bio Printer
-  -- 2. Add "bio_core" and "stem_core" tag
-  ["livertransplant"] = {
-    mod = "NT Surgery Plus",
-    xml = XElement.Parse([[
-      <Item name="" identifier="livertransplant" description="" category="Medical" scale="0.4" useinhealthinterface="True" impactsoundtag="impact_soft" cargocontaineridentifier="organcrate" impacttolerance="5.5" Tags="smallitem,organ,petfood1,petfood2,petfood3,bio_core,stem_core">
-        <Price baseprice="1000" soldbydefault="false">
-          <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
-        </Price>
-        <Sprite texture="%ModDir:3190189044%/Images/InGameItemIconAtlas.png" sourcerect="5,479,79,52" depth="0.6" origin="0.5,0.5" />
-        <Body width="39" height="18" density="10" />
-        <Fabricate suitablefabricators="bioprinter" requiredtime="60">
-          <RequiredSkill identifier="medical" level="55" />
-          <RequiredItem identifier="biological_material" amount="4" />
-        </Fabricate>
-        <Deconstruct />
-        <Throwable characterusable="true" slots="Any,RightHand,LeftHand" throwforce="4.0" aimpos="35,-10" msg="ItemMsgPickUpSelect">
-          <StatusEffect type="OnImpact" target="This" Condition="0.0" setvalue="true">
-            <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="fruitsplatter1" decalsize="1.0" />
-            <ParticleEmitter particle="whitegoosplash" anglemin="0" anglemax="360" particleamount="2" velocitymin="0" velocitymax="0" scalemin="1.5" scalemax="2" />
-            <ParticleEmitter particle="fruitchunks" anglemin="0" anglemax="360" particleamount="10" velocitymin="200" velocitymax="300" scalemin="0.4" scalemax="0.8" />
-            <Remove />
-          </StatusEffect>
-          <!-- making the organ go kaputt if left outside of refrigeration -->
-          <StatusEffect type="Always" target="This" condition="-0.5">
-            <Conditional hastag="neq refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnContained" target="This" condition="0.1" comparison="and">
-            <Conditional condition="gte 90" />
-            <Conditional hastag="refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnFire" target="This" Condition="-25.0" />
-          <!-- yuck! organs on the floor! -->
-          <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
-            <Affliction identifier="nausea" amount="0.2" />
-          </StatusEffect>
-          <StatusEffect type="OnBroken" target="This">
-            <LuaHook name="NT.RotOrgan" />
-          </StatusEffect>
-        </Throwable>
-        <SkillRequirementHint identifier="surgery" level="40" />
-      </Item>]])
-  },
-  ["lungtransplant"] = {
-    mod = "NT Surgery Plus",
-    xml = XElement.Parse([[
-      <Item name="" identifier="lungtransplant" description="" category="Medical" scale="0.4" useinhealthinterface="True" impactsoundtag="impact_soft" cargocontaineridentifier="organcrate" impacttolerance="5.5" Tags="smallitem,organ,petfood1,petfood2,petfood3,bio_core,stem_core">
-        <Price baseprice="2000" soldbydefault="false">
-          <Price locationtype="research" multiplier="1" sold="true" minavailable="2" />
-        </Price>
-        <Sprite texture="%ModDir:3190189044%/Images/InGameItemIconAtlas.png" sourcerect="91,480,84,84" depth="0.6" origin="0.5,0.5" />
-        <Body width="30" height="30" density="10" />
-        <Fabricate suitablefabricators="bioprinter" requiredtime="65">
-          <RequiredSkill identifier="medical" level="60" />
-          <RequiredItem identifier="biological_material" amount="4" />
-        </Fabricate>
-        <Deconstruct />
-        <Throwable characterusable="true" slots="Any,RightHand,LeftHand" throwforce="4.0" aimpos="35,-10" msg="ItemMsgPickUpSelect">
-          <StatusEffect type="OnImpact" target="This" Condition="0.0" setvalue="true">
-            <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="fruitsplatter1" decalsize="1.0" />
-            <ParticleEmitter particle="whitegoosplash" anglemin="0" anglemax="360" particleamount="2" velocitymin="0" velocitymax="0" scalemin="1.5" scalemax="2" />
-            <ParticleEmitter particle="fruitchunks" anglemin="0" anglemax="360" particleamount="10" velocitymin="200" velocitymax="300" scalemin="0.4" scalemax="0.8" />
-            <Remove />
-          </StatusEffect>
-          <!-- making the organ go kaputt if left outside of refrigeration -->
-          <StatusEffect type="Always" target="This" condition="-0.5">
-            <Conditional hastag="neq refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnContained" target="This" condition="0.1" comparison="and">
-            <Conditional condition="gte 90" />
-            <Conditional hastag="refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnFire" target="This" Condition="-25.0" />
-          <!-- yuck! organs on the floor! -->
-          <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
-            <Affliction identifier="nausea" amount="0.2" />
-          </StatusEffect>
-          <StatusEffect type="OnBroken" target="This">
-            <LuaHook name="NT.RotOrgan" />
-          </StatusEffect>
-        </Throwable>
-        <SkillRequirementHint identifier="surgery" level="40" />
-      </Item>]])
-  },
-  ["kidneytransplant"] = {
-    mod = "NT Surgery Plus",
-    xml = XElement.Parse([[
-      <Item name="" identifier="kidneytransplant" description="" category="Medical" scale="0.4" useinhealthinterface="True" impactsoundtag="impact_soft" cargocontaineridentifier="organcrate" impacttolerance="5.5" Tags="smallitem,organ,petfood1,petfood2,petfood3,bio_core,stem_core">
-        <Price baseprice="400" soldbydefault="false">
-          <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
-        </Price>
-        <Sprite texture="%ModDir:3190189044%/Images/InGameItemIconAtlas.png" sourcerect="193,481,32,47" depth="0.6" origin="0.5,0.5" />
-        <Body width="14" height="20" density="10" />
-        <Fabricate suitablefabricators="bioprinter" requiredtime="50">
-          <RequiredSkill identifier="medical" level="50" />
-          <RequiredItem identifier="biological_material" amount="2" />
-        </Fabricate>
-        <Deconstruct />
-        <Throwable characterusable="true" slots="Any,RightHand,LeftHand" throwforce="4.0" aimpos="35,-10" msg="ItemMsgPickUpSelect">
-          <StatusEffect type="OnImpact" target="This" Condition="0.0" setvalue="true">
-            <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="fruitsplatter1" decalsize="1.0" />
-            <ParticleEmitter particle="whitegoosplash" anglemin="0" anglemax="360" particleamount="2" velocitymin="0" velocitymax="0" scalemin="1.5" scalemax="2" />
-            <ParticleEmitter particle="fruitchunks" anglemin="0" anglemax="360" particleamount="10" velocitymin="200" velocitymax="300" scalemin="0.4" scalemax="0.8" />
-            <Remove />
-          </StatusEffect>
-          <!-- making the organ go kaputt if left outside of refrigeration -->
-          <StatusEffect type="Always" target="This" condition="-0.5">
-            <Conditional hastag="neq refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnContained" target="This" condition="0.1" comparison="and">
-            <Conditional condition="gte 90" />
-            <Conditional hastag="refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnFire" target="This" Condition="-25.0" />
-          <!-- yuck! organs on the floor! -->
-          <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
-            <Affliction identifier="nausea" amount="0.1" />
-          </StatusEffect>
-          <StatusEffect type="OnBroken" target="This">
-            <LuaHook name="NT.RotOrgan" />
-          </StatusEffect>
-        </Throwable>
-        <SkillRequirementHint identifier="surgery" level="40" />
-      </Item>]])
-  },
-  ["hearttransplant"] = {
-    mod = "NT Surgery Plus",
-    xml = XElement.Parse([[
-      <Item name="" identifier="hearttransplant" description="" category="Medical" scale="0.4" useinhealthinterface="True" impactsoundtag="impact_soft" cargocontaineridentifier="organcrate" impacttolerance="5.5" Tags="smallitem,organ,petfood1,petfood2,petfood3,bio_core,stem_core">
-        <Price baseprice="4000" soldbydefault="false">
-          <Price locationtype="research" multiplier="1" sold="true" minavailable="2" />
-        </Price>
-        <Sprite texture="%ModDir:3190189044%/Images/InGameItemIconAtlas.png" sourcerect="238,479,28,54" depth="0.6" origin="0.5,0.5" />
-        <Body width="14" height="22" density="10" />
-        <Fabricate suitablefabricators="bioprinter" requiredtime="75">
-          <RequiredSkill identifier="medical" level="70" />
-          <RequiredItem identifier="biological_material" amount="5" />
-        </Fabricate>
-        <Deconstruct />
-        <Throwable characterusable="true" slots="Any,RightHand,LeftHand" throwforce="4.0" aimpos="35,-10" msg="ItemMsgPickUpSelect">
-          <StatusEffect type="OnImpact" target="This" Condition="0.0" setvalue="true">
-            <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="fruitsplatter1" decalsize="1.0" />
-            <ParticleEmitter particle="whitegoosplash" anglemin="0" anglemax="360" particleamount="2" velocitymin="0" velocitymax="0" scalemin="1.5" scalemax="2" />
-            <ParticleEmitter particle="fruitchunks" anglemin="0" anglemax="360" particleamount="10" velocitymin="200" velocitymax="300" scalemin="0.4" scalemax="0.8" />
-            <Remove />
-          </StatusEffect>
-          <!-- making the organ go kaputt if left outside of refrigeration -->
-          <StatusEffect type="Always" target="This" condition="-0.5">
-            <Conditional hastag="neq refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnContained" target="This" condition="0.1" comparison="and">
-            <Conditional condition="gte 90" />
-            <Conditional hastag="refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnFire" target="This" Condition="-25.0" />
-          <!-- yuck! organs on the floor! -->
-          <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
-            <Affliction identifier="nausea" amount="0.2" />
-          </StatusEffect>
-          <StatusEffect type="OnBroken" target="This">
-            <LuaHook name="NT.RotOrgan" />
-          </StatusEffect>
-        </Throwable>
-        <SkillRequirementHint identifier="surgery" level="40" />
-      </Item>]])
-  },
-  -- Brain fabrication recipe is intentionally omitted
-  ["braintransplant"] = {
-    mod = "NT Surgery Plus",
-    xml = XElement.Parse([[
-      <Item name="" identifier="braintransplant" description="" category="Medical" scale="0.3" useinhealthinterface="True" impactsoundtag="impact_soft" cargocontaineridentifier="organcrate" impacttolerance="1.5" Tags="smallitem,organ,petfood1,petfood2,petfood3,braintransplant,bio_core,stem_core">
-        <Price baseprice="0" soldbydefault="false">
-          <Price storeidentifier="merchantmedical" sold="false" />
-        </Price>
-        <Sprite texture="%ModDir:3190189044%/Images/InGameItemIconAtlas.png" sourcerect="272,480,78,60" depth="0.6" origin="0.5,0.5" />
-        <Body width="39" height="25" density="10" />
-        <Deconstruct />
-        <Throwable characterusable="true" slots="Any,RightHand,LeftHand" throwforce="4.0" aimpos="35,-10" msg="ItemMsgPickUpSelect">
-          <StatusEffect type="OnImpact" target="This" Condition="0.0" setvalue="true">
-            <Conditional hastag="neq braincontainer" targetcontainer="true" />
-            <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="fruitsplatter1" decalsize="1.0" />
-            <ParticleEmitter particle="whitegoosplash" anglemin="0" anglemax="360" particleamount="2" velocitymin="0" velocitymax="0" scalemin="1.5" scalemax="2" />
-            <ParticleEmitter particle="fruitchunks" anglemin="0" anglemax="360" particleamount="10" velocitymin="200" velocitymax="300" scalemin="0.4" scalemax="0.8" />
-            <Remove />
-          </StatusEffect>
-          <!-- making the organ go kaputt if left outside of refrigeration -->
-          <StatusEffect type="Always" target="This" condition="-2" comparison="and">
-            <Conditional hastag="neq refrigerated" targetcontainer="true" />
-            <Conditional hastag="neq braincontainer" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnContained" target="This" condition="-0.2" comparison="and">
-            <Conditional hastag="refrigerated" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnContained" target="This" condition="0.1" comparison="and">
-            <Conditional hastag="braincontainer" targetcontainer="true" />
-          </StatusEffect>
-          <StatusEffect type="OnFire" target="This" Condition="-50.0" />
-          <!-- yuck! organs on the floor! -->
-          <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
-            <Affliction identifier="nausea" amount="0.2" />
-          </StatusEffect>
-          <StatusEffect type="OnBroken" target="This">
-            <LuaHook name="NT.RotOrgan" />
-          </StatusEffect>
-        </Throwable>
-        <SkillRequirementHint identifier="surgery" level="100" />
-      </Item>]])
-  },
-  -- Since these are variants of the main organs, we must add a <Fabricate> to override the original
-  -- and prevent having two identical recipes in the fabricator
-  ["livertransplant_q1"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="dumbfabricator" requiredtime="75" />]])
-      }
-    }
-  },
-  ["lungtransplant_q1"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="dumbfabricator" requiredtime="75" />]])
-      }
-    }
-  },
-  ["kidneytransplant_q1"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="dumbfabricator" requiredtime="75" />]])
-      }
-    }
-  },
-  ["hearttransplant_q1"] = {
-    mod = "NT Surgery Plus",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="dumbfabricator" requiredtime="75" />]])
-      }
-    }
-  },
-
-  -- *************
-  -- NT Infections
-  -- *************
-  -- Remove fabrication recipe
-  ["cultureanalyzingterminal"] = {
-    mod = "NT Infections",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
-  },
-  -- Remove fabrication recipe
-  ["incubatorterminal"] = {
-    mod = "NT Infections",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["incubatorcrate"] = {
-    mod = "NT Infections",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="20" />
-            <Item identifier="steel" />
-            <Item identifier="copper" />
-            <Item identifier="fpgacircuit" />
-          </Fabricate>]])
-      },
-    },
-  },
-
-  -- ***********
-  -- NT Symbiote
-  -- ***********
-  -- Change stack size in containers to 32
-  ["calyxanide"] = {
-    mod = "NT Symbiote",
-    xml = XElement.Parse([[
-    <Calyxanide name="" identifier="calyxanide" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
-      <Upgrade gameversion="0.10.0.0" scale="0.5" />
-      <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.2" />
-      <PreferredContainer secondary="outpostmedcab" amount="1" spawnprobability="0.1" />
-      <PreferredContainer secondary="outpostmedcompartment" amount="1" spawnprobability="0.03" />
-      <PreferredContainer primary="medcab" secondary="medcontainer" />
-      <Price baseprice="510">
-        <Price storeidentifier="merchantoutpost" minavailable="5" />
-        <Price storeidentifier="merchantcity" minavailable="5" />
-        <Price storeidentifier="merchantresearch" minavailable="7" />
-        <Price storeidentifier="merchantmilitary" multiplier="1.1" minavailable="5" />
-        <Price storeidentifier="merchantmine" multiplier="1.1" minavailable="5" />
-        <Price storeidentifier="merchantmedical" multiplier="0.9" minavailable="7" />
-        <Price storeidentifier="merchanthusk" minavailable="3" maxavailable="5">
-          <Reputation faction="huskcult" min="30" />
-        </Price>
-      </Price>
-      <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
-        <RequiredSkill identifier="medical" level="22" />
-        <RequiredItem identifier="huskeggs" />
-        <RequiredItem identifier="antibiotics" />
-        <RequiredItem identifier="stabilozine" />
-      </Fabricate>
-      <Deconstruct time="20">
-        <Item identifier="antibiotics" />
-        <Item identifier="stabilozine" />
-      </Deconstruct>
-      <SuitableTreatment identifier="huskinfection" suitability="100" />
-      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="897,449,63,63" origin="0.5,0.5" />
-      <Sprite texture="Content/Items/Medical/Medicines.png" sourcerect="223,69,38,70" depth="0.6" origin="0.5,0.5" />
-      <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
-      <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-        <RequiredSkill identifier="medical" level="38" />
-        <StatusEffect type="OnSuccess" target="This" Condition="-100.0" setvalue="true" />
-        <StatusEffect type="OnFailure" target="This" Condition="-100.0" setvalue="true" />
-        <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="1">
-          <Conditional huskinfection="lt 100.0" />
-          <Affliction identifier="af_calyxanide" amount="100" />
-        </StatusEffect>
-        <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="1">
-          <Conditional huskinfection="lt 100.0" />
-          <Affliction identifier="af_calyxanide" amount="100" />
-        </StatusEffect>
-        <!-- Injecting a still-conscious Husk will only piss it off and kill the "conscious" faster -->
-        <StatusEffect tags="medical,calyxanide" type="OnSuccess" target="UseTarget" duration="10.0">
-          <Conditional huskinfection="eq 100.0" />
-          <Affliction identifier="organdamage" amount="3" />
-        </StatusEffect>
-        <StatusEffect tags="medical,calyxanide" type="OnSuccess" target="UseTarget" duration="10.0" comparison="or">
-          <Conditional IsHusk="true" />
-          <Affliction identifier="organdamage" amount="4" />
-        </StatusEffect>
-        <!-- vfx & sfx -->
-        <StatusEffect type="OnSuccess" target="UseTarget">
-          <Conditional entitytype="eq Character" />
-          <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-        </StatusEffect>
-        <StatusEffect type="OnFailure" target="UseTarget">
-          <Conditional entitytype="eq Character" />
-          <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-        </StatusEffect>
-        <StatusEffect type="OnImpact" target="UseTarget" multiplyafflictionsbymaxvitality="true" AllowWhenBroken="true">
-          <Affliction identifier="stun" amount="0.1" />
-        </StatusEffect>
-        <!-- Remove the item when fully used -->
-        <StatusEffect type="OnBroken" target="This">
-          <Remove />
-        </StatusEffect>
-      </MeleeWeapon>
-      <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
-      <SkillRequirementHint identifier="medical" level="38" />
-    </Calyxanide>]])
-  },
-
-  -- ***********
-  -- NT lobotomy
-  -- ***********
-  -- Change fabricator to medical fabricator
-  ["orbitoclast"] = {
-    mod = "NT Lobotomy",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredSkill identifier="mechanical" level="15" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["surgicalhammer"] = {
-    mod = "NT Lobotomy",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredSkill identifier="mechanical" level="15" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-
-  -- *******
-  -- NT Eyes
-  -- *******
-  -- Add "medical" tag so it can be put in medical containers
-  ["it_organiclens"] = {
-    mod = "NT Eyes",
-    xml = XElement.Parse([[
-      <Item identifier="it_organiclens" aliases="eyelens" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" scale="0.1" useinhealthinterface="True" impactsoundtag="impact_soft" cargocontaineridentifier="mediccrate" impacttolerance="5.5" Tags="smallitem,petfood1,petfood2,petfood3,eyesurgery,surgery,surgerytool,medical">
-        <PreferredContainer secondary="wreckmedcab,abandonedmedcab,piratemedcab" amount="1" spawnprobability="0.05" />
-        <Sprite texture="%ModDir%/Textures/ItemIcons.png" sourcerect="256,896,128,128" depth="0.6" origin="0.5,0.5" />
-        <Body width="14" height="22" density="10" />
-        <Price baseprice="45" soldbydefault="false">
-          <Price storeidentifier="merchantmedical" sold="true" />
-        </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="3">
-          <RequiredSkill identifier="medical" level="40" />
-          <RequiredItem identifier="carbon" />
-        </Fabricate>
-        <Deconstruct time="3" />
-        <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="5,0" handle1="-5,0" holdangle="10" reload="1.0">
-          <RequiredSkill identifier="medical" level="30" />
-          <StatusEffect type="OnUse" target="This">
-            <!-- add custom SFX for this <Sound file="Content/Items/Medical/Syringe.ogg" range="500" /> -->
-          </StatusEffect>
-          <StatusEffect type="OnBroken" target="This">
-            <Remove />
-          </StatusEffect>
-        </MeleeWeapon>
-      </Item>]])
-  },
-  -- Remove fabrication recipe
-  ["it_spoon"] = {
-    mod = "NT Eyes",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["it_glasses"] = {
-    mod = "NT Eyes",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="25">
-            <RequiredSkill identifier="mechanical" level="30" />
-            <RequiredSkill identifier="medical" level="40" />
-            <RequiredItem identifier="plastic" amount="2" />
-            <RequiredItem identifier="steel" amount="1" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["it_lasersurgerytool"] = {
-    mod = "NT Eyes",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="31">
-            <RequiredSkill identifier="medical" level="80" />
-            <RequiredSkill identifier="mechanical" level="45" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="incendium" />
-            <RequiredItem identifier="aluminium" />
-          </Fabricate>]])
-      },
-    },
-  },
-  -- Change fabricator to weapon fabricator
-  ["it_nvg"] = {
-    mod = "NT Eyes",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="fabricator" requiredtime="80">
-            <RequiredSkill identifier="electrical" level="35" />
-            <RequiredSkill identifier="weapons" level="50" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="plastic" amount="2" />
-            <RequiredItem identifier="phosphorus" />
-          </Fabricate>]])
-      },
-    },
-  },
-
-  -- **************
-  -- NT Bio Printer
-  -- **************
-  -- Remove
-  ["bioprinter"] = {
-    mod = "NT Bio Printer",
-    xml = ""
-  },
-  -- Remove
-  ["stemcellprocessor"] = {
-    mod = "NT Bio Printer",
-    xml = ""
-  },
-  -- Name override
-  ["empty_syringe_bone"] = {
-    mod = "NT Bio Printer",
-    xml = XElement.Parse([[
-      <Item nameidentifier="mm_emptysyringe" name="" description="" identifier="empty_syringe_bone" category="Medical" maxstacksize="4" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
-        <Price baseprice="40" minavailable="1">
-          <Price storeidentifier="merchantresearch" />
-          <Price storeidentifier="merchantmedical" multiplier="0.9" />
-        </Price>
-        <PreferredContainer primary="medcab" secondary="medcontainer" />
-        <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.002" />
-        <PreferredContainer secondary="outpostmedcab" amount="1" spawnprobability="0.001" />
-        <PreferredContainer secondary="outpostmedcompartment" amount="1" spawnprobability="0.002" />
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="15">
-          <RequiredSkill identifier="medical" level="35" />
-          <RequiredItem identifier="silicon" amount="2" />
-        </Fabricate>
-        <Deconstruct time="20">
-          <Item identifier="silicon" />
-        </Deconstruct>
-        <InventoryIcon texture="%ModDir%/Xml/Items/EmptySyringe.png" sourcerect="51,6,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Xml/Items/EmptySyringe.png" sourcerect="11,-2,40,70" depth="0.6" origin="0.5,0.5" />
-        <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
-        <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-          <RequiredSkill identifier="medical" level="0" />
-          <StatusEffect type="OnSuccess" target="UseTarget, Limb">
-            <LuaHook name="empty_syringe_bone.onUse" />
-          </StatusEffect>
-          <StatusEffect type="OnSuccess" target="UseTarget">
-            <Conditional entitytype="eq Character" />
-            <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-          </StatusEffect>
-          <StatusEffect type="OnImpact" target="UseTarget" multiplyafflictionsbymaxvitality="true" AllowWhenBroken="true">
-            <Affliction identifier="stun" amount="0.1" />
-          </StatusEffect>
-        </MeleeWeapon>
-        <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
-        <SkillRequirementHint identifier="medical" level="50" />
-      </Item>]])
-  },
-  -- Replace o- blood pack with any blood pack
-  ["stem_cells"] = {
-    mod = "NT Bio Printer",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="stemcellprocessor" requiredtime="35">
-            <RequiredSkill identifier="medical" level="55" />
-            <RequiredItem identifier="bone_marrow" amount="2" />
-            <RequiredItem tag="bloodbag" amount="2" />
-          </Fabricate>]])
-      },
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="stemcellprocessor" requiredtime="55">
-            <RequiredSkill identifier="medical" level="55" />
-            <RequiredItem identifier="bone_marrow" amount="2" />
-            <RequiredItem identifier="alienblood" amount="5" />
-          </Fabricate>]])
-      },
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="stemcellprocessor" requiredtime="75" amount="5">
-            <RequiredSkill identifier="medical" level="100" />
-            <RequiredItem identifier="bone_marrow" amount="2" />
-            <RequiredItem tag="stem_core" amount="1" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Prioritize limb overrides
-  ["rarm"] = { mod = "NT Bio Printer", },
-  ["larm"] = { mod = "NT Bio Printer", },
-  ["rleg"] = { mod = "NT Bio Printer", },
-  ["lleg"] = { mod = "NT Bio Printer", },
-  -- Organ overrides are removed, but their fabrication recipes remain
-
-  -- ***********
-  -- Neurotrauma
-  -- ***********
-  -- Stop reducing husk infection
-  ["afantibiotics"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-    <Affliction name="" identifier="afantibiotics" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="200" showinhealthscannerthreshold="200" maxstrength="100">
-      <Effect minstrength="0" maxstrength="100" strengthchange="-0.5">
-        <StatusEffect target="Character" comparison="and">
-          <Conditional ishuman="true" />
-          <Affliction identifier="organdamage" amount="0.2" />
-          <Affliction identifier="kidneydamage" amount="0.175" />
-          <Affliction identifier="liverdamage" amount="0.175" />
-          <Affliction identifier="heartdamage" amount="0.1" />
-          <Affliction identifier="lungdamage" amount="0.1" />
-        </StatusEffect>
-      </Effect>
-      <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,3" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>]])
-  },
-  -- Change fabricator to weapon fabricator
-  ["divingknife"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="weaponfabricator" requiredtime="10">
-            <RequiredSkill identifier="weapons" level="30" />
-            <RequiredItem identifier="iron" amount="2" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["bvm"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="10">
-            <RequiredSkill identifier="medical" level="30" />
-            <RequiredItem identifier="plastic" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["antisepticspray"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="10">
-            <RequiredItem identifier="plastic" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["autocpr"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-      <Item name="" identifier="autocpr" category="Equipment" useinhealthinterface="false" tags="smallitem,clothing,medical" scale="0.40" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
-        <Upgrade gameversion="0.9.3.0" scale="0.40" />
-        <PreferredContainer primary="medcab" minamount="1" maxamount="1" spawnprobability="1" />
-        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="1" maxamount="1" spawnprobability="0.25" />
-        <Price baseprice="300" soldbydefault="false">
-          <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" />
-        </Price>
-        <Deconstruct time="10">
-          <Item identifier="steel" />
-        </Deconstruct>
-        <!-- TODO: remove all of this when defibs get better -->
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
-          <RequiredSkill identifier="medical" level="40" />
-          <RequiredItem identifier="plastic" mincondition="0.5" usecondition="true" />
-          <RequiredItem identifier="fpgacircuit" />
-          <RequiredItem identifier="steel" mincondition="0.5" usecondition="true" />
-        </Fabricate>
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="320,64,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sourcerect="640,0,128,128" depth="0.55" origin="0.5,0.5" />
-        <Body radius="45" height="50" density="40" />
-        <Wearable slots="Any,OuterClothes" msg="ItemMsgPickUpSelect">
-          <StatusEffect type="OnWearing" target="This" Condition="-100" disabledeltatime="true" delay="0.3" stackable="false">
-            <Condition Condition="gte 99" />
-          </StatusEffect>
-          <StatusEffect type="OnBroken" target="This" Condition="100" disabledeltatime="true" delay="3" stackable="false" />
-          <StatusEffect type="OnWearing" target="Contained,Character,This" Condition="-0.2" comparison="And">
-            <RequiredItem items="mobilebattery" type="Contained" />
-            <Conditional IsDead="false" />
-          </StatusEffect>
-          <StatusEffect type="OnWearing" target="Character,This" comparison="Or" disabledeltatime="true">
-            <RequiredItem items="mobilebattery" type="Contained" />
-            <Conditional IsDead="false" />
-            <Affliction identifier="cpr_buff_auto" amount="10" />
-          </StatusEffect>
-          <StatusEffect type="OnWearing" target="Character,This" comparison="And">
-            <RequiredItem items="mobilebattery" type="Contained" />
-            <Conditional IsDead="false" Condition="gte 99" />
-            <Sound file="%ModDir%/Sound/pump.ogg" range="500" />
-          </StatusEffect>
-          <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="cpr_buff" damagemultiplier="0.0" damagesound="LimbArmor" />
-          <sprite name="AutoPulse" texture="%ModDir%/Images/InGameItemIconAtlas.png" limb="Torso" scale="0.8" hidelimb="false" inherittexturescale="true" sourcerect="640,0,128,128" origin="0.5,0.6" />
-        </Wearable>
-        <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="battery">
-          <Containable items="mobilebattery" />
-        </ItemContainer>
-      </Item>]])
-  },
-  -- Change fabricator to medical fabricator
-  ["bloodcollector"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="5">
-            <RequiredSkill identifier="medical" level="30" />
-            <RequiredItem identifier="plastic" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Remove fabrication recipe
-  ["blahaj"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      }
-    }
-  },
-  -- Change fabricator to fabricator / medical fabricator
-  ["bodybag"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator,fabricator" requiredtime="15">
-            <RequiredSkill identifier="medical" level="5" />
-            <RequiredItem identifier="plastic" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  -- NOTE: The brain jar was removed for whatever reason
-  --[=[["brainjar"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" requiresrecipe="true">
-            <Item identifier="silicon" />
-            <Item identifier="steel" />
-          </Fabricate>]])
-      }
-    }
-  },]=]
-  -- Change fabricator to medical fabricator
-  ["healthscanner"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="10">
-            <RequiredSkill identifier="medical" level="40" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="aluminium" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["bloodanalyzer"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="medical" level="50" />
-            <RequiredItem identifier="plastic" />
-            <RequiredItem identifier="silicon" />
-            <RequiredItem identifier="fpgacircuit" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add fabrication recipe in medical fabricator
-  ["advhemostat"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredSkill identifier="mechanical" level="15" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- (The craftable verison of the surgery table) Remove fabrication recipe
-  ["operatingtable"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = ""
-      },
-    },
-  },
-  -- Change fabricator to medical fabricator
-  ["defibrillator"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="10">
-            <RequiredSkill identifier="electrical" level="40" />
-            <RequiredSkill identifier="medical" level="30" />
-            <RequiredItem identifier="plastic" mincondition="0.5" usecondition="true" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="aluminium" mincondition="0.5" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["medtoolbox"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="20" />
-            <Item identifier="steel" amount="2" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["multiscalpel"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="60" />
-            <RequiredSkill identifier="mechanical" level="20" />
-            <RequiredItem identifier="steel" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="plastic" />
-            <RequiredItem identifier="zinc" amount="2" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add fabrication recipe in medical fabricator
-  ["advscalpel"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredSkill identifier="mechanical" level="15" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add fabrication recipe in medical fabricator
-  ["advretractors"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredSkill identifier="mechanical" level="15" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["stasisbag"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="50">
-            <RequiredSkill identifier="medical" level="50" />
-            <RequiredItem identifier="plastic" />
-            <RequiredItem identifier="stabilozine" />
-            <RequiredItem identifier="mannitol" />
-            <RequiredItem identifier="potassium" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Change fabricator to medical fabricator
-  ["surgerytoolbox"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="20" />
-            <Item identifier="steel" amount="2" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add fabrication recipe in medical fabricator
-  ["surgicaldrill"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="30" />
-            <RequiredSkill identifier="mechanical" level="30" />
-            <RequiredItem identifier="steel" mincondition="0.5" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.5" usecondition="true" />
-            <RequiredItem identifier="fpgacircuit" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add fabrication recipe in medical fabricator
-  ["surgerysaw"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="30" />
-            <RequiredSkill identifier="mechanical" level="30" />
-            <RequiredItem identifier="titaniumaluminiumalloy" mincondition="0.5" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add fabrication recipe in medical fabricator
-  ["traumashears"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="10" />
-            <RequiredSkill identifier="mechanical" level="10" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="plastic" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add fabrication recipe in medical fabricator
-  ["tweezers"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator">
-            <RequiredSkill identifier="medical" level="30" />
-            <RequiredSkill identifier="mechanical" level="30" />
-            <RequiredItem identifier="steel" mincondition="0.25" usecondition="true" />
-            <RequiredItem identifier="zinc" mincondition="0.25" usecondition="true" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- 1. Change fabricator to medical fabricator
-  -- 2. Fix broken sprite
-  ["wheelchair"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="medical" level="20" />
-            <RequiredSkill identifier="mechanical" level="30" />
-            <RequiredItem identifier="steel" />
-            <RequiredItem identifier="titaniumaluminiumalloy" />
-          </Fabricate>]])
-      },
-      {
-        targetComponent = "sprite",
-        override = XElement.Parse([[
-          <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sourcerect="0,780,256,243" depth="0.55" origin="0.5,0.5" />]])
-      },
-      {
-        targetComponent = "wearable",
-        override = XElement.Parse([[
-          <Wearable slots="Any,OuterClothes" msg="ItemMsgEquipSelect" autoequipwhenfull="true">
-            <sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" limb="Waist" hidelimb="false" inherittexturescale="true" hideotherwearables="false" inheritorigin="false" sourcerect="0,780,256,243" inheritlimbdepth="false" depth="0.10003" />
-            <!-- depth="0.11504" -->
-          </Wearable>]])
-      },
-    }
-  },
-  -- 3x healing rate
-  ["suturedw"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-      <Affliction name="" identifier="suturedw" description="" healableinmedicalclinic="false" limbspecific="true" maxstrength="100" showinhealthscannerthreshold="700" showiconthreshold="0.1" type="damage" isbuff="false" iconcolors="127,127,127,255;127,127,127,255">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.6" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="0.8" />
-        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="5,3" sheetelementsize="128,128" origin="0,0" />
-      </Affliction>]])
-  },
-  -- Add rift engine fabrication recipe
-  ["opium"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
-            <RequiredItem identifier="riftmat" amount="2" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add rift engine fabrication recipe
-  ["adrenaline"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
-            <RequiredItem identifier="riftmat" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- Add rift engine fabrication recipe
-  ["antibiotics"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
-            <RequiredItem identifier="riftmat" amount="2" />
-          </Fabricate>]])
-      }
-    }
-  },
-  -- 1. Add rift engine fabrication recipe
-  -- 2. Integrate Extract It
-  ["alienblood"] = {
-    mod = "Neurotrauma",
-    componentOverrides = {
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="riftfabricator" requiredtime="1">
-            <RequiredItem identifier="riftmat" amount="5" />
-          </Fabricate>]])
-      },
-      {
-        add = true,
-        override = XElement.Parse([[
-          <Deconstruct time="5" chooserandom="true" requireddeconstructor="geneticresearchstation" amount="1">
-            <Item identifier="geneticmaterial_unresearched" commonness="0.45" requiredotheritem="stabilozine" activatebuttontext="researchstation.research" infotext="researchstation.research.infotext" infotextonotheritemmissing="researchstation.combine.missingitem" />
-            <Item identifier="alienblood" outcondition="0.0" commonness="0.55" requiredotheritem="stabilozine" activatebuttontext="researchstation.research" infotext="researchstation.research.infotext" infotextonotheritemmissing="researchstation.combine.missingitem" />
-          </Deconstruct>]])
-      }
-    }
-  },
-  -- Prevent arterial cuts from causing bloodloss if you're in stasis
-  ["ll_arterialcut"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-    <Affliction name="" identifier="ll_arterialcut" description="" healableinmedicalclinic="true" basehealcost="210" targets="human" type="arterialcut" limbspecific="false" indicatorlimb="LeftLeg" maxstrength="100">
-      <Effect minstrength="0" maxstrength="100" strengthchange="1">
-        <StatusEffect target="Character" targetlimb="LeftLeg" comparison="and">
-          <Conditional arteriesclamp="lte 1" />
-          <Conditional stasis="lte 1" />
-          <Conditional bloodloss="lte 99.5" />
-          <ParticleEmitter particle="bloodsplash" particlespersecond="50" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <ParticleEmitter particle="waterblood" particlespersecond="20" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <Affliction identifier="bloodloss" strength="1.5" />
-        </StatusEffect>
-        <StatusEffect target="Character" conditional="or">
-          <Conditional ishuman="False" />
-          <ReduceAffliction identifier="arterialcut" amount="999" />
-        </StatusEffect>
-      </Effect>
-      <PeriodicEffect mininterval="6" maxinterval="6">
-        <StatusEffect target="Character" targetlimb="LeftLeg" comparison="and">
-          <Conditional arteriesclamp="eq 0" />
-          <Conditional stasis="lte 1" />
-          <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="blood" decalsize="0.85" shockwave="false" underwaterbubble="false" />
-        </StatusEffect>
-      </PeriodicEffect>
-      <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,3" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>]])
-  },
-  ["rl_arterialcut"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-    <Affliction name="" identifier="rl_arterialcut" description="" healableinmedicalclinic="true" basehealcost="210" targets="human" type="arterialcut" limbspecific="false" indicatorlimb="RightLeg" maxstrength="100">
-      <Effect minstrength="0" maxstrength="100" strengthchange="1">
-        <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true" targetlimb="RightLeg" comparison="and">
-          <Conditional arteriesclamp="lte 1" />
-          <Conditional stasis="lte 1" />
-          <Conditional bloodloss="lte 99.5" />
-          <ParticleEmitter particle="bloodsplash" particlespersecond="50" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <ParticleEmitter particle="waterblood" particlespersecond="20" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <Affliction identifier="bloodloss" strength="1.5" />
-        </StatusEffect>
-        <StatusEffect target="Character" conditional="or">
-          <Conditional ishuman="False" />
-          <ReduceAffliction identifier="arterialcut" amount="999" />
-        </StatusEffect>
-      </Effect>
-      <PeriodicEffect mininterval="6" maxinterval="6">
-        <StatusEffect target="Character" targetlimb="RightLeg" comparison="and">
-          <Conditional arteriesclamp="eq 0" />
-          <Conditional stasis="lte 1" />
-          <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="blood" decalsize="0.85" shockwave="false" underwaterbubble="false" />
-        </StatusEffect>
-      </PeriodicEffect>
-      <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,3" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>]])
-  },
-  ["la_arterialcut"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-    <Affliction name="" identifier="la_arterialcut" description="" healableinmedicalclinic="true" basehealcost="210" targets="human" type="arterialcut" limbspecific="false" indicatorlimb="LeftArm" maxstrength="100">
-      <Effect minstrength="0" maxstrength="100" strengthchange="1">
-        <StatusEffect target="Character" targetlimb="LeftArm" comparison="and">
-          <Conditional arteriesclamp="lte 1" />
-          <Conditional stasis="lte 1" />
-          <Conditional bloodloss="lte 99.5" />
-          <ParticleEmitter particle="bloodsplash" particlespersecond="50" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <ParticleEmitter particle="waterblood" particlespersecond="20" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <Affliction identifier="bloodloss" strength="1.5" />
-        </StatusEffect>
-        <StatusEffect target="Character" conditional="or">
-          <Conditional ishuman="False" />
-          <ReduceAffliction identifier="arterialcut" amount="999" />
-        </StatusEffect>
-      </Effect>
-      <PeriodicEffect mininterval="6" maxinterval="6">
-        <StatusEffect target="Character" targetlimb="LeftArm" comparison="and">
-          <Conditional arteriesclamp="eq 0" />
-          <Conditional stasis="lte 1" />
-          <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="blood" decalsize="0.85" shockwave="false" underwaterbubble="false" />
-        </StatusEffect>
-      </PeriodicEffect>
-      <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,3" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>]])
-  },
-  ["ra_arterialcut"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-    <Affliction name="" identifier="ra_arterialcut" description="" healableinmedicalclinic="true" basehealcost="210" targets="human" type="arterialcut" limbspecific="false" indicatorlimb="RightArm" maxstrength="100">
-      <Effect minstrength="0" maxstrength="100" strengthchange="1">
-        <StatusEffect target="Character" targetlimb="RightArm" comparison="and">
-          <Conditional arteriesclamp="lte 1" />
-          <Conditional stasis="lte 1" />
-          <Conditional bloodloss="lte 99.5" />
-          <ParticleEmitter particle="bloodsplash" particlespersecond="50" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <ParticleEmitter particle="waterblood" particlespersecond="20" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <Affliction identifier="bloodloss" strength="1.5" />
-        </StatusEffect>
-        <StatusEffect target="Character" conditional="or">
-          <Conditional ishuman="False" />
-          <ReduceAffliction identifier="arterialcut" amount="999" />
-        </StatusEffect>
-      </Effect>
-      <PeriodicEffect mininterval="6" maxinterval="6">
-        <StatusEffect target="Character" targetlimb="RightArm" comparison="and">
-          <Conditional arteriesclamp="eq 0" />
-          <Conditional stasis="lte 1" />
-          <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="blood" decalsize="0.85" shockwave="false" underwaterbubble="false" />
-        </StatusEffect>
-      </PeriodicEffect>
-      <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,3" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>]])
-  },
-  ["t_arterialcut"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-    <Affliction name="" identifier="t_arterialcut" description="" healableinmedicalclinic="false" targets="human" type="arterialcut" limbspecific="false" indicatorlimb="Torso" showiconthreshold="200" showinhealthscannerthreshold="1" maxstrength="100">
-      <Effect minstrength="0" maxstrength="100" strengthchange="1" />
-      <PeriodicEffect mininterval="1" maxinterval="3">
-        <StatusEffect target="Character" disabledeltatime="true" stackable="false" delay="1" checkconditionalalways="false">
-          <Conditional ishuman="false" />
-          <ReduceAffliction identifier="t_arterialcut" amount="1000" />
-        </StatusEffect>
-        <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true" disabledeltatime="true" stackable="false" delay="1" checkconditionalalways="false">
-          <Conditional balloonedaorta="lte 1" />
-          <Conditional stasis="lte 1" />
-          <Affliction identifier="internalbleeding" strength="8" />
-          <Affliction identifier="bloodloss" strength="4" />
-        </StatusEffect>
-      </PeriodicEffect>
-      <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,3" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>]])
-  },
-  ["h_arterialcut"] = {
-    mod = "Neurotrauma",
-    xml = XElement.Parse([[
-    <Affliction name="" identifier="h_arterialcut" description="" healableinmedicalclinic="false" targets="human" type="arterialcut" limbspecific="false" indicatorlimb="Head" maxstrength="100">
-      <Effect minstrength="0" maxstrength="100" strengthchange="100">
-        <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true" targetlimb="Head" comparison="and">
-          <Conditional bloodloss="lte 99.5" />
-          <Conditional stasis="lte 1" />
-          <ParticleEmitter particle="bloodsplash" particlespersecond="50" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <ParticleEmitter particle="waterblood" particlespersecond="20" scalemin="0.5" scalemax="0.45" velocitymin="0" velocitymax="40" anglemin="0" anglemax="360" />
-          <Affliction identifier="bloodloss" strength="1.5" />
-        </StatusEffect>
-        <StatusEffect target="Character" conditional="or">
-          <Conditional ishuman="False" />
-          <ReduceAffliction identifier="arterialcut" amount="999" />
-        </StatusEffect>
-      </Effect>
-      <PeriodicEffect mininterval="6" maxinterval="6">
-        <StatusEffect target="Character" targetlimb="Head" comparison="and">
-          <Conditional stasis="lte 1" />
-          <Explosion range="0.0" structuredamage="0" itemdamage="0" force="0.0" severlimbsprobability="0.0" decal="blood" decalsize="0.85" shockwave="false" underwaterbubble="false" />
-        </StatusEffect>
-      </PeriodicEffect>
-      <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,3" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>]])
-  },
-  -- Prioritize blood bags
-  ["antibloodloss2"] = { mod = "Neurotrauma"},
-  ["bloodpackoplus"] = { mod = "Neurotrauma"},
-  ["bloodpackaminus"] = { mod = "Neurotrauma"},
-  ["bloodpackaplus"] = { mod = "Neurotrauma"},
-  ["bloodpackbminus"] = { mod = "Neurotrauma"},
-  ["bloodpackbplus"] = { mod = "Neurotrauma"},
-  ["bloodpackabminus"] = { mod = "Neurotrauma"},
-  ["bloodpackabplus"] = { mod = "Neurotrauma"},
 
   -- ***********
   -- Rift Engine
@@ -5201,21 +3580,6 @@ Auto.XMLChanges = {
         </ItemContainer>
         <aitarget maxsightrange="1500" />
       </Item>]])
-  },
-  -- Change fabricator to weapon fabricator
-  ["syringegun"] = {
-    mod = "Enhanced Armaments",
-    componentOverrides = {
-      {
-        targetComponent = "fabricate",
-        override = XElement.Parse([[
-          <Fabricate suitablefabricators="weaponfabricator" requiredtime="10">
-            <RequiredSkill identifier="medical" level="50" />
-            <RequiredItem identifier="aluminium" amount="2" />
-            <RequiredItem identifier="plastic" amount="2" />
-          </Fabricate>]])
-      },
-    },
   },
   -- Change fabricator to ammo fabricator
   ["shotgunshellblunt"] = {
@@ -9165,394 +7529,6 @@ Auto.XMLChanges = {
 -- Setting line to an empty string replaces the whole file
 -- Use "startLine" and "endLine" if you have a multi-line replacement
 Auto.LuaChanges = {
-  -- ***********
-  -- Neurotrauma
-  -- ***********
-  -- 1. Patch lockedhands to work with Immersive Handcuffs' system
-  -- 2. Make thiamine heal organs much faster
-  -- 3. Add luabotomy if it doesn't exist
-  ["Neurotrauma/Lua/Scripts/Server/humanupdate.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      {
-        startLine = 820,
-        endLine = 860,
-        replace = [[
-    lockedhands = {
-		update = function(c, i)
-			-- arm locking
-			local leftlockitem = c.character.Inventory.FindItemByIdentifier("armlock2", false)
-			local rightlockitem = c.character.Inventory.FindItemByIdentifier("armlock1", false)
-
-			-- handcuffs
-			local handcuffed = HF.HasAffliction(c.character, "handcuffed")
-			local leftHandItem = HF.GetItemInLeftHand(c.character)
-			local rightHandItem = HF.GetItemInRightHand(c.character)
-			if handcuffed then
-				-- drop non-handcuff items
-				if leftHandItem ~= nil
-				and tostring(leftHandItem.Prefab.Identifier) ~= "handcuffsequipped"
-				and tostring(rightHandItem.Prefab.Identifier) ~= "handcuffsequipped2" then
-					leftHandItem.Drop(c.character)
-				end
-				if rightHandItem ~= nil
-				and tostring(rightHandItem.Prefab.Identifier) ~= "handcuffsequipped"
-				and tostring(rightHandItem.Prefab.Identifier) ~= "handcuffsequipped2" then
-					rightHandItem.Drop(c.character)
-				end
-				if leftHandItem == nil and rightHandItem == nil then
-					local prefab = ItemPrefab.GetItemPrefab("handcuffsequipped")
-					Entity.Spawner.AddItemToSpawnQueue(prefab, c.character.WorldPosition, nil, nil, function(newitem)
-						c.character.Inventory.TryPutItem(newitem, nil, { InvSlotType.RightHand, InvSlotType.LeftHand })
-					end)
-				end
-			else -- FAILSAFE: drop handcuffs if no "handcuffed" affliction
-				if leftHandItem ~= nil
-				and (tostring(leftHandItem.Prefab.Identifier) == "handcuffsequipped"
-				or tostring(leftHandItem.Prefab.Identifier) == "handcuffsequipped2") then
-					leftHandItem.Drop(c.character)
-				end
-				if rightHandItem ~= nil
-				and (tostring(rightHandItem.Prefab.Identifier) == "handcuffsequipped"
-				or tostring(rightHandItem.Prefab.Identifier) == "handcuffsequipped2") then
-					rightHandItem.Drop(c.character)
-				end
-			end
-
-			local leftarmlocked = leftlockitem ~= nil and not handcuffed
-			local rightarmlocked = rightlockitem ~= nil and not handcuffed
-
-			if leftarmlocked and not c.stats.lockleftarm then
-				HF.RemoveItem(leftlockitem)
-			end
-			if rightarmlocked and not c.stats.lockrightarm then
-				HF.RemoveItem(rightlockitem)
-			end
-
-			if not leftarmlocked and c.stats.lockleftarm and not handcuffed then
-				HF.ForceArmLock(c.character, "armlock2")
-			end
-			if not rightarmlocked and c.stats.lockrightarm and not handcuffed then
-				HF.ForceArmLock(c.character, "armlock1")
-			end
-
-			c.afflictions[i].strength = HF.BoolToNum((c.stats.lockleftarm and c.stats.lockrightarm) or handcuffed, 100)
-		end,
-	},
-	},]]
-      },
-      {
-        line = 1781,
-        replace = [[
-				+ HF.Clamp(c.afflictions.afthiamine.strength, 0, 1) * 20]]
-      },
-      {
-        line = 1963,
-        replace = [[
-      HF.SetAffliction(character, "luabotomy", 0.1)
-		  return]]
-      },
-    }
-  },
-  -- Patch Neurotrauma's multiscalpels to also accept blood scalpels
-  ["Neurotrauma/Lua/Scripts/Server/multiscalpel.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 81, replace = "		if item.Prefab.Identifier.Value == \"multiscalpel\" or item.Prefab.Identifier.Value == \"multiscalpel_blood\" then" },
-    }
-  },
-  -- Remove the annoying modconflict thing
-  ["Neurotrauma/Lua/Scripts/Server/modconflict.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      {
-        startLine = 10,
-        endLine = 27,
-        replace = [=[
-	--[[NT.modconflict = false
-	if NTConfig.Get("NT_ignoreModConflicts", false) then
-		return
-	end
-
-	local itemsToCheck = { "antidama2", "opdeco_hospitalbed" }
-
-	for prefab in ItemPrefab.Prefabs do
-		if HF.TableContains(itemsToCheck, prefab.Identifier.Value) then
-			local mod = prefab.ConfigElement.ContentPackage.Name
-			if not string.find(string.lower(mod), "neurotrauma") then
-				NT.modconflict = true
-				print("Found Neurotrauma incompatibility with mod: ", mod)
-				print("WARNING! mod conflict detected! Neurotrauma may not function correctly and requires a patch!")
-				return
-			end
-		end
-	end]]]=]
-      },
-    }
-  },
-  -- Remove testing functions
-  ["Neurotrauma/Lua/Scripts/testing.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 1, replace = "do return end" },
-    }
-  },
-  -- Modify require() paths
-  ["Neurotrauma/Lua/ConsentRequiredExtended/Util/Barotrauma.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 3, replace = "local Environment = require 'workshop.Neurotrauma.Lua.ConsentRequiredExtended.Util.Environment'" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/Util/Clr.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 3, replace = "local Environment = require 'workshop.Neurotrauma.Lua.ConsentRequiredExtended.Util.Environment'" },
-      { line = 6, replace = "local UserData = require 'workshop.Neurotrauma.Lua.ConsentRequiredExtended.Util.UserData'" }
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/Util/UserData.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 3, replace = "local Environment = require 'workshop.Neurotrauma.Lua.ConsentRequiredExtended.Util.Environment'" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/Api.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 4, replace = "local Environment = require 'workshop.Neurotrauma.Lua.ConsentRequiredExtended.Util.Environment'" },
-      { line = 5, replace = "local Barotrauma = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Util.Barotrauma\")" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/Config.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 2, replace = "local Environment = require 'workshop.Neurotrauma.Lua.ConsentRequiredExtended.Util.Environment'" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/init.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 13, replace = "	local requireStr = \"workshop.Neurotrauma.Lua.\" .. SRC_NAMESPACE .. MAIN" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/Main.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 7,  replace = "local Api = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Api\")" },
-      { line = 8,  replace = "local OnItemApplied = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.OnItemApplied\")" },
-      { line = 9,  replace = "local onMeleeWeaponHandleImpact = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.onMeleeWeaponHandleImpact\")" },
-      { line = 10, replace = "local onHandleProjectileCollision = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.onHandleProjectileCollision\")" },
-      { line = 11, replace = "local Config = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Config\")" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/onHandleProjectileCollision.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 1,  replace = "local Api = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Api\")" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/OnItemApplied.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 1, replace = "local Api = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Api\")" },
-    }
-  },
-  ["Neurotrauma/Lua/ConsentRequiredExtended/onMeleeWeaponHandleImpact.lua"] = {
-    mod = "Neurotrauma",
-    replacements = {
-      { line = 1, replace = "local Api = require(\"workshop.Neurotrauma.Lua.ConsentRequiredExtended.Api\")" },
-    }
-  },
-
-  -- **************
-  -- Mercy Hospital
-  -- **************
-  -- Remove testing functions
-  ["Mercy Hospital Updated/Lua/Scripts/testing.lua"] = {
-    mod = "Mercy Hospital Updated",
-    replacements = {
-      { line = 1, replace = "do return end" },
-    }
-  },
-
-  -- *******
-  -- NT Eyes
-  -- *******
-  -- 1. Make monsters have purple night vision
-  -- 2. Change ambient light to pitch black if you have regular human eyes
-  -- 3. Give spectators slight night vision
-  ["NT Eyes/Lua/Scripts/Client/clientUpdate.lua"] = {
-    mod = "NT Eyes",
-    replacements = {
-      {
-        startLine = 56,
-        endLine = 57,
-        replace = [[
-		levelColor = Color(0, 0, 0, 0),
-		hullColor = Color(0, 0, 0, 0),]]},
-      {
-        startLine = 166,
-        endLine = 200,
-        replace = [[
-function NTEYE.UpdateLights()
-	local ControlledCharacter = Character.Controlled
-	local LevelLight = Level.Loaded.LevelData.GenerationParams
-	-- Very slight night vision inside the sub for spectators
-	if not Megamod_Client.LightMapOverride.IsMonsterAntagonist
-	and (not ControlledCharacter or ControlledCharacter.IsDead) then
-		LevelLight.AmbientLightColor = Color(0, 0, 0, 0)
-		for _, HullLight in pairs(Hull.HullList) do
-			HullLight.AmbientLight = Color(29, 29, 29, 9)
-		end
-		return
-	-- Prevent human night vision during Hunts
-	elseif Megamod_Client.LightMapOverride.HuntActive
-	and ControlledCharacter and ControlledCharacter.IsHuman then
-		LevelLight.AmbientLightColor = Color(0, 0, 0, 0)
-		for _, HullLight in pairs(Hull.HullList) do
-			HullLight.AmbientLight = Color(0, 0, 0, 0)
-		end
-		return
-	-- If we are a monster, give purple night vision
-	elseif (ControlledCharacter and not ControlledCharacter.IsHuman)
-	or Megamod_Client.LightMapOverride.IsMonsterAntagonist then
-		LevelLight.AmbientLightColor = Color(25, 0, 75, 40)
-		for _, HullLight in pairs(Hull.HullList) do
-			HullLight.AmbientLight = Color(50, 0, 200, 75)
-		end
-		return
-	-- Reset to normal if we aren't a monster and we still have monster vision
-	elseif LevelLight.AmbientLightColor == Color(25, 0, 75, 40) then
-		LevelLight.AmbientLightColor = Color(0, 0, 0, 0)
-		for _, HullLight in pairs(Hull.HullList) do
-			HullLight.AmbientLight = Color(0, 0, 0, 0)
-		end
-		return
-	end
-
-	--define color tables
-	local levelColors, hullColors = {}, {}
-	for _, effect in pairs(NTEYE.ClientEffects) do
-		if HF.HasAffliction(ControlledCharacter, effect.affliction) then
-			levelColors[#levelColors + 1] = effect.levelColor
-			hullColors[#hullColors + 1] = effect.hullColor
-		end
-	end
-	if #levelColors == 0 and #hullColors == 0 then
-		return
-	end
-	local LevelColor = BlendColors(levelColors)
-	local HullColor = BlendColors(hullColors)
-	LevelLight.AmbientLightColor = LevelColor
-	for _, HullLight in pairs(Hull.HullList) do
-		HullLight.AmbientLight = HullColor
-	end
-end]]},
-    }
-  },
-  -- Remove debug print()s
-  ["NT Eyes/Lua/Scripts/Server/humanupdate.lua"] = {
-    mod = "NT Eyes",
-    replacements = {
-      { -- Remove debug print()
-        line = 145,
-        replace = ""
-      },
-      { -- Remove debug print()
-        line = 149,
-        replace = ""
-      },
-    }
-  },
-
-  -- **************
-  -- NT Bio Printer
-  -- **************
-  -- Remove debug print()
-  ["NT Bio Printer/Lua/Scripts/Server/EmptySyringe.lua"] = {
-    mod = "NT Bio Printer",
-    replacements = {
-      {
-        line = 17,
-        replace = ""
-      }
-    }
-  },
-
-  -- *************
-  -- NT BrainTrans
-  -- *************
-  -- Don't give all characters AI
-  ["NT BrainTrans/Lua/Scripts/hooks.lua"] = {
-    mod = "NT BrainTrans (Beta)",
-    replacements = {
-      {
-        startLine = 3,
-        endLine = 17,
-        replace = ""
-      }
-    }
-  },
-  -- Make JobUpdate networking override the character's name if it was a sleeve
-  ["NT BrainTrans/Lua/Scripts/helperfunctions.lua"] = {
-    mod = "NT BrainTrans (Beta)",
-    replacements = {
-      {
-        line = 48,
-        replace = [[
-        updateMessage.WriteBoolean(wasSleeve)
-        if wasSleeve then
-            updateMessage.WriteString(tostring(clientName))
-        end
-        -- Timer.Wait(function()]]
-      },
-      {
-        line = 101,
-        replace = [[
-        local wasSleeve = message.ReadBoolean()
-        local sleeveInfo = {}
-        if wasSleeve then
-            sleeveInfo.Name = message.ReadString()
-        end]]
-      },
-      {
-        line = 116,
-        replace = [[
-                if wasSleeve then
-                    character.Info.Name = tostring(sleeveInfo.Name)
-                end]]
-      }
-    }
-  },
-
-  -- ***********************
-  -- NT Cybernetics Enhanced
-  -- ***********************
-  -- Remove testing functions
-  ["NT Cybernetics Enhanced/Lua/Scripts/testing.lua"] = {
-    mod = "NT Cybernetics Enhanced",
-    replacements = {
-      { line = 1, replace = "do return end" },
-    }
-  },
-
-  -- ***********
-  -- NT Symbiote
-  -- ***********
-  -- Remove testing functions
-  ["NT Symbiote/Lua/Scripts/testing.lua"] = {
-    mod = "NT Symbiote",
-    replacements = {
-      { line = 1, replace = "do return end" },
-    }
-  },
-
-  -- *************
-  -- NT Infections
-  -- *************
-  -- Nothing for now
-
   -- ******************
   -- Enhanced Immersion
   -- ******************
@@ -9611,34 +7587,27 @@ end]]},
       { line = 3, replace = "_713.mods.pickupnotifier = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.init'" },
     }
   },
-  ["Pickup Notifier/Lua/_713/pickupnotifier/hooks/client.lua"] = {
+  ["Pickup Notifier/Lua/_713/pickupnotifier/hooks/client_multiplayer.lua"] = {
     mod = "Pickup Notifier",
     replacements = {
-      { line = 3, replace = "local data = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.data'" },
-      { line = 4, replace = "local utils = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.utils'" },
+      { line = 8, replace = "local data = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.data'" },
+      { line = 9, replace = "local utils = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.utils'" },
     }
   },
-  --[[["Pickup Notifier/Lua/_713/pickupnotifier/hooks/shared.lua"] = {
-    mod = "Pickup Notifier",
-    replacements = {
-      { line = 3, replace = "local data = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.data'" },
-      { line = 4, replace = "local utils = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.utils'" },
-    }
-  },]]
   ["Pickup Notifier/Lua/_713/pickupnotifier/init.lua"] = {
     mod = "Pickup Notifier",
     replacements = {
       { line = 5, replace = "mod.data = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.data'" },
       { line = 6, replace = "mod.utils = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.utils'" },
-      --{ line = 9, replace = "   shared = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.hooks.shared'," },
-      { line = 9, replace = "   client = CLIENT and require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.hooks.client' or nil" },
+      { line = 12, replace = "      mod.hooks.client = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.hooks.client_singleplayer'" },
+      { line = 14, replace = "      mod.hooks.client = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.hooks.client_multiplayer'" },
     }
   },
   ["Pickup Notifier/Lua/_713/pickupnotifier/utils.lua"] = {
     mod = "Pickup Notifier",
     replacements = {
       { line = 3, replace = "local data = require 'workshop.Pickup Notifier.Lua._713.pickupnotifier.data'" },
-      { line = 32, replace = "   local subdirectory = \"/Workshop/Pickup Notifier/PickupNotifier/Sounds/\"" },
+      { line = 31, replace = "   local subdirectory = \"/Workshop/Pickup Notifier/PickupNotifier/Sounds/\"" },
     }
   },
 }
@@ -9653,7 +7622,7 @@ Auto.ModTable = {
   [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.9" },
   [3293221471] = { name = "Pile Bunker v2.0", version = "v2.23" },
   [3486903116] = { name = "Stun Gun Revamp", version = "1.0.1" },
-  [3005836987] = { name = "Improved Stun", version = "5.6" },
+  [3005836987] = { name = "Improved  Stun", version = "5.6" },
 
   -- Monsters
   [2518816103] = { name = "Barotraumatic", version = "1.0.230" },
@@ -9693,8 +7662,6 @@ Auto.ModTable = {
   [3339841986] = { name = "Normalized Flashlight", version = "1.0.3" },
   [3437714291] = { name = "Tweaked Glowlers", version = "1.0" },
 
-  --[2701251094] = { name = "Performance Fix", version = "1.0.15" },
-
   --[[
   Other mods that are in the Megamod but not downloaded automatically
 
@@ -9715,14 +7682,14 @@ Auto.ModTable = {
 local declaration = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 
 Auto.FileListXML = {}
-Auto.PFHighPriorityList = {}
-Auto.VariantList = {}
 
 -- Stuff to add to the filelist
 Auto.MMFiles = [[
 <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
 <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
+<Submarine file="%ModDir%/Megamod/Subs/Stations/Nova Station.sub" />
 <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
+<Submarine file="%ModDir%/Megamod/Subs/Nova Elevator.sub" />
 <Text file="%ModDir%/Megamod/Text/English.xml" />
 <Sounds file="%ModDir%/Megamod/Sounds/beastsounds.xml" />
 <Particles file="%ModDir%/Megamod/Particles/ParticlePrefabs.xml" />
@@ -9734,6 +7701,7 @@ Auto.MMFiles = [[
 <Item file="%ModDir%/Megamod/Items/BasiliskLightOverride.xml" />
 <Item file="%ModDir%/Megamod/Items/Other.xml" />
 <Item file="%ModDir%/Megamod/Items/CapsuleOverrides.xml" />
+<Item file="%ModDir%/Megamod/Items/Chemistry.xml" />
 <Character file="%ModDir%/Megamod/Characters/Truebeast/Truebeast.xml" />
 <Afflictions file="%ModDir%/Megamod/Afflictions/Afflictions.xml" />
 ]] .. "\n"
@@ -9797,7 +7765,8 @@ end
 function Auto.LoadXMLFile(filePath, modName)
   --[[local p = filePath:find(modName, 1, true)
   local debug = false
-  if tostring(filePath:sub(p):gsub("\\", "/")) == "Enhanced Armaments/Weapons/overrides.xml" then
+  if tostring(filePath:sub(p):gsub("\\", "/")) == "Barotraumatic/Afflictions/Afflictions.xml" then
+    print("*********************************")
     debug = true
   end]]
 
@@ -9822,17 +7791,13 @@ function Auto.LoadXMLFile(filePath, modName)
       return
     end
     local elementID
-    local defType = ""
-    local variantOf = ""
     for attribute in element.Attributes() do
       local attributeName = tostring(attribute.Name):lower()
       if attributeName == "speciesname" then
-        defType = "character"
         elementID = tostring(attribute.Value)
         removeFromFileList = true
         break
       elseif attributeName == "identifier" then
-        defType = "item"
         elementID = tostring(attribute.Value)
         break
       elseif attributeName == "type" then
@@ -9840,30 +7805,17 @@ function Auto.LoadXMLFile(filePath, modName)
         break
       end
     end
-    for attribute in element.Attributes() do
-      local attributeName = tostring(attribute.Name):lower()
-      if attributeName == "variantof" then
-        variantOf = tostring(attribute.Value)
-        Auto.VariantList[elementID] = variantOf
-        break
-      end
-    end
     if elementID then
-      -- Add the identifier to the high prio list if it's a projectile
-      if defType == "item" then
-        for childElement in element.Elements() do
-          local childElementName = tostring(childElement.Name):lower()
-          if childElementName == "projectile" then
-            table.insert(Auto.PFHighPriorityList, elementID)
-            break
-          end
-        end
-      end
       for overrideID, overrideTbl in pairs(Auto.XMLChanges) do
         if overrideID == elementID then
           -- Full item overrides / removals
           if overrideTbl.xml == "" or overrideTbl.mod ~= modName then
-            fullOverrides[element] = { id = elementID, remove = true, removeFromFileList = removeFromFileList, override = nil }
+            fullOverrides[element] = {
+              id = elementID,
+              remove = true,
+              removeFromFileList = removeFromFileList,
+              override = nil
+            }
           elseif overrideTbl.xml then
             fullOverrides[element] = {
               id = elementID,
@@ -10031,6 +7983,19 @@ end
 -- Yes we have to add the declaration twice: running
 -- tostring() on an XDocument removes it for some reason
 function Auto.Finish()
+  for overrideID, overrideTbl in pairs(Auto.XMLChanges) do
+    local modExists = false
+    for k, v in pairs(Auto.ModTable) do
+      if v.name == overrideTbl.mod then
+        modExists = true
+        break
+      end
+    end
+    if not modExists then
+      print("WARNING: '" .. tostring(overrideID) .. "' was deleted because the mod '" .. tostring(overrideTbl.mod) .. "' is not enabled.")
+    end
+  end
+
   -- Filelist
   local str = declaration ..
       "<contentpackage name=\"Munkee's Megamod\" modversion=\"" ..
@@ -10043,34 +8008,11 @@ function Auto.Finish()
   str = XDocument.Parse(str)
   str = declaration .. tostring(str)
   File.Write(Auto.Path .. "/filelist.xml", str)
-
-  -- PF priority list (NO LONGER USED)
-  --[[local str = "\""
-  for _, identifier in pairs(Auto.PFHighPriorityList) do
-    str = str .. identifier .. "\",\""
-  end
-  -- Remove the last ","
-  if str ~= "" then
-    str = str:sub(1, -2)
-    File.Write(Auto.Path .. "/Lua/utils/automation/pf list.txt", str)
-  end]]
-
-  -- Item variants list, whip this out when needed
-  --[[local str = ""
-  for baseID, variantID in pairs(Auto.VariantList) do
-    str = str .. baseID .. " = " .. variantID .. "\n"
-  end
-  -- Remove the last newline
-  if str ~= "" then
-    str = str:sub(1, -2)
-  end
-  File.Write(Auto.Path .. "/Lua/utils/automation/variant list.txt", str)]]
 end
 
 -- Do stuff based on the current step
 if Auto.Step == 1 then -- Write .bat file to download the modlist
-  local str1 =
-  ":: THIS FILE IS AUTO-GENERATED BY /auto.lua/. Phase 1 - download modlist via SteamCMD and place them in /temp/.\n:: SteamCMD is installed to download mods, then uninstalled on finish, leaving only the .exe installer for next time.\n@echo off\nmove \"steamcmd\\steamcmd.exe\" \"temp\"\nrd /S /Q \"steamcmd\"\nmkdir \"steamcmd\"\nmove \"temp\\steamcmd.exe\" \"steamcmd\"\nsteamcmd\\steamcmd.exe +login anonymous"
+  local str1 = ":: THIS FILE IS AUTO-GENERATED BY /auto.lua/. Phase 1 - download modlist via SteamCMD and place them in /temp/.\n:: SteamCMD is installed to download mods, then uninstalled on finish, leaving only the .exe installer for next time.\n@echo off\nmove \"steamcmd\\steamcmd.exe\" \"temp\"\nrd /S /Q \"steamcmd\"\nmkdir \"steamcmd\"\nmove \"temp\\steamcmd.exe\" \"steamcmd\"\nsteamcmd\\steamcmd.exe +login anonymous"
   for k, v in pairs(Auto.ModTable) do
     str1 = str1 .. " +workshop_download_item 602960 " .. k
   end
@@ -10083,10 +8025,7 @@ if Auto.Step == 1 then -- Write .bat file to download the modlist
   for k, v in pairs(Auto.ModTable) do
     str3 = str3 .. "\nren \"temp\\" .. k .. "\" \"" .. v.name .. "\""
   end
-  File.Write(Auto.Path .. "\\auto.bat",
-    str1 ..
-    str2 ..
-    str3 ..
+  File.Write(Auto.Path .. "\\auto.bat", str1 .. str2 .. str3 ..
     "\nmove \"steamcmd\\steamcmd.exe\" \"temp\"\nRD /S /Q \"steamcmd\"\nmkdir \"steamcmd\"\nmove \"temp\\steamcmd.exe\" \"steamcmd\"")
 elseif Auto.Step == 2 then -- Notify of mod updates, apply Lua/xml overrides, rewrite xml to correct file paths, rewrite filelist, rewrite .bat to copy Lua directories
   local batStr = ":: THIS FILE IS AUTO-GENERATED BY /auto.lua/. Phase 2 - copy Lua directories to /lua/workshop/.\n@echo off\nrd /S /Q \"Lua/workshop\"\nmkdir \"Lua/workshop\"\n"
@@ -10099,7 +8038,8 @@ elseif Auto.Step == 2 then -- Notify of mod updates, apply Lua/xml overrides, re
     for fileList in File.GetFiles(modDirectory) do
       local fileType = Auto.GetFileType(fileList)
       local fileName = Auto.GetFileName(fileList)
-      if fileType == ".xml" and fileName == "filelist" then
+      if fileType == ".xml" and fileName == "filelist"
+      then
         local xml = XElement.Load(fileList)
         for attribute in xml.Attributes() do
           local attributeName = tostring(attribute.Name):lower()
@@ -10112,7 +8052,8 @@ elseif Auto.Step == 2 then -- Notify of mod updates, apply Lua/xml overrides, re
           end
         end
         for element in xml.Elements() do
-          if tostring(element.Name):lower() ~= "other" then
+          local elementName = tostring(element.Name):lower()
+          if elementName ~= "other" and elementName ~= "submarine" then
             table.insert(Auto.FileListXML, Auto.ChangeFilePaths(tostring(element), modName))
           end
         end
@@ -10138,9 +8079,9 @@ elseif Auto.Step == 2 then -- Notify of mod updates, apply Lua/xml overrides, re
     end
     -- Code doesn't work if the names are mismatched
     if modTable.name ~= modName then
-      error("Mod name for " ..
+      error("*****\nWARNING: Mod name for " ..
         tostring(modName) ..
-        " does not match!\n(Current: '" .. tostring(modName) .. "' Defined: '" .. modTable.name .. "')")
+        " does not match!\n(Current: '" .. tostring(modName) .. "' Defined: '" .. modTable.name .. "')\n*****")
     end
     if modTable.version ~= modVersion then
       print("*****\nWARNING: Mod version for " ..
@@ -10148,7 +8089,7 @@ elseif Auto.Step == 2 then -- Notify of mod updates, apply Lua/xml overrides, re
         " does not match!\n(Current: '" .. tostring(modVersion) .. "' Defined: '" .. modTable.version .. "')\n*****")
     end
 
-    -- Need to copy the Lua folder because require() searches the Lua folder and not the main folder for some reason
+    -- Need to copy the Lua folder because require() ONLY searches the Lua folder for some reason
     for folder in File.GetDirectories(modDirectory) do
       if Auto.GetFileName(folder, true) == "Lua" then
         batStr = batStr ..
