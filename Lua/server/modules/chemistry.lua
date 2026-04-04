@@ -8,7 +8,7 @@ local REACTION_TEMP_VARIANCE = 0.1
 -- reagents deplete when on characters
 local BASE_DEPLETION_RATE = 1
 
-local chmUtil = require 'shared.chem shared'
+local chmUtil = require 'utils.chem shared'
 for k, v in pairs(chmUtil) do
     chm[k] = v
 end
