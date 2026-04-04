@@ -66,6 +66,34 @@ Networking.Receive("mm_getprefs", function(message, client)
     Networking.Send(msg, client.Connection)
 end)
 
+local keyBindMap = {
+    --[[{
+        -- Main key, checked first, uses HitType (can be down/up/hit)
+        Key = "H",
+
+        -- Checked second, always checked as down, can be any key
+        ModifierKeys = "LeftControl,A,B",
+
+        -- Maps to a client-side table
+        Func = 1,
+
+        -- 1 = hit, 2 = up, 3 = down
+        HitType = 1,
+    },]]
+}
+
+Networking.Receive("mm_getkeybinds", function(message, client)
+    local msg = Networking.Start("mm_getkeybinds")
+    msg.WriteByte(#keyBindMap)
+    for _, keyBind in pairs(keyBindMap) do
+        msg.WriteString(keyBind.Key)
+        msg.WriteString(keyBind.ModifierKeys)
+        msg.WriteByte(keyBind.Func)
+        msg.WriteByte(keyBind.HitType)
+    end
+    Networking.Send(msg, client.Connection)
+end)
+
 local defaultPrefMap = {
     Traitor = true,
     Monster = true,
