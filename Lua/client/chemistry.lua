@@ -4,6 +4,13 @@ Megamod_Client.Chemistry = {
 }
 local chm = Megamod_Client.Chemistry
 
+chm.ItemContainerStats = {
+
+}
+chm.CharacterContainerStats = {
+    
+}
+
 local tempItems = {}
 local tempCharacters = {}
 
@@ -12,16 +19,16 @@ Hook.Add("character.created", "Megamod.Chemistry.CharacterCreated", function(cha
     and not char.Removed
     and not char.IsDead
     and not chm.ContainersCharacters[char] then
-        local stats = chm.CharacterStats[tostring(char.SpeciesName)]
+        local stats = chm.CharacterContainerStats[tostring(char.SpeciesName)]
         if not stats then return end
-        print("CHEM: Added " .. tostring(char.DisplayName) .. " to character containers list.") -- #DEBUG#
+        print("CHEM: Added " .. tostring(char.DisplayName) .. " to temp character list.") -- #DEBUG#
         table.insert(tempCharacters, char)
     end
 end)
 Hook.Add("item.created", "Megamod.Chemistry.ItemCreated", function(item)
-    local stats = chm.ContainerStats[tostring(item.Prefab.Identifier)]
+    local stats = chm.ItemContainerStats[tostring(item.Prefab.Identifier)]
     if not stats then return end
-    print("CHEM: Added " .. tostring(item.Prefab.Identifier) .. " to item containers list.") -- #DEBUG#
+    print("CHEM: Added " .. tostring(item.Prefab.Identifier) .. " to temp item list.") -- #DEBUG#
     table.insert(tempItems, item)
 end)
 

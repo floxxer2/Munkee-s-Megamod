@@ -9,7 +9,7 @@ local REACTION_TEMP_VARIANCE = 0.1
 local BASE_DEPLETION_RATE = 1
 
 -- Also used to determine if an item is a container in the first place
-chm.ContainerStats = {
+chm.ItemContainerStats = {
     mm_syringe = {
         SubContainers = {
             [1] = {
@@ -36,7 +36,7 @@ chm.ContainerStats = {
     },
 }
 -- Only humans for now
-chm.CharacterStats = {
+chm.CharacterContainerStats = {
     Human = {
         BloodType = "human", -- Humans have human blood
         BloodCapacity = 100, -- Humans want to have ~100 units of blood
@@ -301,14 +301,14 @@ function chm.GetContainerTable(container)
     local containerTbl
     if LuaUserData.IsTargetType(container, "Barotrauma.Item") then
         containerTbl = chm.ContainersItems[container]
-        if not containerTbl and chm.ContainerStats[tostring(container.Prefab.Identifier)] then
+        if not containerTbl and chm.ItemContainerStats[tostring(container.Prefab.Identifier)] then
             print("CHEMISTRY: GetContainerTable - Container table not initalized for " .. tostring(container) .. ", correcting...") -- #DEBUG#
             chm.UpdateItemContainerTable(container)
             containerTbl = chm.ContainersItems[container]
         end
     elseif LuaUserData.IsTargetType(container, "Barotrauma.Character") then
         containerTbl = chm.ContainersCharacters[container]
-        if not containerTbl and chm.CharacterStats[tostring(container.SpeciesName)] then
+        if not containerTbl and chm.CharacterContainerStats[tostring(container.SpeciesName)] then
             print("CHEMISTRY: GetContainerTable - Container table not initalized for " .. tostring(container) .. ", correcting...") -- #DEBUG#
             chm.UpdateCharacterContainerTable(container)
             containerTbl = chm.ContainersCharacters[container]
@@ -584,7 +584,7 @@ end
 
 -- Tick reagents depleting on characters
 function chm.TickDepletion(container, subContainerID)
-    local stats = chm.CharacterStats[tostring(container.SpeciesName)]
+    local stats = chm.CharacterContainerStats[tostring(container.SpeciesName)]
     local containerTbl = chm.GetContainerTable(container)
     local subContainer = containerTbl.SubContainers[subContainerID]
     for reagentID, reagentTbl in pairs(subContainer.Reagents) do
@@ -682,7 +682,7 @@ function chm.UpdateCharacterContainerTable(char)
     and not char.Removed
     and not char.IsDead
     and not chm.ContainersCharacters[char] then
-        local stats = chm.CharacterStats[tostring(char.SpeciesName)]
+        local stats = chm.CharacterContainerStats[tostring(char.SpeciesName)]
         if not stats then return end
         print("CHEM: Added " .. tostring(char.DisplayName) .. " to character containers list.") -- #DEBUG#
         chm.ContainersCharacters[char] = {
@@ -707,7 +707,7 @@ end
 Hook.Add("character.created", "Megamod.Chemistry.CharacterCreated", chm.UpdateCharacterContainerTable)
 
 function chm.UpdateItemContainerTable(item)
-    local stats = chm.ContainerStats[tostring(item.Prefab.Identifier)]
+    local stats = chm.ItemContainerStats[tostring(item.Prefab.Identifier)]
     if not stats then return end
     print("CHEM: Added " .. tostring(item.Prefab.Identifier) .. " to item containers list.") -- #DEBUG#
     chm.ContainersItems[item] = {
