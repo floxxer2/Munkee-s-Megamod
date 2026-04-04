@@ -642,17 +642,17 @@ local funcs = {
         local subContainer2ID = message.ReadByte()
         local amount = message.ReadUInt64()
         local container1, container2
-        for item in Item.ItemList do
+        for container, _ in pairs(chm.ContainersItems) do
             if container1 ~= nil
             and container2 ~= nil then
                 break
             end
-            if not container1 and item.ID == container1ID then
-                container1 = item
+            if not container1 and container.ID == container1ID then
+                container1 = container
             end
             -- Don't use if-else because container 1/2 could be the same item
-            if not container2 and item.ID == container2ID then
-                container2 = item
+            if not container2 and container.ID == container2ID then
+                container2 = container
             end
         end
         if not container1 or not container2 then
