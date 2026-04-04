@@ -213,7 +213,21 @@ function Megamod.SendChatMessage(client, text, color)
     Game.SendDirectChatMessage(chatMessage, client)
 end
 
+function Megamod.Round(num, numDecimalPlaces)
+  local mult = 10^(numDecimalPlaces or 0)
+  return math.floor(num * mult + 0.5) / mult
+end
+
 -- Neurotrauma affliction functions
+function Megamod.Clamp(num, min, max)
+	if num < min then
+		num = min
+	elseif num > max then
+		num = max
+	end
+	return num
+end
+
 function Megamod.SetAffliction(character, identifier, strength, aggressor, prevstrength)
 	Megamod.SetAfflictionLimb(character, identifier, LimbType.Torso, strength, aggressor, prevstrength)
 end
@@ -288,6 +302,21 @@ function Megamod.HasAfflictionLimb(character, identifier, limbtype, minamount)
 		res = aff.Strength >= (minamount or 0.5)
 	end
 	return res
+end
+
+function Megamod.ApplyAfflictionChange(character, identifier, strength, prevstrength, minstrength, maxstrength)
+	strength = Megamod.Clamp(strength, minstrength, maxstrength)
+	prevstrength = Megamod.Clamp(prevstrength, minstrength, maxstrength)
+	if prevstrength ~= strength then
+		Megamod.SetAffliction(character, identifier, strength)
+	end
+end
+function Megamod.ApplyAfflictionChangeLimb(character, limbtype, identifier, strength, prevstrength, minstrength, maxstrength)
+	strength = Megamod.Clamp(strength, minstrength, maxstrength)
+	prevstrength = Megamod.Clamp(prevstrength, minstrength, maxstrength)
+	if prevstrength ~= strength then
+		Megamod.SetAfflictionLimb(character, identifier, limbtype, strength)
+	end
 end
 
 -- This can crash the server if used improperly
