@@ -115,7 +115,7 @@ local funcs = {
             if keyToRemove then
                 table.remove(tempCharacters, keyToRemove)
             end
-            -- If character wasn't in tempCharacters, search full char list
+            -- If character wasn't in tempCharacters, search full character list
             if not char then
                 for possibleChar in Character.CharacterList do
                     if possibleChar.ID == charID then
