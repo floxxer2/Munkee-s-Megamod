@@ -92,10 +92,8 @@ do
     -- Used to make sure all messages are displayed
     local counter = 0
     -- Only use for short messages, the lifetime is fixed at ~4 seconds
-    Networking.Receive("mm_selfmsg", function(message)
-        local bool = message.ReadBoolean()
-        local str = message.ReadString()
-        local color = message.ReadColorR8G8B8()
+    ---@param bool Boolean true = message above character, false = message at top of screen
+    function Megamod_Client.SelfMsg(bool, str, color)
         if bool then
             if not Character.Controlled then return end
             -- Message hovering above own character
@@ -106,6 +104,12 @@ do
             -- Message at top of screen like husk warnings
             GUI.AddMessage(str, color, 5)
         end
+    end
+    Networking.Receive("mm_selfmsg", function(message)
+        local bool = message.ReadBoolean()
+        local str = message.ReadString()
+        local color = message.ReadColorR8G8B8()
+        Megamod_Client.SelfMsg(bool, str, color)
     end)
 end
 
