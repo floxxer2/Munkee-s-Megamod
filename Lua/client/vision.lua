@@ -2,8 +2,8 @@ local function exteriorLight(c)
     Level.Loaded.LevelData.GenerationParams.AmbientLightColor = c
 end
 local function interiorLight(c)
-    for _, HullLight in pairs(Hull.HullList) do
-		HullLight.AmbientLight = c
+    for _, hull in pairs(Hull.HullList) do
+		hull.AmbientLight = c
 	end
 end
 
