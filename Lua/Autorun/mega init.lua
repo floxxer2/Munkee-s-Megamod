@@ -70,11 +70,13 @@ if CLIENT then
         -- These have to initialized after the shared stuff and IsAdmin
         dofile(Megamod_Client.Path .. "/Lua/client/client.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
-        dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua") -- This has the side-effect of making the "control panel" option the last in the list
+        dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
+        dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/vision.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
+        dofile(Megamod_Client.Path .. "/Lua/client/keybinds.lua")
     end, 1)
 end
 
