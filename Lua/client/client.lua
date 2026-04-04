@@ -2,6 +2,11 @@
 
 function Megamod_Client.GetSound(file, isStream) return Megamod.GameMain.SoundManager.LoadSound(file, isStream) end
 
+---@return Barotrauma.Inventory.SlotReference|nil
+function Megamod_Client.GetHoveredItem()
+    return Inventory.SelectedSlot
+end
+
 -- Set all subs to static and tell the server we need to sync sub positions
 Hook.Add("roundStart", "Megamod.RoundStart", function()
     for sub in Submarine.Loaded do
