@@ -7703,6 +7703,7 @@ Auto.MMFiles = [[
 <Item file="%ModDir%/Megamod/Items/CapsuleOverrides.xml" />
 <Item file="%ModDir%/Megamod/Items/Chemistry.xml" />
 <Character file="%ModDir%/Megamod/Characters/Truebeast/Truebeast.xml" />
+<Character file="%ModDir%/Megamod/Characters/Human/Human.xml" />
 <Afflictions file="%ModDir%/Megamod/Afflictions/Afflictions.xml" />
 ]] .. "\n"
 
@@ -7974,6 +7975,10 @@ function Auto.LoadLuaFile(filePath, modName)
     end
   end
   local str = ""
+  -- Prevents the Lua mod from executing autoruns in workshop mods
+  if filePath:lower():find("autorun") then
+    str = [[if ... == "LocalMods\\Munkee's Megamod" then return end]] .. "\n"
+  end
   for line in lines do
     str = str .. line .. "\n"
   end

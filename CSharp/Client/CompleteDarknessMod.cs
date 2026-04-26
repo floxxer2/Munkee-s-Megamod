@@ -16,8 +16,9 @@ using System.Threading;
 
 using Barotrauma.Lights;
 using FarseerPhysics;
+using System.Reflection.PortableExecutable;
 
-      // patching this method https://github.com/evilfactory/LuaCsForBarotrauma/blob/5e89e2ea118cb5dbafa3214227ed2eaf57a77901/Barotrauma/BarotraumaClient/ClientSource/Map/Lights/LightManager.cs#L246
+// patching this method https://github.com/evilfactory/LuaCsForBarotrauma/blob/5e89e2ea118cb5dbafa3214227ed2eaf57a77901/Barotrauma/BarotraumaClient/ClientSource/Map/Lights/LightManager.cs#L246
 namespace CompleteDarkness
 {
     class CompleteDarknessMod : IAssemblyPlugin
@@ -436,38 +437,36 @@ namespace CompleteDarkness
             _.lightEffect.World = transform;
 
             GameMain.ParticleManager.Draw(spriteBatch, false, null, Barotrauma.Particles.ParticleBlendState.Additive);
-            //----------------------- Code removed by Heelge -----------------------
-            /*             if (Character.Controlled != null)
-                        {
-                            DrawHalo(Character.Controlled);
-                        }
-                        else
-                        {
-                            foreach (Character character in Character.CharacterList)
-                            {
-                                if (character.Submarine == null || character.IsDead || !character.IsHuman) { continue; }
-                                DrawHalo(character);
-                            }
-                        }
+            if (Character.Controlled != null)
+            {
+                DrawHalo(Character.Controlled);
+            }
+            else
+            {
+                foreach (Character character in Character.CharacterList)
+                {
+                    if (character.Submarine == null || character.IsDead || !character.IsHuman) { continue; }
+                    DrawHalo(character);
+                }
+            }
 
-                        void DrawHalo(Character character)
-                        {
-                            if (character == null || character.Removed) { return; }
-                            Vector2 haloDrawPos = character.DrawPosition;
-                            haloDrawPos.Y = -haloDrawPos.Y;
+            void DrawHalo(Character character)
+            {
+                if (character == null || character.Removed) { return; }
+                Vector2 haloDrawPos = character.DrawPosition;
+                haloDrawPos.Y = -haloDrawPos.Y;
 
-                            //ambient light decreases the brightness of the halo (no need for a bright halo if the ambient light is bright enough)
-                            float ambientBrightness = (AmbientLight.R + AmbientLight.B + AmbientLight.G) / 255.0f / 3.0f;
-                            Color haloColor = Color.White.Multiply(0.3f - ambientBrightness);
-                            if (haloColor.A > 0)
-                            {
-                                float scale = 512.0f / LightSource.LightTexture.Width;
-                                spriteBatch.Draw(
-                                    LightSource.LightTexture, haloDrawPos, null, haloColor, 0.0f,
-                                    new Vector2(LightSource.LightTexture.Width, LightSource.LightTexture.Height) / 2, scale, SpriteEffects.None, 0.0f);
-                            }
-                        } */
-            //----------------------------------------------------------------------
+                //ambient light decreases the brightness of the halo (no need for a bright halo if the ambient light is bright enough)
+                float ambientBrightness = (_.AmbientLight.R + _.AmbientLight.B + _.AmbientLight.G) / 255.0f / 3.0f;
+                Color haloColor = Color.White.Multiply(0.13f - ambientBrightness);
+                if (haloColor.A > 0)
+                {
+                    float scale = 512.0f / LightSource.LightTexture.Width;
+                    spriteBatch.Draw(
+                        LightSource.LightTexture, haloDrawPos, null, haloColor, 0.0f,
+                        new Vector2(LightSource.LightTexture.Width, LightSource.LightTexture.Height) / 2, scale, SpriteEffects.None, 0.0f);
+                }
+            }
 
             spriteBatch.End();
 

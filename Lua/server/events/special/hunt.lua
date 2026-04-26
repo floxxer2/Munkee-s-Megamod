@@ -15,7 +15,7 @@ event.OneOff = false
 
 event.SecondPhase = false
 
--- Clients who reload CL Lua midround need to know if a Hunt is active
+-- Clients who reload CL Lua midround need to know Hunt information
 Networking.Receive("mm_huntactive", function(message, client)
     if event.SecondPhase then
         local msg = Networking.Start("mm_huntactive")
@@ -150,6 +150,7 @@ function event.Start()
         -- Make sure joining clients get the message
         Hook.Add("client.connected", "Megamod.Events.HuntEvent.ClientConnected", function(client)
             local message = Networking.Start("mm_huntactive")
+            message.WriteBoolean(false) -- Don't shake the camera
             Networking.Send(message, client.Connection)
         end)
 

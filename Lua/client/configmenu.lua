@@ -192,7 +192,7 @@ Hook.Patch("Barotrauma.GUI", "TogglePauseMenu", {}, function()
 
 		local button = GUI.Button(
 			GUI.RectTransform(Vector2(1, 0.1), list.RectTransform),
-			"TBG Preferences",
+			"TBG Config",
 			GUI.Alignment.Center,
 			"GUIButtonSmall"
 		)
@@ -204,11 +204,11 @@ function Megamod_Client.PreferenceMenu(frame)
     local menuContent = GUI.Frame(GUI.RectTransform(Vector2(0.3, 0.6), frame.RectTransform, GUI.Anchor.Center))
     local menuList = GUI.ListBox(GUI.RectTransform(Vector2(1, 0.95), menuContent.RectTransform, GUI.Anchor.TopCenter))
 
-    GUI.TextBlock(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), "TBG Preferences", nil, nil, GUI.Alignment.Center)
+    GUI.TextBlock(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), "TBG Config", nil, GUI.Style.SubHeadingFont, GUI.Alignment.Center)
     local mainLayout = GUI.LayoutGroup(GUI.RectTransform(Vector2(0.95, 0.95), menuList.Content.RectTransform, GUI.Anchor.Center, GUI.Pivot.Center), false)
     for groupName, groupTbl in pairs(Megamod_Client.Prefs) do
         local row = GUI.LayoutGroup(GUI.RectTransform(Vector2(1, 0.12), mainLayout.RectTransform), true)
-        GUI.TextBlock(GUI.RectTransform(Vector2(0.2, 0), row.RectTransform), groupName, nil, nil, GUI.Alignment.Center)
+        GUI.TextBlock(GUI.RectTransform(Vector2(0.25, 0.5), row.RectTransform), groupName, nil, GUI.Style.SubHeadingFont, GUI.Alignment.Center)
         for prefName, prefTbl in pairs(groupTbl) do
             -- Value is a boolean
             if prefTbl.guiType == "tickbox"

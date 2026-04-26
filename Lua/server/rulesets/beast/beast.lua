@@ -18,7 +18,69 @@ rs.FailReason = ""
 
 
 
+Networking.Receive("mm_beastwater", function(message, client)
+    if not Megamod.CertifiedBeasters[client.SteamID]
+    or not client.Character
+    or client.Character.IsDead == true
+    or tostring(client.Character.SpeciesName) ~= "Truebeast" then
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent an invalid mm_beastwater net message.")
+        return
+    end
 
+    local bool = message.ReadBoolean()
+    Megamod.CS_Shared.ForceInWater = bool
+
+    local msg = Networking.Start("mm_beastwater")
+    msg.WriteBoolean(bool)
+    for client in Client.ClientList do
+        Networking.Send(msg, client.Connection)
+    end
+end)
+local function beastWaterLoop()
+    local msg = Networking.Start("mm_beastwater")
+    msg.WriteBoolean(Megamod.CS_Shared.ForceInWater)
+    for client in Client.ClientList do
+        Networking.Send(msg, client.Connection)
+    end
+    Timer.Wait(function()
+        beastWaterLoop()
+    end, 5000)
+end
+beastWaterLoop()
+
+-- For whatever reason, the beast in "force swim" mode can't swim up, so we
+-- need to do that manually
+Networking.Receive("mm_beastmove", function(message, client)
+    local shiftDown = message.ReadBoolean()
+    if not Megamod.CertifiedBeasters[client.SteamID]
+    or not client.Character
+    or client.Character.IsDead == true
+    or tostring(client.Character.SpeciesName) ~= "Truebeast"
+    or not Megamod.CS_Shared.ForceInWater then
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent an invalid mm_beastmove net message.")
+        return
+    end
+
+    local vector = Vector2(0, 4)
+    if shiftDown then
+        vector = Vector2(0, 12)
+    end
+    client.Character.AnimController.Collider.ApplyLinearImpulse(vector, 10)
+end)
+
+Networking.Receive("mm_beastrotate", function(message, client)
+    local dir = message.ReadSingle()
+    if not Megamod.CertifiedBeasters[client.SteamID]
+    or not client.Character
+    or client.Character.IsDead == true
+    or tostring(client.Character.SpeciesName) ~= "Truebeast"
+    or not Megamod.CS_Shared.ForceInWater then
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent an invalid mm_beastmove net message.")
+        return
+    end
+
+    client.Character.AnimController.Collider.SmoothRotate(dir, 10, true)
+end)
 
 
 

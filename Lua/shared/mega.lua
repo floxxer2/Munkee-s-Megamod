@@ -70,6 +70,21 @@ function Megamod.Normalize(x, min, max)
   return (x - min) / (max - min)
 end
 
+function Megamod.Round(num, numDecimalPlaces)
+  local mult = 10^(numDecimalPlaces or 0)
+  return math.floor(num * mult + 0.5) / mult
+end
+
+-- Neurotrauma affliction functions
+function Megamod.Clamp(num, min, max)
+	if num < min then
+		num = min
+	elseif num > max then
+		num = max
+	end
+	return num
+end
+
 function Megamod.WorldToScreen(worldPosition)
     return Game.GameScreen.Cam.WorldToScreen(worldPosition)
 end
@@ -83,6 +98,7 @@ function Megamod.FunnyMaths(point, angle, distance)
     return Vector2(point.X + distance * math.cos(angle), point.Y + distance * math.sin(angle))
 end
 
+---@return number angle in radians
 function Megamod.AngleBetweenVector2(from, to)
     local dx = to.x - from.x
     local dy = to.y - from.y

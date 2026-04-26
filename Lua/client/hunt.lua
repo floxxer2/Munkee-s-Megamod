@@ -8,6 +8,7 @@ Megamod_Client.TheBeast = nil
 
 local function stop()
     Megamod_Client.LightMapOverride.HuntActive = false
+    Megamod.CS_Shared.ForceInWater = false
     Megamod_Client.TheBeast = nil
     if Megamod_Client.HorrorSFX then
         Megamod_Client.HorrorSFX.Dispose()
@@ -34,6 +35,11 @@ for i = 1, 31 do
         end
     end
 end
+
+Networking.Receive("mm_beastwater", function(message)
+    local bool = message.ReadBoolean()
+    Megamod.CS_Shared.ForceInWater = bool
+end)
 
 Networking.Receive("mm_huntactive", function(message)
     Megamod_Client.HorrorSFX = Megamod_Client.HorrorSFXLoaded

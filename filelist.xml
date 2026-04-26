@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Munkee's Megamod" modversion="1.0.0.0" corepackage="False" steamworkshopid="3318261393">
-  <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
-  <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Munkee's Megamod" modversion="1.2.7.0" corepackage="False" steamworkshopid="3318261393" gameversion="1.12.7.0">
   <Submarine file="%ModDir%/Megamod/Subs/Stations/Nova Station.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/Nova Elevator.sub" />
@@ -18,6 +16,7 @@
   <Item file="%ModDir%/Megamod/Items/CapsuleOverrides.xml" />
   <Item file="%ModDir%/Megamod/Items/Chemistry.xml" />
   <Character file="%ModDir%/Megamod/Characters/Truebeast/Truebeast.xml" />
+  <Character file="%ModDir%/Megamod/Characters/Human/Human.xml" />
   <Afflictions file="%ModDir%/Megamod/Afflictions/Afflictions.xml" />
   <EventManagerSettings file="%ModDir%/Workshop/Barotraumatic/Events/EventManagerSettings.xml" />
   <UIStyle file="%ModDir%/Workshop/Barotraumatic/Text/style.xml" />
@@ -243,7 +242,6 @@
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Clowns/ClownWandererElite/ClownWandererElite.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Pylon/Pylon.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Pylon/Pylonbolt/Pylonbolt.xml" />
-  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Abyssalmoloch/Abyssalmoloch.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Undying/Undying.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Undyingrad/Undyingrad.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Chelicerate/Chelicerate.xml" />
@@ -293,8 +291,10 @@
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/Hammerhead_breacher/Hammerhead_breacher.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/Hammerhead_hard/Hammerhead_hard.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/StationCreatures/Husksprinterold/Husksprinterold.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/StationCreatures/Husksprinterhumanraw/Husksprinterhumanraw.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/StationCreatures/Husksprintercombat/Husksprintercombat.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/StationCreatures/Husksprinterhumanold/Husksprinterhumanold.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/StationCreatures/Husksprinterpoptop/Husksprinterpoptop.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Turretcarriers/Turretcarrierchaingun/Turretcarrierchaingun.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Turretcarriers/Turretcarriercoil/Turretcarriercoil.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Turretcarriers/Turretcarrierdoublecoil/Turretcarrierdoublecoil.xml" />
@@ -722,4 +722,6 @@
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Misc/misc.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Weapons/weaponsystems.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Medbay/medbay_props.xml" />
+  <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
+  <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
 </contentpackage>
