@@ -1,10 +1,10 @@
 --do require 'utils.automation.auto' return end
 
-local path = ...
+local json = require 'utils.json'
 
 Megamod = {}
 ---@type string
-Megamod.Path = path
+Megamod.Path = ...
 
 -- NOTE: For some reason, Steam IDs are strings, NOT numbers
 
@@ -39,7 +39,7 @@ if CLIENT then
     Megamod_Client = {}
     ---@type Barotrauma.GameMain
     ---@type string
-    Megamod_Client.Path = path
+    Megamod_Client.Path = Megamod.Path
 
     Megamod_Client.AmAntag = false
 
@@ -82,34 +82,18 @@ end
 
 -- Workshop Lua init
 do
-    local fileTbls = {}
-    for dir in File.GetDirectories(path .. "/Lua/workshop") do
-        local s = dir:reverse():gsub("\\", "/"):find("/")
-        local modName = dir:sub(#dir - s + 2)
-        for dir2 in File.GetDirectories(dir) do
-            local priority
-            if File.Exists(dir2 .. "/priority.txt") then
-                priority = tonumber(File.Read(dir2 .. "/priority.txt"))
-            end
-            for dir3 in File.GetDirectories(dir2) do
-                if dir3:sub(-7) == "Autorun" then
-                    for file in File.GetFiles(dir3) do
-                        table.insert(fileTbls, { file = file, modName = modName, priority = priority })
-                    end
-                end
-            end
-        end
+    local autorunPaths
+    local jsonPath = Megamod.Path .. "/Lua/utils/automation/autorunpaths.json"
+    if File.Exists(jsonPath) then
+        autorunPaths = json.decode(File.Read(jsonPath))
+    else
+        error("No autorun path JSON file detected!")
+        return
     end
-    -- Load prioritized mods first
-    for tbl in fileTbls do
-        if tbl.priority then
-            loadfile(tbl.file)(path .. "/Lua/workshop/" .. tbl.modName)
-        end
-    end
-    -- Then load other mods
-    for tbl in fileTbls do
-        if not tbl.priority then
-            loadfile(tbl.file)(path .. "/Lua/workshop/" .. tbl.modName)
+
+    for modName, autorunPath in pairs(autorunPaths) do
+        for file in File.GetFiles(Megamod.Path .. "/Lua/workshop/" .. autorunPath .. "/MEGAMOD_AUTORUN") do
+            loadfile(file)(Megamod.Path .. "/Lua/workshop/" .. modName)
         end
     end
 end
