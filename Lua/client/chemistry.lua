@@ -1,7 +1,4 @@
-Megamod_Client.Chemistry = {
-    ContainersItems = {},
-    ContainersCharacters = {},
-}
+Megamod_Client.Chemistry = {}
 local chm = Megamod_Client.Chemistry
 
 local chmUtil = require 'utils.chem shared'
@@ -9,80 +6,112 @@ for k, v in pairs(chmUtil) do
     chm[k] = v
 end
 
--- Checked first instead of checking all of Item.ItemList
-local tempItems = {}
-local tempCharacters = {}
+-- Debug script to remove all spawned chem dispensers
+-- lua for item in Item.ItemList do if tostring(item.Prefab.Identifier) == 'mm_chemicaldispenser' then Entity.Spawner.AddEntityToRemoveQueue(item) end end
 
-local function updateCharacterContainerTable(char)
-    if char
-    and not char.Removed
-    and not char.IsDead
-    and not chm.ContainersCharacters[char] then
-        local stats = chm.CharacterContainerStats[tostring(char.SpeciesName)]
-        if not stats then return end
-        print("CHEM: Added " .. tostring(char.DisplayName) .. " to temp character list.") -- #DEBUG#
-        table.insert(tempCharacters, char)
+-- Distance that, if we are closer than, we will update this 
+local NEAR_DIST = 300
+
+local function concatReagents(container, stats)
+    local str = ""
+    local total = 0
+    local containerTbl = chm.GetContainerTable(container)
+    for _, reagentTbl in pairs(containerTbl.SubContainers[1].Reagents) do
+        total = total + reagentTbl.Amount
+        str = str .. reagentTbl.Name .. " - " .. tostring(reagentTbl.Amount) .. "\n"
     end
+    str = str:sub(1, -2)
+    if str == "" then
+        str = "(No reagents)"
+    end
+    return total, str
 end
-Hook.Add("character.created", "Megamod.Chemistry.CharacterCreated", updateCharacterContainerTable)
 
-local function updateItemContainerTable(item)
-    local stats = chm.ItemContainerStats[tostring(item.Prefab.Identifier)]
-    if not stats then return end
-    print("CHEM: Added " .. tostring(item.Prefab.Identifier) .. " to temp item list.") -- #DEBUG#
-    table.insert(tempItems, item)
+local dispenserPatches = {}
+local TIMER_BASE = 120
+local timer = TIMER_BASE
+Hook.Add("think", "Megamod_Client.Chemistry.ChemDispenserUpdate", function()
+    if not Game.RoundStarted
+    or not Character.Controlled
+    or Character.Controlled.IsDead == true then
+        return
+    end
+    timer = timer - 1
+    local isUpdateTick = timer <= 0
+    if isUpdateTick then
+        timer = TIMER_BASE
+    end
+    if isUpdateTick then
+        for tbl in dispenserPatches do
+            tbl.dist = Vector2.Distance(Character.Controlled.WorldPosition, tbl.dispenser.WorldPosition)
+        end
+    end
+
+    for tbl in dispenserPatches do
+        -- Update every 2 seconds, or every tick if we are very close to the dispenser
+        if isUpdateTick or tbl.dist < NEAR_DIST then
+            
+        end
+    end
+end)
+
+local function patchDispenser(instance)
+    -- Need to wait for other stuff to be initialized
+    Timer.Wait(function()
+        local dispenser = instance.Item
+
+        local frame = instance.GuiFrame
+        
+    end, 1)
 end
-Hook.Add("item.created", "Megamod.Chemistry.ItemCreated", updateItemContainerTable)
-
--- Update item/char list if Lua is reloaded midround
+Hook.Patch("Barotrauma.Items.Components.CustomInterface", "CreateGUI", function(instance, ptable)
+    if instance.originalElement.GetAttributeString("type", "") ~= "chemicaldispenser" then
+        return
+    end
+    patchDispenser(instance)
+end)
+-- Find special items (i.e. chem dispensers) if we reload CL Lua midround
 if Game.RoundStarted then
     for item in Item.ItemList do
-        updateItemContainerTable(item)
-    end
-    for char in Character.CharacterList do
-        updateCharacterContainerTable(char)
+        if tostring(item.Prefab.Identifier) == "mm_chemicaldispenser" then
+            patchDispenser(item.GetComponentString("CustomInterface"))
+        end
     end
 end
 
----@param stats table table in chm.Reagents
----@param amount number
----@return table reagent
-local function createReagent(stats, amount)
-    return {
-        Name = stats.Name,
-        ID = stats.ID,
-        Desc = stats.Desc,
-        Type = stats.Type,
-        DepletionRate = stats.DepletionRate,
-        Effect = stats.Effect,
-        Amount = amount,
-    }
-end
-
-local function readSubContainers(msg)
+local function readSubContainers(msg, stats)
     local subContainers = {}
-    local amountSubContainers = msg.ReadByte()
+    local amountSubContainers = tonumber(msg.ReadByte())
     for i = 1, amountSubContainers do
-        local capacity = msg.ReadUInt64()
-        local temperatureK = msg.ReadUInt64()
-        local site = msg.ReadString()
-        local amountReagents = msg.ReadUInt32()
+        local capacity = stats.SubContainers[i].Capacity
+        local temperatureK = tonumber(msg.ReadSingle())
+        local site = stats.SubContainers[i].Site
+        local amountReagents = tonumber(msg.ReadUInt32())
         local reagents = {}
         for v = 1, amountReagents do
             local reagentID = msg.ReadString()
-            local reagentAmount = msg.ReadUInt64()
-            reagents[reagentID] = createReagent(chm.Stats[reagentID], reagentAmount)
+            local reagentAmount = tonumber(msg.ReadSingle())
+            reagents[reagentID] = chm.CreateReagent(chm.Reagents[reagentID], reagentAmount)
         end
-        local amountReactions = msg.ReadUInt32()
+        local amountReactions = tonumber(msg.ReadUInt32())
         local reactions = {}
         for j = 1 , amountReactions do
             local reactionID = msg.ReadString()
-            local stats = chm.Reactions[reactionID]
+            local stats
+            for reaction in chm.Reactions do
+                if reaction.ID == reactionID then
+                    stats = reaction
+                    break
+                end
+            end
+            if not stats then
+                error("Could not find reaction stats for reaction ID: " .. tostring(reactionID))
+            end
             table.insert(reactions, {
                 ID = reactionID,
                 ReqTempK = stats.ReqTempK,
                 AffectedByStabilizine = stats.AffectedByStabilizine,
-                AllowedSites = stats.AllowedSitesm,
+                AllowedSites = stats.AllowedSites,
                 Reactants = stats.Reactants,
                 Products = stats.Products,
             })
@@ -98,24 +127,19 @@ local function readSubContainers(msg)
     return subContainers
 end
 local funcs = {
-    -- Initial update that tells us all item/character containers
+    -- General update, could be 1 item/char, could be all items/chars
     [1] = function(msg)
-        local numChars = msg.ReadUInt64()
+        local numChars = tonumber(msg.ReadUInt64())
         for i = 1, numChars do
-            local charID = msg.ReadUInt64()
+            local charID = tonumber(msg.ReadUInt64())
             local char
-            local keyToRemove
-            for k, possibleChar in pairs(tempCharacters) do
+            for possibleChar, _ in pairs(chm.ContainersCharacters) do
                 if possibleChar.ID == charID then
                     char = possibleChar
-                    keyToRemove = k
                     break
                 end
             end
-            if keyToRemove then
-                table.remove(tempCharacters, keyToRemove)
-            end
-            -- If character wasn't in tempCharacters, search full char list
+            -- If character wasn't in character containers list, search full character list
             if not char then
                 for possibleChar in Character.CharacterList do
                     if possibleChar.ID == charID then
@@ -128,26 +152,22 @@ local funcs = {
                 error("Could not find character with ID " .. tostring(charID))
                 return
             end
+            local stats = chm.CharacterContainerStats[tostring(char.SpeciesName)]
             chm.ContainersCharacters[char] = {
-                SubContainers = readSubContainers(msg)
+                SubContainers = readSubContainers(msg, stats)
             }
         end
-        local numItems = msg.ReadUInt64()
+        local numItems = tonumber(msg.ReadUInt64())
         for i = 1, numItems do
-            local itemID = msg.ReadUInt64()
+            local itemID = tonumber(msg.ReadUInt64())
             local item
-            local keyToRemove
-            for k, possibleItem in pairs(tempItems) do
+            for possibleItem, _ in pairs(chm.ContainersItems) do
                 if possibleItem.ID == itemID then
                     item = possibleItem
-                    keyToRemove = k
                     break
                 end
             end
-            if keyToRemove then
-                table.remove(tempItems, keyToRemove)
-            end
-            -- If item wasn't in tempItems, search full item list
+            -- If item wasn't in item containers list, search full item list
             if not item then
                 for possibleItem in Item.ItemList do
                     if possibleItem.ID == itemID then
@@ -160,20 +180,23 @@ local funcs = {
                 error("Could not find item with ID " .. tostring(itemID))
                 return
             end
+            local stats = chm.ItemContainerStats[tostring(item.Prefab.Identifier)]
             chm.ContainersItems[item] = {
-                SubContainers = readSubContainers(msg)
+                SubContainers = readSubContainers(msg, stats)
             }
         end
     end,
 }
 Networking.Receive("mm_chem", function(msg)
     local id = msg.ReadByte()
-    funcs[id](msg)
+    if funcs[id] then
+        funcs[id](msg)
+    else
+        error("No function with ID " .. tostring(id))
+    end
 end)
 
--- We need to know stuff if we reload CL Lua midround
-if Game.RoundStarted then
-    local msg = Networking.Start("mm_chem")
-    msg.WriteByte(1)
-    Networking.Send(msg)
-end
+Hook.Add("roundEnd", "Megamod_Client.Chemistry.RoundEnd", function()
+    chm.ContainersCharacters = {}
+    chm.ContainersItems = {}
+end)

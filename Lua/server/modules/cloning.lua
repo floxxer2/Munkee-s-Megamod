@@ -43,7 +43,7 @@ Hook.Add("character.death", "Megamod.Cloning.CharacterDeath", function(character
     end
     table.insert(cloning.BodyClients, { client, character })
     for tbl in cloning.BodyClients do
-        print(tbl[1].Name .. " - " .. tostring(character)) -- #DEBUG#
+        print(tbl[1].Name .. " - " .. tostring(character))
     end
 end)]]
 
@@ -439,11 +439,11 @@ Hook.Add("mm.hypomaximUse", "Megamod.Cloning.HypomaximUse", function(effect, del
     local t = targets[1]
     local targetClient = Util.FindClientCharacter(t)
     if not t.IsHuman or not targetClient then
-        Megamod.SendClientSideMsg(client, "Invalid target.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Invalid target", Color(255, 0, 255))
         return
     end
     if usingChar.TeamID ~= t.TeamID then
-        Megamod.SendClientSideMsg(client, "That is an enemy.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Cannot target enemies", Color(255, 0, 255))
         return
     end
     -- Revive them if this hypomaxim is in revive mode (don't care if they're dead or not)
@@ -460,7 +460,7 @@ Hook.Add("mm.hypomaximUse", "Megamod.Cloning.HypomaximUse", function(effect, del
         Megamod.SendChatMessage(targetClient, "You have been revived by a hypomaxim device.", Color(255, 0, 255, 255))
         Megamod.Log("Client '" .. tostring(targetClient.Name) .. "' (Steam: " .. targetClient.SteamID .. ") was revived via hypomaxim.", true)
 
-        Megamod.SendClientSideMsg(client, "Revived " .. tostring(t.DisplayName) .. ".", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Revived " .. tostring(t.DisplayName), Color(255, 0, 255))
 
         cloning.Hypomaxims[item] = nil
         Entity.Spawner.AddItemToRemoveQueue(item)
@@ -470,7 +470,7 @@ Hook.Add("mm.hypomaximUse", "Megamod.Cloning.HypomaximUse", function(effect, del
 
     cloning.SetHypomaxim(item, targetClient)
 
-    Megamod.SendClientSideMsg(client, tostring(t.DisplayName) .. " stored.", Color(255, 0, 255))
+    Megamod.SendClientSideMsg(client, tostring(t.DisplayName) .. " stored", Color(255, 0, 255))
 end)
 
 Hook.Add("mm.hypomaximReset", "Megamod.Cloning.HypomaximReset", function(effect, deltaTime, item, targets, worldPosition)
@@ -482,9 +482,9 @@ Hook.Add("mm.hypomaximReset", "Megamod.Cloning.HypomaximReset", function(effect,
     if cloning.Hypomaxims[item] and cloning.Hypomaxims[item][1] or cloning.Hypomaxims[item][2] then
         cloning.Hypomaxims[item][1] = nil
         cloning.Hypomaxims[item][2] = nil
-        Megamod.SendClientSideMsg(client, "Successful - reset current data.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Successful - reset current data", Color(255, 0, 255))
     else
-        Megamod.SendClientSideMsg(client, "No data to reset.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "No data to reset", Color(255, 0, 255))
     end
 end)
 
@@ -498,7 +498,7 @@ Hook.Add("mm.hypomaximInfo", "Megamod.Cloning.HypomaximInfo", function(effect, d
     if targetName then
         Megamod.SendClientSideMsg(client, "Stored: " .. targetName, Color(255, 0, 255))
     else
-        Megamod.SendClientSideMsg(client, "No data.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Nothing stored", Color(255, 0, 255))
     end
 end)
 
@@ -511,10 +511,10 @@ Hook.Add("mm.hypomaximMode", "Megamod.Cloning.HypomaximMode", function(effect, d
     local currentMode = cloning.Hypomaxims[item][3]
     if currentMode == 1 then
         cloning.Hypomaxims[item][3] = 2
-        Megamod.SendClientSideMsg(client, "Set mode to Store.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Mode set to Store", Color(255, 0, 255))
     elseif currentMode == 2 then
         cloning.Hypomaxims[item][3] = 1
-        Megamod.SendClientSideMsg(client, "Set mode to Revive.", Color(255, 0, 255))
+        Megamod.SendClientSideMsg(client, "Mode set to Revive", Color(255, 0, 255))
     end
 end)
 

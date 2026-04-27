@@ -418,10 +418,26 @@ cmds.AddCommand("admin", "ruleset-toggle", function(sender, argument)
     Megamod.SendChatMessage(sender, str, Color(255, 0, 255, 255))
 end)
 
-cmds.AddCommand("admin", "d", function(sender, argument)
+--[[cmds.AddCommand("admin", "d", function(sender, argument)
     Megamod.CS_Shared.ForceInWater = not Megamod.CS_Shared.ForceInWater
     print(tostring(Megamod.CS_Shared.ForceInWater))
-end, true)
+end, true)]]
+
+--[[cmds.AddCommand("admin", "d1", function(sender, argument)
+    -- First item slot in hotbar (slot 1)
+    local item = sender.Character.Inventory.GetItemAt(8)
+    argument = tostring(argument)
+    Megamod.Chemistry.AddReagent(item, argument, 1, 1)
+end)
+
+cmds.AddCommand("admin", "d2", function(sender, argument)
+    -- First item slot in hotbar (slot 1)
+    local item = sender.Character.Inventory.GetItemAt(8)
+    local containerTbl = Megamod.Chemistry.GetContainerTable(item)
+    if not containerTbl then return end
+    if not argument or argument == "" then return end
+    containerTbl.SubContainers[1].TemperatureK = tonumber(argument)
+end)]]
 
 --[[cmds.AddCommand("admin", "d-raid", function(sender, argument)
     local char = sender.Character

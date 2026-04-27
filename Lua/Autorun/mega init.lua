@@ -1,10 +1,10 @@
 --do require 'utils.automation.auto' return end
 
-local path = ...
+local json = require 'utils.json'
 
 Megamod = {}
 ---@type string
-Megamod.Path = path
+Megamod.Path = ...
 
 -- NOTE: For some reason, Steam IDs are strings, NOT numbers
 
@@ -39,7 +39,7 @@ if CLIENT then
     Megamod_Client = {}
     ---@type Barotrauma.GameMain
     ---@type string
-    Megamod_Client.Path = path
+    Megamod_Client.Path = Megamod.Path
 
     Megamod_Client.AmAntag = false
 
@@ -72,7 +72,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
-        dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
+        --dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua") #TODO#
         dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/vision.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
@@ -82,34 +82,18 @@ end
 
 -- Workshop Lua init
 do
-    local fileTbls = {}
-    for dir in File.GetDirectories(path .. "/Lua/workshop") do
-        local s = dir:reverse():gsub("\\", "/"):find("/")
-        local modName = dir:sub(#dir - s + 2)
-        for dir2 in File.GetDirectories(dir) do
-            local priority
-            if File.Exists(dir2 .. "/priority.txt") then
-                priority = tonumber(File.Read(dir2 .. "/priority.txt"))
-            end
-            for dir3 in File.GetDirectories(dir2) do
-                if dir3:sub(-7) == "Autorun" then
-                    for file in File.GetFiles(dir3) do
-                        table.insert(fileTbls, { file = file, modName = modName, priority = priority })
-                    end
-                end
-            end
-        end
+    local autorunPaths
+    local jsonPath = Megamod.Path .. "/Lua/utils/automation/autorunpaths.json"
+    if File.Exists(jsonPath) then
+        autorunPaths = json.decode(File.Read(jsonPath))
+    else
+        error("No autorun path JSON file detected!")
+        return
     end
-    -- Load prioritized mods first
-    for tbl in fileTbls do
-        if tbl.priority then
-            loadfile(tbl.file)(path .. "/Lua/workshop/" .. tbl.modName)
-        end
-    end
-    -- Then load other mods
-    for tbl in fileTbls do
-        if not tbl.priority then
-            loadfile(tbl.file)(path .. "/Lua/workshop/" .. tbl.modName)
+
+    for modName, autorunPath in pairs(autorunPaths) do
+        for file in File.GetFiles(Megamod.Path .. "/Lua/workshop/" .. autorunPath .. "/MEGAMOD_AUTORUN") do
+            loadfile(file)(Megamod.Path .. "/Lua/workshop/" .. modName)
         end
     end
 end
@@ -196,82 +180,90 @@ Hook.Patch("Megamod.NoVanillaMonsters", "Barotrauma.MonsterEvent", "Update", fun
     instance.disallowed = true
 end, Hook.HookMethodType.Before)
 
-if SERVER then
-    local unconsciousDamageReduction = 0.65
-    unconsciousDamageReduction = 1 - unconsciousDamageReduction
-    local d = 0
-    local function printLimited(str) -- #DEBUG#
-        if d <= 500 then
-            d = d + 1
-            print(str)
+
+local unconsciousDamageReduction = 0.65
+unconsciousDamageReduction = 1 - unconsciousDamageReduction
+-- Reduce damage by 65% if vitality is below 0
+local function reduceDamage(character, afflictions, hitLimb, attacker)
+    -- Can't loop through afflictions twice for some reason
+    local afflictions2 = {}
+    local totalVitalityDecrease = 0
+    for affliction in afflictions do
+        -- Ignore non-damaging afflictions i.e. steroids
+        local vitalityDecrease = affliction.GetVitalityDecrease(character.CharacterHealth)
+        if vitalityDecrease > 0 then
+            if affliction.MultiplyByMaxVitality then
+                vitalityDecrease = vitalityDecrease * (character.MaxVitality / 100)
+            end
+            totalVitalityDecrease = totalVitalityDecrease + vitalityDecrease
+            table.insert(afflictions2, { affliction = affliction, vitalityDecrease = vitalityDecrease })
         end
     end
-    local stop = false -- #DEBUG#
-    -- Reduce damage by 65% if vitality is below 0
-    local function reduceDamage(character, afflictions, hitLimb, attacker)
-        if stop then return end -- #DEBUG#
-        local success, result = pcall(function() -- #DEBUG#
-        -- Can't loop through afflictions twice for some reason
-        local afflictions2 = {}
-        local totalVitalityDecrease = 0
-        for affliction in afflictions do
-            -- Ignore non-damaging afflictions i.e. steroids
-            local vitalityDecrease = affliction.GetVitalityDecrease(character.CharacterHealth)
-            if vitalityDecrease > 0 then
-                table.insert(afflictions2, affliction)
-                totalVitalityDecrease = totalVitalityDecrease + vitalityDecrease
-                if affliction.MultiplyByMaxVitality then
-                    totalVitalityDecrease = totalVitalityDecrease * (character.MaxVitality / 100)
+    if character.Vitality <= 0 or character.Vitality - totalVitalityDecrease <= 0 then
+        for entry in afflictions2 do
+            local affliction = entry.affliction
+            local vitalityDecrease = entry.vitalityDecrease
+
+            local mult = 1
+            if character.Vitality <= 0 then
+                -- Already below 0, fully reduce damage
+                mult = unconsciousDamageReduction
+            elseif character.Vitality - totalVitalityDecrease <= 0 then
+                -- This damage would take us below 0, reduce the overkill
+                local overkill = vitalityDecrease - character.Vitality
+                if overkill > 0 then
+                    local reduction = overkill * unconsciousDamageReduction
+                    mult = 1 - (reduction / vitalityDecrease)
                 end
             end
+
+            local newStrength = affliction.Strength * mult
+            affliction.SetStrength(newStrength)
         end
-        if character.Vitality <= 0 or character.Vitality - totalVitalityDecrease <= 0 then
-            for affliction in afflictions2 do
-                local newStrength = affliction.Strength * unconsciousDamageReduction
-                affliction.SetStrength(newStrength)
-            end
-        end
-        end) -- #DEBUG#
-        if not success then stop = true printLimited(result) end -- #DEBUG#
     end
-    Hook.Add("character.damageLimb", "Megamod.DamagePatch", function(
-        character,
-        worldPosition,
-        hitLimb,
-        afflictions,
-        stun,
-        playSound,
-        attackImpulse,
-        attacker,
-        damageMultiplier,
-        allowStacking,
-        penetration,
-        shouldImplode
-        )
-        if character == nil
-            or character.IsDead
-            or not character.IsHuman
-            or afflictions == nil
-            or hitLimb == nil
-            or hitLimb.IsSevered
-            or attacker == nil
-        then return end
-        reduceDamage(character, afflictions, hitLimb, attacker)
-    end)
-    Hook.Add("character.applyDamage", "Megamod.DamagePatch2", function(characterHealth, attackResult, hitLimb)
-        if characterHealth == nil
-            or characterHealth.Character == nil
-            or characterHealth.Character.IsDead
-            or not characterHealth.Character.IsHuman
-            or attackResult == nil
-            or attackResult.Afflictions == nil
-            or #attackResult.Afflictions <= 0
-            or hitLimb == nil
-            or hitLimb.IsSevered
-        then return end
-        reduceDamage(characterHealth.Character, attackResult.Afflictions, hitLimb, nil)
-    end)
 end
+
+-- These prevent the specified patches from being duplicated when Lua is reloaded
+Hook.Remove("character.damageLimb", "Megamod.DamagePatch")
+Hook.Remove("character.applyDamage", "Megamod.DamagePatch2")
+
+Hook.Add("character.damageLimb", "Megamod.DamagePatch", function(
+    character,
+    worldPosition,
+    hitLimb,
+    afflictions,
+    stun,
+    playSound,
+    attackImpulse,
+    attacker,
+    damageMultiplier,
+    allowStacking,
+    penetration,
+    shouldImplode
+    )
+    if character == nil
+        or character.IsDead
+        or not character.IsHuman
+        or afflictions == nil
+        or hitLimb == nil
+        or hitLimb.IsSevered
+        or attacker == nil
+    then return end
+    reduceDamage(character, afflictions, hitLimb, attacker)
+end)
+Hook.Add("character.applyDamage", "Megamod.DamagePatch2", function(characterHealth, attackResult, hitLimb)
+    if characterHealth == nil
+        or characterHealth.Character == nil
+        or characterHealth.Character.IsDead
+        or not characterHealth.Character.IsHuman
+        or attackResult == nil
+        or attackResult.Afflictions == nil
+        or #attackResult.Afflictions <= 0
+        or hitLimb == nil
+        or hitLimb.IsSevered
+    then return end
+    reduceDamage(characterHealth.Character, attackResult.Afflictions, hitLimb, nil)
+end)
 
 
 if SERVER then
@@ -379,7 +371,7 @@ if SERVER then
     Megamod.Botany = require 'server.modules.botany'
 
     -- Syringes, reagents, etc
-    Megamod.Chemistry = require 'server.modules.chemistry'
+    --Megamod.Chemistry = require 'server.modules.chemistry' #TODO#
 
     -- The station's AI player, who acts as Big Brother in the sky
     Megamod.StationAI = require 'server.modules.stationai'

@@ -5,4 +5,5 @@ temp/
 steamcmd/
 # Files
 Lua/utils/automation/pf list.txt
+Lua/utils/automation/autorunpaths.json
 auto.bat

@@ -66,26 +66,15 @@ Networking.Receive("mm_getprefs", function(message, client)
     Networking.Send(msg, client.Connection)
 end)
 
-local keyBindMap = {
-    --[[{
-        -- Main key, checked first, uses HitType (can be down/up/hit)
-        Key = "H",
-
-        -- Checked second, always checked as down, can be any key
-        ModifierKeys = "LeftControl,A,B",
-
-        -- Maps to a client-side table
-        Func = 1,
-
-        -- 1 = hit, 2 = up, 3 = down
-        HitType = 1,
-    },]]
-}
+Networking.Receive("mm_changekeybinds", function(message, client)
+    -- #TODO#
+end)
 
 Networking.Receive("mm_getkeybinds", function(message, client)
     local msg = Networking.Start("mm_getkeybinds")
-    msg.WriteByte(#keyBindMap)
-    for _, keyBind in pairs(keyBindMap) do
+    local keyBinds = Megamod.GetData(client, "Keybinds")
+    msg.WriteByte(#keyBinds)
+    for keyBind in keyBinds do
         msg.WriteString(keyBind.Key)
         msg.WriteString(keyBind.ModifierKeys)
         msg.WriteByte(keyBind.Func)
@@ -110,6 +99,9 @@ function Megamod.NewClientData(client)
         end
         Megamod.ClientData[client.SteamID][valueName] = value
     end
+    Megamod.ClientData[client.SteamID]["Keybinds"] = {
+
+    }
 end
 
 function Megamod.LoadData()
@@ -163,7 +155,7 @@ end
 
 function Megamod.SendClientSideMsg(client, text, color, msgType)
     local msg = Networking.Start("mm_selfmsg")
-    if msgType then
+    if msgType ~= nil then
         msg.WriteBoolean(msgType)
     else
         if not Megamod.CheckIsDead(client) and client.Character.Vitality > 5 then
@@ -211,21 +203,6 @@ function Megamod.SendChatMessage(client, text, color)
     end
 
     Game.SendDirectChatMessage(chatMessage, client)
-end
-
-function Megamod.Round(num, numDecimalPlaces)
-  local mult = 10^(numDecimalPlaces or 0)
-  return math.floor(num * mult + 0.5) / mult
-end
-
--- Neurotrauma affliction functions
-function Megamod.Clamp(num, min, max)
-	if num < min then
-		num = min
-	elseif num > max then
-		num = max
-	end
-	return num
 end
 
 function Megamod.SetAffliction(character, identifier, strength, aggressor, prevstrength)
