@@ -11,7 +11,7 @@ local json = require 'utils.json'
 1: Rewrite auto.bat to download mods
 2: Change %ModDir%'s, rewrite filelist, rewrite auto.bat to copy lua files, apply xml/lua overrides
 ]]
-Auto.Step = 0
+Auto.Step = 2
 
 -- Setting an override to an empty string deletes the original
 Auto.XMLChanges = {
