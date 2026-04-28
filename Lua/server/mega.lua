@@ -205,6 +205,10 @@ function Megamod.SendChatMessage(client, text, color)
     Game.SendDirectChatMessage(chatMessage, client)
 end
 
+function Megamod.AddAffliction(char, id, strength, aggressor)
+    local current = Megamod.GetAfflictionStrength(char, id, 0)
+    Megamod.SetAffliction(char, id, current + strength, aggressor, current)
+end
 function Megamod.SetAffliction(character, identifier, strength, aggressor, prevstrength)
 	Megamod.SetAfflictionLimb(character, identifier, LimbType.Torso, strength, aggressor, prevstrength)
 end
@@ -307,12 +311,9 @@ end
 function Megamod.GiveAntagOverlay(character)
     if not character or character.IsDead then return false end
 
-    local prefab = AfflictionPrefab.Prefabs["mm_antagoverlay"]
-    local limb
     -- Apparently these can be null
     if character.AnimController and character.AnimController.GetLimb then
-        limb = character.AnimController.GetLimb(LimbType.Torso)
-        character.CharacterHealth.ApplyAffliction(limb, prefab.Instantiate(1))
+        Megamod.AddAffliction(character, "mm_antagoverlay", 1)
         return true
     end
 

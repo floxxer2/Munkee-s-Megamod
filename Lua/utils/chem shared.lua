@@ -76,8 +76,8 @@ local function defaultResourceEffect(self, container, site)
     -- Add 1 organ damage per second if blood or inhale, nothing if skin
     if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
         if site == "blood" or site == "inhale" then
-            local current = Megamod.GetAfflictionStrength(container, "organdamage", 0)
-            Megamod.SetAffliction(container, "organdamage", current + (1 * Megamod.Chemistry.DeltaTime), nil, current)
+            -- 1 organdamage per second
+            Megamod.AddAffliction(container, "organdamage", Megamod.Chemistry.DeltaTime)
         end
     end
 end

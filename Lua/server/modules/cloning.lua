@@ -285,10 +285,7 @@ function cloning.Tick()
                     Networking.Send(msg, client.Connection)
                 end
 
-                -- Give artifical brain to imitate being consciousness-less
-                local prefab = AfflictionPrefab.Prefabs["artificialbrain"]
-                local limb = sleeve.AnimController.GetLimb(LimbType.Head)
-                sleeve.CharacterHealth.ApplyAffliction(limb, prefab.Instantiate(2))
+                Megamod.AddAffliction(sleeve, "artificialbrain", 2) -- #TODO#
 
                 sleeve.TeamID = CharacterTeamType.Team1
 
@@ -449,9 +446,7 @@ Hook.Add("mm.hypomaximUse", "Megamod.Cloning.HypomaximUse", function(effect, del
     -- Revive them if this hypomaxim is in revive mode (don't care if they're dead or not)
     if cloning.Hypomaxims[item][3] == 1 then
         -- Give the hypomaxim affliction so they won't die again right after being revived
-        local prefab = AfflictionPrefab.Prefabs["mm_hypomaxim"]
-        local limb = t.AnimController.GetLimb(LimbType.Torso)
-        t.CharacterHealth.ApplyAffliction(limb, prefab.Instantiate(180))
+        Megamod.AddAffliction(t, "mm_hypomaxim", 180)
 
         -- Keeps afflictions, so whatever killed them is still there
         t.Revive(false, true)

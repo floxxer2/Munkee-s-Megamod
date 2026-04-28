@@ -970,10 +970,7 @@ do
     Hook.Add("item.applyTreatment", "Megamod.traitoritems.huskeditems", function(item, usingCharacter, targetCharacter, limb)
         if not rs.Items.HuskInfected[item] then return end
         rs.Items.HuskInfected[item] = nil
-        local prefab = AfflictionPrefab.Prefabs["huskinfection"]
-        local limbType = LimbType.Torso
-        local affliction = prefab.Instantiate(1)
-        targetCharacter.CharacterHealth.ApplyAffliction(targetCharacter.AnimController.GetLimb(limbType), affliction, false, false, false)
+        Megamod.AddAffliction(targetCharacter, "huskinfection", 1)
     end)
     --
     -- Dart Gun
