@@ -827,7 +827,7 @@ Auto.XMLChanges = {
   },
   -- Replace welder's eye with eye damage
   -- #TODO# - finicky
-  ["welderseye"] = {
+  --[=[["welderseye"] = {
     mod = "Immersive Repairs",
     xml = XElement.Parse([[
       <Affliction name="Welder's Eye" description="" identifier="welderseye" limbspecific="false" indicatorlimb="Head" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="1">
@@ -843,7 +843,7 @@ Auto.XMLChanges = {
         </Effect>
         <icon texture="%ModDir%/Content/UI/IR-IconsAtlas.png" sourcerect="0,128,128,128" origin="0,0" />
       </Affliction>]])
-  },
+  },]=]
   -- Remove fabrication recipe
   ["clownweldingmask"] = {
     mod = "Immersive Repairs",
@@ -866,10 +866,10 @@ Auto.XMLChanges = {
     }
   },
   -- Remove
-  ["welderseyedrops"] = {
+  --[[["welderseyedrops"] = {
     mod = "Immersive Repairs",
     xml = ""
-  },
+  },]]
   -- Remove fabrication recipe
   ["fuelrefillstation"] = {
     mod = "Immersive Repairs",
@@ -8116,7 +8116,7 @@ elseif Auto.Step == 2 then -- Notify of mod updates, apply Lua/xml overrides, re
         if autorunDir then
           local path = autorunDir:sub(autorunDir:find(modName, 1, true), -1)
           local e = path:reverse():gsub("\\", "/"):find("/")
-          autorunPaths[modName] = path:sub(1, path:len() - e)
+          autorunPaths[modName] = path:sub(1, path:len() - e):gsub("\\", "/")
           batStr = batStr .. "ren \"Workshop/" .. path .. "\" \"MEGAMOD_AUTORUN\"\n"
           batStr = batStr .. "xcopy /s /i \"Workshop/" .. modName .. "/Lua\" \"Lua/workshop/" .. modName .. "/Lua\"\n"
           if Auto.ModTable[tonumber(modID)].priority then
