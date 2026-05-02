@@ -1879,7 +1879,7 @@ function rs.Draft()
     if rs.Strength == 10 then -- End of the Road, the traitors are let loose on the crewmates
         rs.EOTR = true
         rs.EOTRLoop()
-        local str = "THE FINAL ACT IS UPON US. CHECK YOUR OBJECTIVE.\nTHEY WILL KNOW. ACT NOW."
+        local str = "THE FINAL ACT IS UPON US. CHECK YOUR OBJECTIVE."
         for traitor, tbl in pairs(rs.SelectedPlayers) do
             tbl[3] = nil
             for objective in rs.Objectives do
@@ -1890,21 +1890,6 @@ function rs.Draft()
             end
             Megamod.SendChatMessage(traitor, str, Color(255, 100, 100, 255))
         end
-        Timer.Wait(function()
-            if not Game.RoundStarted then return end
-            local str = "Increasing dimensional activity detected..."
-            for client in Client.ClientList do
-                Megamod.SendChatMessage(client, str, Color(255, 0, 255, 255))
-            end
-            Timer.Wait(function()
-                local prefab = ItemPrefab.GetItemPrefab("mm_notifalarm")
-                Entity.Spawner.AddItemToSpawnQueue(prefab, Submarine.MainSub.WorldPosition)
-                local str = "RED ALERT! TRAITORS ARE ON BOARD AND PLOTTING TO OVERTHROW THE STATION. STAND YOUR GROUND!"
-                for client in Client.ClientList do
-                    Megamod.SendChatMessage(client, str, Color(255, 0, 0, 255))
-                end
-            end, 3500)
-        end, 25000)
         return true, ""
     elseif rs.Strength > 1 then
         return true, ""
