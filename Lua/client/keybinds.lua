@@ -125,7 +125,7 @@ local funcTable = {
         if not Megamod.CertifiedBeasters[Megamod_Client.GetSelfClient().SteamID]
         or not Character.Controlled
         or Character.Controlled.IsDead == true
-        or not tostring(Character.Controlled.SpeciesName) == "Truebeast"
+        or tostring(Character.Controlled.SpeciesName) ~= "Truebeast"
         or not Megamod.CS_Shared.ForceInWater then return end
 
         local shiftDown = PlayerInput.KeyDown(Keys["LeftShift"])
