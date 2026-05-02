@@ -300,6 +300,10 @@ if SERVER then
         Megamod.SetAffliction(char, "mm_invis", 0)
     end)
 
+    Hook.Add("roundEnd", "Megamod.RoundEndBeast", function()
+        Megamod.CS_Shared.ForceInWater = false
+    end)
+
     -- Need to wait for the server to fully start up
     Timer.Wait(function()
         Game.ExecuteCommand("enablecheats")
