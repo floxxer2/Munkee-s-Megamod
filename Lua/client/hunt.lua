@@ -14,8 +14,9 @@ local function stop()
         Megamod_Client.HorrorSFX.Dispose()
         Megamod_Client.HorrorSFX = nil
     end
-    Hook.RemovePatch("Megamod.NoRadioHuntsCLIENT", "Barotrauma.Networking.ChatMessage", "CanUseRadio",
-    { "Barotrauma.Character", "out Barotrauma.Items.Components.WifiComponent", "System.Boolean" }, Hook.HookMethodType.Before)
+    -- This doesn't work for some reason
+    --[[Hook.RemovePatch("Megamod.NoRadioHuntsCLIENT", "Barotrauma.Networking.ChatMessage", "CanUseRadio",
+    { "Barotrauma.Character", "out Barotrauma.Items.Components.WifiComponent", "System.Boolean" }, Hook.HookMethodType.Before)]]
     Hook.Remove("think", "Megamod.ScaryBeast")
     Hook.Remove("chatMessage", "Megamod.BeastRedText")
     Hook.Remove("think", "Megamod.UpdateBeastMessages")
@@ -35,6 +36,15 @@ for i = 1, 31 do
         end
     end
 end
+
+-- Headsets don't work during Hunts server-side, so we need to reflect that on the client
+Hook.Patch("Megamod.NoRadioHuntsCLIENT", "Barotrauma.Networking.ChatMessage", "CanUseRadio",
+{ "Barotrauma.Character", "out Barotrauma.Items.Components.WifiComponent", "System.Boolean" }, function(instance, ptable)
+    if Megamod_Client.LightMapOverride.HuntActive then
+        ptable.PreventExecution = true
+        return false
+    end
+end, Hook.HookMethodType.Before)
 
 Networking.Receive("mm_beastwater", function(message)
     local bool = message.ReadBoolean()
@@ -63,13 +73,6 @@ Networking.Receive("mm_huntactive", function(message)
             Megamod.GameMain.GameScreen.Cam.Shake = 100
         end, 450)
     end
-
-    -- Headsets don't work during Hunts server-side, so we need to reflect that on the client
-    Hook.Patch("Megamod.NoRadioHuntsCLIENT", "Barotrauma.Networking.ChatMessage", "CanUseRadio",
-    { "Barotrauma.Character", "out Barotrauma.Items.Components.WifiComponent", "System.Boolean" }, function(instance, ptable)
-        ptable.PreventExecution = true
-        return false
-    end, Hook.HookMethodType.Before)
 
     local beastHead
     -- Search for The Beast endlessly until it spawns
