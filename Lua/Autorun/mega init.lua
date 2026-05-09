@@ -183,7 +183,7 @@ end, Hook.HookMethodType.Before)
 
 local unconsciousDamageReduction = 0.65
 unconsciousDamageReduction = 1 - unconsciousDamageReduction
--- Reduce damage by 65% if vitality is below 0
+-- Increase or reudce damage based on vitality
 local function reduceDamage(character, afflictions, hitLimb, attacker)
     -- Can't loop through afflictions twice for some reason
     local afflictions2 = {}
@@ -199,27 +199,28 @@ local function reduceDamage(character, afflictions, hitLimb, attacker)
             table.insert(afflictions2, { affliction = affliction, vitalityDecrease = vitalityDecrease })
         end
     end
-    if character.Vitality <= 0 or character.Vitality - totalVitalityDecrease <= 0 then
-        for entry in afflictions2 do
-            local affliction = entry.affliction
-            local vitalityDecrease = entry.vitalityDecrease
+    local BASE_MULT = 2
+    totalVitalityDecrease = totalVitalityDecrease * BASE_MULT
+    -- Reduce damage by 65% if vitality <0
+    for entry in afflictions2 do
+        local mult = BASE_MULT
+        local affliction = entry.affliction
+        local vitalityDecrease = entry.vitalityDecrease * mult
 
-            local mult = 1
-            if character.Vitality <= 0 then
-                -- Already below 0, fully reduce damage
-                mult = unconsciousDamageReduction
-            elseif character.Vitality - totalVitalityDecrease <= 0 then
-                -- This damage would take us below 0, reduce the overkill
-                local overkill = vitalityDecrease - character.Vitality
-                if overkill > 0 then
-                    local reduction = overkill * unconsciousDamageReduction
-                    mult = 1 - (reduction / vitalityDecrease)
-                end
+        if character.Vitality <= 0 then
+            -- Already below 0, fully reduce damage
+            mult = unconsciousDamageReduction
+        elseif character.Vitality - totalVitalityDecrease <= 0 then
+            -- This damage would take us below 0, reduce the overkill
+            local overkill = vitalityDecrease - character.Vitality
+            if overkill > 0 then
+                local reduction = overkill * (BASE_MULT - unconsciousDamageReduction)
+                mult = mult * (1 - (reduction / vitalityDecrease))
             end
-
-            local newStrength = affliction.Strength * mult
-            affliction.SetStrength(newStrength)
         end
+
+        local newStrength = affliction.Strength * mult
+        affliction.SetStrength(newStrength)
     end
 end
 
