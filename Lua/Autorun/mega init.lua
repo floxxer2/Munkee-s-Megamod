@@ -183,7 +183,7 @@ end, Hook.HookMethodType.Before)
 
 local unconsciousDamageReduction = 0.65
 unconsciousDamageReduction = 1 - unconsciousDamageReduction
--- Increase or reudce damage based on vitality
+-- Increase or reduce damage based on vitality
 local function reduceDamage(character, afflictions, hitLimb, attacker)
     -- Can't loop through afflictions twice for some reason
     local afflictions2 = {}
