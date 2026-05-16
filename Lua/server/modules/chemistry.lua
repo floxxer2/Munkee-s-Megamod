@@ -1,6 +1,6 @@
 local chm = {}
 
-local chmUtil = require 'utils.chem shared'
+local chmUtil = require 'shared.chemistry'
 for k, v in pairs(chmUtil) do
     chm[k] = v
 end

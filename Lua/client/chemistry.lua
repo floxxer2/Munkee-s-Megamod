@@ -1,7 +1,7 @@
 Megamod_Client.Chemistry = {}
 local chm = Megamod_Client.Chemistry
 
-local chmUtil = require 'utils.chem shared'
+local chmUtil = require 'shared.chemistry'
 for k, v in pairs(chmUtil) do
     chm[k] = v
 end
