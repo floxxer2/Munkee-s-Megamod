@@ -11,7 +11,7 @@ local json = require 'utils.json'
 1: Rewrite auto.bat to download mods
 2: Change %ModDir%'s, rewrite filelist, rewrite auto.bat to copy lua files, apply xml/lua overrides
 ]]
-Auto.Step = 2
+Auto.Step = 0
 
 -- Setting an override to an empty string deletes the original
 Auto.XMLChanges = {
@@ -724,6 +724,25 @@ Auto.XMLChanges = {
   },
   ["slipsuit"] = {
     mod = "Immersive Diving Gear",
+  },
+  -- Remove ability to throw but keep ability to hold
+  ["divingsuithelmetpreset"] = {
+    mod = "Immersive Diving Gear",
+    componentOverrides = {
+      {
+        targetComponent = "throwable",
+        override = "",
+      },
+      {
+        targetComponent = "projectile",
+        override = "",
+      },
+      {
+        add = true,
+        override = XElement.Parse([[
+          <Holdable slots="RightHand,LeftHand" controlpose="true" holdpos="0,-30" handle1="0,-10" aimable="true" aimpos="0,-30" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use"/>]]),
+      }
+    }
   },
   -- Integrate Enhanced Reactor's radiation resistance
   ["pucs"] = {
@@ -7617,23 +7636,23 @@ Auto.LuaChanges = {
 Auto.ModTable = {
   -- QOL
   [2807566753] = { name = "Dont Open Debug Console On Errors", version = "1.0.5" },
-  [3277215877] = { name = "Pickup Notifier", version = "0.3.4" },
+  [3277215877] = { name = "Pickup Notifier", version = "0.3.9" },
 
   -- Combat
-  [2764968387] = { name = "Enhanced Armaments", version = "1.21" },
-  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.9" },
+  [2764968387] = { name = "Enhanced Armaments", version = "1.34" },
+  [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.5" },
   [3293221471] = { name = "Pile Bunker v2.0", version = "v2.23" },
   [3486903116] = { name = "Stun Gun Revamp", version = "1.0.1" },
   [3005836987] = { name = "Improved  Stun", version = "5.6" },
 
   -- Monsters
-  [2518816103] = { name = "Barotraumatic", version = "1.0.230" },
+  [2518816103] = { name = "Barotraumatic", version = "1.0.251" },
   [3368559590] = { name = "Chimera Remake", version = "1.7" },
 
   -- "Immersive..." / "Enhanced..." | Overhauls or additions of one mechanic
-  [2968896556] = { name = "Enhanced Immersion", version = "1.0.24" },
+  [2968896556] = { name = "Enhanced Immersion", version = "1.0.26" },
   [3045796581] = { name = "Enhanced Reactors", version = "1.0.35" },
-  [3321850228] = { name = "Immersive Handcuffs", version = "1.0.10" },
+  [3321850228] = { name = "Immersive Handcuffs", version = "1.0.12" },
   [3089776991] = { name = "Immersive Ammunition Boxes", version = "1.0.4" },
   [3239164008] = { name = "Immersive Crates", version = "1.0.6" },
   [3337851889] = { name = "Immersive Crates - Mod Crates Compatibility Patch", version = "1.0.1" },
@@ -7647,7 +7666,7 @@ Auto.ModTable = {
   [2936760984] = { name = "Real Sonar", version = "2.1.0" },
 
   -- Submarine | Pieces for the sub editor
-  [3434408187] = { name = "EK Forked", version = "1.2.149" }, -- Basically everything removed except sub editor pieces
+  [3434408187] = { name = "EK Forked", version = "1.2.160" }, -- Basically everything removed except sub editor pieces
   [2914415949] = { name = "Husk Church Cathedral Visual Pack", version = "1.0.8" },
   [2526456135] = { name = "SOFA'S DECO", version = "1.0.2" },
   [3018824355] = { name = "Verdant Variety", version = "1.3.6" },
@@ -7655,7 +7674,7 @@ Auto.ModTable = {
   [3434409381] = { name = "CC's UAPM [building] Fork", version = "1.0.10" },
 
   -- Level
-  [3033618197] = { name = "Pure Empty Level", version = "1.5b" },
+  [3033618197] = { name = "Pure Empty Level", version = "1.5d" },
 
   -- Misc
   [3304206956] = { name = "Traitor Alike Items", version = "0.4" },
