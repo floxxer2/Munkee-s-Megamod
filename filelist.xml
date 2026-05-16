@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Munkee's Megamod" modversion="1.2.7.0" corepackage="False" steamworkshopid="3318261393" gameversion="1.12.7.0">
-  <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
-  <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
-  <Submarine file="%ModDir%/Megamod/Subs/Stations/Nova Station.sub" />
+<contentpackage name="Munkee's Megamod" modversion="1.0.0.1" corepackage="False" steamworkshopid="3318261393" gameversion="1.12.7.0">
   <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/Nova Elevator.sub" />
   <Text file="%ModDir%/Megamod/Text/English.xml" />
@@ -117,6 +114,7 @@
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Mudraptor_veteran/Mudraptor_veteran.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Crawlerbroodmotherold/Crawlerbroodmotherold.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Crawleralphamale/Crawleralphamale.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Crawlermetamorph/Crawlermetamorph.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Crawlersmart/Crawlersmart.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Latcher_hatchling/Latcher_hatchling.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Mudraptor_veteran2/Mudraptor_veteran2.xml" />
@@ -289,6 +287,7 @@
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Husk_prowlerhulk/Husk_prowlerhulk.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Hammerheadmauler/Hammerheadmauler.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/mantispink/mantispink.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Mantispinkpet/Mantispinkpet.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/Stalker/Stalker.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/Hammerhead_breacher/Hammerhead_breacher.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/NightmareCreatures/Hammerhead_hard/Hammerhead_hard.xml" />
@@ -375,7 +374,16 @@
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Molochvariant5/Molochvariantblack5.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Molochvariant6/Molochvariantblack6.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Spineyfish/Spineyfish.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Husknyx/Husknyx.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Mudraptorhuskhunter/Mudraptorhuskhunter.xml" />
   <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Variants/Turretcarrier_random/Turretcarrier_random.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Yellowboywarrior/Yellowboywarrior.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Yellowboyspawner/Yellowboyspawner.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Yellowboy/Yellowboy.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Yellowboyspawnerarmored/Yellowboyspawnerarmored.xml" />
+  <Character file="%ModDir%/Workshop/Barotraumatic/Characters/Yellowboyspawnerarmored/Yellowboy2.xml" />
+  <Afflictions file="%ModDir%/Workshop/Barotraumatic/Characters/Yellowboy/Yellowboyafflictions.xml" />
+  <Item file="%ModDir%/Workshop/Barotraumatic/Characters/Yellowboy/Yellowboyegg.xml" />
   <Structure file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/BGWalls.xml" />
   <Item file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/DDecals.xml" />
   <Structure file="%ModDir%/Workshop/CC's UAPM [building] Fork/Building/SWalls.xml" />
@@ -724,4 +732,7 @@
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Misc/misc.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Weapons/weaponsystems.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Medbay/medbay_props.xml" />
+  <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
+  <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
+  <Submarine file="%ModDir%/Megamod/Subs/Stations/Nova Station.sub" />
 </contentpackage>
