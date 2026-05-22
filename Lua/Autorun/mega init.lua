@@ -142,10 +142,10 @@ Hook.Patch("Megamod.FabricatorChange", "Barotrauma.Items.Components.Fabricator",
             local fabricatorID = tostring(instance.item.Prefab.Identifier)
             -- Don't modify rift engines/transformers
             if fabricatorID ~= "riftengine" and fabricatorID ~= "riftengine2" then
-                -- Reduce required skill to 20% of the original
-                instance.SkillRequirementMultiplier = instance.SkillRequirementMultiplier * 0.2
-                -- Reduce required time to 20% of the original
-                instance.FabricationSpeed = instance.FabricationSpeed * 1.8
+                -- Zero skill required
+                instance.SkillRequirementMultiplier = 0
+                -- Double fabrication speed
+                instance.FabricationSpeed = instance.FabricationSpeed * 2
             end
         end, 10000)
     end, Hook.HookMethodType.Before)
