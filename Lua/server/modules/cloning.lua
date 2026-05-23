@@ -272,7 +272,8 @@ function cloning.Tick()
                 end
                 Megamod.SendChatMessage(cloning.ActiveProcess[1], str, Color(255, 0, 255, 255))
                 Megamod.Log("Client '" .. tostring(cloning.ActiveProcess[1].Name) .. "' (Steam: " .. cloning.ActiveProcess[1].SteamID .. ") was revived via cloning.", true)
-            else -- Sleeves, 'empty' humans
+            -- #TODO#: Sleeves temporarily disabled
+            --[[else -- Sleeves, 'empty' humans
                 local pos = cloning.ActiveProcess[4].WorldPosition
                 local info = CharacterInfo("Human", "Sleeve", "Sleeve", JobPrefab.Get("assistant"), nil, RandSync.ServerAndClient, nil)
                 local sleeve = Character.Create(info, pos, info.Name, 0, false, false)
@@ -285,11 +286,11 @@ function cloning.Tick()
                     Networking.Send(msg, client.Connection)
                 end
 
-                Megamod.AddAffliction(sleeve, "artificialbrain", 2) -- #TODO#
+                --Megamod.AddAffliction(sleeve, "artificialbrain", 2) -- #TODO#: Make a 'permastun' affliction for this
 
                 sleeve.TeamID = CharacterTeamType.Team1
 
-                Megamod.Log("A sleeve was created via cloning.", true)
+                Megamod.Log("A sleeve was created via cloning.", true)]]
             end
 
             cloning.ToggleMachineActive(false, cloning.ActiveProcess[4], true)
@@ -325,8 +326,8 @@ function cloning.StartProcess(client, machine, infoTbl)
     if client then
         Megamod.SendChatMessage(client, "A cloning machine is reviving you.\nUse the command !clone to check your progress.", Color(255, 0, 255, 255))
         cloning.ActiveProcess[4].SendSignal(tostring(client.Name), "clonee_out")
-    else
-        cloning.ActiveProcess[4].SendSignal("_SLEEVE_", "clonee_out")
+    --[[else #TODO#
+        cloning.ActiveProcess[4].SendSignal("_SLEEVE_", "clonee_out")]]
     end
     cloning.ActiveProcess[4].SendSignal(getStatusText(), "status_out")
 end
@@ -361,7 +362,7 @@ Hook.Add("mm.cloningstart", "Megamod.Cloning.CloningStart", function(effect, del
     local hypomaxim = item.OwnInventory.GetItemAt(6)
     -- No hypomaxim -> make a "sleeve," a human with no consciousness
     if not hypomaxim then
-        cloning.StartProcess(nil, item)
+        --cloning.StartProcess(nil, item) #TODO#
         return
     end
     local targetClient = cloning.Hypomaxims[hypomaxim] and cloning.Hypomaxims[hypomaxim][1]
