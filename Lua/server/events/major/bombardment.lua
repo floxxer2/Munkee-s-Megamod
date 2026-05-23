@@ -65,9 +65,8 @@ function event.Start()
     local shellPrefab = ItemPrefab.GetItemPrefab("railgunshell")
     --local c4Prefab = ItemPrefab.GetItemPrefab("c4block")
 
-    local volleyTimer = coroutine.create(function(self)
-        ::restart::
-        if not Game.RoundStarted then return end
+    local function fireVolley()
+        if not Game.RoundStarted or not event.Started then return end
 
         -- Fire a volley of shells
         for i = 1, amountShellsInVolley do
@@ -88,13 +87,11 @@ function event.Start()
             return
         end
         Timer.Wait(function()
-            coroutine.resume(self)
+            fireVolley()
         end, timeBetweenVolleys)
-        coroutine.yield()
-        goto restart
-    end)
+    end
     Timer.Wait(function()
-        coroutine.resume(volleyTimer, volleyTimer)
+        fireVolley()
     end, 15000)
 end
 
