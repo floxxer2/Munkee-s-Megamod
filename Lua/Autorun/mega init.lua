@@ -199,7 +199,7 @@ local function reduceDamage(character, afflictions, hitLimb, attacker)
             table.insert(afflictions2, { affliction = affliction, vitalityDecrease = vitalityDecrease })
         end
     end
-    local BASE_MULT = 2
+    local BASE_MULT = 2.25
     totalVitalityDecrease = totalVitalityDecrease * BASE_MULT
     -- Reduce damage by 65% if vitality <0
     for entry in afflictions2 do
