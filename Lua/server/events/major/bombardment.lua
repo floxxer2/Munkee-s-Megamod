@@ -54,7 +54,7 @@ function event.Start()
     local randTheta = math.rad(math.random(0, 360))
     local spawnPoint = Vector2(Submarine.MainSub.WorldPosition.X + (r * math.cos(randTheta)),
         Submarine.MainSub.WorldPosition.Y + (r * math.sin(randTheta)))
-    spawnPoint = Vector2.Add(spawnPoint, Vector2(math.random(1000), math.random(1000)))
+    spawnPoint = Vector2.Add(spawnPoint, Vector2(math.random(-1000, 1000), math.random(-1000, 1000)))
     local rotation = Megamod.AngleBetweenVector2(spawnPoint, Vector2.Add(Submarine.MainSub.WorldPosition, Vector2(0, 2000)))
 
     Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab("mm_notifalarm"), spawnPoint)
