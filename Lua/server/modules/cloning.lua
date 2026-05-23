@@ -352,9 +352,6 @@ Hook.Add("mm.cloningstart", "Megamod.Cloning.CloningStart", function(effect, del
     end
     for cloner in cloners do
         if cdn[cloner] and Timer.GetTime() - cdn[cloner] < CDN_BASE then
-            for cloner in cloners do
-                Megamod.SendChatMessage(cloner, "Please don't spam the cloning machine.\n(Wait ~5 seconds before you hit 'start' again.)", Color(255, 0, 255, 255))
-            end
             return
         end
         cdn[cloner] = Timer.GetTime() + CDN_BASE
@@ -371,10 +368,6 @@ Hook.Add("mm.cloningstart", "Megamod.Cloning.CloningStart", function(effect, del
         Megamod.CreateEntityEvent(hypomaxim, hypomaxim, "NonInteractable", true)
         cloning.SelfClone = item
         if Timer.GetTime() - lastSelfCloningMsgTime < SELF_CLONING_CDN then
-            local str = "Self-cloning enabled, but dead players were not notified because you're spamming the machine.\n(Wait ~15 seconds to activate self-cloning again.)"
-            for cloner in cloners do
-                Megamod.SendChatMessage(cloner, str, Color(255, 0, 255, 255))
-            end
             return
         end
         lastSelfCloningMsgTime = Timer.GetTime()
