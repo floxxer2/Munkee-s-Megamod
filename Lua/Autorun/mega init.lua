@@ -72,7 +72,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
-        --dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua") #TODO#
+        dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/vision.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
@@ -209,13 +209,13 @@ local function reduceDamage(character, afflictions, hitLimb, attacker)
 
         if character.Vitality <= 0 then
             -- Already below 0, fully reduce damage
-            mult = unconsciousDamageReduction
+            mult = mult * unconsciousDamageReduction
         elseif character.Vitality - totalVitalityDecrease <= 0 then
             -- This damage would take us below 0, reduce the overkill
             local overkill = vitalityDecrease - character.Vitality
             if overkill > 0 then
-                local reduction = overkill * (BASE_MULT - unconsciousDamageReduction)
-                mult = mult * (1 - (reduction / vitalityDecrease))
+                local frac = math.min(overkill / vitalityDecrease, 1)
+                mult = BASE_MULT - (BASE_MULT - unconsciousDamageReduction) * frac
             end
         end
 
@@ -376,7 +376,7 @@ if SERVER then
     Megamod.Botany = require 'server.modules.botany'
 
     -- Syringes, reagents, etc
-    --Megamod.Chemistry = require 'server.modules.chemistry' #TODO#
+    Megamod.Chemistry = require 'server.modules.chemistry'
 
     -- The station's AI player, who acts as Big Brother in the sky
     Megamod.StationAI = require 'server.modules.stationai'
