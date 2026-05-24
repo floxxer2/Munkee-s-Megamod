@@ -14,7 +14,7 @@ local REACTION_TEMP_VARIANCE = 0.1
 local BASE_DEPLETION_RATE = 1
 
 
-Hook.Add("mm.chemistry.itemContainerUse", "Megamod.Chemistry.ItemContainerUse", function(effect, deltaTime, item, targets, worldPosition)
+Hook.Add("mm.chemistry.reagentContainerUse", "Megamod.Chemistry.ReagentContainerUse", function(effect, deltaTime, item, targets, worldPosition)
     if not item or not targets then return end
     local target = targets[1]
     if not target

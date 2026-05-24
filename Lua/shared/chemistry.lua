@@ -1,7 +1,7 @@
 local chm = {}
 
 -- Also used to determine if an item is a container in the first place
-chm.ItemContainerStats = {
+chm.ReagentContainerStats = {
     mm_syringe = {
         SubContainers = {
             [1] = {
@@ -497,9 +497,9 @@ function chm.GetContainerTable(container)
     local containerTbl
     if LuaUserData.IsTargetType(container, "Barotrauma.Item") then
         containerTbl = chm.ContainersItems[container]
-        if not containerTbl and chm.ItemContainerStats[tostring(container.Prefab.Identifier)] then
+        if not containerTbl and chm.ReagentContainerStats[tostring(container.Prefab.Identifier)] then
             print("CHEMISTRY: GetContainerTable - Container table not initalized for " .. tostring(container) .. ", correcting...") -- #DEBUG#
-            chm.UpdateItemContainerTable(container)
+            chm.UpdateReagentContainerTable(container)
             containerTbl = chm.ContainersItems[container]
         end
     elseif LuaUserData.IsTargetType(container, "Barotrauma.Character") then
@@ -545,8 +545,8 @@ function chm.UpdateCharacterContainerTable(char)
 end
 Hook.Add("character.created", "Megamod.Chemistry.CharacterCreated", chm.UpdateCharacterContainerTable)
 
-function chm.UpdateItemContainerTable(item)
-    local stats = chm.ItemContainerStats[tostring(item.Prefab.Identifier)]
+function chm.UpdateReagentContainerTable(item)
+    local stats = chm.ReagentContainerStats[tostring(item.Prefab.Identifier)]
     if not stats then return end
     chm.ContainersItems[item] = {
         SubContainers = {},
@@ -561,12 +561,12 @@ function chm.UpdateItemContainerTable(item)
         })
     end
 end
-Hook.Add("item.created", "Megamod.Chemistry.ItemCreated", chm.UpdateItemContainerTable)
+Hook.Add("item.created", "Megamod.Chemistry.ItemCreated", chm.UpdateReagentContainerTable)
 
 -- Update item/char list if Lua is reloaded midround
 if Game.RoundStarted then
     for item in Item.ItemList do
-        chm.UpdateItemContainerTable(item)
+        chm.UpdateReagentContainerTable(item)
     end
     for char in Character.CharacterList do
         chm.UpdateCharacterContainerTable(char)

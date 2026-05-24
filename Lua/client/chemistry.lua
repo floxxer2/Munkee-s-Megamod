@@ -167,7 +167,7 @@ local funcs = {
                     break
                 end
             end
-            -- If item wasn't in item containers list, search full item list
+            -- If item wasn't in reagent containers list, search full item list
             if not item then
                 for possibleItem in Item.ItemList do
                     if possibleItem.ID == itemID then
@@ -180,7 +180,7 @@ local funcs = {
                 error("Could not find item with ID " .. tostring(itemID))
                 return
             end
-            local stats = chm.ItemContainerStats[tostring(item.Prefab.Identifier)]
+            local stats = chm.ReagentContainerStats[tostring(item.Prefab.Identifier)]
             chm.ContainersItems[item] = {
                 SubContainers = readSubContainers(msg, stats)
             }
