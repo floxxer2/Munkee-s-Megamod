@@ -72,7 +72,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
-        dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
+        --dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/vision.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
@@ -376,7 +376,7 @@ if SERVER then
     Megamod.Botany = require 'server.modules.botany'
 
     -- Syringes, reagents, etc
-    Megamod.Chemistry = require 'server.modules.chemistry'
+    --Megamod.Chemistry = require 'server.modules.chemistry'
 
     -- The station's AI player, who acts as Big Brother in the sky
     Megamod.StationAI = require 'server.modules.stationai'
@@ -389,6 +389,9 @@ if SERVER then
 
     -- Check if people have CL Lua
     Megamod.LuaCheck = require 'server.modules.luacheck'
+
+    -- Stat tracking, like playtime, kills/deaths, etc
+    --Megamod.Stats = require 'server.modules.stats'
 
     -- Discord integration (send messages to the Discord server)
     Megamod.Discord = require 'server.modules.discord'
