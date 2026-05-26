@@ -64,9 +64,9 @@ end)
 Networking.Receive("mm_dimelocator", function(message)
     local toggle = message.ReadBoolean() -- True = toggle, false = disable
     if toggle then
-        Megamod_Client.ToggleDimeLocator(not Megamod_Client.DimeLocatorActive)
+        Megamod_Client.DimeLocatorActive = not Megamod_Client.DimeLocatorActive
     else
-        Megamod_Client.ToggleDimeLocator(false)
+        Megamod_Client.DimeLocatorActive = false
     end
 end)
 
@@ -168,25 +168,18 @@ end
 
 Megamod_Client.DimeLocatorActive = false
 
-function Megamod_Client.ToggleDimeLocator(toggle)
-    if toggle and not Megamod_Client.DimeLocatorActive then
-        Megamod_Client.DimeLocatorActive = true
-        updateDimeSources() -- Update once immediately
-        local timer = 0
-        Hook.Patch("Megamod.DimeLocator", "Barotrauma.GUI", "Draw", function(instance, ptable)
-            draw(ptable)
-            if timer >= UPDATE_TIMER then
-                timer = 0
-                updateDimeSources()
-            else
-                timer = timer + 1
-            end
-        end)
-    elseif not toggle and Megamod_Client.DimeLocatorActive then
-        Megamod_Client.DimeLocatorActive = false
-        Hook.RemovePatch("Megamod.DimeLocator", "Barotrauma.GUI", "Draw", Hook.HookMethodType.Before)
+updateDimeSources() -- Update once immediately
+local timer = 0
+Hook.Patch("Megamod.DimeLocator", "Barotrauma.GUI", "Draw", function(instance, ptable)
+    if not Megamod_Client.DimeLocatorActive then return end
+    draw(ptable)
+    if timer >= UPDATE_TIMER then
+        timer = 0
+        updateDimeSources()
+    else
+        timer = timer + 1
     end
-end
+end)
 
 local function disableLoop()
     if not Game.RoundStarted then return end
@@ -195,7 +188,7 @@ local function disableLoop()
     and (not Character.Controlled
     or Character.Controlled.IsDead
     or Character.Controlled.Vitality < 0) then
-        Megamod_Client.ToggleDimeLocator(false)
+        Megamod_Client.DimeLocatorActive = false
     end
     Timer.Wait(function()
         disableLoop()
@@ -206,5 +199,5 @@ Hook.Add("roundStart", "Megamod.Client.RoundStartDimeLocator", function()
     disableLoop()
 end)
 Hook.Add("roundEnd", "Megamod.Client.RoundEnd", function()
-    Megamod_Client.ToggleDimeLocator(false)
+    Megamod_Client.DimeLocatorActive = false
 end)
