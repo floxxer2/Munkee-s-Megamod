@@ -67,27 +67,70 @@ Networking.Receive("mm_getprefs", function(message, client)
 end)
 
 Networking.Receive("mm_changekeybinds", function(message, client)
-    -- #TODO#
+    local keybindAmount = message.ReadByte()
+    local keybinds = {}
+    for i = 1, keybindAmount do
+        local keybind = {
+            Key = message.ReadString(),
+            ModifierKeys = {},
+            Func = message.ReadByte(),
+            HitType = message.ReadByte()
+        }
+        local amountModifierKeys = message.ReadByte()
+        for i = 1, amountModifierKeys do
+            local modifierKey = message.ReadString()
+            table.insert(keybind.ModifierKeys, modifierKey)
+        end
+        table.insert(keybinds, keybind)
+    end
+    Megamod.SetData(client, "Keybinds", keybinds)
 end)
 
 Networking.Receive("mm_getkeybinds", function(message, client)
     local msg = Networking.Start("mm_getkeybinds")
-    local keyBinds = Megamod.GetData(client, "Keybinds")
-    msg.WriteByte(#keyBinds)
-    for keyBind in keyBinds do
+    local keybinds = Megamod.GetData(client, "Keybinds")
+    msg.WriteByte(#keybinds)
+    for keyBind in keybinds do
         msg.WriteString(keyBind.Key)
-        msg.WriteString(keyBind.ModifierKeys)
         msg.WriteByte(keyBind.Func)
         msg.WriteByte(keyBind.HitType)
+
+        msg.WriteByte(#keyBind.ModifierKeys)
+        for modifierKey in keyBind.ModifierKeys do
+            msg.WriteString(modifierKey)
+        end
     end
     Networking.Send(msg, client.Connection)
 end)
+
+-- #TODO#: Migrate these to a shared file
 
 local defaultPrefMap = {
     Traitor = true,
     Monster = true,
     Raider = true,
     Beast = false -- Value doesn't matter for Beast
+}
+
+local defaultKeyBinds = {
+    { -- Toggle flying as The Beast
+        Key = "F",
+        ModifierKeys = {},
+        Func = 1,
+        HitType = 1
+    },
+    { -- Rotate while flying as The Beast
+        Key = "LeftAlt",
+        ModifierKeys = {},
+        Func = 3,
+        HitType = 3
+    },
+    { -- Toggle invisibility as The Beast
+        Key = "X",
+        ModifierKeys = {},
+        Func = 4,
+        HitType = 1
+    },
 }
 
 function Megamod.NewClientData(client)
@@ -99,9 +142,7 @@ function Megamod.NewClientData(client)
         end
         Megamod.ClientData[client.SteamID][valueName] = value
     end
-    Megamod.ClientData[client.SteamID]["Keybinds"] = {
-
-    }
+    Megamod.ClientData[client.SteamID]["Keybinds"] = defaultKeyBinds
 end
 
 function Megamod.LoadData()

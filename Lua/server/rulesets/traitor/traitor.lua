@@ -1011,7 +1011,7 @@ do
 
     local MIN_HULL_SIZE = 100000
     function rs.SpawnDLeak(dimeAmount)
-        Megamod.Log("Dimensional Leak (containing " .. dimeAmount .. " dimes) spawned.", true)
+        Megamod.Log("Dimensional Leak (containing " .. Megamod.Round(dimeAmount, 2) .. " dimes) spawned.", true)
 
         local hulls = Megamod.Map.DeepVents.GetHulls(false)
         local removeHulls = {}

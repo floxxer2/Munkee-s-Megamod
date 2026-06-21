@@ -1,6 +1,7 @@
 --do require 'utils.automation.auto' return end
 
 local json = require 'utils.json'
+local weightedRandom = require 'utils.weightedrandom'
 
 Megamod = {}
 ---@type string
@@ -77,6 +78,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/vision.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/keybinds.lua")
+        dofile(Megamod_Client.Path .. "/Lua/client/invis.lua")
     end, 1)
 end
 
@@ -180,92 +182,296 @@ Hook.Patch("Megamod.NoVanillaMonsters", "Barotrauma.MonsterEvent", "Update", fun
     instance.disallowed = true
 end, Hook.HookMethodType.Before)
 
-
-local unconsciousDamageReduction = 0.65
-unconsciousDamageReduction = 1 - unconsciousDamageReduction
--- Increase or reduce damage based on vitality
-local function reduceDamage(character, afflictions, hitLimb, attacker)
-    -- Can't loop through afflictions twice for some reason
-    local afflictions2 = {}
-    local totalVitalityDecrease = 0
-    for affliction in afflictions do
-        -- Ignore non-damaging afflictions i.e. steroids
-        local vitalityDecrease = affliction.GetVitalityDecrease(character.CharacterHealth)
-        if vitalityDecrease > 0 then
-            if affliction.MultiplyByMaxVitality then
-                vitalityDecrease = vitalityDecrease * (character.MaxVitality / 100)
-            end
-            totalVitalityDecrease = totalVitalityDecrease + vitalityDecrease
-            table.insert(afflictions2, { affliction = affliction, vitalityDecrease = vitalityDecrease })
-        end
-    end
+-- Changing damage
+do
     local BASE_MULT = 2.25
-    totalVitalityDecrease = totalVitalityDecrease * BASE_MULT
-    -- Reduce damage by 65% if vitality <0
-    for entry in afflictions2 do
-        local mult = BASE_MULT
-        local affliction = entry.affliction
-        local vitalityDecrease = entry.vitalityDecrease * mult
 
-        if character.Vitality <= 0 then
-            -- Already below 0, fully reduce damage
-            mult = mult * unconsciousDamageReduction
-        elseif character.Vitality - totalVitalityDecrease <= 0 then
-            -- This damage would take us below 0, reduce the overkill
-            local overkill = vitalityDecrease - character.Vitality
-            if overkill > 0 then
-                local frac = math.min(overkill / vitalityDecrease, 1)
-                mult = BASE_MULT - (BASE_MULT - unconsciousDamageReduction) * frac
+    -- Time (in seconds) until an instance of damage is ignored
+    local RECENT_DAMAGE_TIMEOUT = 3
+
+    local SPECIAL_AFFLICTION_THRESHOLD = 275
+
+    local recentDamage = {}
+    Hook.Add("roundEnd", "Megamod.Damage.RoundEnd", function()
+        recentDamage = {}
+    end)
+
+    -- Convert ragdoll limbs into the medical doll limbs / vice versa
+    local limbMap = {
+        -- Head
+        h = {
+            LimbType.Head,
+            LimbType.Jaw,
+        },
+        -- Torso
+        t = {
+            LimbType.Torso,
+            LimbType.Waist,
+        },
+        -- Left Arm
+        la = {
+            LimbType.LeftArm,
+            LimbType.LeftForearm,
+            LimbType.LeftHand,
+        },
+        -- Right Arm
+        ra = {
+            LimbType.RightArm,
+            LimbType.RightForearm,
+            LimbType.RightHand,
+        },
+        -- Left Leg
+        ll = {
+            LimbType.LeftFoot,
+            LimbType.LeftLeg,
+            LimbType.LeftThigh,
+        },
+        -- Right Leg
+        rl = {
+            LimbType.RightFoot,
+            LimbType.RightLeg,
+            LimbType.RightThigh,
+        },
+    }
+
+    local specialAfflictions = {
+        {
+            id = "mm_armfracture",
+            chance = 1,
+            -- The instance of damage that goes over the special
+            -- affliction DPS must include at least one affliction
+            -- in this table
+            requiredAfflictions = {
+
+            },
+            limbs = {
+                "la",
+                "ra",
+            },
+        },
+        {
+            id = "mm_legfracture",
+            chance = 1,
+            requiredAfflictions = {
+
+            },
+            limbs = {
+                "ll",
+                "rl",
+            },
+        },
+        {
+            id = "mm_cardiactamponade",
+            chance = 1,
+            requiredAfflictions = {
+
+            },
+            limbs = {
+                "t",
+            },
+        },
+    }
+
+    --local lastTime = Timer.GetTime()
+
+    local unconsciousDamageReduction = 0.65
+    unconsciousDamageReduction = 1 - unconsciousDamageReduction
+    -- Increase or reduce damage based on vitality,
+    -- and add special afflictions
+    local function onDamaged(character, afflictions, hitLimb, attacker)
+        -- Can't loop through afflictions twice for some reason
+        local afflictions2 = {}
+        local totalVitalityDecrease = 0
+        for affliction in afflictions do
+            -- Ignore non-damaging afflictions i.e. steroids
+            local vitalityDecrease = affliction.GetVitalityDecrease(character.CharacterHealth)
+            if vitalityDecrease > 0 then
+                if affliction.MultiplyByMaxVitality then
+                    vitalityDecrease = vitalityDecrease * (character.MaxVitality / 100)
+                end
+                totalVitalityDecrease = totalVitalityDecrease + vitalityDecrease
+                table.insert(afflictions2, { affliction = affliction, vitalityDecrease = vitalityDecrease })
             end
         end
+        totalVitalityDecrease = totalVitalityDecrease * BASE_MULT
+        -- Reduce damage by 65% if vitality <0
+        for entry in afflictions2 do
+            local mult = BASE_MULT
+            local affliction = entry.affliction
+            local vitalityDecrease = entry.vitalityDecrease * mult
 
-        local newStrength = affliction.Strength * mult
-        affliction.SetStrength(newStrength)
+            if character.Vitality <= 0 then
+                -- Already below 0, fully reduce damage
+                mult = mult * unconsciousDamageReduction
+            elseif character.Vitality - totalVitalityDecrease <= 0 then
+                -- This damage would take us below 0, reduce the overkill
+                local overkill = vitalityDecrease - character.Vitality
+                if overkill > 0 then
+                    local frac = math.min(overkill / vitalityDecrease, 1)
+                    mult = BASE_MULT - (BASE_MULT - unconsciousDamageReduction) * frac
+                end
+            end
+
+            local newStrength = affliction.Strength * mult
+            affliction.SetStrength(newStrength)
+        end
+
+        -- Client and server seem to have a slight desync on what the
+        -- actual vitality decrease of afflictions is, so we just
+        -- calculate the rest of this only server-side
+        if CLIENT then return end
+
+        local now = Timer.GetTime()
+        if recentDamage[character] then
+            -- Timeout damage that has been there for too long
+            for i, tbl in pairs(recentDamage[character]) do
+                if now - tbl.time > RECENT_DAMAGE_TIMEOUT then
+                    table.remove(recentDamage[character], i)
+                end
+            end
+            -- Add the current instance of damage
+            table.insert(recentDamage[character], {
+                time = now,
+                vd = totalVitalityDecrease
+            })
+            local tvd = 0 -- Total Vitality Decrease
+            for tbl in recentDamage[character] do
+                tvd = tvd + tbl.vd
+            end
+            --[[do
+                local debug = tostring(character.DisplayName) ~= "munkee"
+                for entry in afflictions2 do
+                    local id = tostring(entry.affliction.Prefab.Identifier)
+                    if id == "oxygenlow" or id == "bloodloss" then
+                        debug = false
+                    end
+                end
+                if debug and lastTime and now - lastTime > 0.3 then
+                    print(tvd)
+                    lastTime = now
+                end
+            end]]
+            -- Add special afflictions if the victim has taken too much damage in a short timeframe
+            if tvd >= SPECIAL_AFFLICTION_THRESHOLD then
+                --print("Trying to give a special affliction to " .. tostring(character.DisplayName))
+
+                local potentialAfflictions = {}
+                for specialAffliction in specialAfflictions do
+                    local validAfflictions = false
+                    if #specialAffliction.requiredAfflictions > 0 then
+                        for requiredAffliction in specialAffliction.requiredAfflictions do
+                            for entry in afflictions2 do
+                                if tostring(entry.affliction.Prefab.Identifier) == requiredAffliction then
+                                    validAfflictions = true
+                                    break
+                                end
+                                if validAfflictions then
+                                    break
+                                end
+                            end
+                        end
+                    else
+                        -- There are no required afflictions, so all afflictions are valid
+                        validAfflictions = true
+                    end
+                    if validAfflictions then
+                        local validLimb = false
+                        if #specialAffliction.limbs > 0 then
+                            for limb in specialAffliction.limbs do
+                                for limbType in limbMap[limb] do
+                                    if tonumber(limbType) == tonumber(hitLimb.type) then
+                                        validLimb = true
+                                        break
+                                    end
+                                end
+                            end
+                        else
+                            -- There are no required limbs, so all limbs are valid
+                            validLimb = true
+                        end
+                        if validLimb then
+                            -- Don't add the same affliction on the same limb
+                            if Megamod.GetAfflictionStrengthLimb(character, hitLimb.type, specialAffliction.id, 0) == 0 then
+                                potentialAfflictions[specialAffliction] = specialAffliction.chance
+                            end
+                        end
+                    end
+                end
+                -- Check if there is at least one valid potential affliction
+                local atLeastOne = false
+                for _, _ in pairs(potentialAfflictions) do
+                    atLeastOne = true
+                    break
+                end
+                if not atLeastOne then
+                    --print("There was no valid special affliction to give to " .. tostring(character.DisplayName))
+                    return
+                end
+                -- Success, we are adding a special affliction
+
+                recentDamage[character] = {}
+                if tvd > SPECIAL_AFFLICTION_THRESHOLD then
+                    table.insert(recentDamage[character], {
+                        time = now,
+                        vd = tvd - SPECIAL_AFFLICTION_THRESHOLD
+                    })
+                end
+
+                local afflictionToAdd = weightedRandom.Choose(potentialAfflictions)
+                Megamod.SetAfflictionLimb(character, afflictionToAdd.id, hitLimb.type, 1, attacker, 0)
+            end
+        else
+            recentDamage[character] = {
+                {
+                    time = now,
+                    vd = totalVitalityDecrease
+                }
+            }
+        end
     end
+
+    -- These prevent the specified patches from being duplicated when Lua is reloaded
+    Hook.Remove("character.damageLimb", "Megamod.DamagePatch")
+    Hook.Remove("character.applyDamage", "Megamod.DamagePatch2")
+
+    Hook.Add("character.damageLimb", "Megamod.DamagePatch", function(
+        character,
+        worldPosition,
+        hitLimb,
+        afflictions,
+        stun,
+        playSound,
+        attackImpulse,
+        attacker,
+        damageMultiplier,
+        allowStacking,
+        penetration,
+        shouldImplode
+        )
+        if character == nil
+            or character.IsDead
+            or not character.IsHuman
+            or afflictions == nil
+            or hitLimb == nil
+            or hitLimb.IsSevered
+            or attacker == nil
+        then return end
+        onDamaged(character, afflictions, hitLimb, attacker)
+    end)
+    Hook.Add("character.applyDamage", "Megamod.DamagePatch2", function(characterHealth, attackResult, hitLimb)
+        if characterHealth == nil
+            or characterHealth.Character == nil
+            or characterHealth.Character.IsDead
+            or not characterHealth.Character.IsHuman
+            or attackResult == nil
+            or attackResult.Afflictions == nil
+            or #attackResult.Afflictions <= 0
+            or hitLimb == nil
+            or hitLimb.IsSevered
+        then return end
+        onDamaged(characterHealth.Character, attackResult.Afflictions, hitLimb, nil)
+    end)
 end
-
--- These prevent the specified patches from being duplicated when Lua is reloaded
-Hook.Remove("character.damageLimb", "Megamod.DamagePatch")
-Hook.Remove("character.applyDamage", "Megamod.DamagePatch2")
-
-Hook.Add("character.damageLimb", "Megamod.DamagePatch", function(
-    character,
-    worldPosition,
-    hitLimb,
-    afflictions,
-    stun,
-    playSound,
-    attackImpulse,
-    attacker,
-    damageMultiplier,
-    allowStacking,
-    penetration,
-    shouldImplode
-    )
-    if character == nil
-        or character.IsDead
-        or not character.IsHuman
-        or afflictions == nil
-        or hitLimb == nil
-        or hitLimb.IsSevered
-        or attacker == nil
-    then return end
-    reduceDamage(character, afflictions, hitLimb, attacker)
-end)
-Hook.Add("character.applyDamage", "Megamod.DamagePatch2", function(characterHealth, attackResult, hitLimb)
-    if characterHealth == nil
-        or characterHealth.Character == nil
-        or characterHealth.Character.IsDead
-        or not characterHealth.Character.IsHuman
-        or attackResult == nil
-        or attackResult.Afflictions == nil
-        or #attackResult.Afflictions <= 0
-        or hitLimb == nil
-        or hitLimb.IsSevered
-    then return end
-    reduceDamage(characterHealth.Character, attackResult.Afflictions, hitLimb, nil)
-end)
-
 
 if SERVER then
     LuaUserData.RegisterType("Megamod.MegamodServer")
@@ -292,13 +498,6 @@ if SERVER then
         -- Only happens during serious rounds
         if not character or not character.IsHuman or not Util.FindClientCharacter(character) or Megamod.RuleSetManager.RoundType ~= 1 then return end
         character.EnableDespawn = false
-    end)
-
-    -- Make invisibility go away on taking damage
-    Hook.Add("character.applyDamage", "Megamod.CharacterDamage", function(characterHealth, attackResult, hitLimb, allowStacking)
-        local char = characterHealth.Character
-        char.InvisibleTimer = 0
-        Megamod.SetAffliction(char, "mm_invis", 0)
     end)
 
     Hook.Add("roundEnd", "Megamod.RoundEndBeast", function()

@@ -101,9 +101,10 @@
     end,]]
 
 Megamod_Client.KeyBinds = {}
+Megamod_Client.KeyBinds.Binds = {}
 
 local funcTable = {
-    -- Change force swim mode
+    -- Toggle flying (swimming anywhere)
     [1] = function()
         if not Megamod.CertifiedBeasters[Megamod_Client.GetSelfClient().SteamID]
         or not Character.Controlled
@@ -159,10 +160,62 @@ local funcTable = {
         msg.WriteSingle(dirTowardsCursor)
         Networking.Send(msg)
     end,
+    -- Toggle invisibility
+    [4] = function()
+        if not Megamod.CertifiedBeasters[Megamod_Client.GetSelfClient().SteamID]
+        or not Character.Controlled
+        or Character.Controlled.IsDead == true
+        or not tostring(Character.Controlled.SpeciesName) == "Truebeast" then return end
+
+        local msg = Networking.Start("mm_beastinvis")
+        Networking.Send(msg)
+    end,
 }
 
+---@param key string The key (as defined in Keys.cs) to use, use nil to delete keybind
+---@param modifierKeys table All keys that need to be held down at the same time as the main key
+---@param funcID integer
+---@param hitType integer
+function Megamod_Client.KeyBinds.SetKeyBind(key, modifierKeys, funcID, hitType)
+    if not funcTable[funcID] then
+        error("No keybind function for ID " .. tostring(funcID))
+        return
+    end
+    local foundKeyBind = false
+    -- Find and replace the keybind if it already exists
+    for keyBind in Megamod_Client.KeyBinds.Binds do
+        if keyBind.Func == funcID then
+            if not key then
+                keyBind = nil
+            else
+                keyBind = {
+                    Key = key,
+                    ModifierKeys = modifierKeys,
+                    Func = funcTable[funcID],
+                    HitType = hitType
+                }
+            end
+            foundKeyBind = true
+            break
+        end
+    end
+    -- Keybind wasn't already set, add a new keybind
+    if not foundKeyBind then
+        table.insert(Megamod_Client.KeyBinds.Binds, {
+            Key = key,
+            ModifierKeys = modifierKeys,
+            Func = funcTable[funcID],
+            HitType = hitType
+        })
+    end
+end
+
+-- #TODO#: Make this change based on the player's W key
+-- Add a keybind to send The Beast up while flying, always set to the "up" key
+Megamod_Client.KeyBinds.SetKeyBind("W", {}, 2, 3)
+
 -- We need to request our keybinds as they're stored server side
---[[Timer.Wait(function()
+Timer.Wait(function()
     local msg = Networking.Start("mm_getkeybinds")
     Networking.Send(msg)
 end, 100)
@@ -178,40 +231,14 @@ Networking.Receive("mm_getkeybinds", function(message)
             local modifierKeyName = message.ReadString()
             table.insert(modifierKeys, modifierKeyName)
         end
-        table.insert(Megamod_Client.KeyBinds, {
-            Key = keyName,
-            ModifierKeys = modifierKeys,
-            Func = funcTable[keyFuncID],
-            HitType = hitType
-        })
+        Megamod_Client.KeyBinds.SetKeyBind(keyName, modifierKeys, keyFuncID, hitType)
     end
-    funcTable = nil -- Save a little memory
-end)]]
+end)
 
 -- HitType
 -- (1) Hit: One time when you press down the key
 -- (2) Up: Constantly, while the key is not being pressed
 -- (3) Down: Constantly, while the key is being pressed
-
-
-table.insert(Megamod_Client.KeyBinds, {
-    Key = "F",
-    ModifierKeys = {},
-    Func = funcTable[1],
-    HitType = 1
-})
-table.insert(Megamod_Client.KeyBinds, {
-    Key = "W",
-    ModifierKeys = {},
-    Func = funcTable[2],
-    HitType = 3
-})
-table.insert(Megamod_Client.KeyBinds, {
-    Key = "LeftAlt",
-    ModifierKeys = {},
-    Func = funcTable[3],
-    HitType = 3
-})
 
 local function process(keyBind)
     if #keyBind.ModifierKeys > 0 then
@@ -233,7 +260,7 @@ end
 Hook.Add("think", "Megamod_Client.KeyBinds.Think", function()
     -- Don't process keybinds if we're typing
     if GUI.KeyboardDispatcher.Subscriber ~= nil then return end
-    for keyBind in Megamod_Client.KeyBinds do
+    for keyBind in Megamod_Client.KeyBinds.Binds do
         if keyBind.HitType == 1 and PlayerInput.KeyHit(Keys[keyBind.Key]) then
             process(keyBind)
         elseif keyBind.HitType == 2 and PlayerInput.KeyUp(Keys[keyBind.Key]) then

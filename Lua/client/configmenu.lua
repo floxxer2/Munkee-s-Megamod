@@ -21,6 +21,29 @@ Megamod_Client.Prefs = {
             defaultValue = false,
         },
     },
+    -- This holds all the keybinds that can change, there are some static ones
+    --[[KeyBinds = {
+        Beast = {
+            {
+                name = "Toggle flight",
+                func = 1,
+                hitType = 1,
+                defaultKey = "F",
+            },
+            {
+                name = "Rotate while flying",
+                func = 3,
+                hitType = 3,
+                defaultKey = "LeftAlt",
+            },
+            {
+                name = "Toggle invisibility",
+                func = 4,
+                hitType = 1,
+                defaultKey = "X",
+            }
+        },
+    },]]
 }
 
 local GUIComponent = LuaUserData.CreateStatic("Barotrauma.GUIComponent")
@@ -39,9 +62,9 @@ local function makeTickBox(parent, text, onSelected, state)
 	return tickBox
 end
 
---[[local function makeDropDown(frame)
-
-end]]
+local function makeKeyBindInput(parent, text, func, hitType, onSelected)
+    
+end
 
 local amCB
 Timer.Wait(function()
@@ -217,6 +240,12 @@ function Megamod_Client.PreferenceMenu(frame)
                 makeTickBox(row, prefName, function(state)
                     Megamod_Client.Prefs[groupName][prefName]["value"] = state
                 end, prefTbl.value)
+            -- Value is a string
+            elseif prefTbl.guiType == "keybindinput" then
+                makeKeyBindInput(row, prefName, prefTbl.func, prefTbl.hitType, function(keyName, modifierKeys)
+                    Megamod_Client.Prefs[groupName][prefName]["value"] = keyName
+                    Megamod_Client.KeyBinds.SetKeyBind(keyName, modifierKeys, prefTbl.funcID, prefTbl.hitType)
+                end)
             end
         end
     end

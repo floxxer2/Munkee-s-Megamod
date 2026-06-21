@@ -26,14 +26,6 @@ chm.ReagentContainerStats = {
             },
         },
     },
-    mm_chemicaldispenser = {
-        SubContainers = {
-            [1] = {
-                Capacity = 100,
-                Site = "item",
-            },
-        },
-    },
 }
 
 -- Only humans for now

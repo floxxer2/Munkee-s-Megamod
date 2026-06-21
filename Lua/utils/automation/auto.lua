@@ -7639,18 +7639,18 @@ Auto.ModTable = {
   [3277215877] = { name = "Pickup Notifier", version = "0.3.9" },
 
   -- Combat
-  [2764968387] = { name = "Enhanced Armaments", version = "1.34" },
+  [2764968387] = { name = "Enhanced Armaments", version = "1.36" },
   [2976013863] = { name = "Enhanced Armaments Fuel for the Fire Expansion", version = "1.6.5" },
   [3293221471] = { name = "Pile Bunker v2.0", version = "v2.23" },
   [3486903116] = { name = "Stun Gun Revamp", version = "1.0.1" },
   [3005836987] = { name = "Improved  Stun", version = "5.6" },
 
   -- Monsters
-  [2518816103] = { name = "Barotraumatic", version = "1.0.251" },
+  [2518816103] = { name = "Barotraumatic", version = "1.0.254" },
   [3368559590] = { name = "Chimera Remake", version = "1.7" },
 
   -- "Immersive..." / "Enhanced..." | Overhauls or additions of one mechanic
-  [2968896556] = { name = "Enhanced Immersion", version = "1.0.26" },
+  [2968896556] = { name = "Enhanced Immersion", version = "1.0.27" },
   [3045796581] = { name = "Enhanced Reactors", version = "1.0.35" },
   [3321850228] = { name = "Immersive Handcuffs", version = "1.0.12" },
   [3089776991] = { name = "Immersive Ammunition Boxes", version = "1.0.4" },
@@ -7723,6 +7723,7 @@ Auto.MMFiles = [[
 <Item file="%ModDir%/Megamod/Items/Other.xml" />
 <Item file="%ModDir%/Megamod/Items/CapsuleOverrides.xml" />
 <Item file="%ModDir%/Megamod/Items/Chemistry.xml" />
+<Item file="%ModDir%/Megamod/Items/Medical.xml" />
 <Character file="%ModDir%/Megamod/Characters/Truebeast/Truebeast.xml" />
 <Character file="%ModDir%/Megamod/Characters/Human/Human.xml" />
 <Afflictions file="%ModDir%/Megamod/Afflictions/Afflictions.xml" />

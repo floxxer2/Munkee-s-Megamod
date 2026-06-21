@@ -64,11 +64,53 @@
     </Effect>
     <Icon texture="Content/UI/TalentsIcons4.png" sheetindex="6,0" sheetelementsize="128,128" color="10,193,114,255" origin="0,0" />
   </Affliction>
-  <!-- Makes you invisible -->
-  <Affliction identifier="mm_invis" type="gaze" isbuff="true" showiconthreshold="2000" showicontoothersthreshold="2000" showinhealthscannerthreshold="2000" limbspecific="false" maxstrength="1000" treatmentthreshold="2000" iconcolors="33,75,78;126,211,224;126,211,224;227,247,249">
-    <Effect minstrength="0" maxstrength="1000" strengthchange="-1">
-      <StatusEffect type="OnActive" target="Character" InvisibleTimer="10" setvalue="true" />
+  <!-- Special Afflictions (afflictions added by Lua when you take too much damage in a short timeframe) -->
+  <!-- Surgery: Fixes all special afflictions -->
+  <Affliction identifier="mm_surgery" showiconthreshold="1" showicontoothersthreshold="1" showinhealthscannerthreshold="1" limbspecific="true" maxstrength="5" treatmentthreshold="1000" iconcolors="20,75,20,255;60,150,60,255">
+    <Effect minstrength="0" maxstrength="5" strengthchange="-1">
+      <StatusEffect target="Limb">
+        <ReduceAffliction type="mm_specialdamage" amount="50" />
+      </StatusEffect>
     </Effect>
-    <Icon texture="Content/UI/TalentsIcons4.png" sheetindex="6,0" sheetelementsize="128,128" color="10,193,114,255" origin="0,0" />
+    <Description textidentifier="afflictiondescription.mm_surgery.self" target="Self" minstrength="0" maxstrength="5" />
+    <Description textidentifier="afflictiondescription.mm_surgery" target="OtherCharacter" minstrength="0" maxstrength="5" />
+    <Icon texture="%ModDir%/Megamod/Sprites/medicalatlas.png" color="10,193,114,255" origin="0.5,0.5" sourcerect="0,0,128,128" />
+  </Affliction>
+  <!-- Arm Fracture: Reduces all skills -->
+  <Affliction identifier="mm_armfracture" type="mm_specialdamage" showiconthreshold="3" showicontoothersthreshold="7" showinhealthscannerthreshold="1" limbspecific="true" maxstrength="30" treatmentthreshold="5">
+    <Effect minstrength="0" maxstrength="10" strengthchange="1" minskillmultiplier="1.0" maxskillmultiplier="0.6" />
+    <Effect minstrength="10" maxstrength="30" strengthchange="1" minskillmultiplier="0.6" maxskillmultiplier="0.4" />
+    <Description textidentifier="afflictiondescription.mm_armfracture.low.self" target="Self" minstrength="0" maxstrength="10" />
+    <Description textidentifier="afflictiondescription.mm_armfracture.high.self" target="Self" minstrength="10" maxstrength="30" />
+    <Description textidentifier="afflictiondescription.mm_armfracture.low" target="OtherCharacter" minstrength="0" maxstrength="10" />
+    <Description textidentifier="afflictiondescription.mm_armfracture.high" target="OtherCharacter" minstrength="10" maxstrength="30" />
+    <Icon texture="%ModDir%/Megamod/Sprites/medicalatlas.png" color="10,193,114,255" origin="0.5,0.5" sourcerect="256,0,128,128" />
+  </Affliction>
+  <!-- Leg Fracture: Reduces speed -->
+  <Affliction identifier="mm_legfracture" type="mm_specialdamage" showiconthreshold="3" showicontoothersthreshold="7" showinhealthscannerthreshold="1" limbspecific="true" maxstrength="30" treatmentthreshold="5">
+    <Effect minstrength="0" maxstrength="10" strengthchange="1" minspeedmultiplier="1.0" maxspeedmultiplier="0.6" />
+    <Effect minstrength="10" maxstrength="30" strengthchange="1" minspeedmultiplier="0.6" maxspeedmultiplier="0.4" />
+    <Description textidentifier="afflictiondescription.mm_legfracture.low.self" target="Self" minstrength="0" maxstrength="10" />
+    <Description textidentifier="afflictiondescription.mm_legfracture.high.self" target="Self" minstrength="10" maxstrength="30" />
+    <Description textidentifier="afflictiondescription.mm_legfracture.low" target="OtherCharacter" minstrength="0" maxstrength="10" />
+    <Description textidentifier="afflictiondescription.mm_legfracture.high" target="OtherCharacter" minstrength="10" maxstrength="30" />
+    <Icon texture="%ModDir%/Megamod/Sprites/medicalatlas.png" color="10,193,114,255" origin="0.5,0.5" sourcerect="128,0,128,128" />
+  </Affliction>
+  <!-- Cardiac Tamponade: Causes nausea and eventually starts directly reducing vitality,
+  at max causing you to go down to 3% health (with no other afflictions), though not unconscious -->
+  <!-- Also causes screen effects and sounds -->
+  <Affliction identifier="mm_cardiactamponade" type="mm_specialdamage" showiconthreshold="40" showicontoothersthreshold="50" showinhealthscannerthreshold="3" limbspecific="true" maxstrength="120" treatmentthreshold="0">
+    <Effect minstrength="0" maxstrength="60" strengthchange="1" />
+    <Effect minstrength="60" maxstrength="120" strengthchange="1"
+    minvitalitydecrease="0" maxvitalitydecrease="97"
+    MinAfflictionOverlayAlphaMultiplier="0.0" MaxAfflictionOverlayAlphaMultiplier="1"
+    minscreendistort="0" maxscreendistort="0.25"
+    minscreenblur="0.0" maxscreenblur="0.35"
+    minradialdistort="0.0" maxradialdistort="0.1" />
+    <Description textidentifier="afflictiondescription.mm_cardiactamponade.low.self" target="Self" minstrength="0" maxstrength="60" />
+    <Description textidentifier="afflictiondescription.mm_cardiactamponade.high.self" target="Self" minstrength="60" maxstrength="120" />
+    <Description textidentifier="afflictiondescription.mm_cardiactamponade.low" target="OtherCharacter" minstrength="0" maxstrength="60" />
+    <Description textidentifier="afflictiondescription.mm_cardiactamponade.high" target="OtherCharacter" minstrength="60" maxstrength="120" />
+    <Icon texture="%ModDir%/Megamod/Sprites/medicalatlas.png" color="10,193,114,255" origin="0.5,0.5" sourcerect="384,0,128,128" />
   </Affliction>
 </Afflictions>

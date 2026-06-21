@@ -30,6 +30,11 @@
   <entityname.mm_dime>Dimensional Essence</entityname.mm_dime>
   <entitydescription.mm_dime>Red gas, trapped in a blue field. Somehow, it's perfectly round.</entitydescription.mm_dime>
 
+  <!-- Medical stuff -->
+  
+  <entityname.mm_surgicalkit>Surgical Kit</entityname.mm_surgicalkit>
+  <entitydescription.mm_surgicalkit>A kit full of sterilized instruments and drugs that skilled medics can use to fix severe damage.</entitydescription.mm_surgicalkit>
+
   <!-- Cloning -->
 
   <entityname.mm_cloningmachine>Cloning Machine</entityname.mm_cloningmachine>
@@ -82,8 +87,29 @@
 
   <afflictionname.mm_monsterantiparalysis>Paralysis Resistance</afflictionname.mm_monsterantiparalysis>
   <afflictiondescription.mm_monsterantiparalysis>The patient is immune to paralysis.</afflictiondescription.mm_monsterantiparalysis>
-  <afflictioncauseofdeath.mm_monsterantiparalysis>What</afflictioncauseofdeath.mm_monsterantiparalysis>
+
   <afflictionname.mm_hypomaxim>Hypomaxim</afflictionname.mm_hypomaxim>
   <afflictiondescription.mm_hypomaxim>Death refusal. Canceled out by extreme neurotrauma.</afflictiondescription.mm_hypomaxim>
-  <afflictioncauseofdeath.mm_hypomaxim>What</afflictioncauseofdeath.mm_hypomaxim>
+
+  <afflictionname.mm_surgery>Surgery</afflictionname.mm_surgery>
+  <afflictiondescription.mm_surgery.self>You are being operated on, fixing any severe damage.</afflictiondescription.mm_surgery.self>
+  <afflictiondescription.mm_surgery>This person is being operated on, fixing any severe damage.</afflictiondescription.mm_surgery>
+
+  <afflictionname.mm_armfracture>Arm Fracture</afflictionname.mm_armfracture>
+  <afflictiondescription.mm_armfracture.low.self>Your arm feels funny, and moving it hurts. You should get this treated before it gets worse. All of your skills are reduced.</afflictiondescription.mm_armfracture.low.self>
+  <afflictiondescription.mm_armfracture.high.self>You can barely move your arm. All of your skills are severely reduced.</afflictiondescription.mm_armfracture.high.self>
+  <afflictiondescription.mm_armfracture.low>One of the arms has a broken bone and cannot move properly. Skills are reduced.</afflictiondescription.mm_armfracture.low>
+  <afflictiondescription.mm_armfracture.high>One of the arms has been broken for a while. Skills are severely reduced.</afflictiondescription.mm_armfracture.high>
+
+  <afflictionname.mm_legfracture>Leg Fracture</afflictionname.mm_legfracture>
+  <afflictiondescription.mm_legfracture.low.self>It hurts to put pressure on one of your legs. You should get this treated before it gets worse. Your movement speed is reduced.</afflictiondescription.mm_legfracture.low.self>
+  <afflictiondescription.mm_legfracture.high.self>You have a limp due to one of your legs being broken. Your movement speed is severely reduced.</afflictiondescription.mm_legfracture.high.self>
+  <afflictiondescription.mm_legfracture.low>One of the legs is broken and non-functional. Movement speed is reduced.</afflictiondescription.mm_legfracture.low>
+  <afflictiondescription.mm_legfracture.high>One of the legs has been broken for a while. Movement speed is severely reduced.</afflictiondescription.mm_legfracture.high>
+
+  <afflictionname.mm_cardiactamponade>Cardiac Tamponade</afflictionname.mm_cardiactamponade>
+  <afflictiondescription.mm_cardiactamponade.low.self>Your heart is beating off-rhythm. Might want to get that checked out before it gets worse...</afflictiondescription.mm_cardiactamponade.low.self>
+  <afflictiondescription.mm_cardiactamponade.high.self>Your heart is burning up! You are dying! Seek help immediately!</afflictiondescription.mm_cardiactamponade.high.self>
+  <afflictiondescription.mm_cardiactamponade.low>The patient's heartbeart is strange and off-rhythm.</afflictiondescription.mm_cardiactamponade.low>
+  <afflictiondescription.mm_cardiactamponade.high>The patient's heartbeart has gone haywire. It's not looking too good.</afflictiondescription.mm_cardiactamponade.high>
 </infotexts>

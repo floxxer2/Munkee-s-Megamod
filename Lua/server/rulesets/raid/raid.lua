@@ -121,7 +121,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 80, 100 },
-                surgery = { 15, 25 },
                 medical = { 45, 60 },
                 helm = { 10, 20 },
                 mechanical = { 30, 45 },
@@ -144,12 +143,16 @@ function rs.TryStartRaid()
                 scp_akliv = { 1, nil, false, { scp_akmag = 1, flashlight = 1 } },
                 -- AR mags
                 scp_akmag = { 3 },
-                -- Plastiseal
-                antibleeding2 = { 8 },
-                -- Tourniquet
-                tourniquet = { 2 },
                 -- Fulgurium Battery cells
                 fulguriumbatterycell = { 2 },
+                -- Plastiseal
+                antibleeding2 = { 8 },
+                -- Morphine
+                antidama1 = { 4 },
+                -- Saline
+                antibloodloss1 = { 2 },
+                -- Surgical Kit
+                mm_surgicalkit = { 1 },
             },
         },
         -- Infiltrator
@@ -158,7 +161,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 80, 100 },
-                surgery = { 15, 25 },
                 medical = { 45, 60 },
                 helm = { 10, 20 },
                 mechanical = { 30, 45 },
@@ -181,14 +183,18 @@ function rs.TryStartRaid()
                 scp_sr3 = { 1, nil, false, { scp_ak74mag = 1 } },
                 -- Renegade Assault Rifle mags
                 scp_ak74mag = { 3 },
-                -- Plastiseal
-                antibleeding2 = { 8 },
-                -- Tourniquet
-                tourniquet = { 2 },
                 -- Fulgurium Battery cells
                 fulguriumbatterycell = { 2 },
                 -- Flashlight
                 flashlight = { 1 },
+                -- Plastiseal
+                antibleeding2 = { 8 },
+                -- Morphine
+                antidama1 = { 4 },
+                -- Saline
+                antibloodloss1 = { 2 },
+                -- Surgical Kit
+                mm_surgicalkit = { 1 },
             },
         },
     }
@@ -200,7 +206,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 70, 85 },
-                surgery = { 0, 5 },
                 medical = { 10, 25 },
                 helm = { 0, 10 },
                 mechanical = { 15, 30 },
@@ -235,7 +240,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 50, 65 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 5, 15 },
@@ -268,7 +272,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 70, 75 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 5, 15 },
@@ -301,7 +304,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 50, 65 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 5, 15 },
@@ -321,15 +323,17 @@ function rs.TryStartRaid()
                 -- Crowbar
                 crowbar = { 1 },
                 -- Renegade Pistol, with a mag and flashlight
-                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1, flashlight = 1 } },
+                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 5 },
                 -- Frag rockets
                 scp_rpg7he = { 2 },
-                -- Bandage
+                -- Bandages
                 antibleeding1 = { 8 },
                 -- Battery cells
                 batterycell = { 2 },
+                -- Flashlight
+                flashlight = { 1 },
             },
         },
         -- Medic
@@ -338,7 +342,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 10, 25 },
-                surgery = { 25, 35 },
                 medical = { 60, 75 },
                 helm = { 0, 4 },
                 mechanical = { 0, 8 },
@@ -347,33 +350,20 @@ function rs.TryStartRaid()
             loadout = {
                 -- Headset
                 headset = { 1, 1 },
-                -- Renegade Ballistic Helmet
-                scp_renegadehelmet = { 1, 2, true },
+                -- Health scanner HUD
+                healthscanner = { 1, 2, true },
                 -- Renegade Combat Medic Uniform (style 1)
                 scp_renegadecombatmedicuniform = { 1, 3, true },
                 -- Renegade Soft Armor Vest
                 scp_renegadevest = { 1, 4, true },
+                -- Assault Backpack with medical supplies
+                scp_assaultpack = { 1, 7, false, { antibleeding1 = 6, antidama1 = 6, antibloodloss1 = 3, mm_surgicalkit = 2 } },
                 -- Crowbar
                 crowbar = { 1 },
                 -- Renegade Pistol, with a mag and flashlight
                 scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 10 },
-                -- Wrench (for dislocations)
-                wrench = { 1 },
-                -- Medical Container, with medical supplies
-                medtoolbox = { 1, nil, false, {
-                    antibleeding1 = 6,
-                    antibleeding2 = 4,
-                    antidama1 = 4,
-                    deusizine = 3,
-                    ointment = 1,
-                    tourniquet = 2,
-                    gypsum = 2,
-                    needle = 1,
-                    suture = 16
-                    }
-                },
                 -- Battery cell
                 batterycell = { 1 },
                 -- Flashlight
@@ -391,7 +381,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 30, 45 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 10, 25 },
@@ -424,7 +413,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 30, 45 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 10, 25 },
@@ -457,7 +445,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 30, 45 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 10, 25 },
@@ -490,7 +477,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 30, 45 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 10, 25 },
@@ -523,7 +509,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 45, 55 },
-                surgery = { 0, 5 },
                 medical = { 5, 15 },
                 helm = { 0, 10 },
                 mechanical = { 7, 15 },
@@ -540,7 +525,7 @@ function rs.TryStartRaid()
                 scp_renegadevest = { 1, 4, true },
                 -- Crowbar
                 crowbar = { 1 },
-                -- Renegade Pistol, with a mag and flashlight
+                -- Renegade Pistol, with a mag
                 scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 3 },
@@ -564,7 +549,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 10, 20 },
-                surgery = { 0, 5 },
                 medical = { 0, 3 },
                 helm = { 0, 0 },
                 mechanical = { 0, 4 },
@@ -599,7 +583,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 10, 20 },
-                surgery = { 0, 5 },
                 medical = { 0, 3 },
                 helm = { 0, 3 },
                 mechanical = { 30, 50 },
@@ -614,8 +597,8 @@ function rs.TryStartRaid()
                 scp_assaultpack = { 1, 7, false, { blackwire = 8, motiondetector = 3, detonator = 3 } },
                 -- Crowbar
                 crowbar = { 1 },
-                -- Renegade Pistol, with a mag and flashlight
-                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1, flashlight = 1 } },
+                -- Renegade Pistol, with a mag
+                scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 5 },
                 -- Screwdriver
@@ -626,6 +609,8 @@ function rs.TryStartRaid()
                 uex = { 3 },
                 -- Battery cells
                 batterycell = { 2 },
+                -- Flashlight
+                flashlight = { 1 },
             },
         },
         -- Medic
@@ -634,7 +619,6 @@ function rs.TryStartRaid()
             talentLevel = 0,
             skills = {
                 weapons = { 10, 25 },
-                surgery = { 25, 35 },
                 medical = { 60, 75 },
                 helm = { 0, 4 },
                 mechanical = { 0, 8 },
@@ -643,29 +627,18 @@ function rs.TryStartRaid()
             loadout = {
                 -- Headset
                 headset = { 1, 1 },
+                -- Health scanner HUD
+                healthscanner = { 1, 2, true },
                 -- Renegade Combat Medic Uniform (style 1)
                 scp_renegadecombatmedicuniform = { 1, 3, true },
+                -- Assault Backpack with medical supplies
+                scp_assaultpack = { 1, 7, false, { antibleeding1 = 6, antidama1 = 6, antibloodloss1 = 3, mm_surgicalkit = 2 } },
                 -- Crowbar
                 crowbar = { 1 },
                 -- Renegade Pistol, with a mag and flashlight
                 scp_mp443 = { 1, nil, false, { scp_9mmmag = 1 } },
                 -- Pistol mags
                 scp_9mmmag = { 5 },
-                -- Wrench (for dislocations)
-                wrench = { 1 },
-                -- Medical Container, with medical supplies
-                medtoolbox = { 1, nil, false, {
-                    antibleeding1 = 6,
-                    antibleeding2 = 4,
-                    antidama1 = 4,
-                    deusizine = 3,
-                    ointment = 1,
-                    tourniquet = 2,
-                    gypsum = 2,
-                    needle = 1,
-                    suture = 16
-                    }
-                },
                 -- Battery cell
                 batterycell = { 1 },
                 -- Flashlight

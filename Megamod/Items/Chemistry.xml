@@ -30,7 +30,7 @@
         <Affliction identifier="stun" amount="0.1" />
       </StatusEffect>
     </MeleeWeapon>
-    #TODO#
+     #TODO#
     <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
   </Item>
   <Item name="Chemical Dispenser" identifier="mm_chemicaldispenser" tags="donttakeitems,dontsellitems" category="Machine" description="" scale="0.5"  damagedbyexplosions="true"  explosiondamagemultiplier="0.2">

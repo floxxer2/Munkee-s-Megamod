@@ -17,6 +17,19 @@ rs.AntagName = "Beast"
 rs.FailReason = ""
 
 
+-- The Beast character
+rs.TheBeast = nil
+Hook.Add("character.created", "Megamod.RuleSets.Beast.CharacterCreated", function(character)
+    if not rs.TheBeast and tostring(character.SpeciesName) == "Truebeast" then
+        rs.TheBeast = character
+        character.AIController.Enabled = false
+    end
+end)
+Hook.Add("character.death", "Megamod.RuleSets.Beast.CharacterDeath", function(character)
+    if rs.TheBeast and tostring(character.SpeciesName) == "Truebeast" then
+        rs.TheBeast = nil
+    end
+end)
 
 Networking.Receive("mm_beastwater", function(message, client)
     if not Megamod.CertifiedBeasters[client.SteamID]
@@ -37,10 +50,12 @@ Networking.Receive("mm_beastwater", function(message, client)
     end
 end)
 local function beastWaterLoop()
-    local msg = Networking.Start("mm_beastwater")
-    msg.WriteBoolean(Megamod.CS_Shared.ForceInWater)
-    for client in Client.ClientList do
-        Networking.Send(msg, client.Connection)
+    if Game.RoundStarted then
+        local msg = Networking.Start("mm_beastwater")
+        msg.WriteBoolean(Megamod.CS_Shared.ForceInWater)
+        for client in Client.ClientList do
+            Networking.Send(msg, client.Connection)
+        end
     end
     Timer.Wait(function()
         beastWaterLoop()
@@ -75,18 +90,51 @@ Networking.Receive("mm_beastrotate", function(message, client)
     or client.Character.IsDead == true
     or tostring(client.Character.SpeciesName) ~= "Truebeast"
     or not Megamod.CS_Shared.ForceInWater then
-        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent an invalid mm_beastmove net message.")
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent an invalid mm_beastrotate net message.")
         return
     end
 
     client.Character.AnimController.Collider.SmoothRotate(dir, 10, true)
 end)
 
+local beastInvis = false
+Networking.Receive("mm_beastinvis", function(message, client)
+    if not Megamod.CertifiedBeasters[client.SteamID]
+    or not client.Character
+    or client.Character.IsDead == true
+    or tostring(client.Character.SpeciesName) ~= "Truebeast" then
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' sent an invalid mm_beastinvis net message.")
+        return
+    end
+
+    beastInvis = not beastInvis
+
+    local msg = Networking.Start("mm_beastinvis")
+    msg.WriteBoolean(beastInvis)
+    for client in Client.ClientList do
+        Networking.Send(msg, client.Connection)
+    end
+end)
+local function beastInvisLoop()
+    if Game.RoundStarted then
+        local msg = Networking.Start("mm_beastinvis")
+        msg.WriteBoolean(beastInvis)
+        for client in Client.ClientList do
+            Networking.Send(msg, client.Connection)
+        end
+    end
+    Timer.Wait(function()
+        beastInvisLoop()
+    end, 5000)
+end
+beastInvisLoop()
+
 
 
 function rs.Reset()
     rs.SelectedPlayers = {}
     rs.Strength = 0
+    rs.TheBeast = nil
 end
 
 function rs.RoleHelp(client)

@@ -12,21 +12,6 @@ end
 -- Distance that, if we are closer than, we will update this 
 local NEAR_DIST = 300
 
-local function concatReagents(container, stats)
-    local str = ""
-    local total = 0
-    local containerTbl = chm.GetContainerTable(container)
-    for _, reagentTbl in pairs(containerTbl.SubContainers[1].Reagents) do
-        total = total + reagentTbl.Amount
-        str = str .. reagentTbl.Name .. " - " .. tostring(reagentTbl.Amount) .. "\n"
-    end
-    str = str:sub(1, -2)
-    if str == "" then
-        str = "(No reagents)"
-    end
-    return total, str
-end
-
 local dispenserPatches = {}
 local TIMER_BASE = 120
 local timer = TIMER_BASE
@@ -50,7 +35,7 @@ Hook.Add("think", "Megamod_Client.Chemistry.ChemDispenserUpdate", function()
     for tbl in dispenserPatches do
         -- Update every 2 seconds, or every tick if we are very close to the dispenser
         if isUpdateTick or tbl.dist < NEAR_DIST then
-            
+            -- #TODO#: Write chem dispenser UI code
         end
     end
 end)
@@ -61,7 +46,8 @@ local function patchDispenser(instance)
         local dispenser = instance.Item
 
         local frame = instance.GuiFrame
-        
+
+        -- #TODO#: Write chem dispenser UI code
     end, 1)
 end
 Hook.Patch("Barotrauma.Items.Components.CustomInterface", "CreateGUI", function(instance, ptable)

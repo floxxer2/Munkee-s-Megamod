@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item identifier="mm_surgicalkit" category="Medical" maxstacksize="4" maxstacksizecharacterinventory="1" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <PreferredContainer secondary="wrecksupplycab,beaconsupplycab" amount="1" spawnprobability="0.3" />
+    <PreferredContainer secondary="wreckmedcab,abandonedmedcab,piratemedcab" minamount="1" maxamount="2" spawnprobability="0.8" />
+    <PreferredContainer secondary="outpostmedcab" minamount="1" maxamount="3" spawnprobability="0.2" />
+    <PreferredContainer secondary="outpostmedcompartment" amount="1" spawnprobability="0.2" />
+    <PreferredContainer primary="medcab" secondary="medcontainer" />
+    <Price baseprice="350" minavailable="2">
+      <Price storeidentifier="merchantoutpost" />
+      <Price storeidentifier="merchantcity" />
+      <Price storeidentifier="merchantresearch" />
+      <Price storeidentifier="merchantmilitary" />
+      <Price storeidentifier="merchantmine" />
+      <Price storeidentifier="merchantmedical" multiplier="0.8" />
+    </Price>
+    <SuitableTreatment type="mm_specialaffliction" suitability="100" />
+    <Fabricate suitablefabricators="medicalfabricator" requiredtime="60">
+      <RequiredSkill identifier="medical" level="45" />
+      <RequiredItem identifier="morphine" amount="2" />
+      <RequiredItem identifier="plastic" mincondition="0.5" />
+    </Fabricate>
+    <Deconstruct time="20">
+      <Item identifier="opium" amount="2" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Megamod/Sprites/InventoryItemIconAtlas.png" sourcerect="459,9,43,61" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="0,0,37,69" depth="0.6" origin="0.5,0.5" />
+    <Body width="35" height="65" density="15" waterdragcoefficient="1" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" characterusable="false" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <RequiredSkill identifier="medical" level="65" />
+      <StatusEffect type="OnSuccess" target="This" Condition="-25.0" />
+      <StatusEffect type="OnFailure" target="This" Condition="-25.0" />
+      <StatusEffect statuseffecttags="medical" type="OnSuccess" target="Limb">
+        <Affliction identifier="mm_surgery" amount="5" />
+      </StatusEffect>
+      <StatusEffect statuseffecttags="medical" type="OnFailure" target="Limb">
+        <Affliction identifier="mm_surgery" amount="1" />
+      </StatusEffect>
+      <StatusEffect type="OnSuccess" target="UseTarget">
+        <Conditional entitytype="eq Character" />
+        <Sound file="%ModDir%/Megamod/Sounds/zipper.ogg" range="500" volume="0.9" />
+      </StatusEffect>
+      <StatusEffect type="OnFailure" target="UseTarget">
+        <Conditional entitytype="eq Character" />
+        <Sound file="%ModDir%/Megamod/Sounds/zipper.ogg" range="500" volume="0.9" />
+      </StatusEffect>
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="medical" level="65" />
+  </Item>
+</Items>
