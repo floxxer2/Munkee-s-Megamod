@@ -503,6 +503,82 @@ Auto.XMLChanges = {
     </Affliction>]])
   },
   -- Stuff to remove
+  ["anklemonitor"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["anklemonitorremote"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["anklemonitorequipped"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel1"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel2"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel3"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel4"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel5"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel6"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel7"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel8"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel9"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel10"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel11"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel12"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel13"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel14"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel15"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
+  ["wifichannel16"] = {
+    mod = "Immersive Handcuffs",
+    xml = ""
+  },
   ["securitywhistle"] = {
     mod = "Immersive Handcuffs",
     xml = ""
