@@ -238,12 +238,6 @@ do
         {
             id = "mm_armfracture",
             chance = 1,
-            -- The instance of damage that goes over the special
-            -- affliction DPS must include at least one affliction
-            -- in this table
-            requiredAfflictions = {
-
-            },
             limbs = {
                 "la",
                 "ra",
@@ -252,9 +246,6 @@ do
         {
             id = "mm_legfracture",
             chance = 1,
-            requiredAfflictions = {
-
-            },
             limbs = {
                 "ll",
                 "rl",
@@ -263,17 +254,16 @@ do
         {
             id = "mm_cardiactamponade",
             chance = 1,
-            requiredAfflictions = {
-
-            },
             limbs = {
                 "t",
             },
         },
     }
 
-    --local lastTime = Timer.GetTime()
+    -- #DEBUG#
+    local lastTime = Timer.GetTime()
 
+    -- 65% damage resistance
     local unconsciousDamageReduction = 0.65
     unconsciousDamageReduction = 1 - unconsciousDamageReduction
     -- Increase or reduce damage based on vitality,
@@ -285,7 +275,8 @@ do
         for affliction in afflictions do
             -- Ignore non-damaging afflictions i.e. steroids
             local vitalityDecrease = affliction.GetVitalityDecrease(character.CharacterHealth)
-            if vitalityDecrease > 0 then
+            -- Ignore small bursts of damage that can get super laggy
+            if vitalityDecrease > 5 then
                 if affliction.MultiplyByMaxVitality then
                     vitalityDecrease = vitalityDecrease * (character.MaxVitality / 100)
                 end
@@ -321,118 +312,148 @@ do
         -- calculate the rest of this only server-side
         if CLIENT then return end
 
-        local now = Timer.GetTime()
-        if recentDamage[character] then
-            -- Timeout damage that has been there for too long
-            for i, tbl in pairs(recentDamage[character]) do
-                if now - tbl.time > RECENT_DAMAGE_TIMEOUT then
-                    table.remove(recentDamage[character], i)
-                end
-            end
-            -- Add the current instance of damage
-            table.insert(recentDamage[character], {
-                time = now,
-                vd = totalVitalityDecrease
-            })
-            local tvd = 0 -- Total Vitality Decrease
-            for tbl in recentDamage[character] do
-                tvd = tvd + tbl.vd
-            end
-            --[[do
-                local debug = tostring(character.DisplayName) ~= "munkee"
-                for entry in afflictions2 do
-                    local id = tostring(entry.affliction.Prefab.Identifier)
-                    if id == "oxygenlow" or id == "bloodloss" then
-                        debug = false
-                    end
-                end
-                if debug and lastTime and now - lastTime > 0.3 then
-                    print(tvd)
-                    lastTime = now
-                end
-            end]]
-            -- Add special afflictions if the victim has taken too much damage in a short timeframe
-            if tvd >= SPECIAL_AFFLICTION_THRESHOLD then
-                --print("Trying to give a special affliction to " .. tostring(character.DisplayName))
-
-                local potentialAfflictions = {}
-                for specialAffliction in specialAfflictions do
-                    local validAfflictions = false
-                    if #specialAffliction.requiredAfflictions > 0 then
-                        for requiredAffliction in specialAffliction.requiredAfflictions do
-                            for entry in afflictions2 do
-                                if tostring(entry.affliction.Prefab.Identifier) == requiredAffliction then
-                                    validAfflictions = true
-                                    break
-                                end
-                                if validAfflictions then
-                                    break
-                                end
-                            end
-                        end
-                    else
-                        -- There are no required afflictions, so all afflictions are valid
-                        validAfflictions = true
-                    end
-                    if validAfflictions then
-                        local validLimb = false
-                        if #specialAffliction.limbs > 0 then
-                            for limb in specialAffliction.limbs do
-                                for limbType in limbMap[limb] do
-                                    if tonumber(limbType) == tonumber(hitLimb.type) then
-                                        validLimb = true
-                                        break
-                                    end
-                                end
-                            end
-                        else
-                            -- There are no required limbs, so all limbs are valid
-                            validLimb = true
-                        end
-                        if validLimb then
-                            -- Don't add the same affliction on the same limb
-                            if Megamod.GetAfflictionStrengthLimb(character, hitLimb.type, specialAffliction.id, 0) == 0 then
-                                potentialAfflictions[specialAffliction] = specialAffliction.chance
-                            end
-                        end
-                    end
-                end
-                -- Check if there is at least one valid potential affliction
-                local atLeastOne = false
-                for _, _ in pairs(potentialAfflictions) do
-                    atLeastOne = true
-                    break
-                end
-                if not atLeastOne then
-                    --print("There was no valid special affliction to give to " .. tostring(character.DisplayName))
+        -- Ignore some specific afflictions that are way too laggy
+        -- This mostly covers cases where a valid aff (i.e. gunshot) is in the same instance of damage
+        -- as an invalid one (i.e. burn), such as with incendiary ammunition in EHA
+        if #afflictions2 <= 1 then
+            for entry in afflictions2 do
+                local id = tostring(entry.affliction.Prefab.Identifier)
+                if id == "burn"
+                or id == "oxygenlow"
+                or id == "bloodloss"
+                or not entry.affliction.Prefab.LimbSpecific
+                or tostring(entry.affliction.GetType()) == "poison" -- Limb-based poisons?
+                then
                     return
                 end
-                -- Success, we are adding a special affliction
-
-                recentDamage[character] = {}
-                if tvd > SPECIAL_AFFLICTION_THRESHOLD then
-                    table.insert(recentDamage[character], {
-                        time = now,
-                        vd = tvd - SPECIAL_AFFLICTION_THRESHOLD
-                    })
-                end
-
-                local afflictionToAdd = weightedRandom.Choose(potentialAfflictions)
-                Megamod.SetAfflictionLimb(character, afflictionToAdd.id, hitLimb.type, 1, attacker, 0)
             end
-        else
+        end
+
+        -- Ignore non-damaging afflictions
+        if totalVitalityDecrease <= 0.0001 then return end
+
+        local now = Timer.GetTime()
+        if not recentDamage[character] then
             recentDamage[character] = {
-                {
-                    time = now,
-                    vd = totalVitalityDecrease
-                }
+                tvd = totalVitalityDecrease,
+                damages = {
+                    {
+                        vd = totalVitalityDecrease,
+                        now = now,
+                    }
+                },
             }
+        else
+            recentDamage[character].tvd = recentDamage[character].tvd + totalVitalityDecrease
+            table.insert(recentDamage[character].damages, {
+                vd = totalVitalityDecrease,
+                now = now,
+            })
+        end
+        -- Total Vitality Decrease
+        local tvd = recentDamage[character].tvd
+
+
+        do -- #DEBUG#
+            local debug = tostring(character.DisplayName) ~= "munkee"
+            for entry in afflictions2 do
+                local id = tostring(entry.affliction.Prefab.Identifier)
+                if id == "oxygenlow" or id == "bloodloss" then
+                    debug = false
+                end
+            end
+            if debug and lastTime and now - lastTime > 0.3 then
+                print(tvd)
+                lastTime = now
+            end
+        end
+
+
+        -- Add special afflictions if the victim has taken too much damage in a short timeframe
+        if tvd >= SPECIAL_AFFLICTION_THRESHOLD then
+            -- #DEBUG#
+            print("Trying to give a special affliction to " .. tostring(character.DisplayName))
+            local potentialAfflictions = {}
+            for specialAffliction in specialAfflictions do
+                local validLimb = false
+                if #specialAffliction.limbs > 0 then
+                    for limb in specialAffliction.limbs do
+                        for limbType in limbMap[limb] do
+                            if tonumber(limbType) == tonumber(hitLimb.type) then
+                                validLimb = true
+                                break
+                            end
+                        end
+                    end
+                else
+                    -- There are no required limbs, so all limbs are valid
+                    validLimb = true
+                end
+                if validLimb then
+                    -- Don't add the same affliction on the same limb
+                    if Megamod.GetAfflictionStrengthLimb(character, hitLimb.type, specialAffliction.id, 0) == 0 then
+                        potentialAfflictions[specialAffliction] = specialAffliction.chance
+                    end
+                end
+            end
+            -- Check if there is at least one valid potential affliction
+            local atLeastOne = false
+            for _, _ in pairs(potentialAfflictions) do
+                atLeastOne = true
+                break
+            end
+            if not atLeastOne then
+                -- #DEBUG#
+                print("There was no valid special affliction to give to " .. tostring(character.DisplayName))
+                return
+            end
+            -- Success, we are adding a special affliction
+
+            recentDamage[character] = {
+                tvd = 0,
+                damages = {}
+            }
+
+            local afflictionToAdd = weightedRandom.Choose(potentialAfflictions)
+            Megamod.SetAfflictionLimb(character, afflictionToAdd.id, hitLimb.type, 1, attacker, 0)
         end
     end
 
     -- These prevent the specified patches from being duplicated when Lua is reloaded
     Hook.Remove("character.damageLimb", "Megamod.DamagePatch")
     Hook.Remove("character.applyDamage", "Megamod.DamagePatch2")
+    Hook.Remove("think", "Megamod.Damage.Think")
+
+    -- Timeout damage buildup
+    if SERVER then
+        local timer = 0
+        Hook.Add("think", "Megamod.Damage.Think", function()
+            timer = timer + 1
+            -- Once every second
+            if timer >= 1000 then
+                timer = 0
+                local now = Timer.GetTime()
+                local removeKeys = {}
+                for char, tbl in pairs(recentDamage) do
+                    if not char or char.Removed == true or char.IsDead == true then
+                        table.insert(removeKeys, char)
+                    else
+                        for i = #tbl.damages, 1, -1 do
+                            local damageInstance = tbl.damages[i]
+                            if now - damageInstance.now >= RECENT_DAMAGE_TIMEOUT then
+                                tbl.tvd = tbl.tvd - damageInstance.vd
+                                if tbl.tvd < 0 then tbl.tvd = 0 end
+                                table.remove(tbl.damages, i)
+                            end
+                        end
+                    end
+                end
+                for key in removeKeys do
+                    recentDamage[key] = nil
+                end
+            end
+        end)
+    end
 
     Hook.Add("character.damageLimb", "Megamod.DamagePatch", function(
         character,
