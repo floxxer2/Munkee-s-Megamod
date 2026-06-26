@@ -171,6 +171,10 @@ function m.OnStart()
             break
         end
     end
+    if not m.Deepvents then
+        error("Deep Vents not found. Aborting roundstart setup.")
+        return
+    end
 
     Megamod.Subs.SetSubBodyType(m.CurrentMap, "static")
 
