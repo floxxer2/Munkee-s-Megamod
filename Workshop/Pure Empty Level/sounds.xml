@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <sounds>
+    <music file="Content/Sounds/Music/Biome Noise Loop - Cold Caverns.ogg" type="coldcaverns" volume="0" />
+    <music file="Content/Sounds/Music/Biome Noise Loop - Europan Ridge.ogg" type="europanridge" volume="0" />
+    <music file="Content/Sounds/Music/Biome Noise Loop - The Aphotic Plateau.ogg" type="theaphoticplateau" volume="0" />
+    <music file="Content/Sounds/Music/Biome Noise Loop - The Great Sea.ogg" type="thegreatsea" volume="0" />
+    <music file="Content/Sounds/Music/Biome Noise Loop - Hydrothermal Wastes.ogg" type="hydrothermalwastes" volume="0" />
+    <music file="Content/Sounds/Music/Waves of Jupiter.ogg" type="endzone" volume="0.0" />
+  </sounds>
+</Override>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Pile Bunker v2.0" modversion="v2.23" corepackage="False" steamworkshopid="3293221471" gameversion="1.9.8.0" expectedhash="05C75A6CD922A97B8F6D60E44D4AC410">
+  <Item file="%ModDir%/Workshop/Pile Bunker v2.0/weapons.xml" />
+  <Other file="%ModDir%/Workshop/Pile Bunker v2.0/pilebunker.png" />
+  <Text file="%ModDir%/Workshop/Pile Bunker v2.0/EN_text.xml" />
+</contentpackage>

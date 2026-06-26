@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!-- EXAMPLE SUIT | COPY THIS AND CHANGE VALUES TO YOUR LIKING
+    NOTE: If you want to change more specific effect stuff or add more effects, you'll need to copy the entire component that contains the effects you're looking for or wherever you want to put them in.
+    For example: If I wanted to adjust the walking speed value when wearing the suit, I'll have to copy the entire <GreaterComponent> and all the effects inside of it and paste them in my suit variant. Then I can adjust the values that I want to adjust and remove or add more.
+    The same rule applies to helmets.
+  
+    variantof="" defines which preset your suit is based on and thus how much pressure protection it gives.
+    Available presets are:
+    - divingsuitpreset4000 | regular diving suit
+    - divingsuitpreset5750 | combat diving suit & slipsuit
+    - divingsuitpreset6000 | old vanilla value before devs changed it to 5750
+    - divingsuitpreset6200 | unique to PUCS suit
+    - divingsuitpreset6650 | abyss diving suit & disposable diving suit
+    - divingsuitpreset7500 | none
+    - divingsuitpreset8000 | none
+    - divingsuitpreset10000| none
+  -->
+  <Override>
+    <Item name="" identifier="exampledivingsuit" variantof="divingsuitpreset4000" category="Diving,Equipment" tags="diving,deepdiving,provocative" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy" botpriority="1" hideinmenus="false">
+      <!-- OPTIONAL | DEFINE THE PRICE OF THE SUIT, WHERE IT IS SOLD AND HOW MANY OF IT SHOULD BE AVAILABLE AT MINIMUM | ADD sold="false" TO A LOCATION TO PREVENT IT FROM BEING SOLD THERE OR AT THE VERY TOP TO PREVENT IT BEING SOLD ANYWHERE -->
+      <Price baseprice="250">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="4" />
+        <Price storeidentifier="merchantresearch" minavailable="3" />
+        <Price storeidentifier="merchantmilitary" minavailable="3" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="5" />
+      </Price>
+      <!-- DEFINE THE PREFERRED STORAGE CONTAINER OF THE SUIT AND IF IT CAN NATURALLY SPAWN INSIDE THEM -->
+      <PreferredContainer primary="divingsuitcontainer" spawnprobability="0" campaignonly="true" maxleveldifficulty="35" />
+      <PreferredContainer primary="divingsuitcontainer" spawnprobability="0" notcampaign="true" />
+      <PreferredContainer primary="piratedivingsuitcontainer" spawnprobability="0" maxleveldifficulty="35" />
+      <PreferredContainer primary="wreckdivingsuitcontainer" spawnprobability="0.0" maxleveldifficulty="35" />
+      <!-- OPTIONAL | DEFINE HOW LONG IT TAKES TO DECONSTRUCT THE SUIT AND WHAT MATERIALS IT YIELDS -->
+      <Deconstruct time="30">
+        <Item identifier="titaniumaluminiumalloy" />
+        <Item identifier="rubber" />
+      </Deconstruct>
+      <!-- OPTIONAL | DEFINE AT WHICH FABRICATOR THE SUIT CAN BE CRAFTED, HOW LONG IT TAKES TO CRAFT IT AND WHAT MATERIALS ARE REQUIRED TO CRAFT IT -->
+      <Fabricate suitablefabricators="fabricator" requiredtime="30">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <!-- OPTIONAL | SET A INVENTORY ICON -->
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="0,256,128,128" origin="0.5,0.5" />
+      <!-- DEFINE THE ITEM SPRITE TEXTURE | THIS IS HOW IT WILL LOOK WHEN DROPPED IN THE WORLD -->
+      <Sprite name="Diving Suit Item" texture="Content/Items/Diving/DivingSuit_Item.png" sourcerect="0,0,146,120" depth="0.55" origin="0.5,0.5" />
+      <!-- DEFINE THE TEXTURE THAT SHOULD BE DISPLAYED IN A VERTICAL LOCKER | SEEMS TO BE UNUSED IN THE GAME AND A LEGACY CODE SNIPPET -->
+      <ContainedSprite name="Diving Suit In Vertical Locker" allowedcontainertags="divingsuitcontainervertical" texture="Content/Items/Diving/DivingSuit_Item.png" sourcerect="181,0,75,193" depth="0.55" origin="0.5,0.5" />
+      <!-- DEFINE THE TEXTURE THAT SHOULD BE DISPLAYED WHEN THE SUIT IS INSIDE A DIVING SUIT LOCKER -->
+      <ContainedSprite name="Diving Suit Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Containers/containers.png" sourcerect="724,373,77,209" depth="0.55" origin="-0.12,-0.14" />
+      <!-- DEFINE THE TEXTURE THAT SHOULD BE DISPLAYED WHEN THE SUIT IS INSIDE THE HORIZONTAL LEGACY DIVING SUIT LOCKER -->
+      <ContainedSprite name="Diving Suit In Horizontal Locker" allowedcontainertags="divingsuitcontainerhorizontal" texture="Content/Items/Diving/DivingSuit_Item.png" sourcerect="0,193,230,63" depth="0.55" origin="0.6,0.5" />
+      <!-- OPTIONAL (Preconfigured) | DEFINE THE COLLISION BOX SIZE | USE width="" and height="" TO MAKE IT A BOX OR REPLACE ONE OF THEM WITH radius="" TO ROUND THE EDGES -->
+      <Body radius="45" width="34" density="20" />
+      <Wearable>
+        <!-- DEFINE THE TEXTURES FOR THE LIMBS OF THE DIVING SUIT THAT SHOULD BE DISPLAYED WHEN WORN -->
+        <sprite name="Regular Diving Suit Torso" texture="Content/Items/Diving/reg_DivingSuit.png" limb="Torso" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Right Hand" texture="Content/Items/Diving/reg_DivingSuit.png" limb="RightHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Left Hand" texture="Content/Items/Diving/reg_DivingSuit.png" limb="LeftHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Right Lower Arm" texture="Content/Items/Diving/reg_DivingSuit.png" limb="RightArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Left Lower Arm" texture="Content/Items/Diving/reg_DivingSuit.png" limb="LeftArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Right Upper Arm" texture="Content/Items/Diving/reg_DivingSuit.png" limb="RightForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Left Upper Arm" texture="Content/Items/Diving/reg_DivingSuit.png" limb="LeftForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Waist" texture="Content/Items/Diving/reg_DivingSuit.png" limb="Waist" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Right Thigh" texture="Content/Items/Diving/reg_DivingSuit.png" limb="RightThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Left Thigh" texture="Content/Items/Diving/reg_DivingSuit.png" limb="LeftThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Right Leg" texture="Content/Items/Diving/reg_DivingSuit.png" limb="RightLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Left Leg" texture="Content/Items/Diving/reg_DivingSuit.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Left Shoe" texture="Content/Items/Diving/reg_DivingSuit.png" limb="LeftFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <sprite name="Regular Diving Suit Right Shoe" texture="Content/Items/Diving/reg_DivingSuit.png" limb="RightFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+        <!-- OPTIONAL | DEFINE DAMAGE MODIFIERS TO MAKE THE SUIT PROTECT YOU FROM OR MAKE YOU MORE SUSCEPTIBLE TO CERTAIN DAMAGE TYPES -->
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.75" damagesound="LimbArmor" />
+        <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+        <!-- OPTIONAL | DEFINE WALKING AND SWIMMING SPEED MULTIPLIERS | IF NOT DEFINED IT WILL DEFAULT TO THE VALUES SHOWN HERE -->
+        <StatValue stattype="WalkingSpeed" value="-0.25" />
+        <StatValue stattype="SwimmingSpeed" value="0.0" />
+        <!-- 0.0 = no additional speed or speed reduction -->
+      </Wearable>
+    </Item>
+  </Override>
+  <!-- EXAMPLE HELMET | COPY THIS AND CHANGE TEXTURES TO YOUR HELMET TEXTURE FILE -->
+  <Override>
+    <Item name="" identifier="exampledivingsuithelmet" variantof="divingsuithelmetpreset" hideinmenus="false">
+      <!-- OPTIONAL | DEFINE THE PRICE OF THE SUIT, WHERE IT IS SOLD AND HOW MANY OF IT SHOULD BE AVAILABLE AT MINIMUM | ADD sold="false" TO A LOCATION TO PREVENT IT FROM BEING SOLD THERE OR AT THE VERY TOP TO PREVENT IT BEING SOLD ANYWHERE -->
+      <Price baseprice="150">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="2" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="4" />
+        <Price storeidentifier="merchantresearch" minavailable="3" />
+        <Price storeidentifier="merchantmilitary" minavailable="3" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="5" />
+      </Price>
+      <!-- DEFINE THE PREFERRED STORAGE CONTAINER OF THE SUIT AND IF IT CAN NATURALLY SPAWN INSIDE THEM -->
+      <PreferredContainer primary="divingsuitcontainer" spawnprobability="1" campaignonly="true" maxleveldifficulty="35" />
+      <PreferredContainer primary="divingsuitcontainer" spawnprobability="1" notcampaign="true" />
+      <PreferredContainer primary="piratedivingsuitcontainer" spawnprobability="1" maxleveldifficulty="35" />
+      <PreferredContainer primary="wreckdivingsuitcontainer" spawnprobability="0.1" maxleveldifficulty="35" />
+      <!-- OPTIONAL | DEFINE HOW LONG IT TAKES TO DECONSTRUCT THE SUIT AND WHAT MATERIALS IT YIELDS -->
+      <Deconstruct time="30" />
+      <!-- OPTIONAL | DEFINE AT WHICH FABRICATOR THE SUIT CAN BE CRAFTED, HOW LONG IT TAKES TO CRAFT IT AND WHAT MATERIALS ARE REQUIRED TO CRAFT IT -->
+      <Fabricate suitablefabricators="fabricator" requiredtime="15">
+        <RequiredSkill identifier="mechanical" level="40" />
+        <RequiredItem identifier="titaniumaluminiumalloy" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <!-- DEFINE THE ITEM SPRITE TEXTURE | THIS IS HOW IT WILL LOOK WHEN DROPPED IN THE WORLD -->
+      <Sprite name="Diving Suit Item" texture="Content/Items/Jobgear/headgears.png" sourcerect="5,4,92,94" depth="0.55" origin="0.5,0.5" />
+      <!-- OPTIONAL (Preconfigured) | DEFINE THE TEXTURE THAT SHOULD BE DISPLAYED WHEN THE HELMET IS CONTAINED WITHIN A DIVING SUIT CABINET -->
+      <!--ContainedSprite currently can't have an independent scale from the item scale thus causing the textures to be scaled down/up with the item size.
+          The currently active ContainedSprite below has a sourcerect of 1 pixel of a transparent space to make the item invisible when inside the diving suit locker since that one displays contained items
+      -->
+      <ContainedSprite name="Diving Helmet Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Jobgear/headgears.png" sourcerect="0,0,1,1" depth="0.55" origin="-0.12,-0.13" />
+      <!-- OPTIONAL (Preconfigured) | DEFINE THE COLLISION BOX SIZE | USE width="" and height="" TO MAKE IT A BOX OR REPLACE ONE OF THEM WITH radius="" TO ROUND THE EDGES -->
+      <Body radius="45" width="34" density="20" />
+      <Wearable>
+        <!-- DEFINE THE TEXTURE THAT SHOULD BE DISPLAYED WHEN WEARING THE HELMET -->
+        <sprite name="Diving Suit Helmet Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="5,4,92,94" origin="0.5,0.5">
+          <!-- CONFIGURE THE LIGHT COMPONENT| CHANGE ITS RANGE, COLOR, ADD FLICKERING OR WHATEVER | MAKE SURE TO KEEP THE 2 STATUSEFFECTS INSIDE SO THE LAMP WORKS WHEN SET TO ON AND HAS A BATTERY -->
+          <LightComponent range="700.0" lightcolor="250,224,165,175" powerconsumption="10" IsOn="false" allowingameediting="false">
+            <Upgrade gameversion="0.1300.0.3" allowingameediting="false" />
+            <StatusEffect type="OnWearing" target="This" Voltage="1.0" targetslot="0" setvalue="true">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <StatusEffect type="OnActive" target="Contained" targetslot="0" condition="-0.02">
+              <RequiredItem Items="mobilebattery" type="Contained" />
+            </StatusEffect>
+            <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          </LightComponent>
+        </sprite>
+      </Wearable>
+    </Item>
+  </Override>
+</Items>

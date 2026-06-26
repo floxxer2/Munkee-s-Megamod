@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="SOFA'S DECO" modversion="1.0.2" corepackage="False" steamworkshopid="2526456135" gameversion="0.19.14.0" expectedhash="2A18724588883D72FF3CE6C0E2225446">
+  <Structure file="%ModDir%/Workshop/SOFA'S DECO/StructurePrefabsWrecked.xml" />
+  <Item file="%ModDir%/Workshop/SOFA'S DECO/alienitems.xml" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/BackgroundWalls.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/CaveBackWalls.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/CaveShells.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/CaveTileWalls.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Floors.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/FractalPlants1.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Plants1.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Plants2.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Plants3.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Plants4.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Plants5.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Plants6.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Plants7.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/ruins.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/ruins2.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/ruins3.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/WallEdgeChunks.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/WallEdgeChunks2.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Walls.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/BackgroundChunks1.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Stonespires.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/CaveShells2.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/CaveTileWalls2.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/CaveBackWalls2.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/BackgroundChunks2.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/BackgroundChunks3.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/Icicle.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/BackgroundChunks4.png" />
+  <Other file="%ModDir%/Workshop/SOFA'S DECO/BackgroundChunks5.png" />
+</contentpackage>

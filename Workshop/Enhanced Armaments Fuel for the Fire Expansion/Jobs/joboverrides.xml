@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Jobs>
+  <Override>
+    <Job identifier="securityofficer" minkarma="0" uicolor="0.57,0.48,0.43" vitalitymodifier="0" pricemultiplier="1.15" idlebehavior="Patrol">
+      <Jobicon>
+        <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="256,256,128,128" origin="0.5,0.5" />
+      </Jobicon>
+      <JobiconSmall>
+        <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,640,28,28" origin="0.5,0.5" />
+      </JobiconSmall>
+      <Skills>
+        <Skill identifier="weapons" level="40,50" primary="true" pvplevel="80" />
+        <Skill identifier="medical" level="25,35" pvplevel="50" />
+        <Skill identifier="mechanical" level="15,25" pvplevel="50" />
+        <Skill identifier="electrical" level="15,25" pvplevel="50" />
+        <Skill identifier="helm" level="5,10" pvplevel="50" />
+      </Skills>
+      <ItemSet>
+        <Item identifier="securityuniform1" identifierteam2="securityseparatistsuniform1" equip="true" outfit="true" GameMode="PvE" />
+        <Item identifier="sgt_lightuniform" identifierteam2="sgt_renegadeuniform" equip="true" outfit="true" GameMode="PvP" />
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="scp_meusoc" identifierteam2="scp_sr1" equip="false" GameMode="PvP">
+          <Item identifier="scp_45mag" showpreview="false" />
+        </Item>
+        <Item identifier="scp_m9bayonet" />
+        <Item identifier="handcuffs" GameMode="PvE" />
+        <Item identifier="stunbaton" GameMode="PvE">
+          <Item identifier="batterycell" showpreview="false" />
+        </Item>
+        <Item identifier="sgt_fieldcap" identifierteam2="sgt_fieldcap2" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Security/securityofficer_torso_[GENDER]_1.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Security/securityofficer_torso_[GENDER]_1.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="securityuniform2" identifierteam2="securityseparatistsuniform2" equip="true" outfit="true" GameMode="PvE" />
+        <Item identifier="scp_lightuniform" identifierteam2="scp_renegadeuniform" equip="true" outfit="true" GameMode="PvP" />
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="scp_meusoc" identifierteam2="scp_sr1" equip="false" GameMode="PvP">
+          <Item identifier="scp_45mag" showpreview="false" />
+        </Item>
+        <Item identifier="scp_m9bayonet" />
+        <Item identifier="handcuffs" GameMode="PvE" />
+        <Item identifier="stunbaton" GameMode="PvE">
+          <Item identifier="batterycell" showpreview="false" />
+        </Item>
+        <Item identifier="sgt_fieldcap" identifierteam2="sgt_fieldcap2" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Security/securityofficer_torso_[GENDER]_2.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Security/securityofficer_torso_[GENDER]_2.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="securityuniform3" identifierteam2="securityseparatistsuniform3" equip="true" outfit="true" GameMode="PvE" />
+        <Item identifier="scp_lightuniform" identifierteam2="scp_renegadeuniform" equip="true" outfit="true" GameMode="PvP" />
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="scp_meusoc" identifierteam2="scp_sr1" equip="false" GameMode="PvP">
+          <Item identifier="scp_45mag" showpreview="false" />
+        </Item>
+        <Item identifier="scp_m9bayonet" />
+        <Item identifier="handcuffs" GameMode="PvE" />
+        <Item identifier="stunbaton" GameMode="PvE">
+          <Item identifier="batterycell" showpreview="false" />
+        </Item>
+        <Item identifier="sgt_fieldcap" identifierteam2="sgt_fieldcap2" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Security/securityofficer_torso_[GENDER]_3.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Security/securityofficer_torso_[GENDER]_3.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <PortraitClothing>
+        <sprite name="Portrait Clothing Security Officer" texture="Content/Items/Jobgear/PortraitClothing.png" sheetindex="1,1" />
+      </PortraitClothing>
+      <AutonomousObjectives>
+        <Order identifier="fightintruders" prioritymodifier="1" />
+        <Order identifier="rescue" prioritymodifier="1" />
+        <Order identifier="extinguishfires" prioritymodifier="0.75" />
+        <Order identifier="operatereactor" option="powerup" prioritymodifier="0.2" />
+      </AutonomousObjectives>
+      <AppropriateOrders>
+        <Order identifier="operateweapons" />
+        <Order identifier="fightintruders" />
+      </AppropriateOrders>
+    </Job>
+    <Job identifier="mechanic" minkarma="0" initialcount="1" CampaignSetupUIOrder="2" uicolor="0.5,0.86,0.9" vitalitymodifier="0" pricemultiplier="1" idlebehavior="Active">
+      <Jobicon>
+        <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="896,256,128,128" origin="0.5,0.5" />
+      </Jobicon>
+      <JobiconSmall>
+        <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="641,640,28,28" origin="0.5,0.5" />
+      </JobiconSmall>
+      <Skills>
+        <Skill identifier="mechanical" level="40,50" primary="true" pvplevel="70" />
+        <Skill identifier="electrical" level="25,35" pvplevel="50" />
+        <Skill identifier="weapons" level="15,25" pvplevel="50" />
+        <Skill identifier="medical" level="15,25" pvplevel="50" />
+        <Skill identifier="helm" level="5,10" pvplevel="50" />
+      </Skills>
+      <ItemSet>
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="baseballcap" equip="true" />
+        <Item identifier="bluejumpsuit1" identifierteam2="mechanicseparatistsuniform1" equip="true" outfit="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="toolbelt" equip="true" GameMode="PvE" />
+        <Item identifier="wrench" GameMode="PvE" />
+        <Item identifier="screwdriver" GameMode="PvE" />
+        <Item identifier="weldingtool" GameMode="PvE">
+          <Item identifier="weldingfueltank" showpreview="false" />
+        </Item>
+        <Item identifier="plasmacutter" GameMode="PvE">
+          <Item identifier="oxygentank" showpreview="false" />
+        </Item>
+        <Item identifier="revolver" GameMode="PvP" equip="false">
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+        </Item>
+        <Item identifier="scp_pipebomb" equip="false" GameMode="PvP" />
+        <Item identifier="scp_machete" GameMode="PvP" equip="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Mechanic/mechanic_torso_[GENDER]_1.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Mechanic/mechanic_torso_[GENDER]_1.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="baseballcap" equip="true" />
+        <Item identifier="bluejumpsuit2" identifierteam2="mechanicseparatistsuniform2" equip="true" outfit="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="toolbelt" equip="true" GameMode="PvE" />
+        <Item identifier="wrench" GameMode="PvE" />
+        <Item identifier="screwdriver" GameMode="PvE" />
+        <Item identifier="weldingtool" GameMode="PvE">
+          <Item identifier="weldingfueltank" showpreview="false" />
+        </Item>
+        <Item identifier="plasmacutter" GameMode="PvE">
+          <Item identifier="oxygentank" showpreview="false" />
+        </Item>
+        <Item identifier="revolver" GameMode="PvP" equip="false">
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+        </Item>
+        <Item identifier="scp_pipebomb" equip="false" GameMode="PvP" />
+        <Item identifier="scp_machete" GameMode="PvP" equip="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Mechanic/mechanic_torso_[GENDER]_2.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Mechanic/mechanic_torso_[GENDER]_2.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="sgt_fieldcap" identifierteam2="sgt_fieldcap2" equip="true" />
+        <Item identifier="crewchiefclothes" identifierteam2="quartermasterclothes" equip="true" outfit="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="toolbelt" equip="true" GameMode="PvE" />
+        <Item identifier="wrench" GameMode="PvE" />
+        <Item identifier="screwdriver" GameMode="PvE" />
+        <Item identifier="weldingtool" GameMode="PvE">
+          <Item identifier="weldingfueltank" showpreview="false" />
+        </Item>
+        <Item identifier="scp_m9bayonet" GameMode="PvE" />
+        <Item identifier="revolver" GameMode="PvP" equip="false">
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+          <Item identifier="revolverround" showpreview="false" />
+        </Item>
+        <Item identifier="scp_pipebomb" equip="false" GameMode="PvP" />
+        <Item identifier="scp_machete" GameMode="PvP" equip="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/InventoryIconAtlas2.png" sourcerect="0,524,65,52" offset="0,0" />
+          <sprite texture="Content/Items/InventoryIconAtlas2.png" sourcerect="0,524,65,52" offset="0,0" />
+        </PreviewSprites>
+      </ItemSet>
+      <AutonomousObjectives>
+        <Order identifier="fixleaks" prioritymodifier="1" />
+        <Order identifier="repairmechanical" prioritymodifier="1" />
+        <Order identifier="extinguishfires" prioritymodifier="1" />
+        <Order identifier="rescue" prioritymodifier="1" />
+        <Order identifier="repairsystems" prioritymodifier="0.5" />
+        <Order identifier="pumpwater" option="pumpout" prioritymodifier="0.5" />
+        <Order identifier="operatereactor" option="powerup" prioritymodifier="0.3" />
+      </AutonomousObjectives>
+      <AppropriateOrders>
+        <Order identifier="fixleaks" />
+        <Order identifier="pumpwater" />
+        <Order identifier="repairmechanical" />
+        <Order identifier="reportbrokendevices" />
+      </AppropriateOrders>
+    </Job>
+    <Job identifier="medicaldoctor" minkarma="0" uicolor="0.81,0.31,0.19" vitalitymodifier="0" pricemultiplier="1.15" idlebehavior="Active">
+      <Jobicon>
+        <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="512,256,128,128" origin="0.5,0.5" />
+      </Jobicon>
+      <JobiconSmall>
+        <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,698,28,28" origin="0.5,0.5" />
+      </JobiconSmall>
+      <Skills>
+        <Skill identifier="medical" level="40,50" primary="true" pvplevel="85" />
+        <Skill identifier="weapons" level="15,25" pvplevel="50" />
+        <Skill identifier="mechanical" level="15,25" pvplevel="50" />
+        <Skill identifier="electrical" level="15,25" pvplevel="50" />
+        <Skill identifier="helm" level="5,10" pvplevel="50" />
+      </Skills>
+      <ItemSet>
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="doctorsuniform1" identifierteam2="medicseparatistsuniform1" equip="true" outfit="true" GameMode="PvE" />
+        <Item identifier="sgt_combatmedicuniform" identifierteam2="sgt_renegadecombatmedicuniform" equip="true" outfit="true" GameMode="PvP" />
+        <Item identifier="scp_m9bayonet" GameMode="PvP" />
+        <Item identifier="scp_meusoc" identifierteam2="scp_sr1" equip="false" GameMode="PvE">
+          <Item identifier="scp_45mag" />
+        </Item>
+        <Item identifier="scp_p226" identifierteam2="scp_mp443" equip="false" GameMode="PvP">
+          <Item identifier="scp_9mmmag" showpreview="false" />
+        </Item>
+        <Item identifier="antidama1" GameMode="PvE" />
+        <Item identifier="antibloodloss1" GameMode="PvP" />
+        <Item identifier="antibloodloss1" GameMode="PvP" />
+        <Item identifier="antibleeding1" GameMode="PvE" />
+        <Item identifier="scp_surgicalkit" GameMode="PvP" />
+        <Item identifier="scp_surgicalkit" GameMode="PvP" />
+        <Item identifier="healthscanner" equip="true" GameMode="PvE" showpreview="false" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_1.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_1.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="doctorsuniform2" identifierteam2="medicseparatistsuniform2" equip="true" outfit="true" GameMode="PvE" />
+        <Item identifier="scp_combatmedicuniform" identifierteam2="scp_renegadecombatmedicuniform" equip="true" outfit="true" GameMode="PvP" />
+        <Item identifier="scp_m9bayonet" GameMode="PvP" />
+        <Item identifier="syringegun" equip="false" GameMode="PvE" />
+        <Item identifier="scp_p226" identifierteam2="scp_mp443" equip="false" GameMode="PvP">
+          <Item identifier="scp_9mmmag" showpreview="false" />
+        </Item>
+        <Item identifier="antidama1" GameMode="PvE" />
+        <Item identifier="antibloodloss1" GameMode="PvP" />
+        <Item identifier="antibloodloss1" GameMode="PvP" />
+        <Item identifier="antibleeding1" GameMode="PvE" />
+        <Item identifier="scp_surgicalkit" GameMode="PvP" />
+        <Item identifier="scp_surgicalkit" GameMode="PvP" />
+        <Item identifier="healthscanner" equip="true" GameMode="PvE" showpreview="false" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_2.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_2.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <PortraitClothing>
+        <sprite name="Portrait Clothing Medic" texture="Content/Items/Jobgear/PortraitClothing.png" sheetindex="0,1" />
+      </PortraitClothing>
+      <AutonomousObjectives>
+        <Order identifier="rescue" prioritymodifier="1" />
+        <Order identifier="extinguishfires" prioritymodifier="0.5" />
+        <Order identifier="operatereactor" option="powerup" prioritymodifier="0.2" />
+      </AutonomousObjectives>
+      <AppropriateOrders>
+        <Order identifier="rescue" />
+        <Order identifier="requestfirstaid" />
+      </AppropriateOrders>
+    </Job>
+  </Override>
+</Jobs>

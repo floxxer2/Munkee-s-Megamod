@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Afflictions>
+    <!-- LEGACY | No longer used as this is now handled by events | This affliction is used to handcuff someone -->
+    <Affliction name="" identifier="applyhandcuffs" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1.0">
+        <!-- Spawn the equipped version of the handcuffs that lock the characters hands and play a cuffing sound -->
+        <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false">
+          <SpawnItem identifier="handcuffsequipped" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="false" />
+          <!-- Disabled sound played via affliction because the game is stupid and doesn't play these sounds for other characters in range in MP, but it works in SP... -->
+          <!-- <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing2.ogg" volume="2" range="300" loop="false" selectionmode="random" />
+          <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/cuffing3.ogg" volume="2" range="300" loop="false" selectionmode="random" /> -->
+        </StatusEffect>
+        <!-- Try spawn the second equipped version of the handcuffs if the first one didn't spawn in due to a blocked hand -->
+        <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false" delay="0.2" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="handcuffsequipped2" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="false" />
+        </StatusEffect>
+        <!-- Instantly remove the applyhandcuffs affliction and trigger change team on arrest event -->
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="arrested" triggeredEventEntityTag="arrested" eventTargetTags="arrested" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false">
+          <ReduceAffliction identifier="applyhandcuffs" amount="100" />
+          <TriggerEvent identifier="change_team_on_arrest" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <!-- LEGACY | No longer used as this is now handled by events | This affliction is used to handcuff someone with reinforced handcuffs -->
+    <!-- LEGACY | No longer used as this is now handled by events | This affliction is applied to both the character uncuffing as well as the character that's getting uncuffed -->
+    <Affliction name="" identifier="retrievehandcuffs" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="1000" showicontoothersthreshold="1000" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false">
+      <Effect minstrength="0" maxstrength="1" strengthchange="-1.0">
+        <!-- DISABLED DUE TO ITEM DUPLICATING | Check if the character is the one uncuffing the other by checking if the character has the "handcuffed" affliction. If the affliction wasn't found, spawn the regular handcuffs item in the character's inventory -->
+        <!-- <StatusEffect type="OnActive" target="Character" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" stackable="false" interval="0.1">
+          <Conditional handcuffed="lte 0" />
+          <ReduceAffliction identifier="retrievehandcuffs" amount="1000" />
+          <SpawnItem identifier="handcuffsspawned" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" SpawnIfNotInInventory="true" />
+        </StatusEffect> -->
+        <StatusEffect type="OnActive" target="Character" triggeredEventTargetTag="released" triggeredEventEntityTag="released" eventTargetTags="released" disabledeltatime="true">
+          <Conditional handcuffed="gt 0" />
+          <TriggerEvent identifier="change_team_on_released" />
+        </StatusEffect>
+        <!-- Check if the character is the one being uncuffed by checking if the character has the "handcuffed" affliction. If the affliction was found, tag the character with the temporary tag "unlocked" and remove the "handcuffed" affliction while playing an uncuffing sound -->
+        <StatusEffect type="OnActive" target="Character" tags="unlocked" duration="0.5" stackable="false" comparison="And">
+          <Conditional handcuffed="gt 0" />
+          <!-- Disabled sound played via affliction because the game is stupid and doesn't play these sounds for other characters in range in MP, but it works in SP... -->
+          <!-- <Sound file="%ModDir%/Workshop/Immersive Handcuffs/Content/Sounds/uncuffing1.ogg" volume="2" range="300" loop="false" selectionmode="random" /> -->
+          <ReduceAffliction identifier="handcuffed" amount="1000" />
+          <ReduceAffliction identifier="retrievehandcuffs" amount="1000" />
+          <!-- Handcuffs need to be spawned at the position of the cuffed character as the original approach of spawning in the uncuffer's inventory allowed for duplicating -->
+          <SpawnItem identifier="handcuffs" spawnposition="This" SpawnIfInventoryFull="true" spawnifcantbecontained="true" SpawnIfNotInInventory="true" />
+        </StatusEffect>
+        <!-- Check if the character is the one being uncuffed by checking if the character has the "handcuffed" affliction. If the affliction was found, apply 4 seconds of stun to the character, but only if the character isn't suffering from a higher stun value already -->
+        <StatusEffect type="OnActive" target="Character" setvalue="true" disabledeltatime="true" multiplyafflictionsbymaxvitality="true" comparison="And">
+          <Conditional handcuffed="gt 0" />
+          <Conditional stun="lte 4" />
+          <Affliction identifier="stun" amount="4" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <!-- This affliction spawns handcuffs on the handcuffed person whenever a hand is free (for NT limb loss compatibility) and lets StatusEffects identify a handcuffed person and gives visual feedback in the health menu -->
+    <Affliction name="Handcuffed" identifier="handcuffed" type="none" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="0" showicontoothersthreshold="0" showinhealthscannerthreshold="1000" karmachangeonapplied="0" maxstrength="1" affectmachines="false" healableinmedicalclinic="false" iconcolors="255,255,255,255;255,255,255,255">
+      <Effect minstrength="0" maxstrength="1" strengthchange="0.0">
+        <StatusEffect target="Character" lockhands="true" setvalue="true" />
+        <StatusEffect target="Character" disabledeltatime="true" delay="0.1" stackable="false" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="handcuffsequipped" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+        </StatusEffect>
+        <StatusEffect target="Character" disabledeltatime="true" delay="0.2" stackable="false" checkconditionalalways="true">
+          <Conditional HasStatusTag="neq cuffed" />
+          <SpawnItem identifier="handcuffsequipped2" spawnposition="ThisInventory" SpawnIfInventoryFull="true" spawnifcantbecontained="true" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="%ModDir%/Workshop/Immersive Handcuffs/Content/UI/Icon_Handcuffed.png" sourcerect="0,0,128,128" color="150,26,26,255" origin="0,0" />
+    </Affliction>
+    <!-- This affliction spawns reinforced handcuffs on the handcuffed person whenever a hand is free (for NT limb loss compatibility) and lets StatusEffects identify a handcuffed person and gives visual feedback in the health menu -->
+    <!-- This affliction is just for StatusEffects to easily check if a person has an ankle monitor equipped and for visual feedback in the health menu -->
+    <!-- Sound Afflictions | Used because sounds would not play from events in multiplayer -->
+  </Afflictions>
+</Override>

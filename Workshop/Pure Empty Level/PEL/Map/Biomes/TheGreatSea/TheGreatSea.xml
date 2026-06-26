@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LevelGenerationParameters>
+  <Override>
+    <GreatSeaBasic identifier="greatseabasic" commonness="0" />
+    <GreatSeaVertical identifier="greatseavertical" commonness="0" />
+    <GreatSeaOpen identifier="greatseaopen" commonness="0" />
+    <GreatSeaTransition identifier="greatseatransition" commonness="0" />
+  </Override>
+</LevelGenerationParameters>

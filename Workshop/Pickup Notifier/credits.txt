@@ -1,0 +1,24 @@
+
+This project includes audio files that remix or make use of the following works:
+
+
+CC 0 (Creative Commons Zero):
+"metal_drop_foley.wav" by alec_mackay https://freesound.org/people/j1987/sounds/532131/
+"metal clangs.wav" by alec_mackay https://freesound.org/people/alec_mackay/sounds/463661/
+"metal clangs small.wav" by alec_mackay https://freesound.org/people/alec_mackay/sounds/463660/
+"plastic trunking body.wav" by alec_mackay https://freesound.org/people/alec_mackay/sounds/463681/
+"plastic trunking light.wav" by alec_mackay https://freesound.org/people/alec_mackay/sounds/463674/
+"dull-clangs.aif" by alienistcog https://freesound.org/people/alienistcog/sounds/124711/
+"Bike Horn play" by doombolt https://freesound.org/people/doombolt/sounds/128143/
+"Foley_Impact_Metal_Long_Mono.wav" by Nox_Sound https://freesound.org/people/Nox_Sound/sounds/569555/
+"Item Received.wav" by spookymodem https://freesound.org/people/spookymodem/sounds/249815/
+"200124 metal doors open close slam hum, close then far, theatre, foley.wav" by TRP https://freesound.org/people/TRP/sounds/566584/
+"Serving Ice Cubes" by rafael45 https://freesound.org/people/rafael45/sounds/241882/
+"small_glass_container" by j1987 https://freesound.org/people/j1987/sounds/829235/
+
+CC BY 4.0 (Creative Commons Attribution):
+"Lifting, Setting, Jostling Metal Camping Stove" by SiriusBizdness https://freesound.org/people/SiriusBizdness/sounds/561428/
+
+CC BY-NC 4.0 (Creative Commons Attribution NonCommercial):
+"Pickup Up and Putting Down Bottle" by Tabata_H https://freesound.org/people/Tabata_H/sounds/764427/
+"Putting ice in a glass" by Emmalyons1 https://freesound.org/people/Emmalyons1/sounds/594188/

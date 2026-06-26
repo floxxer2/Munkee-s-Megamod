@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <!-- DYNAMIC EUROPA -->
+    <!-- Construction Materials -->
+    <!-- NEUROTRAUMA -->
+    <Item name="Refrigerated Crate" identifier="organcrate" tags="crate,refrigerated" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_crate" waterproof="true" fireproof="true" description="[M] REQUIRES NEUROTRAUMA - A place to store your precious transplant-ready organs" hideconditionbar="true">
+      <Price baseprice="150">
+        <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="20" />
+        <Item identifier="steel" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="potassium" />
+        <Item identifier="phosphorus" />
+        <Item identifier="phosphorus" />
+      </Fabricate>
+      <InventoryIcon texture="%ModDir%/Workshop/Immersive Crates - Mod Crates Compatibility Patch/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="254,1,146,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Workshop/Immersive Crates - Mod Crates Compatibility Patch/Content/Items/ICMCCP-ItemsAtlas.png" depth="0.54" sourcerect="254,1,146,83" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir%/Workshop/Immersive Crates - Mod Crates Compatibility Patch/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="401,1,106,83" origin="0.5,0.5" depth="0.54" maxcondition="99" fadein="false" />
+      <Body width="144" height="80" density="25" />
+      <Holdable slots="RightHand+LeftHand" holdangle="5" holdpos="90,-110" handle1="-5,0" handle2="-5,10" aimable="false" msg="ItemMsgPickUpSelect">
+        <!-- damage the crate to display the broken sprite and turn the ItemComponent on when it is being held -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" condition="99" setvalue="true" />
+      </Holdable>
+      <!-- ItemComponent used to not have to resort to constantly running "Always" StatusEffects when no one is interacting with the crate -->
+      <ItemComponent IsActive="false" canbeselected="false" canbepicked="false" allowingameediting="false">
+        <!-- repair the item to display the original sprite again and turn the ItemComponent off if it is either not contained or it is stored in another item with the tag "container" like the crate shelfs -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" condition="100" IsActive="false" setvalue="true">
+          <Conditional IsContained="false" />
+          <Conditional HasTag="container" targetcontainer="true" />
+          <Conditional HasTag="cargocontainer" targetcontainer="true" />
+        </StatusEffect>
+      </ItemComponent>
+      <ItemContainer capacity="12" slotsperrow="4" canbeselected="true" selectkey="Action" hideitems="true" keepopenwhenequipped="true" movableframe="true" msg="itemmsginteractuse">
+        <GuiFrame relativesize="0.25,0.35" anchor="Center" style="ItemUI" />
+        <Containable items="smallitem,organ" excludeditems="toolbox,cargoscooter" />
+        <StatusEffect type="OnPicked" target="This">
+          <Sound file="%ModDir%/Workshop/Immersive Crates/Content/Items/crate_open1.ogg" range="300" volume="2.0" loop="false" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+    <!-- HAZARDOUS REACTORS | Made compatible with Enhanced Reactors -->
+    <!-- ENHANCED REACTORS | Made compatible with Hazardous Reactors -->
+    <Item name="Radioactive Material Crate" identifier="radioactivematcrate" tags="crate,allowcleanup,radioactiveorestorage,containradiation,hazardcontainment" description="[M] FROM ENHANCED REACTORS - Can safely store up to 9 stacks of radioactive ores or minerals." scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_crate" hideconditionbar="true" GrabWhenSelected="true">
+      <PreferredContainer primary="cargocontainer" secondary="crateshelf" />
+      <Deconstruct time="5">
+        <Item identifier="steel" amount="1" />
+        <Item identifier="lead" amount="1" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="20" />
+        <Item identifier="steel" amount="2" />
+        <Item identifier="lead" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="%ModDir%/Workshop/Immersive Crates - Mod Crates Compatibility Patch/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="0,84,146,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Workshop/Immersive Crates - Mod Crates Compatibility Patch/Content/Items/ICMCCP-ItemsAtlas.png" depth="0.54" sourcerect="0,84,146,83" origin="0.5,0.5" />
+      <BrokenSprite texture="%ModDir%/Workshop/Immersive Crates - Mod Crates Compatibility Patch/Content/Items/ICMCCP-ItemsAtlas.png" sourcerect="147,84,106,83" origin="0.5,0.5" depth="0.54" maxcondition="99" fadein="false" />
+      <Body width="144" height="80" density="25" />
+      <Holdable slots="RightHand+LeftHand" holdangle="5" holdpos="90,-110" handle1="-5,0" handle2="-5,10" aimable="false" msg="ItemMsgPickUpSelect">
+        <!-- damage the crate to display the broken sprite and turn the ItemComponent on when it is being held -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" IsActive="true" condition="99" setvalue="true" />
+        <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.7" setvalue="true" />
+      </Holdable>
+      <!-- ItemComponent used to not have to resort to constantly running "Always" StatusEffects when no one is interacting with the crate -->
+      <ItemComponent IsActive="false" canbeselected="false" canbepicked="false" allowingameediting="true">
+        <!-- repair the item to display the original sprite again and turn the ItemComponent off if it is either not contained or it is stored in another item with the tag "container" like the crate shelfs -->
+        <StatusEffect type="OnActive" target="This" targetitemcomponent="ItemComponent" condition="100" IsActive="false" setvalue="true">
+          <Conditional IsContained="false" />
+          <Conditional HasTag="container" targetcontainer="true" />
+          <Conditional HasTag="cargocontainer" targetcontainer="true" />
+        </StatusEffect>
+      </ItemComponent>
+      <ItemContainer capacity="9" slotsperrow="3" canbeselected="true" selectkey="Action" hideitems="true" keepopenwhenequipped="true" movableframe="true" msg="itemmsginteractuse">
+        <GuiFrame relativesize="0.2,0.3" anchor="Center" style="ItemUI" />
+        <Containable items="radioactivematerial,ore,depletedfuel,uranium,thorium,uraniumore,brockite,thorianite" />
+        <StatusEffect type="OnPicked" target="This">
+          <Sound file="%ModDir%/Workshop/Immersive Crates/Content/Items/crate_open1.ogg" range="300" volume="2.0" loop="false" />
+        </StatusEffect>
+      </ItemContainer>
+    </Item>
+  </Items>
+</Override>

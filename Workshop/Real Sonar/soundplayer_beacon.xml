@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <Affliction identifier="sonarsoundsbeacon" maxstrength="100" showiconthreshold="1000">
+    <!-- Distance: Far. -->
+    <Effect minstrength="0" maxstrength="25">
+      <!-- Apply air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional InWater="false" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirFarBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterFarBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitFarBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacon" amount="1000" />
+      </StatusEffect>
+    </Effect>
+    <!-- Distance: Medium. -->
+    <Effect minstrength="25" maxstrength="50">
+      <!-- Apply air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional InWater="false" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirFarBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterMediumBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitMediumBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacon" amount="1000" />
+      </StatusEffect>
+    </Effect>
+    <!-- Distance: Close. -->
+    <Effect minstrength="50" maxstrength="75">
+      <!-- Apply air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional InWater="false" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirMediumBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterCloseBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitCloseBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacon" amount="1000" />
+      </StatusEffect>
+    </Effect>
+    <!-- Distance: Very Close. -->
+    <Effect minstrength="75" maxstrength="100">
+      <!-- Apply air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional sonarsoundsbeacon="gt 95" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="false" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirCloseBeacon" strength="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional sonarsoundsbeacon="lteq 95" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="false" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirMediumBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterVeryCloseBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Apply suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitVeryCloseBeacon" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacon" amount="1000" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Air pings. -->
+  <Affliction identifier="sonarPingAirCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirCloseBeacon1.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirCloseBeacon2.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirCloseBeacon3.ogg" volume="0.6" />
+        <Affliction identifier="sonarTailAirCloseBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingAirCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingAirMediumBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirMediumBeacon1.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirMediumBeacon2.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirMediumBeacon3.ogg" volume="0.6" />
+        <Affliction identifier="sonarTailAirMediumBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingAirMediumBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingAirFarBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirFarBeacon1.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirFarBeacon2.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirFarBeacon3.ogg" volume="0.6" />
+        <Affliction identifier="sonarTailAirFarBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingAirFarBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Water pings. -->
+  <Affliction identifier="sonarPingWaterVeryCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterVeryCloseBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterVeryCloseBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterVeryCloseBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterVeryCloseBeacon4.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterVeryCloseBeacon5.ogg" volume="0.3" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterVeryCloseBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterVeryCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingWaterCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterCloseBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterCloseBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterCloseBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterCloseBeacon4.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterCloseBeacon5.ogg" volume="0.3" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterCloseBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingWaterMediumBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon4.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon5.ogg" volume="0.3" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterMediumBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterMediumBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingWaterFarBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterFarBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterFarBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Suit pings. -->
+  <Affliction identifier="sonarPingSuitVeryCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitVeryCloseBeacon1.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitVeryCloseBeacon2.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitVeryCloseBeacon3.ogg" volume="0.8" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitVeryCloseBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitVeryCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingSuitCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitCloseBeacon1.ogg" volume="0.35" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitCloseBeacon2.ogg" volume="0.35" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitCloseBeacon3.ogg" volume="0.35" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitCloseBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingSuitMediumBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon1.ogg" volume="1.0" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon2.ogg" volume="1.0" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon3.ogg" volume="1.0" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitMediumBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitMediumBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingSuitFarBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon1.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon2.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon3.ogg" volume="0.8" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitFarBeacon" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitFarBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- 
+    The afflictions below only play sounds. Specifically, the last 2 seconds, or "Tail", of a ping. 
+    Each sound is set to play after a delay of 2 seconds. This is to allow the first half of the sound, the "Ping", to be played first.
+       
+    Why is it necessary to split the sounds into two parts? 
+    For 3 reasons.
+    1. Active sonar pings every 2.0 seconds (hard-coded).
+    2. Our ping sounds are longer than 2.0 seconds (3.99 seconds). 
+    3. After a Status Effect plays a sound, it can only play it again once it's finished; in other words, the sounds don't stack.
+
+    So, if you play a 4-second sound every 2 seconds, it won't work. Instead, it will play a 4-second sound every 4 seconds, missing every 2nd ping.
+    An exception to this rule is sounds played within item tags, but unfortunately, because we're using an explosion to apply sounds to players, 
+    it takes us outside the <Sonar> tag, and we're forced to devise our own solution for playing 4-second sounds in a 2-second interval.
+       
+    The solution is cutting the 4-second sounds in half to fit the 2.0-second ping interval. This means we're playing two different 2-second sounds every 2.0 seconds.
+    To prevent them playing on top of each other, add a 2-second delay on the 2nd sound, so it plays at the end of the first sound, creating a seamless 4-second sound being played every 2.0 seconds.
+    
+    It should be noted that achieving this technique with sounds longer than 4.0 seconds would require cutting it into additional pieces.
+    For example, a 6-second sound would require three 2-second sounds to be played at once, one with a 2-second delay, and one with a 4-second delay.
+  -->
+  <!-- Air tails. -->
+  <Affliction identifier="sonarTailAirCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirCloseBeacon1.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirCloseBeacon2.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirCloseBeacon3.ogg" volume="0.6" />
+        <ReduceAffliction identifier="sonarTailAirCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailAirMediumBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirMediumBeacon1.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirMediumBeacon2.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirMediumBeacon3.ogg" volume="0.6" />
+        <ReduceAffliction identifier="sonarTailAirMediumBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailAirFarBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirFarBeacon1.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirFarBeacon2.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirFarBeacon3.ogg" volume="0.6" />
+        <ReduceAffliction identifier="sonarTailAirFarBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Water tails. -->
+  <Affliction identifier="sonarTailWaterVeryCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterVeryCloseBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterVeryCloseBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterVeryCloseBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterVeryCloseBeacon4.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterVeryCloseBeacon5.ogg" volume="0.3" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterVeryCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailWaterCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterCloseBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterCloseBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterCloseBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterCloseBeacon4.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterCloseBeacon5.ogg" volume="0.3" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailWaterMediumBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon4.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon5.ogg" volume="0.3" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterMediumBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailWaterFarBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon1.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon2.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon3.ogg" volume="0.3" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterFarBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Suit tails. -->
+  <Affliction identifier="sonarTailSuitVeryCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitVeryCloseBeacon1.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitVeryCloseBeacon2.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitVeryCloseBeacon3.ogg" volume="0.8" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitVeryCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailSuitCloseBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitCloseBeacon1.ogg" volume="0.35" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitCloseBeacon2.ogg" volume="0.35" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitCloseBeacon3.ogg" volume="0.35" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitCloseBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailSuitMediumBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon1.ogg" volume="1.0" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon2.ogg" volume="1.0" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon3.ogg" volume="1.0" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitMediumBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailSuitFarBeacon" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon1.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon2.ogg" volume="0.8" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon3.ogg" volume="0.8" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitFarBeacon" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarsoundsbeacondirectional" maxstrength="100" showiconthreshold="1000">
+    <!-- Distance: Far. -->
+    <Effect minstrength="0" maxstrength="25">
+      <!-- Apply directional air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional InWater="false" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirFarBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterFarBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitFarBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacondirectional" amount="1000" />
+      </StatusEffect>
+    </Effect>
+    <!-- Distance: Medium. -->
+    <Effect minstrength="25" maxstrength="50">
+      <!-- Apply directional air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional InWater="false" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirFarBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterMediumBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitMediumBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacondirectional" amount="1000" />
+      </StatusEffect>
+    </Effect>
+    <!-- Distance: Close. -->
+    <Effect minstrength="50" maxstrength="75">
+      <!-- Apply directional air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional InWater="false" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirMediumBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterCloseBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitCloseBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacondirectional" amount="1000" />
+      </StatusEffect>
+    </Effect>
+    <!-- Distance: Very Close. -->
+    <Effect minstrength="75" maxstrength="100">
+      <!-- Apply directional air sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional sonarsoundsdirectional="gt 95" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="false" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirCloseBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional sonarsoundsdirectional="lteq 95" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="false" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingAirMediumBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional water sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="! sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingWaterVeryCloseBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Apply directional suit sounds -->
+      <StatusEffect target="Character" disabledeltatime="true" comparison="and">
+        <Conditional HasStatusTag="sonarprotection" />
+        <Conditional serversidelua="lteq 0" />
+        <Conditional InWater="true" />
+        <Conditional ishuman="true" />
+        <Affliction identifier="sonarPingSuitVeryCloseBeaconDirectional" strength="1" />
+      </StatusEffect>
+      <!-- Remove affliction. -->
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarsoundsbeacondirectional" amount="1000" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- ↓↓↓ DIRECTIONAL SOUNDS ↓↓↓ -->
+  <!-- Directional Air pings. -->
+  <Affliction identifier="sonarPingAirCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirCloseBeacon1_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirCloseBeacon2_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirCloseBeacon3_Directional.ogg" volume="0.6" />
+        <Affliction identifier="sonarTailAirCloseBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingAirCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingAirMediumBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirMediumBeacon1_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirMediumBeacon2_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirMediumBeacon3_Directional.ogg" volume="0.6" />
+        <Affliction identifier="sonarTailAirMediumBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingAirMediumBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingAirFarBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirFarBeacon1_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirFarBeacon2_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingAirFarBeacon3_Directional.ogg" volume="0.6" />
+        <Affliction identifier="sonarTailAirFarBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingAirFarBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Directional Water pings. -->
+  <Affliction identifier="sonarPingWaterVeryCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon1_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon2_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon3_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon4_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon5_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterVeryCloseBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterVeryCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingWaterCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon1_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon2_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon3_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon4_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterMediumBeacon5_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterCloseBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingWaterMediumBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon1_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon2_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon3_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterMediumBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterMediumBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingWaterFarBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon1_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon2_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingWaterFarBeacon3_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <Affliction identifier="sonarTailWaterFarBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingWaterFarBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Directional Suit pings. -->
+  <Affliction identifier="sonarPingSuitVeryCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon1_Directional.ogg" volume="0.5" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon2_Directional.ogg" volume="0.5" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon3_Directional.ogg" volume="0.5" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitVeryCloseBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitVeryCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingSuitCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon1_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon2_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitMediumBeacon3_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitCloseBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingSuitMediumBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon1_Directional.ogg" volume="0.7" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon2_Directional.ogg" volume="0.7" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon3_Directional.ogg" volume="0.7" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitMediumBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitMediumBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarPingSuitFarBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon1_Directional.ogg" volume="0.4" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon2_Directional.ogg" volume="0.4" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarPingSuitFarBeacon3_Directional.ogg" volume="0.4" dontmuffle="true" />
+        <Affliction identifier="sonarTailSuitFarBeaconDirectional" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
+        <ReduceAffliction identifier="sonarPingSuitFarBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Directional Air tails. -->
+  <Affliction identifier="sonarTailAirCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirCloseBeacon1_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirCloseBeacon2_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirCloseBeacon3_Directional.ogg" volume="0.6" />
+        <ReduceAffliction identifier="sonarTailAirCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailAirMediumBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirMediumBeacon1_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirMediumBeacon2_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirMediumBeacon3_Directional.ogg" volume="0.6" />
+        <ReduceAffliction identifier="sonarTailAirMediumBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailAirFarBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirFarBeacon1_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirFarBeacon2_Directional.ogg" volume="0.6" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailAirFarBeacon3_Directional.ogg" volume="0.6" />
+        <ReduceAffliction identifier="sonarTailAirFarBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Directional Water tails. -->
+  <Affliction identifier="sonarTailWaterVeryCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon1_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon2_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon3_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon4_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon5_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterVeryCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailWaterCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon1_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon2_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon3_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon4_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterMediumBeacon5_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailWaterMediumBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon1_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon2_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon3_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterMediumBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailWaterFarBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon1_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon2_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailWaterFarBeacon3_Directional.ogg" volume="0.15" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailWaterFarBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Directional Suit tails. -->
+  <Affliction identifier="sonarTailSuitVeryCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon1_Directional.ogg" volume="0.5" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon2_Directional.ogg" volume="0.5" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon3_Directional.ogg" volume="0.5" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitVeryCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailSuitCloseBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon1_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon2_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitMediumBeacon3_Directional.ogg" volume="0.3" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitCloseBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailSuitMediumBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon1_Directional.ogg" volume="0.7" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon2_Directional.ogg" volume="0.7" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon3_Directional.ogg" volume="0.7" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitMediumBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction identifier="sonarTailSuitFarBeaconDirectional" maxstrength="1" showiconthreshold="1000">
+    <Effect minstrength="0" maxstrength="1">
+      <StatusEffect target="Character" delay="1.98" disabledeltatime="true" stackable="false">
+        <Conditional IsLocalPlayer="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon1_Directional.ogg" volume="0.4" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon2_Directional.ogg" volume="0.4" dontmuffle="true" />
+        <sound file="%ModDir%/Workshop/Real Sonar/Sounds/sonarTailSuitFarBeacon3_Directional.ogg" volume="0.4" dontmuffle="true" />
+        <ReduceAffliction identifier="sonarTailSuitFarBeaconDirectional" amount="10" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+</Afflictions>

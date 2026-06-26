@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <!-- Items -->
+  <entityname.zippolighter>Lighter</entityname.zippolighter>
+  <entitydescription.zippolighter>Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolighter>
+  <entityname.packofcigarettes>Pack of Cigarettes</entityname.packofcigarettes>
+  <entitydescription.packofcigarettes>Holds up to 20 cigarettes.</entitydescription.packofcigarettes>
+  <entityname.cigarette>Cigarette</entityname.cigarette>
+  <entitydescription.cigarette>A submariner's life is mentally taxing, but a good cigarette can help you soothe your nerves a bit. Ignite it with a lighter or an open fire.</entitydescription.cigarette>
+  <entityname.crumpledpaper>Crumpled Paper</entityname.crumpledpaper>
+  <entitydescription.crumpledpaper>A crumpled piece of paper. Flamable</entitydescription.crumpledpaper>
+  <entityname.lighterfuel>Lighter Fuel</entityname.lighterfuel>
+  <entitydescription.lighterfuel>Used to refill a lighter. Simply hold it onto the lighter.</entitydescription.lighterfuel>
+  <entityname.zippolighterblue>Blue Lighter</entityname.zippolighterblue>
+  <entitydescription.zippolighterblue>Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolighterblue>
+  <entityname.zippolighterred>Red Lighter</entityname.zippolighterred>
+  <entitydescription.zippolighterred>Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolighterred>
+  <entityname.zippolightergreen>Green Lighter</entityname.zippolightergreen>
+  <entitydescription.zippolightergreen>Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolightergreen>
+  <entityname.zippolighterpurple>Purple Lighter</entityname.zippolighterpurple>
+  <entitydescription.zippolighterpurple>Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolighterpurple>
+  <entityname.zippolighterpink>Pink Lighter</entityname.zippolighterpink>
+  <entitydescription.zippolighterpink>Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolighterpink>
+  <entityname.zippolighteryellow>Yellow Lighter</entityname.zippolighteryellow>
+  <entitydescription.zippolighteryellow>Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolighteryellow>
+  <entityname.zippolighterblackengraved>Black Engraved Lighter</entityname.zippolighterblackengraved>
+  <entitydescription.zippolighterblackengraved>A rare and more fuel efficient lighter with engraving. Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolighterblackengraved>
+  <entityname.zippolightersilverengraved>Silver Engraved Lighter</entityname.zippolightersilverengraved>
+  <entitydescription.zippolightersilverengraved>A rare and more fuel efficient lighter with engraving. Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolightersilverengraved>
+  <entityname.zippolightergoldengraved>Gold Engraved Lighter</entityname.zippolightergoldengraved>
+  <entitydescription.zippolightergoldengraved>A rare and more fuel efficient lighter with engraving. Used to light up nearby ignitable items like cigarettes or molotov cocktails. Simply hold it closely to the item.</entitydescription.zippolightergoldengraved>
+  <!-- Afflictions -->
+  <afflictionname.smoking>Smoking</afflictionname.smoking>
+  <afflictiondescription.smoking>Currently inhaling smoke.</afflictiondescription.smoking>
+</infotexts>

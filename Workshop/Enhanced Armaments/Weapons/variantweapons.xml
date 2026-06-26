@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!--SG550-->
+  <Item name="Damaged Assault Rifle" identifier="scp_sg550fractalite" variantof="scp_sg550" health="30" description="An old and severely damaged Coalition assault rifle, a buildup of odd material prevents the magazine from being removed, though it may not survive much more." subcategory="Alien" HideConditionInTooltip="true" HideConditionBar="true">
+    <ClearAll>
+      <PreferredContainer />
+      <Fabricate />
+      <Quality />
+    </ClearAll>
+    <Price baseprice="600" displaynonempty="true" sold="false">
+      <Clear />
+      <Price storeidentifier="merchantoutpost" multiplier="0.5" />
+      <Price storeidentifier="merchantcity" multiplier="0.5" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.5" />
+      <Price storeidentifier="merchantarmory" multiplier="0.5" />
+    </Price>
+    <Deconstruct time="15">
+      <Item identifier="scp_556mag" amount="1" copycondition="true" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <Sprite texture="%ModDir%/Workshop/Enhanced Armaments/Weapons/fractaliteweapons.png" sourcerect="4,91,244,76" depth="0.55" origin="0.49529946,0.3740088" />
+    <RangedWeapon reload="0.095" reloadnoskill="0.11" reloadskillrequirement="45" barrelpos="122,16" spread="7" unskilledspread="18" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Clear />
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <Sound file="%ModDir%/Workshop/Enhanced Armaments/Sounds/5.561.ogg" type="OnUse" range="3000" selectionmode="Random" />
+      <Sound file="%ModDir%/Workshop/Enhanced Armaments/Sounds/5.561.ogg" type="OnUse" range="3000" frequencymultiplier="0.96" />
+      <Sound file="%ModDir%/Workshop/Enhanced Armaments/Sounds/5.561.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="150.0" force="1" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="9.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Character,This" Condition="2" disabledeltatime="true">
+        <Conditional SpeciesGroup="ancientalien" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Explosion range="50.0" force="5" shockwave="true" smoke="true" flames="false" sparks="true" underwaterbubble="true" camerashake="20.0">
+          <Affliction identifier="lacerations" strength="18" />
+          <Affliction identifier="bleeding" strength="24" />
+          <Affliction identifier="burn" strength="8" />
+        </Explosion>
+        <Sound file="Content/Sounds/Damage/HitMetal6.ogg" range="650" volume="1" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="5" velocitymin="50" velocitymax="150" scalemin="1.0" scalemax="1.0" />
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" Condition="-2" disabledeltatime="true">
+        <SpawnItem identifier="scp_556projectile" spawnposition="ThisInventory" />
+        <ParticleEmitter particle="scp_spentcasingriflesmall" particleamount="1" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+      </StatusEffect>
+      <RequiredSkill identifier="weapons" level="45" />
+    </RangedWeapon>
+    <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" SpawnWithId="scp_556projectile" removecontaineditemsondeconstruct="true">
+      <Clear />
+      <Containable items="scp_556projectile" />
+    </ItemContainer>
+    <aitarget sightrange="2000" soundrange="4000" fadeouttime="5" />
+    <SkillRequirementHint identifier="weapons" level="45" />
+  </Item>
+  <Item name="Corroded Oppressor Assault Rifle" identifier="scp_ak103fractalite" variantof="scp_ak103" health="30" description="A heavily rusted and broken Renegade oppressor assault rifle, some buildup of odd material resists attempts to remove the magazine, though it might just blow up in your hands." subcategory="Alien" HideConditionInTooltip="true" HideConditionBar="true">
+    <ClearAll>
+      <PreferredContainer />
+      <Fabricate />
+      <Quality />
+    </ClearAll>
+    <Price baseprice="720" displaynonempty="true" sold="false">
+      <Clear />
+      <Price storeidentifier="merchantoutpost" multiplier="0.5" />
+      <Price storeidentifier="merchantcity" multiplier="0.5" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.5" />
+      <Price storeidentifier="merchantarmory" multiplier="0.5" />
+    </Price>
+    <Deconstruct time="15">
+      <Item identifier="scp_akmag" amount="1" copycondition="true" />
+      <Item identifier="steel" />
+    </Deconstruct>
+    <Sprite texture="%ModDir%/Workshop/Enhanced Armaments/Weapons/fractaliteweapons.png" sourcerect="11,212,255,68" depth="0.55" origin="0.5,0.5" />
+    <RangedWeapon reload="0.11" reloadnoskill="0.16" reloadskillrequirement="50" barrelpos="127,22" spread="10" unskilledspread="36" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Clear />
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <Sound file="%ModDir%/Workshop/Enhanced Armaments/Sounds/ak7621.ogg" type="OnUse" range="3000" selectionmode="Random" />
+      <Sound file="%ModDir%/Workshop/Enhanced Armaments/Sounds/ak7621.ogg" type="OnUse" range="3000" frequencymultiplier="0.96" />
+      <Sound file="%ModDir%/Workshop/Enhanced Armaments/Sounds/ak7621.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="150.0" force="1.25" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="25" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Character,This" Condition="3" disabledeltatime="true">
+        <Conditional SpeciesGroup="ancientalien" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Explosion range="50.0" force="5" shockwave="true" smoke="true" flames="false" sparks="true" underwaterbubble="true" camerashake="20.0">
+          <Affliction identifier="lacerations" strength="28" />
+          <Affliction identifier="bleeding" strength="34" />
+          <Affliction identifier="burn" strength="12" />
+        </Explosion>
+        <Sound file="Content/Sounds/Damage/HitMetal6.ogg" range="650" volume="1" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="5" velocitymin="50" velocitymax="150" scalemin="1.0" scalemax="1.0" />
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" Condition="-3" disabledeltatime="true">
+        <SpawnItem identifier="scp_762x39projectile" spawnposition="ThisInventory" />
+        <ParticleEmitter particle="scp_spentcasingriflemed" particleamount="1" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.35" scalemax="0.35" />
+      </StatusEffect>
+      <RequiredSkill identifier="weapons" level="40" />
+    </RangedWeapon>
+    <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" SpawnWithId="scp_762x39projectile" removecontaineditemsondeconstruct="true">
+      <Clear />
+      <Containable items="scp_762x39projectile" />
+    </ItemContainer>
+    <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+    <SkillRequirementHint identifier="weapons" level="50" />
+  </Item>
+  <Item name="Eroded Heavy Pistol" identifier="scp_meusocfractalite" variantof="scp_meusoc" health="10" description="A marred and rusted Coalition heavy pistol, a buildup of odd material encompases the grip and safeties, making its use very daring." subcategory="Alien" HideConditionInTooltip="true" HideConditionBar="true">
+    <ClearAll>
+      <PreferredContainer />
+      <Fabricate />
+      <Quality />
+    </ClearAll>
+    <Price baseprice="320" displaynonempty="true" sold="false">
+      <Clear />
+      <Price storeidentifier="merchantoutpost" multiplier="0.5" />
+      <Price storeidentifier="merchantcity" multiplier="0.5" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.5" />
+      <Price storeidentifier="merchantarmory" multiplier="0.5" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="scp_45mag" amount="1" copycondition="true" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <Sprite texture="%ModDir%/Workshop/Enhanced Armaments/Weapons/fractaliteweapons.png" sourcerect="0,1,113,75" depth="0.55" origin="0.5,0.5" />
+    <RangedWeapon reload="0.42" reloadnoskill="0.6" reloadskillrequirement="35" barrelpos="61,13" spread="9" unskilledspread="18" combatPriority="60" drawhudwhenequipped="true" DualWieldReloadTimePenaltyMultiplier="1.15" DualWieldAccuracyPenalty="8" crosshairscale="0.2">
+      <Clear />
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <Sound file="%ModDir%/Workshop/Enhanced Armaments/Sounds/451.ogg" type="OnUse" range="3000" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="150.0" force="2" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="12.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Character,This" Condition="1.667" disabledeltatime="true">
+        <Conditional SpeciesGroup="ancientalien" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Explosion range="50.0" force="5" shockwave="true" smoke="true" flames="false" sparks="true" underwaterbubble="true" camerashake="20.0">
+          <Affliction identifier="lacerations" strength="12" />
+          <Affliction identifier="bleeding" strength="18" />
+          <Affliction identifier="burn" strength="4" />
+        </Explosion>
+        <Sound file="Content/Sounds/Damage/HitMetal6.ogg" range="650" volume="1" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="5" velocitymin="50" velocitymax="150" scalemin="1.0" scalemax="1.0" />
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" Condition="-1.667" disabledeltatime="true">
+        <SpawnItem identifier="scp_45projectile" spawnposition="ThisInventory" />
+        <ParticleEmitter particle="scp_spentcasingpistol" particleamount="1" anglemin="70" anglemax="100" velocitymin="250" velocitymax="350" copyentityangle="true" scalemin="0.7" scalemax="0.7" />
+      </StatusEffect>
+      <RequiredSkill identifier="weapons" level="35" />
+    </RangedWeapon>
+    <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" SpawnWithId="scp_45projectile" removecontaineditemsondeconstruct="true">
+      <Clear />
+      <Containable items="scp_45projectile" />
+    </ItemContainer>
+    <aitarget sightrange="2000" soundrange="4000" fadeouttime="5" />
+    <SkillRequirementHint identifier="weapons" level="35" />
+  </Item>
+</Items>

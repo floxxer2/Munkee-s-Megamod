@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <OutpostGenerationParameters>
+    <OutpostConfig identifier="outpost" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="Outpost">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+    <OutpostConfig identifier="city" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="city">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+    <OutpostConfig identifier="miningoutpost" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="Mine">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+    <OutpostConfig identifier="militaryoutpost" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="Military">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+    <OutpostConfig identifier="researchoutpost" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="Research">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+    <OutpostConfig identifier="abandonedoutpost" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="Abandoned">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+    <OutpostConfig identifier="fallback" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+    <OutpostConfig identifier="tutorialoutpost" totalmodulecount="2" appendtoreachtotalmodulecount="false" minhallwaylength="400">
+      <modulecount flag="dockablerock" count="1" />
+      <modulecount flag="Dockable_upper" count="1" />
+    </OutpostConfig>
+  </OutpostGenerationParameters>
+</Override>

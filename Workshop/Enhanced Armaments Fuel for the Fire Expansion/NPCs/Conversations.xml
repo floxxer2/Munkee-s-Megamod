@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Conversations identifier="ehaffconversations" Language="English" nowhitespace="False">
+  <Conversation line="I've heard something spooky that the high-brass have been dealing with, there's some type of Coalition goons that come and go with nothing but whispers." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="Me too, I've found bodies riddled with holes and surrounded by casings, but I heard no shots." speaker="1" flags="OutpostNPCSeparatists" />
+    <Conversation line="Aye, had to clean up after those guys once, 'least those sorry saps died fast. Nasty sights, those were." speaker="1" flags="OutpostNPCSeparatists" />
+    <Conversation line="That implies they've been seen." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="Damn it, where's my Shotgun?" speaker="0" allowedjobs="securityofficer">
+    <Conversation line="Which one? There's like, five different ones in the armory!" speaker="1" />
+    <Conversation line="I left it in the armory. Look into more shells soon, we're running low." speaker="1" allowedjobs="securityofficer" />
+    <Conversation line="What, need to yank it to get the blood going?" speaker="1" speakertags="laid-back,joker">
+      <Conversation line="...Pipe up like that again, and you'll be pissing scattershot, IF you can find your bits later." speaker="0" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="What's with all the new stuff on the market? Weren't there enough as-is?" speaker="0">
+    <Conversation line="Those pistols pack a punch, sure, but it goes both ways if you can't hold them right." speaker="1" />
+    <Conversation line="The Shotguns would be perfect, if I didn't have to realign my shoulder afterwards." speaker="1" />
+    <Conversation line="Is there going to be Wild West: Electric Boogaloo or something?" speaker="1" speakertags="joker,crazy">
+      <Conversation line="-The fuck is a 'Wild West?' and why is it an electrified what-now?" speaker="0" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="My ass is heavy." speaker="0" />
+</Conversations>
+<!-- 
+  <Conversation line="Ever heard of Vanguards? Nasty pieces of work working for the Separatists." speaker="0">
+    <Conversation line="I have and I'll tell you now I never want to meet one, I've heard a lot of stories about them and how they pretty much shred every assaulting Coalition vessel that dares come across them." speaker="1" />
+    <Conversation line="Fingers crossed we don't have to run into any then..." speaker="0" />
+    <Conversation line="Alright enough about the furry wannabe spec ops, we have a job to do." speaker="2" allowedjobs="captain" />
+  </Conversation>
+  <Conversation line="Why does the Coalition not have any special forces unlike the Separatists?" speaker="0">
+    <Conversation line="No idea, probably because they don't need them." speaker="1" />
+    <Conversation line="You'd think a PMC would have formed by now and filled that niche?" speaker="0" />
+    <Conversation line="Given how hellish the political situation is I can sort of see that being a market that's going to skyrocket soon, trained contractors for better security when shit hits the fan." speaker="1" />
+    <Conversation line="Eh... now that I think about it I really doubt the Coalition, as Beureaucratic as it is, would be willing to allow PMCs to take their place, too much potential for corruption." speaker="0" />
+  </Conversation>
+  <Conversation line="Let's get a tonne of Condensed Ethanol and get the medic to down it all!" speaker="0">
+    <Conversation line="I'd appreciate it if you didn't. I'd like to have a functioning liver unlike your alcoholic ass." speaker="1" allowedjobs="medicaldoctor" />
+    <Conversation line="You're no fun... No wonder why people see you guys as party crashers." speaker="0" />
+    <Conversation line="Can it, you're getting on my nerves." speaker="1" allowedjobs="medicaldoctor" />
+  </Conversation>
+  <Conversation line="Preso Latex is a horrible thing, why the hell was it even made?" speaker="0">
+    <Conversation line="I have no idea, apparently it's got this weird mutagenic... I think that's the word... affect on human tissue." speaker="1" />
+    <Conversation line="Refrain from touching the latex stocks please, it's marked 'Chemical Hazard' for a reason, I don't want to have to use all the Stabilozine and watch the whole crew petrify." speaker="2" allowedjobs="medicaldoctor" />
+    <Conversation line="Trust me doc' by no means am I going anywhere near your fetishist nightmare material, I already have enough on my mind." speaker="0" />
+    <Conversation line="I'm not going to entertain your strange opinion on it." speaker="2" allowedjobs="medicaldoctor" />
+  </Conversation>
+  <Conversation line="Which gun is best?" speaker="0">
+    <Conversation line="I'd have to say our SMGs, big calibre and good for basic defense, though the barrel's kinda shitty." speaker="1" />
+    <Conversation line="No way Pistols are the go-to, I can throw it in my toolbelt and I have a fully-semi gun ready to go with a half action trigger." speaker="0" />
+    <Conversation line="I don't know about pistols they're pretty bad for pretty much anything other than self-defence, even though I've been told it'll blow a lung out of the body no problem." speaker="1" />
+    <Conversation line="Neither of you have a fucking clue what you're talking about, please for the love of god stop." speaker="2" allowedjobs="securityofficer" />
+  </Conversation>
+  <Conversation line="What's next in the line of small arms development?" speaker="0" />
+  <Conversation line="I'm betting something to do with all of this weird chemical weaponry stuff that's slowly becoming more prevalent." speaker="0" />
+  <Conversation line="Nah, definitely hand-held rail and coil weaponry, once Fulgurium becomes a lot more understood we'll be walking around with some pretty powerful kit. Chemical weapons only get you so far." speaker="1" allowedjobs="securityofficer">
+    <Conversation line="I'm no gun guy so all bets are off for me." speaker="0" />
+  </Conversation>
+  <Conversation line="Anyone heard of a rumour about a strange mask killing people?" speaker="0">
+    <Conversation line="I have, I blame clowns if it exists." speaker="1">
+      <Conversation line="A mask that claims the life of many-a-unfortunate sailor apparently.." speaker="0">
+        <Conversation line="Alright it's probably best I try not to freak everyone out." speaker="0" />
+        <Conversation line="I have no clue what either of you are on about, I'll be honest." speaker="2" />
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Ah, tick tick tock. Is that a geiger counter or my life-span ticking down? It's Both!" speaker="0" flags="InRadiation" />
+  <Conversation line="Jesus I'm feeling really sick... I'm sterile for sure..." speaker="0" flags="InRadiation" />
+  <Conversation line="I feel like I'm about to have a seizure, my entire head feels like it's going to explode." speaker="0" flags="InRadiation" />
+  <Conversation line="Jove almighty these gamma radiation levels are insane. Cap' you better get our asses moving now." speaker="0" flags="InRadiation" allowedjobs="engineer" />
+  <Conversation line="I really hope I have enough Anti-Rad after this, lord knows you'll all need it." speaker="0" flags="InRadiation" allowedjobs="medicaldoctor" />
+  <Conversation line="Vanguards have been kicking ass as of late, been sending those Coalition dogs packing." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="Too right, reminds me of the books I read on Special Forces back on Earth, some daring shit they got up to." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="How did things get this fucked anyways?" speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="Come on! It's hardly like it's a surprise! Europa's been in the shitter ever since Earth stopped talking, now we're on our own and now the Coalition is going mad for power." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="Infiltrators scare me." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="I'd keep your voice down, I doubt you'd want to start throwing that name around." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="By Jove I'm bored, it's all this being stuck inside a metal tube all day and night, really fucks with me." speaker="0" flags="OutpostNPC" />
+  <Conversation line="What i'd do for that Battle Rifle I got my eyes on not too long ago..." speaker="0" flags="OutpostNPC" />
+</Conversations> -->

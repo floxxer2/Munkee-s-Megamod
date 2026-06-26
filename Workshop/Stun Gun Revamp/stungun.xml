@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <Item name="" identifier="stungun" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,stunner,gunsmith,provocativetohumanai,mountableweapon" Scale="0.5" impactsoundtag="impact_metal_light" inventoryiconcolor="125,125,125,255" spritecolor="125,125,125">
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="768,830,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,368,83,47" depth="0.55" origin="0.5,0.5" />
+      <Body width="80" height="40" density="25" />
+      <Holdable slots="Any,RightHand,LeftHand" controlpose="true" aimpos="70,10" handle1="-5,-7" msg="ItemMsgPickUpSelect" />
+      <RangedWeapon barrelpos="14,6" spread="0" unskilledspread="2" combatPriority="40" drawhudwhenequipped="true" crosshairscale="0.2">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+        <Sound file="Content/Items/Weapons/TaserShot1.ogg" type="OnUse" range="1000" selectionmode="Random" />
+        <Sound file="Content/Items/Weapons/TaserShot2.ogg" type="OnUse" range="1000" />
+        <StatusEffect type="OnUse" target="Contained">
+          <Explosion range="100.0" force="2" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="2.0" />
+        </StatusEffect>
+        <RequiredItems items="stungunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+        <RequiredSkill identifier="weapons" level="20" />
+      </RangedWeapon>
+      <ItemContainer capacity="1" hideitems="true" maxstacksize="1" containedstateindicatorstyle="bullet">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Containable items="stungunammo" />
+      </ItemContainer>
+      <aitarget sightrange="0" soundrange="0" />
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      <SkillRequirementHint identifier="weapons" level="20" />
+    </Item>
+    <Item name="" identifier="stungundart" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="8" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,stungunammo,handheldammo" Scale="0.5" impactsoundtag="impact_metal_light" inventoryiconcolor="125,125,125,255" spritecolor="125,125,125">
+      <Deconstruct time="5" />
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="766,576,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="183,221,72,18" depth="0.55" origin="0.5,0.5" />
+      <Body width="70" height="15" density="11" />
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+      <!--Non-lethal projectile sticks to characters and stuns them for some seconds, depending on mass.-->
+      <Projectile characterusable="false" launchimpulse="15.0" sticktocharacters="true">
+        <Attack structuredamage="0" targetforce="2">
+          <Affliction identifier="lacerations" strength="0.5" />
+        </Attack>
+        <StatusEffect type="OnImpact" target="UseTarget" delay="0.5" disabledeltatime="true">
+          <Conditional entitytype="eq Character" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="3" ScaleMin="0.07" ScaleMax="0.1" />
+          <Affliction identifier="electricshock" strength="80" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget" delay="2.5" disabledeltatime="true">
+          <Conditional entitytype="eq Character" />
+          <Affliction identifier="electricshock" strength="35" />
+          <!-- should reach between 90-100 str (-5 strength change/s)-->
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="This" delay="0.5">
+          <Sound file="Content/Items/Weapons/TaserHit1.ogg" type="OnUse" range="500" selectionmode="Random" />
+          <Sound file="Content/Items/Weapons/TaserHit2.ogg" type="OnUse" range="500" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="3" ScaleMin="0.07" ScaleMax="0.1" />
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget">
+          <Conditional entitytype="eq Structure" />
+          <Conditional hastag="eq door" />
+          <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
+        </StatusEffect>
+      </Projectile>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    </Item>
+    <Item name="" identifier="stungunnew" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,stunner,gunsmith,provocativetohumanai,mountableweapon" Scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="1" notcampaign="true" notpvp="true" />
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" amount="1" spawnprobability="0.1" />
+      <PreferredContainer secondary="armcab" />
+      <Price baseprice="180">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.35" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" />
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="4" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="4" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20">
+        <RequiredSkill identifier="weapons" level="40" />
+        <RequiredItem identifier="steel" amount="2" />
+        <RequiredItem identifier="plastic" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="768,830,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="0,368,83,47" depth="0.55" origin="0.5,0.5" />
+      <Body width="80" height="40" density="25" />
+      <Holdable slots="Any,RightHand,LeftHand" controlpose="true" aimpos="70,10" handle1="-5,-7" msg="ItemMsgPickUpSelect" />
+      <RangedWeapon barrelpos="14,6" spread="0" unskilledspread="2" combatPriority="40" drawhudwhenequipped="true" crosshairscale="0.2">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+        <Sound file="Content/Items/Weapons/TaserShot1.ogg" type="OnUse" range="1000" selectionmode="Random" />
+        <Sound file="Content/Items/Weapons/TaserShot2.ogg" type="OnUse" range="1000" />
+        <StatusEffect type="OnUse" target="Contained">
+          <Explosion range="100.0" force="2" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="2.0" />
+        </StatusEffect>
+        <!-- <RequiredItems items="stungunammo" type="Contained" msg="ItemMsgAmmoRequired" /> -->
+        <RequiredItems items="stungunammo" type="Contained" />
+        <RequiredSkill identifier="weapons" level="20" />
+      </RangedWeapon>
+      <ItemContainer capacity="1" hideitems="true" maxstacksize="1" containedstateindicatorstyle="bullet">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Containable items="stungunammo" />
+      </ItemContainer>
+      <aitarget sightrange="0" soundrange="0" />
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      <SkillRequirementHint identifier="weapons" level="20" />
+    </Item>
+    <Item name="" identifier="stungundartnew" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="8" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,stungunammo,handheldammo,loadable" Scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="armcab" minamount="1" maxamount="10" spawnprobability="0.25" notcampaign="true" notpvp="true" />
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
+      <PreferredContainer primary="stungun" amount="2" spawnprobability="1" />
+      <PreferredContainer secondary="secarmcab" />
+      <Price baseprice="30">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="3" />
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="6" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="6" />
+      </Price>
+      <Deconstruct time="5" />
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="20" amount="2">
+        <RequiredSkill identifier="weapons" level="30" />
+        <Item identifier="steel" />
+        <Item tag="wire" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="766,576,64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="183,221,72,18" depth="0.55" origin="0.5,0.5" />
+      <Body width="70" height="15" density="11" />
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+      <Rope sourcepullforce="0" targetpullforce="25" projectilepullforce="5" maxlength="450" snaponcollision="false" spritewidth="3" tile="true" origin="0.05,0.5" targetminmass="10" lerpforces="true" snapanimduration="0.5" ReelSoundPitchSlide="1.0,2.25">
+        <Sprite texture="%ModDir%/Workshop/Stun Gun Revamp/taserwire.png" sourcerect="0,0,172,12" depth="0.57" origin="0.5,0.5" />
+        <SnapSound file="Content/Items/Weapons/HarpoonGun1.ogg" range="500" frequencymultiplier="3.0,4.0" />
+        <ReelSound file="Content/Items/Weapons/WEAPON_harpoonGunReelLoop.ogg" volume="0" range="0" />
+        <!-- Snap after 1 seconds if not stuck to anything -->
+        <StatusEffect type="OnUse" target="This" Snapped="true" delay="1" checkconditionalalways="true">
+          <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+        </StatusEffect>
+      </Rope>
+      <!--Non-lethal projectile sticks to characters and stuns them for some seconds, depending on mass.-->
+      <Projectile characterusable="false" launchimpulse="15.0" sticktocharacters="true" sticktoitems="true" sticktostructures="true" sticktodeflective="true" sticktodoors="false" sticktolighttargets="true">
+        <Attack structuredamage="0" targetforce="2">
+          <Affliction identifier="lacerations" strength="3" penetration="1.0" />
+          <Affliction identifier="bleeding" strength="4" penetration="1.0" />
+          <Affliction identifier="stun" strength="0.5" />
+        </Attack>
+        <StatusEffect type="OnImpact" target="UseTarget" disabledeltatime="true" comparison="And">
+          <Conditional entitytype="eq Character" />
+          <Conditional electricshock="lteq 12" />
+          <Affliction identifier="electricshock" strength="40" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget" disabledeltatime="true" comparison="And">
+          <Conditional entitytype="eq Character" />
+          <Conditional electricshock="gteq 20" />
+          <Conditional electricshock="lt 30" />
+          <Affliction identifier="electricshock" strength="20" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget" disabledeltatime="true" comparison="And">
+          <Conditional entitytype="eq Character" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="3" ScaleMin="0.07" ScaleMax="0.1" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="This" delay="0.5">
+          <Sound file="Content/Items/Weapons/TaserHit1.ogg" type="OnUse" range="500" selectionmode="Random" />
+          <Sound file="Content/Items/Weapons/TaserHit2.ogg" type="OnUse" range="500" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="3" ScaleMin="0.07" ScaleMax="0.1" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget">
+          <Conditional entitytype="eq Structure" />
+          <Conditional hastag="eq door" />
+          <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="UseTarget,This" checkconditionalalways="true" comparison="And" disabledeltatime="true">
+          <Conditional Snapped="false" />
+          <Conditional mass="lt 30" />
+          <Conditional condition="gt 0" />
+          <Sound file="%ModDir%/Workshop/Stun Gun Revamp/taser.ogg" type="OnActive" range="500" />
+          <Affliction identifier="drag" strength="1" />
+          <Affliction identifier="electricshock" strength="0.26" />
+          <Affliction identifier="burn" strength="0.003" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" checkconditionalalways="true" interval="1" Condition="-8" disabledeltatime="true">
+          <Conditional Snapped="false" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" checkconditionalalways="true" Condition="-100.0" disabledeltatime="true">
+          <Conditional Snapped="true" />
+        </StatusEffect>
+      </Projectile>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    </Item>
+    <Item name="" identifier="stungundartfulgurium" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="8" interactthroughwalls="true" allowasextracargo="true" cargocontaineridentifier="metalcrate" tags="smallitem,stungunammo,handheldammo,loadable" Scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="armcab" secondary="secarmcab" />
+      <Price baseprice="120" sold="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" />
+      </Price>
+      <Deconstruct time="5" />
+      <Fabricate suitablefabricators="weaponfabricator" requiredtime="25" amount="2" requiresrecipe="true">
+        <RequiredSkill identifier="weapons" level="40" />
+        <Item identifier="fulgurium" />
+        <Item tag="wire" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/JobGear/TalentGear.png" sourcerect="215,67,61,61" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="200,189,72,18" depth="0.55" origin="0.5,0.5" />
+      <Body width="70" height="15" density="11" waterdragcoefficient="1" />
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+      <Rope sourcepullforce="0" targetpullforce="25" projectilepullforce="5" maxlength="1500" snaponcollision="false" spritewidth="3" tile="true" origin="0.05,0.5" targetminmass="10" lerpforces="true" snapanimduration="0.5" ReelSoundPitchSlide="1.0,2.25">
+        <Sprite texture="%ModDir%/Workshop/Stun Gun Revamp/taserwire.png" sourcerect="0,0,172,12" depth="0.57" origin="0.5,0.5" />
+        <SnapSound file="Content/Items/Weapons/HarpoonGun1.ogg" range="500" frequencymultiplier="3.0,4.0" />
+        <ReelSound file="Content/Items/Weapons/WEAPON_harpoonGunReelLoop.ogg" volume="0" range="0" />
+        <!-- Snap after 1 seconds if not stuck to anything -->
+        <StatusEffect type="OnUse" target="This" Snapped="true" delay="1" checkconditionalalways="true">
+          <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+        </StatusEffect>
+      </Rope>
+      <!--Non-lethal projectile sticks to characters and stuns them for some seconds, depending on mass.-->
+      <Projectile characterusable="false" launchimpulse="15.0" sticktocharacters="true" sticktoitems="true" sticktostructures="true" sticktodeflective="true" sticktodoors="false" sticktolighttargets="true">
+        <Attack structuredamage="0" targetforce="2">
+          <Affliction identifier="lacerations" strength="6" penetration="1.0" />
+          <Affliction identifier="bleeding" strength="6" penetration="1.0" />
+          <Affliction identifier="stun" strength="0.5" />
+        </Attack>
+        <StatusEffect type="OnImpact" target="UseTarget" disabledeltatime="true" comparison="And">
+          <Conditional entitytype="eq Character" />
+          <Conditional electricshock="lteq 12" />
+          <Affliction identifier="electricshock" strength="40" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget" disabledeltatime="true" comparison="And">
+          <Conditional entitytype="eq Character" />
+          <Conditional electricshock="gteq 20" />
+          <Conditional electricshock="lt 30" />
+          <Affliction identifier="electricshock" strength="20" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget" disabledeltatime="true" comparison="And">
+          <Conditional entitytype="eq Character" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="3" ScaleMin="0.07" ScaleMax="0.1" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="This" delay="0.5">
+          <Sound file="Content/Items/Weapons/TaserHit1.ogg" type="OnUse" range="500" selectionmode="Random" />
+          <Sound file="Content/Items/Weapons/TaserHit2.ogg" type="OnUse" range="500" />
+          <ParticleEmitter particle="ElectricShock" DistanceMin="5" DistanceMax="20" ParticleAmount="3" ScaleMin="0.07" ScaleMax="0.1" />
+        </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget">
+          <Conditional entitytype="eq Structure" />
+          <Conditional hastag="eq door" />
+          <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="UseTarget,This" checkconditionalalways="true" comparison="And" disabledeltatime="true">
+          <Conditional Snapped="false" />
+          <Conditional mass="lt 30" />
+          <Conditional condition="gt 0" />
+          <Sound file="%ModDir%/Workshop/Stun Gun Revamp/taser.ogg" type="OnActive" range="500" />
+          <Affliction identifier="drag" strength="1" />
+          <Affliction identifier="electricshock" strength="0.38" />
+          <Affliction identifier="burn" strength="0.0075" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" checkconditionalalways="true" interval="1" Condition="-12" disabledeltatime="true">
+          <Conditional Snapped="false" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" checkconditionalalways="true" Condition="-100.0" disabledeltatime="true">
+          <Conditional Snapped="true" />
+        </StatusEffect>
+      </Projectile>
+    </Item>
+  </Items>
+</Override>

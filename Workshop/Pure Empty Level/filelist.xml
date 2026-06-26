@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Pure Empty Level" modversion="1.5d" corepackage="False" steamworkshopid="3033618197" gameversion="1.11.5.0" expectedhash="5C208DB3980D3786DBD7C9F6BEEA1854">
+  <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/Empty/Empty.xml" />
+  <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/AphoticPlateau/AphoticPlateau.xml" />
+  <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/ColdCaverns/ColdCaverns.xml" />
+  <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/EuropanRidge/EuropanRidge.xml" />
+  <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/HydrothermalWastes/HydrothermalWastes.xml" />
+  <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/TheGreatSea/TheGreatSea.xml" />
+  <LevelGenerationParameters file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/Biomes/EndBiome/EndBiome.xml" />
+  <Sounds file="%ModDir%/Workshop/Pure Empty Level/sounds.xml" />
+  <OutpostConfig file="%ModDir%/Workshop/Pure Empty Level/OutpostGenerationParameters.xml" />
+  <BeaconStation file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/BeaconStations/PEL_BeaconStation_Dummy.sub" />
+  <OutpostModule file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/BeaconStations/Dockable_upper.sub" />
+  <OutpostModule file="%ModDir%/Workshop/Pure Empty Level/PEL/Map/BeaconStations/DockableRock.sub" />
+  <Slideshows file="%ModDir%/Workshop/Pure Empty Level/Slideshows.xml" />
+</contentpackage>

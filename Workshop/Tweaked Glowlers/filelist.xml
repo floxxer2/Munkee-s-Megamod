@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Tweaked Glowlers" modversion="1.0" corepackage="False" gameversion="1.7.7.0" expectedhash="F61597B6A8A949C5B81FBEC3ECA55C8D">
+  <Item file="%ModDir%/Workshop/Tweaked Glowlers/items/items.xml" />
+</contentpackage>

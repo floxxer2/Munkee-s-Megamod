@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <sounds>
+    <waterambiencein file="%ModDir%/Workshop/Barotraumatic/Sounds/WaterAmbienceIn.ogg" />
+  </sounds>
+</Override>

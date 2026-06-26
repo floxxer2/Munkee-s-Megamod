@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Afflictions>
+    <Affliction name="Entering Door" identifier="enteringdoor" description="Opening a door" showiconthreshold="0" type="crouch" isbuff="true" limbspecific="false" maxstrength="3">
+      <Effect minstrength="0" maxstrength="3" strengthchange="-4.5" minspeedmultiplier="0" maxspeedmultiplier="0">
+        <StatusEffect type="Always" target="Character" disabledeltatime="true" stackable="false">
+          <Conditional IsLocalPlayer="true" />
+          <sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Door/zDoor/doorenter1.ogg" type="OnUse" range="500.0" volume="2" loop="false" />
+        </StatusEffect>
+      </Effect>
+      <AfflictionOverlay texture="%ModDir%/Workshop/Enhanced Immersion/Content/UI/Blackscreen.png" sourcerect="0,0,1920,1080" origin="0,0" color="255,255,255,255" />
+    </Affliction>
+  </Afflictions>
+</Override>

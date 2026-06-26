@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Conversations identifier="ehaconversations" Language="English" nowhitespace="False">
+  <Conversation line="Who do you think has the better special forces? The Coalition or the Separatists?" speaker="0" maxintensity="0.3">
+    <Conversation line="I don't know enough about them to say." speaker="1">
+      <Conversation line="My gut says the Coalition given the resource advantage." speaker="1">
+        <Conversation line="They've both got their strengths and weaknesses I guess." speaker="0">
+          <Conversation line="I suppose if we're lucky, or unlucky depending on what happens, we might find out ourselves." speaker="1" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="The Coalition likes to keep their stuff under wraps so, it's hard to say." speaker="1" allowedjobs="securityofficer">
+      <Conversation line="Their kit is generally a lot better though." speaker="1">
+        <Conversation line="As for the Separatists, it's hard to say for them as well but, in general their equipment's worse." speaker="1">
+          <Conversation line="But enough about that, I've gotta keep an eye on outside." speaker="1">
+            <Conversation line="Alright." speaker="0" />
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Can the politics, I don't want to instigate anything on this sub." speaker="1" allowedjobs="captain">
+      <Conversation line="Aye aye captain." speaker="0" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="You lot heard of those Vanguard guys?" speaker="0" maxintensity="0.3">
+    <Conversation line="They've made a big name for themselves given the mess they tend to cause so, yes." speaker="1">
+      <Conversation line="I really hope to Jove we don't end up finding any, they tend to be pretty antsy even around other Separatist guys." speaker="0">
+        <Conversation line="Well you've just jinxed us now so, thanks a lot." speaker="1">
+          <Conversation line="Great..." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="... No I haven't, who are they?" speaker="1">
+      <Conversation line="They're Separatist forces, they've got some pretty serious gear and funding to work with." speaker="0">
+        <Conversation line="Well fingers crossed we're not on the receiving end of them then." speaker="1">
+          <Conversation line="Agreed but for now, it's best we don't worry about it, we've got other stuff that needs contending with." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Got some pretty nice helmets don't they?" speaker="1">
+      <Conversation line="They do, though I'm not really sure why they made them look like wolves and cats, pretty weird I'll not lie." speaker="0">
+        <Conversation line="I remember reading a book on ancient Earth history, a lot of tribes back in the day used animal icons to show aggression or, really any form of emotion." speaker="1">
+          <Conversation line="Still really weird nontheless no?" speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Less chat, more focussing please." speaker="1" allowedjobs="captain">
+      <Conversation line="... Yes captain." speaker="0" />
+    </Conversation>
+    <Conversation line="Cut that talk, everyone's busy." speaker="1" allowedjobs="captain" speakertags="rude,professional">
+      <Conversation line="... Aye aye sir." speaker="0" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="Preso Latex is a horrible creation, who on Earth thought it was a good idea?" speaker="0" maxintensity="0.3">
+    <Conversation line="It's pretty useful for making ammo with, which you jarheads seem to go through a lot." speaker="1" allowedjobs="medicaldoctor">
+      <Conversation line="No need to so nasty about it." speaker="2" allowedjobs="securityofficer">
+        <Conversation line="I'll be as nasty as I want to." speaker="1">
+          <Conversation line="Hey I'm the one who keeps things out of our sub and makes sure no one backstabs you, how about you be slightly more grateful?" speaker="2">
+            <Conversation line="And I'm the one who has to plug the holes that are made when you fail at that." speaker="1">
+              <Conversation line="The both of you PLEASE SHUT UP! I can't do anything when all I can hear is you two yabbing away in my headphones." speaker="3" />
+            </Conversation>
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="If we've got any on board keep it in those containment box things, that stuff is a nightmare to keep safe." speaker="1">
+      <Conversation line="We got any anti-chemical stuff in case someone goes mad and tries to kill us all with it?" speaker="0">
+        <Conversation line="Probably not but, just hope nothing goes wrong for now." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="Eugh, I don't really know, all I know is it's useful for ammo." speaker="1">
+      <Conversation line="It's some pretty weird stuff I'll not lie, given how nasty it is I don't know why we haven't chosen something better." speaker="0">
+        <Conversation line="If it ain't broke don't fix it I guess, it might as well be the backbone of the ammo industry right now." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="Makes use of all the Elastin I suppose, mix it with the right things and you've got a chemical that can be used in the production of stuff." speaker="1">
+      <Conversation line="That'd be nice if it's only purpose wasn't borderline illegal weapons." speaker="0">
+        <Conversation line="I dunno, Ignis Latex has been used to for bulk Magnesium and Flashpowder, might be why there's so much ammo lying around these days." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="Save the heartfelt convo for when we dock, remember we need to stay foccused." speaker="1" allowedjobs="captain">
+      <Conversation line="Oh yes, aye aye captain." speaker="0" />
+    </Conversation>
+    <Conversation line="I'll make sure you get an idea of how terrible it is if you keep hogging comms for chit chat." speaker="1" allowedjobs="captain" speakertags="rude,professional">
+      <Conversation line="... Aye aye sir." speaker="0" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="I really don't like how war-like the situation is..." speaker="0" maxintensity="0.3">
+    <Conversation line="It's been like that for years, nothing changes." speaker="1">
+      <Conversation line="There's been lots of reports of outpost security having to deal with a lot of gun violence and stabbings and what not from either side." speaker="0">
+        <Conversation line="And also some use of some pretty hardcore chemicals to kill people." speaker="0">
+          <Conversation line="What chemicals were they?" speaker="1">
+            <Conversation line="I think Ignis Latex though there was reports that the victim's skin sort of... boiled away underneath, nothing left but a bloody mess." speaker="0">
+              <Conversation line="Wow, thanks for that fantastic mental image..." speaker="1" />
+            </Conversation>
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Not sure what you expected, they're opposed ideologically." speaker="1">
+      <Conversation line="Opposition causes conflict, that naturally tends to favour getting rid of the opposition." speaker="1">
+        <Conversation line="Fingers crossed we don't have this turn into a total war then." speaker="0">
+          <Conversation line="Given how things are going right now, I seriously doubt crossing your fingers will do anything." speaker="1" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Can the talk let's stay focussed please." speaker="1" allowedjobs="captain">
+      <Conversation line="... Aye sir." speaker="0" />
+    </Conversation>
+    <Conversation line="No extremists on my sub, watch your mouth or you're getting my gun barrel down your throat." speaker="1" allowedjobs="captain" speakertags="rude,professional">
+      <Conversation line="... yes of course, Aye aye captain." speaker="0" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="I think we should get one of those Anti-Materiel Rifles, they can really ruin someone's day." speaker="0" maxintensity="0.3">
+    <Conversation line="I have a feeling that would be incredibly expensive to maintain, those big powerful rounds aren't cheap you know." speaker="1">
+      <Conversation line="Screw price, I just want to put a big hole into something." speaker="0">
+        <Conversation line="I'm sure security isn't concerned at all." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="I think the Separatist's option's better, that thing can take how much different ammo." speaker="1">
+      <Conversation line="I know about the AMR but, not whatever that is." speaker="0">
+        <Conversation line="A sort of, rocket or grenade launcher, it loads from the front and some of the ammo's pretty bonkers." speaker="1">
+          <Conversation line="Makes me wonder why the Coalition doesn't have something like that." speaker="0">
+            <Conversation line="Well one's a lot more precise than the other so, I suppose it comes down to that." speaker="1" />
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="I'm sorry but you'd be more of a danger to us with one than an actual enemy, I've seen how you shoot." speaker="1" speakertags="joker,laid-back,rude">
+      <Conversation line="Like you're any better, look who's talking..." speaker="0">
+        <Conversation line="At least I don't openly talk about it." speaker="1">
+          <Conversation line="For Jove's sake I was just saying I want one, you're such a buzzkill." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Any of you wondered why the sub mounted Machine Gun turrets are in such a low calibre?" speaker="0" maxintensity="0.3">
+    <Conversation line="Not really sure, you'd think they'd go for something a bit beefier given it's mounted outside?" speaker="1">
+      <Conversation line="Eh... probably just to make it a cheap and energy efficient way of slinging lead a things, coilguns are cool but they take a lot of power." speaker="0">
+        <Conversation line="I suppose that makes sense." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="It's meant to be a really cheap, power efficient means of defence, I suppose they chose 762 because it's a lot easier to bulk manufacture." speaker="1" allowedjobs="securityofficer">
+      <Conversation line="Now obviously something a lot bigger calibre would be really cool, but Coilguns are kinda everywhere now and MG turrets are legacy options." speaker="1">
+        <Conversation line="Imagine a a really small calibre sub turret, that'd be pretty cheap to run." speaker="0">
+          <Conversation line="That'd be only good against those really small fish I see out of the window, though I guess they could be alright for the interior." speaker="1" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Anyone seen those Vanguards? Fine suits if I must say..." speaker="0" speakertags="crazy,joker" maxintensity="0.3">
+    <Conversation line="Um ... What? What are you getting at?" speaker="1">
+      <Conversation line="Oh you and me both know." speaker="0">
+        <Conversation line="Jeez, you really need to get your priorities straight if that's what's on your mind..." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="What are you getting at with that?" speaker="1">
+      <Conversation line="What you don't like how they're really high end frag suits that can take a beating?" speaker="0">
+        <Conversation line="... You know what nevermind ignore what I was thinking." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="Your imagination must be one hell of a thing, those suits show absolutely nothing." speaker="1">
+      <Conversation line="Oh I definitely know one of us is screwed if you get my drift." speaker="0">
+        <Conversation line="Stop defiling my ears please can we just get on with our jobs?" speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="I think you need some anti-psychotics, you've been acting... weird lately." speaker="1" allowedjobs="medicaldoctor">
+      <Conversation line="Hey I'm not one to complain about some good ass in a skintight suit, you know?" speaker="0">
+        <Conversation line="You won't have an ass yourself if security decides they're tired of your less than tasteful statements, we're professionals here so can it with that." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="Have your fantasies outside of comms please, I'd like to not hear how much of a creepy weirdo you are." speaker="1" speakertags="rude">
+      <Conversation line="What are you jealous or something?" speaker="0">
+        <Conversation line="Absolutely not, I have little to no patience for people like you." speaker="1">
+          <Conversation line="Wow, I've never seen someone get so angry over this before, calm down it's a damn joke, learn to get a sense of humour you boring bastard." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Have your fantasies outside of comms please, I'd like to not hear how much of a creepy weirdo you are." speaker="1" speakertags="rude">
+      <Conversation line="The hell do you mean? Having some high end armour like that'd be great for us." speaker="0">
+        <Conversation line="I can tell you were going a different direction initially but, whatever." speaker="1">
+          <Conversation line="I've learnt from last time, don't worry." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Can the small talk until we dock." speaker="1" allowedjobs="captain">
+      <Conversation line="Oh um, yes captain..." speaker="0" />
+    </Conversation>
+    <Conversation line="You're not going on one of those tirades again, shut up before you salary's halved." speaker="1" allowedjobs="captain" speakertags="rude,professional">
+      <Conversation line="shit-um... Aye aye captain, won't happen again." speaker="0" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="There's a lot of guns on the market nowadays isn't there?" speaker="0" maxintensity="0.3">
+    <Conversation line="Tell me about it, they're everywhere, I'm kinda concerned both sides are planning something... really big." speaker="1">
+      <Conversation line="The Coalition used to really restrict guns, yet everyone has automatics and pistols are handed out like food, it's madness." speaker="1">
+        <Conversation line="Yeah I'm... concerned, at no point has there been this many, a heavily armed Europa is a dangerous Europa..." speaker="0">
+          <Conversation line="You seen how the crawler and raptor populations have completely shrunk? I really blame guns for it, this is actively causing moon-wide issues." speaker="1">
+            <Conversation line="Well, I guess a heavily armed Europa can be a free Europa too, just so long as there isn't 2 factions trying to tear each other's necks out..." speaker="0" />
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Time for war I'm afraid." speaker="1">
+      <Conversation line="It's clear as day, we've got at most a couple of weeks before this all goes hot." speaker="1">
+        <Conversation line="Lovely, exactly what I wanna hear." speaker="0">
+          <Conversation line="Just hope we're on the winning side." speaker="1">
+            <Conversation line="Hope is a very bad thing to rely on, just saying..." speaker="0" />
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Frag, bullets, Preso Latex, raptors, rads... I don't like how much can kill us here." speaker="0" maxintensity="0.3">
+    <Conversation line="Seriously how in the hell did things get this bad?" speaker="0">
+      <Conversation line="I couldn't tell you I'll be honest, looks like we're just inventing new and improved ways to kill each other." speaker="1">
+        <Conversation line="I don't understand the chemical weapons usage at all." speaker="0">
+          <Conversation line="To be used as a terror weapon of course, I've heard talk of the Coalition beginning to look into ways of restricting manufacturing of it." speaker="1">
+            <Conversation line="Though, knowing the Coalition they'll turn a blind eye because they want such weapons for... dealing with less than desirable individuals." speaker="1" />
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Only making even more as we speak." speaker="1">
+      <Conversation line="I've even heard about potentially making artefacts weapons." speaker="1">
+        <Conversation line="Really?" speaker="0">
+          <Conversation line="Yes, nothing specific though I just overheard it once." speaker="1">
+            <Conversation line="Can't wait for the nightmare that'll cause, literally in the case of one of them." speaker="0" />
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Don't forget the furries, never forget about the furries." speaker="1" speakertags="laid-back,joker">
+      <Conversation line="I'm sorry the what now? Is this meant to be some sort of weird inside joke I'm too sane to understand?" speaker="0">
+        <Conversation line="I think people already know what I'm on about." speaker="1">
+          <Conversation line="I didn't realise this was some weird secret only I'm not allowed to know about-you know what nevermind..." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="I miss the times when guns weren't everywhere, It's really not safe when even your local junkie has a handgun hidden in his pocket." speaker="0" maxintensity="0.3">
+    <Conversation line="Because everyone's gone mad with them, I bet you right now both sides are planning to wage a total war against each other." speaker="1">
+      <Conversation line="Yeah the past... I wanna say 2 or so years have been really rough when it comes to their relations, it's just a matter of what'll break the thresher's back." speaker="0">
+        <Conversation line="I'd say we don't fall behind, I don't want to be that one person who isn't armed and I need a gun, can we get more guns and ammo on this can?" speaker="1">
+          <Conversation line="That's definitely not a question for me, ask the captain." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="What can I say? More guns equals more security all around." speaker="1">
+      <Conversation line="Not when said security is in the hands of a maniac... You know the opiate problem on Europa and arming almost everyone I think is a horrible idea." speaker="0">
+        <Conversation line="I think both sides have more to worry about than some random junkies trying to rob people, which mostly goes down horribly for them anyways." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="Both sides are clearly getting ready for war, it's obvious." speaker="1" allowedjobs="securityofficer">
+      <Conversation line="They're making sure they cover all their bases, including arming civilians." speaker="1">
+        <Conversation line="I think that's a horrible idea, giving every man, woman and child their own weapon seems incredibly uneccessary and dangerous." speaker="0">
+          <Conversation line="Then run your own campaign rallying against it, I'm sure that'll go down well for you." speaker="1">
+            <Conversation line="I don't like beaurocracies..." speaker="0" />
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Alright who's moved the armour vests again? This is the third time someone's shuffled all the stuff around." speaker="0" allowedjobs="securityofficer" maxintensity="0.3">
+    <Conversation line="Goddamnit really? We kinda need those." speaker="1">
+      <Conversation line="I hope to Jove not, we need them in case shit goes south and we get boarded." speaker="0" />
+    </Conversation>
+    <Conversation line="Like with everything on this submarine it's disorganised as hell, we really need to start sorting this stuff out better." speaker="1" allowedjobs="securityofficer">
+      <Conversation line="I'd do that if there was any reason to but we partially renovate this submarine everytime we dock and I'm sick to death of having my work all for nothing." speaker="0" />
+    </Conversation>
+    <Conversation line="Looks like the submarine fairy's been moving shit again." speaker="1" speakertags="laid-back,joker">
+      <Conversation line="At this point it wouldn't surprise me if that's true anymore, the past few days have been wacky as hell." speaker="0">
+        <Conversation line="Tell me about it, from the ruins to all this odd gravitational crap on this moon." speaker="1">
+          <Conversation line="Plenty more strange stories to come, I can tell you that right now." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="I really want a helmet as a war trophy." speaker="0" allowedjobs="securityofficer" maxintensity="0.3">
+    <Conversation line="Don't we have enough of those as is?" speaker="1">
+      <Conversation line="I'm more talking from some big target like a Vanguard or some pirate leader or something like that." speaker="0">
+        <Conversation line="I think either of those aren't really comparable to difficulty." speaker="1" />
+      </Conversation>
+    </Conversation>
+    <Conversation line="As in like a Vanguard's or Protectorates or whatever they're called? I can tell you right now that just isn't happening, you know just how dangerous they are right?" speaker="1">
+      <Conversation line="That's just gonna make it all the more rewarding." speaker="0">
+        <Conversation line="They'll steamroll over us and take over the submarine." speaker="1">
+          <Conversation line="Do you really have that little confidence in us?" speaker="0">
+            <Conversation line="You're security I'd expect you to know a thing or two about who we might be fighting." speaker="1">
+              <Conversation line="I do but I'm not as pessimistic as you." speaker="0" />
+            </Conversation>
+          </Conversation>
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="When we next jumping in a wreck? I wanna get out of this tin can for once." speaker="0" maxintensity="0.3">
+    <Conversation line="You'd rather be out there than in here?" speaker="1">
+      <Conversation line="Yes, do you not like finding people's mementos they leave behind in wrecks?" speaker="0">
+        <Conversation line="I do but I don't think that's our top priority, besides dead people's things just creep me out." speaker="1">
+          <Conversation line="Your loss once we find one then." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="I'm in for it, just as long as we don't get jumped by anyone else or... something else inside of it." speaker="1">
+      <Conversation line="I've heard some pretty nasty horror stories in some of those submarines." speaker="1">
+        <Conversation line="I think finding a gold mine of equipment more than makes it worth it." speaker="0">
+          <Conversation line="Yeah but I'm not one to test my luck, gambling's never been my strong suit..." speaker="1" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+    <Conversation line="Yeah I'm sure that won't end poorly." speaker="1">
+      <Conversation line="Oh come on it's not that bad in there." speaker="0">
+        <Conversation line="Just get back to doing what you were please." speaker="1">
+          <Conversation line="Oh alright fine..." speaker="0" />
+        </Conversation>
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Got myself a new rifle today, kinda cost a pretty penny though." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="To think that ancient design is still liberating places, humanity never changes." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="I hope that Coalition Big BR we managed to grab still works, those things are a bitch to get ahold of." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="Yeah our alternatives are kind of crap, the fire rate makes them so hard to control." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="How did things get this messed up anyways?" speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="Come on! It's hardly like it's a surprise! Europa's been in the heat ever since Earth stopped talking, now we're on our own and now the Coalition is going mad for power." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="Infiltrators scare me." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="I'd keep your voice down, I doubt you'd want to start throwing that name around." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="By Jove I'm bored, it's all this being stuck inside a metal tube all day and night, really fucks with me." speaker="0" flags="OutpostNPC" />
+  <Conversation line="What i'd do for that gun I got my eyes on not too long ago..." speaker="0" flags="OutpostNPC" />
+</Conversations>

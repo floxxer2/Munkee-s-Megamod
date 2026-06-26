@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="" description="" identifier="sgt_berserk" category="Medical" Tags="smallitem,medical" maxstacksize="4" maxstacksizecharacterinventory="2" useinhealthinterface="true" cargocontaineridentifier="mediccrate" scale="0.55" impactsoundtag="impact_soft" RequireAimToUse="True">
+    <PreferredContainer primary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.02" />
+    <Price baseprice="1240" sold="false" minleveldifficulty="40">
+      <Price storeidentifier="merchantoutpost" multiplier="0.6" />
+      <Price storeidentifier="merchantcity" multiplier="0.6" />
+      <Price storeidentifier="merchantresearch" minavailable="0" maxavailable="2" multiplier="1.5" sold="true" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.6" />
+      <Price storeidentifier="merchantmine" multiplier="0.6" />
+      <Price storeidentifier="merchantarmory" multiplier="0.6" />
+    </Price>
+    <Deconstruct time="10" />
+    <InventoryIcon texture="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Medical/medical.png" sourcerect="41,10,56,57" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Medical/medical.png" sourcerect="1,0,28,65" depth="0.6" origin="0.5,0.5" />
+    <Body width="25" height="40" density="20" />
+    <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnUse" target="This" Condition="-100" disabledeltatime="true" />
+      <StatusEffect statuseffecttags="medical" type="OnUse" target="UseTarget">
+        <Sound file="%ModDir%/Workshop/Enhanced Armaments/Medical/Sounds/Syringe.ogg" range="500" />
+        <Affliction identifier="sgt_ragedrug" amount="100" />
+        <Affliction identifier="blind" amount="10" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="UseTarget">
+        <Conditional IsLocalPlayer="True" />
+        <Sound file="%ModDir%/Workshop/Enhanced Armaments Fuel for the Fire Expansion/Medical/Sounds/HeartbeatRacing_Stereo.ogg" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </MeleeWeapon>
+    <SkillRequirementHint identifier="medical" level="40" />
+  </Item>
+</Items>

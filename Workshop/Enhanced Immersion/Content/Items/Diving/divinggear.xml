@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Override>
+    <Item name="" identifier="divingmask" scale="0.5" category="Diving,Equipment" Tags="smallitem,diving,lightdiving" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_light">
+      <Price baseprice="100">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="5" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="7" />
+        <Price storeidentifier="merchantresearch" minavailable="5" />
+        <Price storeidentifier="merchantmilitary" minavailable="6" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="15" />
+      </Price>
+      <PreferredContainer secondary="respawncontainer" amount="2" notcampaign="true" />
+      <PreferredContainer primary="divingcab" amount="2" allowtransfershere="false" />
+      <PreferredContainer primary="supplycab" amount="1" transferonlyonepercontainer="true" />
+      <PreferredContainer secondary="wrecksupplycab,beaconsupplycab" amount="1" spawnprobability="0.1" />
+      <PreferredContainer secondary="outpostsupplycab" amount="1" spawnprobability="0.5" />
+      <Deconstruct time="10">
+        <Item identifier="plastic" />
+        <Item identifier="rubber" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="25" />
+        <RequiredItem identifier="plastic" />
+        <RequiredItem identifier="rubber" />
+        <RequiredItem identifier="rubber" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="515,322,57,62" origin="0.5,0.5" />
+      <Sprite name="Diving Mask" texture="Content/Items/Jobgear/headgears.png" depth="0.55" sourcerect="226,326,69,68" origin="0.5,0.5" />
+      <Body width="40" height="35" density="15" />
+      <Wearable limbtype="Head" slots="Any,Head" msg="ItemMsgPickUpSelect" displaycontainedstatus="true">
+        <sprite name="Diving Mask Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hidelimb="false" hideotherwearables="false" sourcerect="226,326,69,68" origin="0.4,0.3" hidewearablesoftype="moustache,beard" />
+        <StatusEffect type="OnWearing" target="Character" HideFace="true" setvalue="true" disabledeltatime="true" />
+        <!-- Make character use dry breathing sound -->
+        <StatusEffect type="OnWearing" target="Character">
+          <Conditional InWater="false" />
+          <Sound file="Content/Items/Diving/DivingSuitLoop1.ogg" range="250" loop="true" />
+        </StatusEffect>
+        <!-- Make character use underwater bubbly breathing sound -->
+        <StatusEffect type="OnWearing" target="limb" targetlimb="head" interval="6" duration="0.5">
+          <Conditional InWater="true" />
+          <Sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Diving/DivingSuitBreathUnderwater1.ogg" range="400" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Diving/DivingSuitBreathUnderwater2.ogg" range="400" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Diving/DivingSuitBreathUnderwater3.ogg" range="400" selectionmode="Random" />
+          <Sound file="%ModDir%/Workshop/Enhanced Immersion/Content/Items/Diving/DivingSuitBreathUnderwater4.ogg" range="400" selectionmode="Random" />
+          <ParticleEmitter particle="risingbubbles" velocitymin="10.0" velocitymax="10.0" scalemin="0.6" scalemax="0.6" particlespersecond="20" />
+        </StatusEffect>
+      </Wearable>
+      <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="tank">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
+        <Containable items="oxygensource,weldingtoolfuel" excludeditems="oxygenitetank" />
+        <Containable items="oxygensource">
+          <StatusEffect type="OnWearing" target="Character" OxygenAvailable="1000.0" UseHullOxygen="false" />
+          <StatusEffect type="OnWearing" target="Contained" Condition="-0.3" comparison="And">
+            <Conditional TargetContainer="true" TargetGrandparent="true" IsDead="false" />
+            <Conditional TargetContainer="true" TargetGrandparent="true" DecreasedOxygenConsumption="lt 99" />
+            <Conditional TargetContainer="true" TargetGrandparent="true" NeedsAir="true" />
+          </StatusEffect>
+        </Containable>
+        <Containable items="oxygenitetank">
+          <StatusEffect type="OnWearing" target="Character" SpeedMultiplier="1.2" setvalue="true" targetslot="0" comparison="And">
+            <Conditional IsDead="false" />
+            <Conditional DecreasedOxygenConsumption="lt 99" />
+            <Conditional NeedsAir="true" />
+          </StatusEffect>
+        </Containable>
+        <Containable items="weldingfueltank" blameequipperfordeath="true">
+          <StatusEffect type="OnWearing" target="Contained" Condition="-0.5" comparison="And">
+            <Conditional TargetContainer="true" TargetGrandparent="true" IsDead="false" />
+            <Conditional TargetContainer="true" TargetGrandparent="true" DecreasedOxygenConsumption="lt 99" />
+            <Conditional TargetContainer="true" TargetGrandparent="true" NeedsAir="true" />
+          </StatusEffect>
+          <StatusEffect type="OnWearing" target="Character" OxygenAvailable="-100.0" Oxygen="-5.0" comparison="And">
+            <Conditional IsDead="false" />
+            <Conditional DecreasedOxygenConsumption="lt 99" />
+            <Conditional NeedsAir="true" />
+          </StatusEffect>
+        </Containable>
+        <Containable items="incendiumfueltank" blameequipperfordeath="true">
+          <StatusEffect type="OnWearing" target="Contained" Condition="-0.5" comparison="And">
+            <Conditional TargetContainer="true" TargetGrandparent="true" IsDead="false" />
+            <Conditional TargetContainer="true" TargetGrandparent="true" DecreasedOxygenConsumption="lt 99" />
+            <Conditional TargetContainer="true" TargetGrandparent="true" NeedsAir="true" />
+          </StatusEffect>
+          <StatusEffect type="OnWearing" target="Character" OxygenAvailable="-100.0" comparison="And" targetlimb="Torso">
+            <Affliction identifier="burn" amount="20.0" />
+            <Conditional IsDead="false" />
+            <Conditional DecreasedOxygenConsumption="lt 99" />
+            <Conditional NeedsAir="true" />
+          </StatusEffect>
+        </Containable>
+      </ItemContainer>
+    </Item>
+  </Override>
+  <Override />
+  <Override>
+    <Item name="" identifier="underwaterscooter" category="Diving,Equipment" Tags="smallitem,provocative,scooter" cargocontaineridentifier="metalcrate" description="" Scale="0.5" impactsoundtag="impact_weapontool" isshootable="true" requireaimtouse="True">
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      <Price baseprice="180">
+        <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="4" />
+        <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="6" />
+        <Price storeidentifier="merchantresearch" minavailable="3" />
+        <Price storeidentifier="merchantmilitary" minavailable="5" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="4" />
+      </Price>
+      <Preferredcontainer secondary="respawncontainer" amount="1" spawnprobability="1" notcampaign="true" />
+      <PreferredContainer primary="divingcab" amount="2" spawnprobability="1" notcampaign="true" />
+      <PreferredContainer secondary="wreckdivingcab,beaconsupplycab" spawnprobability="0.05" />
+      <Deconstruct time="20">
+        <Item identifier="aluminium" />
+        <Item identifier="copper" />
+        <Item identifier="tin" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="30">
+        <RequiredSkill identifier="mechanical" level="30" />
+        <RequiredItem identifier="aluminium" amount="2" />
+        <RequiredItem identifier="fpgacircuit" />
+        <RequiredItem identifier="tin" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="256,128,67,62" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/Diving/Scooter.png" depth="0.55" sourcerect="0,0,140,102" />
+      <Body width="120" height="60" density="10" />
+      <Holdable slots="Any,RightHand+LeftHand" aimpos="90,0" handle1="-35,32" handle2="-27,34" msg="ItemMsgPickUpSelect" holdangle="-10">
+        <LightComponent LightColor="220,255,150,200" range="500" powerconsumption="10" IsOn="true">
+          <LightTexture texture="Content/Lights/lightcone.png" origin="-0.01, 0.5" size="1.0,1.0" />
+          <Upgrade gameversion="1.1.2.0" powerconsumption="10" />
+        </LightComponent>
+        <!-- activates the light when holding aim -->
+        <StatusEffect type="OnSecondaryUse" target="This" voltage="1.0" setvalue="true">
+          <RequiredItem items="mobilebattery" type="Contained" />
+        </StatusEffect>
+        <!-- Battery drain when using the light, adds up with propulsion -->
+        <StatusEffect type="OnSecondaryUse" target="Contained" Condition="-0.05" />
+      </Holdable>
+      <Propulsion force="150" usablein="water" particles="bubbles">
+        <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
+        <StatusEffect type="OnUse" target="Contained" Condition="-0.2">
+          <RequiredItem items="mobilebattery" type="Contained" />
+        </StatusEffect>
+        <sound file="Content/Items/Diving/ScooterLoop.ogg" type="OnUse" range="500.0" loop="true" />
+      </Propulsion>
+      <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="battery">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Containable items="mobilebattery" />
+      </ItemContainer>
+      <AiTarget soundrange="3000" maxsightrange="3000" />
+    </Item>
+  </Override>
+  <Override />
+  <Override />
+  <Override />
+  <!--Talent Suits-->
+  <Override />
+  <Override />
+  <Override />
+  <Override />
+</Items>
