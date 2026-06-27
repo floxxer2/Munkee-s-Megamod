@@ -171,7 +171,7 @@ function m.OnStart()
             break
         end
     end
-    if not m.Deepvents then
+    if not m.DeepVents then
         error("Deep Vents not found. Aborting roundstart setup.")
         return
     end
