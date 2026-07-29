@@ -161,6 +161,15 @@ m.MapSpecificFunctions["Tsunya Station"] = function()
     end
 end
 
+m.MapSpecificFunctions["Nova Station"] = function()
+    for k, item in pairs(m.CurrentMap.GetItems(true)) do
+        if item.Prefab.Identifier == "reactor1" then -- Nova uses a reactor1
+            table.insert(m.Reactors, item)
+            break
+        end
+    end
+end
+
 function m.OnStart()
     m.RoundStartTime = Timer.GetTime()
     m.CurrentMap = Submarine.MainSub
