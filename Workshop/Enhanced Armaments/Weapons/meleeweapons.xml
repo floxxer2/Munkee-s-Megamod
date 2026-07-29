@@ -520,7 +520,7 @@
       <Price storeidentifier="merchantarmory" maxavailable="24" multiplier="0.9" />
     </Price>
     <Deconstruct time="5" />
-    <Fabricate suitablefabricators="fabricator" requiredtime="10" amount="2">
+    <Fabricate suitablefabricators="weaponfabricator" requiredtime="10" amount="2">
       <RequiredSkill identifier="weapons" level="20" />
       <RequiredItem identifier="steel" />
       <RequiredItem identifier="phosphorus" />
@@ -565,7 +565,7 @@
       <Price storeidentifier="merchantarmory" maxavailable="24" multiplier="0.9" />
     </Price>
     <Deconstruct time="5" />
-    <Fabricate suitablefabricators="fabricator" requiredtime="10" amount="3">
+    <Fabricate suitablefabricators="weaponfabricator" requiredtime="10" amount="3">
       <RequiredSkill identifier="weapons" level="20" />
       <RequiredItem identifier="steel" />
       <RequiredItem identifier="incendium" />

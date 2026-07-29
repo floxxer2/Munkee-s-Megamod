@@ -20,12 +20,6 @@
     <Deconstruct>
       <Item identifier="aluminium" amount="1" />
     </Deconstruct>
-    <Fabricate suitablefabricators="fabricator" requiredtime="20" amount="1">
-      <RequiredSkill identifier="mechanical" level="25" />
-      <RequiredItem identifier="weldingfueltank" amount="1" mincondition="0.9" maxcondition="1" />
-      <RequiredItem identifier="antibleeding1" />
-      <RequiredItem identifier="flare" />
-    </Fabricate>
     <InventoryIcon texture="makeshiftfuelbomb.png" sourcerect="0,0,35,74" origin="0.5,0.5" />
     <Sprite texture="makeshiftfuelbomb.png" sourcerect="0,0,35,74" depth="0.55" origin="0.5,0.5" />
     <Body width="35" height="74" density="20" />
@@ -110,12 +104,6 @@
       <Item identifier="copper" />
       <Item identifier="aluminium" amount="1" />
     </Deconstruct>
-    <Fabricate suitablefabricators="fabricator" requiredtime="30">
-      <RequiredSkill identifier="mechanical" level="30" />
-      <RequiredSkill identifier="electrical" level="30" />
-      <RequiredItem identifier="oxygentank" amount="2" />
-      <RequiredItem identifier="fpgacircuit" />
-    </Fabricate>
     <InventoryIcon texture="makeshifto2bomb.png" sourcerect="0,0,50,82" origin="0.5,0.5" />
     <Sprite texture="makeshifto2bomb.png" sourcerect="0,0,50,82" depth="0.55" origin="0.5,0.5" />
     <Body width="50" height="75" density="17" />

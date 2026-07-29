@@ -81,12 +81,6 @@
         <Reputation faction="clowns" min="15" />
       </Price>
     </Price>
-    <Fabricate suitablefabricators="fabricator" requiredtime="30">
-      <RequiredSkill identifier="weapons" level="35" />
-      <RequiredItem identifier="scp_basicparts" mincondition="0.5" />
-      <RequiredItem identifier="bikehorn" />
-      <RequiredItem identifier="steel" />
-    </Fabricate>
     <Deconstruct time="12">
       <Item identifier="steel" />
       <Item identifier="plastic" />

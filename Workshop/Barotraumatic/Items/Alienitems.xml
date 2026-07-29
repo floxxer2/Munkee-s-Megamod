@@ -1734,12 +1734,6 @@
       <Price storeidentifier="merchantmilitary" multiplier="1.1" />
       <Price storeidentifier="merchantmine" multiplier="1" />
     </Price>
-    <Fabricate suitablefabricators="fabricator" requiredtime="15">
-      <RequiredItem identifier="crookfurBTC" />
-      <RequiredItem identifier="crookfurBTC" />
-      <RequiredItem identifier="crookfurBTC" />
-      <RequiredItem identifier="crookfurBTC" />
-    </Fabricate>
     <Deconstruct time="5">
       <Item identifier="organicfiber" />
       <Item identifier="carbon" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Items>
-  <!--<Item name="Syringe" identifier="mm_syringe" category="Medical" maxstacksize="1" maxstacksizecharacterinventory="1" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,syringe,reagentcontainer" description="A fairly small container that can be used to inject reagents directly into the bloodstream." useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+  <Item name="Syringe" identifier="mm_syringe" category="Medical" maxstacksize="1" maxstacksizecharacterinventory="1" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,syringe,reagentcontainer" description="A fairly small container that can be used to inject reagents directly into the bloodstream." useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
     <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
       <RequiredSkill identifier="medical" level="18" />
       <RequiredItem identifier="plastic" amount="1" />
@@ -30,7 +30,6 @@
         <Affliction identifier="stun" amount="0.1" />
       </StatusEffect>
     </MeleeWeapon>
-     #TODO#
     <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
   </Item>
   <Item name="Chemical Dispenser" identifier="mm_chemicaldispenser" tags="donttakeitems,dontsellitems" category="Machine" description="" scale="0.5"  damagedbyexplosions="true"  explosiondamagemultiplier="0.2">
@@ -169,5 +168,5 @@
     <CustomInterface type="chemicalheater" CanBeSelected="true">
       <GuiFrame relativesize="0.3,0.3" anchor="Center" pivot="Center" style="ItemUI" />
     </CustomInterface>
-  </Item>-->
+  </Item>
 </Items>

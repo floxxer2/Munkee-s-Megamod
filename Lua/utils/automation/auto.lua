@@ -122,6 +122,36 @@ Auto.XMLChanges = {
       }
     }
   },
+  -- Remove fabrication recipe
+  ["banditweldingbomb"] = {
+    mod = "Barotraumatic",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      }
+    }
+  },
+  -- Remove fabrication recipe
+  ["banditoxygentankbomb"] = {
+    mod = "Barotraumatic",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      }
+    }
+  },
+  -- Remove fabrication recipe
+  ["crookcapeitemBTC"] = {
+    mod = "Barotraumatic",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = ""
+      }
+    }
+  },
 
   -- *********************************
   -- Husk Church Cathedral Visual Pack
@@ -3228,6 +3258,37 @@ Auto.XMLChanges = {
       },
     },
   },
+  -- Change fabricator to weapon fabricator
+  ["sgt_spearflare"] = {
+    mod = "Enhanced Armaments Fuel for the Fire Expansion",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = XElement.Parse([[
+        <Fabricate suitablefabricators="weaponfabricator" requiredtime="10" amount="2">
+          <RequiredSkill identifier="weapons" level="20" />
+          <RequiredItem identifier="steel" />
+          <RequiredItem identifier="phosphorus" />
+          <RequiredItem identifier="silicon" />
+        </Fabricate>]])
+      },
+    },
+  },
+  -- Change fabricator to weapon fabricator
+  ["sgt_spearincendium"] = {
+    mod = "Enhanced Armaments Fuel for the Fire Expansion",
+    componentOverrides = {
+      {
+        targetComponent = "fabricate",
+        override = XElement.Parse([[
+        <Fabricate suitablefabricators="weaponfabricator" requiredtime="10" amount="3">
+          <RequiredSkill identifier="weapons" level="20" />
+          <RequiredItem identifier="steel" />
+          <RequiredItem identifier="incendium" />
+        </Fabricate>]])
+      },
+    },
+  },
 
   -- ******************
   -- Enhanced Armaments
@@ -6072,6 +6133,16 @@ Auto.XMLChanges = {
       },
     },
   },
+  -- Remove fabrication recipe
+  ["scp_hornshotgun"] = {
+    mod = "Enhanced Armaments",
+    componentOverrides = {
+      {
+        add = true,
+        override = ""
+      },
+    },
+  },
 
   -- *********
   -- EK Forked
@@ -7786,7 +7857,6 @@ Auto.MMFiles = [[
 <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
 <Submarine file="%ModDir%/Megamod/Subs/Stations/Nova Station.sub" />
 <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
-<Submarine file="%ModDir%/Megamod/Subs/Nova Elevator.sub" />
 <Text file="%ModDir%/Megamod/Text/English.xml" />
 <Sounds file="%ModDir%/Megamod/Sounds/beastsounds.xml" />
 <Particles file="%ModDir%/Megamod/Particles/ParticlePrefabs.xml" />
