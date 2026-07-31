@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentpackage name="Munkee's Megamod" modversion="1.2.7.7" corepackage="False" steamworkshopid="3318261393" gameversion="1.13.4.0">
   <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
-  <Submarine file="%ModDir%/Megamod/Subs/Nova Elevator.sub" />
   <Text file="%ModDir%/Megamod/Text/English.xml" />
   <Sounds file="%ModDir%/Megamod/Sounds/beastsounds.xml" />
   <Particles file="%ModDir%/Megamod/Particles/ParticlePrefabs.xml" />
@@ -733,8 +732,8 @@
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Misc/misc.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Weapons/weaponsystems.xml" />
   <Item file="%ModDir%/Workshop/Visual Variety Pack/Items/Medbay/medbay_props.xml" />
+  <Submarine file="%ModDir%/Megamod/Subs/DV 2.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/Stations/Sierra Station.sub" />
-  <Submarine file="%ModDir%/Megamod/Subs/DV 2.sub" />
   <Submarine file="%ModDir%/Megamod/Subs/Stations/Nova Station.sub" />
 </contentpackage>
