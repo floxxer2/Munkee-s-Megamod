@@ -7857,6 +7857,7 @@ Auto.MMFiles = [[
 <Submarine file="%ModDir%/Megamod/Subs/Stations/Tsunya Station.sub" />
 <Submarine file="%ModDir%/Megamod/Subs/Stations/Nova Station.sub" />
 <Submarine file="%ModDir%/Megamod/Subs/DV 1.sub" />
+<Submarine file="%ModDir%/Megamod/Subs/DV 2.sub" />
 <Text file="%ModDir%/Megamod/Text/English.xml" />
 <Sounds file="%ModDir%/Megamod/Sounds/beastsounds.xml" />
 <Particles file="%ModDir%/Megamod/Particles/ParticlePrefabs.xml" />
