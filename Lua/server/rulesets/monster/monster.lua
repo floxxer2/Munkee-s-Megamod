@@ -323,7 +323,7 @@ function rs.Reset()
         local msg = Networking.Start("mm_monster")
         msg.WriteBoolean(false)
         Networking.Send(msg, monsterClient.Connection)
-        if not Megamod.CheckIsDead(monsterClient)
+        if Megamod.CheckIsDead(monsterClient) == false
         and not monsterClient.Character.IsHuman then
             -- Send to spectator if they're still controlling something
             monsterClient.SetClientCharacter(nil)

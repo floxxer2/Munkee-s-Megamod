@@ -205,7 +205,7 @@ Hook.Add("roundStart", "Megamod.EscapePortal.RoundStart", function()
                         break
                     end
                 end
-                if not lootClient or Megamod.CheckIsDead(lootClient) then
+                if not lootClient or Megamod.CheckIsDead(lootClient) == true then
                     if lootClient then
                         Megamod.SendChatMessage(lootClient, "You did not spawn in this round. Your items from escaping have been deleted.", Color(255, 0, 255, 255))
                     end

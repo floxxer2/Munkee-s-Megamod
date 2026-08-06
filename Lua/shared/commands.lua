@@ -151,7 +151,7 @@ end)
 
 cmds.AddCommand("generic", "role", function(sender, argument)
     -- Non-humans need to have the antag overlay force-removed
-    if not Megamod.CheckIsDead(sender) then
+    if Megamod.CheckIsDead(sender) == false then
         if sender.Character.IsHuman then
             Megamod.AddAffliction(sender.Character, "mm_antagoverlay2", 10)
         else

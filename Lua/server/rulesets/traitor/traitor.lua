@@ -682,7 +682,7 @@ do
                         ownTbl[5] = ownTbl[5] - 1
                         if ownTbl[5] <= 0 then
                             -- Notify the uplink user
-                            if not Megamod.CheckIsDead(client) then
+                            if Megamod.CheckIsDead(client) == false then
                                 Megamod.SendChatMessage(client, "Uplink " .. tostring(ownTbl[1]) .. ": DV READY", Color(255, 100, 100, 255))
                             end
                             return
@@ -814,7 +814,7 @@ do
         if tbl[1] == ownTbl[1] then
             str = "Cannot send message to self."
         else
-            if not Megamod.CheckIsDead(tbl[2]) then
+            if Megamod.CheckIsDead(tbl[2]) == false then
                 Megamod.SendClientSideMsg(tbl[2], "Uplink: RECEIVED MESSAGE (from " .. ownTbl[1] ..")", Color(255, 100, 100))
             end
             local otherTerminal = otherUplink.GetComponentString("Terminal")
@@ -1110,7 +1110,7 @@ do
         rs.SelectedPlayers[traitor][2][8] = false
         rs.SelectedPlayers[traitor][2][3] = nil
         local prefab = ItemPrefab.GetItemPrefab("mm_dime")
-        if not Megamod.CheckIsDead(traitor) then
+        if Megamod.CheckIsDead(traitor) == false then
             for i = 1, self.Credit do
                 Entity.Spawner.AddItemToSpawnQueue(prefab, traitor.Character.Inventory, nil, nil, nil, true)
             end
@@ -1155,7 +1155,7 @@ do
                     if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
                         totalTargets = totalTargets + 1
                         local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if not Megamod.CheckIsDead(client)
+                        if Megamod.CheckIsDead(client) == false
                         and client.Character
                         and client.Character.IsHuman
                         and client.Character.Vitality > 40
@@ -1175,7 +1175,7 @@ do
                 local potentialTargets = {}
                 for client in Client.ClientList do
                     local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if not Megamod.CheckIsDead(client)
+                    if Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and client.Character.Vitality > 5
@@ -1234,7 +1234,7 @@ do
                     if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
                         totalTargets = totalTargets + 1
                         local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if not Megamod.CheckIsDead(client)
+                        if Megamod.CheckIsDead(client) == false
                         and client.Character
                         and client.Character.IsHuman
                         and client.Character.Vitality > 40
@@ -1254,7 +1254,7 @@ do
                 local potentialTargets = {}
                 for client in Client.ClientList do
                     local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if not Megamod.CheckIsDead(client)
+                    if Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and client.Character.Vitality > 5
@@ -1318,7 +1318,7 @@ do
                     if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
                         totalTargets = totalTargets + 1
                         local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if not Megamod.CheckIsDead(client)
+                        if Megamod.CheckIsDead(client) == false
                         and client.Character
                         and client.Character.IsHuman
                         and client.Character.Vitality > 40
@@ -1338,7 +1338,7 @@ do
                 local potentialTargets = {}
                 for client in Client.ClientList do
                     local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if not Megamod.CheckIsDead(client)
+                    if Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and client.Character.Vitality > 5
@@ -1397,7 +1397,7 @@ do
                     if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
                         totalTargets = totalTargets + 1
                         local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if not Megamod.CheckIsDead(client)
+                        if Megamod.CheckIsDead(client) == false
                         and client.Character
                         and client.Character.IsHuman
                         and client.Character.Vitality > 40
@@ -1417,7 +1417,7 @@ do
                 local potentialTargets = {}
                 for client in Client.ClientList do
                     local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if not Megamod.CheckIsDead(client)
+                    if Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and client.Character.Vitality > 5
@@ -1478,7 +1478,7 @@ do
                 for client in Client.ClientList do
                     if client ~= traitor
                     and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and not Megamod.CheckIsDead(client)
+                    and Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and rs.SelectedPlayers[client][2][4] > 480
@@ -1493,7 +1493,7 @@ do
                 for client in Client.ClientList do
                     if client ~= traitor
                     and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and not Megamod.CheckIsDead(client)
+                    and Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and rs.SelectedPlayers[client][2][4] > 480
@@ -1543,7 +1543,7 @@ do
                 for client in Client.ClientList do
                     if client ~= traitor
                     and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and not Megamod.CheckIsDead(client)
+                    and Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and rs.SelectedPlayers[client][2][4] > 480
@@ -1558,7 +1558,7 @@ do
                 for client in Client.ClientList do
                     if client ~= traitor
                     and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and not Megamod.CheckIsDead(client)
+                    and Megamod.CheckIsDead(client) == false
                     and client.Character
                     and client.Character.IsHuman
                     and rs.SelectedPlayers[client][2][4] > 480
@@ -1700,7 +1700,7 @@ function rs.PatienceLoop()
     local time = 6
     for traitor, tbl in pairs(rs.SelectedPlayers) do
         -- Traitor must be alive and not on their objective cooldown
-        if not Megamod.CheckIsDead(traitor) and tbl[2][7] <= 0 then
+        if Megamod.CheckIsDead(traitor) == false and tbl[2][7] <= 0 then
             tbl[2][4] = tbl[2][4] + time
             -- Notify the traitor that they can get another objective
             if not tbl[2][8] and tbl[2][2] then
@@ -1767,7 +1767,7 @@ function rs.EOTRLoop()
     local endRound = true
     for client in Client.ClientList do
         if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0
-        and not Megamod.CheckIsDead(client) then
+        and Megamod.CheckIsDead(client) == false then
             endRound = false
             break
         end
@@ -1848,7 +1848,7 @@ function rs.Check()
     if rs.Strength > 0 then return true end -- There are already traitors, so yes
     for _, client in pairs(Client.ClientList) do
         if Megamod.GetData(client, "Traitor") -- Wants to play as traitor
-        and not Megamod.CheckIsDead(client) -- Not dead
+        and Megamod.CheckIsDead(client) == false -- Not dead
         and client.Character
         and client.Character.IsHuman
         and #Megamod.RuleSetManager.AntagStatus(client) == 0 then -- Not already an antagonist
@@ -1868,7 +1868,7 @@ end
 function rs.CheckShouldFail()
     -- If there are no traitors it will return true by default
     for traitor, _ in pairs(rs.SelectedPlayers) do
-        if not Megamod.CheckIsDead(traitor) then
+        if Megamod.CheckIsDead(traitor) == false then
             return false, ""
         end
     end
@@ -1910,7 +1910,7 @@ function rs.Draft()
 
     for _, client in pairs(Client.ClientList) do
         if Megamod.GetData(client, "Traitor") -- Wants to play as traitor
-        and not Megamod.CheckIsDead(client) -- Not dead
+        and Megamod.CheckIsDead(client) == false -- Not dead
         and client.Character
         and client.Character.IsHuman
         and #Megamod.RuleSetManager.AntagStatus(client) == 0 then -- Not already an antagonist

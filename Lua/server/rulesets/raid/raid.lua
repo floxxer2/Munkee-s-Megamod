@@ -803,7 +803,7 @@ function rs.CheckShouldFail()
 
     local healthyRaiders = 0
     for client, _ in pairs(rs.SelectedPlayers) do
-        if not Megamod.CheckIsDead(client) then
+        if Megamod.CheckIsDead(client) == false then
             local vitality = client.Character.Vitality
             if vitality > 0 then
                 healthTimer[client] = 12

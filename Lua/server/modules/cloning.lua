@@ -343,7 +343,7 @@ Hook.Add("mm.cloningstart", "Megamod.Cloning.CloningStart", function(effect, del
     then return end
     local cloners = {}
     for client in Client.ClientList do
-        if not Megamod.CheckIsDead(client) then
+        if Megamod.CheckIsDead(client) == false then
             local dist = Vector2.Distance(client.Character.WorldPosition, item.WorldPosition)
             if dist < 190 then
                 table.insert(cloners, client)

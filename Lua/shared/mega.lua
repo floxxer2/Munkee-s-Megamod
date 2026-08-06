@@ -28,8 +28,12 @@ function Megamod.RandomWord(chars)
 end
 
 -- Use to check if a client is controlling an alive character
----@return boolean "true=dead, false=alive"
+---@return boolean|nil "true=dead, false=alive, nil=in freecam"
 function Megamod.CheckIsDead(client)
+    -- Freecam is unknown whether dead or alive, so ignore it
+    if client and client.UsingFreeCam then
+        return nil
+    end
     if not client
     or not client.InGame
     or client.Character == nil
@@ -44,6 +48,7 @@ end
 function Megamod.CheckIsSpectating(client)
     if not client
     or not client.InGame
+    or client.UsingFreeCam -- Count freecam as "not spectating"
     or (client.Character and not client.Character.IsDead) then
         return false
     end

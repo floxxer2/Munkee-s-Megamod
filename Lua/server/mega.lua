@@ -199,7 +199,7 @@ function Megamod.SendClientSideMsg(client, text, color, msgType)
     if msgType ~= nil then
         msg.WriteBoolean(msgType)
     else
-        if not Megamod.CheckIsDead(client) and client.Character.Vitality > 5 then
+        if Megamod.CheckIsDead(client) == false and client.Character.Vitality > 5 then
             msg.WriteBoolean(true) -- Shows a message hovering above their character, like skill gain messages
         else
             msg.WriteBoolean(false) -- Shows a message at the top of the screen, like husk warnings

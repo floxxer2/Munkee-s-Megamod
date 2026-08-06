@@ -100,7 +100,7 @@ end
 -- Notify people that they can use !mrs
 Hook.Add("client.connected", "Megamod.MidRoundSpawn.ClientConnected", function(client)
     Timer.Wait(function()
-        if client and Game.RoundStarted and Megamod.CheckIsDead(client) and not mrs.SpawnedPlayers[client.SteamID] then
+        if client and Game.RoundStarted and Megamod.CheckIsDead(client) == true and not mrs.SpawnedPlayers[client.SteamID] then
             local str = "You are eligible to use the chat command \"!mrs\" to spawn midround.\nNote that you must choose a job.\n"
             if mrs.AllowCaptain then
                 str = str .. "You may spawn as captain."

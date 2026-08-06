@@ -18,7 +18,7 @@ function event.Check()
     local alive = 0
     local healthy = 0
     for client in Client.ClientList do
-        if not Megamod.CheckIsDead(client) then
+        if Megamod.CheckIsDead(client) == false then
             alive = alive + 1
             if client.Character.Vitality > 75 then
                 healthy = healthy + 1
@@ -36,7 +36,7 @@ function event.Start()
     -- Targets must be alive and healthy
     local targets = {}
     for client in Client.ClientList do
-        if not Megamod.CheckIsDead(client)
+        if Megamod.CheckIsDead(client) == false
         and client.Character.IsHuman == true
         and client.Character.Vitality > 75
         and Megamod.GetAfflictionStrength(client.Character, "huskinfection", 0) == 0 then

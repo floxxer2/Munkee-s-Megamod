@@ -354,7 +354,7 @@ do
         local tvd = recentDamage[character].tvd
 
 
-        do -- #DEBUG#
+        --[[do
             local debug = tostring(character.DisplayName) ~= "munkee"
             for entry in afflictions2 do
                 local id = tostring(entry.affliction.Prefab.Identifier)
@@ -366,13 +366,12 @@ do
                 print(tvd)
                 lastTime = now
             end
-        end
+        end]]
 
 
         -- Add special afflictions if the victim has taken too much damage in a short timeframe
         if tvd >= SPECIAL_AFFLICTION_THRESHOLD then
-            -- #DEBUG#
-            print("Trying to give a special affliction to " .. tostring(character.DisplayName))
+            --print("Trying to give a special affliction to " .. tostring(character.DisplayName))
             local potentialAfflictions = {}
             for specialAffliction in specialAfflictions do
                 local validLimb = false
@@ -403,8 +402,7 @@ do
                 break
             end
             if not atLeastOne then
-                -- #DEBUG#
-                print("There was no valid special affliction to give to " .. tostring(character.DisplayName))
+                --print("There was no valid special affliction to give to " .. tostring(character.DisplayName))
                 return
             end
             -- Success, we are adding a special affliction
