@@ -260,8 +260,7 @@ do
         },
     }
 
-    -- #DEBUG#
-    local lastTime = Timer.GetTime()
+    --local lastTime = Timer.GetTime()
 
     -- 65% damage resistance
     local unconsciousDamageReduction = 0.65
