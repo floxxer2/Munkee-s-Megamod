@@ -2,7 +2,7 @@ local event = {}
 
 event.Name = "Monster Join"
 
-event.Severity = "medium"
+event.Severity = "minor"
 
 event.Enabled = true
 
