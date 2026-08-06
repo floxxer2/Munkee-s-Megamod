@@ -98,44 +98,8 @@ chm.Reagents = {
     -- ******************************
     -- Materials // Legal, but should not be injected
     -- ******************************
-    -- Elements (can be dispensed directly)
-    aluminum = createResource("aluminum", "material"),
-    barium = createResource("barium", "material"),
-    bromine = createResource("bromine", "material"),
-    carbon = createResource("carbon", "material"),
-    calcium = createResource("calcium", "material"),
-    chlorine = createResource("chlorine", "material"),
-    chromium = createResource("chromium", "material"),
-    copper = createResource("copper", "material"),
-    ethanol = createResource("ethanol", "material"),
-    fluorine = createResource("fluorine", "material"),
-    helium = createResource("helium", "material"),
-    hydrogen = createResource("hydrogen", "material"),
-    iodine = createResource("iodine", "material"),
-    iron = createResource("iron", "material"),
-    lithium = createResource("lithium", "material"),
-    magnesium = createResource("magnesium", "material"),
-    mercury = createResource("mercury", "material"),
-    nickel = createResource("nickel", "material"),
-    nitrogen = createResource("nitrogen", "material"),
-    oxygen = createResource("oxygen", "material"),
-    phosphorus = createResource("phosphorus", "material"),
-    plasma = createResource("plasma", "material"),
-    platinum = createResource("platinum", "material"),
-    potassium = createResource("potassium", "material"),
-    radium = createResource("radium", "material"),
-    silicon = createResource("silicon", "material"),
-    silver = createResource("silver", "material"),
-    sodium = createResource("sodium", "material"),
-    sugar = createResource("sugar", "material"),
-    sulfur = createResource("sulfur", "material"),
-    water = createResource("water", "material"),
-    -- Compounds (must be crafted by reactions)
-    acetone = createResource("acetone", "compound"),
-    ammonia = createResource("ammonia", "compound"),
-    diethylamine = createResource("diethylamine", "compound"),
-    oil = createResource("oil", "compound"),
-    phenol = createResource("phenol", "compound"),
+    
+
     stabilizine = {
         Name = "stabilizine",
         ID = "stabilizine",
