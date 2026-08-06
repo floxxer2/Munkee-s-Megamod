@@ -15,7 +15,7 @@
       <Price storeidentifier="merchantmine" />
       <Price storeidentifier="merchantmedical" multiplier="0.8" />
     </Price>
-    <SuitableTreatment type="mm_specialaffliction" suitability="100" />
+    <SuitableTreatment type="mm_specialdamage" suitability="100" />
     <Fabricate suitablefabricators="medicalfabricator" requiredtime="60">
       <RequiredSkill identifier="medical" level="45" />
       <RequiredItem identifier="morphine" amount="2" />
