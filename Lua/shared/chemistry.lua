@@ -1,4 +1,12 @@
 local chm = {}
+chm.ML_TIMER_BASE = 120
+chm.MasterLoopTimer = chm.ML_TIMER_BASE
+-- Client doesn't use this
+chm.TicksSinceRoundStart = 0
+if Game.RoundStarted then
+    chm.TicksSinceRoundStart = 3
+end
+chm.DeltaTime = chm.ML_TIMER_BASE / 60
 
 -- Also used to determine if an item is a container in the first place
 chm.ReagentContainerStats = {
@@ -95,22 +103,6 @@ end
 
 -- Yes, this is heavily inspired by the chemical system in SS13
 chm.Reagents = {
-    -- ******************************
-    -- Materials // Legal, but should not be injected
-    -- ******************************
-    
-
-    stabilizine = {
-        Name = "stabilizine",
-        ID = "stabilizine",
-        Desc = "A general precursor drug. On it's own, it will slow down the progression of toxins.",
-        Type = "stabilizine",
-        DepletionRate = 1,
-        Effect = function(self, container, site)
-            -- #TODO#
-        end,
-    },
-
     -- Blood types
     blood_human = {
         Name = "blood (human)",
@@ -122,6 +114,7 @@ chm.Reagents = {
             -- No effect
         end,
     },
+    -- Alien blood
     blood_nonhuman = {
         Name = "blood (nonhuman)",
         ID = "blood_nonhuman",
@@ -134,76 +127,445 @@ chm.Reagents = {
     },
 
     -- ******************************
-    -- GENERAL HEALERS // Legal unless not used to heal
+    -- DRUGS // Only legal if used to heal
     -- ******************************
-    -- Type: Anti-burn
-    -- Downside: Expensive to make
-    -- Overdose: Causes burns, suffocation if too much
-    antiburn = {
-        Name = "antiburn", -- #TODO#
-        ID = "antiburn",
-        Desc = "A chemical that heals burns. It is expensive to make.",
-        Type = "chemical",
+    -- Values are not perfectly vanilla due to tick variance but it's close enough
+    meth = {
+        Name = "meth",
+        ID = "meth",
+        Desc = "WIP",
+        Type = "drug",
         DepletionRate = 1,
         Effect = function(self, container, site)
-            -- #TODO#
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "haste", 28 * chm.DeltaTime, nil)
+            end
         end,
     },
+    steroids = {
+        Name = "steroids",
+        ID = "steroids",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "strengthen", 28 * chm.DeltaTime, nil)
+            end
+        end,
+    },
+    hyperzine = {
+        Name = "hyperzine",
+        ID = "hyperzine",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "haste", 26.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "strengthen", 26.67 * chm.DeltaTime, nil)
+            end
+        end,
+    },
+    ethanol = {
+        Name = "ethanol",
+        ID = "ethanol",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "haste", 26.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "strengthen", 26.67 * chm.DeltaTime, nil)
+            end
+        end,
+    },
+    antidama1 = {
+        Name = "morphine",
+        ID = "antidama1",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                -- ReduceAfflictionOnAllLimbs appears to work the exact same way as vanilla healing, so we're good there
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("damage", 2.67 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("burn", 0.13 * chm.DeltaTime, nil, nil)
+                Megamod.AddAffliction(container, "oxygenlow", 2 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "opiateaddiction", 2.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "opiateoverdose", 2 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("opiatewithdrawal", 5 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    antidama2 = {
+        Name = "fentanyl",
+        ID = "antidama2",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("damage", 5 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("burn", 0.33 * chm.DeltaTime, nil, nil)
+                Megamod.AddAffliction(container, "oxygenlow", 1.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "opiateaddiction", 1.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "opiateoverdose", 1.67 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("opiatewithdrawal", 6.67 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    pomegrenadeextract = {
+        Name = "pomegrenade extract",
+        ID = "Pomegrenadeextract",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "oxygenlow", 1.33 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("damage", 0.53 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("burn", 0.53 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    antibloodloss1 = {
+        Name = "saline",
+        ID = "antibloodloss1",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            -- #TODO#: Blood loss not implemented yet
+        end,
+    },
+    -- Just use the human blood?
+    --[[antibloodloss2 = {
+        Name = "blood",
+        ID = "antibloodloss2",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- Type: Anti-bleeding
-    -- Downside: Causes lacerations proportional to the amount of bleeding fixed
-    -- Overdose: Causes bloodloss, suffocation if too much
-    --[[antibleeding = {
-        desc = "A chemical that quickly cauterizes bleeding. It causes lacerations as a result of closing wounds.",
+        end,
     },]]
+    deusizine = {
+        Name = "deusizine",
+        ID = "deusizine",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "burn", 0.27 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("damage", 4 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("bloodloss", 3.33 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("bleeding", 1.33 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("internaldamage", 1.33 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("infection", 1.67 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("stun", 0.4 * chm.DeltaTime, nil, nil)
+                Megamod.AddAffliction(container, "strengthen", 13.33 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("oxygenlow", 10 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    liquidoxygenite = {
+        Name = "liquid oxygenite",
+        ID = "liquidoxygenite",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("oxygenlow", 10 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    calyxanide = {
+        Name = "calyxanide",
+        ID = "calyxanide",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                local huskProgress = Megamod.GetAfflictionStrength(container, "huskinfection", 0)
+                if huskProgress < 100 then
+                    -- Intentionally higher than vanilla because it's over 15 seconds, not 1, and the husk will
+                    -- regenerate a bit in that time
+                    container.CharacterHealth.ReduceAfflictionOnAllLimbs("huskinfection", 7.33 * chm.DeltaTime, nil, nil)
+                else
+                    Megamod.AddAffliction(container, "organdamage", 2 * chm.DeltaTime, nil)
+                end
+            end
+        end,
+    },
+    antipsychosis = {
+        Name = "haloperidol",
+        ID = "antipsychosis",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("psychosis", 6.7 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("hallucinating", 6.7 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    antinarc = {
+        Name = "naloxone",
+        ID = "antinarc",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("opiatewithdrawal", 4 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("opiateaddiction", 4 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("opiateoverdose", 4 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    morbusineantidote = {
+        Name = "morbusine antidote",
+        ID = "morbusineantidote",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                -- Intentionally higher than vanilla because it takes a little longer
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("morbusinepoisoning", 10.0 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    cyanideantidote = {
+        Name = "cyanide antidote",
+        ID = "cyanideantidote",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                -- Intentionally higher than vanilla because it takes a little longer
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("cyanidepoisoning", 10.0 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    sufforinantidote = {
+        Name = "sufforin antidote",
+        ID = "sufforinantidote",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                -- Intentionally higher than vanilla because it takes a little longer
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("sufforinpoisoning", 15.0 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    deliriumineantidote = {
+        Name = "deliriumine antidote",
+        ID = "deliriumineantidote",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                -- Intentionally higher than vanilla because it takes a little longer
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("deliriuminepoisoning", 15.0 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    antirad = {
+        Name = "antirad",
+        ID = "antirad",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                -- Intentionally higher than vanilla because it takes a little longer
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("radiationsickness", 7.0 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    antiparalysis = {
+        Name = "anaparalyzant",
+        ID = "antiparalysis",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "antiparalysis", 53.33 * chm.DeltaTime, nil)
+            end
+        end,
+    },
+    opium = {
+        Name = "opium",
+        ID = "opium",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("damage", 1.33 * chm.DeltaTime, nil, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("burn", 0.33 * chm.DeltaTime, nil, nil)
+                Megamod.AddAffliction(container, "opiateaddiction", 1.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "opiateoverdose", 1.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "oxygenlow", 1.17 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("opiatewithdrawal", 2.33 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    antibiotics = {
+        Name = "antibiotics",
+        ID = "antibiotics",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                local huskProgress = Megamod.GetAfflictionStrength(container, "huskinfection", 0)
+                if huskProgress < 75 then
+                    container.CharacterHealth.ReduceAfflictionOnAllLimbs("huskinfection", 2 * chm.DeltaTime, nil, nil)
+                end
+                Megamod.AddAffliction(container, "organdamage", 2.2 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "huskinfectionresistance", 40 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("infection", 5 * chm.DeltaTime, nil, nil)
+                Megamod.AddAffliction(container, "drunkweakness", 6.67 * chm.DeltaTime, nil)
+            end
+        end,
+    },
+    stabilozine = {
+        Name = "stabilozine",
+        ID = "stabilozine",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "stabilozineeffect", 8 * chm.DeltaTime, nil)
+            end
+        end,
+    },
+    adrenaline = {
+        Name = "adrenaline",
+        ID = "adrenaline",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "adrenalinerush", 2 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "nausea", 2.67 * chm.DeltaTime, nil)
+                Megamod.AddAffliction(container, "organdamage", 1.33 * chm.DeltaTime, nil)
+            end
+        end,
+    },
+    tonicliquid = {
+        Name = "tonic liquid",
+        ID = "tonicliquid",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+            if LuaUserData.IsTargetType(container, "Barotrauma.Character") then
+                Megamod.AddAffliction(container, "durationincrease", 20 * chm.DeltaTime, nil)
+                container.CharacterHealth.ReduceAfflictionOnAllLimbs("damage", 0.8 * chm.DeltaTime, nil, nil)
+            end
+        end,
+    },
+    morbusine = {
+        Name = "morbusine",
+        ID = "morbusine",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- Type: Anti-blunt force
-    -- Downside: Heals slowly
-    -- Overdose: Speed debuff, suffocation if too much
-    --[[antiblunt = {
-        desc = "A chemical that helps heal blunt force trauma. The effect is rather slow.",
-    },]]
+        end,
+    },
+    chloralhydrate = {
+        Name = "chloral hydrate",
+        ID = "chloralhydrate",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- Type: Anti-lacerations/gunshot/bite wound etc
-    -- Downside: Causes burns
-    -- Overdose: Vitality damage + suffocation
-    --[[antilaceration = {
-        desc = "A chemical that helps heal lacerations, bite wounds, etc. It causes minor burns.",
-    },]]
+        end,
+    },
+    cyanide = {
+        Name = "cyanide",
+        ID = "cyanide",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- Type: Anti-suffocation/oxyloss
-    -- Downside: Causes disorientation even when not overdosing
-    -- Overdose: Extreme disorientation, suffocation if too much
-    --[[antioxyloss = {
-        desc = "A chemical that prevents oxygen loss from becoming lethal. It causes disorientation.",
-    },]]
+        end,
+    },
+    radiotoxin = {
+        Name = "radiotoxin",
+        ID = "radiotoxin",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- Type: Anti-toxin
-    -- Downside: Requies high dosage
-    -- Overdose: Vitality damage + suffocation
-    --[[antitoxin = {
-        desc = "A chemical that neutralizes toxins. It requires a high dosage to be effective.",
-    },]]
+        end,
+    },
+    sufforin = {
+        Name = "sufforin",
+        ID = "sufforin",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- Protective, prevents getting radiation but doesn't cure it
-    --[[antiradP = {
-        desc = "A chemical that helps prevent radiation from accumulating, but does not remove it if it's already affecting you.",
-    },]]
+        end,
+    },
+    deliriumine = {
+        Name = "deliriumine",
+        ID = "deliriumine",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- Cure, removes rad poisoning (slowly) but does not prevent gaining it
-    --[[antiradC = {
-        desc = "A chemical that slowly removes radiation.",
-    },]]
+        end,
+    },
+    paralyzant = {
+        Name = "paralyzant",
+        ID = "paralyzant",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
 
-    -- ******************************
-    -- POISONS // Illegal unless exclusively used to make antidotes
-    -- ******************************
+        end,
+    },
+    raptorbaneextract = {
+        Name = "raptor bane extract",
+        ID = "raptorbaneextract",
+        Desc = "WIP",
+        Type = "drug",
+        DepletionRate = 1,
+        Effect = function(self, container, site)
+
+        end,
+    },
 }
 
 -- Keep all numbers at 2 decimal places
 chm.Reactions = {
-    { -- Antiburn
-        ID = "basic_antiburn",
+    {
+        ID = "reaction_meth",
         ReqTempK = 712.8,
         AffectedByStabilizine = true,
         AllowedSites = {
@@ -211,11 +573,12 @@ chm.Reactions = {
             "extra",
         },
         Reactants = {
-            carbon = 1.00,
-            barium = 1.25,
+            phosphorus = 1.00,
+            chlorine = 2.00,
+            carbon = 2.00,
         },
         Products = {
-            antiburn = 1.50,
+            meth = 1.00,
         },
     },
 }

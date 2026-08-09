@@ -338,7 +338,6 @@ end
 
 ---@param container Barotrauma.Character|Barotrauma.Item
 ---@param subContainerID number
--- Reagent effects are ticked both client- and server- side
 function chm.TickEffects(container, subContainerID)
     local containerTbl = chm.GetContainerTable(container)
     local subContainer = containerTbl.SubContainers[subContainerID]
@@ -390,23 +389,15 @@ local function tickContainerType(masterTable)
     end
 end
 
-local TIMER_BASE = 120
-local timer = TIMER_BASE
--- Client doesn't use this
-local ticksSinceRoundStart = 0
-if Game.RoundStarted then
-    ticksSinceRoundStart = 3
-end
-chm.DeltaTime = TIMER_BASE / 60
 function chm.TickMaster()
     if not Game.RoundStarted then
-        ticksSinceRoundStart = 0
-        timer = TIMER_BASE
+        chm.TicksSinceRoundStart = 0
+        chm.MasterLoopTimer = chm.ML_TIMER_BASE
         return
     end
-    timer = timer - 1
-    if timer <= 0 then
-        timer = TIMER_BASE
+    chm.MasterLoopTimer = chm.MasterLoopTimer - 1
+    if chm.MasterLoopTimer <= 0 then
+        chm.MasterLoopTimer = chm.ML_TIMER_BASE
 
         -- Check if containers still exist
         local itemsToRemove = {}
@@ -434,7 +425,7 @@ function chm.TickMaster()
 
         if SERVER then
             -- Don't send net messages too soon in the round
-            if ticksSinceRoundStart >= 3 then
+            if chm.TicksSinceRoundStart >= 3 then
                 local items = {}
                 for item, _ in pairs(chm.ContainersItems) do
                     table.insert(items, item)
@@ -449,7 +440,7 @@ function chm.TickMaster()
                     end
                 end
             else
-                ticksSinceRoundStart = ticksSinceRoundStart + 1
+                chm.TicksSinceRoundStart = chm.TicksSinceRoundStart + 1
             end
         end
     end

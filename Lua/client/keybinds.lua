@@ -1,105 +1,3 @@
-    --[[[1] = function()
-        local slotReference = Megamod_Client.GetHoveredItem()
-        if slotReference and not firstItem then
-            firstItem = slotReference.Item
-            Megamod_Client.SelfMsg(true, "Set item #1 to " .. tostring(firstItem.Name), Color(255, 0, 255, 255))
-            return
-        elseif not slotReference and firstItem ~= nil then
-            firstItem = nil
-            Megamod_Client.SelfMsg(true, "Reset selected item", Color(255, 0, 255, 255))
-            return
-        elseif not slotReference then
-            Megamod_Client.SelfMsg(true, "Hover over item #1 in your inventory", Color(255, 0, 255, 255))
-            return
-        end
-        if slotReference.Item == firstItem then
-            Megamod_Client.SelfMsg(true, "Items are the same", Color(255, 0, 255, 255))
-            return
-        end
-        local msg = Networking.Start("mm_chem")
-        msg.WriteByte(2) -- Header
-        msg.WriteUInt64(firstItem.ID)
-        msg.WriteByte(1) -- Subcontainer 1 ID
-        msg.WriteUInt64(slotReference.Item.ID)
-        msg.WriteByte(1) -- Subcontainer 2 ID
-        msg.WriteSingle(5) -- Amount to transfer
-        Networking.Send(msg)
-        Megamod_Client.SelfMsg(true, "Transferred", Color(255, 0, 255, 255))
-    end,
-    [2] = function()
-        local slotReference = Megamod_Client.GetHoveredItem()
-        if not slotReference then
-            print("Hover over an item")
-            return
-        end
-        local container = slotReference.Item
-        if not container then
-            print("Hover over an item")
-            return
-        end
-        local containerTbl = Megamod_Client.Chemistry.ContainersItems[container]
-        if containerTbl then
-            print(tostring(container) .. ":")
-            print("Subcontainers:")
-            for k, subContainerTbl in pairs(containerTbl.SubContainers) do
-                print("SC " .. tostring(k))
-                print("Capacity: " .. tostring(subContainerTbl.Capacity))
-                print("TemperatureK: " .. tostring(subContainerTbl.TemperatureK))
-                print("Site: " .. tostring(subContainerTbl.Site))
-                print("Reagents:")
-                local hasReagents = false
-                for reagentID, reagentTbl in pairs(subContainerTbl.Reagents) do
-                    hasReagents = true
-                    print("ID: " .. tostring(reagentTbl.ID))
-                    print("Amount: " .. tostring(reagentTbl.Amount))
-                end
-                if not hasReagents then
-                    print("(no reagents)")
-                end
-            end
-            print("-----")
-        else
-            print("Not a container")
-        end
-    end,
-    [3] = function()
-        local mousePos = Megamod.ScreenToWorld(PlayerInput.MousePosition)
-        local container
-        local closestDist = math.huge
-        for char in Character.CharacterList do
-            local dist = Vector2.Distance(char.WorldPosition, mousePos)
-            if dist < closestDist then
-                container = char
-                closestDist = dist
-            end
-        end
-        if not container then return end
-        local containerTbl = Megamod_Client.Chemistry.ContainersCharacters[container]
-        if containerTbl then
-            print(tostring(container.SpeciesName) .. " (" .. tostring(container.DisplayName) .. "):")
-            print("Subcontainers:")
-            for k, subContainerTbl in pairs(containerTbl.SubContainers) do
-                print("SC " .. tostring(k))
-                print("Capacity: " .. tostring(subContainerTbl.Capacity))
-                print("TemperatureK: " .. tostring(subContainerTbl.TemperatureK))
-                print("Site: " .. tostring(subContainerTbl.Site))
-                print("Reagents:")
-                local hasReagents = false
-                for reagentID, reagentTbl in pairs(subContainerTbl.Reagents) do
-                    hasReagents = true
-                    print("ID: " .. tostring(reagentTbl.ID))
-                    print("Amount: " .. tostring(reagentTbl.Amount))
-                end
-                if not hasReagents then
-                    print("(no reagents)")
-                end
-            end
-            print("-----")
-        else
-            print("Not a container")
-        end
-    end,]]
-
 Megamod_Client.KeyBinds = {}
 Megamod_Client.KeyBinds.Binds = {}
 
@@ -170,6 +68,110 @@ local funcTable = {
         local msg = Networking.Start("mm_beastinvis")
         Networking.Send(msg)
     end,
+    --#DEBUG# Transfer reagents between two containers
+    --[[[5] = function()
+        local slotReference = Megamod_Client.GetHoveredItem()
+        if slotReference and not firstItem then
+            firstItem = slotReference.Item
+            Megamod_Client.SelfMsg(true, "Set item #1 to " .. tostring(firstItem.Name), Color(255, 0, 255, 255))
+            return
+        elseif not slotReference and firstItem ~= nil then
+            firstItem = nil
+            Megamod_Client.SelfMsg(true, "Reset selected item", Color(255, 0, 255, 255))
+            return
+        elseif not slotReference then
+            Megamod_Client.SelfMsg(true, "Hover over item #1 in your inventory", Color(255, 0, 255, 255))
+            return
+        end
+        if slotReference.Item == firstItem then
+            Megamod_Client.SelfMsg(true, "Items are the same", Color(255, 0, 255, 255))
+            return
+        end
+        local msg = Networking.Start("mm_chem")
+        msg.WriteByte(2) -- Header
+        msg.WriteUInt64(firstItem.ID)
+        msg.WriteByte(1) -- Subcontainer 1 ID
+        msg.WriteUInt64(slotReference.Item.ID)
+        msg.WriteByte(1) -- Subcontainer 2 ID
+        msg.WriteSingle(5) -- Amount to transfer
+        Networking.Send(msg)
+        Megamod_Client.SelfMsg(true, "Transferred", Color(255, 0, 255, 255))
+    end,
+    --#DEBUG# Inspect the reagents in an item container
+    [6] = function()
+        local slotReference = Megamod_Client.GetHoveredItem()
+        if not slotReference then
+            print("Hover over an item")
+            return
+        end
+        local container = slotReference.Item
+        if not container then
+            print("Hover over an item")
+            return
+        end
+        local containerTbl = Megamod_Client.Chemistry.ContainersItems[container]
+        if containerTbl then
+            print(tostring(container) .. ":")
+            print("Subcontainers:")
+            for k, subContainerTbl in pairs(containerTbl.SubContainers) do
+                print("SC " .. tostring(k))
+                print("Capacity: " .. tostring(subContainerTbl.Capacity))
+                print("TemperatureK: " .. tostring(subContainerTbl.TemperatureK))
+                print("Site: " .. tostring(subContainerTbl.Site))
+                print("Reagents:")
+                local hasReagents = false
+                for reagentID, reagentTbl in pairs(subContainerTbl.Reagents) do
+                    hasReagents = true
+                    print("ID: " .. tostring(reagentTbl.ID))
+                    print("Amount: " .. tostring(reagentTbl.Amount))
+                end
+                if not hasReagents then
+                    print("(no reagents)")
+                end
+            end
+            print("-----")
+        else
+            print("Not a container")
+        end
+    end,
+    --#DEBUG# Inspect the reagents in a player container
+    [7] = function()
+        local mousePos = Megamod.ScreenToWorld(PlayerInput.MousePosition)
+        local container
+        local closestDist = math.huge
+        for char in Character.CharacterList do
+            local dist = Vector2.Distance(char.WorldPosition, mousePos)
+            if dist < closestDist then
+                container = char
+                closestDist = dist
+            end
+        end
+        if not container then return end
+        local containerTbl = Megamod_Client.Chemistry.ContainersCharacters[container]
+        if containerTbl then
+            print(tostring(container.SpeciesName) .. " (" .. tostring(container.DisplayName) .. "):")
+            print("Subcontainers:")
+            for k, subContainerTbl in pairs(containerTbl.SubContainers) do
+                print("SC " .. tostring(k))
+                print("Capacity: " .. tostring(subContainerTbl.Capacity))
+                print("TemperatureK: " .. tostring(subContainerTbl.TemperatureK))
+                print("Site: " .. tostring(subContainerTbl.Site))
+                print("Reagents:")
+                local hasReagents = false
+                for reagentID, reagentTbl in pairs(subContainerTbl.Reagents) do
+                    hasReagents = true
+                    print("ID: " .. tostring(reagentTbl.ID))
+                    print("Amount: " .. tostring(reagentTbl.Amount))
+                end
+                if not hasReagents then
+                    print("(no reagents)")
+                end
+            end
+            print("-----")
+        else
+            print("Not a container")
+        end
+    end,]]
 }
 
 ---@param key string The key (as defined in Keys.cs) to use, use nil to delete keybind
@@ -213,6 +215,11 @@ end
 -- #TODO#: Make this change based on the player's W key
 -- Add a keybind to send The Beast up while flying, always set to the "up" key
 Megamod_Client.KeyBinds.SetKeyBind("W", {}, 2, 3)
+
+-- #DEBUG#
+--[[Megamod_Client.KeyBinds.SetKeyBind("F5", {}, 5, 1)
+Megamod_Client.KeyBinds.SetKeyBind("F6", {}, 6, 1)
+Megamod_Client.KeyBinds.SetKeyBind("F7", {}, 7, 1)]]
 
 -- We need to request our keybinds as they're stored server side
 Timer.Wait(function()

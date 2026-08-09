@@ -427,23 +427,7 @@ end, true)]]
     -- First item slot in hotbar (slot 1)
     local item = sender.Character.Inventory.GetItemAt(8)
     argument = tostring(argument)
-    Megamod.Chemistry.AddReagent(item, argument, 1, 1)
-end)
-
-cmds.AddCommand("admin", "d2", function(sender, argument)
-    -- First item slot in hotbar (slot 1)
-    local item = sender.Character.Inventory.GetItemAt(8)
-    local containerTbl = Megamod.Chemistry.GetContainerTable(item)
-    if not containerTbl then return end
-    if not argument or argument == "" then return end
-    containerTbl.SubContainers[1].TemperatureK = tonumber(argument)
-end)]]
-
---[[cmds.AddCommand("admin", "d1", function(sender, argument)
-    -- First item slot in hotbar (slot 1)
-    local item = sender.Character.Inventory.GetItemAt(8)
-    argument = tostring(argument)
-    Megamod.Chemistry.AddReagent(item, argument, 1, 1)
+    Megamod.Chemistry.AddReagent(item, argument, 15, 1)
 end)
 
 cmds.AddCommand("admin", "d2", function(sender, argument)

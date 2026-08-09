@@ -73,7 +73,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
-        dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
+        --dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/vision.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/configmenu.lua")
@@ -570,6 +570,9 @@ Megamod.Commands = require 'shared.commands'
 -- Sub stuff
 Megamod.Subs = require 'shared.subs'
 
+-- Shared chemistry (This is loaded in the server-side chemistry file)
+--Megamod.Chemistry = require 'shared.chemistry'
+
 if SERVER then
     -- Midround spawn
     Megamod.MidRoundSpawn = require 'server.modules.midroundspawn'
@@ -593,7 +596,7 @@ if SERVER then
     Megamod.Botany = require 'server.modules.botany'
 
     -- Syringes, reagents, etc
-    Megamod.Chemistry = require 'server.modules.chemistry'
+    --Megamod.Chemistry = require 'server.modules.chemistry'
 
     -- The station's AI player, who acts as Big Brother in the sky
     Megamod.StationAI = require 'server.modules.stationai'
