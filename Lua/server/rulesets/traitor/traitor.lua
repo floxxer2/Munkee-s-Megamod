@@ -17,6 +17,8 @@ rs.FailReason = ""
 
 
 local weightedRandom = require 'utils.weightedrandom'
+local shared = require 'shared.traitorshared'
+local SHOP_BASE = shared.shop
 
 rs.Items = {}
 rs.Items.Uplinks = {}
@@ -46,357 +48,6 @@ rs.RoleMessage =
 -- Uplinks
 do
     local BASE_DIME_AMOUNT = 10
-
-    local SHOP_BASE = {
-        [{ "medicaldoctor", "surgeon" }] = {
-            ["blood scalpel"] = {
-                type = "item",
-                cost = 3,
-                stock = 2,
-                desc = "\"Surgically inspect\" the captain.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("multiscalpel_blood")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            --[[["flashlight syringe"] = {
-                type = "item",
-                cost = 3,
-                stock = 1,
-                desc = "A syringe gun that looks like a flashlight.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("flashlightsyringe")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },]]
-            ["husk egg injector"] = {
-                type = "item",
-                cost = 2,
-                stock = 4,
-                desc = "Adds friends to your morphine.\n(Note: Any method other than the health interface will not cause husk infection.)",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("mm_huskegginjector")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            }
-        },
-        [{ "engineer", "mechanic" }] = {
-            ["stun prod"] = {
-                type = "item",
-                cost = 4,
-                stock = 2,
-                desc = "Old stun batons supercharged when fueled with dimes.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("mm_stunprod")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["contraband welder"] = {
-                type = "item",
-                cost = 4,
-                stock = 2,
-                desc = "It won't give *you* eye damage.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("scp_contrawelder")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-        },
-        ["assistant"] = {
-
-        },
-        ["all"] = {
-            -- Vanilla traitor item
-            ["radio jammer"] = {
-                type = "item",
-                cost = 3,
-                stock = 2,
-                desc = "It's on the tin.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("radiojammer")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["zip ties"] = {
-                type = "item",
-                cost = 1,
-                stock = 3,
-                desc = "A traitor's handcuffs.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("stasky")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["plastic bag"] = {
-                type = "item",
-                cost = 1,
-                stock = 3,
-                desc = "The most effective weapon.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("plasticbag")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["suicide belt"] = {
-                type = "item",
-                cost = 4,
-                stock = 2,
-                desc = "Quite the lethal prank. Explosive not included.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("shahidka")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["suicide vest"] = {
-                type = "item",
-                cost = 4,
-                stock = 2,
-                desc = "Strap it on someone, preferably not yourself. Explosive not included.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("shahidkatimer")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["blindfold"] = {
-                type = "item",
-                cost = 1,
-                stock = 3,
-                desc = "It blinds. And folds.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("blindfold")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["muzzle"] = {
-                type = "item",
-                cost = 1,
-                stock = 3,
-                desc = "It has use.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("muzzle")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["alcd"] = {
-                type = "item",
-                cost = 2,
-                stock = 1,
-                desc = "ID card access level copy device.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("emag")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["reverse bear trap"] = {
-                type = "item",
-                cost = 2,
-                stock = 3,
-                desc = "I want to play a game.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("reversebeartrap")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["revolver"] = {
-                type = "item",
-                cost = 7,
-                stock = 1,
-                desc = "A .357 revolver, with 16 shots.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("scp_r8")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    local prefab = ItemPrefab.GetItemPrefab("scp_357round")
-                    for i = 1, 16 do
-                        Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    end
-                    return true, "" -- success
-                end
-            },
-            ["contraband shiv"] = {
-                type = "item",
-                cost = 2,
-                stock = 4,
-                desc = "Very destructive to kneecaps.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("scp_shiv")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["contraband crowbar"] = {
-                type = "item",
-                cost = 3,
-                stock = 3,
-                desc = "Effectiveness may vary.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("scp_crowbar")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["contraband baton"] = {
-                type = "item",
-                cost = 4,
-                stock = 2,
-                desc = "A persuasive argument.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("scp_batoncontra")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["contraband container"] = {
-                type = "item",
-                cost = 2,
-                stock = 2,
-                desc = "Hide your tools.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("scp_contrabandcontainer")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["molotov"] = {
-                type = "item",
-                cost = 2,
-                stock = 3,
-                desc = "A spicy cocktail.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("molotovcoctail")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["frag grenade bouquet"] = {
-                type = "item",
-                cost = 4,
-                stock = 3,
-                desc = "Three frag grenades taped together. Rather loud.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("sgt_fraggrenadebouquet")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            --[[["dart gun"] = {
-                type = "item",
-                cost = 4,
-                stock = 3,
-                desc = "Uses mostly any syringe to synthesize and fire nearly undetectable darts. The gun itself is not as stealthy as the darts.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("mm_dartgun")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },]]
-            ["cyanide"] = {
-                type = "item",
-                cost = 4,
-                stock = 3,
-                desc = "Kills fast, but it's very obvious.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("cyanide")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["morbusine"] = {
-                type = "item",
-                cost = 3,
-                stock = 3,
-                desc = "It's not really meant for humans.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("morbusine")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["sufforin"] = {
-                type = "item",
-                cost = 4,
-                stock = 3,
-                desc = "Sneakier than the others.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("sufforin")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["radiotoxin"] = {
-                type = "item",
-                cost = 4,
-                stock = 3,
-                desc = "Very deadly.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("radiotoxin")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["paralyzant"] = {
-                type = "item",
-                cost = 4,
-                stock = 3,
-                desc = "What are you plotting?",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("paralyzant")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["calyx extract"] = {
-                type = "item",
-                cost = 4,
-                stock = 3,
-                desc = "I enjoy these little guys. Maybe not so much for you.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("huskeggs")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["pale horse"] = {
-                type = "item",
-                cost = 6,
-                stock = 1,
-                desc = "Makes you comparable.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    local prefab = ItemPrefab.GetItemPrefab("sgt_berserk")
-                    Entity.Spawner.AddItemToSpawnQueue(prefab, buyer.Character.Inventory)
-                    return true, "" -- success
-                end
-            },
-            ["dime locator"] = {
-                type = "upgrade",
-                cost = 1,
-                stock = 1,
-                desc = "Should help you find dimensional essence, though it's not as effective in your hands.",
-                buy = function(buyer, ruleSet, uplinkItem, shopItemTable)
-                    rs.Items.Uplinks[uplinkItem][7]["dime locator"] = function(uplinkItem, terminal, client, argument)
-                        local msg = Networking.Start("mm_dimelocator")
-                        msg.WriteBoolean(true) -- True = toggle, false = disable
-                        Networking.Send(msg, client.Connection)
-                        return "Dime locator toggled."
-                    end
-                    return true, ""
-                end
-            },
-        }
-    }
 
     function rs.SpawnUplink(traitor)
         local prefab = ItemPrefab.GetItemPrefab("mm_uplink")
@@ -461,21 +112,20 @@ do
                 [2] = traitor, -- Original owner
                 [3] = uplinkShop, -- Shop for this uplink
                 [4] = true, -- If the uplink can be used (i.e. is not being returned)
-                [5] = 0, -- 'DV' command cooldown, 2 minutes
+                [5] = 0, -- 'DV' command cooldown, 20 seconds
                 [6] = 0, -- Internal dime count, used for siphoning
                 [7] = {}, -- Upgrades that this uplink has
             }
 
             rs.IDMessageCommands[id] = { item, rs.Items.Uplinks[item] }
 
-            local terminal = item.GetComponentString("Terminal")
-            -- Happens sometimes apparently??
-            if not terminal then
-                Megamod.Error("Terminal component not found on an uplink.")
-                return
-            end
-            terminal.ShowMessage = "Type 'help' for commands."
-            terminal.SyncHistory()
+            -- Wait for the item to be properly initialized
+            -- Then send a net message telling the traitor that this is their uplink
+            Timer.Wait(function()
+                local message = Networking.Start("mm_uplink")
+                message.WriteUInt64(tonumber(item.ID))
+                Networking.Send(message, traitor.Connection)
+            end, 1000)
         end, true)
     end
 
@@ -683,7 +333,7 @@ do
                         if ownTbl[5] <= 0 then
                             -- Notify the uplink user
                             if Megamod.CheckIsDead(client) == false then
-                                Megamod.SendChatMessage(client, "Uplink " .. tostring(ownTbl[1]) .. ": DV READY", Color(255, 100, 100, 255))
+                                Megamod.SendChatMessage(client, "UPLINK: DV READY", Color(255, 100, 100, 255))
                             end
                             return
                         end
@@ -991,7 +641,7 @@ do
 end
 
 -- Dimensional leaks
-do
+--[[do
     function rs.SendDLeakNetMessage()
         local msg = Networking.Start("mm_leak")
         local amount = 0
@@ -1080,7 +730,7 @@ do
             rs.DLeakLoop()
         end, time * 1000)
     end
-end
+end]]
 
 -- Objectives
 do
@@ -1097,563 +747,7 @@ do
     "I WILL STILL REQUIRE MORE FROM YOU",
     }
 
-    -- Get the timer reduction from the credit value of the objective
-    local function creditTimer(creditValue)
-        return (creditValue + 1) * 50
-    end
-
-    local function completeObj(self, traitor)
-        Megamod.Log("Traitor " .. tostring(traitor.Name) .. " completed their '" .. self.Name .. "' objective.", true)
-        rs.SelectedPlayers[traitor][2][6] = rs.SelectedPlayers[traitor][2][6] + self.Credit
-        rs.SelectedPlayers[traitor][2][4] = rs.SelectedPlayers[traitor][2][4] - creditTimer(self.Credit)
-        rs.SelectedPlayers[traitor][2][7] = math.random(30, 60) -- Cooldown of 30-60 seconds till you can get another objective
-        rs.SelectedPlayers[traitor][2][8] = false
-        rs.SelectedPlayers[traitor][2][3] = nil
-        local prefab = ItemPrefab.GetItemPrefab("mm_dime")
-        if Megamod.CheckIsDead(traitor) == false then
-            for i = 1, self.Credit do
-                Entity.Spawner.AddItemToSpawnQueue(prefab, traitor.Character.Inventory, nil, nil, nil, true)
-            end
-        end
-        return rs.SuccessMessages[math.random(#rs.SuccessMessages)] .. "\n(Objective completed. Await your next.)"
-    end
-
-    local function assign(self, traitor, target, desc, objFunc)
-        rs.SelectedPlayers[traitor][2][3] = {
-            Name = self.Name,
-            Desc = desc,
-            Credit = self.Credit,
-            Target = target,
-            NoPenalty = false,
-            Obj = objFunc
-        }
-    end
-
-    -- #TODO#: Thief, Meeting
-    rs.Objectives = {
-        { -- Murder: Kill a crewmate who is not security or captain - must kill confirm
-            Name = "Murder",
-            Jobs = "all",
-            Chance = 50,
-            Credit = 4,
-            MinStrength = 4,
-            DescriptionChat = {
-                "KILL \"%s\" FOR ME WOULD YOU",
-                "I NEED \"%s\" OUT OF THE PICTURE",
-                "DISPOSE OF \"%s\" PLEASE",
-                "LET \"%s\" SLEEP WITH THE FISHES",
-                "I NEED \"%s\" TO BE DONE AWAY WITH",
-            },
-            DescriptionReal = "(Kill %s, then use the 'obj' command in your uplink when near their corpse.)",
-            -- >=50% of crew must be alive and healthy
-            -- There must be at least one healthy crewmate who is not security or captain
-            Check = function(traitor)
-                local healthyTargets = 0
-                local totalTargets = 0
-                local target = false
-                for client in Client.ClientList do
-                    if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
-                        totalTargets = totalTargets + 1
-                        local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if Megamod.CheckIsDead(client) == false
-                        and client.Character
-                        and client.Character.IsHuman
-                        and client.Character.Vitality > 40
-                        then
-                            healthyTargets = healthyTargets + 1
-                            if not target
-                            and jobID ~= "captain"
-                            and jobID ~= "securityofficer" then
-                                target = true
-                            end
-                        end
-                    end
-                end
-                return target and (healthyTargets / math.max(totalTargets, 1) >= 0.5)
-            end,
-            Assign = function(self, traitor)
-                local potentialTargets = {}
-                for client in Client.ClientList do
-                    local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and client.Character.Vitality > 5
-                    and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0
-                    and jobID ~= "captain"
-                    and jobID ~= "securityofficer"
-                    then
-                        table.insert(potentialTargets, { client, client.Character })
-                    end
-                end
-                local target = potentialTargets[math.random(#potentialTargets)]
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
-                local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                assign(self, traitor, target, desc, function(client)
-                    if not client.Character then return "" end
-                    if not target[2] then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target no longer exists. Canceling this will not incur a penalty."
-                    end
-                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                    if distance < 115 then
-                        if target[2].IsDead then
-                            return self:Complete(traitor)
-                        else
-                            return "Target is not dead."
-                        end
-                    else
-                        return "Target not in range."
-                    end
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-        { -- Kidnapping: Kidnap a crewmate who is not security or captain and take them to the Deep Vents
-            Name = "Kidnapping",
-            Jobs = "all",
-            Chance = 40,
-            Credit = 5,
-            MinStrength = 5,
-            DescriptionChat = {
-                "I NEED TO HAVE A WORD WITH \"%s\"",
-                "GIVE ME \"%s\"",
-                "COME TO ME AND TAKE \"%s\" WITH YOU",
-                "GET \"%s\"",
-                "RIP \"%s\" FROM THE STATION",
-            },
-            DescriptionReal = "(Take %s to the Deep Vents and use the 'obj' command in your uplink near them.)",
-            -- >=50% of crew must be alive and healthy
-            -- There must be at least one healthy crewmate who is not security or captain
-            Check = function(traitor)
-                local healthyTargets = 0
-                local totalTargets = 0
-                local target = false
-                for client in Client.ClientList do
-                    if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
-                        totalTargets = totalTargets + 1
-                        local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if Megamod.CheckIsDead(client) == false
-                        and client.Character
-                        and client.Character.IsHuman
-                        and client.Character.Vitality > 40
-                        then
-                            healthyTargets = healthyTargets + 1
-                            if not target
-                            and jobID ~= "captain"
-                            and jobID ~= "securityofficer" then
-                                target = true
-                            end
-                        end
-                    end
-                end
-                return target and (healthyTargets / math.max(totalTargets, 1) >= 0.5)
-            end,
-            Assign = function(self, traitor)
-                local potentialTargets = {}
-                for client in Client.ClientList do
-                    local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and client.Character.Vitality > 5
-                    and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0
-                    and jobID ~= "captain"
-                    and jobID ~= "securityofficer"
-                    then
-                        table.insert(potentialTargets, { client, client.Character })
-                    end
-                end
-                local target = potentialTargets[math.random(#potentialTargets)]
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
-                local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                assign(self, traitor, target, desc, function(client)
-                    if not client.Character then return "" end
-                    if not target[2] then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target no longer exists. Canceling this will not incur a penalty."
-                    elseif target[2].IsDead then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target is dead. Canceling this will not incur a penalty."
-                    end
-                    local hull = client.Character.CurrentHull
-                    if hull.RoomName ~= "???" then
-                        return "You must be in the Deep Vents."
-                    end
-                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                    if distance < 115 then
-                        Megamod.SendChatMessage(target[1], "You have been kidnapped by a traitor. Your only hope is to be cloned...", Color(255, 100, 100, 255))
-                        Entity.Spawner.AddEntityToRemoveQueue(target[2])
-                        return self:Complete(traitor)
-                    else
-                        return "Target not in range."
-                    end
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-        { -- Regicide: Kill a captain or security - must kill confirm
-            Name = "Regicide",
-            Jobs = "all",
-            Chance = 10,
-            Credit = 7,
-            MinStrength = 8,
-            DescriptionChat = {
-                "\"%s\" HAS BEEN IN POWER FOR TOO LONG  FIX THAT",
-                "REMOVE \"%s\" FROM OFFICE",
-                "TAKE \"%s\" OFF THEIR THRONE",
-                "IMPEACH \"%s\"",
-                "THE PRESIDENCY OF \"%s\" MUST COME TO AN END",
-            },
-            DescriptionReal = "(Kill %s, then use the 'obj' command in your uplink when near their corpse.)",
-            -- >=50% of crew must be alive and healthy
-            -- There must be at least one healthy security or captain
-            Check = function(traitor)
-                local healthyTargets = 0
-                local totalTargets = 0
-                local target = false
-                for client in Client.ClientList do
-                    if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
-                        totalTargets = totalTargets + 1
-                        local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if Megamod.CheckIsDead(client) == false
-                        and client.Character
-                        and client.Character.IsHuman
-                        and client.Character.Vitality > 40
-                        then
-                            healthyTargets = healthyTargets + 1
-                            if not target
-                            and (jobID == "captain"
-                            or jobID == "securityofficer") then
-                                target = true
-                            end
-                        end
-                    end
-                end
-                return target and (healthyTargets / math.max(totalTargets, 1) >= 0.5)
-            end,
-            Assign = function(self, traitor)
-                local potentialTargets = {}
-                for client in Client.ClientList do
-                    local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and client.Character.Vitality > 5
-                    and (jobID == "captain" or jobID == "securityofficer") -- No need for an antag check, security / captain are never antags
-                    then
-                        table.insert(potentialTargets, { client, client.Character })
-                    end
-                end
-                local target = potentialTargets[math.random(#potentialTargets)]
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
-                local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                assign(self, traitor, target, desc, function(client)
-                    if not client.Character then return "" end
-                    if not target[2] then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target no longer exists. Canceling this will not incur a penalty."
-                    end
-                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                    if distance < 115 then
-                        if target[2].IsDead then
-                            return self:Complete(traitor)
-                        else
-                            return "Target is not dead."
-                        end
-                    else
-                        return "Target not in range."
-                    end
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-        { -- Brainwashing: Same as Kidnap, but instead of deleting the victim, they turn into another traitor
-            Name = "Brainwashing",
-            Jobs = "all",
-            Chance = 30,
-            Credit = 5,
-            MinStrength = 3,
-            DescriptionChat = {
-                "TAKE \"%s\" TO ME AND I'LL GIVE THEM A HELPING HAND",
-                "\"%s\" LOOKS LIKE A FINE CANDIDATE",
-                "THE TEAM IS FALTERING  \"%s\" COULD FIX THAT",
-                "\"%s\" SEEMS LIKE THEY ARE RESPONSIBLE ENOUGH",
-                "TAKE \"%s\" TO ME AND I'LL DO THE REST",
-            },
-            DescriptionReal = "(Take %s to the Deep Vents and use the 'obj' command in your uplink near them. They will turn into another traitor.)",
-            -- >=50% of crew must be alive and healthy
-            -- There must be at least one crewmate who is not security or captain
-            -- At most 4 people can be turned into traitors in one round
-            Check = function(traitor)
-                if rs.TraitorAmount >= 4 then return false end
-                local healthyTargets = 0
-                local totalTargets = 0
-                local target = false
-                for client in Client.ClientList do
-                    if #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 then -- Must not be a traitor, other antags are valid
-                        totalTargets = totalTargets + 1
-                        local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                        if Megamod.CheckIsDead(client) == false
-                        and client.Character
-                        and client.Character.IsHuman
-                        and client.Character.Vitality > 40
-                        then
-                            healthyTargets = healthyTargets + 1
-                            if not target
-                            and jobID ~= "captain"
-                            and jobID ~= "securityofficer" then
-                                target = true
-                            end
-                        end
-                    end
-                end
-                return target and (healthyTargets / math.max(totalTargets, 1) >= 0.5)
-            end,
-            Assign = function(self, traitor)
-                local potentialTargets = {}
-                for client in Client.ClientList do
-                    local jobID = (client.Character and tostring(client.Character.JobIdentifier)) or ""
-                    if Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and client.Character.Vitality > 5
-                    and jobID ~= "captain"
-                    and jobID ~= "securityofficer"
-                    and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") == 0 -- Must not be a traitor, other antags are valid
-                    then
-                        table.insert(potentialTargets, { client, client.Character })
-                    end
-                end
-                local target = potentialTargets[math.random(#potentialTargets)]
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
-                local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                assign(self, traitor, target, desc, function(client)
-                    if not client.Character then return "" end
-                    if not target[2] then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target no longer exists. Canceling this will not incur a penalty."
-                    elseif target[2].IsDead then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target is dead. Canceling this will not incur a penalty."
-                    end
-                    local hull = client.Character.CurrentHull
-                    if hull.RoomName ~= "???" then
-                        return "You must be in the Deep Vents."
-                    end
-                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                    if distance < 115 then
-                        if target[1] then
-                            Megamod.SendChatMessage(target[1], "You have been converted into a traitor.", Color(255, 0, 255, 255))
-                            Megamod.GiveAntagOverlay(target[2])
-                            rs.SetTraitor(target[1], true)
-                        end
-                        return self:Complete(traitor)
-                    else
-                        return "Target not in range."
-                    end
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-        { -- Double Agent: Kill a traitor who hasn't been following their objectives - must kill confirm
-            Name = "Double Agent",
-            Jobs = "all",
-            Chance = 200, -- Very high chance if check() succeeds
-            Credit = 7,
-            MinStrength = 0,
-            DescriptionChat = {
-                "\"%s\" HASN'T BEEN UP TO SNUFF",
-                "\"%s\" IS A LIABILITY TO THE TEAM",
-                "\"%s\" HASN'T BEEN FOLLOWING ORDERS",
-                "\"%s\" HASN'T BEEN DOING THEIR JOB",
-                "\"%s\" ISN'T AS EVIL AS THE REST OF YOU",
-            },
-            DescriptionReal = "(Kill %s, then use the 'obj' command in your uplink when near their corpse.)",
-            Check = function(traitor) -- There must be at least one traitor whose timer is >480
-                for client in Client.ClientList do
-                    if client ~= traitor
-                    and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and rs.SelectedPlayers[client][2][4] > 480
-                    then
-                        return true
-                    end
-                end
-                return false
-            end,
-            Assign = function(self, traitor)
-                local potentialTargets = {}
-                for client in Client.ClientList do
-                    if client ~= traitor
-                    and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and rs.SelectedPlayers[client][2][4] > 480
-                    then
-                        table.insert(potentialTargets, { client, client.Character })
-                    end
-                end
-                local target = potentialTargets[math.random(#potentialTargets)]
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
-                local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                assign(self, traitor, target, desc, function(client)
-                    if not client.Character then return "" end
-                    if not target[2] then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target no longer exists. Canceling this will not incur a penalty."
-                    end
-                    local distance = Vector2.Distance(client.Character.WorldPosition, target[2].WorldPosition)
-                    if distance < 115 then
-                        if target[2].IsDead then
-                            return self:Complete(traitor)
-                        else
-                            return "Target is not dead."
-                        end
-                    else
-                        return "Target not in range."
-                    end
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-        { -- Loan Shark: Same as Double Agent, but use the 'return' command on their uplink instead of killing them
-            Name = "Loan Shark",
-            Jobs = "all",
-            Chance = 200, -- Very high chance if check() succeeds
-            Credit = 7,
-            MinStrength = 0,
-            DescriptionChat = {
-                "\"%s\" HASN'T BEEN UP TO SNUFF",
-                "\"%s\" IS A LIABILITY TO THE TEAM",
-                "\"%s\" HASN'T BEEN FOLLOWING ORDERS",
-                "\"%s\" HASN'T BEEN DOING THEIR JOB",
-                "\"%s\" ISN'T AS EVIL AS THE REST OF YOU",
-            },
-            DescriptionReal = "(Use the 'return' command on the uplink assigned to %s.)",
-            Check = function(traitor) -- There must be at least one traitor whose timer is >480
-                for client in Client.ClientList do
-                    if client ~= traitor
-                    and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and rs.SelectedPlayers[client][2][4] > 480
-                    then
-                        return true
-                    end
-                end
-                return false
-            end,
-            Assign = function(self, traitor)
-                local potentialTargets = {}
-                for client in Client.ClientList do
-                    if client ~= traitor
-                    and #Megamod.RuleSetManager.AntagStatus(client, "Traitor") ~= 0 -- Must be a traitor
-                    and Megamod.CheckIsDead(client) == false
-                    and client.Character
-                    and client.Character.IsHuman
-                    and rs.SelectedPlayers[client][2][4] > 480
-                    then
-                        table.insert(potentialTargets, { client, client.Character })
-                    end
-                end
-                local target = potentialTargets[math.random(#potentialTargets)]
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: '" .. tostring(target[1].Name) .. "' as '" .. tostring(target[2].Name) .. "') to '" .. tostring(traitor.Name) .. "'")
-                local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target[2].Name, target[2].Name)
-                assign(self, traitor, target, desc, function(client)
-                    if not client.Character then return "" end
-                    if not target[2] then
-                        rs.SelectedPlayers[traitor][2][3]["NoPenalty"] = true
-                        return "Target no longer exists. Canceling this will not incur a penalty."
-                    end
-                    return "Use the 'return' command on the target's uplink."
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-        { -- Payment: Send the Lender some amount of dimes
-            Name = "Payment",
-            Jobs = "all",
-            Chance = 15,
-            Credit = 0,
-            MinStrength = 0,
-            DescriptionChat = {
-                "I NEED %d ESSENCE",
-                "%d ESSENCE  THAT'S IT",
-                "I REQUIRE %d ESSENCE FROM YOU",
-                "%d ESSENCE",
-                "ESSENCE  %d UNITS",
-            },
-            DescriptionReal = "(Have %d dime(s) in your hotbar, then use the 'obj' command in your uplink.)",
-            Check = function(traitor) -- Always available
-                return true
-            end,
-            Assign = function(self, traitor)
-                local target = math.random(rs.Strength, math.floor(rs.Strength * 1.5))
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: " .. tostring(target) .. ") to '" .. tostring(traitor.Name) .. "'")
-                local desc = string.format(self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal, target, target)
-                assign(self, traitor, target, desc, function(client)
-                    if not client.Character then return "" end
-                    local items = client.Character.Inventory.GetAllItems(false)
-                    local dimes = {}
-                    for item in items do
-                        if tostring(item.Prefab.Identifier) == "mm_dime" then
-                            table.insert(dimes, item)
-                        end
-                    end
-                    if #dimes >= target then
-                        for i = 1, target do
-                            Entity.Spawner.AddItemToRemoveQueue(dimes[i])
-                        end
-                        return self:Complete(traitor)
-                    else
-                        return "Not enough dimes."
-                    end
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-        { -- End of the Road: Kill all non-traitors; handled separately but shown as an objective in uplinks
-            Name = "End of the Road",
-            Jobs = "all",
-            Chance = 1, -- n/a, but must be >0
-            EOTR = true, -- This obj is special
-            Credit = 15,
-            MinStrength = 0, -- n/a - kept for consistency
-            DescriptionChat = {
-                "IT IS TIME",
-                "THE CLOCK STRIKES TWELVE",
-                "FETCH ME THEIR SOULS",
-                "TIME TO PAY THE REAPER",
-                "I'VE BECOME IMPATIENT",
-            },
-            DescriptionReal = "(Kill everybody who isn't a traitor. This objective ends the round when completed.)",
-            Check = function(traitor) -- n/a
-
-            end,
-            Assign = function(self, traitor)
-                local target = "n/a"
-                Megamod.Log("Gave objective '" .. self.Name .. "' (target: " .. tostring(target) .. ") to '" .. tostring(traitor.Name) .. "'")
-                local desc = self.DescriptionChat[math.random(#self.DescriptionChat)] .. "\n" .. self.DescriptionReal
-                assign(self, traitor, target, desc, function(client)
-                    return "Kill them all. This objective will complete automatically."
-                end)
-                return self.Name .. "\n" .. desc
-            end,
-            Complete = completeObj
-        },
-    }
+    rs.Objectives = shared.obj
 
     local function compareJobs(job, requiredJobs)
         local t = type(requiredJobs)
@@ -1689,7 +783,8 @@ do
             Megamod.Log("No valid traitor objectives to give to '" .. tostring(traitor.Name) .. ".'", true)
             return "(No objectives were valid to give you. If this persists, tell an admin!)"
         end
-        return chosenObjective:Assign(traitor)
+        -- Second value returns more than one value, so put it at the end
+        return chosenObjective, chosenObjective:Assign(traitor)
     end
 end
 
@@ -1704,7 +799,7 @@ function rs.PatienceLoop()
             tbl[2][4] = tbl[2][4] + time
             -- Notify the traitor that they can get another objective
             if not tbl[2][8] and tbl[2][2] then
-                Megamod.SendChatMessage(traitor, "UPLINK " .. rs.Items.Uplinks[tbl[2][2]][1] .. ": OBJECTIVE READY", Color(255, 100, 100, 255))
+                Megamod.SendChatMessage(traitor, "UPLINK: OBJECTIVE READY", Color(255, 100, 100, 255))
                 tbl[2][8] = true
             elseif not tbl[2][8] and not tbl[2][2] and not tbl[2][1] then
                 -- If the traitor hasn't spawned their uplink before the initial objective cooldown, force it to spawn
@@ -1714,7 +809,7 @@ function rs.PatienceLoop()
                 rs.SpawnUplink(traitor)
             end
         elseif tbl[2][7] > 0 then
-            tbl[2][7] = tbl[2][7] - 1
+            tbl[2][7] = tbl[2][7] - time
             if tbl[2][7] < 0 then tbl[2][7] = 0 end
         end
     end
@@ -1781,7 +876,7 @@ function rs.EOTRLoop()
     end
 end
 
--- Clients who reload lua send a sync message to see if they're a traitor
+-- Clients who reload Lua send a sync message to see if they're a traitor
 Networking.Receive("mm_traitor", function(message, client)
     -- Don't use rs.SetTraitor, as that would reset everything
     if rs.SelectedPlayers[client] then
@@ -1789,6 +884,300 @@ Networking.Receive("mm_traitor", function(message, client)
         msg.WriteBoolean(true)
         Networking.Send(msg, client.Connection)
     end
+end)
+
+-- Clients who reload Lua send a sync message to get info about their uplink
+Networking.Receive("mm_uplinksync", function(message, client)
+    if rs.SelectedPlayers[client] then
+        local correctUplink
+        for uplinkItem, uplinkTbl in pairs(rs.Items.Uplinks) do
+            if uplinkTbl[2] == client then
+                correctUplink = uplinkItem
+                break
+            end
+        end
+        -- Might happen if it gets returned right as this is called?
+        if not correctUplink then
+            Megamod.Error("Could not find a traitor's uplink.")
+            return
+        end
+        local msg = Networking.Start("mm_uplink")
+        msg.WriteUInt64(tonumber(correctUplink.ID))
+        Networking.Send(msg, client.Connection)
+
+        -- Sync the stock of items in their uplink
+        for itemName, itemTbl in pairs(rs.Items.Uplinks[correctUplink][3]) do
+            local msg = Networking.Start("mm_traitorstock")
+            msg.WriteString(tostring(itemName))
+            msg.WriteUInt16(tonumber(itemTbl.stock))
+            Networking.Send(msg, client.Connection)
+        end
+    end
+end)
+
+-- Traitor bought something in their uplink
+Networking.Receive("mm_traitorbuy", function(message, client)
+    if not rs.SelectedPlayers[client] then return end -- Completely ignore non-traitors
+    local uplink
+    for potentialUplink, uplinkTbl in pairs(rs.Items.Uplinks) do
+        if uplinkTbl[2] == client and uplinkTbl[4] == true then
+            uplink = potentialUplink
+            break
+        end
+    end
+    if not uplink then
+        Megamod.Error("Could not find uplink item for client '" .. tostring(client.Name) .. "'")
+        return
+    end
+    local boughtItemName = message.ReadString()
+    if not boughtItemName then return end
+    local uplinkShop = rs.Items.Uplinks[uplink][3]
+    local boughtItemTbl = uplinkShop[boughtItemName]
+    if boughtItemTbl.stock <= 0 then
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' tried to buy an out-of-stock item in their uplink.")
+        return
+    end
+    local dimes = {}
+    for item in uplink.OwnInventory.FindAllItems() do
+        if tostring(item.Prefab.Identifier) == "mm_dime" then
+            table.insert(dimes, item)
+        end
+    end
+    if boughtItemTbl.cost <= #dimes then
+        -- Success, buy the item
+        boughtItemTbl.stock = boughtItemTbl.stock - 1
+        local msg = Networking.Start("mm_traitorstock")
+        msg.WriteString(tostring(boughtItemName))
+        msg.WriteUInt16(tonumber(boughtItemTbl.stock))
+        Networking.Send(msg, client.Connection)
+        boughtItemTbl.buy(client, rs, uplink, boughtItemTbl)
+        for i = 1, boughtItemTbl.cost do
+            Entity.Spawner.AddItemToRemoveQueue(dimes[1])
+            table.remove(dimes, 1)
+        end
+    else
+        Megamod.Log("Client '" .. tostring(client.Name) .. "' tried to buy an item in their uplink, but did not have enough dimes.")
+        return
+    end
+end)
+
+-- Give traitors new objectives
+Networking.Receive("mm_traitornewobj", function(message, client)
+    if not rs.SelectedPlayers[client] or rs.EOTR then return end
+    local uplink
+    for potentialUplink, uplinkTbl in pairs(rs.Items.Uplinks) do
+        if uplinkTbl[2] == client and uplinkTbl[4] == true then
+            uplink = potentialUplink
+            break
+        end
+    end
+    if not uplink then
+        Megamod.Error("Could not find uplink item for client '" .. tostring(client.Name) .. "'")
+        return
+    end
+    local chosenObj, str, target, chosenChat = rs.CreateObjective(client)
+    if chosenObj == "I NEED NOT OF YOU RIGHT NOW" then
+        -- Tell the traitor that they cannot get an objective right now
+        local msg = Networking.Start("mm_traitornewobj")
+        msg.WriteByte(2)
+        Networking.Send(msg, client.Connection)
+        return
+    end
+    local id
+    for key, obj in pairs(rs.Objectives) do
+        if obj.Name == chosenObj.Name then
+            id = key
+            break
+        end
+    end
+    if not id then
+        Megamod.Error("Could not find an objective to give to '" .. tostring(client.Name) .. "'")
+        return
+    end
+    local msg = Networking.Start("mm_traitornewobj")
+    msg.WriteByte(1) -- Tells the client that this is a real objective and not a "I NEED NOT OF YOU"
+    msg.WriteByte(id) -- Key position of the objective in the objectives table
+    msg.WriteString(target[1].Name) -- Name of the target client
+    msg.WriteByte(chosenChat) -- The Lender smalltalk that was chosen
+    Networking.Send(msg, client.Connection)
+end)
+
+-- Let traitors abandon their current objective
+Networking.Receive("mm_traitorabandonobj", function(message, client)
+    if not rs.SelectedPlayers[client] or rs.EOTR then return end
+    local objective = rs.SelectedPlayers[client][2][3]
+    if not objective then return end
+    local id = 1
+    if objective["NoPenalty"] then
+        id = 2
+    else
+        rs.SelectedPlayers[client][2][4] = rs.SelectedPlayers[client][2][4] + 180
+    end
+    rs.SelectedPlayers[client][2][3] = nil
+    local msg = Networking.Start("mm_traitorabandonobj")
+    msg.WriteByte(id) -- 1 means there was a penalty, 2 means no penalty
+    Networking.Send(msg, client.Connection)
+end)
+
+-- Let traitors complete their objectives
+Networking.Receive("mm_traitorcompleteobj", function(message, client)
+    if not rs.SelectedPlayers[client] or rs.EOTR then return end
+    local objective = rs.SelectedPlayers[client][2][3]
+    if not objective then return end
+    local str, bool = objective["Obj"](client)
+    local msg = Networking.Start("mm_traitorcompleteobj")
+    msg.WriteString(str)
+    msg.WriteBoolean(bool)
+    Networking.Send(msg, client.Connection)
+end)
+
+-- Let traitors communicate
+Networking.Receive("mm_traitormsg", function(message, client)
+    if not rs.SelectedPlayers[client] then return end
+    local str = tostring(message.ReadString())
+    local uplink
+    for potentialUplink, uplinkTbl in pairs(rs.Items.Uplinks) do
+        if uplinkTbl[2] == client and uplinkTbl[4] == true then
+            uplink = potentialUplink
+            break
+        end
+    end
+    if not uplink then
+        Megamod.Error("Could not find uplink item for client '" .. tostring(client.Name) .. "'")
+        return
+    end
+    local clientsToMsg = {}
+    for potentialClient, _ in pairs(rs.SelectedPlayers) do
+        if potentialClient ~= client then
+            table.insert(clientsToMsg, potentialClient)
+        end
+    end
+    local id = tostring(rs.Items.Uplinks[uplink][1])
+    local msg = Networking.Start("mm_traitormsg")
+    msg.WriteString(str) -- The message content
+    msg.WriteString(id) -- The sending traitor's uplink ID
+    for clientToMsg in clientsToMsg do
+        Megamod.SendChatMessage(clientToMsg, "UPLINK: RECEIVED MESSAGE (FROM " .. id .. ")", Color(255, 100, 100, 255))
+        Networking.Send(msg, clientToMsg.Connection)
+    end
+end)
+
+local function activateDV(uplinkItem, client)
+    local ownTbl = rs.Items.Uplinks[uplinkItem]
+    if not client.Character then return end
+    if not client.Character.CurrentHull then
+        return "You must be near a DV Access Point."
+    end
+    local closest
+    local minDist = 115
+    for dvo in Megamod.Map.DVOutside do
+        -- Hidden = disabled
+        if not dvo.HiddenInGame then
+            local distance = Vector2.Distance(client.Character.WorldPosition, dvo.WorldPosition)
+            if distance < minDist then
+                minDist = distance
+                closest = dvo
+            end
+        end
+    end
+    for dvi in Megamod.Map.DVInside do
+        -- Hidden = disabled
+        if not dvi.HiddenInGame then
+            local distance = Vector2.Distance(client.Character.WorldPosition, dvi.WorldPosition)
+            if distance < minDist then
+                minDist = distance
+                closest = dvi
+            end
+        end
+    end
+    if closest then
+        local c = closest.GetComponentString('LightComponent')
+        if c.IsOn then
+            return "This DV Access Point is already active."
+        end
+        -- This is after the IsOn check, so that being near an access point
+        -- will prioritize "this is active" over "on cooldown"
+        if ownTbl[5] > 0 then
+            return "DV is on cooldown for " .. tostring(ownTbl[5]) .. " seconds."
+        end
+        local exit
+        for tbl in Megamod.Map.DVConnections do
+            if tbl.Inside == closest then
+                exit = tbl.Outside
+                break
+            elseif tbl.Outside == closest then
+                exit = tbl.Inside
+                break
+            end
+        end
+        if not exit then
+            Megamod.Error("No DV connection found.")
+            return "Error: This DV Access Point is not connected."
+        end
+        local c2 = exit.GetComponentString('LightComponent')
+        -- Apparently this can happen
+        if c.IsOn == nil or c2.IsOn == nil then
+            Megamod.Error("Traitor DV command did not find IsOn in a LightComponent.")
+            return "Error: Try again. (This is a Baro bug. Just \"dv\" again.)"
+        end
+
+        -- Turning on the light component activates the DV point, as a
+        -- statuseffect makes it noninteractable based on IsOn
+
+        Megamod.CreateEntityEvent(c, closest, "IsOn", not c.IsOn)
+        Megamod.CreateEntityEvent(c2, exit, "IsOn", not c2.IsOn)
+
+        ownTbl[5] = 20
+        local function cooldownLoop()
+            Timer.Wait(function()
+                -- Uplink could be deleted (returned) when on cooldown
+                if not Game.RoundStarted or not uplinkItem then return end
+                ownTbl[5] = ownTbl[5] - 1
+                if ownTbl[5] <= 0 then
+                    -- Notify the uplink user
+                    if Megamod.CheckIsDead(client) == false then
+                        Megamod.SendChatMessage(client, "UPLINK: DV READY", Color(255, 100, 100, 255))
+                    end
+                    return
+                end
+                cooldownLoop()
+            end, 1000)
+        end
+        cooldownLoop()
+
+        -- Deactivate after 25-35 seconds
+        Timer.Wait(function()
+            if not Game.RoundStarted or not closest or not exit then return end
+            local c = closest.GetComponentString('LightComponent')
+            Megamod.CreateEntityEvent(c, closest, "IsOn", not c.IsOn)
+
+            local c2 = exit.GetComponentString('LightComponent')
+            Megamod.CreateEntityEvent(c2, exit, "IsOn", not c2.IsOn)
+        end, math.random(25000, 35000))
+        return "DV Access Point activated. It will stay open for ~30 seconds."
+    else
+        return "You must be near a DV Access Point."
+    end
+end
+
+-- Let traitors activate DV points
+Networking.Receive("mm_traitordv", function(message, client)
+    if not rs.SelectedPlayers[client] then return end
+    local uplinkItem
+    for potentialUplink, uplinkTbl in pairs(rs.Items.Uplinks) do
+        if uplinkTbl[2] == client and uplinkTbl[4] == true then
+            uplinkItem = potentialUplink
+            break
+        end
+    end
+    if not uplinkItem then
+        Megamod.Error("Could not find uplink item for client '" .. tostring(client.Name) .. "'")
+        return
+    end
+    local str = activateDV(uplinkItem, client)
+    local msg = Networking.Start("mm_traitordv")
+    msg.WriteString(str)
+    Networking.Send(msg, client.Connection)
 end)
 
 
@@ -1960,12 +1349,12 @@ function rs.Draft()
     str = str:sub(1, -3)
     Megamod.Log("Traitors selected: " .. str, true)
 
-    rs.DLeakTbl[2] = rs.GetNewDLeakTarget()
+    --rs.DLeakTbl[2] = rs.GetNewDLeakTarget()
     rs.PatienceLoop()
-    rs.DLeakLoop()
+    --rs.DLeakLoop()
 
     -- Spawn a leak as we're drafted, so traitors have some initial dimes
-    rs.SpawnDLeak(rs.DLeakTbl[2] / 2)
+    --rs.SpawnDLeak(rs.DLeakTbl[2] / 2)
 
     -- Success
     return true, ""

@@ -70,6 +70,7 @@ if CLIENT then
 
         -- These have to initialized after the shared stuff and IsAdmin
         dofile(Megamod_Client.Path .. "/Lua/client/client.lua")
+        dofile(Megamod_Client.Path .. "/Lua/client/traitor.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")

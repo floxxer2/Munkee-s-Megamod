@@ -36,7 +36,7 @@
   <!-- Dimensional Essence -->
   <Item identifier="mm_dime" name="" description="" scale="0.5" tags="smallitem" maxstacksize="32" category="Material" subcategory="Beast" hideinmenus="true" cargocontaineridentifier="metalcrate" fireproof="true">
     <Deconstruct time="10" />
-    <InventoryIcon name="mm_dime_invicon" texture="%ModDir%/Megamod/Sprites/2.png" sourcerect="0,0,0,0" origin="0.5,0.5" />
+    <InventoryIcon name="mm_dime_invicon" texture="%ModDir%/Megamod/Sprites/2.png" sourcerect="0,0,57,63" origin="0.5,0.5" />
     <Sprite name="mm_dime_sprite" texture="%ModDir%/Megamod/Sprites/2.png" sourcerect="0,0,57,63" origin="0.5,0.5" depth="0.6" />
     <Body radius="20" density="30" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
@@ -52,9 +52,9 @@
     <Sprite texture="%ModDir%/Megamod/Sprites/InGameItemIconAtlas.png" sourcerect="520,35,76,61" depth="0.55" origin="0.5,0.5" />
     <Body width="65" height="50" density="15" />
     <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
-    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" drawhudwhenequipped="true">
-      <GuiFrame relativesize="0.35,0.35" anchor="Center" style="ItemUI" />
-    </Terminal>
+    <CustomInterface type="uplink" CanBeSelected="false" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.58,0.54" anchor="Center" pivot="Center" style="ItemUI" />
+    </CustomInterface>
     <ItemContainer capacity="1" maxstacksize="32">
       <Containable item="mm_dime" />
     </ItemContainer>
