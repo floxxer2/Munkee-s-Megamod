@@ -68,7 +68,7 @@ local funcTable = {
         local msg = Networking.Start("mm_beastinvis")
         Networking.Send(msg)
     end,
-    --#DEBUG# Transfer reagents between two containers
+    -- Transfer reagents between two containers
     --[[[5] = function()
         local slotReference = Megamod_Client.GetHoveredItem()
         if slotReference and not firstItem then
@@ -97,7 +97,7 @@ local funcTable = {
         Networking.Send(msg)
         Megamod_Client.SelfMsg(true, "Transferred", Color(255, 0, 255, 255))
     end,
-    --#DEBUG# Inspect the reagents in an item container
+    -- Inspect the reagents in an item container
     [6] = function()
         local slotReference = Megamod_Client.GetHoveredItem()
         if not slotReference then
@@ -134,7 +134,7 @@ local funcTable = {
             print("Not a container")
         end
     end,
-    --#DEBUG# Inspect the reagents in a player container
+    -- Inspect the reagents in a player container
     [7] = function()
         local mousePos = Megamod.ScreenToWorld(PlayerInput.MousePosition)
         local container
@@ -216,7 +216,6 @@ end
 -- Add a keybind to send The Beast up while flying, always set to the "up" key
 Megamod_Client.KeyBinds.SetKeyBind("W", {}, 2, 3)
 
--- #DEBUG#
 --[[Megamod_Client.KeyBinds.SetKeyBind("F5", {}, 5, 1)
 Megamod_Client.KeyBinds.SetKeyBind("F6", {}, 6, 1)
 Megamod_Client.KeyBinds.SetKeyBind("F7", {}, 7, 1)]]
