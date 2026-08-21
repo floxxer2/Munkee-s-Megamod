@@ -73,7 +73,7 @@ if CLIENT then
         dofile(Megamod_Client.Path .. "/Lua/client/traitor.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/hunt.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/controlpanel.lua")
-        dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua")
+        --dofile(Megamod_Client.Path .. "/Lua/client/dimelocator.lua") Temporarily disabled Dime Locator
         --dofile(Megamod_Client.Path .. "/Lua/client/chemistry.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/monster.lua")
         dofile(Megamod_Client.Path .. "/Lua/client/vision.lua")
